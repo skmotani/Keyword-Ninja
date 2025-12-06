@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState, useRef, useEffect } from 'react';
 
 const navItems = [
   { href: '/', label: 'Home' },
@@ -12,8 +13,26 @@ const navItems = [
   { href: '/keywords/serp-results', label: 'SERP Results' },
 ];
 
+const reportItems = [
+  { href: '/report/competitors', label: 'Competitor List' },
+];
+
 export default function Navbar() {
   const pathname = usePathname();
+  const [reportOpen, setReportOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setReportOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const isReportActive = pathname.startsWith('/report');
 
   return (
     <nav className="bg-white shadow-sm border-b">
@@ -38,6 +57,47 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
+            
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setReportOpen(!reportOpen)}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${
+                  isReportActive
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                }`}
+              >
+                Report
+                <svg
+                  className={`w-4 h-4 transition-transform ${reportOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              {reportOpen && (
+                <div className="absolute right-0 mt-1 w-48 bg-white rounded-md shadow-lg border z-50">
+                  {reportItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setReportOpen(false)}
+                      className={`block px-4 py-2 text-sm transition-colors ${
+                        pathname === item.href
+                          ? 'bg-indigo-50 text-indigo-700'
+                          : 'text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <Link
               href="/settings/api-credentials"
               className={`ml-4 p-2 rounded-md transition-colors cursor-pointer ${
