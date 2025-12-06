@@ -261,9 +261,9 @@ export default function ManualKeywordsPage() {
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">S.No</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Client</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Keyword</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Notes</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Active?</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Actions</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Notes</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -301,14 +301,6 @@ export default function ManualKeywordsPage() {
                         />
                       </td>
                       <td className="px-6 py-4">
-                        <input
-                          type="text"
-                          value={editFormData.notes}
-                          onChange={(e) => setEditFormData({ ...editFormData, notes: e.target.value })}
-                          className="w-full px-2 py-1 border rounded"
-                        />
-                      </td>
-                      <td className="px-6 py-4">
                         <span className={`px-2 py-1 text-xs rounded-full ${keyword.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
                           {keyword.isActive ? 'Yes' : 'No'}
                         </span>
@@ -327,13 +319,20 @@ export default function ManualKeywordsPage() {
                           Cancel
                         </button>
                       </td>
+                      <td className="px-6 py-4">
+                        <input
+                          type="text"
+                          value={editFormData.notes}
+                          onChange={(e) => setEditFormData({ ...editFormData, notes: e.target.value })}
+                          className="w-full px-2 py-1 border rounded"
+                        />
+                      </td>
                     </>
                   ) : (
                     <>
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{index + 1}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{getClientName(keyword.clientCode)}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{keyword.keywordText}</td>
-                      <td className="px-6 py-4 text-sm text-gray-500">{keyword.notes || '-'}</td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className={`px-2 py-1 text-xs rounded-full ${keyword.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
                           {keyword.isActive ? 'Yes' : 'No'}
@@ -359,6 +358,7 @@ export default function ManualKeywordsPage() {
                           Delete
                         </button>
                       </td>
+                      <td className="px-6 py-4 text-sm text-gray-500">{keyword.notes || '-'}</td>
                     </>
                   )}
                 </tr>
