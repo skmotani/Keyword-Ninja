@@ -95,7 +95,7 @@ function Tooltip({ text, children }: TooltipProps) {
   );
 }
 
-type SortField = 'rank' | 'rankAbsolute' | 'etv' | 'estimatedPaidTrafficCost' | null;
+type SortField = 'rank' | 'rankAbsolute' | null;
 type SortDirection = 'asc' | 'desc';
 
 interface ProgressState {
@@ -136,7 +136,7 @@ export default function SerpResultsPage() {
   const [locationFilter, setLocationFilter] = useState<string>('all');
   const [minRank, setMinRank] = useState<string>('');
   const [maxRank, setMaxRank] = useState<string>('');
-  const [featuredSnippetFilter, setFeaturedSnippetFilter] = useState<string>('all');
+
 
   const [sortField, setSortField] = useState<SortField>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>('asc');
@@ -342,12 +342,6 @@ export default function SerpResultsPage() {
       if (maxR !== null && record.rank > maxR) {
         return false;
       }
-      if (featuredSnippetFilter === 'yes' && !record.isFeaturedSnippet) {
-        return false;
-      }
-      if (featuredSnippetFilter === 'no' && record.isFeaturedSnippet) {
-        return false;
-      }
       return true;
     });
 
@@ -364,7 +358,7 @@ export default function SerpResultsPage() {
     }
 
     return result;
-  }, [records, keywordFilter, domainFilter, locationFilter, minRank, maxRank, featuredSnippetFilter, sortField, sortDirection]);
+  }, [records, keywordFilter, domainFilter, locationFilter, minRank, maxRank, sortField, sortDirection]);
 
   const getLocationStats = (numericCode: number) => {
     const locRecords = records.filter(r => r.locationCode === numericCode);
@@ -572,7 +566,7 @@ export default function SerpResultsPage() {
 
       <div className="bg-white rounded-lg shadow-sm border p-3 mb-4">
         <p className="text-xs font-medium text-gray-700 mb-2">Filters</p>
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
           <div>
             <label className="block text-[10px] text-gray-500 mb-1">Keyword Search</label>
             <input
@@ -625,20 +619,8 @@ export default function SerpResultsPage() {
               className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
             />
           </div>
-          <div>
-            <label className="block text-[10px] text-gray-500 mb-1">Featured Snippet</label>
-            <select
-              value={featuredSnippetFilter}
-              onChange={(e) => setFeaturedSnippetFilter(e.target.value)}
-              className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
-            >
-              <option value="all">All</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </div>
         </div>
-        {(keywordFilter || domainFilter || locationFilter !== 'all' || minRank || maxRank || featuredSnippetFilter !== 'all') && (
+        {(keywordFilter || domainFilter || locationFilter !== 'all' || minRank || maxRank) && (
           <button
             onClick={() => {
               setKeywordFilter('');
@@ -646,7 +628,6 @@ export default function SerpResultsPage() {
               setLocationFilter('all');
               setMinRank('');
               setMaxRank('');
-              setFeaturedSnippetFilter('all');
             }}
             className="mt-2 text-xs text-indigo-600 hover:text-indigo-800"
           >
@@ -656,22 +637,22 @@ export default function SerpResultsPage() {
       </div>
 
       <div className="bg-white rounded-lg shadow-sm border">
-        <div className="overflow-x-auto overflow-y-visible">
+        <div className="overflow-auto max-h-[600px]">
           <table className="min-w-full">
-            <thead className="bg-gray-50 sticky top-0 z-10 overflow-visible">
+            <thead className="bg-gray-50 sticky top-0 z-10">
               <tr>
-                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
+                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
                   <Tooltip text="Date and time when the SERP data was fetched">
                     <span className="cursor-help border-b border-dashed border-gray-400">Date</span>
                   </Tooltip>
                 </th>
-                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Keyword</th>
-                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
+                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">Keyword</th>
+                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
                   <Tooltip text="Location/region for the search (IN = India, GL = Global/US)">
                     <span className="cursor-help border-b border-dashed border-gray-400">Scope</span>
                   </Tooltip>
                 </th>
-                <th className="text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
+                <th className="text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
                   <div className="flex items-center justify-end gap-1">
                     <Tooltip text="Position within organic results (1-10)">
                       <span className="cursor-help border-b border-dashed border-gray-400">Rank</span>
@@ -685,7 +666,7 @@ export default function SerpResultsPage() {
                     </button>
                   </div>
                 </th>
-                <th className="text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
+                <th className="text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
                   <div className="flex items-center justify-end gap-1">
                     <Tooltip text="Absolute position including all SERP elements (ads, featured snippets, etc.)">
                       <span className="cursor-help border-b border-dashed border-gray-400">Abs Rank</span>
@@ -699,74 +680,31 @@ export default function SerpResultsPage() {
                     </button>
                   </div>
                 </th>
-                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Domain</th>
-                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 max-w-[200px]">URL</th>
-                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 max-w-[200px]">Title</th>
-                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 max-w-[250px]">
+                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">Domain</th>
+                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 max-w-[200px] bg-gray-50">URL</th>
+                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 max-w-[200px] bg-gray-50">Title</th>
+                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 max-w-[250px] bg-gray-50">
                   <Tooltip text="Meta description / snippet shown in search results">
                     <span className="cursor-help border-b border-dashed border-gray-400">Snippet</span>
                   </Tooltip>
                 </th>
-                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
+                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
                   <Tooltip text="Breadcrumb URL path shown in SERP">
                     <span className="cursor-help border-b border-dashed border-gray-400">Breadcrumb</span>
                   </Tooltip>
-                </th>
-                <th className="text-center text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
-                  <Tooltip text="Whether this result is a featured snippet">
-                    <span className="cursor-help border-b border-dashed border-gray-400">FS</span>
-                  </Tooltip>
-                </th>
-                <th className="text-center text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
-                  <Tooltip text="Whether result includes an image">
-                    <span className="cursor-help border-b border-dashed border-gray-400">Img</span>
-                  </Tooltip>
-                </th>
-                <th className="text-center text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
-                  <Tooltip text="Whether result includes video">
-                    <span className="cursor-help border-b border-dashed border-gray-400">Vid</span>
-                  </Tooltip>
-                </th>
-                <th className="text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
-                  <div className="flex items-center justify-end gap-1">
-                    <Tooltip text="Estimated Traffic Value - estimated value of organic traffic">
-                      <span className="cursor-help border-b border-dashed border-gray-400">ETV</span>
-                    </Tooltip>
-                    <button
-                      onClick={() => handleSort('etv')}
-                      className="ml-1 text-gray-400 hover:text-indigo-600 focus:outline-none"
-                      title="Sort by ETV"
-                    >
-                      {getSortIcon('etv') || '⇅'}
-                    </button>
-                  </div>
-                </th>
-                <th className="text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
-                  <div className="flex items-center justify-end gap-1">
-                    <Tooltip text="Estimated cost if this organic traffic was paid for via ads">
-                      <span className="cursor-help border-b border-dashed border-gray-400">Est. Cost</span>
-                    </Tooltip>
-                    <button
-                      onClick={() => handleSort('estimatedPaidTrafficCost')}
-                      className="ml-1 text-gray-400 hover:text-indigo-600 focus:outline-none"
-                      title="Sort by Estimated Paid Traffic Cost"
-                    >
-                      {getSortIcon('estimatedPaidTrafficCost') || '⇅'}
-                    </button>
-                  </div>
                 </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {loading ? (
                 <tr>
-                  <td colSpan={15} className="text-center py-8 text-gray-500 text-sm">
+                  <td colSpan={10} className="text-center py-8 text-gray-500 text-sm">
                     Loading...
                   </td>
                 </tr>
               ) : filteredRecords.length === 0 ? (
                 <tr>
-                  <td colSpan={15} className="text-center py-8 text-gray-500 text-sm">
+                  <td colSpan={10} className="text-center py-8 text-gray-500 text-sm">
                     No SERP results found. Click "Refresh SERP data from API" to fetch data.
                   </td>
                 </tr>
@@ -776,19 +714,19 @@ export default function SerpResultsPage() {
                     <td className="py-2 px-2 text-xs text-gray-600 whitespace-nowrap">
                       {formatDate(record.fetchedAt)}
                     </td>
-                    <td className="py-2 px-2 text-xs text-gray-900 font-medium">
+                    <td className="py-2 px-2 text-xs text-gray-900 font-medium whitespace-nowrap">
                       {record.keyword}
                     </td>
-                    <td className="py-2 px-2 text-xs text-gray-600">
+                    <td className="py-2 px-2 text-xs text-gray-600 whitespace-nowrap">
                       {getLocationLabel(record.locationCode)}
                     </td>
-                    <td className="py-2 px-2 text-xs text-gray-900 text-right font-medium">
+                    <td className="py-2 px-2 text-xs text-gray-900 text-right font-medium whitespace-nowrap">
                       {record.rank}
                     </td>
-                    <td className="py-2 px-2 text-xs text-gray-600 text-right">
+                    <td className="py-2 px-2 text-xs text-gray-600 text-right whitespace-nowrap">
                       {record.rankAbsolute}
                     </td>
-                    <td className="py-2 px-2 text-xs text-gray-900">
+                    <td className="py-2 px-2 text-xs text-gray-900 whitespace-nowrap">
                       {record.domain}
                     </td>
                     <td className="py-2 px-2 text-xs text-blue-600 max-w-[200px]">
@@ -816,35 +754,6 @@ export default function SerpResultsPage() {
                       <span className="block truncate" title={record.breadcrumb || ''}>
                         {record.breadcrumb ? truncateText(record.breadcrumb, 30) : '-'}
                       </span>
-                    </td>
-                    <td className="py-2 px-2 text-xs text-center">
-                      {record.isFeaturedSnippet ? (
-                        <span className="text-green-600 font-medium">Yes</span>
-                      ) : (
-                        <span className="text-gray-400">-</span>
-                      )}
-                    </td>
-                    <td className="py-2 px-2 text-xs text-center">
-                      {record.isImage ? (
-                        <span className="text-blue-600">Yes</span>
-                      ) : (
-                        <span className="text-gray-400">-</span>
-                      )}
-                    </td>
-                    <td className="py-2 px-2 text-xs text-center">
-                      {record.isVideo ? (
-                        <span className="text-purple-600">Yes</span>
-                      ) : (
-                        <span className="text-gray-400">-</span>
-                      )}
-                    </td>
-                    <td className="py-2 px-2 text-xs text-gray-900 text-right">
-                      {record.etv !== null ? record.etv.toFixed(2) : '-'}
-                    </td>
-                    <td className="py-2 px-2 text-xs text-gray-900 text-right">
-                      {record.estimatedPaidTrafficCost !== null 
-                        ? `$${record.estimatedPaidTrafficCost.toFixed(2)}` 
-                        : '-'}
                     </td>
                   </tr>
                 ))
