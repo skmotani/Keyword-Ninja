@@ -32,7 +32,7 @@ const LOCATION_OPTIONS = [
 export default function KeywordApiDataPage() {
   const [clients, setClients] = useState<Client[]>([]);
   const [selectedClientCode, setSelectedClientCode] = useState<string>('');
-  const [selectedLocationCode, setSelectedLocationCode] = useState<string>('IN');
+  const [selectedLocationCodes, setSelectedLocationCodes] = useState<string[]>(['IN', 'GL']);
   const [records, setRecords] = useState<KeywordApiDataRecord[]>([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
@@ -57,11 +57,11 @@ export default function KeywordApiDataPage() {
   };
 
   const fetchRecords = useCallback(async () => {
-    if (!selectedClientCode || !selectedLocationCode) return;
+    if (!selectedClientCode || selectedLocationCodes.length === 0) return;
     setLoading(true);
     try {
       const res = await fetch(
-        `/api/seo/keywords?clientCode=${selectedClientCode}&locationCode=${selectedLocationCode}`
+        `/api/seo/keywords?clientCode=${selectedClientCode}&locationCodes=${selectedLocationCodes.join(',')}`
       );
       const data = await res.json();
       setRecords(data);
@@ -70,45 +70,68 @@ export default function KeywordApiDataPage() {
     } finally {
       setLoading(false);
     }
-  }, [selectedClientCode, selectedLocationCode]);
+  }, [selectedClientCode, selectedLocationCodes]);
 
   useEffect(() => {
-    if (selectedClientCode && selectedLocationCode) {
+    if (selectedClientCode && selectedLocationCodes.length > 0) {
       fetchRecords();
     }
-  }, [selectedClientCode, selectedLocationCode, fetchRecords]);
+  }, [selectedClientCode, selectedLocationCodes, fetchRecords]);
+
+  const toggleLocation = (code: string) => {
+    setSelectedLocationCodes(prev => {
+      if (prev.includes(code)) {
+        if (prev.length === 1) return prev;
+        return prev.filter(c => c !== code);
+      }
+      return [...prev, code];
+    });
+  };
 
   const handleRefresh = async () => {
-    if (!selectedClientCode || !selectedLocationCode) return;
+    if (!selectedClientCode || selectedLocationCodes.length === 0) return;
     setRefreshing(true);
     setNotification(null);
-    try {
-      const res = await fetch('/api/seo/keywords/fetch', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          clientCode: selectedClientCode,
-          locationCode: selectedLocationCode,
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setNotification({ type: 'error', message: data.error || 'Failed to refresh data' });
-      } else {
-        const clientName = clients.find(c => c.code === selectedClientCode)?.name || selectedClientCode;
-        const locationLabel = LOCATION_OPTIONS.find(l => l.code === selectedLocationCode)?.label || selectedLocationCode;
-        const timestamp = new Date().toLocaleString();
-        setNotification({ 
-          type: 'success', 
-          message: `Keyword data for ${clientName} (${locationLabel}) refreshed successfully at ${timestamp}. ${data.count} keywords fetched.`
+    
+    let totalCount = 0;
+    const errors: string[] = [];
+    
+    for (const locationCode of selectedLocationCodes) {
+      try {
+        const res = await fetch('/api/seo/keywords/fetch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            clientCode: selectedClientCode,
+            locationCode: locationCode,
+          }),
         });
-        await fetchRecords();
+        const data = await res.json();
+        if (!res.ok) {
+          errors.push(`${locationCode}: ${data.error || 'Failed'}`);
+        } else {
+          totalCount += data.count || 0;
+        }
+      } catch (error) {
+        errors.push(`${locationCode}: Network error`);
       }
-    } catch (error) {
-      setNotification({ type: 'error', message: 'Failed to refresh data' });
-    } finally {
-      setRefreshing(false);
     }
+    
+    if (errors.length > 0) {
+      setNotification({ type: 'error', message: `Some locations failed: ${errors.join(', ')}` });
+    } else {
+      const clientName = clients.find(c => c.code === selectedClientCode)?.name || selectedClientCode;
+      const locationLabels = selectedLocationCodes.map(code => 
+        LOCATION_OPTIONS.find(l => l.code === code)?.label || code
+      ).join(', ');
+      const timestamp = new Date().toLocaleString();
+      setNotification({ 
+        type: 'success', 
+        message: `Keyword data for ${clientName} (${locationLabels}) refreshed successfully at ${timestamp}. ${totalCount} keywords fetched.`
+      });
+    }
+    await fetchRecords();
+    setRefreshing(false);
   };
 
   const getLastRefreshed = () => {
@@ -157,17 +180,19 @@ export default function KeywordApiDataPage() {
           </div>
           <div className="min-w-[150px]">
             <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
-            <select
-              value={selectedLocationCode}
-              onChange={(e) => setSelectedLocationCode(e.target.value)}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
+            <div className="flex gap-4 py-2">
               {LOCATION_OPTIONS.map((loc) => (
-                <option key={loc.code} value={loc.code}>
-                  {loc.label}
-                </option>
+                <label key={loc.code} className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={selectedLocationCodes.includes(loc.code)}
+                    onChange={() => toggleLocation(loc.code)}
+                    className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                  />
+                  <span className="text-sm text-gray-700">{loc.label}</span>
+                </label>
               ))}
-            </select>
+            </div>
           </div>
           <div>
             <button
@@ -211,7 +236,7 @@ export default function KeywordApiDataPage() {
           </div>
           <div>
             <span className="text-gray-500">Location:</span>
-            <p className="font-medium">{selectedLocationCode}</p>
+            <p className="font-medium">{selectedLocationCodes.join(', ')}</p>
           </div>
           <div>
             <span className="text-gray-500">Last Refreshed:</span>

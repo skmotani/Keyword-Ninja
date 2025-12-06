@@ -5,15 +5,16 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const clientCode = searchParams.get('clientCode');
-    const locationCode = searchParams.get('locationCode');
+    const locationCodes = searchParams.get('locationCodes');
 
     let records = await getKeywordApiData();
     
     if (clientCode) {
       records = records.filter(r => r.clientCode === clientCode);
     }
-    if (locationCode) {
-      records = records.filter(r => r.locationCode === locationCode);
+    if (locationCodes) {
+      const locationList = locationCodes.split(',').map(l => l.trim());
+      records = records.filter(r => locationList.includes(r.locationCode));
     }
 
     return NextResponse.json(records);
