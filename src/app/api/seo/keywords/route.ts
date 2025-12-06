@@ -9,13 +9,17 @@ const STRING_TO_NUMERIC: Record<string, number> = {
   'CA': 2124, 'ca': 2124,
 };
 
-const NUMERIC_TO_STRING: Record<number, string[]> = {
-  2356: ['IN', 'India', 'in'],
-  2840: ['GL', 'US', 'Global', 'gl', 'us'],
-  2826: ['UK', 'uk'],
-  2036: ['AU', 'au'],
-  2124: ['CA', 'ca'],
-};
+function canonicalizeLocationCode(locCode: number | string): number {
+  if (typeof locCode === 'number') {
+    return locCode;
+  }
+  const numericEquiv = STRING_TO_NUMERIC[locCode];
+  if (numericEquiv) {
+    return numericEquiv;
+  }
+  const parsed = parseInt(locCode, 10);
+  return isNaN(parsed) ? 0 : parsed;
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -32,22 +36,9 @@ export async function GET(request: NextRequest) {
       const locationList = locationCodes.split(',').map(l => l.trim());
       const numericLocations = locationList.map(l => STRING_TO_NUMERIC[l] || parseInt(l, 10));
       
-      const allStringsToMatch = new Set<string>();
-      for (const numCode of numericLocations) {
-        const strings = NUMERIC_TO_STRING[numCode] || [];
-        strings.forEach(s => allStringsToMatch.add(s));
-      }
-      
       records = records.filter(r => {
-        if (typeof r.locationCode === 'number') {
-          return numericLocations.includes(r.locationCode);
-        }
-        const locStr = r.locationCode as unknown as string;
-        if (allStringsToMatch.has(locStr)) {
-          return true;
-        }
-        const numericEquiv = STRING_TO_NUMERIC[locStr];
-        return numericEquiv ? numericLocations.includes(numericEquiv) : false;
+        const canonicalLoc = canonicalizeLocationCode(r.locationCode);
+        return numericLocations.includes(canonicalLoc);
       });
     }
 

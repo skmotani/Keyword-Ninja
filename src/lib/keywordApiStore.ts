@@ -75,14 +75,6 @@ export async function replaceKeywordApiDataForClientAndLocation(
   await writeKeywordApiData(updatedRecords);
 }
 
-const NUMERIC_TO_STRING: Record<number, string[]> = {
-  2356: ['IN', 'India', 'in'],
-  2840: ['GL', 'US', 'Global', 'gl', 'us'],
-  2826: ['UK', 'uk'],
-  2036: ['AU', 'au'],
-  2124: ['CA', 'ca'],
-};
-
 const STRING_TO_NUMERIC: Record<string, number> = {
   'IN': 2356, 'India': 2356, 'in': 2356,
   'GL': 2840, 'US': 2840, 'Global': 2840, 'gl': 2840, 'us': 2840,
@@ -91,6 +83,18 @@ const STRING_TO_NUMERIC: Record<string, number> = {
   'CA': 2124, 'ca': 2124,
 };
 
+function canonicalizeLocationCode(locCode: number | string): number {
+  if (typeof locCode === 'number') {
+    return locCode;
+  }
+  const numericEquiv = STRING_TO_NUMERIC[locCode];
+  if (numericEquiv) {
+    return numericEquiv;
+  }
+  const parsed = parseInt(locCode, 10);
+  return isNaN(parsed) ? 0 : parsed;
+}
+
 export async function replaceKeywordApiDataForClientAndLocations(
   clientCode: string,
   locationCodes: number[],
@@ -98,32 +102,18 @@ export async function replaceKeywordApiDataForClientAndLocations(
 ): Promise<void> {
   const allRecords = await readKeywordApiData();
   
-  const allStringsToRemove = new Set<string>();
-  for (const numCode of locationCodes) {
-    const strings = NUMERIC_TO_STRING[numCode] || [];
-    strings.forEach(s => allStringsToRemove.add(s));
-  }
+  const normalizedNewRecords = newRecords.map(r => ({
+    ...r,
+    locationCode: canonicalizeLocationCode(r.locationCode),
+  }));
   
   const filteredRecords = allRecords.filter(r => {
     if (r.clientCode !== clientCode) return true;
-    
-    if (typeof r.locationCode === 'number') {
-      return !locationCodes.includes(r.locationCode);
-    }
-    
-    const locStr = r.locationCode as unknown as string;
-    if (allStringsToRemove.has(locStr)) {
-      return false;
-    }
-    const numericEquiv = STRING_TO_NUMERIC[locStr];
-    if (numericEquiv && locationCodes.includes(numericEquiv)) {
-      return false;
-    }
-    
-    return true;
+    const canonicalLoc = canonicalizeLocationCode(r.locationCode);
+    return !locationCodes.includes(canonicalLoc);
   });
   
-  const updatedRecords = [...filteredRecords, ...newRecords];
+  const updatedRecords = [...filteredRecords, ...normalizedNewRecords];
   await writeKeywordApiData(updatedRecords);
 }
 
