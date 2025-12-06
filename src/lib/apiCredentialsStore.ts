@@ -97,7 +97,7 @@ export async function getActiveCredentialByService(
   const matches = credentials.filter(c => 
     c.serviceType === serviceType && 
     c.isActive === true &&
-    (clientCode ? c.clientCode === clientCode : true)
+    (!c.clientCode || c.clientCode === clientCode)
   );
   
   if (matches.length === 0) return null;
