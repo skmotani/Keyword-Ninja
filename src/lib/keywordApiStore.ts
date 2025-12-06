@@ -1,9 +1,18 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-import { KeywordApiDataRecord } from '@/types';
+import { KeywordApiDataRecord, MonthlySearch } from '@/types';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 const KEYWORD_API_DATA_FILE = 'keyword_api_data.json';
+const API_LOGS_DIR = path.join(DATA_DIR, 'api_logs');
+
+async function ensureApiLogsDir(): Promise<void> {
+  try {
+    await fs.access(API_LOGS_DIR);
+  } catch {
+    await fs.mkdir(API_LOGS_DIR, { recursive: true });
+  }
+}
 
 async function readKeywordApiData(): Promise<KeywordApiDataRecord[]> {
   try {
@@ -30,6 +39,14 @@ export async function getKeywordApiDataByClientAndLocation(
 ): Promise<KeywordApiDataRecord[]> {
   const records = await readKeywordApiData();
   return records.filter(r => r.clientCode === clientCode && r.locationCode === locationCode);
+}
+
+export async function getKeywordApiDataByClientAndLocations(
+  clientCode: string,
+  locationCodes: string[]
+): Promise<KeywordApiDataRecord[]> {
+  const records = await readKeywordApiData();
+  return records.filter(r => r.clientCode === clientCode && locationCodes.includes(r.locationCode));
 }
 
 export async function getLastPulledAtForClientAndLocation(
@@ -67,16 +84,38 @@ export interface KeywordMetrics {
   searchVolume: number | null;
   cpc: number | null;
   competitionIndex: number | null;
+  competitionLevel: string | null;
+  monthlySearches: MonthlySearch[] | null;
 }
 
-export async function fetchKeywordDataFromProvider(
-  keywords: string[],
-  locationCode: string
-): Promise<KeywordMetrics[]> {
-  return keywords.map(keyword => ({
-    keywordText: keyword,
-    searchVolume: Math.floor(Math.random() * 10000) + 100,
-    cpc: parseFloat((Math.random() * 5 + 0.1).toFixed(2)),
-    competitionIndex: parseFloat((Math.random() * 100).toFixed(1)),
-  }));
+export async function saveApiLog(
+  clientCode: string,
+  locationCode: string,
+  rawResponse: string
+): Promise<string> {
+  await ensureApiLogsDir();
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const filename = `dataforseo_${clientCode}_${locationCode}_${timestamp}.json`;
+  const filePath = path.join(API_LOGS_DIR, filename);
+  await fs.writeFile(filePath, rawResponse, 'utf-8');
+  return filename;
+}
+
+export async function getApiLogs(): Promise<string[]> {
+  try {
+    await ensureApiLogsDir();
+    const files = await fs.readdir(API_LOGS_DIR);
+    return files.filter(f => f.endsWith('.json')).sort().reverse();
+  } catch {
+    return [];
+  }
+}
+
+export async function getApiLogContent(filename: string): Promise<string | null> {
+  try {
+    const filePath = path.join(API_LOGS_DIR, filename);
+    return await fs.readFile(filePath, 'utf-8');
+  } catch {
+    return null;
+  }
 }

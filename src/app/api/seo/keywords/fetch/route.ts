@@ -4,9 +4,10 @@ import { getActiveCredentialByService } from '@/lib/apiCredentialsStore';
 import { getManualKeywords } from '@/lib/db';
 import {
   normalizeKeyword,
-  fetchKeywordDataFromProvider,
   replaceKeywordApiDataForClientAndLocation,
+  saveApiLog,
 } from '@/lib/keywordApiStore';
+import { fetchKeywordsFromDataForSEO } from '@/lib/dataforseoClient';
 import { KeywordApiDataRecord } from '@/types';
 
 export async function POST(request: NextRequest) {
@@ -29,6 +30,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    if (!credential.username) {
+      return NextResponse.json(
+        { error: 'DataForSEO credential is missing username' },
+        { status: 400 }
+      );
+    }
+
+    const password = process.env.DATAFORSEO_PASSWORD;
+    if (!password) {
+      return NextResponse.json(
+        { error: 'DataForSEO password not configured. Please add DATAFORSEO_PASSWORD to secrets.' },
+        { status: 400 }
+      );
+    }
+
     const allManualKeywords = await getManualKeywords();
     const activeKeywords = allManualKeywords.filter(
       k => k.clientCode === clientCode && k.isActive
@@ -44,19 +60,34 @@ export async function POST(request: NextRequest) {
     const keywordTexts = activeKeywords.map(k => k.keywordText);
     const normalizedKeywords = keywordTexts.map(normalizeKeyword);
 
-    const metricsData = await fetchKeywordDataFromProvider(normalizedKeywords, locationCode);
+    console.log('[Fetch] Calling DataForSEO API for', normalizedKeywords.length, 'keywords');
+
+    const { results, rawResponse } = await fetchKeywordsFromDataForSEO(
+      { username: credential.username, password },
+      normalizedKeywords,
+      locationCode
+    );
+
+    const logFilename = await saveApiLog(clientCode, locationCode, rawResponse);
+    console.log('[Fetch] Saved API response log:', logFilename);
 
     const now = new Date().toISOString();
     const snapshotDate = now.split('T')[0];
 
-    const newRecords: KeywordApiDataRecord[] = metricsData.map((metrics) => ({
+    const newRecords: KeywordApiDataRecord[] = results.map((result) => ({
       id: uuidv4(),
       clientCode,
-      keywordText: metrics.keywordText,
-      normalizedKeyword: normalizeKeyword(metrics.keywordText),
-      searchVolume: metrics.searchVolume,
-      cpc: metrics.cpc,
-      competitionIndex: metrics.competitionIndex,
+      keywordText: result.keyword,
+      normalizedKeyword: normalizeKeyword(result.keyword),
+      searchVolume: result.search_volume,
+      cpc: result.cpc,
+      competitionIndex: result.competition !== null ? Math.round(result.competition * 100) : null,
+      competitionLevel: result.competition_level,
+      monthlySearches: result.monthly_searches?.map(ms => ({
+        year: ms.year,
+        month: ms.month,
+        searchVolume: ms.search_volume,
+      })) || null,
       locationCode,
       sourceApi: 'DATAFORSEO',
       snapshotDate,
@@ -67,14 +98,16 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: `Successfully fetched data for ${newRecords.length} keywords`,
+      message: `Successfully fetched data for ${newRecords.length} keywords from DataForSEO`,
       count: newRecords.length,
       lastPulledAt: now,
+      logFile: logFilename,
     });
   } catch (error) {
     console.error('Error fetching keyword data:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { error: 'Failed to fetch keyword data' },
+      { error: `Failed to fetch keyword data: ${errorMessage}` },
       { status: 500 }
     );
   }

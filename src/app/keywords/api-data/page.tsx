@@ -10,6 +10,12 @@ interface Client {
   isActive: boolean;
 }
 
+interface MonthlySearch {
+  year: number;
+  month: number;
+  searchVolume: number;
+}
+
 interface KeywordApiDataRecord {
   id: string;
   clientCode: string;
@@ -18,6 +24,8 @@ interface KeywordApiDataRecord {
   searchVolume: number | null;
   cpc: number | null;
   competitionIndex: number | null;
+  competitionLevel: string | null;
+  monthlySearches: MonthlySearch[] | null;
   locationCode: string;
   sourceApi: string;
   snapshotDate: string;
@@ -37,6 +45,10 @@ export default function KeywordApiDataPage() {
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [showLogs, setShowLogs] = useState(false);
+  const [apiLogs, setApiLogs] = useState<string[]>([]);
+  const [selectedLogContent, setSelectedLogContent] = useState<string | null>(null);
+  const [loadingLog, setLoadingLog] = useState(false);
 
   useEffect(() => {
     fetchClients();
@@ -155,6 +167,37 @@ export default function KeywordApiDataPage() {
 
   const selectedClientName = clients.find(c => c.code === selectedClientCode)?.name || '';
 
+  const fetchApiLogs = async () => {
+    try {
+      const res = await fetch('/api/seo/logs');
+      const data = await res.json();
+      setApiLogs(data.logs || []);
+    } catch (error) {
+      console.error('Failed to fetch API logs:', error);
+    }
+  };
+
+  const viewLogContent = async (filename: string) => {
+    setLoadingLog(true);
+    try {
+      const res = await fetch(`/api/seo/logs?filename=${encodeURIComponent(filename)}`);
+      const data = await res.json();
+      setSelectedLogContent(JSON.stringify(data.content, null, 2));
+    } catch (error) {
+      console.error('Failed to fetch log content:', error);
+    } finally {
+      setLoadingLog(false);
+    }
+  };
+
+  const toggleLogs = () => {
+    if (!showLogs) {
+      fetchApiLogs();
+    }
+    setShowLogs(!showLogs);
+    setSelectedLogContent(null);
+  };
+
   return (
     <div className="max-w-6xl mx-auto p-4">
       <PageHeader
@@ -266,9 +309,9 @@ export default function KeywordApiDataPage() {
                 <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Keyword</th>
                 <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Search Vol</th>
                 <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">CPC</th>
-                <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Competition</th>
+                <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Comp %</th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Comp Level</th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Location</th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Source</th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Last Pulled</th>
               </tr>
             </thead>
@@ -297,10 +340,21 @@ export default function KeywordApiDataPage() {
                       {record.cpc !== null ? `$${record.cpc.toFixed(2)}` : '-'}
                     </td>
                     <td className="text-xs text-gray-600 py-1 px-2 leading-tight text-right">
-                      {record.competitionIndex?.toFixed(1) ?? '-'}
+                      {record.competitionIndex ?? '-'}
+                    </td>
+                    <td className="text-xs text-gray-600 py-1 px-2 leading-tight">
+                      {record.competitionLevel ? (
+                        <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${
+                          record.competitionLevel === 'HIGH' ? 'bg-red-100 text-red-800' :
+                          record.competitionLevel === 'MEDIUM' ? 'bg-yellow-100 text-yellow-800' :
+                          record.competitionLevel === 'LOW' ? 'bg-green-100 text-green-800' :
+                          'bg-gray-100 text-gray-800'
+                        }`}>
+                          {record.competitionLevel}
+                        </span>
+                      ) : '-'}
                     </td>
                     <td className="text-xs text-gray-600 py-1 px-2 leading-tight">{record.locationCode}</td>
-                    <td className="text-xs text-gray-600 py-1 px-2 leading-tight">{record.sourceApi}</td>
                     <td className="text-xs text-gray-600 py-1 px-2 leading-tight">
                       {new Date(record.lastPulledAt).toLocaleDateString()}
                     </td>
@@ -310,6 +364,69 @@ export default function KeywordApiDataPage() {
             </tbody>
           </table>
         </div>
+      </div>
+
+      <div className="mt-6">
+        <button
+          onClick={toggleLogs}
+          className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900"
+        >
+          <svg
+            className={`w-4 h-4 transition-transform ${showLogs ? 'rotate-90' : ''}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+          View Raw API Logs (Debug)
+        </button>
+
+        {showLogs && (
+          <div className="mt-4 bg-gray-900 rounded-lg p-4">
+            <h3 className="text-sm font-medium text-gray-200 mb-3">Recent API Responses</h3>
+            
+            {apiLogs.length === 0 ? (
+              <p className="text-gray-400 text-sm">No API logs available. Refresh keyword data to generate logs.</p>
+            ) : (
+              <div className="space-y-2">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {apiLogs.slice(0, 10).map((log) => (
+                    <button
+                      key={log}
+                      onClick={() => viewLogContent(log)}
+                      className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-gray-200 text-xs rounded-md"
+                    >
+                      {log.replace('dataforseo_', '').replace('.json', '')}
+                    </button>
+                  ))}
+                </div>
+
+                {loadingLog && (
+                  <p className="text-gray-400 text-sm">Loading log content...</p>
+                )}
+
+                {selectedLogContent && (
+                  <div className="relative">
+                    <div className="absolute top-2 right-2">
+                      <button
+                        onClick={() => setSelectedLogContent(null)}
+                        className="text-gray-400 hover:text-gray-200"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                    <pre className="bg-gray-800 rounded-lg p-4 text-xs text-green-400 overflow-auto max-h-96">
+                      {selectedLogContent}
+                    </pre>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -49,8 +49,30 @@ export interface KeywordApiDataRecord {
   searchVolume: number | null;
   cpc: number | null;
   competitionIndex: number | null;
+  competitionLevel: string | null;
+  monthlySearches: MonthlySearch[] | null;
   locationCode: string;
   sourceApi: string;
   snapshotDate: string;
   lastPulledAt: string;
+  rawApiResponse?: string;
+}
+
+export interface MonthlySearch {
+  year: number;
+  month: number;
+  searchVolume: number;
+}
+
+export interface DataForSEOKeywordResult {
+  keyword: string;
+  search_volume: number | null;
+  cpc: number | null;
+  competition: number | null;
+  competition_level: string | null;
+  monthly_searches: Array<{
+    year: number;
+    month: number;
+    search_volume: number;
+  }> | null;
 }
