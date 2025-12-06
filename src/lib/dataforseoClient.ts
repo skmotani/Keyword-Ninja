@@ -331,6 +331,7 @@ export async function fetchSerpFromDataForSEO(
     endpoint: 'serp/google/organic/live/advanced',
     keywordCount: keywords.length,
     locations: locationCodes,
+    note: 'DataForSEO SERP Live API only allows 1 keyword per request',
   });
 
   const allLocationResults: SerpLocationResults[] = [];
@@ -338,109 +339,114 @@ export async function fetchSerpFromDataForSEO(
   const errors: string[] = [];
 
   for (const locCode of locationCodes) {
-    try {
-      const numericLocCode = LOCATION_CODE_MAP[locCode] || 2840;
-      const langCode = LANGUAGE_CODE_MAP[locCode] || 'en';
+    const numericLocCode = LOCATION_CODE_MAP[locCode] || 2840;
+    const langCode = LANGUAGE_CODE_MAP[locCode] || 'en';
 
-      const requestBody = keywords.map(keyword => ({
-        keyword: keyword,
-        location_code: numericLocCode,
-        language_code: langCode,
-        depth: 10,
-      }));
+    const locResults: SerpLocationResults = {
+      locationCode: locCode,
+      numericLocationCode: numericLocCode,
+      languageCode: langCode,
+      results: [],
+    };
 
-      console.log(`[DataForSEO SERP] Fetching for location ${locCode} (${numericLocCode}), ${keywords.length} keywords`);
+    console.log(`[DataForSEO SERP] Fetching for location ${locCode} (${numericLocCode}), ${keywords.length} keywords (one request per keyword)`);
 
-      const response = await fetch(
-        'https://api.dataforseo.com/v3/serp/google/organic/live/advanced',
-        {
-          method: 'POST',
-          headers: {
-            'Authorization': `Basic ${authString}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(requestBody),
-        }
-      );
-
-      const rawResponseText = await response.text();
-      allRawResponses.push(rawResponseText);
-
-      console.log(`[DataForSEO SERP] Response status for ${locCode}:`, response.status);
-
-      if (!response.ok) {
-        console.error(`[DataForSEO SERP] API Error for ${locCode}:`, rawResponseText);
-        errors.push(`${locCode}: HTTP ${response.status}`);
-        continue;
-      }
-
-      let data: DataForSEOSerpResponse;
+    for (let i = 0; i < keywords.length; i++) {
+      const keyword = keywords[i];
+      
       try {
-        data = JSON.parse(rawResponseText);
-      } catch (e) {
-        console.error(`[DataForSEO SERP] Failed to parse response for ${locCode}:`, rawResponseText);
-        errors.push(`${locCode}: Invalid JSON response`);
-        continue;
-      }
+        const requestBody = [{
+          keyword: keyword,
+          location_code: numericLocCode,
+          language_code: langCode,
+          depth: 10,
+        }];
 
-      console.log(`[DataForSEO SERP] Response summary for ${locCode}:`, {
-        statusCode: data.status_code,
-        statusMessage: data.status_message,
-        cost: data.cost,
-        tasksCount: data.tasks_count,
-        tasksError: data.tasks_error,
-      });
+        if (i > 0 && i % 10 === 0) {
+          console.log(`[DataForSEO SERP] Progress for ${locCode}: ${i}/${keywords.length} keywords processed`);
+        }
 
-      if (data.status_code !== 20000) {
-        errors.push(`${locCode}: ${data.status_message}`);
-        continue;
-      }
+        const response = await fetch(
+          'https://api.dataforseo.com/v3/serp/google/organic/live/advanced',
+          {
+            method: 'POST',
+            headers: {
+              'Authorization': `Basic ${authString}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody),
+          }
+        );
 
-      const locResults: SerpLocationResults = {
-        locationCode: locCode,
-        numericLocationCode: numericLocCode,
-        languageCode: langCode,
-        results: [],
-      };
+        const rawResponseText = await response.text();
+        allRawResponses.push(rawResponseText);
 
-      for (const task of data.tasks || []) {
-        if (task.status_code !== 20000) {
-          console.warn(`[DataForSEO SERP] Task error for ${locCode}:`, task.status_message);
+        if (!response.ok) {
+          console.error(`[DataForSEO SERP] API Error for ${locCode}/${keyword}:`, rawResponseText);
+          errors.push(`${locCode}/${keyword}: HTTP ${response.status}`);
           continue;
         }
 
-        const keyword = task.data?.keyword || '';
-        const taskResults = task.result || [];
-
-        for (const result of taskResults) {
-          const organicItems = (result.items || [])
-            .filter((item: SerpOrganicResult) => item.type === 'organic')
-            .slice(0, 10);
-
-          locResults.results.push({
-            keyword: keyword || result.keyword,
-            items: organicItems,
-          });
+        let data: DataForSEOSerpResponse;
+        try {
+          data = JSON.parse(rawResponseText);
+        } catch (e) {
+          console.error(`[DataForSEO SERP] Failed to parse response for ${locCode}/${keyword}`);
+          errors.push(`${locCode}/${keyword}: Invalid JSON response`);
+          continue;
         }
-      }
 
-      allLocationResults.push(locResults);
-      console.log(`[DataForSEO SERP] Parsed results for ${locCode}:`, locResults.results.length, 'keywords');
-    } catch (error) {
-      const errMsg = error instanceof Error ? error.message : 'Unknown error';
-      console.error(`[DataForSEO SERP] Error fetching ${locCode}:`, errMsg);
-      errors.push(`${locCode}: ${errMsg}`);
+        if (data.status_code !== 20000) {
+          errors.push(`${locCode}/${keyword}: ${data.status_message}`);
+          continue;
+        }
+
+        for (const task of data.tasks || []) {
+          if (task.status_code !== 20000) {
+            console.warn(`[DataForSEO SERP] Task error for ${locCode}/${keyword}:`, task.status_message);
+            continue;
+          }
+
+          const taskKeyword = task.data?.keyword || keyword;
+          const taskResults = task.result || [];
+
+          for (const result of taskResults) {
+            const organicItems = (result.items || [])
+              .filter((item: SerpOrganicResult) => item.type === 'organic')
+              .slice(0, 10);
+
+            locResults.results.push({
+              keyword: taskKeyword,
+              items: organicItems,
+            });
+          }
+        }
+      } catch (error) {
+        const errMsg = error instanceof Error ? error.message : 'Unknown error';
+        console.error(`[DataForSEO SERP] Error fetching ${locCode}/${keyword}:`, errMsg);
+        errors.push(`${locCode}/${keyword}: ${errMsg}`);
+      }
     }
+
+    allLocationResults.push(locResults);
+    console.log(`[DataForSEO SERP] Completed ${locCode}: ${locResults.results.length} keywords with SERP data`);
   }
 
   if (allLocationResults.length === 0 && errors.length > 0) {
     throw new Error(`All SERP locations failed: ${errors.join('; ')}`);
   }
 
+  console.log('[DataForSEO SERP] Final results:', allLocationResults.map(lr => ({
+    location: lr.locationCode,
+    keywordsWithResults: lr.results.length,
+    totalOrganicResults: lr.results.reduce((sum, r) => sum + r.items.length, 0),
+  })));
+
   const combinedRawResponse = JSON.stringify({
     combined: true,
     locations: locationCodes,
-    rawResponses: allRawResponses,
+    keywordCount: keywords.length,
+    rawResponseCount: allRawResponses.length,
   });
 
   return {
