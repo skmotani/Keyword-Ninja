@@ -5,6 +5,26 @@ interface DataForSEOCredentials {
   password: string;
 }
 
+export function sanitizeKeywordForAPI(keyword: string): string | null {
+  let sanitized = keyword
+    .replace(/[\/\\]/g, ' ')
+    .replace(/,/g, ' ')
+    .replace(/[;:!@#$%^&*()+=\[\]{}<>|~`"']/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  
+  if (sanitized.length > 80) {
+    sanitized = sanitized.substring(0, 80).trim();
+  }
+  
+  const words = sanitized.split(' ').filter(w => w.length > 0);
+  if (words.length > 10) {
+    return null;
+  }
+  
+  return sanitized;
+}
+
 interface DataForSEOResponse {
   version: string;
   status_code: number;
