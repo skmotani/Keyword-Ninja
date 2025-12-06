@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import PageHeader from '@/components/PageHeader';
 
 interface Client {
@@ -55,15 +55,40 @@ interface TooltipProps {
 }
 
 function Tooltip({ text, children }: TooltipProps) {
+  const [show, setShow] = useState(false);
+  const [coords, setCoords] = useState({ top: 0, left: 0 });
+  const triggerRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseEnter = () => {
+    if (triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect();
+      setCoords({
+        top: rect.top - 8,
+        left: rect.left + rect.width / 2,
+      });
+    }
+    setShow(true);
+  };
+
   return (
-    <div className="group relative inline-flex items-center">
+    <div
+      ref={triggerRef}
+      className="relative inline-flex items-center"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={() => setShow(false)}
+    >
       {children}
-      <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 opacity-0 transition-opacity group-hover:opacity-100 z-50">
-        <div className="bg-gray-900 text-white text-[10px] leading-tight rounded px-2 py-1.5 shadow-lg">
-          {text}
+      {show && (
+        <div
+          className="fixed pointer-events-none z-[9999] -translate-x-1/2 -translate-y-full"
+          style={{ top: coords.top, left: coords.left }}
+        >
+          <div className="bg-gray-900 text-white text-[10px] leading-tight rounded px-2 py-1.5 shadow-lg max-w-64">
+            {text}
+          </div>
+          <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900" />
         </div>
-        <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900" />
-      </div>
+      )}
     </div>
   );
 }
@@ -467,10 +492,10 @@ export default function KeywordApiDataPage() {
         )}
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
-        <div className="overflow-x-auto">
+      <div className="bg-white rounded-lg shadow-sm border">
+        <div className="overflow-x-auto overflow-y-visible">
           <table className="min-w-full">
-            <thead className="bg-gray-50 sticky top-0">
+            <thead className="bg-gray-50 sticky top-0 z-10 overflow-visible">
               <tr>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">S.No</th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Keyword</th>
@@ -563,7 +588,10 @@ export default function KeywordApiDataPage() {
                     </td>
                     <td className="text-xs text-gray-600 py-1 px-2 leading-tight">{record.languageCode}</td>
                     <td className="text-xs text-gray-600 py-1 px-2 leading-tight">
-                      {new Date(record.lastPulledAt).toLocaleDateString()}
+                      {(() => {
+                        const d = new Date(record.lastPulledAt);
+                        return `${d.getMonth()+1}/${d.getDate()} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`;
+                      })()}
                     </td>
                   </tr>
                 ))

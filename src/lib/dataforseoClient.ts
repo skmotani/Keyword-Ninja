@@ -114,13 +114,7 @@ export async function fetchKeywordsFromDataForSEOBatch(
 ): Promise<BatchFetchResult> {
   const authString = Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64');
 
-  const requestBody = locationCodes.map(locCode => ({
-    keywords: keywords,
-    location_code: LOCATION_CODE_MAP[locCode] || 2840,
-    language_code: LANGUAGE_CODE_MAP[locCode] || 'en',
-  }));
-
-  console.log('[DataForSEO] Making batch API request:', {
+  console.log('[DataForSEO] Making separate API requests for each location:', {
     endpoint: 'keywords_data/google_ads/search_volume/live',
     keywordCount: keywords.length,
     locations: locationCodes.map(loc => ({
@@ -130,97 +124,128 @@ export async function fetchKeywordsFromDataForSEOBatch(
     })),
   });
 
-  const response = await fetch(
-    'https://api.dataforseo.com/v3/keywords_data/google_ads/search_volume/live',
-    {
-      method: 'POST',
-      headers: {
-        'Authorization': `Basic ${authString}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestBody),
-    }
-  );
+  const allLocationResults: LocationResults[] = [];
+  const allRawResponses: string[] = [];
 
-  const rawResponseText = await response.text();
-  
-  console.log('[DataForSEO] Response status:', response.status);
-  
-  if (!response.ok) {
-    console.error('[DataForSEO] API Error:', rawResponseText);
-    throw new Error(`DataForSEO API error: ${response.status} - ${rawResponseText}`);
-  }
+  const errors: string[] = [];
 
-  let data: DataForSEOResponse;
-  try {
-    data = JSON.parse(rawResponseText);
-  } catch (e) {
-    console.error('[DataForSEO] Failed to parse response:', rawResponseText);
-    throw new Error('Failed to parse DataForSEO response');
-  }
+  for (const locCode of locationCodes) {
+    try {
+      const requestBody = [{
+        keywords: keywords,
+        location_code: LOCATION_CODE_MAP[locCode] || 2840,
+        language_code: LANGUAGE_CODE_MAP[locCode] || 'en',
+      }];
 
-  console.log('[DataForSEO] Response summary:', {
-    statusCode: data.status_code,
-    statusMessage: data.status_message,
-    cost: data.cost,
-    tasksCount: data.tasks_count,
-    tasksError: data.tasks_error,
-  });
+      console.log(`[DataForSEO] Fetching for location ${locCode} (${LOCATION_CODE_MAP[locCode]})`);
 
-  if (data.status_code !== 20000) {
-    throw new Error(`DataForSEO API error: ${data.status_message}`);
-  }
+      const response = await fetch(
+        'https://api.dataforseo.com/v3/keywords_data/google_ads/search_volume/live',
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': `Basic ${authString}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
 
-  const locationResultsMap = new Map<number, LocationResults>();
+      const rawResponseText = await response.text();
+      allRawResponses.push(rawResponseText);
+      
+      console.log(`[DataForSEO] Response status for ${locCode}:`, response.status);
+      
+      if (!response.ok) {
+        console.error(`[DataForSEO] API Error for ${locCode}:`, rawResponseText);
+        errors.push(`${locCode}: HTTP ${response.status}`);
+        continue;
+      }
 
-  for (const task of data.tasks || []) {
-    if (task.status_code !== 20000) {
-      console.warn('[DataForSEO] Task error:', task.status_message);
-      continue;
-    }
+      let data: DataForSEOResponse;
+      try {
+        data = JSON.parse(rawResponseText);
+      } catch (e) {
+        console.error(`[DataForSEO] Failed to parse response for ${locCode}:`, rawResponseText);
+        errors.push(`${locCode}: Invalid JSON response`);
+        continue;
+      }
 
-    const taskLocationCode = task.data?.location_code;
-    const taskLanguageCode = task.data?.language_code || 'en';
-    
-    const locCodeStr = Object.entries(LOCATION_CODE_MAP).find(
-      ([, num]) => num === taskLocationCode
-    )?.[0] || 'GL';
-
-    if (!locationResultsMap.has(taskLocationCode)) {
-      locationResultsMap.set(taskLocationCode, {
-        locationCode: locCodeStr,
-        numericLocationCode: taskLocationCode,
-        languageCode: taskLanguageCode,
-        results: [],
+      console.log(`[DataForSEO] Response summary for ${locCode}:`, {
+        statusCode: data.status_code,
+        statusMessage: data.status_message,
+        cost: data.cost,
+        tasksCount: data.tasks_count,
+        tasksError: data.tasks_error,
       });
-    }
 
-    const locResults = locationResultsMap.get(taskLocationCode)!;
+      if (data.status_code !== 20000) {
+        errors.push(`${locCode}: ${data.status_message}`);
+        continue;
+      }
 
-    for (const result of task.result || []) {
-      locResults.results.push({
-        keyword: result.keyword,
-        search_volume: result.search_volume,
-        cpc: result.cpc,
-        competition: result.competition_level,
-        low_top_of_page_bid: result.low_top_of_page_bid,
-        high_top_of_page_bid: result.high_top_of_page_bid,
-        location_code: result.location_code,
-        language_code: result.language_code,
-      });
+      for (const task of data.tasks || []) {
+        if (task.status_code !== 20000) {
+          console.warn(`[DataForSEO] Task error for ${locCode}:`, task.status_message);
+          continue;
+        }
+
+        const taskLocationCode = task.data?.location_code;
+        const taskLanguageCode = task.data?.language_code || 'en';
+        
+        const locCodeStr = Object.entries(LOCATION_CODE_MAP).find(
+          ([, num]) => num === taskLocationCode
+        )?.[0] || locCode;
+
+        const locResults: LocationResults = {
+          locationCode: locCodeStr,
+          numericLocationCode: taskLocationCode,
+          languageCode: taskLanguageCode,
+          results: [],
+        };
+
+        for (const result of task.result || []) {
+          const compValue = result.competition_level || (typeof result.competition === 'string' ? result.competition : null);
+          locResults.results.push({
+            keyword: result.keyword,
+            search_volume: result.search_volume,
+            cpc: result.cpc,
+            competition: compValue,
+            low_top_of_page_bid: result.low_top_of_page_bid,
+            high_top_of_page_bid: result.high_top_of_page_bid,
+            location_code: result.location_code,
+            language_code: result.language_code,
+          });
+        }
+
+        allLocationResults.push(locResults);
+        console.log(`[DataForSEO] Parsed ${locResults.results.length} results for ${locCode}`);
+      }
+    } catch (error) {
+      const errMsg = error instanceof Error ? error.message : 'Unknown error';
+      console.error(`[DataForSEO] Error fetching ${locCode}:`, errMsg);
+      errors.push(`${locCode}: ${errMsg}`);
     }
   }
 
-  const locationResults = Array.from(locationResultsMap.values());
+  if (allLocationResults.length === 0 && errors.length > 0) {
+    throw new Error(`All locations failed: ${errors.join('; ')}`);
+  }
 
-  console.log('[DataForSEO] Parsed results:', locationResults.map(lr => ({
+  console.log('[DataForSEO] Final results:', allLocationResults.map(lr => ({
     location: lr.locationCode,
     count: lr.results.length,
   })));
 
+  const combinedRawResponse = JSON.stringify({
+    combined: true,
+    locations: locationCodes,
+    rawResponses: allRawResponses,
+  });
+
   return {
-    locationResults,
-    rawResponse: rawResponseText,
+    locationResults: allLocationResults,
+    rawResponse: combinedRawResponse,
   };
 }
 
