@@ -98,6 +98,18 @@ function Tooltip({ text, children }: TooltipProps) {
 type SortField = 'rank' | 'rankAbsolute' | 'etv' | 'estimatedPaidTrafficCost' | null;
 type SortDirection = 'asc' | 'desc';
 
+interface ProgressState {
+  isActive: boolean;
+  percent: number;
+  completedTasks: number;
+  totalTasks: number;
+  currentLocation: string;
+  currentKeyword: string;
+  keywordIndex: number;
+  totalKeywords: number;
+  resultsCollected: number;
+}
+
 export default function SerpResultsPage() {
   const [clients, setClients] = useState<Client[]>([]);
   const [selectedClientCode, setSelectedClientCode] = useState<string>('');
@@ -107,6 +119,17 @@ export default function SerpResultsPage() {
   const [refreshing, setRefreshing] = useState(false);
   const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
   const [refreshStats, setRefreshStats] = useState<RefreshStats | null>(null);
+  const [progress, setProgress] = useState<ProgressState>({
+    isActive: false,
+    percent: 0,
+    completedTasks: 0,
+    totalTasks: 0,
+    currentLocation: '',
+    currentKeyword: '',
+    keywordIndex: 0,
+    totalKeywords: 0,
+    resultsCollected: 0,
+  });
 
   const [keywordFilter, setKeywordFilter] = useState('');
   const [domainFilter, setDomainFilter] = useState('');
@@ -173,9 +196,20 @@ export default function SerpResultsPage() {
     setRefreshing(true);
     setNotification(null);
     setRefreshStats(null);
+    setProgress({
+      isActive: true,
+      percent: 0,
+      completedTasks: 0,
+      totalTasks: 0,
+      currentLocation: '',
+      currentKeyword: '',
+      keywordIndex: 0,
+      totalKeywords: 0,
+      resultsCollected: 0,
+    });
     
     try {
-      const res = await fetch('/api/seo/serp/fetch', {
+      const res = await fetch('/api/seo/serp/fetch-stream', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -183,22 +217,78 @@ export default function SerpResultsPage() {
           locationCodes: selectedLocationCodes,
         }),
       });
-      const data = await res.json();
-      
+
       if (!res.ok) {
-        setNotification({ type: 'error', message: data.error || 'Failed to fetch SERP data' });
-      } else {
-        const timestamp = new Date().toLocaleString();
-        setNotification({ 
-          type: 'success', 
-          message: `SERP data refreshed successfully at ${timestamp}. Total ${data.count} results fetched.`
-        });
-        if (data.stats) {
-          setRefreshStats(data.stats);
+        const errorData = await res.json();
+        setNotification({ type: 'error', message: errorData.error || 'Failed to fetch SERP data' });
+        setProgress(prev => ({ ...prev, isActive: false }));
+        setRefreshing(false);
+        return;
+      }
+
+      const reader = res.body?.getReader();
+      const decoder = new TextDecoder();
+
+      if (!reader) {
+        setNotification({ type: 'error', message: 'Streaming not supported' });
+        setProgress(prev => ({ ...prev, isActive: false }));
+        setRefreshing(false);
+        return;
+      }
+
+      let buffer = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            try {
+              const data = JSON.parse(line.slice(6));
+              
+              if (data.type === 'start') {
+                setProgress(prev => ({
+                  ...prev,
+                  totalTasks: data.totalTasks,
+                  totalKeywords: data.totalKeywords,
+                }));
+              } else if (data.type === 'progress') {
+                setProgress(prev => ({
+                  ...prev,
+                  percent: data.percent,
+                  completedTasks: data.completedTasks,
+                  totalTasks: data.totalTasks,
+                  currentLocation: data.currentLocation,
+                  currentKeyword: data.currentKeyword,
+                  keywordIndex: data.keywordIndex,
+                  totalKeywords: data.totalKeywords,
+                  resultsCollected: data.resultsCollected,
+                }));
+              } else if (data.type === 'complete') {
+                const timestamp = new Date().toLocaleString();
+                setNotification({ 
+                  type: 'success', 
+                  message: `SERP data refreshed successfully at ${timestamp}. Total ${data.totalResults} results fetched.`
+                });
+                if (data.stats) {
+                  setRefreshStats(data.stats);
+                }
+                setProgress(prev => ({ ...prev, isActive: false, percent: 100 }));
+              }
+            } catch (e) {
+              console.error('Error parsing SSE data:', e);
+            }
+          }
         }
       }
     } catch (error) {
       setNotification({ type: 'error', message: 'Network error while fetching SERP data' });
+      setProgress(prev => ({ ...prev, isActive: false }));
     }
     
     await fetchRecords();
@@ -369,6 +459,58 @@ export default function SerpResultsPage() {
           }`}
         >
           {notification.message}
+        </div>
+      )}
+
+      {progress.isActive && (
+        <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 mb-4">
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-sm font-medium text-indigo-800">
+              Fetching SERP Data...
+            </p>
+            <span className="text-sm font-bold text-indigo-600">{progress.percent}%</span>
+          </div>
+          
+          <div className="w-full bg-indigo-100 rounded-full h-3 mb-3 overflow-hidden">
+            <div 
+              className="bg-indigo-600 h-3 rounded-full transition-all duration-300 ease-out"
+              style={{ width: `${progress.percent}%` }}
+            />
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+            <div className="bg-white rounded p-2 border border-indigo-100">
+              <p className="text-gray-500">Progress</p>
+              <p className="font-semibold text-gray-800">
+                {progress.completedTasks} / {progress.totalTasks} tasks
+              </p>
+            </div>
+            <div className="bg-white rounded p-2 border border-indigo-100">
+              <p className="text-gray-500">Location</p>
+              <p className="font-semibold text-gray-800">
+                {progress.currentLocation === 'IN' ? 'India (IN)' : progress.currentLocation === 'GL' ? 'Global (GL)' : progress.currentLocation || '-'}
+              </p>
+            </div>
+            <div className="bg-white rounded p-2 border border-indigo-100">
+              <p className="text-gray-500">Keyword</p>
+              <p className="font-semibold text-gray-800">
+                {progress.keywordIndex} / {progress.totalKeywords}
+              </p>
+            </div>
+            <div className="bg-white rounded p-2 border border-indigo-100">
+              <p className="text-gray-500">Results Collected</p>
+              <p className="font-semibold text-green-600">
+                {progress.resultsCollected}
+              </p>
+            </div>
+          </div>
+          
+          {progress.currentKeyword && (
+            <div className="mt-3 text-xs text-indigo-700">
+              <span className="font-medium">Current keyword:</span>{' '}
+              <span className="italic">{progress.currentKeyword.length > 50 ? progress.currentKeyword.substring(0, 50) + '...' : progress.currentKeyword}</span>
+            </div>
+          )}
         </div>
       )}
 
