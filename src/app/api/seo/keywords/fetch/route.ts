@@ -58,13 +58,13 @@ export async function POST(request: NextRequest) {
     }
 
     const keywordTexts = activeKeywords.map(k => k.keywordText);
-    const normalizedKeywords = keywordTexts.map(normalizeKeyword);
 
-    console.log('[Fetch] Calling DataForSEO API for', normalizedKeywords.length, 'keywords');
+    console.log('[Fetch] Calling DataForSEO API for', keywordTexts.length, 'keywords');
 
+    // Send original keywords to DataForSEO API (not normalized) to get accurate results
     const { results, rawResponse } = await fetchKeywordsFromDataForSEO(
       { username: credential.username, password },
-      normalizedKeywords,
+      keywordTexts,
       locationCode
     );
 
