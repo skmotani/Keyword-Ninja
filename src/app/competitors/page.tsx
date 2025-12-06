@@ -152,6 +152,23 @@ export default function CompetitorsPage() {
         description="Track competitors for each client"
       />
 
+      <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 mb-6 flex items-center justify-between">
+        <div className="flex items-center gap-6">
+          <div className="text-center">
+            <div className="text-2xl font-bold text-indigo-600">{competitors.length}</div>
+            <div className="text-xs text-gray-600">Total Competitors</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-green-600">{competitors.filter(c => c.isActive).length}</div>
+            <div className="text-xs text-gray-600">Active</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-gray-500">{competitors.filter(c => !c.isActive).length}</div>
+            <div className="text-xs text-gray-600">Archived</div>
+          </div>
+        </div>
+      </div>
+
       <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold">Add New Competitor</h2>

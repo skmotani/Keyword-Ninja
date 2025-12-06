@@ -101,6 +101,23 @@ export default function ClientsPage() {
         description="Manage your client database"
       />
 
+      <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 mb-6 flex items-center justify-between">
+        <div className="flex items-center gap-6">
+          <div className="text-center">
+            <div className="text-2xl font-bold text-indigo-600">{clients.length}</div>
+            <div className="text-xs text-gray-600">Total Clients</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-green-600">{clients.filter(c => c.isActive).length}</div>
+            <div className="text-xs text-gray-600">Active</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-gray-500">{clients.filter(c => !c.isActive).length}</div>
+            <div className="text-xs text-gray-600">Archived</div>
+          </div>
+        </div>
+      </div>
+
       <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
         <h2 className="text-lg font-semibold mb-4">Add New Client</h2>
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-5 gap-4">
