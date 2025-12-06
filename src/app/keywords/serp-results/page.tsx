@@ -638,21 +638,21 @@ export default function SerpResultsPage() {
 
       <div className="bg-white rounded-lg shadow-sm border">
         <div className="overflow-auto max-h-[600px]">
-          <table className="min-w-full">
+          <table className="w-full table-fixed">
             <thead className="bg-gray-50 sticky top-0 z-10">
               <tr>
-                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
                   <Tooltip text="Date and time when the SERP data was fetched">
                     <span className="cursor-help border-b border-dashed border-gray-400">Date</span>
                   </Tooltip>
                 </th>
-                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">Keyword</th>
-                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">Keyword</th>
+                <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
                   <Tooltip text="Location/region for the search (IN = India, GL = Global/US)">
                     <span className="cursor-help border-b border-dashed border-gray-400">Scope</span>
                   </Tooltip>
                 </th>
-                <th className="text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                <th className="w-[10%] text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
                   <div className="flex items-center justify-end gap-1">
                     <Tooltip text="Position within organic results (1-10)">
                       <span className="cursor-help border-b border-dashed border-gray-400">Rank</span>
@@ -666,7 +666,7 @@ export default function SerpResultsPage() {
                     </button>
                   </div>
                 </th>
-                <th className="text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                <th className="w-[10%] text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
                   <div className="flex items-center justify-end gap-1">
                     <Tooltip text="Absolute position including all SERP elements (ads, featured snippets, etc.)">
                       <span className="cursor-help border-b border-dashed border-gray-400">Abs Rank</span>
@@ -680,15 +680,15 @@ export default function SerpResultsPage() {
                     </button>
                   </div>
                 </th>
-                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">Domain</th>
-                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 max-w-[200px] bg-gray-50">URL</th>
-                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 max-w-[200px] bg-gray-50">Title</th>
-                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 max-w-[250px] bg-gray-50">
+                <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">Domain</th>
+                <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">URL</th>
+                <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">Title</th>
+                <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
                   <Tooltip text="Meta description / snippet shown in search results">
                     <span className="cursor-help border-b border-dashed border-gray-400">Snippet</span>
                   </Tooltip>
                 </th>
-                <th className="text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
                   <Tooltip text="Breadcrumb URL path shown in SERP">
                     <span className="cursor-help border-b border-dashed border-gray-400">Breadcrumb</span>
                   </Tooltip>
@@ -711,49 +711,43 @@ export default function SerpResultsPage() {
               ) : (
                 filteredRecords.map((record) => (
                   <tr key={record.id} className="hover:bg-gray-50">
-                    <td className="py-2 px-2 text-xs text-gray-600 whitespace-nowrap">
+                    <td className="py-2 px-2 text-xs text-gray-600 truncate">
                       {formatDate(record.fetchedAt)}
                     </td>
-                    <td className="py-2 px-2 text-xs text-gray-900 font-medium whitespace-nowrap">
+                    <td className="py-2 px-2 text-xs text-gray-900 font-medium truncate" title={record.keyword}>
                       {record.keyword}
                     </td>
-                    <td className="py-2 px-2 text-xs text-gray-600 whitespace-nowrap">
+                    <td className="py-2 px-2 text-xs text-gray-600 truncate">
                       {getLocationLabel(record.locationCode)}
                     </td>
-                    <td className="py-2 px-2 text-xs text-gray-900 text-right font-medium whitespace-nowrap">
+                    <td className="py-2 px-2 text-xs text-gray-900 text-right font-medium truncate">
                       {record.rank}
                     </td>
-                    <td className="py-2 px-2 text-xs text-gray-600 text-right whitespace-nowrap">
+                    <td className="py-2 px-2 text-xs text-gray-600 text-right truncate">
                       {record.rankAbsolute}
                     </td>
-                    <td className="py-2 px-2 text-xs text-gray-900 whitespace-nowrap">
+                    <td className="py-2 px-2 text-xs text-gray-900 truncate" title={record.domain}>
                       {record.domain}
                     </td>
-                    <td className="py-2 px-2 text-xs text-blue-600 max-w-[200px]">
+                    <td className="py-2 px-2 text-xs text-blue-600 truncate">
                       <a 
                         href={record.url} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="hover:underline block truncate"
+                        className="hover:underline truncate block"
                         title={record.url}
                       >
-                        {truncateText(record.url, 40)}
+                        {record.url}
                       </a>
                     </td>
-                    <td className="py-2 px-2 text-xs text-gray-900 max-w-[200px]">
-                      <span className="block truncate" title={record.title}>
-                        {truncateText(record.title, 50)}
-                      </span>
+                    <td className="py-2 px-2 text-xs text-gray-900 truncate" title={record.title}>
+                      {record.title}
                     </td>
-                    <td className="py-2 px-2 text-xs text-gray-600 max-w-[250px]">
-                      <span className="block truncate" title={record.description}>
-                        {truncateText(record.description, 60)}
-                      </span>
+                    <td className="py-2 px-2 text-xs text-gray-600 truncate" title={record.description}>
+                      {record.description}
                     </td>
-                    <td className="py-2 px-2 text-xs text-gray-500 max-w-[150px]">
-                      <span className="block truncate" title={record.breadcrumb || ''}>
-                        {record.breadcrumb ? truncateText(record.breadcrumb, 30) : '-'}
-                      </span>
+                    <td className="py-2 px-2 text-xs text-gray-500 truncate" title={record.breadcrumb || ''}>
+                      {record.breadcrumb || '-'}
                     </td>
                   </tr>
                 ))
