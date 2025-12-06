@@ -22,6 +22,10 @@ export default function ManualKeywordsPage() {
     notes: '',
   });
 
+  const [showBulkImport, setShowBulkImport] = useState(false);
+  const [bulkClientCode, setBulkClientCode] = useState('');
+  const [bulkKeywords, setBulkKeywords] = useState('');
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -53,6 +57,34 @@ export default function ManualKeywordsPage() {
     });
     
     setFormData({ clientCode: '', keywordText: '', notes: '' });
+    fetchData();
+  }
+
+  async function handleBulkImport(e: React.FormEvent) {
+    e.preventDefault();
+    
+    const lines = bulkKeywords
+      .split('\n')
+      .map(line => line.trim())
+      .filter(line => line.length > 0);
+    
+    if (lines.length === 0) return;
+    
+    const keywords = lines.map(keywordText => ({
+      clientCode: bulkClientCode,
+      keywordText: keywordText,
+      notes: '',
+    }));
+    
+    await fetch('/api/keywords', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ bulk: true, keywords }),
+    });
+    
+    setBulkClientCode('');
+    setBulkKeywords('');
+    setShowBulkImport(false);
     fetchData();
   }
 
@@ -110,43 +142,99 @@ export default function ManualKeywordsPage() {
       />
 
       <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
-        <h2 className="text-lg font-semibold mb-4">Add New Keyword</h2>
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <select
-            value={formData.clientCode}
-            onChange={(e) => setFormData({ ...formData, clientCode: e.target.value })}
-            required
-            className="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          >
-            <option value="">Select Client</option>
-            {clients.map((client) => (
-              <option key={client.id} value={client.code}>
-                {client.code} - {client.name}
-              </option>
-            ))}
-          </select>
-          <input
-            type="text"
-            placeholder="Keyword"
-            value={formData.keywordText}
-            onChange={(e) => setFormData({ ...formData, keywordText: e.target.value })}
-            required
-            className="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          />
-          <input
-            type="text"
-            placeholder="Notes (optional, e.g. from client interview)"
-            value={formData.notes}
-            onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-            className="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          />
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-lg font-semibold">Add New Keyword</h2>
           <button
-            type="submit"
-            className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors"
+            onClick={() => setShowBulkImport(!showBulkImport)}
+            className="text-indigo-600 hover:text-indigo-800 text-sm font-medium"
           >
-            Add Keyword
+            {showBulkImport ? 'Switch to Single Add' : 'Bulk Import Multiple'}
           </button>
-        </form>
+        </div>
+
+        {!showBulkImport ? (
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <select
+              value={formData.clientCode}
+              onChange={(e) => setFormData({ ...formData, clientCode: e.target.value })}
+              required
+              className="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="">Select Client</option>
+              {clients.map((client) => (
+                <option key={client.id} value={client.code}>
+                  {client.code} - {client.name}
+                </option>
+              ))}
+            </select>
+            <input
+              type="text"
+              placeholder="Keyword"
+              value={formData.keywordText}
+              onChange={(e) => setFormData({ ...formData, keywordText: e.target.value })}
+              required
+              className="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+            <input
+              type="text"
+              placeholder="Notes (optional, e.g. from client interview)"
+              value={formData.notes}
+              onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+              className="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+            <button
+              type="submit"
+              className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors"
+            >
+              Add Keyword
+            </button>
+          </form>
+        ) : (
+          <form onSubmit={handleBulkImport} className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Select Client
+                </label>
+                <select
+                  value={bulkClientCode}
+                  onChange={(e) => setBulkClientCode(e.target.value)}
+                  required
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                >
+                  <option value="">Select Client</option>
+                  {clients.map((client) => (
+                    <option key={client.id} value={client.code}>
+                      {client.code} - {client.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Keywords (one per line)
+                </label>
+                <textarea
+                  value={bulkKeywords}
+                  onChange={(e) => setBulkKeywords(e.target.value)}
+                  placeholder="keyword one&#10;keyword two&#10;keyword three"
+                  required
+                  rows={5}
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono text-sm"
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  Paste keywords from your notes or spreadsheet, one per line.
+                </p>
+              </div>
+            </div>
+            <button
+              type="submit"
+              className="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition-colors"
+            >
+              Import All Keywords
+            </button>
+          </form>
+        )}
       </div>
 
       <div className="bg-white rounded-lg shadow-sm border overflow-hidden">

@@ -11,6 +11,22 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   const body = await request.json();
   
+  if (body.bulk && Array.isArray(body.keywords)) {
+    const createdKeywords: ManualKeyword[] = [];
+    for (const kw of body.keywords) {
+      const newKeyword: ManualKeyword = {
+        id: uuidv4(),
+        clientCode: kw.clientCode,
+        keywordText: kw.keywordText,
+        notes: kw.notes || '',
+        isActive: true,
+      };
+      await createManualKeyword(newKeyword);
+      createdKeywords.push(newKeyword);
+    }
+    return NextResponse.json(createdKeywords, { status: 201 });
+  }
+  
   const newKeyword: ManualKeyword = {
     id: uuidv4(),
     clientCode: body.clientCode,

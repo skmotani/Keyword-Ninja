@@ -72,6 +72,7 @@ The app runs on port 5000.
 - **Competitors**: CRUD operations linked to clients
   - **Bulk Import**: Add multiple competitors at once by pasting domain names (one per line)
 - **Keyword Manual**: CRUD operations for manually collected keywords
+  - **Bulk Import**: Add multiple keywords at once by pasting keywords (one per line)
 
 ## Storage
 Data is persisted in JSON files in the `data/` folder. This allows for easy backup, migration, and version control of data.
