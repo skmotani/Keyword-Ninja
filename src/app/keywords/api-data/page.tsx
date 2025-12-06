@@ -64,7 +64,7 @@ function Tooltip({ text, children }: TooltipProps) {
       const rect = triggerRef.current.getBoundingClientRect();
       setCoords({
         top: rect.top - 8,
-        left: rect.left + rect.width / 2,
+        left: rect.left,
       });
     }
     setShow(true);
@@ -80,18 +80,21 @@ function Tooltip({ text, children }: TooltipProps) {
       {children}
       {show && (
         <div
-          className="fixed pointer-events-none z-[9999] -translate-x-1/2 -translate-y-full"
+          className="fixed pointer-events-none z-[9999] -translate-y-full"
           style={{ top: coords.top, left: coords.left }}
         >
           <div className="bg-gray-900 text-white text-[10px] leading-tight rounded px-2 py-1.5 shadow-lg max-w-64">
             {text}
           </div>
-          <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900" />
+          <div className="absolute left-4 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900" />
         </div>
       )}
     </div>
   );
 }
+
+type SortField = 'searchVolume' | 'cpc' | 'lowTopOfPageBid' | 'highTopOfPageBid' | null;
+type SortDirection = 'asc' | 'desc';
 
 export default function KeywordApiDataPage() {
   const [clients, setClients] = useState<Client[]>([]);
@@ -112,6 +115,9 @@ export default function KeywordApiDataPage() {
   const [compLevelFilter, setCompLevelFilter] = useState<string>('all');
   const [minSearchVolume, setMinSearchVolume] = useState<string>('');
   const [maxSearchVolume, setMaxSearchVolume] = useState<string>('');
+
+  const [sortField, setSortField] = useState<SortField>(null);
+  const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
 
   useEffect(() => {
     fetchClients();
@@ -210,8 +216,22 @@ export default function KeywordApiDataPage() {
 
   const selectedClientName = clients.find(c => c.code === selectedClientCode)?.name || '';
 
+  const handleSort = (field: SortField) => {
+    if (sortField === field) {
+      setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortDirection('desc');
+    }
+  };
+
+  const getSortIcon = (field: SortField) => {
+    if (sortField !== field) return null;
+    return sortDirection === 'asc' ? '↑' : '↓';
+  };
+
   const filteredRecords = useMemo(() => {
-    return records.filter(record => {
+    let result = records.filter(record => {
       if (keywordFilter && !record.keywordText.toLowerCase().includes(keywordFilter.toLowerCase())) {
         return false;
       }
@@ -238,7 +258,21 @@ export default function KeywordApiDataPage() {
       }
       return true;
     });
-  }, [records, keywordFilter, locationFilter, compLevelFilter, minSearchVolume, maxSearchVolume]);
+
+    if (sortField) {
+      result.sort((a, b) => {
+        const aVal = a[sortField];
+        const bVal = b[sortField];
+        if (aVal === null && bVal === null) return 0;
+        if (aVal === null) return 1;
+        if (bVal === null) return -1;
+        const comparison = aVal - bVal;
+        return sortDirection === 'asc' ? comparison : -comparison;
+      });
+    }
+
+    return result;
+  }, [records, keywordFilter, locationFilter, compLevelFilter, minSearchVolume, maxSearchVolume, sortField, sortDirection]);
 
   const getLocationStats = (numericCode: number) => {
     const locRecords = records.filter(r => r.locationCode === numericCode);
@@ -500,14 +534,32 @@ export default function KeywordApiDataPage() {
                 <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">S.No</th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Keyword</th>
                 <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
-                  <Tooltip text="Monthly average search volume rate; represents the approximate number of searches for the given keyword on google.com or google.com and partners.">
-                    <span className="cursor-help border-b border-dashed border-gray-400">Search Vol</span>
-                  </Tooltip>
+                  <div className="flex items-center justify-end gap-1">
+                    <Tooltip text="Monthly average search volume rate; represents the approximate number of searches for the given keyword on google.com or google.com and partners.">
+                      <span className="cursor-help border-b border-dashed border-gray-400">Search Vol</span>
+                    </Tooltip>
+                    <button
+                      onClick={() => handleSort('searchVolume')}
+                      className="ml-1 text-gray-400 hover:text-indigo-600 focus:outline-none"
+                      title="Sort by Search Volume"
+                    >
+                      {getSortIcon('searchVolume') || '⇅'}
+                    </button>
+                  </div>
                 </th>
                 <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
-                  <Tooltip text="Cost per click indicates the amount paid for each click on the ad displayed for a given keyword.">
-                    <span className="cursor-help border-b border-dashed border-gray-400">CPC</span>
-                  </Tooltip>
+                  <div className="flex items-center justify-end gap-1">
+                    <Tooltip text="Cost per click indicates the amount paid for each click on the ad displayed for a given keyword.">
+                      <span className="cursor-help border-b border-dashed border-gray-400">CPC</span>
+                    </Tooltip>
+                    <button
+                      onClick={() => handleSort('cpc')}
+                      className="ml-1 text-gray-400 hover:text-indigo-600 focus:outline-none"
+                      title="Sort by CPC"
+                    >
+                      {getSortIcon('cpc') || '⇅'}
+                    </button>
+                  </div>
                 </th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
                   <Tooltip text="Competition represents the relative amount of competition associated with the given keyword in paid SERP only; based on Google Ads data - HIGH, MEDIUM, or LOW.">
@@ -515,14 +567,32 @@ export default function KeywordApiDataPage() {
                   </Tooltip>
                 </th>
                 <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
-                  <Tooltip text="Minimum bid for the ad to be displayed at the top of the first page; indicates the value greater than about 20% of the lowest bids for which ads were displayed.">
-                    <span className="cursor-help border-b border-dashed border-gray-400">Low Bid</span>
-                  </Tooltip>
+                  <div className="flex items-center justify-end gap-1">
+                    <Tooltip text="Minimum bid for the ad to be displayed at the top of the first page; indicates the value greater than about 20% of the lowest bids for which ads were displayed.">
+                      <span className="cursor-help border-b border-dashed border-gray-400">Low Bid</span>
+                    </Tooltip>
+                    <button
+                      onClick={() => handleSort('lowTopOfPageBid')}
+                      className="ml-1 text-gray-400 hover:text-indigo-600 focus:outline-none"
+                      title="Sort by Low Bid"
+                    >
+                      {getSortIcon('lowTopOfPageBid') || '⇅'}
+                    </button>
+                  </div>
                 </th>
                 <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
-                  <Tooltip text="Maximum bid for the ad to be displayed at the top of the first page; indicates the value greater than about 80% of the lowest bids for which ads were displayed.">
-                    <span className="cursor-help border-b border-dashed border-gray-400">High Bid</span>
-                  </Tooltip>
+                  <div className="flex items-center justify-end gap-1">
+                    <Tooltip text="Maximum bid for the ad to be displayed at the top of the first page; indicates the value greater than about 80% of the lowest bids for which ads were displayed.">
+                      <span className="cursor-help border-b border-dashed border-gray-400">High Bid</span>
+                    </Tooltip>
+                    <button
+                      onClick={() => handleSort('highTopOfPageBid')}
+                      className="ml-1 text-gray-400 hover:text-indigo-600 focus:outline-none"
+                      title="Sort by High Bid"
+                    >
+                      {getSortIcon('highTopOfPageBid') || '⇅'}
+                    </button>
+                  </div>
                 </th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
                   <Tooltip text="Location code used in the API request (e.g., 2356 for India, 2840 for Global/US).">
