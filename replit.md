@@ -70,6 +70,7 @@ The app runs on port 5000.
 - **Home**: Dashboard with navigation cards
 - **Clients**: CRUD operations for client management
 - **Competitors**: CRUD operations linked to clients
+  - **Bulk Import**: Add multiple competitors at once by pasting domain names (one per line)
 - **Keyword Manual**: CRUD operations for manually collected keywords
 
 ## Storage

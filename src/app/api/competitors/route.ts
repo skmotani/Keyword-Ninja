@@ -11,6 +11,23 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   const body = await request.json();
   
+  if (body.bulk && Array.isArray(body.competitors)) {
+    const createdCompetitors: Competitor[] = [];
+    for (const comp of body.competitors) {
+      const newCompetitor: Competitor = {
+        id: uuidv4(),
+        clientCode: comp.clientCode,
+        name: comp.name,
+        domain: comp.domain,
+        notes: comp.notes || '',
+        isActive: true,
+      };
+      await createCompetitor(newCompetitor);
+      createdCompetitors.push(newCompetitor);
+    }
+    return NextResponse.json(createdCompetitors, { status: 201 });
+  }
+  
   const newCompetitor: Competitor = {
     id: uuidv4(),
     clientCode: body.clientCode,

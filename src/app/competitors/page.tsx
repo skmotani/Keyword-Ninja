@@ -24,6 +24,10 @@ export default function CompetitorsPage() {
     notes: '',
   });
 
+  const [showBulkImport, setShowBulkImport] = useState(false);
+  const [bulkClientCode, setBulkClientCode] = useState('');
+  const [bulkDomains, setBulkDomains] = useState('');
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -55,6 +59,42 @@ export default function CompetitorsPage() {
     });
     
     setFormData({ clientCode: '', name: '', domain: '', notes: '' });
+    fetchData();
+  }
+
+  async function handleBulkImport(e: React.FormEvent) {
+    e.preventDefault();
+    
+    const lines = bulkDomains
+      .split('\n')
+      .map(line => line.trim())
+      .filter(line => line.length > 0);
+    
+    if (lines.length === 0) return;
+    
+    const competitors = lines.map(domain => {
+      let cleanDomain = domain.replace(/^https?:\/\//, '').replace(/^www\./, '');
+      cleanDomain = cleanDomain.split('/')[0];
+      const name = cleanDomain.split('.')[0];
+      const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
+      
+      return {
+        clientCode: bulkClientCode,
+        name: capitalizedName,
+        domain: cleanDomain,
+        notes: '',
+      };
+    });
+    
+    await fetch('/api/competitors', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ bulk: true, competitors }),
+    });
+    
+    setBulkClientCode('');
+    setBulkDomains('');
+    setShowBulkImport(false);
     fetchData();
   }
 
@@ -113,51 +153,107 @@ export default function CompetitorsPage() {
       />
 
       <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
-        <h2 className="text-lg font-semibold mb-4">Add New Competitor</h2>
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <select
-            value={formData.clientCode}
-            onChange={(e) => setFormData({ ...formData, clientCode: e.target.value })}
-            required
-            className="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          >
-            <option value="">Select Client</option>
-            {clients.map((client) => (
-              <option key={client.id} value={client.code}>
-                {client.code} - {client.name}
-              </option>
-            ))}
-          </select>
-          <input
-            type="text"
-            placeholder="Competitor Name"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            required
-            className="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          />
-          <input
-            type="text"
-            placeholder="Domain"
-            value={formData.domain}
-            onChange={(e) => setFormData({ ...formData, domain: e.target.value })}
-            required
-            className="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          />
-          <input
-            type="text"
-            placeholder="Notes (optional)"
-            value={formData.notes}
-            onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-            className="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          />
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-lg font-semibold">Add New Competitor</h2>
           <button
-            type="submit"
-            className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors"
+            onClick={() => setShowBulkImport(!showBulkImport)}
+            className="text-indigo-600 hover:text-indigo-800 text-sm font-medium"
           >
-            Add Competitor
+            {showBulkImport ? 'Switch to Single Add' : 'Bulk Import Multiple'}
           </button>
-        </form>
+        </div>
+
+        {!showBulkImport ? (
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <select
+              value={formData.clientCode}
+              onChange={(e) => setFormData({ ...formData, clientCode: e.target.value })}
+              required
+              className="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="">Select Client</option>
+              {clients.map((client) => (
+                <option key={client.id} value={client.code}>
+                  {client.code} - {client.name}
+                </option>
+              ))}
+            </select>
+            <input
+              type="text"
+              placeholder="Competitor Name"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              required
+              className="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+            <input
+              type="text"
+              placeholder="Domain"
+              value={formData.domain}
+              onChange={(e) => setFormData({ ...formData, domain: e.target.value })}
+              required
+              className="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+            <input
+              type="text"
+              placeholder="Notes (optional)"
+              value={formData.notes}
+              onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+              className="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+            <button
+              type="submit"
+              className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors"
+            >
+              Add Competitor
+            </button>
+          </form>
+        ) : (
+          <form onSubmit={handleBulkImport} className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Select Client
+                </label>
+                <select
+                  value={bulkClientCode}
+                  onChange={(e) => setBulkClientCode(e.target.value)}
+                  required
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                >
+                  <option value="">Select Client</option>
+                  {clients.map((client) => (
+                    <option key={client.id} value={client.code}>
+                      {client.code} - {client.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Domain Names (one per line)
+                </label>
+                <textarea
+                  value={bulkDomains}
+                  onChange={(e) => setBulkDomains(e.target.value)}
+                  placeholder="example.com&#10;competitor.com&#10;another-site.com"
+                  required
+                  rows={5}
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono text-sm"
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  Paste domains with or without http(s)://. Names will be auto-generated from domains.
+                </p>
+              </div>
+            </div>
+            <button
+              type="submit"
+              className="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition-colors"
+            >
+              Import All Competitors
+            </button>
+          </form>
+        )}
       </div>
 
       <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
