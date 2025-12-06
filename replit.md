@@ -11,17 +11,20 @@ A full-stack web application for managing SEO research data including clients, c
 │   │   │   ├── clients/        # Client CRUD endpoints
 │   │   │   ├── competitors/    # Competitor CRUD endpoints
 │   │   │   ├── keywords/       # Keywords CRUD endpoints
+│   │   │   ├── api-credentials/# API credentials CRUD endpoints
 │   │   │   └── seo/keywords/   # SEO keyword API data endpoints
 │   │   ├── clients/            # Client Master page
 │   │   ├── competitors/        # Competitor Master page
 │   │   ├── keywords/
 │   │   │   ├── manual/         # Keyword Manual Master page
 │   │   │   └── api-data/       # Keyword API Data page
+│   │   ├── settings/
+│   │   │   └── api-credentials/# API Credentials Settings page
 │   │   ├── globals.css         # Global styles
 │   │   ├── layout.tsx          # Root layout with navbar
 │   │   └── page.tsx            # Home page
 │   ├── components/             # Reusable components
-│   │   ├── Navbar.tsx          # Navigation bar
+│   │   ├── Navbar.tsx          # Navigation bar with gear icon
 │   │   └── PageHeader.tsx      # Page header component
 │   ├── lib/                    # Utility libraries
 │   │   ├── db.ts               # JSON file data access layer
@@ -69,14 +72,21 @@ A full-stack web application for managing SEO research data including clients, c
 
 ### ApiCredential
 - `id`: string (UUID)
-- `serviceName`: string
-- `serviceType`: 'SEO_DATA' | 'ANALYTICS' | 'OTHER'
-- `apiKey`: string
-- `apiSecret`: optional string
+- `userId`: string (default "admin")
+- `serviceType`: 'DATAFORSEO' | 'SEO_SERP' | 'OPENAI' | 'GEMINI' | 'GROK' | 'GSC' | 'CUSTOM'
+- `authType`: 'USERNAME_PASSWORD' | 'API_KEY' | 'OAUTH' | 'CUSTOM'
+- `username`: optional string (masked, for USERNAME_PASSWORD auth)
+- `passwordMasked`: optional string (masked version only)
+- `apiKeyMasked`: optional string (masked version only)
+- `customConfig`: optional string (for OAuth/JSON configs)
+- `label`: string (human-friendly name)
+- `clientCode`: optional string (if credential is client-specific)
 - `notes`: optional string
 - `isActive`: boolean
 - `createdAt`: string (ISO date)
 - `updatedAt`: string (ISO date)
+
+**IMPORTANT**: Only masked versions of secrets are stored in JSON. Real API keys/passwords should be stored in Replit Secrets.
 
 ### KeywordApiDataRecord
 - `id`: string (UUID)
@@ -106,9 +116,24 @@ The app runs on port 5000.
   - **Bulk Import**: Add multiple keywords at once by pasting keywords (one per line)
 - **Keyword API Data**: View keyword metrics fetched from SEO data providers
   - Client and location dropdowns for filtering
-  - Refresh button to fetch latest data (requires active SEO_DATA API credential)
+  - Refresh button to fetch latest data (requires active DATAFORSEO credential)
   - Summary statistics (total keywords, search volume count, avg competition)
   - Compact read-only data table
+- **API Credentials Settings** (gear icon in navbar)
+  - Three organized boxes: DataForSEO, API Key-based, Custom/GSC
+  - Add/Edit/Delete credentials with modal forms
+  - Toggle active status
+  - Masked display for sensitive fields
+  - Support for multiple auth types
+
+## Navigation
+- Main navigation links in the navbar header
+- Settings gear icon (⚙️) on the far right navigates to `/settings/api-credentials`
 
 ## Storage
 Data is persisted in JSON files in the `data/` folder. This allows for easy backup, migration, and version control of data.
+
+## Security
+- Only masked versions of API keys and passwords are stored in JSON files
+- Real secrets should be stored in Replit Secrets
+- The credential management UI is for reference/configuration only

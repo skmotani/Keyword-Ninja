@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
-import { getActiveCredentialByServiceType } from '@/lib/apiCredentialsStore';
+import { getActiveCredentialByService } from '@/lib/apiCredentialsStore';
 import { getManualKeywords } from '@/lib/db';
 import {
   normalizeKeyword,
@@ -21,10 +21,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const credential = await getActiveCredentialByServiceType('SEO_DATA');
+    const credential = await getActiveCredentialByService('DATAFORSEO', clientCode);
     if (!credential) {
       return NextResponse.json(
-        { error: 'No active SEO_DATA API credential found. Please configure an API credential first.' },
+        { error: 'No active DATAFORSEO API credential found. Please configure an API credential in Settings first.' },
         { status: 400 }
       );
     }

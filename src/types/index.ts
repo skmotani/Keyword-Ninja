@@ -26,10 +26,15 @@ export interface ManualKeyword {
 
 export interface ApiCredential {
   id: string;
-  serviceName: string;
-  serviceType: 'SEO_DATA' | 'ANALYTICS' | 'OTHER';
-  apiKey: string;
-  apiSecret?: string;
+  userId: string;
+  serviceType: 'DATAFORSEO' | 'SEO_SERP' | 'OPENAI' | 'GEMINI' | 'GROK' | 'GSC' | 'CUSTOM';
+  authType: 'USERNAME_PASSWORD' | 'API_KEY' | 'OAUTH' | 'CUSTOM';
+  username?: string;
+  passwordMasked?: string;
+  apiKeyMasked?: string;
+  customConfig?: string;
+  label: string;
+  clientCode?: string;
   notes?: string;
   isActive: boolean;
   createdAt: string;
