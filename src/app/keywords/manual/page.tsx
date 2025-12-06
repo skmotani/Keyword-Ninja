@@ -254,29 +254,31 @@ export default function ManualKeywordsPage() {
         )}
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
-        <table className="min-w-full divide-y divide-gray-200">
+      <div className="bg-white rounded-lg shadow-sm border overflow-x-auto">
+        <table className="min-w-full divide-y divide-gray-200" style={{ minWidth: '900px' }}>
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Keyword</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Notes</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Active?</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">S.No</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Client</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Keyword</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Notes</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Active?</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Actions</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {keywords.length === 0 ? (
               <tr>
-                <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
+                <td colSpan={6} className="px-6 py-4 text-center text-gray-500">
                   No keywords yet. Add your first keyword above.
                 </td>
               </tr>
             ) : (
-              keywords.map((keyword) => (
+              keywords.map((keyword, index) => (
                 <tr key={keyword.id} className={!keyword.isActive ? 'bg-gray-50 opacity-60' : ''}>
                   {editingId === keyword.id ? (
                     <>
+                      <td className="px-4 py-4 text-sm text-gray-500">{index + 1}</td>
                       <td className="px-6 py-4">
                         <select
                           value={editFormData.clientCode}
@@ -328,9 +330,10 @@ export default function ManualKeywordsPage() {
                     </>
                   ) : (
                     <>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{index + 1}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{getClientName(keyword.clientCode)}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{keyword.keywordText}</td>
-                      <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{keyword.notes || '-'}</td>
+                      <td className="px-6 py-4 text-sm text-gray-500">{keyword.notes || '-'}</td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className={`px-2 py-1 text-xs rounded-full ${keyword.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
                           {keyword.isActive ? 'Yes' : 'No'}

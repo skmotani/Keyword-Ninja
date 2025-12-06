@@ -161,10 +161,11 @@ export default function ClientsPage() {
         </form>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
+      <div className="bg-white rounded-lg shadow-sm border overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">S.No</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Code</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Main Domain</th>
@@ -175,15 +176,16 @@ export default function ClientsPage() {
           <tbody className="bg-white divide-y divide-gray-200">
             {clients.length === 0 ? (
               <tr>
-                <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
+                <td colSpan={6} className="px-6 py-4 text-center text-gray-500">
                   No clients yet. Add your first client above.
                 </td>
               </tr>
             ) : (
-              clients.map((client) => (
+              clients.map((client, index) => (
                 <tr key={client.id} className={!client.isActive ? 'bg-gray-50 opacity-60' : ''}>
                   {editingId === client.id ? (
                     <>
+                      <td className="px-4 py-4 text-sm text-gray-500">{index + 1}</td>
                       <td className="px-6 py-4">
                         <input
                           type="text"
@@ -230,6 +232,7 @@ export default function ClientsPage() {
                     </>
                   ) : (
                     <>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{index + 1}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{client.code}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{client.name}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{client.mainDomain}</td>

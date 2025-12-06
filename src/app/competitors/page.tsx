@@ -273,10 +273,11 @@ export default function CompetitorsPage() {
         )}
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
+      <div className="bg-white rounded-lg shadow-sm border overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">S.No</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Domain</th>
@@ -287,15 +288,16 @@ export default function CompetitorsPage() {
           <tbody className="bg-white divide-y divide-gray-200">
             {competitors.length === 0 ? (
               <tr>
-                <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
+                <td colSpan={6} className="px-6 py-4 text-center text-gray-500">
                   No competitors yet. Add your first competitor above.
                 </td>
               </tr>
             ) : (
-              competitors.map((competitor) => (
+              competitors.map((competitor, index) => (
                 <tr key={competitor.id} className={!competitor.isActive ? 'bg-gray-50 opacity-60' : ''}>
                   {editingId === competitor.id ? (
                     <>
+                      <td className="px-4 py-4 text-sm text-gray-500">{index + 1}</td>
                       <td className="px-6 py-4">
                         <select
                           value={editFormData.clientCode}
@@ -347,6 +349,7 @@ export default function CompetitorsPage() {
                     </>
                   ) : (
                     <>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{index + 1}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{getClientName(competitor.clientCode)}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{competitor.name}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{competitor.domain}</td>
