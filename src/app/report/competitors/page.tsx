@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import PageHeader from '@/components/PageHeader';
 
 interface Client {
@@ -19,6 +19,50 @@ interface SerpResult {
 interface CompetitorEntry {
   domain: string;
   label: string;
+}
+
+interface TooltipProps {
+  text: string;
+  children: React.ReactNode;
+}
+
+function Tooltip({ text, children }: TooltipProps) {
+  const [show, setShow] = useState(false);
+  const [coords, setCoords] = useState({ top: 0, left: 0 });
+  const triggerRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseEnter = () => {
+    if (triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect();
+      setCoords({
+        top: rect.top - 8,
+        left: rect.left,
+      });
+    }
+    setShow(true);
+  };
+
+  return (
+    <div
+      ref={triggerRef}
+      className="relative inline-flex items-center"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={() => setShow(false)}
+    >
+      {children}
+      {show && (
+        <div
+          className="fixed pointer-events-none z-[9999] -translate-y-full"
+          style={{ top: coords.top, left: coords.left }}
+        >
+          <div className="bg-gray-900 text-white text-[10px] leading-tight rounded px-2 py-1.5 shadow-lg max-w-64">
+            {text}
+          </div>
+          <div className="absolute left-4 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900" />
+        </div>
+      )}
+    </div>
+  );
 }
 
 function extractDomainRoot(domain: string): string {
@@ -129,7 +173,9 @@ export default function CompetitorReportPage() {
   const [selectedClientCode, setSelectedClientCode] = useState<string>('');
   const [serpResults, setSerpResults] = useState<SerpResult[]>([]);
   const [loading, setLoading] = useState(false);
-  const [searchFilter, setSearchFilter] = useState('');
+  
+  const [domainFilter, setDomainFilter] = useState('');
+  const [labelFilter, setLabelFilter] = useState('');
 
   useEffect(() => {
     fetchClients();
@@ -175,12 +221,20 @@ export default function CompetitorReportPage() {
   }, [serpResults]);
 
   const filteredList = useMemo(() => {
-    if (!searchFilter) return competitorList;
-    const lower = searchFilter.toLowerCase();
-    return competitorList.filter(
-      c => c.domain.toLowerCase().includes(lower) || c.label.toLowerCase().includes(lower)
-    );
-  }, [competitorList, searchFilter]);
+    let result = competitorList;
+    
+    if (domainFilter) {
+      const lower = domainFilter.toLowerCase();
+      result = result.filter(c => c.domain.toLowerCase().includes(lower));
+    }
+    
+    if (labelFilter) {
+      const lower = labelFilter.toLowerCase();
+      result = result.filter(c => c.label.toLowerCase().includes(lower));
+    }
+    
+    return result;
+  }, [competitorList, domainFilter, labelFilter]);
 
   const labelStats = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -190,8 +244,17 @@ export default function CompetitorReportPage() {
     return counts;
   }, [competitorList]);
 
+  const selectedClientName = clients.find(c => c.code === selectedClientCode)?.name || '';
+
+  const hasFilters = domainFilter || labelFilter;
+
+  const clearFilters = () => {
+    setDomainFilter('');
+    setLabelFilter('');
+  };
+
   return (
-    <div className="max-w-[1200px] mx-auto p-4">
+    <div className="max-w-7xl mx-auto p-4">
       <PageHeader
         title="Competitor List"
         description="Unique domains from SERP Results with auto-generated labels"
@@ -213,21 +276,15 @@ export default function CompetitorReportPage() {
               ))}
             </select>
           </div>
-          <div className="flex-1 min-w-[200px]">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
-            <input
-              type="text"
-              value={searchFilter}
-              onChange={(e) => setSearchFilter(e.target.value)}
-              placeholder="Filter by domain or label..."
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-          </div>
         </div>
       </div>
 
       <div className="bg-gray-50 rounded-lg border p-3 mb-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+          <div>
+            <span className="text-gray-500">Client:</span>
+            <p className="font-medium text-gray-800">{selectedClientName || '-'}</p>
+          </div>
           <div>
             <span className="text-gray-500">Total Unique Domains:</span>
             <p className="font-medium text-gray-800">{competitorList.length}</p>
@@ -240,28 +297,58 @@ export default function CompetitorReportPage() {
             <span className="text-gray-500">Showing:</span>
             <p className="font-medium text-gray-800">{filteredList.length} of {competitorList.length}</p>
           </div>
-          <div>
-            <span className="text-gray-500">Client:</span>
-            <p className="font-medium text-gray-800">
-              {clients.find(c => c.code === selectedClientCode)?.name || '-'}
-            </p>
-          </div>
         </div>
       </div>
 
+      <div className="bg-white rounded-lg shadow-sm border p-3 mb-4">
+        <p className="text-xs font-medium text-gray-700 mb-2">Filters</p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div>
+            <label className="block text-[10px] text-gray-500 mb-1">Domain Search</label>
+            <input
+              type="text"
+              value={domainFilter}
+              onChange={(e) => setDomainFilter(e.target.value)}
+              placeholder="Filter by domain..."
+              className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            />
+          </div>
+          <div>
+            <label className="block text-[10px] text-gray-500 mb-1">Label Search</label>
+            <input
+              type="text"
+              value={labelFilter}
+              onChange={(e) => setLabelFilter(e.target.value)}
+              placeholder="Filter by label..."
+              className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            />
+          </div>
+        </div>
+        {hasFilters && (
+          <button
+            onClick={clearFilters}
+            className="mt-2 text-xs text-indigo-600 hover:text-indigo-800"
+          >
+            Clear all filters
+          </button>
+        )}
+      </div>
+
       <div className="bg-white rounded-lg shadow-sm border">
-        <div className="overflow-auto max-h-[600px]">
-          <table className="w-full table-fixed">
-            <thead className="bg-gray-50 sticky top-0 z-10">
+        <div className="overflow-x-auto overflow-y-visible">
+          <table className="min-w-full">
+            <thead className="bg-gray-50 sticky top-0 z-10 overflow-visible">
               <tr>
-                <th className="w-[5%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-3 bg-gray-50">
-                  #
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">S.No</th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
+                  <Tooltip text="Competitor domain extracted from SERP results. Click to visit the website.">
+                    <span className="cursor-help border-b border-dashed border-gray-400">Domain</span>
+                  </Tooltip>
                 </th>
-                <th className="w-[55%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-3 bg-gray-50">
-                  Domain
-                </th>
-                <th className="w-[40%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-3 bg-gray-50">
-                  Label
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
+                  <Tooltip text="Auto-generated label based on domain name patterns. Domains with similar names are grouped under the same label.">
+                    <span className="cursor-help border-b border-dashed border-gray-400">Label</span>
+                  </Tooltip>
                 </th>
               </tr>
             </thead>
@@ -275,19 +362,27 @@ export default function CompetitorReportPage() {
               ) : filteredList.length === 0 ? (
                 <tr>
                   <td colSpan={3} className="text-center py-8 text-gray-500 text-sm">
-                    No domains found. Fetch SERP data first from the SERP Results page.
+                    {competitorList.length === 0 
+                      ? 'No domains found. Fetch SERP data first from the SERP Results page.'
+                      : 'No records match your filters. Try adjusting the filter criteria.'}
                   </td>
                 </tr>
               ) : (
                 filteredList.map((entry, index) => (
                   <tr key={entry.domain} className="hover:bg-gray-50">
-                    <td className="py-2 px-3 text-xs text-gray-500">
-                      {index + 1}
+                    <td className="text-xs text-gray-600 py-1 px-2 leading-tight">{index + 1}</td>
+                    <td className="text-xs py-1 px-2 leading-tight">
+                      <a
+                        href={`https://${entry.domain}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-indigo-600 hover:text-indigo-800 hover:underline font-medium"
+                        title={`Visit ${entry.domain}`}
+                      >
+                        {entry.domain}
+                      </a>
                     </td>
-                    <td className="py-2 px-3 text-xs text-gray-900 truncate" title={entry.domain}>
-                      {entry.domain}
-                    </td>
-                    <td className="py-2 px-3 text-xs text-indigo-600 font-medium truncate" title={entry.label}>
+                    <td className="text-xs text-gray-600 py-1 px-2 leading-tight font-medium">
                       {entry.label}
                     </td>
                   </tr>
