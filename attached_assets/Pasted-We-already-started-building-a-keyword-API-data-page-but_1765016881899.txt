@@ -1,0 +1,110 @@
+We already started building a keyword API data page, but I want to make the behavior and UI more precise. Please UPDATE the implementation as follows.
+
+Context:
+- We have:
+  - Client Master (with clientCode)
+  - Keyword Manual Master (`manualKeywords.json`)
+  - API Credential Master (`api_credentials.json`) with `serviceType` including 'SEO_DATA'
+- We have started implementing:
+  - `KeywordApiDataRecord` in `lib/keywordApiStore.ts`
+  - JSON file `data/keyword_api_data.json`
+  - Page `/keywords/api-data`
+  - API route for fetching keyword data from a stubbed provider
+
+Now please refine and enforce this behavior:
+
+1) API Credential lookup
+
+In the API route that refreshes keyword data (e.g. `POST /api/seo/keywords/fetch`):
+
+- Before calling the stubbed provider, read the API credentials from `api_credentials.json` using the existing ApiCredential store / helper.
+- Find an active credential where `serviceType === 'SEO_DATA'`:
+  - If none found:
+    - Return an error response (e.g. `status: 400`) with a JSON message like: `"No active SEO_DATA credential configured."`
+    - The frontend should show this error clearly to the user.
+  - For now, we do NOT need to use the real API key, but the lookup must be implemented correctly because later we will connect it to DataForSEO.
+- Keep using the stubbed `fetchKeywordDataFromProvider` for now.
+
+2) Keyword source and refresh logic
+
+- When Refresh is triggered for a given `clientCode` and `locationCode`:
+  - Load active manual keywords for that client from `manualKeywords.json` (filter by `clientCode` & `isActive = true`).
+  - If there are no keywords, return a clear message and the frontend should show: “No active manual keywords found for this client.”
+  - Normalize the keywords (trim, collapse spaces, lowercase for `normalizedKeyword`).
+  - Call `fetchKeywordDataFromProvider(keywords, locationCode)` to get mock keyword metrics.
+  - DELETE / REPLACE behavior:
+    - For `keyword_api_data.json`, remove any existing records where:
+      - `clientCode` = selected client, AND
+      - `locationCode` = selected location.
+    - Insert the new `KeywordApiDataRecord` rows.
+  - For each new record, set:
+    - `id` = uuid
+    - `lastPulledAt` = current ISO datetime
+    - `snapshotDate` = current date (YYYY-MM-DD)
+    - `sourceApi` = 'DATAFORSEO'
+
+3) UI for `/keywords/api-data`
+
+Update `/keywords/api-data` page to behave as follows:
+
+- At the top:
+  - Dropdown to select **Client** (show name + code).
+  - Dropdown or radio to select **LocationCode** (start with "IN" and "GL").
+  - Button: **“Refresh keyword data from API (overwrite old)”**.
+- When the button is clicked:
+  - Call the `POST /api/seo/keywords/fetch` endpoint with `clientCode` and `locationCode`.
+  - While the request is in progress, disable the button and show a small “Refreshing…” indicator.
+  - On success:
+    - Show a green success notification at the top of the page, e.g.:  
+      “✅ Keyword data refreshed for [ClientName] ([LocationCode]) at [HH:MM, DD MMM YYYY].”
+    - Reload the table data and summary.
+  - On error:
+    - Show a red error notification with the error message, e.g. missing SEO_DATA credential, missing manual keywords, etc.
+
+- Below controls, show a **Summary Box** for the selected client + location:
+  - Client name & code
+  - Location code
+  - “Last refreshed at:” using the latest `lastPulledAt` from `keyword_api_data.json` for that client+location (via helper `getLastPulledAtForClientAndLocation` or equivalent).
+  - Total keywords in table for this client+location
+  - Count where `searchVolume > 0`
+  - Average `competitionIndex` (ignore rows with null/undefined)
+
+4) Compact table layout
+
+Update the keyword data table on `/keywords/api-data` to be very compact so many columns are visible:
+
+- Use Tailwind classes like:
+  - `text-xs` for font size
+  - `py-1` or even `py-0.5` for table cells
+  - `px-2` for horizontal padding
+  - `leading-tight` for text
+- Wrap the table in a div with `overflow-x-auto` so it can scroll horizontally.
+- Use a sticky header row with `sticky top-0` and a subtle background.
+- Columns to show:
+  - Serial number (computed from array index + 1)
+  - keywordText
+  - searchVolume
+  - cpc
+  - competitionIndex
+  - locationCode
+  - sourceApi
+  - lastPulledAt
+- Ensure all these columns are visible, even if the user has to scroll horizontally.
+
+5) Read-only nature of Keyword_API_Data
+
+- The table on `/keywords/api-data` must be **read-only**:
+  - No edit / delete buttons on individual rows.
+  - The only way to update this data is via the **Refresh keyword data from API** button, which overwrites all rows for that client+location.
+
+6) General
+
+- Keep everything in TypeScript.
+- Keep data-access helpers in `lib/keywordApiStore.ts` and `lib/apiCredentialsStore.ts` (or similar).
+- Make sure the app still builds and runs on Replit.
+
+At the end, please list which files you changed for:
+- the API route,
+- the keyword API store,
+- the API credentials store,
+- and the `/keywords/api-data` page.

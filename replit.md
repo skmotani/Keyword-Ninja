@@ -10,10 +10,13 @@ A full-stack web application for managing SEO research data including clients, c
 │   │   ├── api/                # API routes
 │   │   │   ├── clients/        # Client CRUD endpoints
 │   │   │   ├── competitors/    # Competitor CRUD endpoints
-│   │   │   └── keywords/       # Keywords CRUD endpoints
+│   │   │   ├── keywords/       # Keywords CRUD endpoints
+│   │   │   └── seo/keywords/   # SEO keyword API data endpoints
 │   │   ├── clients/            # Client Master page
 │   │   ├── competitors/        # Competitor Master page
-│   │   ├── keywords/manual/    # Keyword Manual Master page
+│   │   ├── keywords/
+│   │   │   ├── manual/         # Keyword Manual Master page
+│   │   │   └── api-data/       # Keyword API Data page
 │   │   ├── globals.css         # Global styles
 │   │   ├── layout.tsx          # Root layout with navbar
 │   │   └── page.tsx            # Home page
@@ -21,13 +24,17 @@ A full-stack web application for managing SEO research data including clients, c
 │   │   ├── Navbar.tsx          # Navigation bar
 │   │   └── PageHeader.tsx      # Page header component
 │   ├── lib/                    # Utility libraries
-│   │   └── db.ts               # JSON file data access layer
+│   │   ├── db.ts               # JSON file data access layer
+│   │   ├── apiCredentialsStore.ts  # API credentials management
+│   │   └── keywordApiStore.ts  # Keyword API data management
 │   └── types/                  # TypeScript type definitions
-│       └── index.ts            # Data models (Client, Competitor, ManualKeyword)
+│       └── index.ts            # Data models
 ├── data/                       # JSON data files (mock database)
 │   ├── clients.json
 │   ├── competitors.json
-│   └── manualKeywords.json
+│   ├── manualKeywords.json
+│   ├── api_credentials.json
+│   └── keyword_api_data.json
 ├── package.json
 ├── tsconfig.json
 ├── tailwind.config.js
@@ -60,6 +67,30 @@ A full-stack web application for managing SEO research data including clients, c
 - `notes`: optional string
 - `isActive`: boolean
 
+### ApiCredential
+- `id`: string (UUID)
+- `serviceName`: string
+- `serviceType`: 'SEO_DATA' | 'ANALYTICS' | 'OTHER'
+- `apiKey`: string
+- `apiSecret`: optional string
+- `notes`: optional string
+- `isActive`: boolean
+- `createdAt`: string (ISO date)
+- `updatedAt`: string (ISO date)
+
+### KeywordApiDataRecord
+- `id`: string (UUID)
+- `clientCode`: string (references Client.code)
+- `keywordText`: string
+- `normalizedKeyword`: string
+- `searchVolume`: number | null
+- `cpc`: number | null
+- `competitionIndex`: number | null
+- `locationCode`: string ('IN', 'GL')
+- `sourceApi`: string (e.g., 'DATAFORSEO')
+- `snapshotDate`: string
+- `lastPulledAt`: string (ISO date)
+
 ## Running the Application
 ```bash
 npm run dev
@@ -73,6 +104,11 @@ The app runs on port 5000.
   - **Bulk Import**: Add multiple competitors at once by pasting domain names (one per line)
 - **Keyword Manual**: CRUD operations for manually collected keywords
   - **Bulk Import**: Add multiple keywords at once by pasting keywords (one per line)
+- **Keyword API Data**: View keyword metrics fetched from SEO data providers
+  - Client and location dropdowns for filtering
+  - Refresh button to fetch latest data (requires active SEO_DATA API credential)
+  - Summary statistics (total keywords, search volume count, avg competition)
+  - Compact read-only data table
 
 ## Storage
 Data is persisted in JSON files in the `data/` folder. This allows for easy backup, migration, and version control of data.

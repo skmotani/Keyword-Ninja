@@ -8,6 +8,7 @@ const navItems = [
   { href: '/clients', label: 'Clients' },
   { href: '/competitors', label: 'Competitors' },
   { href: '/keywords/manual', label: 'Keyword Manual' },
+  { href: '/keywords/api-data', label: 'Keyword API Data' },
 ];
 
 export default function Navbar() {
