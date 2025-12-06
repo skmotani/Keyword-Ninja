@@ -95,29 +95,39 @@ const LANGUAGE_CODE_MAP: Record<string, string> = {
   'CA': 'en',
 };
 
-export async function fetchKeywordsFromDataForSEO(
+export interface LocationResults {
+  locationCode: string;
+  numericLocationCode: number;
+  languageCode: string;
+  results: DataForSEOKeywordResult[];
+}
+
+export interface BatchFetchResult {
+  locationResults: LocationResults[];
+  rawResponse: string;
+}
+
+export async function fetchKeywordsFromDataForSEOBatch(
   credentials: DataForSEOCredentials,
   keywords: string[],
-  locationCode: string
-): Promise<{ results: DataForSEOKeywordResult[]; rawResponse: string }> {
-  const numericLocationCode = LOCATION_CODE_MAP[locationCode] || 2840;
-  const languageCode = LANGUAGE_CODE_MAP[locationCode] || 'en';
-
+  locationCodes: string[]
+): Promise<BatchFetchResult> {
   const authString = Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64');
 
-  const requestBody = [
-    {
-      keywords: keywords,
-      location_code: numericLocationCode,
-      language_code: languageCode,
-    },
-  ];
+  const requestBody = locationCodes.map(locCode => ({
+    keywords: keywords,
+    location_code: LOCATION_CODE_MAP[locCode] || 2840,
+    language_code: LANGUAGE_CODE_MAP[locCode] || 'en',
+  }));
 
-  console.log('[DataForSEO] Making API request:', {
+  console.log('[DataForSEO] Making batch API request:', {
     endpoint: 'keywords_data/google_ads/search_volume/live',
     keywordCount: keywords.length,
-    locationCode: numericLocationCode,
-    languageCode,
+    locations: locationCodes.map(loc => ({
+      code: loc,
+      numericCode: LOCATION_CODE_MAP[loc] || 2840,
+      language: LANGUAGE_CODE_MAP[loc] || 'en',
+    })),
   });
 
   const response = await fetch(
@@ -161,7 +171,7 @@ export async function fetchKeywordsFromDataForSEO(
     throw new Error(`DataForSEO API error: ${data.status_message}`);
   }
 
-  const results: DataForSEOKeywordResult[] = [];
+  const locationResultsMap = new Map<number, LocationResults>();
 
   for (const task of data.tasks || []) {
     if (task.status_code !== 20000) {
@@ -169,22 +179,47 @@ export async function fetchKeywordsFromDataForSEO(
       continue;
     }
 
+    const taskLocationCode = task.data?.location_code;
+    const taskLanguageCode = task.data?.language_code || 'en';
+    
+    const locCodeStr = Object.entries(LOCATION_CODE_MAP).find(
+      ([, num]) => num === taskLocationCode
+    )?.[0] || 'GL';
+
+    if (!locationResultsMap.has(taskLocationCode)) {
+      locationResultsMap.set(taskLocationCode, {
+        locationCode: locCodeStr,
+        numericLocationCode: taskLocationCode,
+        languageCode: taskLanguageCode,
+        results: [],
+      });
+    }
+
+    const locResults = locationResultsMap.get(taskLocationCode)!;
+
     for (const result of task.result || []) {
-      results.push({
+      locResults.results.push({
         keyword: result.keyword,
         search_volume: result.search_volume,
         cpc: result.cpc,
-        competition: result.competition,
-        competition_level: result.competition_level,
-        monthly_searches: result.monthly_searches,
+        competition: result.competition_level,
+        low_top_of_page_bid: result.low_top_of_page_bid,
+        high_top_of_page_bid: result.high_top_of_page_bid,
+        location_code: result.location_code,
+        language_code: result.language_code,
       });
     }
   }
 
-  console.log('[DataForSEO] Parsed results count:', results.length);
+  const locationResults = Array.from(locationResultsMap.values());
+
+  console.log('[DataForSEO] Parsed results:', locationResults.map(lr => ({
+    location: lr.locationCode,
+    count: lr.results.length,
+  })));
 
   return {
-    results,
+    locationResults,
     rawResponse: rawResponseText,
   };
 }

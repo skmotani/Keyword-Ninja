@@ -10,12 +10,6 @@ interface Client {
   isActive: boolean;
 }
 
-interface MonthlySearch {
-  year: number;
-  month: number;
-  searchVolume: number;
-}
-
 interface KeywordApiDataRecord {
   id: string;
   clientCode: string;
@@ -23,10 +17,11 @@ interface KeywordApiDataRecord {
   normalizedKeyword: string;
   searchVolume: number | null;
   cpc: number | null;
-  competitionIndex: number | null;
-  competitionLevel: string | null;
-  monthlySearches: MonthlySearch[] | null;
-  locationCode: string;
+  competition: string | null;
+  lowTopOfPageBid: number | null;
+  highTopOfPageBid: number | null;
+  locationCode: number;
+  languageCode: string;
   sourceApi: string;
   snapshotDate: string;
   lastPulledAt: string;
@@ -37,6 +32,7 @@ interface LocationStats {
   skippedKeywords: number;
   sanitizedKeywordsSent: number;
   recordsCreated: number;
+  duplicatesRemoved: number;
 }
 
 interface RefreshStats {
@@ -44,9 +40,33 @@ interface RefreshStats {
 }
 
 const LOCATION_OPTIONS = [
-  { code: 'IN', label: 'India (IN)' },
-  { code: 'GL', label: 'Global (GL)' },
+  { code: 'IN', numericCode: 2356, label: 'India (IN)' },
+  { code: 'GL', numericCode: 2840, label: 'Global (GL)' },
 ];
+
+const LOCATION_CODE_MAP: Record<number, string> = {
+  2356: 'IN',
+  2840: 'GL',
+};
+
+interface TooltipProps {
+  text: string;
+  children: React.ReactNode;
+}
+
+function Tooltip({ text, children }: TooltipProps) {
+  return (
+    <div className="group relative inline-flex items-center">
+      {children}
+      <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 opacity-0 transition-opacity group-hover:opacity-100 z-50">
+        <div className="bg-gray-900 text-white text-[10px] leading-tight rounded px-2 py-1.5 shadow-lg">
+          {text}
+        </div>
+        <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900" />
+      </div>
+    </div>
+  );
+}
 
 export default function KeywordApiDataPage() {
   const [clients, setClients] = useState<Client[]>([]);
@@ -122,47 +142,35 @@ export default function KeywordApiDataPage() {
     if (!selectedClientCode || selectedLocationCodes.length === 0) return;
     setRefreshing(true);
     setNotification(null);
+    setRefreshStats(null);
     
-    let totalCount = 0;
-    const errors: string[] = [];
-    const newStats: RefreshStats = {};
-    
-    for (const locationCode of selectedLocationCodes) {
-      try {
-        const res = await fetch('/api/seo/keywords/fetch', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            clientCode: selectedClientCode,
-            locationCode: locationCode,
-          }),
-        });
-        const data = await res.json();
-        if (!res.ok) {
-          errors.push(`${locationCode}: ${data.error || 'Failed'}`);
-        } else {
-          totalCount += data.count || 0;
-          if (data.stats) {
-            newStats[locationCode] = data.stats;
-          }
-        }
-      } catch (error) {
-        errors.push(`${locationCode}: Network error`);
-      }
-    }
-    
-    setRefreshStats(newStats);
-    
-    if (errors.length > 0) {
-      setNotification({ type: 'error', message: `Some locations failed: ${errors.join(', ')}` });
-    } else {
-      const clientName = clients.find(c => c.code === selectedClientCode)?.name || selectedClientCode;
-      const timestamp = new Date().toLocaleString();
-      setNotification({ 
-        type: 'success', 
-        message: `Keyword data refreshed successfully at ${timestamp}. Total ${totalCount} records created.`
+    try {
+      const res = await fetch('/api/seo/keywords/fetch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          clientCode: selectedClientCode,
+          locationCodes: selectedLocationCodes,
+        }),
       });
+      const data = await res.json();
+      
+      if (!res.ok) {
+        setNotification({ type: 'error', message: data.error || 'Failed to fetch keyword data' });
+      } else {
+        const timestamp = new Date().toLocaleString();
+        setNotification({ 
+          type: 'success', 
+          message: `Keyword data refreshed successfully at ${timestamp}. Total ${data.count} records created.`
+        });
+        if (data.stats) {
+          setRefreshStats(data.stats);
+        }
+      }
+    } catch (error) {
+      setNotification({ type: 'error', message: 'Network error while fetching keyword data' });
     }
+    
     await fetchRecords();
     setRefreshing(false);
   };
@@ -175,17 +183,6 @@ export default function KeywordApiDataPage() {
     return new Date(sorted[0].lastPulledAt).toLocaleString();
   };
 
-  const getSearchVolumeCount = () => {
-    return records.filter(r => r.searchVolume !== null && r.searchVolume > 0).length;
-  };
-
-  const getAvgCompetitionIndex = () => {
-    const withCompetition = records.filter(r => r.competitionIndex !== null);
-    if (withCompetition.length === 0) return 'N/A';
-    const sum = withCompetition.reduce((acc, r) => acc + (r.competitionIndex || 0), 0);
-    return (sum / withCompetition.length).toFixed(1);
-  };
-
   const selectedClientName = clients.find(c => c.code === selectedClientCode)?.name || '';
 
   const filteredRecords = useMemo(() => {
@@ -193,13 +190,16 @@ export default function KeywordApiDataPage() {
       if (keywordFilter && !record.keywordText.toLowerCase().includes(keywordFilter.toLowerCase())) {
         return false;
       }
-      if (locationFilter !== 'all' && record.locationCode !== locationFilter) {
-        return false;
+      if (locationFilter !== 'all') {
+        const numericLoc = LOCATION_OPTIONS.find(l => l.code === locationFilter)?.numericCode;
+        if (numericLoc && record.locationCode !== numericLoc) {
+          return false;
+        }
       }
       if (compLevelFilter !== 'all') {
-        if (compLevelFilter === 'none' && record.competitionLevel !== null) {
+        if (compLevelFilter === 'none' && record.competition !== null) {
           return false;
-        } else if (compLevelFilter !== 'none' && record.competitionLevel !== compLevelFilter) {
+        } else if (compLevelFilter !== 'none' && record.competition !== compLevelFilter) {
           return false;
         }
       }
@@ -215,17 +215,10 @@ export default function KeywordApiDataPage() {
     });
   }, [records, keywordFilter, locationFilter, compLevelFilter, minSearchVolume, maxSearchVolume]);
 
-  const getLocationStats = (loc: string) => {
-    const locRecords = records.filter(r => r.locationCode === loc);
-    const withVolume = locRecords.filter(r => r.searchVolume !== null && r.searchVolume > 0).length;
-    const avgComp = locRecords.filter(r => r.competitionIndex !== null);
-    const avgCompValue = avgComp.length > 0 
-      ? (avgComp.reduce((acc, r) => acc + (r.competitionIndex || 0), 0) / avgComp.length).toFixed(1)
-      : 'N/A';
+  const getLocationStats = (numericCode: number) => {
+    const locRecords = records.filter(r => r.locationCode === numericCode);
     return {
       total: locRecords.length,
-      withVolume,
-      avgComp: avgCompValue,
     };
   };
 
@@ -260,8 +253,12 @@ export default function KeywordApiDataPage() {
     setSelectedLogContent(null);
   };
 
+  const getLocationLabel = (numericCode: number): string => {
+    return LOCATION_CODE_MAP[numericCode] || String(numericCode);
+  };
+
   return (
-    <div className="max-w-6xl mx-auto p-4">
+    <div className="max-w-7xl mx-auto p-4">
       <PageHeader
         title="Keyword API Data"
         description="View keyword metrics fetched from SEO data providers"
@@ -351,6 +348,8 @@ export default function KeywordApiDataPage() {
                   <span className="font-medium text-gray-800">{stats.sanitizedKeywordsSent}</span>
                   <span>Records created:</span>
                   <span className="font-medium text-green-600">{stats.recordsCreated}</span>
+                  <span>Duplicates removed:</span>
+                  <span className="font-medium text-orange-600">{stats.duplicatesRemoved}</span>
                 </div>
               </div>
             ))}
@@ -361,14 +360,12 @@ export default function KeywordApiDataPage() {
       <div className="bg-gray-50 rounded-lg border p-3 mb-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {LOCATION_OPTIONS.map(loc => {
-            const stats = getLocationStats(loc.code);
+            const stats = getLocationStats(loc.numericCode);
             return (
               <div key={loc.code} className="flex items-center gap-4 text-xs">
                 <span className="font-semibold text-gray-700 w-20">{loc.label}</span>
                 <div className="flex gap-4 text-gray-600">
-                  <span>Total: <span className="font-medium text-gray-800">{stats.total}</span></span>
-                  <span>With Volume: <span className="font-medium text-gray-800">{stats.withVolume}</span></span>
-                  <span>Avg Comp: <span className="font-medium text-gray-800">{stats.avgComp}</span></span>
+                  <span>Total Records: <span className="font-medium text-gray-800">{stats.total}</span></span>
                 </div>
               </div>
             );
@@ -420,7 +417,7 @@ export default function KeywordApiDataPage() {
             </select>
           </div>
           <div>
-            <label className="block text-[10px] text-gray-500 mb-1">Competition Level</label>
+            <label className="block text-[10px] text-gray-500 mb-1">Competition</label>
             <select
               value={compLevelFilter}
               onChange={(e) => setCompLevelFilter(e.target.value)}
@@ -477,24 +474,54 @@ export default function KeywordApiDataPage() {
               <tr>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">S.No</th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Keyword</th>
-                <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Search Vol</th>
-                <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">CPC</th>
-                <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Comp %</th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Comp Level</th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Location</th>
+                <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
+                  <Tooltip text="Monthly average search volume rate; represents the approximate number of searches for the given keyword on google.com or google.com and partners.">
+                    <span className="cursor-help border-b border-dashed border-gray-400">Search Vol</span>
+                  </Tooltip>
+                </th>
+                <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
+                  <Tooltip text="Cost per click indicates the amount paid for each click on the ad displayed for a given keyword.">
+                    <span className="cursor-help border-b border-dashed border-gray-400">CPC</span>
+                  </Tooltip>
+                </th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
+                  <Tooltip text="Competition represents the relative amount of competition associated with the given keyword in paid SERP only; based on Google Ads data - HIGH, MEDIUM, or LOW.">
+                    <span className="cursor-help border-b border-dashed border-gray-400">Competition</span>
+                  </Tooltip>
+                </th>
+                <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
+                  <Tooltip text="Minimum bid for the ad to be displayed at the top of the first page; indicates the value greater than about 20% of the lowest bids for which ads were displayed.">
+                    <span className="cursor-help border-b border-dashed border-gray-400">Low Bid</span>
+                  </Tooltip>
+                </th>
+                <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
+                  <Tooltip text="Maximum bid for the ad to be displayed at the top of the first page; indicates the value greater than about 80% of the lowest bids for which ads were displayed.">
+                    <span className="cursor-help border-b border-dashed border-gray-400">High Bid</span>
+                  </Tooltip>
+                </th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
+                  <Tooltip text="Location code used in the API request (e.g., 2356 for India, 2840 for Global/US).">
+                    <span className="cursor-help border-b border-dashed border-gray-400">Location</span>
+                  </Tooltip>
+                </th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
+                  <Tooltip text="Language code used in the API request (e.g., 'en' for English).">
+                    <span className="cursor-help border-b border-dashed border-gray-400">Lang</span>
+                  </Tooltip>
+                </th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">Last Pulled</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {loading ? (
                 <tr>
-                  <td colSpan={8} className="text-center py-8 text-gray-500 text-sm">
+                  <td colSpan={10} className="text-center py-8 text-gray-500 text-sm">
                     Loading...
                   </td>
                 </tr>
               ) : filteredRecords.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="text-center py-8 text-gray-500 text-sm">
+                  <td colSpan={10} className="text-center py-8 text-gray-500 text-sm">
                     {records.length === 0 
                       ? 'No keyword data available. Click "Refresh Data" to fetch keyword metrics.'
                       : 'No records match your filters. Try adjusting the filter criteria.'}
@@ -511,22 +538,30 @@ export default function KeywordApiDataPage() {
                     <td className="text-xs text-gray-600 py-1 px-2 leading-tight text-right">
                       {record.cpc !== null ? `$${record.cpc.toFixed(2)}` : '-'}
                     </td>
-                    <td className="text-xs text-gray-600 py-1 px-2 leading-tight text-right">
-                      {record.competitionIndex ?? '-'}
-                    </td>
                     <td className="text-xs text-gray-600 py-1 px-2 leading-tight">
-                      {record.competitionLevel ? (
+                      {record.competition ? (
                         <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${
-                          record.competitionLevel === 'HIGH' ? 'bg-red-100 text-red-800' :
-                          record.competitionLevel === 'MEDIUM' ? 'bg-yellow-100 text-yellow-800' :
-                          record.competitionLevel === 'LOW' ? 'bg-green-100 text-green-800' :
+                          record.competition === 'HIGH' ? 'bg-red-100 text-red-800' :
+                          record.competition === 'MEDIUM' ? 'bg-yellow-100 text-yellow-800' :
+                          record.competition === 'LOW' ? 'bg-green-100 text-green-800' :
                           'bg-gray-100 text-gray-800'
                         }`}>
-                          {record.competitionLevel}
+                          {record.competition}
                         </span>
                       ) : '-'}
                     </td>
-                    <td className="text-xs text-gray-600 py-1 px-2 leading-tight">{record.locationCode}</td>
+                    <td className="text-xs text-gray-600 py-1 px-2 leading-tight text-right">
+                      {record.lowTopOfPageBid !== null ? `$${record.lowTopOfPageBid.toFixed(2)}` : '-'}
+                    </td>
+                    <td className="text-xs text-gray-600 py-1 px-2 leading-tight text-right">
+                      {record.highTopOfPageBid !== null ? `$${record.highTopOfPageBid.toFixed(2)}` : '-'}
+                    </td>
+                    <td className="text-xs text-gray-600 py-1 px-2 leading-tight">
+                      <span title={`Code: ${record.locationCode}`}>
+                        {getLocationLabel(record.locationCode)}
+                      </span>
+                    </td>
+                    <td className="text-xs text-gray-600 py-1 px-2 leading-tight">{record.languageCode}</td>
                     <td className="text-xs text-gray-600 py-1 px-2 leading-tight">
                       {new Date(record.lastPulledAt).toLocaleDateString()}
                     </td>
@@ -567,7 +602,7 @@ export default function KeywordApiDataPage() {
                     <button
                       key={log}
                       onClick={() => viewLogContent(log)}
-                      className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-gray-200 text-xs rounded-md"
+                      className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded hover:bg-gray-700"
                     >
                       {log.replace('dataforseo_', '').replace('.json', '')}
                     </button>
@@ -579,18 +614,8 @@ export default function KeywordApiDataPage() {
                 )}
 
                 {selectedLogContent && (
-                  <div className="relative">
-                    <div className="absolute top-2 right-2">
-                      <button
-                        onClick={() => setSelectedLogContent(null)}
-                        className="text-gray-400 hover:text-gray-200"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
-                    </div>
-                    <pre className="bg-gray-800 rounded-lg p-4 text-xs text-green-400 overflow-auto max-h-96">
+                  <div className="bg-gray-800 rounded p-3 max-h-96 overflow-auto">
+                    <pre className="text-xs text-gray-300 whitespace-pre-wrap font-mono">
                       {selectedLogContent}
                     </pre>
                   </div>

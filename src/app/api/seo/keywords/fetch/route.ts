@@ -4,20 +4,39 @@ import { getActiveCredentialByService } from '@/lib/apiCredentialsStore';
 import { getManualKeywords } from '@/lib/db';
 import {
   normalizeKeyword,
-  replaceKeywordApiDataForClientAndLocation,
+  replaceKeywordApiDataForClientAndLocations,
   saveApiLog,
 } from '@/lib/keywordApiStore';
-import { fetchKeywordsFromDataForSEO, sanitizeKeywordForAPI } from '@/lib/dataforseoClient';
+import { fetchKeywordsFromDataForSEOBatch, sanitizeKeywordForAPI, getLocationCodeMapping } from '@/lib/dataforseoClient';
 import { KeywordApiDataRecord } from '@/types';
+
+interface LocationStats {
+  originalKeywords: number;
+  skippedKeywords: number;
+  sanitizedKeywordsSent: number;
+  recordsCreated: number;
+  duplicatesRemoved: number;
+}
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { clientCode, locationCode } = body;
+    const { clientCode, locationCodes } = body;
 
-    if (!clientCode || !locationCode) {
+    if (!clientCode) {
       return NextResponse.json(
-        { error: 'clientCode and locationCode are required' },
+        { error: 'clientCode is required' },
+        { status: 400 }
+      );
+    }
+
+    const locCodes: string[] = Array.isArray(locationCodes) 
+      ? locationCodes 
+      : (locationCodes ? [locationCodes] : ['IN', 'GL']);
+
+    if (locCodes.length === 0) {
+      return NextResponse.json(
+        { error: 'At least one locationCode is required' },
         { status: 400 }
       );
     }
@@ -58,6 +77,7 @@ export async function POST(request: NextRequest) {
     }
 
     const keywordTexts = activeKeywords.map(k => k.keywordText);
+    const originalCount = keywordTexts.length;
 
     const sanitizedToOriginalsMap = new Map<string, string[]>();
     const sanitizedKeywords: string[] = [];
@@ -88,60 +108,80 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log('[Fetch] Calling DataForSEO API for', sanitizedKeywords.length, 'sanitized keywords (from', keywordTexts.length, 'original)');
+    console.log('[Fetch] Calling DataForSEO API for', sanitizedKeywords.length, 'sanitized keywords across', locCodes.length, 'locations');
 
-    const { results, rawResponse } = await fetchKeywordsFromDataForSEO(
+    const { locationResults, rawResponse } = await fetchKeywordsFromDataForSEOBatch(
       { username: credential.username, password },
       sanitizedKeywords,
-      locationCode
+      locCodes
     );
 
-    const logFilename = await saveApiLog(clientCode, locationCode, rawResponse);
+    const logFilename = await saveApiLog(clientCode, locCodes, rawResponse);
     console.log('[Fetch] Saved API response log:', logFilename);
 
     const now = new Date().toISOString();
     const snapshotDate = now.split('T')[0];
 
-    const newRecords: KeywordApiDataRecord[] = [];
-    
-    for (const result of results) {
-      const originalKeywords = sanitizedToOriginalsMap.get(result.keyword) || [result.keyword];
-      
-      for (const originalKeyword of originalKeywords) {
-        newRecords.push({
-          id: uuidv4(),
-          clientCode,
-          keywordText: originalKeyword,
-          normalizedKeyword: normalizeKeyword(originalKeyword),
-          searchVolume: result.search_volume,
-          cpc: result.cpc,
-          competitionIndex: result.competition !== null ? Math.round(result.competition * 100) : null,
-          competitionLevel: result.competition_level,
-          monthlySearches: result.monthly_searches?.map(ms => ({
-            year: ms.year,
-            month: ms.month,
-            searchVolume: ms.search_volume,
-          })) || null,
-          locationCode,
-          sourceApi: 'DATAFORSEO',
-          snapshotDate,
-          lastPulledAt: now,
-        });
+    const allNewRecords: KeywordApiDataRecord[] = [];
+    const statsPerLocation: Record<string, LocationStats> = {};
+    const locationCodeMapping = getLocationCodeMapping();
+
+    for (const locResult of locationResults) {
+      const dedupeMap = new Map<string, KeywordApiDataRecord>();
+      let duplicatesRemoved = 0;
+
+      for (const result of locResult.results) {
+        const originalKeywords = sanitizedToOriginalsMap.get(result.keyword) || [result.keyword];
+        
+        for (const originalKeyword of originalKeywords) {
+          const normalizedKey = `${locResult.numericLocationCode}:${normalizeKeyword(originalKeyword)}`;
+          
+          if (dedupeMap.has(normalizedKey)) {
+            duplicatesRemoved++;
+            continue;
+          }
+          
+          const record: KeywordApiDataRecord = {
+            id: uuidv4(),
+            clientCode,
+            keywordText: originalKeyword,
+            normalizedKeyword: normalizeKeyword(originalKeyword),
+            searchVolume: result.search_volume,
+            cpc: result.cpc,
+            competition: result.competition,
+            lowTopOfPageBid: result.low_top_of_page_bid,
+            highTopOfPageBid: result.high_top_of_page_bid,
+            locationCode: locResult.numericLocationCode,
+            languageCode: locResult.languageCode,
+            sourceApi: 'DATAFORSEO',
+            snapshotDate,
+            lastPulledAt: now,
+          };
+          
+          dedupeMap.set(normalizedKey, record);
+        }
       }
+
+      const locationRecords = Array.from(dedupeMap.values());
+      allNewRecords.push(...locationRecords);
+
+      statsPerLocation[locResult.locationCode] = {
+        originalKeywords: originalCount,
+        skippedKeywords: skippedCount,
+        sanitizedKeywordsSent: sanitizedKeywords.length,
+        recordsCreated: locationRecords.length,
+        duplicatesRemoved,
+      };
     }
 
-    await replaceKeywordApiDataForClientAndLocation(clientCode, locationCode, newRecords);
+    const numericLocationCodes = locCodes.map(lc => locationCodeMapping[lc] || 2840);
+    await replaceKeywordApiDataForClientAndLocations(clientCode, numericLocationCodes, allNewRecords);
 
     return NextResponse.json({
       success: true,
-      message: `Successfully fetched data for ${newRecords.length} keywords from DataForSEO`,
-      count: newRecords.length,
-      stats: {
-        originalKeywords: keywordTexts.length,
-        skippedKeywords: skippedCount,
-        sanitizedKeywordsSent: sanitizedKeywords.length,
-        recordsCreated: newRecords.length,
-      },
+      message: `Successfully fetched data for ${allNewRecords.length} keywords from DataForSEO`,
+      count: allNewRecords.length,
+      stats: statsPerLocation,
       lastPulledAt: now,
       logFile: logFilename,
     });

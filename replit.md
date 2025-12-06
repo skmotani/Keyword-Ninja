@@ -93,10 +93,13 @@ A full-stack web application for managing SEO research data including clients, c
 - `clientCode`: string (references Client.code)
 - `keywordText`: string
 - `normalizedKeyword`: string
-- `searchVolume`: number | null
-- `cpc`: number | null
-- `competitionIndex`: number | null
-- `locationCode`: string ('IN', 'GL')
+- `searchVolume`: number | null - Monthly average search volume
+- `cpc`: number | null - Cost per click
+- `competition`: string | null - Competition level (HIGH, MEDIUM, LOW)
+- `lowTopOfPageBid`: number | null - Minimum bid for top of page (~20th percentile)
+- `highTopOfPageBid`: number | null - Maximum bid for top of page (~80th percentile)
+- `locationCode`: number - Numeric location code (2356=India, 2840=Global/US)
+- `languageCode`: string - Language code (e.g., 'en')
 - `sourceApi`: string (e.g., 'DATAFORSEO')
 - `snapshotDate`: string
 - `lastPulledAt`: string (ISO date)
@@ -115,10 +118,13 @@ The app runs on port 5000.
 - **Keyword Manual**: CRUD operations for manually collected keywords
   - **Bulk Import**: Add multiple keywords at once by pasting keywords (one per line)
 - **Keyword API Data**: View keyword metrics fetched from SEO data providers
-  - Client and location dropdowns for filtering
-  - Refresh button to fetch latest data (requires active DATAFORSEO credential)
-  - Summary statistics (total keywords, search volume count, avg competition)
-  - Compact read-only data table
+  - Client and location checkboxes for filtering (India IN, Global GL)
+  - Refresh button fetches both locations in a single batched API call
+  - Per-location summary showing total records
+  - Refresh summary showing: original keywords, skipped, sent to API, records created, duplicates removed
+  - Table filters: keyword search, location, competition level, min/max search volume
+  - Table columns with tooltips: Keyword, Search Vol, CPC, Competition, Low Bid, High Bid, Location, Lang, Last Pulled
+  - One row per keyword per location (no duplicates)
 - **API Credentials Settings** (gear icon in navbar)
   - Three organized boxes: DataForSEO, API Key-based, Custom/GSC
   - Add/Edit/Delete credentials with modal forms

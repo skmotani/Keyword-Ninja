@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-import { KeywordApiDataRecord, MonthlySearch } from '@/types';
+import { KeywordApiDataRecord } from '@/types';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 const KEYWORD_API_DATA_FILE = 'keyword_api_data.json';
@@ -35,7 +35,7 @@ export async function getKeywordApiData(): Promise<KeywordApiDataRecord[]> {
 
 export async function getKeywordApiDataByClientAndLocation(
   clientCode: string,
-  locationCode: string
+  locationCode: number
 ): Promise<KeywordApiDataRecord[]> {
   const records = await readKeywordApiData();
   return records.filter(r => r.clientCode === clientCode && r.locationCode === locationCode);
@@ -43,7 +43,7 @@ export async function getKeywordApiDataByClientAndLocation(
 
 export async function getKeywordApiDataByClientAndLocations(
   clientCode: string,
-  locationCodes: string[]
+  locationCodes: number[]
 ): Promise<KeywordApiDataRecord[]> {
   const records = await readKeywordApiData();
   return records.filter(r => r.clientCode === clientCode && locationCodes.includes(r.locationCode));
@@ -51,7 +51,7 @@ export async function getKeywordApiDataByClientAndLocations(
 
 export async function getLastPulledAtForClientAndLocation(
   clientCode: string,
-  locationCode: string
+  locationCode: number
 ): Promise<string | null> {
   const records = await getKeywordApiDataByClientAndLocation(clientCode, locationCode);
   if (records.length === 0) return null;
@@ -64,7 +64,7 @@ export async function getLastPulledAtForClientAndLocation(
 
 export async function replaceKeywordApiDataForClientAndLocation(
   clientCode: string,
-  locationCode: string,
+  locationCode: number,
   newRecords: KeywordApiDataRecord[]
 ): Promise<void> {
   const allRecords = await readKeywordApiData();
@@ -75,27 +75,71 @@ export async function replaceKeywordApiDataForClientAndLocation(
   await writeKeywordApiData(updatedRecords);
 }
 
+const NUMERIC_TO_STRING: Record<number, string[]> = {
+  2356: ['IN', 'India', 'in'],
+  2840: ['GL', 'US', 'Global', 'gl', 'us'],
+  2826: ['UK', 'uk'],
+  2036: ['AU', 'au'],
+  2124: ['CA', 'ca'],
+};
+
+const STRING_TO_NUMERIC: Record<string, number> = {
+  'IN': 2356, 'India': 2356, 'in': 2356,
+  'GL': 2840, 'US': 2840, 'Global': 2840, 'gl': 2840, 'us': 2840,
+  'UK': 2826, 'uk': 2826,
+  'AU': 2036, 'au': 2036,
+  'CA': 2124, 'ca': 2124,
+};
+
+export async function replaceKeywordApiDataForClientAndLocations(
+  clientCode: string,
+  locationCodes: number[],
+  newRecords: KeywordApiDataRecord[]
+): Promise<void> {
+  const allRecords = await readKeywordApiData();
+  
+  const allStringsToRemove = new Set<string>();
+  for (const numCode of locationCodes) {
+    const strings = NUMERIC_TO_STRING[numCode] || [];
+    strings.forEach(s => allStringsToRemove.add(s));
+  }
+  
+  const filteredRecords = allRecords.filter(r => {
+    if (r.clientCode !== clientCode) return true;
+    
+    if (typeof r.locationCode === 'number') {
+      return !locationCodes.includes(r.locationCode);
+    }
+    
+    const locStr = r.locationCode as unknown as string;
+    if (allStringsToRemove.has(locStr)) {
+      return false;
+    }
+    const numericEquiv = STRING_TO_NUMERIC[locStr];
+    if (numericEquiv && locationCodes.includes(numericEquiv)) {
+      return false;
+    }
+    
+    return true;
+  });
+  
+  const updatedRecords = [...filteredRecords, ...newRecords];
+  await writeKeywordApiData(updatedRecords);
+}
+
 export function normalizeKeyword(keyword: string): string {
   return keyword.trim().replace(/\s+/g, ' ').toLowerCase();
 }
 
-export interface KeywordMetrics {
-  keywordText: string;
-  searchVolume: number | null;
-  cpc: number | null;
-  competitionIndex: number | null;
-  competitionLevel: string | null;
-  monthlySearches: MonthlySearch[] | null;
-}
-
 export async function saveApiLog(
   clientCode: string,
-  locationCode: string,
+  locationCodes: string[],
   rawResponse: string
 ): Promise<string> {
   await ensureApiLogsDir();
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-  const filename = `dataforseo_${clientCode}_${locationCode}_${timestamp}.json`;
+  const locationsStr = locationCodes.join('_');
+  const filename = `dataforseo_${clientCode}_${locationsStr}_${timestamp}.json`;
   const filePath = path.join(API_LOGS_DIR, filename);
   await fs.writeFile(filePath, rawResponse, 'utf-8');
   return filename;
