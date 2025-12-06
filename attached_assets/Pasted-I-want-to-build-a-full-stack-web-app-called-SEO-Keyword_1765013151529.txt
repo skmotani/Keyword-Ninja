@@ -1,0 +1,80 @@
+I want to build a full-stack web app called **“SEO Keyword Intelligence Platform”**.
+
+Use:
+- Next.js
+- TypeScript
+- Tailwind CSS
+
+For v1, please implement:
+
+1) Layout & Navigation
+- A top navigation bar with links:
+  - Home (`/`)
+  - Clients (`/clients`)
+  - Competitors (`/competitors`)
+  - Keyword Manual (`/keywords/manual`)
+- Use a simple, clean Tailwind layout with a centered container and page title on every page.
+
+2) Client Master (CRUD)
+- Page: `/clients`
+- Data model `Client`:
+  - `id` (string or auto id)
+  - `code` (string like `01`, `02`)
+  - `name` (string)
+  - `mainDomain` (string)
+  - `notes` (optional string)
+  - `isActive` (boolean; if false, treat as archived / deleted)
+- On `/clients`:
+  - Show a table of all clients with columns: Code, Name, Main Domain, Active?, Actions.
+  - Provide a form to add a new client.
+  - For each row, allow:
+    - Edit (update fields)
+    - Archive / Unarchive (toggle `isActive` instead of hard delete).
+
+3) Competitor Master (CRUD)
+- Page: `/competitors`
+- Data model `Competitor`:
+  - `id`
+  - `clientCode` (or clientId reference)
+  - `name`
+  - `domain`
+  - `notes` (optional)
+  - `isActive` (boolean)
+- On `/competitors`:
+  - Show a table listing competitors and which client they belong to.
+  - Provide a form to add a competitor (choose client from a dropdown using the Client Master).
+  - Allow Edit and Archive / Unarchive per row.
+
+4) Keyword Manual Master (CRUD)
+- Page: `/keywords/manual`
+- Data model `ManualKeyword`:
+  - `id`
+  - `clientCode` (or clientId)
+  - `keywordText` (string)
+  - `notes` (optional string – e.g. “from client interview”)
+  - `isActive` (boolean)
+- On `/keywords/manual`:
+  - Show a table with columns: Client, Keyword, Notes, Active?, Actions.
+  - Provide a form to add a new manual keyword:
+    - select Client (dropdown from Client Master)
+    - enter keywordText
+    - optional notes
+  - Allow Edit and Archive / Unarchive per keyword.
+
+5) Storage (very important)
+- For now, do NOT use an external database.
+- Instead, use JSON files in a `data/` folder as a simple “mock database”, for example:
+  - `data/clients.json`
+  - `data/competitors.json`
+  - `data/manualKeywords.json`
+- Implement a small data-access layer (helper functions) that:
+  - reads from these JSON files
+  - writes updates back to them
+- This way, the data is persistent inside the Replit project and can be downloaded or migrated later.
+
+6) Code style
+- Use TypeScript everywhere.
+- Keep components and data-access code in separate files where it makes sense.
+- Make sure the app runs with the default Replit run command.
+
+After generating the project, please list which files you created or modified.
