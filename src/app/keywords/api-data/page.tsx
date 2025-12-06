@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import PageHeader from '@/components/PageHeader';
 
 interface Client {
@@ -32,6 +32,17 @@ interface KeywordApiDataRecord {
   lastPulledAt: string;
 }
 
+interface LocationStats {
+  originalKeywords: number;
+  skippedKeywords: number;
+  sanitizedKeywordsSent: number;
+  recordsCreated: number;
+}
+
+interface RefreshStats {
+  [locationCode: string]: LocationStats;
+}
+
 const LOCATION_OPTIONS = [
   { code: 'IN', label: 'India (IN)' },
   { code: 'GL', label: 'Global (GL)' },
@@ -49,6 +60,13 @@ export default function KeywordApiDataPage() {
   const [apiLogs, setApiLogs] = useState<string[]>([]);
   const [selectedLogContent, setSelectedLogContent] = useState<string | null>(null);
   const [loadingLog, setLoadingLog] = useState(false);
+  const [refreshStats, setRefreshStats] = useState<RefreshStats | null>(null);
+
+  const [keywordFilter, setKeywordFilter] = useState('');
+  const [locationFilter, setLocationFilter] = useState<string>('all');
+  const [compLevelFilter, setCompLevelFilter] = useState<string>('all');
+  const [minSearchVolume, setMinSearchVolume] = useState<string>('');
+  const [maxSearchVolume, setMaxSearchVolume] = useState<string>('');
 
   useEffect(() => {
     fetchClients();
@@ -107,6 +125,7 @@ export default function KeywordApiDataPage() {
     
     let totalCount = 0;
     const errors: string[] = [];
+    const newStats: RefreshStats = {};
     
     for (const locationCode of selectedLocationCodes) {
       try {
@@ -123,23 +142,25 @@ export default function KeywordApiDataPage() {
           errors.push(`${locationCode}: ${data.error || 'Failed'}`);
         } else {
           totalCount += data.count || 0;
+          if (data.stats) {
+            newStats[locationCode] = data.stats;
+          }
         }
       } catch (error) {
         errors.push(`${locationCode}: Network error`);
       }
     }
     
+    setRefreshStats(newStats);
+    
     if (errors.length > 0) {
       setNotification({ type: 'error', message: `Some locations failed: ${errors.join(', ')}` });
     } else {
       const clientName = clients.find(c => c.code === selectedClientCode)?.name || selectedClientCode;
-      const locationLabels = selectedLocationCodes.map(code => 
-        LOCATION_OPTIONS.find(l => l.code === code)?.label || code
-      ).join(', ');
       const timestamp = new Date().toLocaleString();
       setNotification({ 
         type: 'success', 
-        message: `Keyword data for ${clientName} (${locationLabels}) refreshed successfully at ${timestamp}. ${totalCount} keywords fetched.`
+        message: `Keyword data refreshed successfully at ${timestamp}. Total ${totalCount} records created.`
       });
     }
     await fetchRecords();
@@ -166,6 +187,47 @@ export default function KeywordApiDataPage() {
   };
 
   const selectedClientName = clients.find(c => c.code === selectedClientCode)?.name || '';
+
+  const filteredRecords = useMemo(() => {
+    return records.filter(record => {
+      if (keywordFilter && !record.keywordText.toLowerCase().includes(keywordFilter.toLowerCase())) {
+        return false;
+      }
+      if (locationFilter !== 'all' && record.locationCode !== locationFilter) {
+        return false;
+      }
+      if (compLevelFilter !== 'all') {
+        if (compLevelFilter === 'none' && record.competitionLevel !== null) {
+          return false;
+        } else if (compLevelFilter !== 'none' && record.competitionLevel !== compLevelFilter) {
+          return false;
+        }
+      }
+      const minVol = minSearchVolume ? parseInt(minSearchVolume, 10) : null;
+      const maxVol = maxSearchVolume ? parseInt(maxSearchVolume, 10) : null;
+      if (minVol !== null && (record.searchVolume === null || record.searchVolume < minVol)) {
+        return false;
+      }
+      if (maxVol !== null && (record.searchVolume === null || record.searchVolume > maxVol)) {
+        return false;
+      }
+      return true;
+    });
+  }, [records, keywordFilter, locationFilter, compLevelFilter, minSearchVolume, maxSearchVolume]);
+
+  const getLocationStats = (loc: string) => {
+    const locRecords = records.filter(r => r.locationCode === loc);
+    const withVolume = locRecords.filter(r => r.searchVolume !== null && r.searchVolume > 0).length;
+    const avgComp = locRecords.filter(r => r.competitionIndex !== null);
+    const avgCompValue = avgComp.length > 0 
+      ? (avgComp.reduce((acc, r) => acc + (r.competitionIndex || 0), 0) / avgComp.length).toFixed(1)
+      : 'N/A';
+    return {
+      total: locRecords.length,
+      withVolume,
+      avgComp: avgCompValue,
+    };
+  };
 
   const fetchApiLogs = async () => {
     try {
@@ -271,33 +333,141 @@ export default function KeywordApiDataPage() {
         </div>
       )}
 
-      <div className="bg-gray-50 rounded-lg border p-4 mb-4">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-sm">
+      {refreshStats && Object.keys(refreshStats).length > 0 && (
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
+          <p className="text-xs font-medium text-blue-800 mb-2">Last Refresh Summary</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {Object.entries(refreshStats).map(([loc, stats]) => (
+              <div key={loc} className="bg-white rounded p-2 border border-blue-100">
+                <p className="text-xs font-semibold text-gray-700 mb-1">
+                  {loc === 'IN' ? 'India (IN)' : loc === 'GL' ? 'Global (GL)' : loc}
+                </p>
+                <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-[10px] text-gray-600">
+                  <span>Original keywords:</span>
+                  <span className="font-medium text-gray-800">{stats.originalKeywords}</span>
+                  <span>Skipped (invalid):</span>
+                  <span className="font-medium text-orange-600">{stats.skippedKeywords}</span>
+                  <span>Sent to API:</span>
+                  <span className="font-medium text-gray-800">{stats.sanitizedKeywordsSent}</span>
+                  <span>Records created:</span>
+                  <span className="font-medium text-green-600">{stats.recordsCreated}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div className="bg-gray-50 rounded-lg border p-3 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {LOCATION_OPTIONS.map(loc => {
+            const stats = getLocationStats(loc.code);
+            return (
+              <div key={loc.code} className="flex items-center gap-4 text-xs">
+                <span className="font-semibold text-gray-700 w-20">{loc.label}</span>
+                <div className="flex gap-4 text-gray-600">
+                  <span>Total: <span className="font-medium text-gray-800">{stats.total}</span></span>
+                  <span>With Volume: <span className="font-medium text-gray-800">{stats.withVolume}</span></span>
+                  <span>Avg Comp: <span className="font-medium text-gray-800">{stats.avgComp}</span></span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="border-t border-gray-200 mt-3 pt-3 grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
           <div>
             <span className="text-gray-500">Client:</span>
-            <p className="font-medium">{selectedClientName || '-'}</p>
-          </div>
-          <div>
-            <span className="text-gray-500">Location:</span>
-            <p className="font-medium">{selectedLocationCodes.join(', ')}</p>
+            <p className="font-medium text-gray-800">{selectedClientName || '-'}</p>
           </div>
           <div>
             <span className="text-gray-500">Last Refreshed:</span>
-            <p className="font-medium">{getLastRefreshed()}</p>
+            <p className="font-medium text-gray-800">{getLastRefreshed()}</p>
           </div>
           <div>
-            <span className="text-gray-500">Total Keywords:</span>
-            <p className="font-medium">{records.length}</p>
+            <span className="text-gray-500">Total Records:</span>
+            <p className="font-medium text-gray-800">{records.length}</p>
           </div>
           <div>
-            <span className="text-gray-500">With Search Volume:</span>
-            <p className="font-medium">{getSearchVolumeCount()}</p>
-          </div>
-          <div>
-            <span className="text-gray-500">Avg Competition:</span>
-            <p className="font-medium">{getAvgCompetitionIndex()}</p>
+            <span className="text-gray-500">Showing:</span>
+            <p className="font-medium text-gray-800">{filteredRecords.length} of {records.length}</p>
           </div>
         </div>
+      </div>
+
+      <div className="bg-white rounded-lg shadow-sm border p-3 mb-4">
+        <p className="text-xs font-medium text-gray-700 mb-2">Filters</p>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+          <div>
+            <label className="block text-[10px] text-gray-500 mb-1">Keyword Search</label>
+            <input
+              type="text"
+              value={keywordFilter}
+              onChange={(e) => setKeywordFilter(e.target.value)}
+              placeholder="Filter by keyword..."
+              className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            />
+          </div>
+          <div>
+            <label className="block text-[10px] text-gray-500 mb-1">Location</label>
+            <select
+              value={locationFilter}
+              onChange={(e) => setLocationFilter(e.target.value)}
+              className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            >
+              <option value="all">All Locations</option>
+              <option value="IN">India (IN)</option>
+              <option value="GL">Global (GL)</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-[10px] text-gray-500 mb-1">Competition Level</label>
+            <select
+              value={compLevelFilter}
+              onChange={(e) => setCompLevelFilter(e.target.value)}
+              className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            >
+              <option value="all">All Levels</option>
+              <option value="HIGH">High</option>
+              <option value="MEDIUM">Medium</option>
+              <option value="LOW">Low</option>
+              <option value="none">No Data</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-[10px] text-gray-500 mb-1">Min Search Volume</label>
+            <input
+              type="number"
+              value={minSearchVolume}
+              onChange={(e) => setMinSearchVolume(e.target.value)}
+              placeholder="Min"
+              className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            />
+          </div>
+          <div>
+            <label className="block text-[10px] text-gray-500 mb-1">Max Search Volume</label>
+            <input
+              type="number"
+              value={maxSearchVolume}
+              onChange={(e) => setMaxSearchVolume(e.target.value)}
+              placeholder="Max"
+              className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            />
+          </div>
+        </div>
+        {(keywordFilter || locationFilter !== 'all' || compLevelFilter !== 'all' || minSearchVolume || maxSearchVolume) && (
+          <button
+            onClick={() => {
+              setKeywordFilter('');
+              setLocationFilter('all');
+              setCompLevelFilter('all');
+              setMinSearchVolume('');
+              setMaxSearchVolume('');
+            }}
+            className="mt-2 text-xs text-indigo-600 hover:text-indigo-800"
+          >
+            Clear all filters
+          </button>
+        )}
       </div>
 
       <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
@@ -322,14 +492,16 @@ export default function KeywordApiDataPage() {
                     Loading...
                   </td>
                 </tr>
-              ) : records.length === 0 ? (
+              ) : filteredRecords.length === 0 ? (
                 <tr>
                   <td colSpan={8} className="text-center py-8 text-gray-500 text-sm">
-                    No keyword data available. Click "Refresh Data" to fetch keyword metrics.
+                    {records.length === 0 
+                      ? 'No keyword data available. Click "Refresh Data" to fetch keyword metrics.'
+                      : 'No records match your filters. Try adjusting the filter criteria.'}
                   </td>
                 </tr>
               ) : (
-                records.map((record, index) => (
+                filteredRecords.map((record, index) => (
                   <tr key={record.id} className="hover:bg-gray-50">
                     <td className="text-xs text-gray-600 py-1 px-2 leading-tight">{index + 1}</td>
                     <td className="text-xs text-gray-900 py-1 px-2 leading-tight font-medium">{record.keywordText}</td>

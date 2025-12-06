@@ -136,6 +136,12 @@ export async function POST(request: NextRequest) {
       success: true,
       message: `Successfully fetched data for ${newRecords.length} keywords from DataForSEO`,
       count: newRecords.length,
+      stats: {
+        originalKeywords: keywordTexts.length,
+        skippedKeywords: skippedCount,
+        sanitizedKeywordsSent: sanitizedKeywords.length,
+        recordsCreated: newRecords.length,
+      },
       lastPulledAt: now,
       logFile: logFilename,
     });
