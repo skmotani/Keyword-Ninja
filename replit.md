@@ -12,12 +12,15 @@ A full-stack web application for managing SEO research data including clients, c
 │   │   │   ├── competitors/    # Competitor CRUD endpoints
 │   │   │   ├── keywords/       # Keywords CRUD endpoints
 │   │   │   ├── api-credentials/# API credentials CRUD endpoints
-│   │   │   └── seo/keywords/   # SEO keyword API data endpoints
+│   │   │   └── seo/
+│   │   │       ├── keywords/   # SEO keyword API data endpoints
+│   │   │       └── serp/       # SERP results endpoints
 │   │   ├── clients/            # Client Master page
 │   │   ├── competitors/        # Competitor Master page
 │   │   ├── keywords/
 │   │   │   ├── manual/         # Keyword Manual Master page
-│   │   │   └── api-data/       # Keyword API Data page
+│   │   │   ├── api-data/       # Keyword API Data page
+│   │   │   └── serp-results/   # SERP Results page
 │   │   ├── settings/
 │   │   │   └── api-credentials/# API Credentials Settings page
 │   │   ├── globals.css         # Global styles
@@ -29,7 +32,8 @@ A full-stack web application for managing SEO research data including clients, c
 │   ├── lib/                    # Utility libraries
 │   │   ├── db.ts               # JSON file data access layer
 │   │   ├── apiCredentialsStore.ts  # API credentials management
-│   │   └── keywordApiStore.ts  # Keyword API data management
+│   │   ├── keywordApiStore.ts  # Keyword API data management
+│   │   └── serpStore.ts        # SERP results data management
 │   └── types/                  # TypeScript type definitions
 │       └── index.ts            # Data models
 ├── data/                       # JSON data files (mock database)
@@ -37,7 +41,8 @@ A full-stack web application for managing SEO research data including clients, c
 │   ├── competitors.json
 │   ├── manualKeywords.json
 │   ├── api_credentials.json
-│   └── keyword_api_data.json
+│   ├── keyword_api_data.json
+│   └── serp_results.json
 ├── package.json
 ├── tsconfig.json
 ├── tailwind.config.js
@@ -104,6 +109,27 @@ A full-stack web application for managing SEO research data including clients, c
 - `snapshotDate`: string
 - `lastPulledAt`: string (ISO date)
 
+### SerpResult
+- `id`: string (UUID)
+- `clientCode`: string (references Client.code)
+- `keyword`: string - The search keyword
+- `locationCode`: number - Numeric location code (2356=India, 2840=Global/US)
+- `languageCode`: string - Language code (e.g., 'en')
+- `rank`: number - Position within organic results (1-10)
+- `rankAbsolute`: number - Absolute position including all SERP elements
+- `url`: string - Full URL of the result
+- `title`: string - Page title displayed in SERP
+- `description`: string - Meta description/snippet
+- `domain`: string - Domain of the ranking page
+- `breadcrumb`: string | null - Breadcrumb path shown in SERP
+- `isFeaturedSnippet`: boolean - Whether it's a featured snippet
+- `isImage`: boolean - Whether result includes an image
+- `isVideo`: boolean - Whether result includes video
+- `highlighted`: string[] - Keywords highlighted in the snippet
+- `etv`: number | null - Estimated traffic value
+- `estimatedPaidTrafficCost`: number | null - Estimated cost if traffic was paid
+- `fetchedAt`: string (ISO date)
+
 ## Running the Application
 ```bash
 npm run dev
@@ -124,7 +150,17 @@ The app runs on port 5000.
   - Refresh summary showing: original keywords, skipped, sent to API, records created, duplicates removed
   - Table filters: keyword search, location, competition level, min/max search volume
   - Table columns with tooltips: Keyword, Search Vol, CPC, Competition, Low Bid, High Bid, Location, Lang, Last Pulled
+  - Sortable numerical columns (Search Vol, CPC, Low Bid, High Bid) with ascending/descending toggle
   - One row per keyword per location (no duplicates)
+- **SERP Results**: Google organic search results for keywords
+  - Uses keywords from Keyword API Data as input (no duplicates)
+  - Fetches top 10 organic results per keyword per location
+  - Client dropdown + Location checkboxes (IN, GL)
+  - Refresh button calls DataForSEO SERP API and replaces existing data
+  - Table columns: Date, Keyword, Scope, Rank, Abs Rank, Domain, URL, Title, Snippet, Breadcrumb, Featured Snippet, Image, Video, ETV, Est. Cost
+  - Filters: keyword search, domain search, location, rank range, featured snippet filter
+  - Sortable numerical columns (Rank, Abs Rank, ETV, Est. Cost)
+  - Left-aligned tooltips on column headers
 - **API Credentials Settings** (gear icon in navbar)
   - Three organized boxes: DataForSEO, API Key-based, Custom/GSC
   - Add/Edit/Delete credentials with modal forms
@@ -143,3 +179,81 @@ Data is persisted in JSON files in the `data/` folder. This allows for easy back
 - Only masked versions of API keys and passwords are stored in JSON files
 - Real secrets should be stored in Replit Secrets
 - The credential management UI is for reference/configuration only
+
+## Shared UI Patterns (For Building New Pages)
+
+When building new data pages similar to Keyword API Data or SERP Results, follow these patterns:
+
+### Page Layout Structure
+```
+1. PageHeader component with title and description
+2. Control panel (client dropdown, location checkboxes, refresh button)
+3. Notification area (success/error messages)
+4. Refresh stats summary (collapsible, shows after refresh)
+5. Location stats summary (per-location record counts)
+6. Filters panel (search inputs, dropdowns, clear button)
+7. Data table (sortable columns, tooltips)
+```
+
+### Data Refresh Behavior
+- **Replace strategy**: When refreshing, delete existing records for client+location combo and insert new ones
+- No append mode - data is completely overwritten per refresh
+- Use `replaceXxxDataForClientAndLocations()` pattern in store files
+
+### Tooltip Component Pattern
+```tsx
+function Tooltip({ text, children }: TooltipProps) {
+  // Uses fixed positioning for proper visibility outside table cells
+  // Left-aligned positioning (not center)
+  // Arrow indicator pointing down
+  // Max width constraint for long text
+}
+```
+
+### Sortable Columns Pattern
+```tsx
+type SortField = 'fieldA' | 'fieldB' | null;
+type SortDirection = 'asc' | 'desc';
+
+// State
+const [sortField, setSortField] = useState<SortField>(null);
+const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
+
+// Handler toggles direction if same field, resets if different field
+const handleSort = (field: SortField) => { ... };
+
+// Icon shows ↑ or ↓ based on current sort
+const getSortIcon = (field: SortField) => { ... };
+
+// Sort in filteredRecords useMemo, push nulls to bottom
+```
+
+### Filter Pattern
+- Filter inputs in grid layout
+- "Clear all filters" button appears when any filter is active
+- Filters applied in useMemo for performance
+- Combined with sorting in same useMemo
+
+### Date Formatting
+- Use format: "M/D HH:mm" (e.g., "12/6 14:30")
+- Include both date and time for last-pulled timestamps
+
+### Location Codes
+- India (IN): 2356
+- Global/US (GL): 2840
+- Store numeric codes, display string labels
+
+### API Route Patterns
+- GET endpoint: Fetch stored data by clientCode and locationCodes
+- POST /fetch endpoint: Call external API, transform data, replace in store
+- Return stats object with per-location breakdown
+
+### Store File Pattern (lib/xxxStore.ts)
+```
+- readXxxData() - internal read from JSON
+- writeXxxData() - internal write to JSON
+- getXxxData() - public get all
+- getXxxDataByClientAndLocations() - public filtered get
+- replaceXxxDataForClientAndLocations() - public replace
+- saveXxxApiLog() - save raw API response for debugging
+```

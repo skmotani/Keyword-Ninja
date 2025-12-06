@@ -9,6 +9,7 @@ const navItems = [
   { href: '/competitors', label: 'Competitors' },
   { href: '/keywords/manual', label: 'Keyword Manual' },
   { href: '/keywords/api-data', label: 'Keyword API Data' },
+  { href: '/keywords/serp-results', label: 'SERP Results' },
 ];
 
 export default function Navbar() {

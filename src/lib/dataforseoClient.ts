@@ -252,3 +252,199 @@ export async function fetchKeywordsFromDataForSEOBatch(
 export function getLocationCodeMapping(): Record<string, number> {
   return { ...LOCATION_CODE_MAP };
 }
+
+interface SerpOrganicResult {
+  type: string;
+  rank_group: number;
+  rank_absolute: number;
+  domain: string;
+  url: string;
+  title: string;
+  description: string;
+  breadcrumb: string | null;
+  is_featured_snippet: boolean;
+  is_image: boolean;
+  is_video: boolean;
+  highlighted: string[] | null;
+  etv: number | null;
+  estimated_paid_traffic_cost: number | null;
+}
+
+interface SerpTaskResult {
+  keyword: string;
+  location_code: number;
+  language_code: string;
+  items: SerpOrganicResult[];
+}
+
+interface DataForSEOSerpResponse {
+  version: string;
+  status_code: number;
+  status_message: string;
+  time: string;
+  cost: number;
+  tasks_count: number;
+  tasks_error: number;
+  tasks: Array<{
+    id: string;
+    status_code: number;
+    status_message: string;
+    time: string;
+    cost: number;
+    result_count: number;
+    path: string[];
+    data: {
+      api: string;
+      function: string;
+      keyword: string;
+      location_code: number;
+      language_code: string;
+      depth: number;
+    };
+    result: SerpTaskResult[] | null;
+  }>;
+}
+
+export interface SerpLocationResults {
+  locationCode: string;
+  numericLocationCode: number;
+  languageCode: string;
+  results: Array<{
+    keyword: string;
+    items: SerpOrganicResult[];
+  }>;
+}
+
+export interface SerpBatchFetchResult {
+  locationResults: SerpLocationResults[];
+  rawResponse: string;
+}
+
+export async function fetchSerpFromDataForSEO(
+  credentials: { username: string; password: string },
+  keywords: string[],
+  locationCodes: string[]
+): Promise<SerpBatchFetchResult> {
+  const authString = Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64');
+
+  console.log('[DataForSEO SERP] Making API requests for SERP data:', {
+    endpoint: 'serp/google/organic/live/advanced',
+    keywordCount: keywords.length,
+    locations: locationCodes,
+  });
+
+  const allLocationResults: SerpLocationResults[] = [];
+  const allRawResponses: string[] = [];
+  const errors: string[] = [];
+
+  for (const locCode of locationCodes) {
+    try {
+      const numericLocCode = LOCATION_CODE_MAP[locCode] || 2840;
+      const langCode = LANGUAGE_CODE_MAP[locCode] || 'en';
+
+      const requestBody = keywords.map(keyword => ({
+        keyword: keyword,
+        location_code: numericLocCode,
+        language_code: langCode,
+        depth: 10,
+      }));
+
+      console.log(`[DataForSEO SERP] Fetching for location ${locCode} (${numericLocCode}), ${keywords.length} keywords`);
+
+      const response = await fetch(
+        'https://api.dataforseo.com/v3/serp/google/organic/live/advanced',
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': `Basic ${authString}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
+
+      const rawResponseText = await response.text();
+      allRawResponses.push(rawResponseText);
+
+      console.log(`[DataForSEO SERP] Response status for ${locCode}:`, response.status);
+
+      if (!response.ok) {
+        console.error(`[DataForSEO SERP] API Error for ${locCode}:`, rawResponseText);
+        errors.push(`${locCode}: HTTP ${response.status}`);
+        continue;
+      }
+
+      let data: DataForSEOSerpResponse;
+      try {
+        data = JSON.parse(rawResponseText);
+      } catch (e) {
+        console.error(`[DataForSEO SERP] Failed to parse response for ${locCode}:`, rawResponseText);
+        errors.push(`${locCode}: Invalid JSON response`);
+        continue;
+      }
+
+      console.log(`[DataForSEO SERP] Response summary for ${locCode}:`, {
+        statusCode: data.status_code,
+        statusMessage: data.status_message,
+        cost: data.cost,
+        tasksCount: data.tasks_count,
+        tasksError: data.tasks_error,
+      });
+
+      if (data.status_code !== 20000) {
+        errors.push(`${locCode}: ${data.status_message}`);
+        continue;
+      }
+
+      const locResults: SerpLocationResults = {
+        locationCode: locCode,
+        numericLocationCode: numericLocCode,
+        languageCode: langCode,
+        results: [],
+      };
+
+      for (const task of data.tasks || []) {
+        if (task.status_code !== 20000) {
+          console.warn(`[DataForSEO SERP] Task error for ${locCode}:`, task.status_message);
+          continue;
+        }
+
+        const keyword = task.data?.keyword || '';
+        const taskResults = task.result || [];
+
+        for (const result of taskResults) {
+          const organicItems = (result.items || [])
+            .filter((item: SerpOrganicResult) => item.type === 'organic')
+            .slice(0, 10);
+
+          locResults.results.push({
+            keyword: keyword || result.keyword,
+            items: organicItems,
+          });
+        }
+      }
+
+      allLocationResults.push(locResults);
+      console.log(`[DataForSEO SERP] Parsed results for ${locCode}:`, locResults.results.length, 'keywords');
+    } catch (error) {
+      const errMsg = error instanceof Error ? error.message : 'Unknown error';
+      console.error(`[DataForSEO SERP] Error fetching ${locCode}:`, errMsg);
+      errors.push(`${locCode}: ${errMsg}`);
+    }
+  }
+
+  if (allLocationResults.length === 0 && errors.length > 0) {
+    throw new Error(`All SERP locations failed: ${errors.join('; ')}`);
+  }
+
+  const combinedRawResponse = JSON.stringify({
+    combined: true,
+    locations: locationCodes,
+    rawResponses: allRawResponses,
+  });
+
+  return {
+    locationResults: allLocationResults,
+    rawResponse: combinedRawResponse,
+  };
+}

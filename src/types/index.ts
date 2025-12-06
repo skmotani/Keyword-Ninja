@@ -68,3 +68,25 @@ export interface DataForSEOKeywordResult {
   location_code: number;
   language_code: string;
 }
+
+export interface SerpResult {
+  id: string;
+  clientCode: string;
+  keyword: string;
+  locationCode: number;
+  languageCode: string;
+  rank: number;
+  rankAbsolute: number;
+  url: string;
+  title: string;
+  description: string;
+  domain: string;
+  breadcrumb: string | null;
+  isFeaturedSnippet: boolean;
+  isImage: boolean;
+  isVideo: boolean;
+  highlighted: string[];
+  etv: number | null;
+  estimatedPaidTrafficCost: number | null;
+  fetchedAt: string;
+}
