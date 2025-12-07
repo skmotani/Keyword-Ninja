@@ -221,3 +221,46 @@ export interface DomainClassification {
   classifiedAt: string;
   updatedAt: string;
 }
+
+export interface DomainOverviewRecord {
+  id: string;
+  clientCode: string;
+  domain: string;
+  label: string;
+  locationCode: string;
+  languageCode: string;
+  organicTrafficETV: number | null;
+  organicKeywordsCount: number | null;
+  fetchedAt: string;
+  snapshotDate: string;
+}
+
+export interface DomainPageRecord {
+  id: string;
+  clientCode: string;
+  domain: string;
+  label: string;
+  locationCode: string;
+  languageCode: string;
+  pageURL: string;
+  estTrafficETV: number | null;
+  keywordsCount: number | null;
+  fetchedAt: string;
+  snapshotDate: string;
+}
+
+export interface DomainKeywordRecord {
+  id: string;
+  clientCode: string;
+  domain: string;
+  label: string;
+  locationCode: string;
+  languageCode: string;
+  keyword: string;
+  position: number | null;
+  searchVolume: number | null;
+  cpc: number | null;
+  url: string | null;
+  fetchedAt: string;
+  snapshotDate: string;
+}
