@@ -2266,5 +2266,47 @@
     "explanationSummary": "The ranking page is an educational article about yarn doubling that references winding and supplying yarn to a twister, indicating a knowledge resource rather than a seller. This aligns with the client's core topics around yarn twisting/winding but does not present product specs, pricing, or RFQs, so intent is informational. Given topical alignment to twisting/winding processes but absence of machine offerings, the match is medium. Therefore, it is best classified as Educational/Content Only rather than a competitor, customer, or marketplace.",
     "classifiedAt": "2025-12-07T06:30:21.363Z",
     "updatedAt": "2025-12-07T06:30:21.363Z"
+  },
+  {
+    "id": "class-01-rifa-texmachine-com-1765089037264",
+    "clientCode": "01",
+    "domain": "rifa-texmachine.com",
+    "domainType": "OEM / Manufacturer / Product Provider",
+    "pageIntent": "Transactional",
+    "productMatchScoreValue": 0.95,
+    "productMatchScoreBucket": "High",
+    "businessRelevanceCategory": "Direct Competitor",
+    "explanationLink": "#how-this-score-was-calculated",
+    "explanationSummary": "SERP pages from this domain are product/spec pages for yarn twisting and winding machines (e.g., Two-for-One twister, precision cone winder, assembly winder), matching the client’s core product lines. This indicates an OEM/product provider site rather than a directory or media resource. The pages aim to market machinery with specifications, aligning with transactional intent. Because the offering strongly overlaps Meera’s core topics, the product match is high and the domain is classified as a direct competitor.",
+    "classifiedAt": "2025-12-07T06:30:37.264Z",
+    "updatedAt": "2025-12-07T06:30:37.264Z"
+  },
+  {
+    "id": "class-01-paradisefibers-com-1765089053843",
+    "clientCode": "01",
+    "domain": "paradisefibers.com",
+    "domainType": "Irrelevant Industry",
+    "pageIntent": "Transactional",
+    "productMatchScoreValue": 0,
+    "productMatchScoreBucket": "None",
+    "businessRelevanceCategory": "Irrelevant",
+    "explanationLink": "#how-this-score-was-calculated",
+    "explanationSummary": "The ranking URL is a retail product page for Schacht Bobbin & Pirn Winders, indicating a consumer craft/handweaving supplies store rather than industrial textile machinery. This fits the client's negativeTopics (e.g., hobby weaving) and does not align with Meera’s OEM product lines like cone winders, ring twisters, or heat-setting machines. The page intent is transactional (product listing/purchase), but relevance to the client’s core machinery is none, so the domain is categorized as Irrelevant.",
+    "classifiedAt": "2025-12-07T06:30:53.843Z",
+    "updatedAt": "2025-12-07T06:30:53.843Z"
+  },
+  {
+    "id": "class-01-www-atkinsandpearce-com-1765089074219",
+    "clientCode": "01",
+    "domain": "www.atkinsandpearce.com",
+    "domainType": "End Customer / Buyer Organization",
+    "pageIntent": "Informational",
+    "productMatchScoreValue": 0.48,
+    "productMatchScoreBucket": "Medium",
+    "businessRelevanceCategory": "Potential Customer / Lead",
+    "explanationLink": "#how-this-score-was-calculated",
+    "explanationSummary": "SERP shows a “Precision Winding” capabilities page describing proprietary winding used to build braider packages, indicating a textile manufacturer/end user rather than a machinery OEM. The page explains their process and capability rather than selling machines, so intent is informational. Content overlaps with the client’s core topics around winding/tension but is about using winding in production, not offering winding machines, yielding a medium product match. Because rope/cordage and braided product makers are in the client’s target customer segments, this domain is classified as a potential customer/lead.",
+    "classifiedAt": "2025-12-07T06:31:14.219Z",
+    "updatedAt": "2025-12-07T06:31:14.219Z"
   }
 ]

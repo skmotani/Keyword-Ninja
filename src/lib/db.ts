@@ -53,7 +53,11 @@ export async function deleteClient(id: string): Promise<boolean> {
 }
 
 export async function getCompetitors(): Promise<Competitor[]> {
-  return readJsonFile<Competitor>('competitors.json');
+  const competitors = await readJsonFile<Competitor>('competitors.json');
+  return competitors.map(c => ({
+    ...c,
+    source: c.source || 'Manual Entry',
+  }));
 }
 
 export async function getCompetitor(id: string): Promise<Competitor | undefined> {

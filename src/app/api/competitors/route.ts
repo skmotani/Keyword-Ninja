@@ -21,6 +21,15 @@ export async function POST(request: NextRequest) {
         domain: comp.domain,
         notes: comp.notes || '',
         isActive: true,
+        source: comp.source || 'Manual Entry',
+        importanceScore: comp.importanceScore,
+        domainType: comp.domainType,
+        pageIntent: comp.pageIntent,
+        productMatchScoreValue: comp.productMatchScoreValue,
+        productMatchScoreBucket: comp.productMatchScoreBucket,
+        businessRelevanceCategory: comp.businessRelevanceCategory,
+        explanationSummary: comp.explanationSummary,
+        addedAt: new Date().toISOString(),
       };
       await createCompetitor(newCompetitor);
       createdCompetitors.push(newCompetitor);
@@ -35,6 +44,15 @@ export async function POST(request: NextRequest) {
     domain: body.domain,
     notes: body.notes || '',
     isActive: true,
+    source: body.source || 'Manual Entry',
+    importanceScore: body.importanceScore,
+    domainType: body.domainType,
+    pageIntent: body.pageIntent,
+    productMatchScoreValue: body.productMatchScoreValue,
+    productMatchScoreBucket: body.productMatchScoreBucket,
+    businessRelevanceCategory: body.businessRelevanceCategory,
+    explanationSummary: body.explanationSummary,
+    addedAt: new Date().toISOString(),
   };
   
   await createCompetitor(newCompetitor);

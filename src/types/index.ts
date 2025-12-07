@@ -36,6 +36,8 @@ export interface TopKeywordEntry {
   url: string | null;
 }
 
+export type CompetitorSource = 'Manual Entry' | 'Via SERP Search';
+
 export interface Competitor {
   id: string;
   clientCode: string;
@@ -43,6 +45,15 @@ export interface Competitor {
   domain: string;
   notes?: string;
   isActive: boolean;
+  source: CompetitorSource;
+  importanceScore?: number;
+  domainType?: DomainTypeValue;
+  pageIntent?: PageIntentValue;
+  productMatchScoreValue?: number;
+  productMatchScoreBucket?: ProductMatchBucket;
+  businessRelevanceCategory?: BusinessRelevanceCategoryValue;
+  explanationSummary?: string;
+  addedAt?: string;
 }
 
 export interface ManualKeyword {
