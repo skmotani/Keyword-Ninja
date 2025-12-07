@@ -155,9 +155,9 @@
     "domainRank": null,
     "fetchStatus": "success",
     "errorMessage": null,
-    "lastFetchedAt": "2025-12-07T03:45:56.399Z",
+    "lastFetchedAt": "2025-12-07T03:53:51.250Z",
     "createdAt": "2025-12-07T03:11:02.641Z",
-    "updatedAt": "2025-12-07T03:45:56.402Z"
+    "updatedAt": "2025-12-07T03:53:51.250Z"
   },
   {
     "id": "da0e03d4-5e84-4a39-8240-3e6af17022d3",
@@ -189,16 +189,16 @@
         "url": "https://meeraind.in/shop/page/4/"
       }
     ],
-    "organicTraffic": null,
-    "organicKeywordsCount": null,
+    "organicTraffic": 4.749000072479248,
+    "organicKeywordsCount": 3,
     "backlinksCount": null,
     "referringDomainsCount": null,
     "domainRank": null,
     "fetchStatus": "success",
     "errorMessage": null,
-    "lastFetchedAt": "2025-12-07T03:38:25.358Z",
+    "lastFetchedAt": "2025-12-07T03:53:26.014Z",
     "createdAt": "2025-12-07T03:26:53.829Z",
-    "updatedAt": "2025-12-07T03:38:25.358Z"
+    "updatedAt": "2025-12-07T03:53:26.016Z"
   },
   {
     "id": "89a60aff-4b3d-4130-a479-a3f465b0444a",

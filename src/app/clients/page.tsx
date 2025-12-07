@@ -534,6 +534,12 @@ export default function ClientsPage() {
                                           <div className="text-xs font-medium text-gray-500 mb-1">Meta Description</div>
                                           <div className="text-sm text-gray-700">{profile.metaDescription || <span className="text-gray-400 italic">Not available</span>}</div>
                                         </div>
+                                        {!profile.title && !profile.metaDescription && (
+                                          <div className="text-xs text-gray-500 italic flex items-center gap-1">
+                                            <span>ⓘ</span>
+                                            <span>Website may be down or inaccessible. Title and description could not be fetched.</span>
+                                          </div>
+                                        )}
                                         {profile.inferredCategory && (
                                           <div>
                                             <div className="text-xs font-medium text-gray-500 mb-1">Inferred Category</div>
@@ -552,19 +558,57 @@ export default function ClientsPage() {
                                           <div className="text-gray-500">Organic Keywords</div>
                                           <div className="font-semibold text-green-700">{formatNumber(profile.organicKeywordsCount)}</div>
                                         </div>
-                                        <div className="bg-purple-50 rounded p-2">
-                                          <div className="text-gray-500">Backlinks</div>
+                                        <div className="bg-purple-50 rounded p-2 group relative">
+                                          <div className="text-gray-500 flex items-center gap-1">
+                                            Backlinks
+                                            {profile.backlinksCount === null && (
+                                              <span className="text-gray-400 cursor-help" title="Backlinks API subscription required">ⓘ</span>
+                                            )}
+                                          </div>
                                           <div className="font-semibold text-purple-700">{formatNumber(profile.backlinksCount)}</div>
+                                          {profile.backlinksCount === null && (
+                                            <div className="hidden group-hover:block absolute bottom-full left-0 mb-1 p-2 bg-gray-800 text-white text-xs rounded shadow-lg z-10 w-48">
+                                              Backlinks data requires a separate API subscription
+                                            </div>
+                                          )}
                                         </div>
-                                        <div className="bg-orange-50 rounded p-2">
-                                          <div className="text-gray-500">Referring Domains</div>
+                                        <div className="bg-orange-50 rounded p-2 group relative">
+                                          <div className="text-gray-500 flex items-center gap-1">
+                                            Referring Domains
+                                            {profile.referringDomainsCount === null && (
+                                              <span className="text-gray-400 cursor-help" title="Backlinks API subscription required">ⓘ</span>
+                                            )}
+                                          </div>
                                           <div className="font-semibold text-orange-700">{formatNumber(profile.referringDomainsCount)}</div>
+                                          {profile.referringDomainsCount === null && (
+                                            <div className="hidden group-hover:block absolute bottom-full left-0 mb-1 p-2 bg-gray-800 text-white text-xs rounded shadow-lg z-10 w-48">
+                                              Requires Backlinks API subscription
+                                            </div>
+                                          )}
                                         </div>
-                                        <div className="bg-indigo-50 rounded p-2">
-                                          <div className="text-gray-500">Domain Rank</div>
+                                        <div className="bg-indigo-50 rounded p-2 group relative">
+                                          <div className="text-gray-500 flex items-center gap-1">
+                                            Domain Rank
+                                            {profile.domainRank === null && (
+                                              <span className="text-gray-400 cursor-help" title="Backlinks API subscription required">ⓘ</span>
+                                            )}
+                                          </div>
                                           <div className="font-semibold text-indigo-700">{profile.domainRank || '-'}</div>
+                                          {profile.domainRank === null && (
+                                            <div className="hidden group-hover:block absolute bottom-full left-0 mb-1 p-2 bg-gray-800 text-white text-xs rounded shadow-lg z-10 w-48">
+                                              Requires Backlinks API subscription
+                                            </div>
+                                          )}
                                         </div>
                                       </div>
+                                      
+                                      {/* Info banner if backlinks data is unavailable */}
+                                      {profile.backlinksCount === null && profile.referringDomainsCount === null && profile.domainRank === null && (
+                                        <div className="bg-amber-50 border border-amber-200 rounded-lg p-2 text-xs text-amber-800 flex items-center gap-2">
+                                          <span>⚠️</span>
+                                          <span>Backlinks, Referring Domains, and Domain Rank require a Backlinks API subscription in your DataForSEO account.</span>
+                                        </div>
+                                      )}
                                       
                                       {/* Top Keywords Table */}
                                       {profile.topKeywords && profile.topKeywords.length > 0 && (

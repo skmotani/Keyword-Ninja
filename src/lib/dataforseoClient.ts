@@ -733,15 +733,33 @@ export async function fetchDomainOverview(
       const overviewData: DataForSEODomainOverviewResponse = JSON.parse(overviewText);
       console.log('[DataForSEO Domain Overview] Overview response:', {
         statusCode: overviewData.status_code,
+        statusMessage: overviewData.status_message,
         tasksCount: overviewData.tasks_count,
+        tasksError: overviewData.tasks_error,
       });
 
       if (overviewData.status_code === 20000) {
         for (const task of overviewData.tasks || []) {
+          console.log('[DataForSEO Domain Overview] Overview task status:', {
+            taskStatusCode: task.status_code,
+            taskStatusMessage: task.status_message,
+            hasResult: !!task.result,
+            resultLength: task.result?.length || 0,
+          });
+          
           if (task.status_code === 20000 && task.result) {
             for (const r of task.result) {
               const items = r.items || [];
+              console.log('[DataForSEO Domain Overview] Overview result items:', {
+                itemsCount: items.length,
+              });
+              
               for (const item of items) {
+                console.log('[DataForSEO Domain Overview] Item metrics:', {
+                  hasOrganic: !!item.metrics?.organic,
+                  etv: item.metrics?.organic?.etv,
+                  count: item.metrics?.organic?.count,
+                });
                 if (item.metrics?.organic) {
                   result.organicTraffic = item.metrics.organic.etv || null;
                   result.organicKeywordsCount = item.metrics.organic.count || null;
@@ -749,9 +767,16 @@ export async function fetchDomainOverview(
                 }
               }
             }
+          } else if (task.status_code !== 20000) {
+            console.log('[DataForSEO Domain Overview] Overview task failed:', {
+              statusCode: task.status_code,
+              statusMessage: task.status_message,
+            });
           }
         }
       }
+    } else {
+      console.log('[DataForSEO Domain Overview] Overview HTTP error:', overviewResponse.status);
     }
   } catch (error) {
     console.error('[DataForSEO Domain Overview] Error fetching overview:', error);
@@ -835,20 +860,42 @@ export async function fetchDomainOverview(
       const backlinksData: DataForSEOBacklinksResponse = JSON.parse(backlinksText);
       console.log('[DataForSEO Domain Overview] Backlinks response:', {
         statusCode: backlinksData.status_code,
+        statusMessage: backlinksData.status_message,
         tasksCount: backlinksData.tasks_count,
+        tasksError: backlinksData.tasks_error,
       });
 
       if (backlinksData.status_code === 20000) {
         for (const task of backlinksData.tasks || []) {
+          console.log('[DataForSEO Domain Overview] Backlinks task status:', {
+            taskStatusCode: task.status_code,
+            taskStatusMessage: task.status_message,
+            hasResult: !!task.result,
+            resultLength: task.result?.length || 0,
+          });
+          
           if (task.status_code === 20000 && task.result) {
             for (const r of task.result) {
+              console.log('[DataForSEO Domain Overview] Backlinks result data:', {
+                target: r.target,
+                rank: r.rank,
+                backlinks: r.backlinks,
+                referringDomains: r.referring_domains,
+              });
               result.backlinksCount = r.backlinks || null;
               result.referringDomainsCount = r.referring_domains || null;
               result.domainRank = r.rank || null;
             }
+          } else if (task.status_code !== 20000) {
+            console.log('[DataForSEO Domain Overview] Backlinks task failed:', {
+              statusCode: task.status_code,
+              statusMessage: task.status_message,
+            });
           }
         }
       }
+    } else {
+      console.log('[DataForSEO Domain Overview] Backlinks HTTP error:', backlinksResponse.status);
     }
   } catch (error) {
     console.error('[DataForSEO Domain Overview] Error fetching backlinks:', error);
