@@ -222,5 +222,47 @@
     "explanationSummary": "SERP pages from agteks.com are OEM/product pages for yarn twisting machinery (e.g., “Twisting Machines” with specs like speed, cone diameter, sensors) alongside technology pages, indicating a manufacturer selling similar equipment. This aligns directly with the client’s core product lines such as ring twisters, staple/filament yarn twisters, and related twisting tech. The presence of specification-driven product URLs signals transactional intent. Given the high topical and product overlap, Agteks is classified as a direct competitor with a high product match score.",
     "classifiedAt": "2025-12-07T05:23:06.266Z",
     "updatedAt": "2025-12-07T05:23:06.267Z"
+  },
+  {
+    "id": "class-01-sulky-com-1765085344627",
+    "clientCode": "01",
+    "domain": "sulky.com",
+    "domainType": "Irrelevant Industry",
+    "pageIntent": "Irrelevant Intent",
+    "productMatchScoreValue": 0,
+    "productMatchScoreBucket": "None",
+    "businessRelevanceCategory": "Irrelevant",
+    "explanationLink": "#how-this-score-was-calculated",
+    "explanationSummary": "The client is a B2B OEM for industrial yarn twisting, winding, and heat-setting machinery, while the SERP page from sulky.com is a product page for machine embroidery thread. Embroidery thread and hobby/consumer sewing content are explicitly listed under negative topics in the client profile. Therefore this domain is outside the client’s industry, the page intent is irrelevant to the client’s offerings, and the product match is 0.00. As a result, the domain is classified as Irrelevant for business relevance.",
+    "classifiedAt": "2025-12-07T05:29:04.627Z",
+    "updatedAt": "2025-12-07T05:29:04.627Z"
+  },
+  {
+    "id": "class-01-in-saint-gobain-glass-com-1765085353567",
+    "clientCode": "01",
+    "domain": "in.saint-gobain-glass.com",
+    "domainType": "Irrelevant Industry",
+    "pageIntent": "Directory / Listing",
+    "productMatchScoreValue": 0,
+    "productMatchScoreBucket": "None",
+    "businessRelevanceCategory": "Irrelevant",
+    "explanationLink": "#how-this-score-was-calculated",
+    "explanationSummary": "The SERP result is a Saint-Gobain Glass India page profiling “TPRS Enterprise” under an elite processors directory, which is about glass processing, not textile machinery. This places the domain in an unrelated industry to the client’s yarn twisting, winding, and heat-setting OEM focus. The page functions as a directory/listing profile, and there is no overlap with the client’s product lines or core topics, hence a 0.00 product match score. Despite the keyword overlap on “TPRS,” the content is unrelated, so the domain is classified as Irrelevant.",
+    "classifiedAt": "2025-12-07T05:29:13.567Z",
+    "updatedAt": "2025-12-07T05:29:13.568Z"
+  },
+  {
+    "id": "class-01-www-wawak-com-1765085356383",
+    "clientCode": "01",
+    "domain": "www.wawak.com",
+    "domainType": "Irrelevant Industry",
+    "pageIntent": "Irrelevant Intent",
+    "productMatchScoreValue": 0,
+    "productMatchScoreBucket": "None",
+    "businessRelevanceCategory": "Irrelevant",
+    "explanationLink": "#how-this-score-was-calculated",
+    "explanationSummary": "SERP shows a WAWAK product page for an electric bobbin winder, which is a consumer/sewing accessory retailer item, not industrial yarn winding equipment. This aligns with the client's negative topics (consumer sewing/garment retail) and does not match Meera’s core products like cone-to-cone winders, ring twisters, or heat-setting machines. Therefore intent is irrelevant to the client’s industrial machinery searches, and product match is 0.00 (None). As a result, the domain is classified as Irrelevant for this client.",
+    "classifiedAt": "2025-12-07T05:29:16.383Z",
+    "updatedAt": "2025-12-07T05:29:16.383Z"
   }
 ]

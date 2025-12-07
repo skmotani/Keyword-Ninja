@@ -40,6 +40,31 @@ interface ClassifierResponse {
   explanationSummary: string;
 }
 
+/**
+ * Summarizes SERP data to reduce token usage when sending to OpenAI.
+ * - Limits to top 10 rows sorted by position (rank)
+ * - Truncates pageSnippet to max 200 characters
+ * - Keeps only essential fields for classification
+ */
+function summarizeSerpData(serpRows: DomainSerpRow[]): DomainSerpRow[] {
+  if (!serpRows || serpRows.length === 0) {
+    return [];
+  }
+
+  // Sort by position (rank) ascending - lower position = higher rank
+  const sorted = [...serpRows].sort((a, b) => a.position - b.position);
+  
+  // Take top 10 rows
+  const limited = sorted.slice(0, 10);
+  
+  // Truncate snippets and return optimized rows
+  return limited.map(row => ({
+    ...row,
+    pageSnippet: row.pageSnippet?.substring(0, 200) || '',
+    pageTitle: row.pageTitle?.substring(0, 150) || ''
+  }));
+}
+
 const SYSTEM_PROMPT = `You are an AI classifier inside an SEO Intelligence application.
 
 The goal of this tool is to enrich the **Unique Domains** table for a given client with
@@ -355,6 +380,11 @@ export async function classifyDomain(
 
   const openai = new OpenAI({ apiKey });
 
+  // Optimize SERP data to reduce token usage
+  const optimizedSerpRows = summarizeSerpData(serpRows);
+  
+  console.log(`[DomainClassifier] SERP data optimized: ${serpRows.length} rows -> ${optimizedSerpRows.length} rows for ${domainRow.domain}`);
+
   const userPrompt = `Here are the three JSON inputs for classification:
 
 1) CLIENT_PROFILE_JSON:
@@ -364,7 +394,7 @@ ${JSON.stringify(clientProfile, null, 2)}
 ${JSON.stringify(domainRow, null, 2)}
 
 3) DOMAIN_SERP_ROWS:
-${JSON.stringify(serpRows, null, 2)}
+${JSON.stringify(optimizedSerpRows, null, 2)}
 
 Based on the classification logic, generate the classification output for this domain.`;
 
