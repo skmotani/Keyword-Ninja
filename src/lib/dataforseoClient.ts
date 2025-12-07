@@ -600,6 +600,66 @@ interface DataForSEOBacklinksResponse {
   }>;
 }
 
+async function fetchWebsiteMeta(domain: string): Promise<{ title: string | null; metaDescription: string | null }> {
+  const urls = [
+    `https://${domain}`,
+    `https://www.${domain}`,
+    `http://${domain}`,
+  ];
+
+  for (const url of urls) {
+    try {
+      console.log(`[Website Meta] Trying to fetch: ${url}`);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        },
+        signal: controller.signal,
+        redirect: 'follow',
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        console.log(`[Website Meta] HTTP ${response.status} for ${url}`);
+        continue;
+      }
+
+      const html = await response.text();
+      
+      let title: string | null = null;
+      const titleMatch = html.match(/<title[^>]*>([^<]*)<\/title>/i);
+      if (titleMatch && titleMatch[1]) {
+        title = titleMatch[1].trim().replace(/\s+/g, ' ');
+        if (title.length > 200) title = title.substring(0, 200) + '...';
+      }
+
+      let metaDescription: string | null = null;
+      const metaMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["'][^>]*>/i) ||
+                        html.match(/<meta[^>]*content=["']([^"']*)["'][^>]*name=["']description["'][^>]*>/i);
+      if (metaMatch && metaMatch[1]) {
+        metaDescription = metaMatch[1].trim().replace(/\s+/g, ' ');
+        if (metaDescription.length > 500) metaDescription = metaDescription.substring(0, 500) + '...';
+      }
+
+      console.log(`[Website Meta] Successfully fetched from ${url}:`, { title, metaDescription: metaDescription?.substring(0, 50) });
+      return { title, metaDescription };
+    } catch (error) {
+      const errMsg = error instanceof Error ? error.message : 'Unknown error';
+      console.log(`[Website Meta] Failed to fetch ${url}: ${errMsg}`);
+      continue;
+    }
+  }
+
+  console.log('[Website Meta] All URLs failed, returning nulls');
+  return { title: null, metaDescription: null };
+}
+
 export async function fetchDomainOverview(
   credentials: { username: string; password: string },
   domain: string,
@@ -632,6 +692,10 @@ export async function fetchDomainOverview(
   };
 
   const rawResponses: Record<string, string> = {};
+
+  const websiteMeta = await fetchWebsiteMeta(cleanDomain);
+  result.title = websiteMeta.title;
+  result.metaDescription = websiteMeta.metaDescription;
 
   try {
     const overviewRequestBody = [{

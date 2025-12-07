@@ -209,7 +209,11 @@ export default function ClientsPage() {
 
   function getProfileForDomain(clientCode: string, domain: string): DomainProfile | undefined {
     const profiles = domainProfiles[clientCode] || [];
-    return profiles.find(p => p.domain.toLowerCase() === domain.toLowerCase().replace(/^www\./, ''));
+    const normalizedInput = domain.toLowerCase().replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/.*$/, '');
+    return profiles.find(p => {
+      const normalizedProfile = p.domain.toLowerCase().replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/.*$/, '');
+      return normalizedProfile === normalizedInput;
+    });
   }
 
   function formatNumber(num: number | null): string {
@@ -519,7 +523,26 @@ export default function ClientsPage() {
                                   </div>
                                   
                                   {profile && profile.fetchStatus === 'success' && (
-                                    <div className="mt-3 space-y-3">
+                                    <div className="mt-3 space-y-4">
+                                      {/* Title and Meta Description */}
+                                      <div className="bg-slate-50 rounded-lg p-3 space-y-2">
+                                        <div>
+                                          <div className="text-xs font-medium text-gray-500 mb-1">Title</div>
+                                          <div className="text-sm text-gray-800">{profile.title || <span className="text-gray-400 italic">Not available</span>}</div>
+                                        </div>
+                                        <div>
+                                          <div className="text-xs font-medium text-gray-500 mb-1">Meta Description</div>
+                                          <div className="text-sm text-gray-700">{profile.metaDescription || <span className="text-gray-400 italic">Not available</span>}</div>
+                                        </div>
+                                        {profile.inferredCategory && (
+                                          <div>
+                                            <div className="text-xs font-medium text-gray-500 mb-1">Inferred Category</div>
+                                            <span className="inline-block text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded">{profile.inferredCategory}</span>
+                                          </div>
+                                        )}
+                                      </div>
+
+                                      {/* Metrics Grid */}
                                       <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-xs">
                                         <div className="bg-blue-50 rounded p-2">
                                           <div className="text-gray-500">Organic Traffic</div>
@@ -543,25 +566,48 @@ export default function ClientsPage() {
                                         </div>
                                       </div>
                                       
-                                      {profile.inferredCategory && (
-                                        <div className="text-xs">
-                                          <span className="text-gray-500">Category: </span>
-                                          <span className="font-medium text-gray-700">{profile.inferredCategory}</span>
-                                        </div>
-                                      )}
-                                      
+                                      {/* Top Keywords Table */}
                                       {profile.topKeywords && profile.topKeywords.length > 0 && (
                                         <div>
-                                          <div className="text-xs text-gray-500 mb-1">Top Keywords:</div>
-                                          <div className="flex flex-wrap gap-1">
-                                            {profile.topKeywords.slice(0, 10).map((kw, i) => (
-                                              <span key={i} className="text-xs bg-gray-100 px-2 py-0.5 rounded" title={`Pos: ${kw.position}, Vol: ${kw.searchVolume || '-'}`}>
-                                                {kw.keyword}
-                                              </span>
-                                            ))}
-                                            {profile.topKeywords.length > 10 && (
-                                              <span className="text-xs text-gray-400">+{profile.topKeywords.length - 10} more</span>
-                                            )}
+                                          <div className="text-xs font-medium text-gray-600 mb-2">Top {profile.topKeywords.length} Keywords</div>
+                                          <div className="border rounded-lg overflow-hidden">
+                                            <table className="min-w-full divide-y divide-gray-200 text-xs">
+                                              <thead className="bg-gray-50">
+                                                <tr>
+                                                  <th className="px-3 py-2 text-left font-medium text-gray-500">Keyword</th>
+                                                  <th className="px-3 py-2 text-right font-medium text-gray-500">Position</th>
+                                                  <th className="px-3 py-2 text-right font-medium text-gray-500">Search Vol</th>
+                                                  <th className="px-3 py-2 text-right font-medium text-gray-500">CPC</th>
+                                                  <th className="px-3 py-2 text-left font-medium text-gray-500">URL</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody className="bg-white divide-y divide-gray-100">
+                                                {profile.topKeywords.map((kw, i) => (
+                                                  <tr key={i} className="hover:bg-gray-50">
+                                                    <td className="px-3 py-1.5 text-gray-800 font-medium">{kw.keyword}</td>
+                                                    <td className="px-3 py-1.5 text-right">
+                                                      <span className={`inline-block px-1.5 py-0.5 rounded text-xs ${
+                                                        kw.position <= 3 ? 'bg-green-100 text-green-700' :
+                                                        kw.position <= 10 ? 'bg-blue-100 text-blue-700' :
+                                                        kw.position <= 20 ? 'bg-yellow-100 text-yellow-700' :
+                                                        'bg-gray-100 text-gray-600'
+                                                      }`}>
+                                                        {kw.position}
+                                                      </span>
+                                                    </td>
+                                                    <td className="px-3 py-1.5 text-right text-gray-600">{formatNumber(kw.searchVolume)}</td>
+                                                    <td className="px-3 py-1.5 text-right text-gray-600">{kw.cpc != null ? `$${kw.cpc.toFixed(2)}` : '-'}</td>
+                                                    <td className="px-3 py-1.5 text-gray-500 max-w-xs truncate">
+                                                      {kw.url ? (
+                                                        <a href={kw.url} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
+                                                          {kw.url.replace(/^https?:\/\/(www\.)?/, '').substring(0, 40)}...
+                                                        </a>
+                                                      ) : '-'}
+                                                    </td>
+                                                  </tr>
+                                                ))}
+                                              </tbody>
+                                            </table>
                                           </div>
                                         </div>
                                       )}
