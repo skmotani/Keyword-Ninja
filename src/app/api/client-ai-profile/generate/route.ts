@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { buildClientInputData, generateClientAIProfile } from '@/lib/geminiClient';
+import { buildClientInputData, generateClientAIProfile } from '@/lib/openaiClient';
 import { saveAiProfile, getAiProfileByClientCode } from '@/lib/clientAiProfileStore';
 import { DomainProfile } from '@/types';
 
