@@ -952,3 +952,395 @@ function inferCategoryFromKeywords(keywords: string[]): string[] {
 
   return Array.from(matchedCategories).slice(0, 3);
 }
+
+export const DOM_TOP_PAGES_LIMIT = 30;
+export const DOM_TOP_KEYWORDS_LIMIT = 100;
+
+export interface DomainRankOverviewItem {
+  domain: string;
+  organicTrafficETV: number | null;
+  organicKeywordsCount: number | null;
+}
+
+export interface DomainRankOverviewBatchResult {
+  locationCode: string;
+  numericLocationCode: number;
+  languageCode: string;
+  results: DomainRankOverviewItem[];
+  rawResponse: string;
+}
+
+export async function fetchDomainRankOverviewBatch(
+  credentials: { username: string; password: string },
+  domains: string[],
+  locationCode: string = 'IN'
+): Promise<DomainRankOverviewBatchResult> {
+  const authString = Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64');
+  const numericLocCode = LOCATION_CODE_MAP[locationCode] || 2356;
+  const langCode = LANGUAGE_CODE_MAP[locationCode] || 'en';
+
+  console.log('[DataForSEO Domain Rank Overview Batch] Fetching for domains:', {
+    domainCount: domains.length,
+    locationCode,
+    numericLocCode,
+  });
+
+  const results: DomainRankOverviewItem[] = [];
+  const rawResponses: Record<string, string> = {};
+
+  for (const domain of domains) {
+    const cleanDomain = domain.replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/.*$/, '').toLowerCase().trim();
+    
+    try {
+      const requestBody = [{
+        target: cleanDomain,
+        location_code: numericLocCode,
+        language_code: langCode,
+      }];
+
+      const response = await fetch(
+        'https://api.dataforseo.com/v3/dataforseo_labs/google/domain_rank_overview/live',
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': `Basic ${authString}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
+
+      const responseText = await response.text();
+      rawResponses[cleanDomain] = responseText;
+
+      if (!response.ok) {
+        console.error(`[DataForSEO Domain Rank Overview] API Error for ${cleanDomain}:`, response.status);
+        results.push({
+          domain: cleanDomain,
+          organicTrafficETV: null,
+          organicKeywordsCount: null,
+        });
+        continue;
+      }
+
+      const data: DataForSEODomainOverviewResponse = JSON.parse(responseText);
+
+      if (data.status_code === 20000) {
+        let etv: number | null = null;
+        let count: number | null = null;
+
+        for (const task of data.tasks || []) {
+          if (task.status_code === 20000 && task.result) {
+            for (const r of task.result) {
+              const items = r.items || [];
+              for (const item of items) {
+                if (item.metrics?.organic) {
+                  etv = item.metrics.organic.etv || null;
+                  count = item.metrics.organic.count || null;
+                  break;
+                }
+              }
+            }
+          }
+        }
+
+        results.push({
+          domain: cleanDomain,
+          organicTrafficETV: etv,
+          organicKeywordsCount: count,
+        });
+        console.log(`[DataForSEO Domain Rank Overview] ${cleanDomain}: ETV=${etv}, Keywords=${count}`);
+      } else {
+        console.error(`[DataForSEO Domain Rank Overview] Status error for ${cleanDomain}:`, data.status_message);
+        results.push({
+          domain: cleanDomain,
+          organicTrafficETV: null,
+          organicKeywordsCount: null,
+        });
+      }
+    } catch (error) {
+      const errMsg = error instanceof Error ? error.message : 'Unknown error';
+      console.error(`[DataForSEO Domain Rank Overview] Error for ${cleanDomain}:`, errMsg);
+      results.push({
+        domain: cleanDomain,
+        organicTrafficETV: null,
+        organicKeywordsCount: null,
+      });
+    }
+  }
+
+  return {
+    locationCode,
+    numericLocationCode: numericLocCode,
+    languageCode: langCode,
+    results,
+    rawResponse: JSON.stringify(rawResponses, null, 2),
+  };
+}
+
+export interface DomainTopPageItem {
+  pageURL: string;
+  estTrafficETV: number | null;
+  keywordsCount: number | null;
+}
+
+export interface DomainTopPagesResult {
+  domain: string;
+  locationCode: string;
+  numericLocationCode: number;
+  languageCode: string;
+  pages: DomainTopPageItem[];
+  rawResponse: string;
+}
+
+export async function fetchDomainTopPages(
+  credentials: { username: string; password: string },
+  domain: string,
+  locationCode: string = 'IN',
+  limit: number = DOM_TOP_PAGES_LIMIT
+): Promise<DomainTopPagesResult> {
+  const authString = Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64');
+  const numericLocCode = LOCATION_CODE_MAP[locationCode] || 2356;
+  const langCode = LANGUAGE_CODE_MAP[locationCode] || 'en';
+  const cleanDomain = domain.replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/.*$/, '').toLowerCase().trim();
+
+  console.log('[DataForSEO Top Pages] Fetching for domain:', {
+    domain: cleanDomain,
+    locationCode,
+    limit,
+  });
+
+  const result: DomainTopPagesResult = {
+    domain: cleanDomain,
+    locationCode,
+    numericLocationCode: numericLocCode,
+    languageCode: langCode,
+    pages: [],
+    rawResponse: '',
+  };
+
+  try {
+    const requestBody = [{
+      target: cleanDomain,
+      location_code: numericLocCode,
+      language_code: langCode,
+      limit: limit,
+      order_by: ['metrics.organic.etv,desc'],
+    }];
+
+    const response = await fetch(
+      'https://api.dataforseo.com/v3/dataforseo_labs/google/top_pages/live',
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Basic ${authString}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      }
+    );
+
+    const responseText = await response.text();
+    result.rawResponse = responseText;
+
+    if (!response.ok) {
+      console.error(`[DataForSEO Top Pages] API Error for ${cleanDomain}:`, response.status);
+      return result;
+    }
+
+    interface TopPagesResponseItem {
+      page: string;
+      metrics?: {
+        organic?: {
+          etv?: number;
+          count?: number;
+        };
+      };
+    }
+
+    interface TopPagesTaskResult {
+      target: string;
+      location_code: number;
+      language_code: string;
+      total_count: number;
+      items_count: number;
+      items: TopPagesResponseItem[] | null;
+    }
+
+    interface TopPagesTask {
+      id: string;
+      status_code: number;
+      status_message: string;
+      result: TopPagesTaskResult[] | null;
+    }
+
+    interface TopPagesResponse {
+      version: string;
+      status_code: number;
+      status_message: string;
+      tasks: TopPagesTask[];
+    }
+
+    const data: TopPagesResponse = JSON.parse(responseText);
+
+    if (data.status_code === 20000) {
+      for (const task of data.tasks || []) {
+        if (task.status_code === 20000 && task.result) {
+          for (const r of task.result) {
+            const items = r.items || [];
+            for (const item of items) {
+              result.pages.push({
+                pageURL: item.page || '',
+                estTrafficETV: item.metrics?.organic?.etv ?? null,
+                keywordsCount: item.metrics?.organic?.count ?? null,
+              });
+            }
+          }
+        }
+      }
+      console.log(`[DataForSEO Top Pages] ${cleanDomain}: Found ${result.pages.length} pages`);
+    } else {
+      console.error(`[DataForSEO Top Pages] Status error for ${cleanDomain}:`, data.status_message);
+    }
+  } catch (error) {
+    const errMsg = error instanceof Error ? error.message : 'Unknown error';
+    console.error(`[DataForSEO Top Pages] Error for ${cleanDomain}:`, errMsg);
+  }
+
+  return result;
+}
+
+export interface DomainRankedKeywordItem {
+  keyword: string;
+  position: number | null;
+  searchVolume: number | null;
+  cpc: number | null;
+  url: string | null;
+}
+
+export interface DomainRankedKeywordsResult {
+  domain: string;
+  locationCode: string;
+  numericLocationCode: number;
+  languageCode: string;
+  keywords: DomainRankedKeywordItem[];
+  rawResponse: string;
+}
+
+export async function fetchDomainRankedKeywords(
+  credentials: { username: string; password: string },
+  domain: string,
+  locationCode: string = 'IN',
+  limit: number = DOM_TOP_KEYWORDS_LIMIT
+): Promise<DomainRankedKeywordsResult> {
+  const authString = Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64');
+  const numericLocCode = LOCATION_CODE_MAP[locationCode] || 2356;
+  const langCode = LANGUAGE_CODE_MAP[locationCode] || 'en';
+  const cleanDomain = domain.replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/.*$/, '').toLowerCase().trim();
+
+  console.log('[DataForSEO Ranked Keywords] Fetching for domain:', {
+    domain: cleanDomain,
+    locationCode,
+    limit,
+  });
+
+  const result: DomainRankedKeywordsResult = {
+    domain: cleanDomain,
+    locationCode,
+    numericLocationCode: numericLocCode,
+    languageCode: langCode,
+    keywords: [],
+    rawResponse: '',
+  };
+
+  try {
+    const requestBody = [{
+      target: cleanDomain,
+      location_code: numericLocCode,
+      language_code: langCode,
+      limit: limit,
+      order_by: ['keyword_data.keyword_info.search_volume,desc'],
+    }];
+
+    const response = await fetch(
+      'https://api.dataforseo.com/v3/dataforseo_labs/google/ranked_keywords/live',
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Basic ${authString}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      }
+    );
+
+    const responseText = await response.text();
+    result.rawResponse = responseText;
+
+    if (!response.ok) {
+      console.error(`[DataForSEO Ranked Keywords] API Error for ${cleanDomain}:`, response.status);
+      return result;
+    }
+
+    const data: DataForSEORankedKeywordsResponse = JSON.parse(responseText);
+
+    if (data.status_code === 20000) {
+      for (const task of data.tasks || []) {
+        if (task.status_code === 20000 && task.result) {
+          for (const r of task.result) {
+            const items = r.items || [];
+            for (const item of items) {
+              result.keywords.push({
+                keyword: item.keyword_data.keyword,
+                position: item.ranked_serp_element?.serp_item?.rank_group ?? null,
+                searchVolume: item.keyword_data.keyword_info?.search_volume ?? null,
+                cpc: item.keyword_data.keyword_info?.cpc ?? null,
+                url: item.ranked_serp_element?.serp_item?.url ?? null,
+              });
+            }
+          }
+        }
+      }
+      console.log(`[DataForSEO Ranked Keywords] ${cleanDomain}: Found ${result.keywords.length} keywords`);
+    } else {
+      console.error(`[DataForSEO Ranked Keywords] Status error for ${cleanDomain}:`, data.status_message);
+    }
+  } catch (error) {
+    const errMsg = error instanceof Error ? error.message : 'Unknown error';
+    console.error(`[DataForSEO Ranked Keywords] Error for ${cleanDomain}:`, errMsg);
+  }
+
+  return result;
+}
+
+export async function fetchDomainTopPagesBatch(
+  credentials: { username: string; password: string },
+  domains: string[],
+  locationCode: string = 'IN',
+  limit: number = DOM_TOP_PAGES_LIMIT
+): Promise<DomainTopPagesResult[]> {
+  const results: DomainTopPagesResult[] = [];
+  
+  for (const domain of domains) {
+    const result = await fetchDomainTopPages(credentials, domain, locationCode, limit);
+    results.push(result);
+  }
+  
+  return results;
+}
+
+export async function fetchDomainRankedKeywordsBatch(
+  credentials: { username: string; password: string },
+  domains: string[],
+  locationCode: string = 'IN',
+  limit: number = DOM_TOP_KEYWORDS_LIMIT
+): Promise<DomainRankedKeywordsResult[]> {
+  const results: DomainRankedKeywordsResult[] = [];
+  
+  for (const domain of domains) {
+    const result = await fetchDomainRankedKeywords(credentials, domain, locationCode, limit);
+    results.push(result);
+  }
+  
+  return results;
+}

@@ -18,15 +18,18 @@ interface Competitor {
   isActive: boolean;
 }
 
-interface DomainOverviewRecord {
+interface DomainKeywordRecord {
   id: string;
   clientCode: string;
   domain: string;
   label: string;
   locationCode: string;
   languageCode: string;
-  organicTrafficETV: number | null;
-  organicKeywordsCount: number | null;
+  keyword: string;
+  position: number | null;
+  searchVolume: number | null;
+  cpc: number | null;
+  url: string | null;
   fetchedAt: string;
   snapshotDate: string;
 }
@@ -80,21 +83,22 @@ function Tooltip({ text, children }: TooltipProps) {
   );
 }
 
-type SortField = 'organicTrafficETV' | 'organicKeywordsCount' | null;
+type SortField = 'position' | 'searchVolume' | 'cpc' | null;
 type SortDirection = 'asc' | 'desc';
 
-export default function DomainOverviewPage() {
+export default function DomainKeywordsPage() {
   const [clients, setClients] = useState<Client[]>([]);
   const [competitors, setCompetitors] = useState<Competitor[]>([]);
   const [selectedClientCode, setSelectedClientCode] = useState<string>('');
   const [selectedLocationCode, setSelectedLocationCode] = useState<string>('IN');
   const [selectedDomains, setSelectedDomains] = useState<string[]>([]);
-  const [records, setRecords] = useState<DomainOverviewRecord[]>([]);
+  const [records, setRecords] = useState<DomainKeywordRecord[]>([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
-  const [domainFilter, setDomainFilter] = useState('');
+  const [domainFilter, setDomainFilter] = useState<string>('all');
+  const [keywordFilter, setKeywordFilter] = useState('');
   const [sortField, setSortField] = useState<SortField>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
 
@@ -141,14 +145,14 @@ export default function DomainOverviewPage() {
     setLoading(true);
     try {
       const res = await fetch(
-        `/api/domain-overview?clientCode=${selectedClientCode}&locationCode=${selectedLocationCode}`
+        `/api/domain-keywords?clientCode=${selectedClientCode}&locationCode=${selectedLocationCode}`
       );
       const data = await res.json();
       if (data.success) {
         setRecords(data.records);
       }
     } catch (error) {
-      console.error('Failed to fetch domain overview data:', error);
+      console.error('Failed to fetch domain keywords data:', error);
     } finally {
       setLoading(false);
     }
@@ -186,7 +190,7 @@ export default function DomainOverviewPage() {
     setNotification(null);
 
     try {
-      const res = await fetch('/api/domain-overview/fetch', {
+      const res = await fetch('/api/domain-keywords/fetch', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -201,20 +205,20 @@ export default function DomainOverviewPage() {
       if (res.ok && data.success) {
         setNotification({
           type: 'success',
-          message: `Successfully fetched data for ${data.count} domains.`,
+          message: `Successfully fetched ${data.totalKeywords} keywords across ${data.domainsWithKeywords} domains.`,
         });
         await fetchRecords();
       } else {
         setNotification({
           type: 'error',
-          message: data.error || 'Failed to refresh domain overview data.',
+          message: data.error || 'Failed to refresh domain keywords data.',
         });
       }
     } catch (error) {
-      console.error('Error refreshing domain overview:', error);
+      console.error('Error refreshing domain keywords:', error);
       setNotification({
         type: 'error',
-        message: 'An error occurred while refreshing domain overview data.',
+        message: 'An error occurred while refreshing domain keywords data.',
       });
     } finally {
       setRefreshing(false);
@@ -226,27 +230,36 @@ export default function DomainOverviewPage() {
       setSortDirection(prev => (prev === 'asc' ? 'desc' : 'asc'));
     } else {
       setSortField(field);
-      setSortDirection('desc');
+      setSortDirection(field === 'position' ? 'asc' : 'desc');
     }
   };
+
+  const uniqueDomainsInRecords = useMemo(() => {
+    const domains = new Set(records.map(r => r.domain));
+    return Array.from(domains).sort();
+  }, [records]);
 
   const filteredRecords = useMemo(() => {
     let filtered = records;
 
-    if (domainFilter) {
-      const lower = domainFilter.toLowerCase();
-      filtered = filtered.filter(r => r.domain.toLowerCase().includes(lower));
+    if (domainFilter !== 'all') {
+      filtered = filtered.filter(r => r.domain === domainFilter);
+    }
+
+    if (keywordFilter) {
+      const lower = keywordFilter.toLowerCase();
+      filtered = filtered.filter(r => r.keyword.toLowerCase().includes(lower));
     }
 
     return filtered;
-  }, [records, domainFilter]);
+  }, [records, domainFilter, keywordFilter]);
 
   const sortedRecords = useMemo(() => {
     if (!sortField) return filteredRecords;
 
     return [...filteredRecords].sort((a, b) => {
-      const aVal = a[sortField] ?? 0;
-      const bVal = b[sortField] ?? 0;
+      const aVal = a[sortField] ?? (sortField === 'position' ? 999 : 0);
+      const bVal = b[sortField] ?? (sortField === 'position' ? 999 : 0);
       
       if (sortDirection === 'asc') {
         return aVal - bVal;
@@ -278,13 +291,24 @@ export default function DomainOverviewPage() {
     return num.toLocaleString();
   };
 
+  const formatCurrency = (num: number | null) => {
+    if (num === null || num === undefined) return '-';
+    return '$' + num.toFixed(2);
+  };
+
+  const truncateUrl = (url: string | null, maxLen: number = 50) => {
+    if (!url) return '-';
+    if (url.length <= maxLen) return url;
+    return url.substring(0, maxLen) + '...';
+  };
+
   const lastFetchedAt = records.length > 0 ? records[0].fetchedAt : null;
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       <PageHeader 
-        title="Domain Overview" 
-        description="View domain-level organic visibility metrics (Traffic ETV & Keyword Counts)"
+        title="Domain Top Keywords" 
+        description="View top 100 ranked keywords per domain with search volume and positions"
       />
 
       <div className="bg-white rounded-lg shadow p-6 mb-6">
@@ -408,18 +432,33 @@ export default function DomainOverviewPage() {
 
       <div className="bg-white rounded-lg shadow p-4 mb-4">
         <div className="flex flex-wrap items-center gap-4">
-          <div className="flex-1 min-w-[200px]">
+          <div className="min-w-[180px]">
             <label className="block text-xs font-medium text-gray-500 mb-1">Filter by Domain</label>
-            <input
-              type="text"
+            <select
               value={domainFilter}
               onChange={e => setDomainFilter(e.target.value)}
-              placeholder="Type to filter..."
+              className="w-full border rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="all">All Domains</option>
+              {uniqueDomainsInRecords.map(domain => (
+                <option key={domain} value={domain}>
+                  {domain}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="flex-1 min-w-[200px]">
+            <label className="block text-xs font-medium text-gray-500 mb-1">Filter by Keyword</label>
+            <input
+              type="text"
+              value={keywordFilter}
+              onChange={e => setKeywordFilter(e.target.value)}
+              placeholder="Type to filter by keyword..."
               className="w-full border rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
           <div className="text-sm text-gray-500">
-            Showing {sortedRecords.length} of {records.length} records
+            Showing {sortedRecords.length} of {records.length} keywords
           </div>
         </div>
       </div>
@@ -431,11 +470,11 @@ export default function DomainOverviewPage() {
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
             </svg>
-            <p className="mt-2 text-gray-500">Loading domain overview data...</p>
+            <p className="mt-2 text-gray-500">Loading domain keywords data...</p>
           </div>
         ) : sortedRecords.length === 0 ? (
           <div className="p-8 text-center text-gray-500">
-            <p>No domain overview data found.</p>
+            <p>No domain keywords data found.</p>
             <p className="text-sm mt-1">Select domains and click "Fetch from API" to get data.</p>
           </div>
         ) : (
@@ -446,47 +485,69 @@ export default function DomainOverviewPage() {
                   Domain
                 </th>
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Location
+                  Keyword
                 </th>
                 <SortableHeader
-                  field="organicTrafficETV"
-                  label="Organic Traffic ETV"
-                  tooltip="Estimated Traffic Value - monthly organic traffic in monetary value"
+                  field="position"
+                  label="Position"
+                  tooltip="Current organic position for this keyword"
                 />
                 <SortableHeader
-                  field="organicKeywordsCount"
-                  label="Keyword Count"
-                  tooltip="Number of keywords the domain ranks for in organic search"
+                  field="searchVolume"
+                  label="Search Volume"
+                  tooltip="Monthly search volume for this keyword"
+                />
+                <SortableHeader
+                  field="cpc"
+                  label="CPC"
+                  tooltip="Cost per click for this keyword"
                 />
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Snapshot Date
+                  Ranking URL
                 </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {sortedRecords.map(record => (
                 <tr key={record.id} className="hover:bg-gray-50">
+                  <td className="px-4 py-3 text-sm text-gray-500">
+                    {record.domain}
+                  </td>
+                  <td className="px-4 py-3 text-sm font-medium text-gray-900">
+                    {record.keyword}
+                  </td>
                   <td className="px-4 py-3 text-sm">
-                    <a
-                      href={`https://${record.domain}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-indigo-600 hover:text-indigo-800 hover:underline"
-                    >
-                      {record.domain}
-                    </a>
+                    <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
+                      record.position && record.position <= 3
+                        ? 'bg-green-100 text-green-800'
+                        : record.position && record.position <= 10
+                        ? 'bg-yellow-100 text-yellow-800'
+                        : 'bg-gray-100 text-gray-800'
+                    }`}>
+                      {record.position ?? '-'}
+                    </span>
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-500">
-                    {record.locationCode}
+                  <td className="px-4 py-3 text-sm">
+                    {formatNumber(record.searchVolume)}
                   </td>
-                  <td className="px-4 py-3 text-sm font-medium">
-                    {formatNumber(record.organicTrafficETV)}
+                  <td className="px-4 py-3 text-sm">
+                    {formatCurrency(record.cpc)}
                   </td>
-                  <td className="px-4 py-3 text-sm font-medium">
-                    {formatNumber(record.organicKeywordsCount)}
-                  </td>
-                  <td className="px-4 py-3 text-sm text-gray-500">
-                    {record.snapshotDate}
+                  <td className="px-4 py-3 text-sm">
+                    {record.url ? (
+                      <Tooltip text={record.url}>
+                        <a
+                          href={record.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-indigo-600 hover:text-indigo-800 hover:underline"
+                        >
+                          {truncateUrl(record.url)}
+                        </a>
+                      </Tooltip>
+                    ) : (
+                      '-'
+                    )}
                   </td>
                 </tr>
               ))}

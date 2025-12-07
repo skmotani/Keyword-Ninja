@@ -18,6 +18,8 @@ const seoDataItems = [
   { href: '/keywords/api-data', label: 'Keyword API Data' },
   { href: '/keywords/serp-results', label: 'SERP Results' },
   { href: '/keywords/domain-overview', label: 'Domain Overview' },
+  { href: '/keywords/domain-pages', label: 'Domain Top Pages' },
+  { href: '/keywords/domain-keywords', label: 'Domain Top Keywords' },
 ];
 
 export default function Navbar() {
