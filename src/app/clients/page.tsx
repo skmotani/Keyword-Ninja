@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import PageHeader from '@/components/PageHeader';
-import { Client, DomainProfile } from '@/types';
+import { Client, DomainProfile, ClientAIProfile } from '@/types';
 
 const MAX_DOMAINS = 5;
 
@@ -14,6 +14,9 @@ export default function ClientsPage() {
   const [domainProfiles, setDomainProfiles] = useState<Record<string, DomainProfile[]>>({});
   const [fetchingDomain, setFetchingDomain] = useState<string | null>(null);
   const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [aiProfiles, setAiProfiles] = useState<Record<string, ClientAIProfile>>({});
+  const [generatingAiProfile, setGeneratingAiProfile] = useState<string | null>(null);
+  const [showDomainsVerification, setShowDomainsVerification] = useState<string | null>(null);
   
   const [formData, setFormData] = useState({
     code: '',
@@ -54,6 +57,63 @@ export default function ClientsPage() {
       }));
     } catch (error) {
       console.error('Failed to fetch domain profiles:', error);
+    }
+  }
+
+  async function fetchAiProfileForClient(clientCode: string) {
+    try {
+      const res = await fetch(`/api/client-ai-profile?clientCode=${clientCode}`);
+      if (!res.ok) {
+        console.error('Failed to fetch AI profile: HTTP', res.status);
+        return;
+      }
+      const profile = await res.json();
+      if (profile && profile.clientCode) {
+        setAiProfiles(prev => ({
+          ...prev,
+          [clientCode]: profile,
+        }));
+      }
+    } catch (error) {
+      console.error('Failed to fetch AI profile:', error);
+    }
+  }
+
+  async function handleGenerateAiProfile(client: Client) {
+    setGeneratingAiProfile(client.code);
+    setNotification(null);
+    
+    try {
+      const profiles = domainProfiles[client.code] || [];
+      const domains = (client.domains || [client.mainDomain]).filter(Boolean);
+      
+      const res = await fetch('/api/client-ai-profile/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          clientCode: client.code,
+          clientName: client.name,
+          notes: client.notes,
+          domains,
+          domainProfiles: profiles,
+        }),
+      });
+      
+      const result = await res.json();
+      
+      if (res.ok && result.profile) {
+        setAiProfiles(prev => ({
+          ...prev,
+          [client.code]: result.profile,
+        }));
+        showNotification('success', `AI Profile generated using ${result.domainsUsed?.length || 0} domain(s)`);
+      } else {
+        showNotification('error', result.error || 'Failed to generate AI profile');
+      }
+    } catch (error) {
+      showNotification('error', 'Failed to generate AI profile');
+    } finally {
+      setGeneratingAiProfile(null);
     }
   }
 
@@ -161,6 +221,9 @@ export default function ClientsPage() {
       setExpandedClientId(client.id);
       if (!domainProfiles[client.code]) {
         fetchDomainProfilesForClient(client.code);
+      }
+      if (!aiProfiles[client.code]) {
+        fetchAiProfileForClient(client.code);
       }
     }
   }
@@ -673,6 +736,293 @@ export default function ClientsPage() {
                               );
                             })}
                           </div>
+                        </div>
+
+                        {/* AI Client Profile Section */}
+                        <div className="bg-white rounded-lg border p-4 mt-4">
+                          <div className="flex items-center justify-between mb-3">
+                            <h4 className="text-sm font-semibold text-gray-700">AI Client Profile</h4>
+                            <button
+                              onClick={() => handleGenerateAiProfile(client)}
+                              disabled={generatingAiProfile === client.code}
+                              className={`px-3 py-1.5 text-xs rounded flex items-center gap-2 ${
+                                generatingAiProfile === client.code
+                                  ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                                  : 'bg-purple-600 text-white hover:bg-purple-700'
+                              }`}
+                            >
+                              {generatingAiProfile === client.code ? (
+                                <>
+                                  <span className="animate-spin">⟳</span>
+                                  Generating...
+                                </>
+                              ) : (
+                                <>
+                                  <span>✨</span>
+                                  {aiProfiles[client.code] ? 'Regenerate AI Profile' : 'Generate AI Profile'}
+                                </>
+                              )}
+                            </button>
+                          </div>
+
+                          {aiProfiles[client.code] && (
+                            <div className="space-y-4">
+                              {/* Domains Verification Link */}
+                              <div className="flex items-center gap-2 text-xs">
+                                <button
+                                  onClick={() => setShowDomainsVerification(
+                                    showDomainsVerification === client.code ? null : client.code
+                                  )}
+                                  className="text-indigo-600 hover:text-indigo-800 underline"
+                                >
+                                  {showDomainsVerification === client.code ? 'Hide' : 'View'} domains used ({aiProfiles[client.code].domainsUsedForGeneration?.length || 0})
+                                </button>
+                                <span className="text-gray-400">|</span>
+                                <span className="text-gray-500">
+                                  Generated: {new Date(aiProfiles[client.code].generatedAt).toLocaleString()}
+                                </span>
+                              </div>
+                              
+                              {showDomainsVerification === client.code && (
+                                <div className="bg-gray-50 rounded-lg p-3 text-xs">
+                                  <div className="font-medium text-gray-700 mb-2">Domains used for profile generation:</div>
+                                  <div className="flex flex-wrap gap-2">
+                                    {aiProfiles[client.code].domainsUsedForGeneration?.map((domain, i) => (
+                                      <span key={i} className="bg-white border px-2 py-1 rounded">
+                                        {domain}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+
+                              {/* Business Overview */}
+                              <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg p-4">
+                                <h5 className="text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                                  <span>🏢</span> Business Overview
+                                </h5>
+                                <div className="space-y-3">
+                                  <div className="flex items-start gap-3">
+                                    <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded font-medium whitespace-nowrap">
+                                      {aiProfiles[client.code].industryType}
+                                    </span>
+                                    <span className="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded">
+                                      {aiProfiles[client.code].businessModel}
+                                    </span>
+                                  </div>
+                                  <p className="text-sm text-gray-700">{aiProfiles[client.code].shortSummary}</p>
+                                </div>
+                              </div>
+
+                              {/* Product & Market */}
+                              <div className="bg-blue-50 rounded-lg p-4">
+                                <h5 className="text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                                  <span>📦</span> Product & Market
+                                </h5>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                  <div>
+                                    <div className="text-xs font-medium text-gray-600 mb-2">Product Lines</div>
+                                    <div className="flex flex-wrap gap-1">
+                                      {aiProfiles[client.code].productLines?.map((item, i) => (
+                                        <span key={i} className="text-xs bg-white border border-blue-200 text-blue-700 px-2 py-0.5 rounded">
+                                          {item}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <div className="text-xs font-medium text-gray-600 mb-2">Target Customers</div>
+                                    <div className="flex flex-wrap gap-1">
+                                      {aiProfiles[client.code].targetCustomerSegments?.map((item, i) => (
+                                        <span key={i} className="text-xs bg-white border border-blue-200 text-blue-700 px-2 py-0.5 rounded">
+                                          {item}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <div className="text-xs font-medium text-gray-600 mb-2">Target Geographies</div>
+                                    <div className="flex flex-wrap gap-1">
+                                      {aiProfiles[client.code].targetGeographies?.map((item, i) => (
+                                        <span key={i} className="text-xs bg-white border border-green-200 text-green-700 px-2 py-0.5 rounded">
+                                          {item}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Topic Clusters */}
+                              <div className="bg-green-50 rounded-lg p-4">
+                                <h5 className="text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                                  <span>🏷️</span> Topic Clusters
+                                </h5>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                  <div>
+                                    <div className="text-xs font-medium text-gray-600 mb-2">Core Topics</div>
+                                    <div className="flex flex-wrap gap-1">
+                                      {aiProfiles[client.code].coreTopics?.map((item, i) => (
+                                        <span key={i} className="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded">
+                                          {item}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <div className="text-xs font-medium text-gray-600 mb-2">Adjacent Topics</div>
+                                    <div className="flex flex-wrap gap-1">
+                                      {aiProfiles[client.code].adjacentTopics?.map((item, i) => (
+                                        <span key={i} className="text-xs bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded">
+                                          {item}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <div className="text-xs font-medium text-gray-600 mb-2">Negative Topics</div>
+                                    <div className="flex flex-wrap gap-1">
+                                      {aiProfiles[client.code].negativeTopics?.map((item, i) => (
+                                        <span key={i} className="text-xs bg-red-100 text-red-800 px-2 py-0.5 rounded">
+                                          {item}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Domain Type Patterns */}
+                              <div className="bg-orange-50 rounded-lg p-4">
+                                <h5 className="text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                                  <span>🔍</span> Domain Type Patterns
+                                </h5>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+                                  <div className="bg-white rounded p-2 border border-orange-200">
+                                    <div className="font-medium text-gray-700 mb-1">OEM/Manufacturer Indicators</div>
+                                    <div className="flex flex-wrap gap-1">
+                                      {aiProfiles[client.code].domainTypePatterns?.oemManufacturerIndicators?.map((item, i) => (
+                                        <span key={i} className="bg-orange-100 text-orange-700 px-1.5 py-0.5 rounded text-xs">
+                                          {item}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  <div className="bg-white rounded p-2 border border-orange-200">
+                                    <div className="font-medium text-gray-700 mb-1">Service Provider Indicators</div>
+                                    <div className="flex flex-wrap gap-1">
+                                      {aiProfiles[client.code].domainTypePatterns?.serviceProviderIndicators?.map((item, i) => (
+                                        <span key={i} className="bg-orange-100 text-orange-700 px-1.5 py-0.5 rounded text-xs">
+                                          {item}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  <div className="bg-white rounded p-2 border border-orange-200">
+                                    <div className="font-medium text-gray-700 mb-1">Marketplace Indicators</div>
+                                    <div className="flex flex-wrap gap-1">
+                                      {aiProfiles[client.code].domainTypePatterns?.marketplaceIndicators?.map((item, i) => (
+                                        <span key={i} className="bg-orange-100 text-orange-700 px-1.5 py-0.5 rounded text-xs">
+                                          {item}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  <div className="bg-white rounded p-2 border border-orange-200">
+                                    <div className="font-medium text-gray-700 mb-1">End Customer Indicators</div>
+                                    <div className="flex flex-wrap gap-1">
+                                      {aiProfiles[client.code].domainTypePatterns?.endCustomerIndicators?.map((item, i) => (
+                                        <span key={i} className="bg-orange-100 text-orange-700 px-1.5 py-0.5 rounded text-xs">
+                                          {item}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  <div className="bg-white rounded p-2 border border-orange-200">
+                                    <div className="font-medium text-gray-700 mb-1">Educational/Media Indicators</div>
+                                    <div className="flex flex-wrap gap-1">
+                                      {aiProfiles[client.code].domainTypePatterns?.educationalMediaIndicators?.map((item, i) => (
+                                        <span key={i} className="bg-orange-100 text-orange-700 px-1.5 py-0.5 rounded text-xs">
+                                          {item}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Classification Intent Hints */}
+                              <div className="bg-teal-50 rounded-lg p-4">
+                                <h5 className="text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                                  <span>🎯</span> Classification Intent Hints
+                                </h5>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                  <div>
+                                    <div className="text-xs font-medium text-gray-600 mb-2">Transactional Keywords</div>
+                                    <div className="flex flex-wrap gap-1">
+                                      {aiProfiles[client.code].classificationIntentHints?.transactionalKeywords?.map((item, i) => (
+                                        <span key={i} className="text-xs bg-teal-100 text-teal-800 px-2 py-0.5 rounded">
+                                          {item}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <div className="text-xs font-medium text-gray-600 mb-2">Informational Keywords</div>
+                                    <div className="flex flex-wrap gap-1">
+                                      {aiProfiles[client.code].classificationIntentHints?.informationalKeywords?.map((item, i) => (
+                                        <span key={i} className="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded">
+                                          {item}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <div className="text-xs font-medium text-gray-600 mb-2">Directory Keywords</div>
+                                    <div className="flex flex-wrap gap-1">
+                                      {aiProfiles[client.code].classificationIntentHints?.directoryKeywords?.map((item, i) => (
+                                        <span key={i} className="text-xs bg-gray-100 text-gray-800 px-2 py-0.5 rounded">
+                                          {item}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Business Relevance Logic Notes */}
+                              <div className="bg-slate-50 rounded-lg p-4">
+                                <h5 className="text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                                  <span>📝</span> Business Relevance Logic
+                                </h5>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                                  <div className="bg-white rounded p-3 border">
+                                    <div className="font-medium text-green-700 mb-1">Direct Competitor Definition</div>
+                                    <p className="text-gray-600">{aiProfiles[client.code].businessRelevanceLogicNotes?.directCompetitorDefinition}</p>
+                                  </div>
+                                  <div className="bg-white rounded p-3 border">
+                                    <div className="font-medium text-blue-700 mb-1">Potential Customer Definition</div>
+                                    <p className="text-gray-600">{aiProfiles[client.code].businessRelevanceLogicNotes?.potentialCustomerDefinition}</p>
+                                  </div>
+                                  <div className="bg-white rounded p-3 border">
+                                    <div className="font-medium text-orange-700 mb-1">Marketplace/Channel Definition</div>
+                                    <p className="text-gray-600">{aiProfiles[client.code].businessRelevanceLogicNotes?.marketplaceChannelDefinition}</p>
+                                  </div>
+                                  <div className="bg-white rounded p-3 border">
+                                    <div className="font-medium text-gray-700 mb-1">Irrelevant Definition</div>
+                                    <p className="text-gray-600">{aiProfiles[client.code].businessRelevanceLogicNotes?.irrelevantDefinition}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
+                          {!aiProfiles[client.code] && !generatingAiProfile && (
+                            <div className="text-center py-8 text-gray-500">
+                              <p className="text-sm mb-2">No AI profile generated yet</p>
+                              <p className="text-xs text-gray-400">Click "Generate AI Profile" to create an intelligent profile using all domain data</p>
+                            </div>
+                          )}
                         </div>
                       </td>
                     </tr>

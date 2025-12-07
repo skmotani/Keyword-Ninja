@@ -121,6 +121,27 @@ A full-stack web application for managing SEO research data including clients, c
 
 **IMPORTANT**: Only masked versions of secrets are stored in JSON. Real API keys/passwords should be stored in Replit Secrets.
 
+### ClientAIProfile
+- `id`: string (UUID)
+- `clientCode`: string (references Client.code)
+- `clientName`: string - Full client name
+- `primaryDomains`: string[] - Client's domains
+- `domainsUsedForGeneration`: string[] - Domains that were used to generate this profile
+- `industryType`: string - Machine-friendly label (e.g., "textile_machinery")
+- `shortSummary`: string - 2-4 sentence description
+- `businessModel`: string - Business model description
+- `productLines`: string[] - Key products/services
+- `targetCustomerSegments`: string[] - Target customer types
+- `targetGeographies`: string[] - Target markets
+- `coreTopics`: string[] - Highly relevant topics
+- `adjacentTopics`: string[] - Related broader topics
+- `negativeTopics`: string[] - Topics to filter out
+- `domainTypePatterns`: DomainTypePatterns - Indicators for classifying domains
+- `classificationIntentHints`: ClassificationIntentHints - Keywords for intent classification
+- `businessRelevanceLogicNotes`: BusinessRelevanceLogicNotes - Definitions for competitor/customer/marketplace/irrelevant
+- `generatedAt`: string (ISO date)
+- `updatedAt`: string (ISO date)
+
 ### KeywordApiDataRecord
 - `id`: string (UUID)
 - `clientCode`: string (references Client.code)

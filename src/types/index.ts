@@ -119,3 +119,46 @@ export interface SerpResult {
   estimatedPaidTrafficCost: number | null;
   fetchedAt: string;
 }
+
+export interface DomainTypePatterns {
+  oemManufacturerIndicators: string[];
+  serviceProviderIndicators: string[];
+  marketplaceIndicators: string[];
+  endCustomerIndicators: string[];
+  educationalMediaIndicators: string[];
+}
+
+export interface ClassificationIntentHints {
+  transactionalKeywords: string[];
+  informationalKeywords: string[];
+  directoryKeywords: string[];
+}
+
+export interface BusinessRelevanceLogicNotes {
+  directCompetitorDefinition: string;
+  potentialCustomerDefinition: string;
+  marketplaceChannelDefinition: string;
+  irrelevantDefinition: string;
+}
+
+export interface ClientAIProfile {
+  id: string;
+  clientCode: string;
+  clientName: string;
+  primaryDomains: string[];
+  domainsUsedForGeneration: string[];
+  industryType: string;
+  shortSummary: string;
+  businessModel: string;
+  productLines: string[];
+  targetCustomerSegments: string[];
+  targetGeographies: string[];
+  coreTopics: string[];
+  adjacentTopics: string[];
+  negativeTopics: string[];
+  domainTypePatterns: DomainTypePatterns;
+  classificationIntentHints: ClassificationIntentHints;
+  businessRelevanceLogicNotes: BusinessRelevanceLogicNotes;
+  generatedAt: string;
+  updatedAt: string;
+}
