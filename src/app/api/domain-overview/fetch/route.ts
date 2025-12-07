@@ -10,10 +10,12 @@ import {
 import { fetchDomainRankOverviewBatch } from '@/lib/dataforseoClient';
 import { DomainOverviewRecord } from '@/types';
 
+const ALL_LOCATIONS = ['IN', 'GL'];
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { clientCode, locationCode, domains: providedDomains } = body;
+    const { clientCode, domains: providedDomains } = body;
 
     if (!clientCode) {
       return NextResponse.json(
@@ -21,8 +23,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-
-    const locCode: string = locationCode || 'IN';
 
     const credential = await getActiveCredentialByService('DATAFORSEO', clientCode);
     if (!credential) {
@@ -67,47 +67,60 @@ export async function POST(request: NextRequest) {
     const cleanedDomains = domains.map(cleanDomain);
     const uniqueDomains = Array.from(new Set(cleanedDomains));
 
-    console.log('[Domain Overview Fetch] Fetching for', uniqueDomains.length, 'domains, location:', locCode);
-
-    const batchResult = await fetchDomainRankOverviewBatch(
-      { username: credential.username, password },
-      uniqueDomains,
-      locCode
-    );
-
-    const logFilename = await saveDomainApiLog(clientCode, [locCode], 'overview', batchResult.rawResponse);
-    console.log('[Domain Overview Fetch] Saved API response log:', logFilename);
+    console.log('[Domain Overview Fetch] Fetching for', uniqueDomains.length, 'domains, locations:', ALL_LOCATIONS.join(', '));
 
     const now = new Date().toISOString();
     const snapshotDate = now.split('T')[0];
+    const allRecords: DomainOverviewRecord[] = [];
+    const logFilenames: string[] = [];
+    const locationStats: { location: string; count: number }[] = [];
 
-    const newRecords: DomainOverviewRecord[] = batchResult.results.map(item => ({
-      id: uuidv4(),
-      clientCode,
-      domain: item.domain,
-      label: item.domain,
-      locationCode: batchResult.locationCode,
-      languageCode: batchResult.languageCode,
-      organicTrafficETV: item.organicTrafficETV,
-      organicKeywordsCount: item.organicKeywordsCount,
-      fetchedAt: now,
-      snapshotDate,
-    }));
+    for (const locCode of ALL_LOCATIONS) {
+      console.log(`[Domain Overview Fetch] Fetching for location: ${locCode}`);
+      
+      const batchResult = await fetchDomainRankOverviewBatch(
+        { username: credential.username, password },
+        uniqueDomains,
+        locCode
+      );
 
-    await replaceDomainOverviewForClientLocationAndDomains(
-      clientCode,
-      locCode,
-      uniqueDomains,
-      newRecords
-    );
+      const logFilename = await saveDomainApiLog(clientCode, [locCode], 'overview', batchResult.rawResponse);
+      logFilenames.push(logFilename);
+      console.log(`[Domain Overview Fetch] Saved API response log for ${locCode}:`, logFilename);
+
+      const newRecords: DomainOverviewRecord[] = batchResult.results.map(item => ({
+        id: uuidv4(),
+        clientCode,
+        domain: item.domain,
+        label: item.domain,
+        locationCode: batchResult.locationCode,
+        languageCode: batchResult.languageCode,
+        organicTrafficETV: item.organicTrafficETV,
+        organicKeywordsCount: item.organicKeywordsCount,
+        fetchedAt: now,
+        snapshotDate,
+      }));
+
+      await replaceDomainOverviewForClientLocationAndDomains(
+        clientCode,
+        locCode,
+        uniqueDomains,
+        newRecords
+      );
+
+      allRecords.push(...newRecords);
+      locationStats.push({ location: locCode, count: newRecords.length });
+    }
 
     return NextResponse.json({
       success: true,
-      message: `Successfully fetched domain overview for ${newRecords.length} domains`,
-      count: newRecords.length,
-      locationCode: locCode,
+      message: `Successfully fetched domain overview for ${uniqueDomains.length} domains across ${ALL_LOCATIONS.length} locations`,
+      totalRecords: allRecords.length,
+      domainsProcessed: uniqueDomains.length,
+      locations: ALL_LOCATIONS,
+      locationStats,
       lastFetchedAt: now,
-      logFile: logFilename,
+      logFiles: logFilenames,
     });
   } catch (error) {
     console.error('Error fetching domain overview:', error);

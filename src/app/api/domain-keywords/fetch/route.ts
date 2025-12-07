@@ -10,10 +10,12 @@ import {
 import { fetchDomainRankedKeywordsBatch, DOM_TOP_KEYWORDS_LIMIT } from '@/lib/dataforseoClient';
 import { DomainKeywordRecord } from '@/types';
 
+const ALL_LOCATIONS = ['IN', 'GL'];
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { clientCode, locationCode, domains: providedDomains, limit } = body;
+    const { clientCode, domains: providedDomains, limit } = body;
 
     if (!clientCode) {
       return NextResponse.json(
@@ -22,7 +24,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const locCode: string = locationCode || 'IN';
     const keywordLimit: number = limit || DOM_TOP_KEYWORDS_LIMIT;
 
     const credential = await getActiveCredentialByService('DATAFORSEO', clientCode);
@@ -68,62 +69,75 @@ export async function POST(request: NextRequest) {
     const cleanedDomains = domains.map(cleanDomain);
     const uniqueDomains = Array.from(new Set(cleanedDomains));
 
-    console.log('[Domain Keywords Fetch] Fetching top', keywordLimit, 'keywords for', uniqueDomains.length, 'domains, location:', locCode);
-
-    const batchResults = await fetchDomainRankedKeywordsBatch(
-      { username: credential.username, password },
-      uniqueDomains,
-      locCode,
-      keywordLimit
-    );
-
-    const rawResponses = batchResults.map(r => ({ domain: r.domain, response: r.rawResponse }));
-    const logFilename = await saveDomainApiLog(clientCode, [locCode], 'keywords', JSON.stringify(rawResponses, null, 2));
-    console.log('[Domain Keywords Fetch] Saved API response log:', logFilename);
+    console.log('[Domain Keywords Fetch] Fetching top', keywordLimit, 'keywords for', uniqueDomains.length, 'domains, locations:', ALL_LOCATIONS.join(', '));
 
     const now = new Date().toISOString();
     const snapshotDate = now.split('T')[0];
+    const allRecords: DomainKeywordRecord[] = [];
+    const logFilenames: string[] = [];
+    const locationStats: { location: string; keywords: number; domainsWithKeywords: number }[] = [];
 
-    const newRecords: DomainKeywordRecord[] = [];
-    
-    for (const result of batchResults) {
-      for (const kw of result.keywords) {
-        newRecords.push({
-          id: uuidv4(),
-          clientCode,
-          domain: result.domain,
-          label: result.domain,
-          locationCode: result.locationCode,
-          languageCode: result.languageCode,
-          keyword: kw.keyword,
-          position: kw.position,
-          searchVolume: kw.searchVolume,
-          cpc: kw.cpc,
-          url: kw.url,
-          fetchedAt: now,
-          snapshotDate,
-        });
+    for (const locCode of ALL_LOCATIONS) {
+      console.log(`[Domain Keywords Fetch] Fetching for location: ${locCode}`);
+
+      const batchResults = await fetchDomainRankedKeywordsBatch(
+        { username: credential.username, password },
+        uniqueDomains,
+        locCode,
+        keywordLimit
+      );
+
+      const rawResponses = batchResults.map(r => ({ domain: r.domain, response: r.rawResponse }));
+      const logFilename = await saveDomainApiLog(clientCode, [locCode], 'keywords', JSON.stringify(rawResponses, null, 2));
+      logFilenames.push(logFilename);
+      console.log(`[Domain Keywords Fetch] Saved API response log for ${locCode}:`, logFilename);
+
+      const newRecords: DomainKeywordRecord[] = [];
+      
+      for (const result of batchResults) {
+        for (const kw of result.keywords) {
+          newRecords.push({
+            id: uuidv4(),
+            clientCode,
+            domain: result.domain,
+            label: result.domain,
+            locationCode: result.locationCode,
+            languageCode: result.languageCode,
+            keyword: kw.keyword,
+            position: kw.position,
+            searchVolume: kw.searchVolume,
+            cpc: kw.cpc,
+            url: kw.url,
+            fetchedAt: now,
+            snapshotDate,
+          });
+        }
       }
+
+      await replaceDomainKeywordsForClientLocationAndDomains(
+        clientCode,
+        locCode,
+        uniqueDomains,
+        newRecords
+      );
+
+      const domainsWithKeywords = batchResults.filter(r => r.keywords.length > 0).length;
+      allRecords.push(...newRecords);
+      locationStats.push({ location: locCode, keywords: newRecords.length, domainsWithKeywords });
     }
 
-    await replaceDomainKeywordsForClientLocationAndDomains(
-      clientCode,
-      locCode,
-      uniqueDomains,
-      newRecords
-    );
-
-    const domainsWithKeywords = batchResults.filter(r => r.keywords.length > 0).length;
+    const totalDomainsWithKeywords = locationStats.reduce((sum, s) => sum + s.domainsWithKeywords, 0);
 
     return NextResponse.json({
       success: true,
-      message: `Successfully fetched ${newRecords.length} keywords across ${domainsWithKeywords} domains`,
-      totalKeywords: newRecords.length,
+      message: `Successfully fetched ${allRecords.length} keywords across ${ALL_LOCATIONS.length} locations`,
+      totalKeywords: allRecords.length,
       domainsProcessed: uniqueDomains.length,
-      domainsWithKeywords,
-      locationCode: locCode,
+      totalDomainsWithKeywords,
+      locations: ALL_LOCATIONS,
+      locationStats,
       lastFetchedAt: now,
-      logFile: logFilename,
+      logFiles: logFilenames,
     });
   } catch (error) {
     console.error('Error fetching domain keywords:', error);

@@ -10,10 +10,12 @@ import {
 import { fetchDomainTopPagesBatch, DOM_TOP_PAGES_LIMIT } from '@/lib/dataforseoClient';
 import { DomainPageRecord } from '@/types';
 
+const ALL_LOCATIONS = ['IN', 'GL'];
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { clientCode, locationCode, domains: providedDomains, limit } = body;
+    const { clientCode, domains: providedDomains, limit } = body;
 
     if (!clientCode) {
       return NextResponse.json(
@@ -22,7 +24,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const locCode: string = locationCode || 'IN';
     const pageLimit: number = limit || DOM_TOP_PAGES_LIMIT;
 
     const credential = await getActiveCredentialByService('DATAFORSEO', clientCode);
@@ -68,60 +69,73 @@ export async function POST(request: NextRequest) {
     const cleanedDomains = domains.map(cleanDomain);
     const uniqueDomains = Array.from(new Set(cleanedDomains));
 
-    console.log('[Domain Pages Fetch] Fetching top', pageLimit, 'pages for', uniqueDomains.length, 'domains, location:', locCode);
-
-    const batchResults = await fetchDomainTopPagesBatch(
-      { username: credential.username, password },
-      uniqueDomains,
-      locCode,
-      pageLimit
-    );
-
-    const rawResponses = batchResults.map(r => ({ domain: r.domain, response: r.rawResponse }));
-    const logFilename = await saveDomainApiLog(clientCode, [locCode], 'pages', JSON.stringify(rawResponses, null, 2));
-    console.log('[Domain Pages Fetch] Saved API response log:', logFilename);
+    console.log('[Domain Pages Fetch] Fetching top', pageLimit, 'pages for', uniqueDomains.length, 'domains, locations:', ALL_LOCATIONS.join(', '));
 
     const now = new Date().toISOString();
     const snapshotDate = now.split('T')[0];
+    const allRecords: DomainPageRecord[] = [];
+    const logFilenames: string[] = [];
+    const locationStats: { location: string; pages: number; domainsWithPages: number }[] = [];
 
-    const newRecords: DomainPageRecord[] = [];
-    
-    for (const result of batchResults) {
-      for (const page of result.pages) {
-        newRecords.push({
-          id: uuidv4(),
-          clientCode,
-          domain: result.domain,
-          label: result.domain,
-          locationCode: result.locationCode,
-          languageCode: result.languageCode,
-          pageURL: page.pageURL,
-          estTrafficETV: page.estTrafficETV,
-          keywordsCount: page.keywordsCount,
-          fetchedAt: now,
-          snapshotDate,
-        });
+    for (const locCode of ALL_LOCATIONS) {
+      console.log(`[Domain Pages Fetch] Fetching for location: ${locCode}`);
+
+      const batchResults = await fetchDomainTopPagesBatch(
+        { username: credential.username, password },
+        uniqueDomains,
+        locCode,
+        pageLimit
+      );
+
+      const rawResponses = batchResults.map(r => ({ domain: r.domain, response: r.rawResponse }));
+      const logFilename = await saveDomainApiLog(clientCode, [locCode], 'pages', JSON.stringify(rawResponses, null, 2));
+      logFilenames.push(logFilename);
+      console.log(`[Domain Pages Fetch] Saved API response log for ${locCode}:`, logFilename);
+
+      const newRecords: DomainPageRecord[] = [];
+      
+      for (const result of batchResults) {
+        for (const page of result.pages) {
+          newRecords.push({
+            id: uuidv4(),
+            clientCode,
+            domain: result.domain,
+            label: result.domain,
+            locationCode: result.locationCode,
+            languageCode: result.languageCode,
+            pageURL: page.pageURL,
+            estTrafficETV: page.estTrafficETV,
+            keywordsCount: page.keywordsCount,
+            fetchedAt: now,
+            snapshotDate,
+          });
+        }
       }
+
+      await replaceDomainPagesForClientLocationAndDomains(
+        clientCode,
+        locCode,
+        uniqueDomains,
+        newRecords
+      );
+
+      const domainsWithPages = batchResults.filter(r => r.pages.length > 0).length;
+      allRecords.push(...newRecords);
+      locationStats.push({ location: locCode, pages: newRecords.length, domainsWithPages });
     }
 
-    await replaceDomainPagesForClientLocationAndDomains(
-      clientCode,
-      locCode,
-      uniqueDomains,
-      newRecords
-    );
-
-    const domainsWithPages = batchResults.filter(r => r.pages.length > 0).length;
+    const totalDomainsWithPages = locationStats.reduce((sum, s) => sum + s.domainsWithPages, 0);
 
     return NextResponse.json({
       success: true,
-      message: `Successfully fetched ${newRecords.length} pages across ${domainsWithPages} domains`,
-      totalPages: newRecords.length,
+      message: `Successfully fetched ${allRecords.length} pages across ${ALL_LOCATIONS.length} locations`,
+      totalPages: allRecords.length,
       domainsProcessed: uniqueDomains.length,
-      domainsWithPages,
-      locationCode: locCode,
+      totalDomainsWithPages,
+      locations: ALL_LOCATIONS,
+      locationStats,
       lastFetchedAt: now,
-      logFile: logFilename,
+      logFiles: logFilenames,
     });
   } catch (error) {
     console.error('Error fetching domain pages:', error);
