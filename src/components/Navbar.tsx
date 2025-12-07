@@ -6,11 +6,12 @@ import { useState, useRef, useEffect } from 'react';
 
 const masterItems = [
   { href: '/clients', label: 'Clients' },
+  { href: '/competitors', label: 'Competitors' },
   { href: '/keywords/manual', label: 'Keyword Manual' },
 ];
 
 const reportItems = [
-  { href: '/competitors', label: 'Competitors' },
+  { href: '/report/competitors', label: 'Unique Domains' },
 ];
 
 const seoDataItems = [
@@ -46,7 +47,7 @@ export default function Navbar() {
   }, []);
 
   const isMasterActive = masterItems.some(item => pathname === item.href);
-  const isReportActive = reportItems.some(item => pathname === item.href) || pathname.startsWith('/report');
+  const isReportActive = reportItems.some(item => pathname === item.href);
   const isSeoDataActive = seoDataItems.some(item => pathname === item.href);
 
   const DropdownArrow = ({ isOpen }: { isOpen: boolean }) => (

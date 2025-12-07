@@ -172,8 +172,8 @@ The app runs on port 5000.
 ## Navigation
 The navbar uses dropdown menus organized by category:
 - **Home** - Direct link to dashboard
-- **Master** (dropdown) - Clients, Keyword Manual
-- **Reports** (dropdown) - Competitors
+- **Master** (dropdown) - Clients, Competitors, Keyword Manual
+- **Reports** (dropdown) - Unique Domains (shows unique domains extracted from SERP results)
 - **SeoData** (dropdown) - Keyword API Data, SERP Results, Domain Overview
 - **Settings gear icon** (⚙️) on the far right navigates to `/settings/api-credentials`
 
