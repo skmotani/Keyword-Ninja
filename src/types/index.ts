@@ -185,6 +185,7 @@ export type PageIntentValue =
 export type ProductMatchBucket = 'High' | 'Medium' | 'Low' | 'None';
 
 export type BusinessRelevanceCategoryValue =
+  | 'Self'
   | 'Direct Competitor'
   | 'Adjacent / Weak Competitor'
   | 'Potential Customer / Lead'

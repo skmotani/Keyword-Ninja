@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { classifyDomain } from '@/lib/domainClassifier';
 import { saveClassification, saveClassifications } from '@/lib/domainClassificationStore';
 import { getAiProfileByClientCode } from '@/lib/clientAiProfileStore';
-import { ClientAIProfile } from '@/types';
+import { ClientAIProfile, DomainClassification } from '@/types';
 
 interface DomainRowInput {
   domain: string;
@@ -20,6 +20,37 @@ interface SerpRowInput {
   url: string;
   pageTitle: string;
   pageSnippet: string;
+}
+
+function normalizeDomain(domain: string): string {
+  return domain.toLowerCase().trim().replace(/^www\./, '');
+}
+
+function isClientOwnDomain(domain: string, clientDomains: string[]): boolean {
+  const normalizedDomain = normalizeDomain(domain);
+  return clientDomains.some(clientDomain => {
+    const normalizedClientDomain = normalizeDomain(clientDomain);
+    return normalizedDomain === normalizedClientDomain ||
+           normalizedDomain.endsWith('.' + normalizedClientDomain) ||
+           normalizedClientDomain.endsWith('.' + normalizedDomain);
+  });
+}
+
+function createSelfClassification(clientCode: string, domain: string, clientName: string): DomainClassification {
+  return {
+    id: `class-${clientCode}-${domain.replace(/[^a-zA-Z0-9]/g, '-')}-${Date.now()}`,
+    clientCode,
+    domain,
+    domainType: 'Brand / Platform / Corporate Site',
+    pageIntent: 'Navigational / Brand',
+    productMatchScoreValue: 1.0,
+    productMatchScoreBucket: 'High',
+    businessRelevanceCategory: 'Self',
+    explanationLink: '#how-this-score-was-calculated',
+    explanationSummary: `This is ${clientName}'s own domain. It has been automatically classified as "Self" since it belongs to the client.`,
+    classifiedAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
 }
 
 export async function POST(request: NextRequest) {
@@ -44,6 +75,24 @@ export async function POST(request: NextRequest) {
     }
 
     console.log(`[Domain Classification] Classifying domain ${domainRow.domain} for client ${clientCode}`);
+
+    if (isClientOwnDomain(domainRow.domain, clientProfile.primaryDomains)) {
+      console.log(`[Domain Classification] Domain ${domainRow.domain} is client's own domain - marking as Self`);
+      
+      const classification = createSelfClassification(
+        clientCode,
+        domainRow.domain,
+        clientProfile.clientName
+      );
+      
+      await saveClassification(classification);
+      
+      return NextResponse.json({
+        success: true,
+        classification,
+        isSelf: true,
+      });
+    }
 
     const classification = await classifyDomain(
       clientProfile,

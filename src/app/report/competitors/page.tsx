@@ -221,6 +221,7 @@ function getLocationLabel(code: number): string {
 
 function getRelevanceBadgeColor(category: string): string {
   switch (category) {
+    case 'Self': return 'bg-indigo-100 text-indigo-800 ring-2 ring-indigo-300';
     case 'Direct Competitor': return 'bg-red-100 text-red-800';
     case 'Adjacent / Weak Competitor': return 'bg-orange-100 text-orange-800';
     case 'Potential Customer / Lead': return 'bg-green-100 text-green-800';
@@ -268,6 +269,12 @@ export default function CompetitorReportPage() {
 
   const [modalDomain, setModalDomain] = useState<string | null>(null);
   const [explanationModal, setExplanationModal] = useState<DomainClassification | null>(null);
+
+  const [showClassifyModal, setShowClassifyModal] = useState(false);
+  const [selectedDomains, setSelectedDomains] = useState<Set<string>>(new Set());
+  const [importanceThreshold, setImportanceThreshold] = useState<number>(0);
+  const [maxRankFilter, setMaxRankFilter] = useState<number>(100);
+  const [topNFilter, setTopNFilter] = useState<number>(0);
 
   useEffect(() => {
     fetchClients();
@@ -479,6 +486,48 @@ export default function CompetitorReportPage() {
     return competitorList.filter(c => c.classification).length;
   }, [competitorList]);
 
+  const domainAvgRanks = useMemo(() => {
+    const avgRanks: Record<string, number> = {};
+    for (const [domain, breakdowns] of Object.entries(domainBreakdowns)) {
+      if (breakdowns.length > 0) {
+        const totalRank = breakdowns.reduce((sum, b) => sum + b.rank, 0);
+        avgRanks[domain] = totalRank / breakdowns.length;
+      }
+    }
+    return avgRanks;
+  }, [domainBreakdowns]);
+
+  const modalFilteredDomains = useMemo(() => {
+    let candidates = competitorList.filter(c => !c.classification);
+    
+    if (importanceThreshold > 0) {
+      candidates = candidates.filter(c => c.importanceScore >= importanceThreshold);
+    }
+    
+    if (maxRankFilter < 100) {
+      candidates = candidates.filter(c => {
+        const avgRank = domainAvgRanks[c.domain.toLowerCase().trim()] || 999;
+        return avgRank <= maxRankFilter;
+      });
+    }
+    
+    candidates = candidates.sort((a, b) => b.importanceScore - a.importanceScore);
+    
+    if (topNFilter > 0) {
+      candidates = candidates.slice(0, topNFilter);
+    }
+    
+    if (selectedDomains.size > 0) {
+      candidates = candidates.filter(c => selectedDomains.has(c.domain));
+    }
+    
+    return candidates;
+  }, [competitorList, importanceThreshold, maxRankFilter, topNFilter, selectedDomains, domainAvgRanks]);
+
+  const unclassifiedDomains = useMemo(() => {
+    return competitorList.filter(c => !c.classification);
+  }, [competitorList]);
+
   const selectedClientName = clients.find(c => c.code === selectedClientCode)?.name || '';
 
   const hasFilters = domainFilter || labelFilter || relevanceFilter;
@@ -535,24 +584,33 @@ export default function CompetitorReportPage() {
     }
   };
 
-  const handleClassifyAll = async () => {
-    const unclassified = competitorList.filter(c => !c.classification);
-    if (unclassified.length === 0) {
-      showNotification('success', 'All domains are already classified!');
+  const openClassifyModal = () => {
+    setSelectedDomains(new Set());
+    setImportanceThreshold(0);
+    setMaxRankFilter(100);
+    setTopNFilter(0);
+    setShowClassifyModal(true);
+  };
+
+  const handleClassifySelected = async () => {
+    const domainsToClassify = modalFilteredDomains;
+    if (domainsToClassify.length === 0) {
+      showNotification('error', 'No domains selected for classification');
       return;
     }
     
+    setShowClassifyModal(false);
     setClassifying(true);
-    setClassifyProgress({ current: 0, total: unclassified.length });
+    setClassifyProgress({ current: 0, total: domainsToClassify.length });
     
     const failedDomains: string[] = [];
     let successCount = 0;
     
     try {
-      for (let i = 0; i < unclassified.length; i++) {
-        const entry = unclassified[i];
+      for (let i = 0; i < domainsToClassify.length; i++) {
+        const entry = domainsToClassify[i];
         setClassifyingDomain(entry.domain);
-        setClassifyProgress({ current: i + 1, total: unclassified.length });
+        setClassifyProgress({ current: i + 1, total: domainsToClassify.length });
         
         const domainLower = entry.domain.toLowerCase().trim();
         const serpRows = serpRowsByDomain[domainLower] || [];
@@ -607,6 +665,31 @@ export default function CompetitorReportPage() {
     }
   };
 
+  const toggleDomainSelection = (domain: string) => {
+    setSelectedDomains(prev => {
+      const next = new Set(prev);
+      if (next.has(domain)) {
+        next.delete(domain);
+      } else {
+        next.add(domain);
+      }
+      return next;
+    });
+  };
+
+  const selectAllVisible = () => {
+    const domainsToSelect = unclassifiedDomains
+      .filter(c => importanceThreshold === 0 || c.importanceScore >= importanceThreshold)
+      .filter(c => maxRankFilter === 100 || (domainAvgRanks[c.domain.toLowerCase().trim()] || 999) <= maxRankFilter)
+      .sort((a, b) => b.importanceScore - a.importanceScore)
+      .slice(0, topNFilter > 0 ? topNFilter : undefined);
+    setSelectedDomains(new Set(domainsToSelect.map(c => c.domain)));
+  };
+
+  const clearSelection = () => {
+    setSelectedDomains(new Set());
+  };
+
   const modalData = useMemo(() => {
     if (!modalDomain) return null;
     const domainLower = modalDomain.toLowerCase().trim();
@@ -630,6 +713,7 @@ export default function CompetitorReportPage() {
   }, [modalDomain, domainBreakdowns, competitorList]);
 
   const relevanceCategories = [
+    'Self',
     'Direct Competitor',
     'Adjacent / Weak Competitor',
     'Potential Customer / Lead',
@@ -675,7 +759,7 @@ export default function CompetitorReportPage() {
             </select>
           </div>
           <button
-            onClick={handleClassifyAll}
+            onClick={openClassifyModal}
             disabled={classifying || loading || competitorList.length === 0}
             className="px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-md hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-2"
           >
@@ -687,7 +771,7 @@ export default function CompetitorReportPage() {
             ) : (
               <>
                 <span>&#10024;</span>
-                Classify All Domains
+                Classify Domains
               </>
             )}
           </button>
@@ -994,6 +1078,182 @@ export default function CompetitorReportPage() {
               >
                 Close
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showClassifyModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden">
+            <div className="px-4 py-3 border-b flex justify-between items-center bg-purple-50">
+              <div>
+                <h3 className="text-sm font-semibold text-gray-900">Select Domains to Classify</h3>
+                <p className="text-xs text-gray-600 mt-0.5">
+                  {unclassifiedDomains.length} unclassified domains available
+                </p>
+              </div>
+              <button
+                onClick={() => setShowClassifyModal(false)}
+                className="text-gray-400 hover:text-gray-600 text-xl leading-none px-2"
+              >
+                x
+              </button>
+            </div>
+
+            <div className="p-4 border-b bg-gray-50">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div>
+                  <label className="block text-[10px] font-medium text-gray-600 uppercase mb-1">
+                    Top N Domains
+                  </label>
+                  <select
+                    value={topNFilter}
+                    onChange={(e) => setTopNFilter(Number(e.target.value))}
+                    className="w-full border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  >
+                    <option value={0}>All</option>
+                    <option value={3}>Top 3</option>
+                    <option value={5}>Top 5</option>
+                    <option value={10}>Top 10</option>
+                    <option value={20}>Top 20</option>
+                    <option value={50}>Top 50</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-[10px] font-medium text-gray-600 uppercase mb-1">
+                    Min Importance Score
+                  </label>
+                  <input
+                    type="number"
+                    value={importanceThreshold}
+                    onChange={(e) => setImportanceThreshold(Number(e.target.value))}
+                    min={0}
+                    step={100}
+                    className="w-full border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    placeholder="0"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[10px] font-medium text-gray-600 uppercase mb-1">
+                    Max Avg Rank
+                  </label>
+                  <input
+                    type="number"
+                    value={maxRankFilter}
+                    onChange={(e) => setMaxRankFilter(Number(e.target.value))}
+                    min={1}
+                    max={100}
+                    className="w-full border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    placeholder="100"
+                  />
+                </div>
+
+                <div className="flex items-end gap-2">
+                  <button
+                    onClick={selectAllVisible}
+                    className="px-3 py-1.5 text-xs font-medium text-purple-700 bg-purple-100 rounded hover:bg-purple-200"
+                  >
+                    Select All
+                  </button>
+                  <button
+                    onClick={clearSelection}
+                    className="px-3 py-1.5 text-xs font-medium text-gray-600 bg-gray-100 rounded hover:bg-gray-200"
+                  >
+                    Clear
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex-1 overflow-auto p-4">
+              <div className="mb-2 text-xs text-gray-500">
+                Showing {modalFilteredDomains.length} domains (sorted by importance)
+              </div>
+              <div className="border rounded-lg overflow-hidden">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-100 sticky top-0">
+                    <tr>
+                      <th className="w-10 px-2 py-2">
+                        <input
+                          type="checkbox"
+                          checked={selectedDomains.size > 0 && modalFilteredDomains.every(d => selectedDomains.has(d.domain))}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setSelectedDomains(new Set(modalFilteredDomains.map(d => d.domain)));
+                            } else {
+                              setSelectedDomains(new Set());
+                            }
+                          }}
+                          className="w-4 h-4 text-purple-600 rounded"
+                        />
+                      </th>
+                      <th className="text-left text-[10px] font-medium text-gray-500 uppercase px-2 py-2">Domain</th>
+                      <th className="text-right text-[10px] font-medium text-gray-500 uppercase px-2 py-2">Score</th>
+                      <th className="text-right text-[10px] font-medium text-gray-500 uppercase px-2 py-2">Avg Rank</th>
+                      <th className="text-right text-[10px] font-medium text-gray-500 uppercase px-2 py-2">Keywords</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 bg-white">
+                    {modalFilteredDomains.map((entry) => {
+                      const avgRank = domainAvgRanks[entry.domain.toLowerCase().trim()] || 0;
+                      return (
+                        <tr 
+                          key={entry.domain} 
+                          className={`hover:bg-gray-50 cursor-pointer ${selectedDomains.has(entry.domain) ? 'bg-purple-50' : ''}`}
+                          onClick={() => toggleDomainSelection(entry.domain)}
+                        >
+                          <td className="px-2 py-1.5">
+                            <input
+                              type="checkbox"
+                              checked={selectedDomains.has(entry.domain)}
+                              onChange={() => toggleDomainSelection(entry.domain)}
+                              onClick={(e) => e.stopPropagation()}
+                              className="w-4 h-4 text-purple-600 rounded"
+                            />
+                          </td>
+                          <td className="text-xs text-gray-800 px-2 py-1.5 font-medium">{entry.domain}</td>
+                          <td className="text-xs text-gray-600 px-2 py-1.5 text-right">{formatImportanceScore(entry.importanceScore)}</td>
+                          <td className="text-xs text-gray-600 px-2 py-1.5 text-right">{avgRank.toFixed(1)}</td>
+                          <td className="text-xs text-gray-600 px-2 py-1.5 text-right">{entry.uniqueKeywords}</td>
+                        </tr>
+                      );
+                    })}
+                    {modalFilteredDomains.length === 0 && (
+                      <tr>
+                        <td colSpan={5} className="text-center text-sm text-gray-500 py-8">
+                          No unclassified domains match the current filters
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="px-4 py-3 border-t bg-gray-50 flex justify-between items-center">
+              <div className="text-sm text-gray-600">
+                <span className="font-semibold text-purple-700">{selectedDomains.size > 0 ? selectedDomains.size : modalFilteredDomains.length}</span>
+                {' '}domains will be classified
+              </div>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setShowClassifyModal(false)}
+                  className="px-4 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleClassifySelected}
+                  disabled={modalFilteredDomains.length === 0}
+                  className="px-4 py-1.5 text-xs font-medium text-white bg-purple-600 rounded hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-1"
+                >
+                  <span>&#10024;</span>
+                  Classify Selected
+                </button>
+              </div>
             </div>
           </div>
         </div>
