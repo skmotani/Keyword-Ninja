@@ -545,6 +545,9 @@ export default function CompetitorReportPage() {
     setClassifying(true);
     setClassifyProgress({ current: 0, total: unclassified.length });
     
+    const failedDomains: string[] = [];
+    let successCount = 0;
+    
     try {
       for (let i = 0; i < unclassified.length; i++) {
         const entry = unclassified[i];
@@ -554,35 +557,50 @@ export default function CompetitorReportPage() {
         const domainLower = entry.domain.toLowerCase().trim();
         const serpRows = serpRowsByDomain[domainLower] || [];
         
-        const res = await fetch('/api/domain-classification/classify', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            clientCode: selectedClientCode,
-            domainRow: {
-              domain: entry.domain,
-              label: entry.label,
-              importance: entry.importanceScore,
-              keywords: entry.uniqueKeywords,
-              appearances: entry.appearanceCount
-            },
-            serpRows
-          })
-        });
-        
-        const result = await res.json();
-        
-        if (res.ok && result.classification) {
-          setClassifications(prev => ({
-            ...prev,
-            [domainLower]: result.classification
-          }));
+        try {
+          const res = await fetch('/api/domain-classification/classify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              clientCode: selectedClientCode,
+              domainRow: {
+                domain: entry.domain,
+                label: entry.label,
+                importance: entry.importanceScore,
+                keywords: entry.uniqueKeywords,
+                appearances: entry.appearanceCount
+              },
+              serpRows
+            })
+          });
+          
+          const result = await res.json();
+          
+          if (res.ok && result.classification) {
+            setClassifications(prev => ({
+              ...prev,
+              [domainLower]: result.classification
+            }));
+            successCount++;
+          } else {
+            failedDomains.push(entry.domain);
+            console.error(`Failed to classify ${entry.domain}:`, result.error);
+          }
+        } catch (fetchError) {
+          failedDomains.push(entry.domain);
+          console.error(`Error classifying ${entry.domain}:`, fetchError);
         }
       }
       
-      showNotification('success', `Classified ${unclassified.length} domains`);
+      if (failedDomains.length === 0) {
+        showNotification('success', `Successfully classified ${successCount} domains`);
+      } else if (successCount > 0) {
+        showNotification('error', `Classified ${successCount} domains. Failed: ${failedDomains.length} (${failedDomains.slice(0, 3).join(', ')}${failedDomains.length > 3 ? '...' : ''}). Try classifying failed domains individually.`);
+      } else {
+        showNotification('error', `Classification failed for all ${failedDomains.length} domains. Please check your API key configuration.`);
+      }
     } catch (error: any) {
-      showNotification('error', error.message || 'Classification failed');
+      showNotification('error', error.message || 'Classification failed unexpectedly');
     } finally {
       setClassifying(false);
       setClassifyingDomain(null);
