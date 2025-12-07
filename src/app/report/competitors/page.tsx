@@ -275,6 +275,7 @@ export default function CompetitorReportPage() {
   const [importanceThreshold, setImportanceThreshold] = useState<number>(0);
   const [maxRankFilter, setMaxRankFilter] = useState<number>(100);
   const [topNFilter, setTopNFilter] = useState<number>(0);
+  const [onPageTopFilter, setOnPageTopFilter] = useState<number>(0);
 
   useEffect(() => {
     fetchClients();
@@ -497,6 +498,16 @@ export default function CompetitorReportPage() {
     return avgRanks;
   }, [domainBreakdowns]);
 
+  const domainBestRanks = useMemo(() => {
+    const bestRanks: Record<string, number> = {};
+    for (const [domain, breakdowns] of Object.entries(domainBreakdowns)) {
+      if (breakdowns.length > 0) {
+        bestRanks[domain] = Math.min(...breakdowns.map(b => b.rank));
+      }
+    }
+    return bestRanks;
+  }, [domainBreakdowns]);
+
   const modalFilteredDomains = useMemo(() => {
     let candidates = competitorList.filter(c => !c.classification);
     
@@ -511,18 +522,28 @@ export default function CompetitorReportPage() {
       });
     }
     
+    if (onPageTopFilter > 0) {
+      candidates = candidates.filter(c => {
+        const bestRank = domainBestRanks[c.domain.toLowerCase().trim()] || 999;
+        return bestRank <= onPageTopFilter;
+      });
+    }
+    
     candidates = candidates.sort((a, b) => b.importanceScore - a.importanceScore);
     
     if (topNFilter > 0) {
       candidates = candidates.slice(0, topNFilter);
     }
     
-    if (selectedDomains.size > 0) {
-      candidates = candidates.filter(c => selectedDomains.has(c.domain));
-    }
-    
     return candidates;
-  }, [competitorList, importanceThreshold, maxRankFilter, topNFilter, selectedDomains, domainAvgRanks]);
+  }, [competitorList, importanceThreshold, maxRankFilter, topNFilter, domainAvgRanks, onPageTopFilter, domainBestRanks]);
+
+  const domainsToClassify = useMemo(() => {
+    if (selectedDomains.size > 0) {
+      return modalFilteredDomains.filter(c => selectedDomains.has(c.domain));
+    }
+    return modalFilteredDomains;
+  }, [modalFilteredDomains, selectedDomains]);
 
   const unclassifiedDomains = useMemo(() => {
     return competitorList.filter(c => !c.classification);
@@ -589,11 +610,11 @@ export default function CompetitorReportPage() {
     setImportanceThreshold(0);
     setMaxRankFilter(100);
     setTopNFilter(0);
+    setOnPageTopFilter(0);
     setShowClassifyModal(true);
   };
 
   const handleClassifySelected = async () => {
-    const domainsToClassify = modalFilteredDomains;
     if (domainsToClassify.length === 0) {
       showNotification('error', 'No domains selected for classification');
       return;
@@ -678,11 +699,15 @@ export default function CompetitorReportPage() {
   };
 
   const selectAllVisible = () => {
-    const domainsToSelect = unclassifiedDomains
+    let domainsToSelect = unclassifiedDomains
       .filter(c => importanceThreshold === 0 || c.importanceScore >= importanceThreshold)
       .filter(c => maxRankFilter === 100 || (domainAvgRanks[c.domain.toLowerCase().trim()] || 999) <= maxRankFilter)
-      .sort((a, b) => b.importanceScore - a.importanceScore)
-      .slice(0, topNFilter > 0 ? topNFilter : undefined);
+      .filter(c => onPageTopFilter === 0 || (domainBestRanks[c.domain.toLowerCase().trim()] || 999) <= onPageTopFilter)
+      .sort((a, b) => b.importanceScore - a.importanceScore);
+    
+    if (topNFilter > 0) {
+      domainsToSelect = domainsToSelect.slice(0, topNFilter);
+    }
     setSelectedDomains(new Set(domainsToSelect.map(c => c.domain)));
   };
 
@@ -1102,22 +1127,20 @@ export default function CompetitorReportPage() {
             </div>
 
             <div className="p-4 border-b bg-gray-50">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 <div>
                   <label className="block text-[10px] font-medium text-gray-600 uppercase mb-1">
-                    Top N Domains
+                    On Page Top (Best Rank)
                   </label>
                   <select
-                    value={topNFilter}
-                    onChange={(e) => setTopNFilter(Number(e.target.value))}
+                    value={onPageTopFilter}
+                    onChange={(e) => setOnPageTopFilter(Number(e.target.value))}
                     className="w-full border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
                   >
-                    <option value={0}>All</option>
-                    <option value={3}>Top 3</option>
-                    <option value={5}>Top 5</option>
-                    <option value={10}>Top 10</option>
-                    <option value={20}>Top 20</option>
-                    <option value={50}>Top 50</option>
+                    <option value={0}>All positions</option>
+                    <option value={3}>Top 3 positions</option>
+                    <option value={5}>Top 5 positions</option>
+                    <option value={10}>Top 10 positions</option>
                   </select>
                 </div>
 
@@ -1149,6 +1172,23 @@ export default function CompetitorReportPage() {
                     className="w-full border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
                     placeholder="100"
                   />
+                </div>
+
+                <div>
+                  <label className="block text-[10px] font-medium text-gray-600 uppercase mb-1">
+                    Limit Results
+                  </label>
+                  <select
+                    value={topNFilter}
+                    onChange={(e) => setTopNFilter(Number(e.target.value))}
+                    className="w-full border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  >
+                    <option value={0}>No limit</option>
+                    <option value={5}>First 5</option>
+                    <option value={10}>First 10</option>
+                    <option value={20}>First 20</option>
+                    <option value={50}>First 50</option>
+                  </select>
                 </div>
 
                 <div className="flex items-end gap-2">
@@ -1192,6 +1232,7 @@ export default function CompetitorReportPage() {
                       </th>
                       <th className="text-left text-[10px] font-medium text-gray-500 uppercase px-2 py-2">Domain</th>
                       <th className="text-right text-[10px] font-medium text-gray-500 uppercase px-2 py-2">Score</th>
+                      <th className="text-right text-[10px] font-medium text-gray-500 uppercase px-2 py-2">Best Rank</th>
                       <th className="text-right text-[10px] font-medium text-gray-500 uppercase px-2 py-2">Avg Rank</th>
                       <th className="text-right text-[10px] font-medium text-gray-500 uppercase px-2 py-2">Keywords</th>
                     </tr>
@@ -1199,6 +1240,7 @@ export default function CompetitorReportPage() {
                   <tbody className="divide-y divide-gray-100 bg-white">
                     {modalFilteredDomains.map((entry) => {
                       const avgRank = domainAvgRanks[entry.domain.toLowerCase().trim()] || 0;
+                      const bestRank = domainBestRanks[entry.domain.toLowerCase().trim()] || 0;
                       return (
                         <tr 
                           key={entry.domain} 
@@ -1216,6 +1258,9 @@ export default function CompetitorReportPage() {
                           </td>
                           <td className="text-xs text-gray-800 px-2 py-1.5 font-medium">{entry.domain}</td>
                           <td className="text-xs text-gray-600 px-2 py-1.5 text-right">{formatImportanceScore(entry.importanceScore)}</td>
+                          <td className={`text-xs px-2 py-1.5 text-right font-medium ${bestRank <= 3 ? 'text-green-600' : bestRank <= 5 ? 'text-blue-600' : bestRank <= 10 ? 'text-yellow-600' : 'text-gray-600'}`}>
+                            {bestRank}
+                          </td>
                           <td className="text-xs text-gray-600 px-2 py-1.5 text-right">{avgRank.toFixed(1)}</td>
                           <td className="text-xs text-gray-600 px-2 py-1.5 text-right">{entry.uniqueKeywords}</td>
                         </tr>
@@ -1223,7 +1268,7 @@ export default function CompetitorReportPage() {
                     })}
                     {modalFilteredDomains.length === 0 && (
                       <tr>
-                        <td colSpan={5} className="text-center text-sm text-gray-500 py-8">
+                        <td colSpan={6} className="text-center text-sm text-gray-500 py-8">
                           No unclassified domains match the current filters
                         </td>
                       </tr>
@@ -1233,26 +1278,46 @@ export default function CompetitorReportPage() {
               </div>
             </div>
 
-            <div className="px-4 py-3 border-t bg-gray-50 flex justify-between items-center">
-              <div className="text-sm text-gray-600">
-                <span className="font-semibold text-purple-700">{selectedDomains.size > 0 ? selectedDomains.size : modalFilteredDomains.length}</span>
-                {' '}domains will be classified
-              </div>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setShowClassifyModal(false)}
-                  className="px-4 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={handleClassifySelected}
-                  disabled={modalFilteredDomains.length === 0}
-                  className="px-4 py-1.5 text-xs font-medium text-white bg-purple-600 rounded hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-1"
-                >
-                  <span>&#10024;</span>
-                  Classify Selected
-                </button>
+            <div className="px-4 py-3 border-t bg-gray-50">
+              <div className="flex justify-between items-start">
+                <div className="text-sm">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-gray-600">Domains to classify:</span>
+                    <span className="font-bold text-purple-700 text-lg">
+                      {domainsToClassify.length}
+                    </span>
+                    {selectedDomains.size > 0 && (
+                      <span className="text-xs text-gray-500">
+                        ({selectedDomains.size} manually selected)
+                      </span>
+                    )}
+                  </div>
+                  <p className={`text-xs ${domainsToClassify.length > 20 ? 'text-orange-600' : 'text-gray-500'}`}>
+                    {domainsToClassify.length > 20 ? (
+                      <>More domains = higher cost and longer processing time. Consider using filters to reduce the selection.</>
+                    ) : domainsToClassify.length > 10 ? (
+                      <>Moderate selection. Each domain requires an AI call.</>
+                    ) : (
+                      <>Good selection size for efficient classification.</>
+                    )}
+                  </p>
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setShowClassifyModal(false)}
+                    className="px-4 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleClassifySelected}
+                    disabled={domainsToClassify.length === 0}
+                    className="px-4 py-1.5 text-xs font-medium text-white bg-purple-600 rounded hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-1"
+                  >
+                    <span>&#10024;</span>
+                    Classify {domainsToClassify.length} Domains
+                  </button>
+                </div>
               </div>
             </div>
           </div>
