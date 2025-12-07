@@ -4,35 +4,61 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 
-const navItems = [
-  { href: '/', label: 'Home' },
+const masterItems = [
   { href: '/clients', label: 'Clients' },
-  { href: '/competitors', label: 'Competitors' },
   { href: '/keywords/manual', label: 'Keyword Manual' },
-  { href: '/keywords/api-data', label: 'Keyword API Data' },
-  { href: '/keywords/serp-results', label: 'SERP Results' },
 ];
 
 const reportItems = [
-  { href: '/report/competitors', label: 'Competitor List' },
+  { href: '/competitors', label: 'Competitors' },
+];
+
+const seoDataItems = [
+  { href: '/keywords/api-data', label: 'Keyword API Data' },
+  { href: '/keywords/serp-results', label: 'SERP Results' },
+  { href: '/keywords/domain-overview', label: 'Domain Overview' },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [masterOpen, setMasterOpen] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [seoDataOpen, setSeoDataOpen] = useState(false);
+  
+  const masterRef = useRef<HTMLDivElement>(null);
+  const reportRef = useRef<HTMLDivElement>(null);
+  const seoDataRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (masterRef.current && !masterRef.current.contains(event.target as Node)) {
+        setMasterOpen(false);
+      }
+      if (reportRef.current && !reportRef.current.contains(event.target as Node)) {
         setReportOpen(false);
+      }
+      if (seoDataRef.current && !seoDataRef.current.contains(event.target as Node)) {
+        setSeoDataOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const isReportActive = pathname.startsWith('/report');
+  const isMasterActive = masterItems.some(item => pathname === item.href);
+  const isReportActive = reportItems.some(item => pathname === item.href) || pathname.startsWith('/report');
+  const isSeoDataActive = seoDataItems.some(item => pathname === item.href);
+
+  const DropdownArrow = ({ isOpen }: { isOpen: boolean }) => (
+    <svg
+      className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+    </svg>
+  );
 
   return (
     <nav className="bg-white shadow-sm border-b">
@@ -44,47 +70,115 @@ export default function Navbar() {
             </Link>
           </div>
           <div className="flex items-center space-x-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  pathname === item.href
+            <Link
+              href="/"
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                pathname === '/'
+                  ? 'bg-indigo-100 text-indigo-700'
+                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+              }`}
+            >
+              Home
+            </Link>
+
+            <div className="relative" ref={masterRef}>
+              <button
+                onClick={() => {
+                  setMasterOpen(!masterOpen);
+                  setReportOpen(false);
+                  setSeoDataOpen(false);
+                }}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${
+                  isMasterActive
                     ? 'bg-indigo-100 text-indigo-700'
                     : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                 }`}
               >
-                {item.label}
-              </Link>
-            ))}
-            
-            <div className="relative" ref={dropdownRef}>
+                Master
+                <DropdownArrow isOpen={masterOpen} />
+              </button>
+              
+              {masterOpen && (
+                <div className="absolute left-0 mt-1 w-48 bg-white rounded-md shadow-lg border z-50">
+                  {masterItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMasterOpen(false)}
+                      className={`block px-4 py-2 text-sm transition-colors ${
+                        pathname === item.href
+                          ? 'bg-indigo-50 text-indigo-700'
+                          : 'text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="relative" ref={reportRef}>
               <button
-                onClick={() => setReportOpen(!reportOpen)}
+                onClick={() => {
+                  setReportOpen(!reportOpen);
+                  setMasterOpen(false);
+                  setSeoDataOpen(false);
+                }}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${
                   isReportActive
                     ? 'bg-indigo-100 text-indigo-700'
                     : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                 }`}
               >
-                Report
-                <svg
-                  className={`w-4 h-4 transition-transform ${reportOpen ? 'rotate-180' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
+                Reports
+                <DropdownArrow isOpen={reportOpen} />
               </button>
               
               {reportOpen && (
-                <div className="absolute right-0 mt-1 w-48 bg-white rounded-md shadow-lg border z-50">
+                <div className="absolute left-0 mt-1 w-48 bg-white rounded-md shadow-lg border z-50">
                   {reportItems.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
                       onClick={() => setReportOpen(false)}
+                      className={`block px-4 py-2 text-sm transition-colors ${
+                        pathname === item.href
+                          ? 'bg-indigo-50 text-indigo-700'
+                          : 'text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="relative" ref={seoDataRef}>
+              <button
+                onClick={() => {
+                  setSeoDataOpen(!seoDataOpen);
+                  setMasterOpen(false);
+                  setReportOpen(false);
+                }}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${
+                  isSeoDataActive
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                }`}
+              >
+                SeoData
+                <DropdownArrow isOpen={seoDataOpen} />
+              </button>
+              
+              {seoDataOpen && (
+                <div className="absolute left-0 mt-1 w-48 bg-white rounded-md shadow-lg border z-50">
+                  {seoDataItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setSeoDataOpen(false)}
                       className={`block px-4 py-2 text-sm transition-colors ${
                         pathname === item.href
                           ? 'bg-indigo-50 text-indigo-700'

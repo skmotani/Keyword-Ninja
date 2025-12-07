@@ -20,7 +20,8 @@ A full-stack web application for managing SEO research data including clients, c
 │   │   ├── keywords/
 │   │   │   ├── manual/         # Keyword Manual Master page
 │   │   │   ├── api-data/       # Keyword API Data page
-│   │   │   └── serp-results/   # SERP Results page
+│   │   │   ├── serp-results/   # SERP Results page
+│   │   │   └── domain-overview/# Domain Overview page (placeholder)
 │   │   ├── settings/
 │   │   │   └── api-credentials/# API Credentials Settings page
 │   │   ├── globals.css         # Global styles
@@ -169,8 +170,12 @@ The app runs on port 5000.
   - Support for multiple auth types
 
 ## Navigation
-- Main navigation links in the navbar header
-- Settings gear icon (⚙️) on the far right navigates to `/settings/api-credentials`
+The navbar uses dropdown menus organized by category:
+- **Home** - Direct link to dashboard
+- **Master** (dropdown) - Clients, Keyword Manual
+- **Reports** (dropdown) - Competitors
+- **SeoData** (dropdown) - Keyword API Data, SERP Results, Domain Overview
+- **Settings gear icon** (⚙️) on the far right navigates to `/settings/api-credentials`
 
 ## Storage
 Data is persisted in JSON files in the `data/` folder. This allows for easy backup, migration, and version control of data.
