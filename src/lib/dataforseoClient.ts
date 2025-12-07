@@ -469,6 +469,29 @@ export interface DomainOverviewResult {
   rawResponse: string;
 }
 
+interface DomainOverviewMetrics {
+  organic: {
+    etv: number;
+    count: number;
+    is_up: number;
+    is_down: number;
+    is_new: number;
+    is_lost: number;
+    pos_1: number;
+    pos_2_3: number;
+    pos_4_10: number;
+    pos_11_20: number;
+    pos_21_30: number;
+    pos_31_40: number;
+    pos_41_50: number;
+    pos_51_60: number;
+    pos_61_70: number;
+    pos_71_80: number;
+    pos_81_90: number;
+    pos_91_100: number;
+  } | null;
+}
+
 interface DataForSEODomainOverviewResponse {
   version: string;
   status_code: number;
@@ -493,31 +516,18 @@ interface DataForSEODomainOverviewResponse {
       language_code: string;
     };
     result: Array<{
+      se_type: string;
       target: string;
       location_code: number;
       language_code: string;
-      metrics: {
-        organic: {
-          etv: number;
-          count: number;
-          is_up: number;
-          is_down: number;
-          is_new: number;
-          is_lost: number;
-          pos_1: number;
-          pos_2_3: number;
-          pos_4_10: number;
-          pos_11_20: number;
-          pos_21_30: number;
-          pos_31_40: number;
-          pos_41_50: number;
-          pos_51_60: number;
-          pos_61_70: number;
-          pos_71_80: number;
-          pos_81_90: number;
-          pos_91_100: number;
-        } | null;
-      } | null;
+      total_count: number;
+      items_count: number;
+      items: Array<{
+        se_type: string;
+        location_code: number;
+        language_code: string;
+        metrics: DomainOverviewMetrics | null;
+      }> | null;
     }> | null;
   }>;
 }
@@ -728,24 +738,15 @@ export async function fetchDomainOverview(
 
       if (overviewData.status_code === 20000) {
         for (const task of overviewData.tasks || []) {
-          console.log('[DataForSEO Domain Overview] Task details:', {
-            taskStatusCode: task.status_code,
-            resultCount: task.result_count,
-            hasResult: !!task.result,
-            resultLength: task.result?.length || 0,
-          });
           if (task.status_code === 20000 && task.result) {
             for (const r of task.result) {
-              console.log('[DataForSEO Domain Overview] Result item:', {
-                target: r.target,
-                hasMetrics: !!r.metrics,
-                hasOrganic: !!r.metrics?.organic,
-                metricsKeys: r.metrics ? Object.keys(r.metrics) : [],
-                rawResult: JSON.stringify(r).substring(0, 500),
-              });
-              if (r.metrics?.organic) {
-                result.organicTraffic = r.metrics.organic.etv || null;
-                result.organicKeywordsCount = r.metrics.organic.count || null;
+              const items = r.items || [];
+              for (const item of items) {
+                if (item.metrics?.organic) {
+                  result.organicTraffic = item.metrics.organic.etv || null;
+                  result.organicKeywordsCount = item.metrics.organic.count || null;
+                  break;
+                }
               }
             }
           }
@@ -839,20 +840,8 @@ export async function fetchDomainOverview(
 
       if (backlinksData.status_code === 20000) {
         for (const task of backlinksData.tasks || []) {
-          console.log('[DataForSEO Backlinks] Task details:', {
-            taskStatusCode: task.status_code,
-            hasResult: !!task.result,
-            resultLength: task.result?.length || 0,
-          });
           if (task.status_code === 20000 && task.result) {
             for (const r of task.result) {
-              console.log('[DataForSEO Backlinks] Result item:', {
-                target: r.target,
-                rank: r.rank,
-                backlinks: r.backlinks,
-                referringDomains: r.referring_domains,
-                rawResult: JSON.stringify(r).substring(0, 500),
-              });
               result.backlinksCount = r.backlinks || null;
               result.referringDomainsCount = r.referring_domains || null;
               result.domainRank = r.rank || null;
