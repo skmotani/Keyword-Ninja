@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
       await createCompetitor(newCompetitor);
       createdCompetitors.push(newCompetitor);
     }
-    return NextResponse.json(createdCompetitors, { status: 201 });
+    return NextResponse.json({ added: createdCompetitors.length, competitors: createdCompetitors }, { status: 201 });
   }
   
   const newCompetitor: Competitor = {

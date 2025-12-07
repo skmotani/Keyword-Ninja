@@ -281,6 +281,7 @@ export default function CompetitorsPage() {
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Domain</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Source</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Active?</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
@@ -288,7 +289,7 @@ export default function CompetitorsPage() {
           <tbody className="bg-white divide-y divide-gray-200">
             {competitors.length === 0 ? (
               <tr>
-                <td colSpan={6} className="px-6 py-4 text-center text-gray-500">
+                <td colSpan={7} className="px-6 py-4 text-center text-gray-500">
                   No competitors yet. Add your first competitor above.
                 </td>
               </tr>
@@ -327,6 +328,11 @@ export default function CompetitorsPage() {
                           className="w-full px-2 py-1 border rounded"
                         />
                       </td>
+                      <td className="px-4 py-4 whitespace-nowrap">
+                        <span className={`px-2 py-1 text-xs rounded-full ${competitor.source === 'Via SERP Search' ? 'bg-purple-100 text-purple-800' : 'bg-gray-100 text-gray-700'}`}>
+                          {competitor.source || 'Manual Entry'}
+                        </span>
+                      </td>
                       <td className="px-6 py-4">
                         <span className={`px-2 py-1 text-xs rounded-full ${competitor.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
                           {competitor.isActive ? 'Yes' : 'No'}
@@ -353,6 +359,11 @@ export default function CompetitorsPage() {
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{getClientName(competitor.clientCode)}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{competitor.name}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{competitor.domain}</td>
+                      <td className="px-4 py-4 whitespace-nowrap">
+                        <span className={`px-2 py-1 text-xs rounded-full ${competitor.source === 'Via SERP Search' ? 'bg-purple-100 text-purple-800' : 'bg-gray-100 text-gray-700'}`}>
+                          {competitor.source || 'Manual Entry'}
+                        </span>
+                      </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className={`px-2 py-1 text-xs rounded-full ${competitor.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
                           {competitor.isActive ? 'Yes' : 'No'}

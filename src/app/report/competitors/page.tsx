@@ -281,6 +281,9 @@ export default function CompetitorReportPage() {
   const [topNFilter, setTopNFilter] = useState<number>(0);
   const [onPageTopFilter, setOnPageTopFilter] = useState<number>(0);
 
+  const [domainsToAddToMaster, setDomainsToAddToMaster] = useState<Set<string>>(new Set());
+  const [addingToMaster, setAddingToMaster] = useState(false);
+
   useEffect(() => {
     fetchClients();
   }, []);
@@ -766,6 +769,77 @@ export default function CompetitorReportPage() {
     setSelectedDomains(new Set());
   };
 
+  const toggleMasterSelection = (domain: string) => {
+    setDomainsToAddToMaster(prev => {
+      const next = new Set(prev);
+      if (next.has(domain)) {
+        next.delete(domain);
+      } else {
+        next.add(domain);
+      }
+      return next;
+    });
+  };
+
+  const toggleAllMasterSelection = () => {
+    if (domainsToAddToMaster.size === filteredAndSortedList.length) {
+      setDomainsToAddToMaster(new Set());
+    } else {
+      setDomainsToAddToMaster(new Set(filteredAndSortedList.map(e => e.domain)));
+    }
+  };
+
+  const clearMasterSelection = () => {
+    setDomainsToAddToMaster(new Set());
+  };
+
+  const handleAddToMaster = async () => {
+    if (domainsToAddToMaster.size === 0) {
+      showNotification('error', 'No domains selected');
+      return;
+    }
+
+    setAddingToMaster(true);
+
+    try {
+      const domainsToAdd = filteredAndSortedList
+        .filter(e => domainsToAddToMaster.has(e.domain))
+        .map(entry => ({
+          clientCode: selectedClientCode,
+          name: entry.domain.split('.')[0].charAt(0).toUpperCase() + entry.domain.split('.')[0].slice(1),
+          domain: entry.domain,
+          notes: '',
+          source: 'Via SERP Search' as const,
+          importanceScore: entry.importanceScore,
+          domainType: entry.classification?.domainType,
+          pageIntent: entry.classification?.pageIntent,
+          productMatchScoreValue: entry.classification?.productMatchScoreValue,
+          productMatchScoreBucket: entry.classification?.productMatchScoreBucket,
+          businessRelevanceCategory: entry.classification?.businessRelevanceCategory,
+          explanationSummary: entry.classification?.explanationSummary,
+        }));
+
+      const res = await fetch('/api/competitors', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ bulk: true, competitors: domainsToAdd }),
+      });
+
+      if (res.ok) {
+        const result = await res.json();
+        showNotification('success', `Added ${result.added || domainsToAdd.length} domain(s) to Competition Master`);
+        setDomainsToAddToMaster(new Set());
+      } else {
+        const error = await res.json();
+        showNotification('error', error.message || 'Failed to add domains');
+      }
+    } catch (error) {
+      showNotification('error', 'Failed to add domains to Competition Master');
+    } finally {
+      setAddingToMaster(false);
+    }
+  };
+
   const modalData = useMemo(() => {
     if (!modalDomain) return null;
     const domainLower = modalDomain.toLowerCase().trim();
@@ -851,6 +925,33 @@ export default function CompetitorReportPage() {
               </>
             )}
           </button>
+          {domainsToAddToMaster.size > 0 && (
+            <button
+              onClick={handleAddToMaster}
+              disabled={addingToMaster}
+              className="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {addingToMaster ? (
+                <>
+                  <span className="animate-spin">&#9696;</span>
+                  Adding...
+                </>
+              ) : (
+                <>
+                  <span>&#10133;</span>
+                  Add {domainsToAddToMaster.size} to Competition Master
+                </>
+              )}
+            </button>
+          )}
+          {domainsToAddToMaster.size > 0 && (
+            <button
+              onClick={clearMasterSelection}
+              className="px-3 py-2 text-gray-600 text-sm font-medium rounded-md border border-gray-300 hover:bg-gray-50"
+            >
+              Clear Selection
+            </button>
+          )}
         </div>
       </div>
 
@@ -982,8 +1083,17 @@ export default function CompetitorReportPage() {
           <table className="min-w-full">
             <thead className="bg-gray-50 sticky top-0 z-10 overflow-visible">
               <tr>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[4%]">#</th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[18%]">
+                <th className="text-center text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[3%]">
+                  <input
+                    type="checkbox"
+                    checked={domainsToAddToMaster.size > 0 && filteredAndSortedList.length > 0 && filteredAndSortedList.every(e => domainsToAddToMaster.has(e.domain))}
+                    onChange={toggleAllMasterSelection}
+                    className="w-4 h-4 text-indigo-600 rounded cursor-pointer"
+                    title="Select all visible domains"
+                  />
+                </th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[3%]">#</th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[17%]">
                   <Tooltip text="Competitor domain from SERP results">
                     <span className="cursor-help border-b border-dashed border-gray-400">Domain</span>
                   </Tooltip>
@@ -1029,13 +1139,13 @@ export default function CompetitorReportPage() {
             <tbody className="divide-y divide-gray-200">
               {loading ? (
                 <tr>
-                  <td colSpan={8} className="text-center py-8 text-gray-500 text-sm">
+                  <td colSpan={9} className="text-center py-8 text-gray-500 text-sm">
                     Loading...
                   </td>
                 </tr>
               ) : filteredAndSortedList.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="text-center py-8 text-gray-500 text-sm">
+                  <td colSpan={9} className="text-center py-8 text-gray-500 text-sm">
                     {competitorList.length === 0 
                       ? 'No domains found. Fetch SERP data first from the SERP Results page.'
                       : 'No records match your filters.'}
@@ -1043,7 +1153,15 @@ export default function CompetitorReportPage() {
                 </tr>
               ) : (
                 filteredAndSortedList.map((entry, index) => (
-                  <tr key={entry.domain} className="hover:bg-gray-50">
+                  <tr key={entry.domain} className={`hover:bg-gray-50 ${domainsToAddToMaster.has(entry.domain) ? 'bg-indigo-50' : ''}`}>
+                    <td className="text-center py-1.5 px-2">
+                      <input
+                        type="checkbox"
+                        checked={domainsToAddToMaster.has(entry.domain)}
+                        onChange={() => toggleMasterSelection(entry.domain)}
+                        className="w-4 h-4 text-indigo-600 rounded cursor-pointer"
+                      />
+                    </td>
                     <td className="text-xs text-gray-600 py-1.5 px-2">{index + 1}</td>
                     <td className="text-xs py-1.5 px-2">
                       <a
