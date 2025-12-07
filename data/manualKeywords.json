@@ -1713,5 +1713,75 @@
     "keywordText": "Precision Assembly Winder",
     "notes": "",
     "isActive": true
+  },
+  {
+    "id": "6094110d-537b-4ec5-b7ff-6171ea86f489",
+    "clientCode": "O2",
+    "keywordText": "Chemistry test series for JEE",
+    "notes": "",
+    "isActive": true
+  },
+  {
+    "id": "35fa6418-33e0-4fb1-bdfe-c86cd10d01c9",
+    "clientCode": "O2",
+    "keywordText": "Chemistry test series for NEET",
+    "notes": "",
+    "isActive": true
+  },
+  {
+    "id": "fae6dc01-f079-40a4-a545-094a2a2e9ac2",
+    "clientCode": "O2",
+    "keywordText": "JEE chemistry mock tests",
+    "notes": "",
+    "isActive": true
+  },
+  {
+    "id": "b3d60dc8-0d68-46d6-8f9a-c31eb1097946",
+    "clientCode": "O2",
+    "keywordText": "NEET chemistry mock tests",
+    "notes": "",
+    "isActive": true
+  },
+  {
+    "id": "dc29a5e2-bc8b-4184-b59b-6b3f7288df55",
+    "clientCode": "O2",
+    "keywordText": "Online chemistry test series",
+    "notes": "",
+    "isActive": true
+  },
+  {
+    "id": "d1e79ffe-9da7-48b9-bb57-9dfa7d442746",
+    "clientCode": "O2",
+    "keywordText": "Chapter wise chemistry test series",
+    "notes": "",
+    "isActive": true
+  },
+  {
+    "id": "d649000b-b7b8-42fb-9514-641862aac3a9",
+    "clientCode": "O2",
+    "keywordText": "Physical chemistry test series",
+    "notes": "",
+    "isActive": true
+  },
+  {
+    "id": "e2f29720-1184-4284-91da-b906bda65eac",
+    "clientCode": "O2",
+    "keywordText": "Organic chemistry test series",
+    "notes": "",
+    "isActive": true
+  },
+  {
+    "id": "93586dd7-f42f-4a65-abfc-0d4451907828",
+    "clientCode": "O2",
+    "keywordText": "Chemistry full syllabus mock test",
+    "notes": "",
+    "isActive": true
+  },
+  {
+    "id": "e7075511-71fb-41e5-8b33-b09dc71920e4",
+    "clientCode": "O2",
+    "keywordText": "Best chemistry test series for JEE and NEET",
+    "notes": "",
+    "isActive": true
   }
 ]
