@@ -32,6 +32,37 @@ interface SerpResult {
   fetchedAt: string;
 }
 
+interface KeywordApiDataRecord {
+  id: string;
+  clientCode: string;
+  keywordText: string;
+  normalizedKeyword: string;
+  searchVolume: number | null;
+  cpc: number | null;
+  competition: string | null;
+  lowTopOfPageBid: number | null;
+  highTopOfPageBid: number | null;
+  locationCode: number;
+  languageCode: string;
+  sourceApi: string;
+  snapshotDate: string;
+  lastPulledAt: string;
+}
+
+interface SerpResultWithVolume extends SerpResult {
+  searchVolume: number | null;
+}
+
+interface GroupedKeywordResult {
+  keyword: string;
+  locationCode: number;
+  searchVolume: number | null;
+  resultCount: number;
+  avgRank: number;
+  topDomain: string;
+  fetchedAt: string;
+}
+
 interface LocationStats {
   keywordsProcessed: number;
   resultsCreated: number;
@@ -95,7 +126,7 @@ function Tooltip({ text, children }: TooltipProps) {
   );
 }
 
-type SortField = 'rank' | 'rankAbsolute' | null;
+type SortField = 'rank' | 'rankAbsolute' | 'searchVolume' | null;
 type SortDirection = 'asc' | 'desc';
 
 interface ProgressState {
@@ -115,6 +146,7 @@ export default function SerpResultsPage() {
   const [selectedClientCode, setSelectedClientCode] = useState<string>('');
   const [selectedLocationCodes, setSelectedLocationCodes] = useState<string[]>(['IN', 'GL']);
   const [records, setRecords] = useState<SerpResult[]>([]);
+  const [keywordApiData, setKeywordApiData] = useState<KeywordApiDataRecord[]>([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
@@ -136,10 +168,13 @@ export default function SerpResultsPage() {
   const [locationFilter, setLocationFilter] = useState<string>('all');
   const [minRank, setMinRank] = useState<string>('');
   const [maxRank, setMaxRank] = useState<string>('');
-
+  const [minSearchVolume, setMinSearchVolume] = useState<string>('');
+  const [maxSearchVolume, setMaxSearchVolume] = useState<string>('');
 
   const [sortField, setSortField] = useState<SortField>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>('asc');
+
+  const [groupByKeyword, setGroupByKeyword] = useState(false);
 
   useEffect(() => {
     fetchClients();
@@ -163,13 +198,35 @@ export default function SerpResultsPage() {
     if (!selectedClientCode || selectedLocationCodes.length === 0) return;
     setLoading(true);
     try {
-      const res = await fetch(
-        `/api/seo/serp?clientCode=${selectedClientCode}&locationCodes=${selectedLocationCodes.join(',')}`
-      );
-      const data = await res.json();
-      setRecords(data);
+      const [serpRes, keywordRes] = await Promise.all([
+        fetch(`/api/seo/serp?clientCode=${selectedClientCode}&locationCodes=${selectedLocationCodes.join(',')}`),
+        fetch(`/api/seo/keywords?clientCode=${selectedClientCode}&locationCodes=${selectedLocationCodes.join(',')}`)
+      ]);
+      
+      if (!serpRes.ok) {
+        console.error('Failed to fetch SERP data:', serpRes.status);
+        setRecords([]);
+        setKeywordApiData([]);
+        return;
+      }
+      
+      const serpData = await serpRes.json();
+      setRecords(serpData);
+      
+      if (keywordRes.ok) {
+        const keywordData = await keywordRes.json();
+        if (Array.isArray(keywordData)) {
+          setKeywordApiData(keywordData);
+        } else {
+          setKeywordApiData([]);
+        }
+      } else {
+        setKeywordApiData([]);
+      }
     } catch (error) {
       console.error('Failed to fetch SERP data:', error);
+      setRecords([]);
+      setKeywordApiData([]);
     } finally {
       setLoading(false);
     }
@@ -320,8 +377,33 @@ export default function SerpResultsPage() {
     return sortDirection === 'asc' ? '↑' : '↓';
   };
 
-  const filteredRecords = useMemo(() => {
-    let result = records.filter(record => {
+  const normalizeKeyword = (keyword: string): string => {
+    return keyword.trim().replace(/\s+/g, ' ').toLowerCase();
+  };
+
+  const searchVolumeMap = useMemo(() => {
+    const map = new Map<string, number | null>();
+    for (const kw of keywordApiData) {
+      const normalizedKey = kw.normalizedKeyword || normalizeKeyword(kw.keywordText);
+      const key = `${normalizedKey}|${kw.locationCode}`;
+      map.set(key, kw.searchVolume);
+    }
+    return map;
+  }, [keywordApiData]);
+
+  const recordsWithVolume: SerpResultWithVolume[] = useMemo(() => {
+    return records.map(r => {
+      const normalizedKw = normalizeKeyword(r.keyword);
+      const key = `${normalizedKw}|${r.locationCode}`;
+      return {
+        ...r,
+        searchVolume: searchVolumeMap.get(key) ?? null
+      };
+    });
+  }, [records, searchVolumeMap]);
+
+  const filteredRecordsBase = useMemo(() => {
+    return recordsWithVolume.filter(record => {
       if (keywordFilter && !record.keyword.toLowerCase().includes(keywordFilter.toLowerCase())) {
         return false;
       }
@@ -342,10 +424,22 @@ export default function SerpResultsPage() {
       if (maxR !== null && record.rank > maxR) {
         return false;
       }
+      const minSV = minSearchVolume ? parseInt(minSearchVolume, 10) : null;
+      const maxSV = maxSearchVolume ? parseInt(maxSearchVolume, 10) : null;
+      if (minSV !== null && (record.searchVolume === null || record.searchVolume < minSV)) {
+        return false;
+      }
+      if (maxSV !== null && (record.searchVolume === null || record.searchVolume > maxSV)) {
+        return false;
+      }
       return true;
     });
+  }, [recordsWithVolume, keywordFilter, domainFilter, locationFilter, minRank, maxRank, minSearchVolume, maxSearchVolume]);
 
-    if (sortField) {
+  const filteredRecords = useMemo(() => {
+    const result = [...filteredRecordsBase];
+    
+    if (sortField && !groupByKeyword) {
       result.sort((a, b) => {
         const aVal = a[sortField];
         const bVal = b[sortField];
@@ -358,7 +452,52 @@ export default function SerpResultsPage() {
     }
 
     return result;
-  }, [records, keywordFilter, domainFilter, locationFilter, minRank, maxRank, sortField, sortDirection]);
+  }, [filteredRecordsBase, sortField, sortDirection, groupByKeyword]);
+
+  const groupedResults: GroupedKeywordResult[] = useMemo(() => {
+    if (!groupByKeyword) return [];
+
+    const groups = new Map<string, SerpResultWithVolume[]>();
+    for (const r of filteredRecordsBase) {
+      const key = `${r.keyword}|${r.locationCode}`;
+      if (!groups.has(key)) {
+        groups.set(key, []);
+      }
+      groups.get(key)!.push(r);
+    }
+
+    const result: GroupedKeywordResult[] = [];
+    groups.forEach((items, key) => {
+      const [keyword] = key.split('|');
+      const locationCode = items[0].locationCode;
+      const searchVolume = items[0].searchVolume;
+      const avgRank = items.reduce((sum, i) => sum + i.rank, 0) / items.length;
+      const topResult = items.reduce((top, i) => i.rank < top.rank ? i : top, items[0]);
+      result.push({
+        keyword,
+        locationCode,
+        searchVolume,
+        resultCount: items.length,
+        avgRank: Math.round(avgRank * 10) / 10,
+        topDomain: topResult.domain,
+        fetchedAt: topResult.fetchedAt,
+      });
+    });
+
+    if (sortField === 'searchVolume') {
+      result.sort((a, b) => {
+        if (a.searchVolume === null && b.searchVolume === null) return 0;
+        if (a.searchVolume === null) return 1;
+        if (b.searchVolume === null) return -1;
+        const comparison = a.searchVolume - b.searchVolume;
+        return sortDirection === 'asc' ? comparison : -comparison;
+      });
+    } else {
+      result.sort((a, b) => a.keyword.localeCompare(b.keyword) || a.locationCode - b.locationCode);
+    }
+
+    return result;
+  }, [filteredRecordsBase, groupByKeyword, sortField, sortDirection]);
 
   const getLocationStats = (numericCode: number) => {
     const locRecords = records.filter(r => r.locationCode === numericCode);
@@ -378,10 +517,7 @@ export default function SerpResultsPage() {
     return `${date.getMonth() + 1}/${date.getDate()} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
   };
 
-  const truncateText = (text: string, maxLen: number) => {
-    if (text.length <= maxLen) return text;
-    return text.substring(0, maxLen) + '...';
-  };
+  const hasFilters = keywordFilter || domainFilter || locationFilter !== 'all' || minRank || maxRank || minSearchVolume || maxSearchVolume;
 
   return (
     <div className="max-w-[1600px] mx-auto p-4">
@@ -559,14 +695,31 @@ export default function SerpResultsPage() {
           </div>
           <div>
             <span className="text-gray-500">Showing:</span>
-            <p className="font-medium text-gray-800">{filteredRecords.length} of {records.length}</p>
+            <p className="font-medium text-gray-800">{groupByKeyword ? groupedResults.length : filteredRecords.length} of {records.length}</p>
           </div>
         </div>
       </div>
 
       <div className="bg-white rounded-lg shadow-sm border p-3 mb-4">
-        <p className="text-xs font-medium text-gray-700 mb-2">Filters</p>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-xs font-medium text-gray-700">Filters</p>
+          <label className="flex items-center gap-2 cursor-pointer">
+            <span className="text-xs text-gray-600">Group by Keyword + Location</span>
+            <button
+              onClick={() => setGroupByKeyword(!groupByKeyword)}
+              className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                groupByKeyword ? 'bg-indigo-600' : 'bg-gray-300'
+              }`}
+            >
+              <span
+                className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
+                  groupByKeyword ? 'translate-x-5' : 'translate-x-1'
+                }`}
+              />
+            </button>
+          </label>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-7 gap-3">
           <div>
             <label className="block text-[10px] text-gray-500 mb-1">Keyword Search</label>
             <input
@@ -619,8 +772,28 @@ export default function SerpResultsPage() {
               className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
             />
           </div>
+          <div>
+            <label className="block text-[10px] text-gray-500 mb-1">Min Search Vol</label>
+            <input
+              type="number"
+              value={minSearchVolume}
+              onChange={(e) => setMinSearchVolume(e.target.value)}
+              placeholder="Min"
+              className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            />
+          </div>
+          <div>
+            <label className="block text-[10px] text-gray-500 mb-1">Max Search Vol</label>
+            <input
+              type="number"
+              value={maxSearchVolume}
+              onChange={(e) => setMaxSearchVolume(e.target.value)}
+              placeholder="Max"
+              className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            />
+          </div>
         </div>
-        {(keywordFilter || domainFilter || locationFilter !== 'all' || minRank || maxRank) && (
+        {hasFilters && (
           <button
             onClick={() => {
               setKeywordFilter('');
@@ -628,6 +801,8 @@ export default function SerpResultsPage() {
               setLocationFilter('all');
               setMinRank('');
               setMaxRank('');
+              setMinSearchVolume('');
+              setMaxSearchVolume('');
             }}
             className="mt-2 text-xs text-indigo-600 hover:text-indigo-800"
           >
@@ -638,122 +813,225 @@ export default function SerpResultsPage() {
 
       <div className="bg-white rounded-lg shadow-sm border">
         <div className="overflow-auto max-h-[600px]">
-          <table className="w-full table-fixed">
-            <thead className="bg-gray-50 sticky top-0 z-10">
-              <tr>
-                <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
-                  <Tooltip text="Date and time when the SERP data was fetched">
-                    <span className="cursor-help border-b border-dashed border-gray-400">Date</span>
-                  </Tooltip>
-                </th>
-                <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">Keyword</th>
-                <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
-                  <Tooltip text="Location/region for the search (IN = India, GL = Global/US)">
-                    <span className="cursor-help border-b border-dashed border-gray-400">Scope</span>
-                  </Tooltip>
-                </th>
-                <th className="w-[10%] text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
-                  <div className="flex items-center justify-end gap-1">
-                    <Tooltip text="Position within organic results (1-10)">
-                      <span className="cursor-help border-b border-dashed border-gray-400">Rank</span>
-                    </Tooltip>
-                    <button
-                      onClick={() => handleSort('rank')}
-                      className="ml-1 text-gray-400 hover:text-indigo-600 focus:outline-none"
-                      title="Sort by Rank"
-                    >
-                      {getSortIcon('rank') || '⇅'}
-                    </button>
-                  </div>
-                </th>
-                <th className="w-[10%] text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
-                  <div className="flex items-center justify-end gap-1">
-                    <Tooltip text="Absolute position including all SERP elements (ads, featured snippets, etc.)">
-                      <span className="cursor-help border-b border-dashed border-gray-400">Abs Rank</span>
-                    </Tooltip>
-                    <button
-                      onClick={() => handleSort('rankAbsolute')}
-                      className="ml-1 text-gray-400 hover:text-indigo-600 focus:outline-none"
-                      title="Sort by Absolute Rank"
-                    >
-                      {getSortIcon('rankAbsolute') || '⇅'}
-                    </button>
-                  </div>
-                </th>
-                <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">Domain</th>
-                <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">URL</th>
-                <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">Title</th>
-                <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
-                  <Tooltip text="Meta description / snippet shown in search results">
-                    <span className="cursor-help border-b border-dashed border-gray-400">Snippet</span>
-                  </Tooltip>
-                </th>
-                <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
-                  <Tooltip text="Breadcrumb URL path shown in SERP">
-                    <span className="cursor-help border-b border-dashed border-gray-400">Breadcrumb</span>
-                  </Tooltip>
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {loading ? (
+          {groupByKeyword ? (
+            <table className="w-full table-fixed">
+              <thead className="bg-gray-50 sticky top-0 z-10">
                 <tr>
-                  <td colSpan={10} className="text-center py-8 text-gray-500 text-sm">
-                    Loading...
-                  </td>
-                </tr>
-              ) : filteredRecords.length === 0 ? (
-                <tr>
-                  <td colSpan={10} className="text-center py-8 text-gray-500 text-sm">
-                    No SERP results found. Click "Refresh SERP data from API" to fetch data.
-                  </td>
-                </tr>
-              ) : (
-                filteredRecords.map((record) => (
-                  <tr key={record.id} className="hover:bg-gray-50">
-                    <td className="py-2 px-2 text-xs text-gray-600 truncate">
-                      {formatDate(record.fetchedAt)}
-                    </td>
-                    <td className="py-2 px-2 text-xs text-gray-900 font-medium truncate" title={record.keyword}>
-                      {record.keyword}
-                    </td>
-                    <td className="py-2 px-2 text-xs text-gray-600 truncate">
-                      {getLocationLabel(record.locationCode)}
-                    </td>
-                    <td className="py-2 px-2 text-xs text-gray-900 text-right font-medium truncate">
-                      {record.rank}
-                    </td>
-                    <td className="py-2 px-2 text-xs text-gray-600 text-right truncate">
-                      {record.rankAbsolute}
-                    </td>
-                    <td className="py-2 px-2 text-xs text-gray-900 truncate" title={record.domain}>
-                      {record.domain}
-                    </td>
-                    <td className="py-2 px-2 text-xs text-blue-600 truncate">
-                      <a 
-                        href={record.url} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="hover:underline truncate block"
-                        title={record.url}
+                  <th className="w-[5%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">S.No</th>
+                  <th className="w-[30%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">Keyword</th>
+                  <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                    <Tooltip text="Location/region for the search (IN = India, GL = Global/US)">
+                      <span className="cursor-help border-b border-dashed border-gray-400">Scope</span>
+                    </Tooltip>
+                  </th>
+                  <th className="w-[12%] text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                    <div className="flex items-center justify-end gap-1">
+                      <Tooltip text="Monthly search volume from Keyword API Data">
+                        <span className="cursor-help border-b border-dashed border-gray-400">Search Vol</span>
+                      </Tooltip>
+                      <button
+                        onClick={() => handleSort('searchVolume')}
+                        className="ml-1 text-gray-400 hover:text-indigo-600 focus:outline-none"
+                        title="Sort by Search Volume"
                       >
-                        {record.url}
-                      </a>
-                    </td>
-                    <td className="py-2 px-2 text-xs text-gray-900 truncate" title={record.title}>
-                      {record.title}
-                    </td>
-                    <td className="py-2 px-2 text-xs text-gray-600 truncate" title={record.description}>
-                      {record.description}
-                    </td>
-                    <td className="py-2 px-2 text-xs text-gray-500 truncate" title={record.breadcrumb || ''}>
-                      {record.breadcrumb || '-'}
+                        {getSortIcon('searchVolume') || '⇅'}
+                      </button>
+                    </div>
+                  </th>
+                  <th className="w-[10%] text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                    <Tooltip text="Number of SERP results found for this keyword">
+                      <span className="cursor-help border-b border-dashed border-gray-400">Results</span>
+                    </Tooltip>
+                  </th>
+                  <th className="w-[10%] text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                    <Tooltip text="Average rank position across all results">
+                      <span className="cursor-help border-b border-dashed border-gray-400">Avg Rank</span>
+                    </Tooltip>
+                  </th>
+                  <th className="w-[15%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                    <Tooltip text="Domain with the highest rank (position 1)">
+                      <span className="cursor-help border-b border-dashed border-gray-400">Top Domain</span>
+                    </Tooltip>
+                  </th>
+                  <th className="w-[8%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                    <Tooltip text="Date and time when the SERP data was fetched">
+                      <span className="cursor-help border-b border-dashed border-gray-400">Date</span>
+                    </Tooltip>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {loading ? (
+                  <tr>
+                    <td colSpan={8} className="text-center py-8 text-gray-500 text-sm">
+                      Loading...
                     </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+                ) : groupedResults.length === 0 ? (
+                  <tr>
+                    <td colSpan={8} className="text-center py-8 text-gray-500 text-sm">
+                      No SERP results found. Click "Refresh SERP data from API" to fetch data.
+                    </td>
+                  </tr>
+                ) : (
+                  groupedResults.map((group, index) => (
+                    <tr key={`${group.keyword}|${group.locationCode}`} className="hover:bg-gray-50">
+                      <td className="py-2 px-2 text-xs text-gray-500">{index + 1}</td>
+                      <td className="py-2 px-2 text-xs text-gray-900 font-medium truncate" title={group.keyword}>
+                        {group.keyword}
+                      </td>
+                      <td className="py-2 px-2 text-xs text-gray-600">
+                        {getLocationLabel(group.locationCode)}
+                      </td>
+                      <td className="py-2 px-2 text-xs text-gray-600 text-right">
+                        {group.searchVolume?.toLocaleString() ?? '-'}
+                      </td>
+                      <td className="py-2 px-2 text-xs text-gray-600 text-right">
+                        {group.resultCount}
+                      </td>
+                      <td className="py-2 px-2 text-xs text-gray-600 text-right">
+                        {group.avgRank}
+                      </td>
+                      <td className="py-2 px-2 text-xs text-gray-900 truncate" title={group.topDomain}>
+                        {group.topDomain}
+                      </td>
+                      <td className="py-2 px-2 text-xs text-gray-600 truncate">
+                        {formatDate(group.fetchedAt)}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          ) : (
+            <table className="w-full table-fixed">
+              <thead className="bg-gray-50 sticky top-0 z-10">
+                <tr>
+                  <th className="w-[4%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">S.No</th>
+                  <th className="w-[12%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">Keyword</th>
+                  <th className="w-[5%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                    <Tooltip text="Location/region for the search (IN = India, GL = Global/US)">
+                      <span className="cursor-help border-b border-dashed border-gray-400">Scope</span>
+                    </Tooltip>
+                  </th>
+                  <th className="w-[8%] text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                    <div className="flex items-center justify-end gap-1">
+                      <Tooltip text="Monthly search volume from Keyword API Data">
+                        <span className="cursor-help border-b border-dashed border-gray-400">Search Vol</span>
+                      </Tooltip>
+                      <button
+                        onClick={() => handleSort('searchVolume')}
+                        className="ml-1 text-gray-400 hover:text-indigo-600 focus:outline-none"
+                        title="Sort by Search Volume"
+                      >
+                        {getSortIcon('searchVolume') || '⇅'}
+                      </button>
+                    </div>
+                  </th>
+                  <th className="w-[5%] text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                    <div className="flex items-center justify-end gap-1">
+                      <Tooltip text="Position within organic results (1-10)">
+                        <span className="cursor-help border-b border-dashed border-gray-400">Rank</span>
+                      </Tooltip>
+                      <button
+                        onClick={() => handleSort('rank')}
+                        className="ml-1 text-gray-400 hover:text-indigo-600 focus:outline-none"
+                        title="Sort by Rank"
+                      >
+                        {getSortIcon('rank') || '⇅'}
+                      </button>
+                    </div>
+                  </th>
+                  <th className="w-[6%] text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                    <div className="flex items-center justify-end gap-1">
+                      <Tooltip text="Absolute position including all SERP elements (ads, featured snippets, etc.)">
+                        <span className="cursor-help border-b border-dashed border-gray-400">Abs Rank</span>
+                      </Tooltip>
+                      <button
+                        onClick={() => handleSort('rankAbsolute')}
+                        className="ml-1 text-gray-400 hover:text-indigo-600 focus:outline-none"
+                        title="Sort by Absolute Rank"
+                      >
+                        {getSortIcon('rankAbsolute') || '⇅'}
+                      </button>
+                    </div>
+                  </th>
+                  <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">Domain</th>
+                  <th className="w-[14%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">URL</th>
+                  <th className="w-[12%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">Title</th>
+                  <th className="w-[14%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                    <Tooltip text="Meta description / snippet shown in search results">
+                      <span className="cursor-help border-b border-dashed border-gray-400">Snippet</span>
+                    </Tooltip>
+                  </th>
+                  <th className="w-[6%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                    <Tooltip text="Date and time when the SERP data was fetched">
+                      <span className="cursor-help border-b border-dashed border-gray-400">Date</span>
+                    </Tooltip>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {loading ? (
+                  <tr>
+                    <td colSpan={11} className="text-center py-8 text-gray-500 text-sm">
+                      Loading...
+                    </td>
+                  </tr>
+                ) : filteredRecords.length === 0 ? (
+                  <tr>
+                    <td colSpan={11} className="text-center py-8 text-gray-500 text-sm">
+                      No SERP results found. Click "Refresh SERP data from API" to fetch data.
+                    </td>
+                  </tr>
+                ) : (
+                  filteredRecords.map((record, index) => (
+                    <tr key={record.id} className="hover:bg-gray-50">
+                      <td className="py-2 px-2 text-xs text-gray-500">{index + 1}</td>
+                      <td className="py-2 px-2 text-xs text-gray-900 font-medium truncate" title={record.keyword}>
+                        {record.keyword}
+                      </td>
+                      <td className="py-2 px-2 text-xs text-gray-600 truncate">
+                        {getLocationLabel(record.locationCode)}
+                      </td>
+                      <td className="py-2 px-2 text-xs text-gray-600 text-right">
+                        {record.searchVolume?.toLocaleString() ?? '-'}
+                      </td>
+                      <td className="py-2 px-2 text-xs text-gray-900 text-right font-medium truncate">
+                        {record.rank}
+                      </td>
+                      <td className="py-2 px-2 text-xs text-gray-600 text-right truncate">
+                        {record.rankAbsolute}
+                      </td>
+                      <td className="py-2 px-2 text-xs text-gray-900 truncate" title={record.domain}>
+                        {record.domain}
+                      </td>
+                      <td className="py-2 px-2 text-xs text-blue-600 truncate">
+                        <a 
+                          href={record.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="hover:underline truncate block"
+                          title={record.url}
+                        >
+                          {record.url}
+                        </a>
+                      </td>
+                      <td className="py-2 px-2 text-xs text-gray-900 truncate" title={record.title}>
+                        {record.title}
+                      </td>
+                      <td className="py-2 px-2 text-xs text-gray-600 truncate" title={record.description}>
+                        {record.description}
+                      </td>
+                      <td className="py-2 px-2 text-xs text-gray-600 truncate">
+                        {formatDate(record.fetchedAt)}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
     </div>
