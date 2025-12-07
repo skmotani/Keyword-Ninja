@@ -229,7 +229,16 @@ Generate the CLIENT PROFILE JSON for this client.`;
   if (!response.ok) {
     const errorText = await response.text();
     console.error('[Gemini] API Error:', errorText);
-    throw new Error(`Gemini API error: ${response.status} - ${errorText}`);
+    
+    if (response.status === 429) {
+      throw new Error('Gemini API quota exceeded. Please wait a minute and try again, or check your API key quota at ai.dev/usage');
+    }
+    
+    if (response.status === 404) {
+      throw new Error('Gemini model not found. The API may have changed.');
+    }
+    
+    throw new Error(`Gemini API error: ${response.status}`);
   }
 
   const result = await response.json();
