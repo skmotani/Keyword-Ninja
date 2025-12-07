@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import PageHeader from '@/components/PageHeader';
+import { computeDomainImportanceScores, formatImportanceScore } from '@/lib/domainImportance';
 
 interface Client {
   id: string;
@@ -14,11 +15,26 @@ interface SerpResult {
   id: string;
   clientCode: string;
   domain: string;
+  keyword: string;
+  rank: number;
+  rankAbsolute: number;
+  locationCode: number;
+}
+
+interface KeywordApiData {
+  id: string;
+  clientCode: string;
+  keywordText: string;
+  normalizedKeyword: string;
+  searchVolume: number | null;
+  locationCode: number;
 }
 
 interface CompetitorEntry {
   domain: string;
   label: string;
+  importanceScore: number;
+  appearanceCount: number;
 }
 
 interface TooltipProps {
@@ -112,7 +128,11 @@ function findLongestCommonSubstring(str1: string, str2: string, minLength: numbe
   return null;
 }
 
-function generateLabels(domains: string[]): CompetitorEntry[] {
+function generateLabelsWithScores(
+  domains: string[],
+  importanceScores: Record<string, number>,
+  appearanceCounts: Record<string, number>
+): CompetitorEntry[] {
   const domainData = domains.map(d => {
     const root = extractDomainRoot(d);
     return {
@@ -162,20 +182,32 @@ function generateLabels(domains: string[]): CompetitorEntry[] {
     });
   });
 
-  return domains.map(domain => ({
-    domain,
-    label: finalLabels.get(domain) || normalizeDomainForComparison(extractDomainRoot(domain))
-  }));
+  return domains.map(domain => {
+    const domainLower = domain.toLowerCase().trim();
+    return {
+      domain,
+      label: finalLabels.get(domain) || normalizeDomainForComparison(extractDomainRoot(domain)),
+      importanceScore: importanceScores[domainLower] || 0,
+      appearanceCount: appearanceCounts[domainLower] || 0
+    };
+  });
 }
+
+type SortField = 'importanceScore' | 'appearanceCount' | null;
+type SortDirection = 'asc' | 'desc';
 
 export default function CompetitorReportPage() {
   const [clients, setClients] = useState<Client[]>([]);
   const [selectedClientCode, setSelectedClientCode] = useState<string>('');
   const [serpResults, setSerpResults] = useState<SerpResult[]>([]);
+  const [keywordApiData, setKeywordApiData] = useState<KeywordApiData[]>([]);
   const [loading, setLoading] = useState(false);
   
   const [domainFilter, setDomainFilter] = useState('');
   const [labelFilter, setLabelFilter] = useState('');
+  
+  const [sortField, setSortField] = useState<SortField>('importanceScore');
+  const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
 
   useEffect(() => {
     fetchClients();
@@ -197,31 +229,85 @@ export default function CompetitorReportPage() {
 
   useEffect(() => {
     if (selectedClientCode) {
-      fetchSerpResults();
+      fetchData();
     }
   }, [selectedClientCode]);
 
-  const fetchSerpResults = async () => {
+  const fetchData = async () => {
     if (!selectedClientCode) return;
     setLoading(true);
     try {
-      const res = await fetch(`/api/seo/serp?clientCode=${selectedClientCode}&locationCodes=IN,GL`);
-      const data = await res.json();
-      setSerpResults(data);
+      const [serpRes, keywordRes] = await Promise.all([
+        fetch(`/api/seo/serp?clientCode=${selectedClientCode}&locationCodes=IN,GL`),
+        fetch(`/api/seo/keywords?clientCode=${selectedClientCode}&locationCodes=IN,GL`)
+      ]);
+      const serpData = await serpRes.json();
+      const keywordData = await keywordRes.json();
+      setSerpResults(serpData);
+      setKeywordApiData(keywordData);
     } catch (error) {
-      console.error('Failed to fetch SERP results:', error);
+      console.error('Failed to fetch data:', error);
     } finally {
       setLoading(false);
     }
   };
 
+  const keywordVolumeMap = useMemo(() => {
+    const map: Record<string, number> = {};
+    for (const kw of keywordApiData) {
+      const key = `${kw.keywordText.toLowerCase().trim()}_${kw.locationCode}`;
+      if (kw.searchVolume !== null && kw.searchVolume > 0) {
+        if (!map[key] || kw.searchVolume > map[key]) {
+          map[key] = kw.searchVolume;
+        }
+      }
+    }
+    return map;
+  }, [keywordApiData]);
+
+  const { importanceScores, appearanceCounts } = useMemo(() => {
+    const rowsForScoring = serpResults.map(r => {
+      const volKey = `${r.keyword.toLowerCase().trim()}_${r.locationCode}`;
+      return {
+        domain: r.domain,
+        keyword: r.keyword,
+        rank: r.rank,
+        searchVolume: keywordVolumeMap[volKey] || 0
+      };
+    });
+
+    const scores = computeDomainImportanceScores(rowsForScoring);
+
+    const counts: Record<string, number> = {};
+    for (const r of serpResults) {
+      const d = r.domain.toLowerCase().trim();
+      counts[d] = (counts[d] || 0) + 1;
+    }
+
+    return { importanceScores: scores, appearanceCounts: counts };
+  }, [serpResults, keywordVolumeMap]);
+
   const competitorList = useMemo(() => {
     const uniqueDomains = Array.from(new Set(serpResults.map(r => r.domain))).sort();
-    return generateLabels(uniqueDomains);
-  }, [serpResults]);
+    return generateLabelsWithScores(uniqueDomains, importanceScores, appearanceCounts);
+  }, [serpResults, importanceScores, appearanceCounts]);
 
-  const filteredList = useMemo(() => {
-    let result = competitorList;
+  const handleSort = (field: SortField) => {
+    if (sortField === field) {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortDirection('desc');
+    }
+  };
+
+  const getSortIcon = (field: SortField) => {
+    if (sortField !== field) return '↕';
+    return sortDirection === 'asc' ? '↑' : '↓';
+  };
+
+  const filteredAndSortedList = useMemo(() => {
+    let result = [...competitorList];
     
     if (domainFilter) {
       const lower = domainFilter.toLowerCase();
@@ -232,9 +318,20 @@ export default function CompetitorReportPage() {
       const lower = labelFilter.toLowerCase();
       result = result.filter(c => c.label.toLowerCase().includes(lower));
     }
+
+    if (sortField) {
+      result.sort((a, b) => {
+        const aVal = a[sortField] ?? 0;
+        const bVal = b[sortField] ?? 0;
+        if (sortDirection === 'asc') {
+          return aVal - bVal;
+        }
+        return bVal - aVal;
+      });
+    }
     
     return result;
-  }, [competitorList, domainFilter, labelFilter]);
+  }, [competitorList, domainFilter, labelFilter, sortField, sortDirection]);
 
   const labelStats = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -256,8 +353,8 @@ export default function CompetitorReportPage() {
   return (
     <div className="max-w-7xl mx-auto p-4">
       <PageHeader
-        title="Competitor List"
-        description="Unique domains from SERP Results with auto-generated labels"
+        title="Unique Domains"
+        description="Unique domains from SERP Results with importance scores and auto-generated labels"
       />
 
       <div className="bg-white rounded-lg shadow-sm border p-4 mb-4">
@@ -295,7 +392,7 @@ export default function CompetitorReportPage() {
           </div>
           <div>
             <span className="text-gray-500">Showing:</span>
-            <p className="font-medium text-gray-800">{filteredList.length} of {competitorList.length}</p>
+            <p className="font-medium text-gray-800">{filteredAndSortedList.length} of {competitorList.length}</p>
           </div>
         </div>
       </div>
@@ -339,15 +436,35 @@ export default function CompetitorReportPage() {
           <table className="min-w-full">
             <thead className="bg-gray-50 sticky top-0 z-10 overflow-visible">
               <tr>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">S.No</th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[5%]">S.No</th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[35%]">
                   <Tooltip text="Competitor domain extracted from SERP results. Click to visit the website.">
                     <span className="cursor-help border-b border-dashed border-gray-400">Domain</span>
                   </Tooltip>
                 </th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2">
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[20%]">
                   <Tooltip text="Auto-generated label based on domain name patterns. Domains with similar names are grouped under the same label.">
                     <span className="cursor-help border-b border-dashed border-gray-400">Label</span>
+                  </Tooltip>
+                </th>
+                <th 
+                  className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[20%] cursor-pointer hover:bg-gray-100"
+                  onClick={() => handleSort('importanceScore')}
+                >
+                  <Tooltip text="Domain Importance Score = (searchVolume × rankWeight) × appearanceWeight. Higher scores indicate more valuable competitor domains.">
+                    <span className="cursor-help border-b border-dashed border-gray-400 flex items-center justify-end gap-1">
+                      Importance {getSortIcon('importanceScore')}
+                    </span>
+                  </Tooltip>
+                </th>
+                <th 
+                  className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[10%] cursor-pointer hover:bg-gray-100"
+                  onClick={() => handleSort('appearanceCount')}
+                >
+                  <Tooltip text="Number of keywords where this domain appears in top 10 SERP results.">
+                    <span className="cursor-help border-b border-dashed border-gray-400 flex items-center justify-end gap-1">
+                      Keywords {getSortIcon('appearanceCount')}
+                    </span>
                   </Tooltip>
                 </th>
               </tr>
@@ -355,20 +472,20 @@ export default function CompetitorReportPage() {
             <tbody className="divide-y divide-gray-200">
               {loading ? (
                 <tr>
-                  <td colSpan={3} className="text-center py-8 text-gray-500 text-sm">
+                  <td colSpan={5} className="text-center py-8 text-gray-500 text-sm">
                     Loading...
                   </td>
                 </tr>
-              ) : filteredList.length === 0 ? (
+              ) : filteredAndSortedList.length === 0 ? (
                 <tr>
-                  <td colSpan={3} className="text-center py-8 text-gray-500 text-sm">
+                  <td colSpan={5} className="text-center py-8 text-gray-500 text-sm">
                     {competitorList.length === 0 
                       ? 'No domains found. Fetch SERP data first from the SERP Results page.'
                       : 'No records match your filters. Try adjusting the filter criteria.'}
                   </td>
                 </tr>
               ) : (
-                filteredList.map((entry, index) => (
+                filteredAndSortedList.map((entry, index) => (
                   <tr key={entry.domain} className="hover:bg-gray-50">
                     <td className="text-xs text-gray-600 py-1 px-2 leading-tight">{index + 1}</td>
                     <td className="text-xs py-1 px-2 leading-tight">
@@ -384,6 +501,12 @@ export default function CompetitorReportPage() {
                     </td>
                     <td className="text-xs text-gray-600 py-1 px-2 leading-tight font-medium">
                       {entry.label}
+                    </td>
+                    <td className="text-xs text-gray-800 py-1 px-2 leading-tight text-right font-semibold">
+                      {formatImportanceScore(entry.importanceScore)}
+                    </td>
+                    <td className="text-xs text-gray-600 py-1 px-2 leading-tight text-right">
+                      {entry.appearanceCount}
                     </td>
                   </tr>
                 ))
