@@ -2,13 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import PageHeader from '@/components/PageHeader';
-import { Client, Competitor } from '@/types';
+import { Client, Competitor, CompetitorSource } from '@/types';
 
 export default function CompetitorsPage() {
   const [competitors, setCompetitors] = useState<Competitor[]>([]);
   const [clients, setClients] = useState<Client[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [notification, setNotification] = useState<{ type: 'success' | 'error' | 'info'; message: string } | null>(null);
+  const [recentlyAddedDomains, setRecentlyAddedDomains] = useState<Set<string>>(new Set());
   
   const [formData, setFormData] = useState({
     clientCode: '',
@@ -22,6 +24,7 @@ export default function CompetitorsPage() {
     name: '',
     domain: '',
     notes: '',
+    source: 'Manual Entry' as CompetitorSource,
   });
 
   const [showBulkImport, setShowBulkImport] = useState(false);
@@ -30,6 +33,22 @@ export default function CompetitorsPage() {
 
   useEffect(() => {
     fetchData();
+    
+    const storedNotification = localStorage.getItem('competitorMasterNotification');
+    if (storedNotification) {
+      try {
+        const data = JSON.parse(storedNotification);
+        setNotification({ type: 'success', message: data.message });
+        if (data.domains && Array.isArray(data.domains)) {
+          setRecentlyAddedDomains(new Set(data.domains.map((d: string) => d.toLowerCase().trim())));
+          setTimeout(() => setRecentlyAddedDomains(new Set()), 10000);
+        }
+        localStorage.removeItem('competitorMasterNotification');
+        setTimeout(() => setNotification(null), 6000);
+      } catch (e) {
+        localStorage.removeItem('competitorMasterNotification');
+      }
+    }
   }, []);
 
   async function fetchData() {
@@ -99,6 +118,8 @@ export default function CompetitorsPage() {
   }
 
   async function handleUpdate(id: string) {
+    const wasSourceChanged = competitors.find(c => c.id === id)?.source !== editFormData.source;
+    
     await fetch('/api/competitors', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -107,6 +128,11 @@ export default function CompetitorsPage() {
     
     setEditingId(null);
     fetchData();
+    
+    if (wasSourceChanged) {
+      setNotification({ type: 'info', message: `Source updated to "${editFormData.source}"` });
+      setTimeout(() => setNotification(null), 3000);
+    }
   }
 
   async function toggleActive(competitor: Competitor) {
@@ -138,6 +164,7 @@ export default function CompetitorsPage() {
       name: competitor.name,
       domain: competitor.domain,
       notes: competitor.notes || '',
+      source: competitor.source || 'Manual Entry',
     });
   }
 
@@ -151,6 +178,24 @@ export default function CompetitorsPage() {
         title="Competitor Master" 
         description="Track competitors for each client"
       />
+
+      {notification && (
+        <div className={`mb-4 p-3 rounded-lg text-sm flex items-center justify-between ${
+          notification.type === 'success' 
+            ? 'bg-green-50 text-green-800 border border-green-200' 
+            : notification.type === 'info'
+            ? 'bg-blue-50 text-blue-800 border border-blue-200'
+            : 'bg-red-50 text-red-800 border border-red-200'
+        }`}>
+          <span>{notification.message}</span>
+          <button 
+            onClick={() => setNotification(null)}
+            className="text-gray-500 hover:text-gray-700 ml-2"
+          >
+            &#10005;
+          </button>
+        </div>
+      )}
 
       <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 mb-6 flex items-center justify-between">
         <div className="flex items-center gap-6">
@@ -294,8 +339,10 @@ export default function CompetitorsPage() {
                 </td>
               </tr>
             ) : (
-              competitors.map((competitor, index) => (
-                <tr key={competitor.id} className={!competitor.isActive ? 'bg-gray-50 opacity-60' : ''}>
+              competitors.map((competitor, index) => {
+                const isRecentlyAdded = recentlyAddedDomains.has(competitor.domain.toLowerCase().trim());
+                return (
+                <tr key={competitor.id} className={`${!competitor.isActive ? 'bg-gray-50 opacity-60' : ''} ${isRecentlyAdded ? 'bg-green-50 ring-2 ring-green-200 ring-inset' : ''}`}>
                   {editingId === competitor.id ? (
                     <>
                       <td className="px-4 py-4 text-sm text-gray-500">{index + 1}</td>
@@ -328,10 +375,15 @@ export default function CompetitorsPage() {
                           className="w-full px-2 py-1 border rounded"
                         />
                       </td>
-                      <td className="px-4 py-4 whitespace-nowrap">
-                        <span className={`px-2 py-1 text-xs rounded-full ${competitor.source === 'Via SERP Search' ? 'bg-purple-100 text-purple-800' : 'bg-gray-100 text-gray-700'}`}>
-                          {competitor.source || 'Manual Entry'}
-                        </span>
+                      <td className="px-4 py-4">
+                        <select
+                          value={editFormData.source}
+                          onChange={(e) => setEditFormData({ ...editFormData, source: e.target.value as CompetitorSource })}
+                          className="px-2 py-1 border rounded text-xs"
+                        >
+                          <option value="Manual Entry">Manual Entry</option>
+                          <option value="Via SERP Search">Via SERP Search</option>
+                        </select>
                       </td>
                       <td className="px-6 py-4">
                         <span className={`px-2 py-1 text-xs rounded-full ${competitor.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
@@ -392,7 +444,7 @@ export default function CompetitorsPage() {
                     </>
                   )}
                 </tr>
-              ))
+              );})
             )}
           </tbody>
         </table>

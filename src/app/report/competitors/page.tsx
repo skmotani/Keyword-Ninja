@@ -802,22 +802,39 @@ export default function CompetitorReportPage() {
     setAddingToMaster(true);
 
     try {
-      const domainsToAdd = filteredAndSortedList
-        .filter(e => domainsToAddToMaster.has(e.domain))
-        .map(entry => ({
-          clientCode: selectedClientCode,
-          name: entry.domain.split('.')[0].charAt(0).toUpperCase() + entry.domain.split('.')[0].slice(1),
-          domain: entry.domain,
-          notes: '',
-          source: 'Via SERP Search' as const,
-          importanceScore: entry.importanceScore,
-          domainType: entry.classification?.domainType,
-          pageIntent: entry.classification?.pageIntent,
-          productMatchScoreValue: entry.classification?.productMatchScoreValue,
-          productMatchScoreBucket: entry.classification?.productMatchScoreBucket,
-          businessRelevanceCategory: entry.classification?.businessRelevanceCategory,
-          explanationSummary: entry.classification?.explanationSummary,
-        }));
+      const existingRes = await fetch('/api/competitors');
+      const existingCompetitors = await existingRes.json();
+      const existingDomainSet = new Set(
+        existingCompetitors
+          .filter((c: any) => c.clientCode === selectedClientCode)
+          .map((c: any) => c.domain.toLowerCase().trim())
+      );
+
+      const selectedEntries = filteredAndSortedList.filter(e => domainsToAddToMaster.has(e.domain));
+      const newEntries = selectedEntries.filter(e => !existingDomainSet.has(e.domain.toLowerCase().trim()));
+      const skippedCount = selectedEntries.length - newEntries.length;
+
+      if (newEntries.length === 0) {
+        showNotification('error', `All ${skippedCount} selected domain(s) already exist in Competition Master`);
+        setDomainsToAddToMaster(new Set());
+        setAddingToMaster(false);
+        return;
+      }
+
+      const domainsToAdd = newEntries.map(entry => ({
+        clientCode: selectedClientCode,
+        name: entry.domain.split('.')[0].charAt(0).toUpperCase() + entry.domain.split('.')[0].slice(1),
+        domain: entry.domain,
+        notes: '',
+        source: 'Via SERP Search' as const,
+        importanceScore: entry.importanceScore,
+        domainType: entry.classification?.domainType,
+        pageIntent: entry.classification?.pageIntent,
+        productMatchScoreValue: entry.classification?.productMatchScoreValue,
+        productMatchScoreBucket: entry.classification?.productMatchScoreBucket,
+        businessRelevanceCategory: entry.classification?.businessRelevanceCategory,
+        explanationSummary: entry.classification?.explanationSummary,
+      }));
 
       const res = await fetch('/api/competitors', {
         method: 'POST',
@@ -827,7 +844,20 @@ export default function CompetitorReportPage() {
 
       if (res.ok) {
         const result = await res.json();
-        showNotification('success', `Added ${result.added || domainsToAdd.length} domain(s) to Competition Master`);
+        const addedCount = result.added || domainsToAdd.length;
+        const addedDomains = domainsToAdd.map(c => c.domain);
+        
+        localStorage.setItem('competitorMasterNotification', JSON.stringify({
+          message: `${addedCount} new competitor(s) added via SERP Search${skippedCount > 0 ? `. ${skippedCount} duplicate(s) skipped.` : ''}`,
+          domains: addedDomains,
+          timestamp: Date.now()
+        }));
+        
+        if (skippedCount > 0) {
+          showNotification('success', `Added ${addedCount} domain(s) to Competition Master. Skipped ${skippedCount} duplicate(s).`);
+        } else {
+          showNotification('success', `Added ${addedCount} domain(s) to Competition Master`);
+        }
         setDomainsToAddToMaster(new Set());
       } else {
         const error = await res.json();
