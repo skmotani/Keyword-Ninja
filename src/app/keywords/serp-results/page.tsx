@@ -61,6 +61,7 @@ interface GroupedKeywordResult {
   avgRank: number;
   topDomain: string;
   fetchedAt: string;
+  results: SerpResultWithVolume[];
 }
 
 interface LocationStats {
@@ -175,6 +176,7 @@ export default function SerpResultsPage() {
   const [sortDirection, setSortDirection] = useState<SortDirection>('asc');
 
   const [groupByKeyword, setGroupByKeyword] = useState(false);
+  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     fetchClients();
@@ -455,8 +457,6 @@ export default function SerpResultsPage() {
   }, [filteredRecordsBase, sortField, sortDirection, groupByKeyword]);
 
   const groupedResults: GroupedKeywordResult[] = useMemo(() => {
-    if (!groupByKeyword) return [];
-
     const groups = new Map<string, SerpResultWithVolume[]>();
     for (const r of filteredRecordsBase) {
       const key = `${r.keyword}|${r.locationCode}`;
@@ -473,6 +473,7 @@ export default function SerpResultsPage() {
       const searchVolume = items[0].searchVolume;
       const avgRank = items.reduce((sum, i) => sum + i.rank, 0) / items.length;
       const topResult = items.reduce((top, i) => i.rank < top.rank ? i : top, items[0]);
+      const sortedItems = [...items].sort((a, b) => a.rank - b.rank);
       result.push({
         keyword,
         locationCode,
@@ -481,6 +482,7 @@ export default function SerpResultsPage() {
         avgRank: Math.round(avgRank * 10) / 10,
         topDomain: topResult.domain,
         fetchedAt: topResult.fetchedAt,
+        results: sortedItems,
       });
     });
 
@@ -497,7 +499,7 @@ export default function SerpResultsPage() {
     }
 
     return result;
-  }, [filteredRecordsBase, groupByKeyword, sortField, sortDirection]);
+  }, [filteredRecordsBase, sortField, sortDirection]);
 
   const getLocationStats = (numericCode: number) => {
     const locRecords = records.filter(r => r.locationCode === numericCode);
@@ -518,6 +520,36 @@ export default function SerpResultsPage() {
   };
 
   const hasFilters = keywordFilter || domainFilter || locationFilter !== 'all' || minRank || maxRank || minSearchVolume || maxSearchVolume;
+
+  const toggleGroupExpand = (groupKey: string) => {
+    setExpandedGroups(prev => {
+      const next = new Set(prev);
+      if (next.has(groupKey)) {
+        next.delete(groupKey);
+      } else {
+        next.add(groupKey);
+      }
+      return next;
+    });
+  };
+
+  const expandAllGroups = () => {
+    const allKeys = groupedResults.map(g => `${g.keyword}|${g.locationCode}`);
+    setExpandedGroups(new Set(allKeys));
+  };
+
+  const collapseAllGroups = () => {
+    setExpandedGroups(new Set());
+  };
+
+  const filterSummary = useMemo(() => {
+    if (!hasFilters) return null;
+    const uniqueKeywords = new Set(filteredRecordsBase.map(r => `${r.keyword}|${r.locationCode}`));
+    return {
+      totalRows: filteredRecordsBase.length,
+      uniqueKeywords: uniqueKeywords.size,
+    };
+  }, [hasFilters, filteredRecordsBase]);
 
   return (
     <div className="max-w-[1600px] mx-auto p-4">
@@ -794,37 +826,73 @@ export default function SerpResultsPage() {
           </div>
         </div>
         {hasFilters && (
-          <button
-            onClick={() => {
-              setKeywordFilter('');
-              setDomainFilter('');
-              setLocationFilter('all');
-              setMinRank('');
-              setMaxRank('');
-              setMinSearchVolume('');
-              setMaxSearchVolume('');
-            }}
-            className="mt-2 text-xs text-indigo-600 hover:text-indigo-800"
-          >
-            Clear all filters
-          </button>
+          <div className="flex items-center gap-4 mt-2">
+            <button
+              onClick={() => {
+                setKeywordFilter('');
+                setDomainFilter('');
+                setLocationFilter('all');
+                setMinRank('');
+                setMaxRank('');
+                setMinSearchVolume('');
+                setMaxSearchVolume('');
+              }}
+              className="text-xs text-indigo-600 hover:text-indigo-800"
+            >
+              Clear all filters
+            </button>
+          </div>
+        )}
+        {filterSummary && (
+          <div className="mt-3 pt-3 border-t border-gray-200">
+            <div className="flex items-center gap-4 text-xs">
+              <span className="text-gray-500">Filter Results:</span>
+              <span className="bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded">
+                <span className="font-medium">{filterSummary.totalRows}</span> total rows
+              </span>
+              <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded">
+                <span className="font-medium">{filterSummary.uniqueKeywords}</span> unique keyword+location
+              </span>
+            </div>
+          </div>
         )}
       </div>
 
       <div className="bg-white rounded-lg shadow-sm border">
+        {groupByKeyword && groupedResults.length > 0 && (
+          <div className="flex items-center gap-2 p-2 border-b bg-gray-50">
+            <button
+              onClick={expandAllGroups}
+              className="text-xs text-indigo-600 hover:text-indigo-800 flex items-center gap-1"
+            >
+              <span className="font-bold text-sm">+</span> Expand All
+            </button>
+            <span className="text-gray-300">|</span>
+            <button
+              onClick={collapseAllGroups}
+              className="text-xs text-indigo-600 hover:text-indigo-800 flex items-center gap-1"
+            >
+              <span className="font-bold text-sm">−</span> Collapse All
+            </button>
+            <span className="text-gray-400 text-xs ml-2">
+              ({expandedGroups.size} of {groupedResults.length} expanded)
+            </span>
+          </div>
+        )}
         <div className="overflow-auto max-h-[600px]">
           {groupByKeyword ? (
             <table className="w-full table-fixed">
               <thead className="bg-gray-50 sticky top-0 z-10">
                 <tr>
-                  <th className="w-[5%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">S.No</th>
-                  <th className="w-[30%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">Keyword</th>
-                  <th className="w-[10%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                  <th className="w-[3%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50"></th>
+                  <th className="w-[4%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">S.No</th>
+                  <th className="w-[26%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">Keyword</th>
+                  <th className="w-[7%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
                     <Tooltip text="Location/region for the search (IN = India, GL = Global/US)">
                       <span className="cursor-help border-b border-dashed border-gray-400">Scope</span>
                     </Tooltip>
                   </th>
-                  <th className="w-[12%] text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                  <th className="w-[10%] text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
                     <div className="flex items-center justify-end gap-1">
                       <Tooltip text="Monthly search volume from Keyword API Data">
                         <span className="cursor-help border-b border-dashed border-gray-400">Search Vol</span>
@@ -838,22 +906,22 @@ export default function SerpResultsPage() {
                       </button>
                     </div>
                   </th>
-                  <th className="w-[10%] text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                  <th className="w-[8%] text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
                     <Tooltip text="Number of SERP results found for this keyword">
                       <span className="cursor-help border-b border-dashed border-gray-400">Results</span>
                     </Tooltip>
                   </th>
-                  <th className="w-[10%] text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                  <th className="w-[8%] text-right text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
                     <Tooltip text="Average rank position across all results">
                       <span className="cursor-help border-b border-dashed border-gray-400">Avg Rank</span>
                     </Tooltip>
                   </th>
-                  <th className="w-[15%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                  <th className="w-[20%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
                     <Tooltip text="Domain with the highest rank (position 1)">
                       <span className="cursor-help border-b border-dashed border-gray-400">Top Domain</span>
                     </Tooltip>
                   </th>
-                  <th className="w-[8%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
+                  <th className="w-[14%] text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider py-2 px-2 bg-gray-50">
                     <Tooltip text="Date and time when the SERP data was fetched">
                       <span className="cursor-help border-b border-dashed border-gray-400">Date</span>
                     </Tooltip>
@@ -863,43 +931,82 @@ export default function SerpResultsPage() {
               <tbody className="divide-y divide-gray-200">
                 {loading ? (
                   <tr>
-                    <td colSpan={8} className="text-center py-8 text-gray-500 text-sm">
+                    <td colSpan={9} className="text-center py-8 text-gray-500 text-sm">
                       Loading...
                     </td>
                   </tr>
                 ) : groupedResults.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="text-center py-8 text-gray-500 text-sm">
+                    <td colSpan={9} className="text-center py-8 text-gray-500 text-sm">
                       No SERP results found. Click "Refresh SERP data from API" to fetch data.
                     </td>
                   </tr>
                 ) : (
-                  groupedResults.map((group, index) => (
-                    <tr key={`${group.keyword}|${group.locationCode}`} className="hover:bg-gray-50">
-                      <td className="py-2 px-2 text-xs text-gray-500">{index + 1}</td>
-                      <td className="py-2 px-2 text-xs text-gray-900 font-medium truncate" title={group.keyword}>
-                        {group.keyword}
-                      </td>
-                      <td className="py-2 px-2 text-xs text-gray-600">
-                        {getLocationLabel(group.locationCode)}
-                      </td>
-                      <td className="py-2 px-2 text-xs text-gray-600 text-right">
-                        {group.searchVolume?.toLocaleString() ?? '-'}
-                      </td>
-                      <td className="py-2 px-2 text-xs text-gray-600 text-right">
-                        {group.resultCount}
-                      </td>
-                      <td className="py-2 px-2 text-xs text-gray-600 text-right">
-                        {group.avgRank}
-                      </td>
-                      <td className="py-2 px-2 text-xs text-gray-900 truncate" title={group.topDomain}>
-                        {group.topDomain}
-                      </td>
-                      <td className="py-2 px-2 text-xs text-gray-600 truncate">
-                        {formatDate(group.fetchedAt)}
-                      </td>
-                    </tr>
-                  ))
+                  groupedResults.map((group, index) => {
+                    const groupKey = `${group.keyword}|${group.locationCode}`;
+                    const isExpanded = expandedGroups.has(groupKey);
+                    return (
+                      <React.Fragment key={groupKey}>
+                        <tr className="hover:bg-gray-50 cursor-pointer" onClick={() => toggleGroupExpand(groupKey)}>
+                          <td className="py-2 px-2 text-center">
+                            <button
+                              className="w-5 h-5 flex items-center justify-center text-indigo-600 hover:text-indigo-800 font-bold text-sm border border-indigo-300 rounded bg-indigo-50 hover:bg-indigo-100"
+                              onClick={(e) => { e.stopPropagation(); toggleGroupExpand(groupKey); }}
+                              title={isExpanded ? 'Collapse' : 'Expand'}
+                            >
+                              {isExpanded ? '−' : '+'}
+                            </button>
+                          </td>
+                          <td className="py-2 px-2 text-xs text-gray-500">{index + 1}</td>
+                          <td className="py-2 px-2 text-xs text-gray-900 font-medium truncate" title={group.keyword}>
+                            {group.keyword}
+                          </td>
+                          <td className="py-2 px-2 text-xs text-gray-600">
+                            {getLocationLabel(group.locationCode)}
+                          </td>
+                          <td className="py-2 px-2 text-xs text-gray-600 text-right">
+                            {group.searchVolume?.toLocaleString() ?? '-'}
+                          </td>
+                          <td className="py-2 px-2 text-xs text-gray-600 text-right">
+                            {group.resultCount}
+                          </td>
+                          <td className="py-2 px-2 text-xs text-gray-600 text-right">
+                            {group.avgRank}
+                          </td>
+                          <td className="py-2 px-2 text-xs text-gray-900 truncate" title={group.topDomain}>
+                            {group.topDomain}
+                          </td>
+                          <td className="py-2 px-2 text-xs text-gray-600 truncate">
+                            {formatDate(group.fetchedAt)}
+                          </td>
+                        </tr>
+                        {isExpanded && group.results.map((result, resultIndex) => (
+                          <tr key={result.id} className="bg-gray-50 border-l-4 border-l-indigo-200">
+                            <td className="py-1 px-2"></td>
+                            <td className="py-1 px-2 text-[10px] text-gray-400">{index + 1}.{resultIndex + 1}</td>
+                            <td className="py-1 px-2 text-[10px] text-gray-600 truncate pl-4" title={result.domain}>
+                              <span className="text-gray-400 mr-1">↳</span>
+                              <span className="font-medium">#{result.rank}</span> - {result.domain}
+                            </td>
+                            <td className="py-1 px-2 text-[10px] text-gray-500 truncate" title={result.title}>
+                              {result.title}
+                            </td>
+                            <td className="py-1 px-2"></td>
+                            <td className="py-1 px-2 text-[10px] text-gray-600 text-right">{result.rank}</td>
+                            <td className="py-1 px-2 text-[10px] text-gray-600 text-right">{result.rankAbsolute}</td>
+                            <td className="py-1 px-2 text-[10px] text-blue-600 truncate">
+                              <a href={result.url} target="_blank" rel="noopener noreferrer" className="hover:underline" title={result.url}>
+                                {result.url}
+                              </a>
+                            </td>
+                            <td className="py-1 px-2 text-[10px] text-gray-500 truncate">
+                              {formatDate(result.fetchedAt)}
+                            </td>
+                          </tr>
+                        ))}
+                      </React.Fragment>
+                    );
+                  })
                 )}
               </tbody>
             </table>
