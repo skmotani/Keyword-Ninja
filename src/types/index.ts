@@ -162,3 +162,50 @@ export interface ClientAIProfile {
   generatedAt: string;
   updatedAt: string;
 }
+
+export type DomainTypeValue =
+  | 'OEM / Manufacturer / Product Provider'
+  | 'Service Provider / Agency / Integrator'
+  | 'Marketplace / Directory / Portal'
+  | 'End Customer / Buyer Organization'
+  | 'Educational / Media / Research'
+  | 'Brand / Platform / Corporate Site'
+  | 'Irrelevant Industry'
+  | 'Unknown';
+
+export type PageIntentValue =
+  | 'Transactional'
+  | 'Commercial Investigation'
+  | 'Informational'
+  | 'Directory / Listing'
+  | 'Navigational / Brand'
+  | 'Irrelevant Intent'
+  | 'Unknown';
+
+export type ProductMatchBucket = 'High' | 'Medium' | 'Low' | 'None';
+
+export type BusinessRelevanceCategoryValue =
+  | 'Direct Competitor'
+  | 'Adjacent / Weak Competitor'
+  | 'Potential Customer / Lead'
+  | 'Marketplace / Channel'
+  | 'Service Provider / Partner'
+  | 'Educational / Content Only'
+  | 'Brand / Navigational Only'
+  | 'Irrelevant'
+  | 'Needs Manual Review';
+
+export interface DomainClassification {
+  id: string;
+  clientCode: string;
+  domain: string;
+  domainType: DomainTypeValue;
+  pageIntent: PageIntentValue;
+  productMatchScoreValue: number;
+  productMatchScoreBucket: ProductMatchBucket;
+  businessRelevanceCategory: BusinessRelevanceCategoryValue;
+  explanationLink: string;
+  explanationSummary: string;
+  classifiedAt: string;
+  updatedAt: string;
+}

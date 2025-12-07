@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import PageHeader from '@/components/PageHeader';
 import { computeDomainImportanceScores, formatImportanceScore } from '@/lib/domainImportance';
+import { DomainClassification } from '@/types';
 
 interface Client {
   id: string;
@@ -19,6 +20,9 @@ interface SerpResult {
   rank: number;
   rankAbsolute: number;
   locationCode: number;
+  url: string;
+  title: string;
+  description: string;
 }
 
 interface KeywordApiData {
@@ -36,6 +40,7 @@ interface CompetitorEntry {
   importanceScore: number;
   appearanceCount: number;
   uniqueKeywords: number;
+  classification?: DomainClassification;
 }
 
 interface RowBreakdown {
@@ -143,7 +148,8 @@ function generateLabelsWithScores(
   domains: string[],
   importanceScores: Record<string, number>,
   appearanceCounts: Record<string, number>,
-  uniqueKeywordCounts: Record<string, number>
+  uniqueKeywordCounts: Record<string, number>,
+  classifications: Record<string, DomainClassification>
 ): CompetitorEntry[] {
   const domainData = domains.map(d => {
     const root = extractDomainRoot(d);
@@ -201,7 +207,8 @@ function generateLabelsWithScores(
       label: finalLabels.get(domain) || normalizeDomainForComparison(extractDomainRoot(domain)),
       importanceScore: importanceScores[domainLower] || 0,
       appearanceCount: appearanceCounts[domainLower] || 0,
-      uniqueKeywords: uniqueKeywordCounts[domainLower] || 0
+      uniqueKeywords: uniqueKeywordCounts[domainLower] || 0,
+      classification: classifications[domainLower]
     };
   });
 }
@@ -212,7 +219,32 @@ function getLocationLabel(code: number): string {
   return String(code);
 }
 
-type SortField = 'importanceScore' | 'appearanceCount' | 'uniqueKeywords' | null;
+function getRelevanceBadgeColor(category: string): string {
+  switch (category) {
+    case 'Direct Competitor': return 'bg-red-100 text-red-800';
+    case 'Adjacent / Weak Competitor': return 'bg-orange-100 text-orange-800';
+    case 'Potential Customer / Lead': return 'bg-green-100 text-green-800';
+    case 'Marketplace / Channel': return 'bg-blue-100 text-blue-800';
+    case 'Service Provider / Partner': return 'bg-purple-100 text-purple-800';
+    case 'Educational / Content Only': return 'bg-cyan-100 text-cyan-800';
+    case 'Brand / Navigational Only': return 'bg-gray-100 text-gray-800';
+    case 'Irrelevant': return 'bg-gray-200 text-gray-500';
+    case 'Needs Manual Review': return 'bg-yellow-100 text-yellow-800';
+    default: return 'bg-gray-100 text-gray-600';
+  }
+}
+
+function getMatchBucketColor(bucket: string): string {
+  switch (bucket) {
+    case 'High': return 'text-green-700 font-semibold';
+    case 'Medium': return 'text-yellow-700';
+    case 'Low': return 'text-orange-600';
+    case 'None': return 'text-gray-400';
+    default: return 'text-gray-500';
+  }
+}
+
+type SortField = 'importanceScore' | 'appearanceCount' | 'uniqueKeywords' | 'productMatchScoreValue' | null;
 type SortDirection = 'asc' | 'desc';
 
 export default function CompetitorReportPage() {
@@ -220,15 +252,22 @@ export default function CompetitorReportPage() {
   const [selectedClientCode, setSelectedClientCode] = useState<string>('');
   const [serpResults, setSerpResults] = useState<SerpResult[]>([]);
   const [keywordApiData, setKeywordApiData] = useState<KeywordApiData[]>([]);
+  const [classifications, setClassifications] = useState<Record<string, DomainClassification>>({});
   const [loading, setLoading] = useState(false);
+  const [classifying, setClassifying] = useState(false);
+  const [classifyingDomain, setClassifyingDomain] = useState<string | null>(null);
+  const [classifyProgress, setClassifyProgress] = useState({ current: 0, total: 0 });
+  const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
   
   const [domainFilter, setDomainFilter] = useState('');
   const [labelFilter, setLabelFilter] = useState('');
+  const [relevanceFilter, setRelevanceFilter] = useState('');
   
   const [sortField, setSortField] = useState<SortField>('importanceScore');
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
 
   const [modalDomain, setModalDomain] = useState<string | null>(null);
+  const [explanationModal, setExplanationModal] = useState<DomainClassification | null>(null);
 
   useEffect(() => {
     fetchClients();
@@ -258,14 +297,23 @@ export default function CompetitorReportPage() {
     if (!selectedClientCode) return;
     setLoading(true);
     try {
-      const [serpRes, keywordRes] = await Promise.all([
+      const [serpRes, keywordRes, classRes] = await Promise.all([
         fetch(`/api/seo/serp?clientCode=${selectedClientCode}&locationCodes=IN,GL`),
-        fetch(`/api/seo/keywords?clientCode=${selectedClientCode}&locationCodes=IN,GL`)
+        fetch(`/api/seo/keywords?clientCode=${selectedClientCode}&locationCodes=IN,GL`),
+        fetch(`/api/domain-classification?clientCode=${selectedClientCode}`)
       ]);
       const serpData = await serpRes.json();
       const keywordData = await keywordRes.json();
+      const classData = await classRes.json();
+      
       setSerpResults(serpData);
       setKeywordApiData(keywordData);
+      
+      const classMap: Record<string, DomainClassification> = {};
+      for (const c of classData) {
+        classMap[c.domain.toLowerCase().trim()] = c;
+      }
+      setClassifications(classMap);
     } catch (error) {
       console.error('Failed to fetch data:', error);
     } finally {
@@ -286,10 +334,11 @@ export default function CompetitorReportPage() {
     return map;
   }, [keywordApiData]);
 
-  const { importanceScores, appearanceCounts, uniqueKeywordCounts, domainBreakdowns } = useMemo(() => {
+  const { importanceScores, appearanceCounts, uniqueKeywordCounts, domainBreakdowns, serpRowsByDomain } = useMemo(() => {
     const breakdowns: Record<string, RowBreakdown[]> = {};
     const counts: Record<string, number> = {};
     const uniqueKwSets: Record<string, Set<string>> = {};
+    const serpByDomain: Record<string, any[]> = {};
 
     for (const r of serpResults) {
       const d = r.domain.toLowerCase().trim();
@@ -321,6 +370,19 @@ export default function CompetitorReportPage() {
         uniqueKwSets[d] = new Set();
       }
       uniqueKwSets[d].add(r.keyword.toLowerCase().trim());
+
+      if (!serpByDomain[d]) {
+        serpByDomain[d] = [];
+      }
+      serpByDomain[d].push({
+        keyword: r.keyword,
+        country: getLocationLabel(r.locationCode),
+        searchVolume: searchVolume,
+        position: r.rank,
+        url: r.url,
+        pageTitle: r.title,
+        pageSnippet: r.description
+      });
     }
 
     const rowsForScoring = serpResults.map(r => {
@@ -344,14 +406,15 @@ export default function CompetitorReportPage() {
       importanceScores: scores, 
       appearanceCounts: counts, 
       uniqueKeywordCounts: uniqueCounts,
-      domainBreakdowns: breakdowns 
+      domainBreakdowns: breakdowns,
+      serpRowsByDomain: serpByDomain
     };
   }, [serpResults, keywordVolumeMap]);
 
   const competitorList = useMemo(() => {
     const uniqueDomains = Array.from(new Set(serpResults.map(r => r.domain))).sort();
-    return generateLabelsWithScores(uniqueDomains, importanceScores, appearanceCounts, uniqueKeywordCounts);
-  }, [serpResults, importanceScores, appearanceCounts, uniqueKeywordCounts]);
+    return generateLabelsWithScores(uniqueDomains, importanceScores, appearanceCounts, uniqueKeywordCounts, classifications);
+  }, [serpResults, importanceScores, appearanceCounts, uniqueKeywordCounts, classifications]);
 
   const handleSort = (field: SortField) => {
     if (sortField === field) {
@@ -363,8 +426,8 @@ export default function CompetitorReportPage() {
   };
 
   const getSortIcon = (field: SortField) => {
-    if (sortField !== field) return '↕';
-    return sortDirection === 'asc' ? '↑' : '↓';
+    if (sortField !== field) return '';
+    return sortDirection === 'asc' ? ' ↑' : ' ↓';
   };
 
   const filteredAndSortedList = useMemo(() => {
@@ -380,10 +443,20 @@ export default function CompetitorReportPage() {
       result = result.filter(c => c.label.toLowerCase().includes(lower));
     }
 
+    if (relevanceFilter) {
+      result = result.filter(c => c.classification?.businessRelevanceCategory === relevanceFilter);
+    }
+
     if (sortField) {
       result.sort((a, b) => {
-        const aVal = a[sortField] ?? 0;
-        const bVal = b[sortField] ?? 0;
+        let aVal: number, bVal: number;
+        if (sortField === 'productMatchScoreValue') {
+          aVal = a.classification?.productMatchScoreValue ?? -1;
+          bVal = b.classification?.productMatchScoreValue ?? -1;
+        } else {
+          aVal = a[sortField] ?? 0;
+          bVal = b[sortField] ?? 0;
+        }
         if (sortDirection === 'asc') {
           return aVal - bVal;
         }
@@ -392,7 +465,7 @@ export default function CompetitorReportPage() {
     }
     
     return result;
-  }, [competitorList, domainFilter, labelFilter, sortField, sortDirection]);
+  }, [competitorList, domainFilter, labelFilter, relevanceFilter, sortField, sortDirection]);
 
   const labelStats = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -402,13 +475,118 @@ export default function CompetitorReportPage() {
     return counts;
   }, [competitorList]);
 
+  const classifiedCount = useMemo(() => {
+    return competitorList.filter(c => c.classification).length;
+  }, [competitorList]);
+
   const selectedClientName = clients.find(c => c.code === selectedClientCode)?.name || '';
 
-  const hasFilters = domainFilter || labelFilter;
+  const hasFilters = domainFilter || labelFilter || relevanceFilter;
 
   const clearFilters = () => {
     setDomainFilter('');
     setLabelFilter('');
+    setRelevanceFilter('');
+  };
+
+  const showNotification = (type: 'success' | 'error', message: string) => {
+    setNotification({ type, message });
+    setTimeout(() => setNotification(null), 5000);
+  };
+
+  const handleClassifyDomain = async (entry: CompetitorEntry) => {
+    setClassifyingDomain(entry.domain);
+    
+    try {
+      const domainLower = entry.domain.toLowerCase().trim();
+      const serpRows = serpRowsByDomain[domainLower] || [];
+      
+      const res = await fetch('/api/domain-classification/classify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          clientCode: selectedClientCode,
+          domainRow: {
+            domain: entry.domain,
+            label: entry.label,
+            importance: entry.importanceScore,
+            keywords: entry.uniqueKeywords,
+            appearances: entry.appearanceCount
+          },
+          serpRows
+        })
+      });
+      
+      const result = await res.json();
+      
+      if (res.ok && result.classification) {
+        setClassifications(prev => ({
+          ...prev,
+          [domainLower]: result.classification
+        }));
+        showNotification('success', `Classified: ${entry.domain}`);
+      } else {
+        showNotification('error', result.error || 'Failed to classify domain');
+      }
+    } catch (error) {
+      showNotification('error', 'Failed to classify domain');
+    } finally {
+      setClassifyingDomain(null);
+    }
+  };
+
+  const handleClassifyAll = async () => {
+    const unclassified = competitorList.filter(c => !c.classification);
+    if (unclassified.length === 0) {
+      showNotification('success', 'All domains are already classified!');
+      return;
+    }
+    
+    setClassifying(true);
+    setClassifyProgress({ current: 0, total: unclassified.length });
+    
+    try {
+      for (let i = 0; i < unclassified.length; i++) {
+        const entry = unclassified[i];
+        setClassifyingDomain(entry.domain);
+        setClassifyProgress({ current: i + 1, total: unclassified.length });
+        
+        const domainLower = entry.domain.toLowerCase().trim();
+        const serpRows = serpRowsByDomain[domainLower] || [];
+        
+        const res = await fetch('/api/domain-classification/classify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            clientCode: selectedClientCode,
+            domainRow: {
+              domain: entry.domain,
+              label: entry.label,
+              importance: entry.importanceScore,
+              keywords: entry.uniqueKeywords,
+              appearances: entry.appearanceCount
+            },
+            serpRows
+          })
+        });
+        
+        const result = await res.json();
+        
+        if (res.ok && result.classification) {
+          setClassifications(prev => ({
+            ...prev,
+            [domainLower]: result.classification
+          }));
+        }
+      }
+      
+      showNotification('success', `Classified ${unclassified.length} domains`);
+    } catch (error: any) {
+      showNotification('error', error.message || 'Classification failed');
+    } finally {
+      setClassifying(false);
+      setClassifyingDomain(null);
+    }
   };
 
   const modalData = useMemo(() => {
@@ -433,12 +611,34 @@ export default function CompetitorReportPage() {
     };
   }, [modalDomain, domainBreakdowns, competitorList]);
 
+  const relevanceCategories = [
+    'Direct Competitor',
+    'Adjacent / Weak Competitor',
+    'Potential Customer / Lead',
+    'Marketplace / Channel',
+    'Service Provider / Partner',
+    'Educational / Content Only',
+    'Brand / Navigational Only',
+    'Irrelevant',
+    'Needs Manual Review'
+  ];
+
   return (
     <div className="max-w-7xl mx-auto p-4">
       <PageHeader
         title="Unique Domains"
-        description="Unique domains from SERP Results with importance scores and auto-generated labels"
+        description="Unique domains from SERP Results with AI-powered classification"
       />
+
+      {notification && (
+        <div className={`mb-4 p-3 rounded-lg text-sm ${
+          notification.type === 'success' 
+            ? 'bg-green-50 text-green-800 border border-green-200' 
+            : 'bg-red-50 text-red-800 border border-red-200'
+        }`}>
+          {notification.message}
+        </div>
+      )}
 
       <div className="bg-white rounded-lg shadow-sm border p-4 mb-4">
         <div className="flex flex-wrap gap-4 items-end">
@@ -456,18 +656,39 @@ export default function CompetitorReportPage() {
               ))}
             </select>
           </div>
+          <button
+            onClick={handleClassifyAll}
+            disabled={classifying || loading || competitorList.length === 0}
+            className="px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-md hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-2"
+          >
+            {classifying ? (
+              <>
+                <span className="animate-spin">&#9696;</span>
+                Classifying {classifyProgress.current}/{classifyProgress.total}...
+              </>
+            ) : (
+              <>
+                <span>&#10024;</span>
+                Classify All Domains
+              </>
+            )}
+          </button>
         </div>
       </div>
 
       <div className="bg-gray-50 rounded-lg border p-3 mb-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-xs">
           <div>
             <span className="text-gray-500">Client:</span>
             <p className="font-medium text-gray-800">{selectedClientName || '-'}</p>
           </div>
           <div>
-            <span className="text-gray-500">Total Unique Domains:</span>
+            <span className="text-gray-500">Total Domains:</span>
             <p className="font-medium text-gray-800">{competitorList.length}</p>
+          </div>
+          <div>
+            <span className="text-gray-500">Classified:</span>
+            <p className="font-medium text-green-700">{classifiedCount} / {competitorList.length}</p>
           </div>
           <div>
             <span className="text-gray-500">Unique Labels:</span>
@@ -503,6 +724,19 @@ export default function CompetitorReportPage() {
               className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
             />
           </div>
+          <div>
+            <label className="block text-[10px] text-gray-500 mb-1">Business Relevance</label>
+            <select
+              value={relevanceFilter}
+              onChange={(e) => setRelevanceFilter(e.target.value)}
+              className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            >
+              <option value="">All</option>
+              {relevanceCategories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+          </div>
         </div>
         {hasFilters && (
           <button
@@ -519,96 +753,133 @@ export default function CompetitorReportPage() {
           <table className="min-w-full">
             <thead className="bg-gray-50 sticky top-0 z-10 overflow-visible">
               <tr>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[5%]">S.No</th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[30%]">
-                  <Tooltip text="Competitor domain extracted from SERP results. Click to visit the website.">
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[4%]">#</th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[18%]">
+                  <Tooltip text="Competitor domain from SERP results">
                     <span className="cursor-help border-b border-dashed border-gray-400">Domain</span>
                   </Tooltip>
                 </th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[15%]">
-                  <Tooltip text="Auto-generated label based on domain name patterns. Domains with similar names are grouped under the same label.">
-                    <span className="cursor-help border-b border-dashed border-gray-400">Label</span>
-                  </Tooltip>
-                </th>
                 <th 
-                  className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[15%] cursor-pointer hover:bg-gray-100"
+                  className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[8%] cursor-pointer hover:bg-gray-100"
                   onClick={() => handleSort('importanceScore')}
                 >
-                  <Tooltip text="Domain Importance Score = (sum of searchVolume x rankWeight) x appearanceWeight. Click the score to see detailed calculation.">
-                    <span className="cursor-help border-b border-dashed border-gray-400 flex items-center justify-end gap-1">
-                      Importance {getSortIcon('importanceScore')}
+                  <Tooltip text="Domain Importance Score based on search volume and ranking position">
+                    <span className="cursor-help border-b border-dashed border-gray-400">
+                      Score{getSortIcon('importanceScore')}
                     </span>
+                  </Tooltip>
+                </th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[14%]">
+                  <Tooltip text="How this domain behaves in the ecosystem">
+                    <span className="cursor-help border-b border-dashed border-gray-400">Domain Type</span>
+                  </Tooltip>
+                </th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[12%]">
+                  <Tooltip text="Typical intent of pages where this domain appears">
+                    <span className="cursor-help border-b border-dashed border-gray-400">Page Intent</span>
                   </Tooltip>
                 </th>
                 <th 
-                  className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[12%] cursor-pointer hover:bg-gray-100"
-                  onClick={() => handleSort('uniqueKeywords')}
+                  className="text-center text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[8%] cursor-pointer hover:bg-gray-100"
+                  onClick={() => handleSort('productMatchScoreValue')}
                 >
-                  <Tooltip text="Number of unique keywords where this domain ranks in top 10 SERP results.">
-                    <span className="cursor-help border-b border-dashed border-gray-400 flex items-center justify-end gap-1">
-                      Keywords {getSortIcon('uniqueKeywords')}
+                  <Tooltip text="How well domain matches client's products/topics (0-100%)">
+                    <span className="cursor-help border-b border-dashed border-gray-400">
+                      Match{getSortIcon('productMatchScoreValue')}
                     </span>
                   </Tooltip>
                 </th>
-                <th 
-                  className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[13%] cursor-pointer hover:bg-gray-100"
-                  onClick={() => handleSort('appearanceCount')}
-                >
-                  <Tooltip text="Total SERP row appearances (keyword x location combinations). A domain ranking for same keyword in IN and GL counts as 2 appearances.">
-                    <span className="cursor-help border-b border-dashed border-gray-400 flex items-center justify-end gap-1">
-                      Appearances {getSortIcon('appearanceCount')}
-                    </span>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[16%]">
+                  <Tooltip text="Final business relevance classification for this domain">
+                    <span className="cursor-help border-b border-dashed border-gray-400">Business Relevance</span>
                   </Tooltip>
                 </th>
+                <th className="text-center text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[8%]">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {loading ? (
                 <tr>
-                  <td colSpan={6} className="text-center py-8 text-gray-500 text-sm">
+                  <td colSpan={8} className="text-center py-8 text-gray-500 text-sm">
                     Loading...
                   </td>
                 </tr>
               ) : filteredAndSortedList.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="text-center py-8 text-gray-500 text-sm">
+                  <td colSpan={8} className="text-center py-8 text-gray-500 text-sm">
                     {competitorList.length === 0 
                       ? 'No domains found. Fetch SERP data first from the SERP Results page.'
-                      : 'No records match your filters. Try adjusting the filter criteria.'}
+                      : 'No records match your filters.'}
                   </td>
                 </tr>
               ) : (
                 filteredAndSortedList.map((entry, index) => (
                   <tr key={entry.domain} className="hover:bg-gray-50">
-                    <td className="text-xs text-gray-600 py-1 px-2 leading-tight">{index + 1}</td>
-                    <td className="text-xs py-1 px-2 leading-tight">
+                    <td className="text-xs text-gray-600 py-1.5 px-2">{index + 1}</td>
+                    <td className="text-xs py-1.5 px-2">
                       <a
                         href={`https://${entry.domain}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-indigo-600 hover:text-indigo-800 hover:underline font-medium"
-                        title={`Visit ${entry.domain}`}
                       >
                         {entry.domain}
                       </a>
                     </td>
-                    <td className="text-xs text-gray-600 py-1 px-2 leading-tight font-medium">
-                      {entry.label}
-                    </td>
-                    <td className="text-xs text-gray-800 py-1 px-2 leading-tight text-right font-semibold">
+                    <td className="text-xs text-gray-800 py-1.5 px-2 text-right">
                       <button
                         onClick={() => setModalDomain(entry.domain)}
-                        className="text-indigo-600 hover:text-indigo-800 hover:underline cursor-pointer"
-                        title="Click to see calculation details"
+                        className="text-indigo-600 hover:text-indigo-800 hover:underline cursor-pointer font-semibold"
                       >
                         {formatImportanceScore(entry.importanceScore)}
                       </button>
                     </td>
-                    <td className="text-xs text-gray-600 py-1 px-2 leading-tight text-right">
-                      {entry.uniqueKeywords}
+                    <td className="text-xs text-gray-600 py-1.5 px-2">
+                      {entry.classification?.domainType || <span className="text-gray-300">-</span>}
                     </td>
-                    <td className="text-xs text-gray-600 py-1 px-2 leading-tight text-right">
-                      {entry.appearanceCount}
+                    <td className="text-xs text-gray-600 py-1.5 px-2">
+                      {entry.classification?.pageIntent || <span className="text-gray-300">-</span>}
+                    </td>
+                    <td className="text-xs py-1.5 px-2 text-center">
+                      {entry.classification ? (
+                        <span className={getMatchBucketColor(entry.classification.productMatchScoreBucket)}>
+                          {Math.round(entry.classification.productMatchScoreValue * 100)}%
+                        </span>
+                      ) : (
+                        <span className="text-gray-300">-</span>
+                      )}
+                    </td>
+                    <td className="text-xs py-1.5 px-2">
+                      {entry.classification ? (
+                        <button
+                          onClick={() => setExplanationModal(entry.classification!)}
+                          className={`inline-block px-2 py-0.5 rounded text-[10px] font-medium cursor-pointer hover:opacity-80 ${getRelevanceBadgeColor(entry.classification.businessRelevanceCategory)}`}
+                        >
+                          {entry.classification.businessRelevanceCategory}
+                        </button>
+                      ) : (
+                        <span className="text-gray-300">-</span>
+                      )}
+                    </td>
+                    <td className="text-xs py-1.5 px-2 text-center">
+                      {entry.classification ? (
+                        <button
+                          onClick={() => handleClassifyDomain(entry)}
+                          disabled={classifyingDomain === entry.domain}
+                          className="text-gray-400 hover:text-indigo-600 text-[10px]"
+                          title="Re-classify"
+                        >
+                          {classifyingDomain === entry.domain ? '...' : '&#8635;'}
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => handleClassifyDomain(entry)}
+                          disabled={classifyingDomain === entry.domain}
+                          className="text-purple-600 hover:text-purple-800 text-[10px] font-medium"
+                        >
+                          {classifyingDomain === entry.domain ? 'Classifying...' : 'Classify'}
+                        </button>
+                      )}
                     </td>
                   </tr>
                 ))
@@ -657,15 +928,6 @@ export default function CompetitorReportPage() {
                   <p className="font-bold text-indigo-700">{formatImportanceScore(modalData.finalScore)}</p>
                 </div>
               </div>
-              <div className="mt-2 text-[10px] text-gray-600 bg-white rounded px-2 py-1 border">
-                <strong>Formula:</strong> Final Score = Base Score x Appearance Weight
-                <br />
-                <strong>Base Score</strong> = Sum of (Search Volume x Rank Weight) for each SERP row
-                <br />
-                <strong>Rank Weight</strong> = 1 / (rank + 1) - Position 1 gets 0.5, Position 10 gets 0.09
-                <br />
-                <strong>Appearance Weight</strong> = 1 + (appearances / 10) - Rewards broad keyword coverage
-              </div>
             </div>
 
             <div className="flex-1 overflow-auto">
@@ -710,6 +972,68 @@ export default function CompetitorReportPage() {
             <div className="px-4 py-3 border-t bg-gray-50 flex justify-end">
               <button
                 onClick={() => setModalDomain(null)}
+                className="px-4 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {explanationModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full overflow-hidden">
+            <div className="px-4 py-3 border-b flex justify-between items-center bg-purple-50">
+              <div>
+                <h3 className="text-sm font-semibold text-gray-900">Classification Explanation</h3>
+                <p className="text-xs text-gray-600 mt-0.5">{explanationModal.domain}</p>
+              </div>
+              <button
+                onClick={() => setExplanationModal(null)}
+                className="text-gray-400 hover:text-gray-600 text-xl leading-none px-2"
+              >
+                x
+              </button>
+            </div>
+
+            <div className="p-4 space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-[10px] text-gray-500 uppercase">Domain Type</p>
+                  <p className="text-sm font-medium text-gray-800">{explanationModal.domainType}</p>
+                </div>
+                <div>
+                  <p className="text-[10px] text-gray-500 uppercase">Page Intent</p>
+                  <p className="text-sm font-medium text-gray-800">{explanationModal.pageIntent}</p>
+                </div>
+                <div>
+                  <p className="text-[10px] text-gray-500 uppercase">Product Match</p>
+                  <p className={`text-sm font-medium ${getMatchBucketColor(explanationModal.productMatchScoreBucket)}`}>
+                    {Math.round(explanationModal.productMatchScoreValue * 100)}% ({explanationModal.productMatchScoreBucket})
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[10px] text-gray-500 uppercase">Business Relevance</p>
+                  <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${getRelevanceBadgeColor(explanationModal.businessRelevanceCategory)}`}>
+                    {explanationModal.businessRelevanceCategory}
+                  </span>
+                </div>
+              </div>
+
+              <div className="border-t pt-4">
+                <p className="text-[10px] text-gray-500 uppercase mb-2">Why This Classification?</p>
+                <p className="text-sm text-gray-700 leading-relaxed">{explanationModal.explanationSummary}</p>
+              </div>
+
+              <div className="text-[10px] text-gray-400">
+                Classified at: {new Date(explanationModal.classifiedAt).toLocaleString()}
+              </div>
+            </div>
+
+            <div className="px-4 py-3 border-t bg-gray-50 flex justify-end">
+              <button
+                onClick={() => setExplanationModal(null)}
                 className="px-4 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50"
               >
                 Close
