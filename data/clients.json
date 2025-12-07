@@ -4,7 +4,11 @@
     "code": "01",
     "name": "Meera",
     "mainDomain": "www.meeraind.com",
-    "domains": ["www.meeraind.com"],
+    "domains": [
+      "www.meeraind.com",
+      "meeraind.in",
+      "meera.ind.in"
+    ],
     "notes": "",
     "isActive": true
   },
@@ -13,7 +17,9 @@
     "code": "O2",
     "name": "Rahul Nandan",
     "mainDomain": "RahulNandan.com",
-    "domains": ["RahulNandan.com"],
+    "domains": [
+      "RahulNandan.com"
+    ],
     "notes": "",
     "isActive": true
   }

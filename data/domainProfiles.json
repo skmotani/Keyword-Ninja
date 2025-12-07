@@ -1,1 +1,162 @@
-[]
+[
+  {
+    "id": "b77b02c5-a201-4501-8e9a-b1ed54708e21",
+    "clientCode": "01",
+    "domain": "www.meeraind.com",
+    "title": null,
+    "metaDescription": null,
+    "inferredCategory": "E-commerce",
+    "topKeywords": [
+      {
+        "keyword": "meera",
+        "position": 12,
+        "searchVolume": 27100,
+        "cpc": 1.0199999809265137,
+        "url": "https://meeraind.com/"
+      },
+      {
+        "keyword": "cross winding",
+        "position": 63,
+        "searchVolume": 5400,
+        "cpc": 0.1899999976158142,
+        "url": "https://meeraind.com/blog/winding-yarn-types-objectives"
+      },
+      {
+        "keyword": "winders",
+        "position": 73,
+        "searchVolume": 2400,
+        "cpc": 2.809999942779541,
+        "url": "https://meeraind.com/product/yarn-guide-winder"
+      },
+      {
+        "keyword": "meera enterprises",
+        "position": 35,
+        "searchVolume": 1600,
+        "cpc": null,
+        "url": "https://meeraind.com/"
+      },
+      {
+        "keyword": "twisting machine",
+        "position": 8,
+        "searchVolume": 1300,
+        "cpc": 0.029999999329447746,
+        "url": "https://meeraind.com/product/spun-staple-yarn-twister"
+      },
+      {
+        "keyword": "twisting machines",
+        "position": 12,
+        "searchVolume": 1300,
+        "cpc": 0.029999999329447746,
+        "url": "https://www.meeraind.com/spun-yarn-twister.html"
+      },
+      {
+        "keyword": "industries surat",
+        "position": 9,
+        "searchVolume": 880,
+        "cpc": 0.05999999865889549,
+        "url": "https://meeraind.com/"
+      },
+      {
+        "keyword": "meera industries",
+        "position": 1,
+        "searchVolume": 880,
+        "cpc": null,
+        "url": "https://meeraind.com/"
+      },
+      {
+        "keyword": "meera industries ltd",
+        "position": 1,
+        "searchVolume": 880,
+        "cpc": null,
+        "url": "https://meeraind.com/"
+      },
+      {
+        "keyword": "winder machine price",
+        "position": 29,
+        "searchVolume": 880,
+        "cpc": 0.029999999329447746,
+        "url": "https://www.meeraind.com/cone-to-cone-assembly-winder.html"
+      },
+      {
+        "keyword": "cone winder",
+        "position": 5,
+        "searchVolume": 720,
+        "cpc": 0.009999999776482582,
+        "url": "https://www.meeraind.com/cone-to-cone-winder.html"
+      },
+      {
+        "keyword": "cone winder machine",
+        "position": 5,
+        "searchVolume": 720,
+        "cpc": 0.009999999776482582,
+        "url": "https://www.meeraind.com/cone-to-cone-assembly-winder.html"
+      },
+      {
+        "keyword": "heat setting",
+        "position": 5,
+        "searchVolume": 590,
+        "cpc": 0.009999999776482582,
+        "url": "https://meeraind.com/blog/heat-setting-technology-methods-benefits-textiles"
+      },
+      {
+        "keyword": "machine manufacturer in surat",
+        "position": 8,
+        "searchVolume": 590,
+        "cpc": 0.03999999910593033,
+        "url": "https://meeraind.com/blog/textile-machine-manufacturers-surat"
+      },
+      {
+        "keyword": "meera industries limited",
+        "position": 1,
+        "searchVolume": 590,
+        "cpc": null,
+        "url": "https://meeraind.com/"
+      },
+      {
+        "keyword": "meera industries share",
+        "position": 70,
+        "searchVolume": 480,
+        "cpc": null,
+        "url": "https://meeraind.com/investors"
+      },
+      {
+        "keyword": "ring twister",
+        "position": 2,
+        "searchVolume": 480,
+        "cpc": 0.10999999940395355,
+        "url": "https://meeraind.com/product/ring-twister"
+      },
+      {
+        "keyword": "ring twisting",
+        "position": 17,
+        "searchVolume": 480,
+        "cpc": 0.10999999940395355,
+        "url": "https://www.meeraind.com/ring-twister.html"
+      },
+      {
+        "keyword": "yarn filament",
+        "position": 39,
+        "searchVolume": 480,
+        "cpc": null,
+        "url": "https://meeraind.com/product/filament-yarn-twister"
+      },
+      {
+        "keyword": "cotton yarn twisting machine",
+        "position": 3,
+        "searchVolume": 390,
+        "cpc": null,
+        "url": "https://meeraind.com/product/spun-staple-yarn-twister"
+      }
+    ],
+    "organicTraffic": null,
+    "organicKeywordsCount": null,
+    "backlinksCount": null,
+    "referringDomainsCount": null,
+    "domainRank": null,
+    "fetchStatus": "success",
+    "errorMessage": null,
+    "lastFetchedAt": "2025-12-07T03:11:30.154Z",
+    "createdAt": "2025-12-07T03:11:02.641Z",
+    "updatedAt": "2025-12-07T03:11:30.155Z"
+  }
+]
