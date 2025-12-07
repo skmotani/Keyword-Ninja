@@ -3,8 +3,8 @@
     "id": "b77b02c5-a201-4501-8e9a-b1ed54708e21",
     "clientCode": "01",
     "domain": "www.meeraind.com",
-    "title": null,
-    "metaDescription": null,
+    "title": "Meera Industries | Advanced Twisting, Winding &amp; Heat Setting Machinery for Textile Manufacturing",
+    "metaDescription": "Meera Industries offers advanced twisting, winding, and heat setting machinery. ISO-certified and BSE listed, we deliver energy-efficient, high-performance solutions for various industries globally. Custom-built machinery available.",
     "inferredCategory": "E-commerce",
     "topKeywords": [
       {
@@ -155,8 +155,361 @@
     "domainRank": null,
     "fetchStatus": "success",
     "errorMessage": null,
-    "lastFetchedAt": "2025-12-07T03:11:30.154Z",
+    "lastFetchedAt": "2025-12-07T03:26:18.241Z",
     "createdAt": "2025-12-07T03:11:02.641Z",
-    "updatedAt": "2025-12-07T03:11:30.155Z"
+    "updatedAt": "2025-12-07T03:26:18.242Z"
+  },
+  {
+    "id": "da0e03d4-5e84-4a39-8240-3e6af17022d3",
+    "clientCode": "01",
+    "domain": "meeraind.in",
+    "title": null,
+    "metaDescription": null,
+    "inferredCategory": "E-commerce",
+    "topKeywords": [
+      {
+        "keyword": "meera industries",
+        "position": 65,
+        "searchVolume": 880,
+        "cpc": null,
+        "url": "http://www.meeraind.in/download/meeracb.pdf"
+      },
+      {
+        "keyword": "meera industries ltd",
+        "position": 42,
+        "searchVolume": 880,
+        "cpc": null,
+        "url": "http://www.meeraind.in/download/meeracb.pdf"
+      },
+      {
+        "keyword": "meera shop",
+        "position": 19,
+        "searchVolume": 390,
+        "cpc": 0.029999999329447746,
+        "url": "https://meeraind.in/shop/page/4/"
+      }
+    ],
+    "organicTraffic": null,
+    "organicKeywordsCount": null,
+    "backlinksCount": null,
+    "referringDomainsCount": null,
+    "domainRank": null,
+    "fetchStatus": "success",
+    "errorMessage": null,
+    "lastFetchedAt": "2025-12-07T03:27:19.606Z",
+    "createdAt": "2025-12-07T03:26:53.829Z",
+    "updatedAt": "2025-12-07T03:27:19.607Z"
+  },
+  {
+    "id": "89a60aff-4b3d-4130-a479-a3f465b0444a",
+    "clientCode": "01",
+    "domain": "meera.ind.in",
+    "title": "Twisting Machines, Cop Winder, Cone Winder",
+    "metaDescription": "Manufacturer, supplier and exporter of textile machinery, textile machines, international textile machinery, international textile machines, yarn twisting machinery, yarn winding machinery, yarn twisting machines, yarn winding machines, textile industry machinery from Meera Industries Limited",
+    "inferredCategory": null,
+    "topKeywords": [
+      {
+        "keyword": "twisting machine",
+        "position": 15,
+        "searchVolume": 1300,
+        "cpc": 0.029999999329447746,
+        "url": "https://www.meera.ind.in/spun-yarn-twister.html"
+      },
+      {
+        "keyword": "twisting machines",
+        "position": 64,
+        "searchVolume": 1300,
+        "cpc": 0.029999999329447746,
+        "url": "https://www.meera.ind.in/ring-twister.html"
+      },
+      {
+        "keyword": "meera industries",
+        "position": 2,
+        "searchVolume": 880,
+        "cpc": null,
+        "url": "https://www.meera.ind.in/"
+      },
+      {
+        "keyword": "meera industries ltd",
+        "position": 4,
+        "searchVolume": 880,
+        "cpc": null,
+        "url": "https://www.meera.ind.in/"
+      },
+      {
+        "keyword": "cone to cone winding machine",
+        "position": 16,
+        "searchVolume": 720,
+        "cpc": 0.009999999776482582,
+        "url": "https://www.meera.ind.in/cone-to-cone-winder.html"
+      },
+      {
+        "keyword": "cone winder",
+        "position": 7,
+        "searchVolume": 720,
+        "cpc": 0.009999999776482582,
+        "url": "https://www.meera.ind.in/cone-to-cone-winder.html"
+      },
+      {
+        "keyword": "cone winder machine",
+        "position": 11,
+        "searchVolume": 720,
+        "cpc": 0.009999999776482582,
+        "url": "https://www.meera.ind.in/cone-to-cone-winder.html"
+      },
+      {
+        "keyword": "meera industries limited",
+        "position": 2,
+        "searchVolume": 590,
+        "cpc": null,
+        "url": "https://www.meera.ind.in/"
+      },
+      {
+        "keyword": "ring twister",
+        "position": 7,
+        "searchVolume": 480,
+        "cpc": 0.10999999940395355,
+        "url": "https://www.meera.ind.in/ring-twister.html"
+      },
+      {
+        "keyword": "ring twisting",
+        "position": 6,
+        "searchVolume": 480,
+        "cpc": 0.10999999940395355,
+        "url": "https://www.meera.ind.in/ring-twister.html"
+      },
+      {
+        "keyword": "cotton yarn twisting machine",
+        "position": 6,
+        "searchVolume": 390,
+        "cpc": null,
+        "url": "https://www.meera.ind.in/spun-yarn-twister.html"
+      },
+      {
+        "keyword": "mera machine",
+        "position": 21,
+        "searchVolume": 390,
+        "cpc": null,
+        "url": "https://www.meera.ind.in/tprs-twister-machine.html"
+      },
+      {
+        "keyword": "meera exports",
+        "position": 30,
+        "searchVolume": 260,
+        "cpc": null,
+        "url": "https://www.meera.ind.in/export.html"
+      },
+      {
+        "keyword": "yarn twister",
+        "position": 11,
+        "searchVolume": 260,
+        "cpc": null,
+        "url": "https://www.meera.ind.in/spun-yarn-twister.html"
+      }
+    ],
+    "organicTraffic": null,
+    "organicKeywordsCount": null,
+    "backlinksCount": null,
+    "referringDomainsCount": null,
+    "domainRank": null,
+    "fetchStatus": "success",
+    "errorMessage": null,
+    "lastFetchedAt": "2025-12-07T03:26:57.678Z",
+    "createdAt": "2025-12-07T03:26:55.707Z",
+    "updatedAt": "2025-12-07T03:26:57.679Z"
+  },
+  {
+    "id": "b1ea4ad9-e77c-4825-b95f-abdf87509f84",
+    "clientCode": "O2",
+    "domain": "RahulNandan.com",
+    "title": "Best Chemistry Teacher In India for JEE, NEET Online",
+    "metaDescription": "Rahul Nandan Sir- Best Chemistry Teacher In India for IIT JEE, NEET. Learn Chemistry with the India",
+    "inferredCategory": null,
+    "topKeywords": [
+      {
+        "keyword": "jee adv 2025 dates",
+        "position": 61,
+        "searchVolume": 9900,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/jee-advanced-2025-registration-opens-april-23-key-dates-and-complete-guidelines"
+      },
+      {
+        "keyword": "meaning of pwd candidate",
+        "position": 8,
+        "searchVolume": 8100,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/understanding-pwd-certificate-eligibility-for-jee-mains"
+      },
+      {
+        "keyword": "meaning of pwd candidates",
+        "position": 8,
+        "searchVolume": 8100,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/understanding-pwd-certificate-eligibility-for-jee-mains"
+      },
+      {
+        "keyword": "pwd candidate meaning",
+        "position": 6,
+        "searchVolume": 8100,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/understanding-pwd-certificate-eligibility-for-jee-mains"
+      },
+      {
+        "keyword": "pwd candidate means",
+        "position": 4,
+        "searchVolume": 8100,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/understanding-pwd-certificate-eligibility-for-jee-mains"
+      },
+      {
+        "keyword": "pwd category",
+        "position": 12,
+        "searchVolume": 8100,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/understanding-pwd-certificate-eligibility-for-jee-mains"
+      },
+      {
+        "keyword": "pwd in category",
+        "position": 7,
+        "searchVolume": 8100,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/understanding-pwd-certificate-eligibility-for-jee-mains"
+      },
+      {
+        "keyword": "jee advanced dates 2025",
+        "position": 73,
+        "searchVolume": 6600,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/jee-advanced-2025-registration-opens-april-23-key-dates-and-complete-guidelines"
+      },
+      {
+        "keyword": "nta jee schedule 2025",
+        "position": 47,
+        "searchVolume": 6600,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/nta-released-jee-main-2025-dates-complete-update"
+      },
+      {
+        "keyword": "percentile calculator jee",
+        "position": 9,
+        "searchVolume": 4400,
+        "cpc": 0.14000000059604645,
+        "url": "https://www.rahulnandan.com/blog/how-is-jee-mains-percentile-calculated"
+      },
+      {
+        "keyword": "qualification for jee main",
+        "position": 54,
+        "searchVolume": 4400,
+        "cpc": 0.029999999329447746,
+        "url": "https://www.rahulnandan.com/blog/jee-mains-75-criteria-your-ultimate-guide-to-eligibility-and-success"
+      },
+      {
+        "keyword": "what is p w d",
+        "position": 68,
+        "searchVolume": 4400,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/understanding-pwd-certificate-eligibility-for-jee-mains"
+      },
+      {
+        "keyword": "what is pwd",
+        "position": 64,
+        "searchVolume": 4400,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/understanding-pwd-certificate-eligibility-for-jee-mains"
+      },
+      {
+        "keyword": "jee main april attempt date 2025",
+        "position": 22,
+        "searchVolume": 3600,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/jee-main-2025-april-session-released"
+      },
+      {
+        "keyword": "jee mains april attempt date 2025",
+        "position": 5,
+        "searchVolume": 3600,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/jee-main-2025-april-session-released"
+      },
+      {
+        "keyword": "neet ug 2025 registration advisory nta",
+        "position": 11,
+        "searchVolume": 3600,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/neet-ug-2025-nta-mandates-aadhaar-apaar-id-update"
+      },
+      {
+        "keyword": "pwd certificate meaning",
+        "position": 5,
+        "searchVolume": 3600,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/understanding-pwd-certificate-eligibility-for-jee-mains"
+      },
+      {
+        "keyword": "pwd certificate means",
+        "position": 5,
+        "searchVolume": 3600,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/understanding-pwd-certificate-eligibility-for-jee-mains"
+      },
+      {
+        "keyword": "what is pwd category",
+        "position": 8,
+        "searchVolume": 3600,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/understanding-pwd-certificate-eligibility-for-jee-mains"
+      },
+      {
+        "keyword": "cbse maths exam class 12",
+        "position": 94,
+        "searchVolume": 2900,
+        "cpc": null,
+        "url": "https://www.rahulnandan.com/blog/unraveling-the-complexity-cbse-board-maths-exam-2024-analysis"
+      }
+    ],
+    "organicTraffic": null,
+    "organicKeywordsCount": null,
+    "backlinksCount": null,
+    "referringDomainsCount": null,
+    "domainRank": null,
+    "fetchStatus": "success",
+    "errorMessage": null,
+    "lastFetchedAt": "2025-12-07T03:29:18.333Z",
+    "createdAt": "2025-12-07T03:29:12.601Z",
+    "updatedAt": "2025-12-07T03:29:18.333Z"
+  },
+  {
+    "id": "8887db46-7a57-4a6d-bef9-f764dc361578",
+    "clientCode": "O2",
+    "domain": "https://www.chemistryshiksha.com/",
+    "title": "Rahul Nandan Sir : Chemistry Guru for IIT-JEE, NEET &amp; Olympiad",
+    "metaDescription": "Learn from India&#039;s Best Chemistry Teacher Rahul Nandan Sir, Chemistry Guru for IIT-JEE, NEET, Boards &amp; Olympiad",
+    "inferredCategory": null,
+    "topKeywords": [
+      {
+        "keyword": "what is p y q",
+        "position": 6,
+        "searchVolume": 1000,
+        "cpc": null,
+        "url": "https://www.chemistryshiksha.com/blogs/is-pyqs-is-sufficient-for-jee-mains-2025/"
+      },
+      {
+        "keyword": "rahul nandan sir",
+        "position": 2,
+        "searchVolume": 720,
+        "cpc": null,
+        "url": "https://www.chemistryshiksha.com/"
+      }
+    ],
+    "organicTraffic": null,
+    "organicKeywordsCount": null,
+    "backlinksCount": null,
+    "referringDomainsCount": null,
+    "domainRank": null,
+    "fetchStatus": "success",
+    "errorMessage": null,
+    "lastFetchedAt": "2025-12-07T03:29:54.126Z",
+    "createdAt": "2025-12-07T03:29:36.228Z",
+    "updatedAt": "2025-12-07T03:29:54.127Z"
   }
 ]

@@ -728,8 +728,21 @@ export async function fetchDomainOverview(
 
       if (overviewData.status_code === 20000) {
         for (const task of overviewData.tasks || []) {
+          console.log('[DataForSEO Domain Overview] Task details:', {
+            taskStatusCode: task.status_code,
+            resultCount: task.result_count,
+            hasResult: !!task.result,
+            resultLength: task.result?.length || 0,
+          });
           if (task.status_code === 20000 && task.result) {
             for (const r of task.result) {
+              console.log('[DataForSEO Domain Overview] Result item:', {
+                target: r.target,
+                hasMetrics: !!r.metrics,
+                hasOrganic: !!r.metrics?.organic,
+                metricsKeys: r.metrics ? Object.keys(r.metrics) : [],
+                rawResult: JSON.stringify(r).substring(0, 500),
+              });
               if (r.metrics?.organic) {
                 result.organicTraffic = r.metrics.organic.etv || null;
                 result.organicKeywordsCount = r.metrics.organic.count || null;
@@ -826,8 +839,20 @@ export async function fetchDomainOverview(
 
       if (backlinksData.status_code === 20000) {
         for (const task of backlinksData.tasks || []) {
+          console.log('[DataForSEO Backlinks] Task details:', {
+            taskStatusCode: task.status_code,
+            hasResult: !!task.result,
+            resultLength: task.result?.length || 0,
+          });
           if (task.status_code === 20000 && task.result) {
             for (const r of task.result) {
+              console.log('[DataForSEO Backlinks] Result item:', {
+                target: r.target,
+                rank: r.rank,
+                backlinks: r.backlinks,
+                referringDomains: r.referring_domains,
+                rawResult: JSON.stringify(r).substring(0, 500),
+              });
               result.backlinksCount = r.backlinks || null;
               result.referringDomainsCount = r.referring_domains || null;
               result.domainRank = r.rank || null;
