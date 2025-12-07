@@ -3,8 +3,37 @@ export interface Client {
   code: string;
   name: string;
   mainDomain: string;
+  domains: string[];
   notes?: string;
   isActive: boolean;
+}
+
+export interface DomainProfile {
+  id: string;
+  clientCode: string;
+  domain: string;
+  title: string | null;
+  metaDescription: string | null;
+  inferredCategory: string | null;
+  topKeywords: TopKeywordEntry[];
+  organicTraffic: number | null;
+  organicKeywordsCount: number | null;
+  backlinksCount: number | null;
+  referringDomainsCount: number | null;
+  domainRank: number | null;
+  fetchStatus: 'pending' | 'fetching' | 'success' | 'error';
+  errorMessage: string | null;
+  lastFetchedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface TopKeywordEntry {
+  keyword: string;
+  position: number;
+  searchVolume: number | null;
+  cpc: number | null;
+  url: string | null;
 }
 
 export interface Competitor {

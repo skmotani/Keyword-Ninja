@@ -1,4 +1,4 @@
-import { DataForSEOKeywordResult } from '@/types';
+import { DataForSEOKeywordResult, TopKeywordEntry } from '@/types';
 
 interface DataForSEOCredentials {
   username: string;
@@ -453,4 +453,377 @@ export async function fetchSerpFromDataForSEO(
     locationResults: allLocationResults,
     rawResponse: combinedRawResponse,
   };
+}
+
+export interface DomainOverviewResult {
+  domain: string;
+  title: string | null;
+  metaDescription: string | null;
+  organicTraffic: number | null;
+  organicKeywordsCount: number | null;
+  backlinksCount: number | null;
+  referringDomainsCount: number | null;
+  domainRank: number | null;
+  topKeywords: TopKeywordEntry[];
+  inferredCategory: string | null;
+  rawResponse: string;
+}
+
+interface DataForSEODomainOverviewResponse {
+  version: string;
+  status_code: number;
+  status_message: string;
+  time: string;
+  cost: number;
+  tasks_count: number;
+  tasks_error: number;
+  tasks: Array<{
+    id: string;
+    status_code: number;
+    status_message: string;
+    time: string;
+    cost: number;
+    result_count: number;
+    path: string[];
+    data: {
+      api: string;
+      function: string;
+      target: string;
+      location_code: number;
+      language_code: string;
+    };
+    result: Array<{
+      target: string;
+      location_code: number;
+      language_code: string;
+      metrics: {
+        organic: {
+          etv: number;
+          count: number;
+          is_up: number;
+          is_down: number;
+          is_new: number;
+          is_lost: number;
+          pos_1: number;
+          pos_2_3: number;
+          pos_4_10: number;
+          pos_11_20: number;
+          pos_21_30: number;
+          pos_31_40: number;
+          pos_41_50: number;
+          pos_51_60: number;
+          pos_61_70: number;
+          pos_71_80: number;
+          pos_81_90: number;
+          pos_91_100: number;
+        } | null;
+      } | null;
+    }> | null;
+  }>;
+}
+
+interface DataForSEORankedKeywordsResponse {
+  version: string;
+  status_code: number;
+  status_message: string;
+  time: string;
+  cost: number;
+  tasks_count: number;
+  tasks_error: number;
+  tasks: Array<{
+    id: string;
+    status_code: number;
+    status_message: string;
+    time: string;
+    cost: number;
+    result_count: number;
+    path: string[];
+    data: {
+      api: string;
+      function: string;
+      target: string;
+      location_code: number;
+      language_code: string;
+      limit: number;
+      order_by: string[];
+    };
+    result: Array<{
+      target: string;
+      location_code: number;
+      language_code: string;
+      total_count: number;
+      items_count: number;
+      items: Array<{
+        keyword_data: {
+          keyword: string;
+          location_code: number;
+          language_code: string;
+          keyword_info: {
+            search_volume: number | null;
+            cpc: number | null;
+            competition: number | null;
+            competition_level: string | null;
+          } | null;
+        };
+        ranked_serp_element: {
+          serp_item: {
+            rank_group: number;
+            rank_absolute: number;
+            position: string;
+            url: string;
+          };
+        };
+      }> | null;
+    }> | null;
+  }>;
+}
+
+interface DataForSEOBacklinksResponse {
+  version: string;
+  status_code: number;
+  status_message: string;
+  time: string;
+  cost: number;
+  tasks_count: number;
+  tasks_error: number;
+  tasks: Array<{
+    id: string;
+    status_code: number;
+    status_message: string;
+    result: Array<{
+      target: string;
+      rank: number;
+      backlinks: number;
+      referring_domains: number;
+      referring_main_domains: number;
+    }> | null;
+  }>;
+}
+
+export async function fetchDomainOverview(
+  credentials: { username: string; password: string },
+  domain: string,
+  locationCode: string = 'IN'
+): Promise<DomainOverviewResult> {
+  const authString = Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64');
+  const numericLocCode = LOCATION_CODE_MAP[locationCode] || 2356;
+  const langCode = LANGUAGE_CODE_MAP[locationCode] || 'en';
+
+  const cleanDomain = domain.replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/.*$/, '').toLowerCase().trim();
+
+  console.log('[DataForSEO Domain Overview] Fetching overview for:', {
+    domain: cleanDomain,
+    locationCode,
+    numericLocCode,
+  });
+
+  const result: DomainOverviewResult = {
+    domain: cleanDomain,
+    title: null,
+    metaDescription: null,
+    organicTraffic: null,
+    organicKeywordsCount: null,
+    backlinksCount: null,
+    referringDomainsCount: null,
+    domainRank: null,
+    topKeywords: [],
+    inferredCategory: null,
+    rawResponse: '',
+  };
+
+  const rawResponses: Record<string, string> = {};
+
+  try {
+    const overviewRequestBody = [{
+      target: cleanDomain,
+      location_code: numericLocCode,
+      language_code: langCode,
+    }];
+
+    const overviewResponse = await fetch(
+      'https://api.dataforseo.com/v3/dataforseo_labs/google/domain_rank_overview/live',
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Basic ${authString}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(overviewRequestBody),
+      }
+    );
+
+    const overviewText = await overviewResponse.text();
+    rawResponses.overview = overviewText;
+
+    if (overviewResponse.ok) {
+      const overviewData: DataForSEODomainOverviewResponse = JSON.parse(overviewText);
+      console.log('[DataForSEO Domain Overview] Overview response:', {
+        statusCode: overviewData.status_code,
+        tasksCount: overviewData.tasks_count,
+      });
+
+      if (overviewData.status_code === 20000) {
+        for (const task of overviewData.tasks || []) {
+          if (task.status_code === 20000 && task.result) {
+            for (const r of task.result) {
+              if (r.metrics?.organic) {
+                result.organicTraffic = r.metrics.organic.etv || null;
+                result.organicKeywordsCount = r.metrics.organic.count || null;
+              }
+            }
+          }
+        }
+      }
+    }
+  } catch (error) {
+    console.error('[DataForSEO Domain Overview] Error fetching overview:', error);
+  }
+
+  try {
+    const keywordsRequestBody = [{
+      target: cleanDomain,
+      location_code: numericLocCode,
+      language_code: langCode,
+      limit: 20,
+      order_by: ['keyword_data.keyword_info.search_volume,desc'],
+    }];
+
+    const keywordsResponse = await fetch(
+      'https://api.dataforseo.com/v3/dataforseo_labs/google/ranked_keywords/live',
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Basic ${authString}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(keywordsRequestBody),
+      }
+    );
+
+    const keywordsText = await keywordsResponse.text();
+    rawResponses.keywords = keywordsText;
+
+    if (keywordsResponse.ok) {
+      const keywordsData: DataForSEORankedKeywordsResponse = JSON.parse(keywordsText);
+      console.log('[DataForSEO Domain Overview] Ranked keywords response:', {
+        statusCode: keywordsData.status_code,
+        tasksCount: keywordsData.tasks_count,
+      });
+
+      if (keywordsData.status_code === 20000) {
+        for (const task of keywordsData.tasks || []) {
+          if (task.status_code === 20000 && task.result) {
+            for (const r of task.result) {
+              const items = r.items || [];
+              for (const item of items.slice(0, 20)) {
+                result.topKeywords.push({
+                  keyword: item.keyword_data.keyword,
+                  position: item.ranked_serp_element?.serp_item?.rank_group || 0,
+                  searchVolume: item.keyword_data.keyword_info?.search_volume || null,
+                  cpc: item.keyword_data.keyword_info?.cpc || null,
+                  url: item.ranked_serp_element?.serp_item?.url || null,
+                });
+              }
+            }
+          }
+        }
+      }
+    }
+  } catch (error) {
+    console.error('[DataForSEO Domain Overview] Error fetching keywords:', error);
+  }
+
+  try {
+    const backlinksRequestBody = [{
+      target: cleanDomain,
+    }];
+
+    const backlinksResponse = await fetch(
+      'https://api.dataforseo.com/v3/backlinks/summary/live',
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Basic ${authString}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(backlinksRequestBody),
+      }
+    );
+
+    const backlinksText = await backlinksResponse.text();
+    rawResponses.backlinks = backlinksText;
+
+    if (backlinksResponse.ok) {
+      const backlinksData: DataForSEOBacklinksResponse = JSON.parse(backlinksText);
+      console.log('[DataForSEO Domain Overview] Backlinks response:', {
+        statusCode: backlinksData.status_code,
+        tasksCount: backlinksData.tasks_count,
+      });
+
+      if (backlinksData.status_code === 20000) {
+        for (const task of backlinksData.tasks || []) {
+          if (task.status_code === 20000 && task.result) {
+            for (const r of task.result) {
+              result.backlinksCount = r.backlinks || null;
+              result.referringDomainsCount = r.referring_domains || null;
+              result.domainRank = r.rank || null;
+            }
+          }
+        }
+      }
+    }
+  } catch (error) {
+    console.error('[DataForSEO Domain Overview] Error fetching backlinks:', error);
+  }
+
+  if (result.topKeywords.length > 0) {
+    const keywordTexts = result.topKeywords.slice(0, 10).map(k => k.keyword.toLowerCase());
+    const categories = inferCategoryFromKeywords(keywordTexts);
+    result.inferredCategory = categories.length > 0 ? categories.join(', ') : null;
+  }
+
+  result.rawResponse = JSON.stringify(rawResponses, null, 2);
+
+  console.log('[DataForSEO Domain Overview] Final result for', cleanDomain, ':', {
+    organicTraffic: result.organicTraffic,
+    organicKeywordsCount: result.organicKeywordsCount,
+    backlinksCount: result.backlinksCount,
+    referringDomainsCount: result.referringDomainsCount,
+    domainRank: result.domainRank,
+    topKeywordsCount: result.topKeywords.length,
+    inferredCategory: result.inferredCategory,
+  });
+
+  return result;
+}
+
+function inferCategoryFromKeywords(keywords: string[]): string[] {
+  const categoryPatterns: Record<string, string[]> = {
+    'E-commerce': ['buy', 'shop', 'store', 'price', 'order', 'sale', 'discount', 'product'],
+    'Technology': ['software', 'app', 'tech', 'digital', 'cloud', 'api', 'developer'],
+    'Healthcare': ['health', 'medical', 'doctor', 'hospital', 'treatment', 'care', 'wellness'],
+    'Finance': ['bank', 'loan', 'invest', 'finance', 'money', 'credit', 'insurance'],
+    'Education': ['learn', 'course', 'training', 'education', 'school', 'university', 'study'],
+    'Travel': ['travel', 'hotel', 'flight', 'vacation', 'tour', 'booking', 'destination'],
+    'Food & Restaurant': ['food', 'restaurant', 'recipe', 'cooking', 'menu', 'delivery'],
+    'Real Estate': ['property', 'real estate', 'home', 'house', 'apartment', 'rent', 'buy'],
+    'Automotive': ['car', 'auto', 'vehicle', 'motor', 'bike', 'driving'],
+    'Fashion': ['fashion', 'clothing', 'dress', 'style', 'wear', 'apparel'],
+    'Manufacturing': ['manufacturer', 'industrial', 'factory', 'production', 'supplier'],
+  };
+
+  const matchedCategories: Set<string> = new Set();
+
+  for (const keyword of keywords) {
+    for (const [category, patterns] of Object.entries(categoryPatterns)) {
+      for (const pattern of patterns) {
+        if (keyword.includes(pattern)) {
+          matchedCategories.add(category);
+          break;
+        }
+      }
+    }
+  }
+
+  return Array.from(matchedCategories).slice(0, 3);
 }

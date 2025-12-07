@@ -57,9 +57,36 @@ A full-stack web application for managing SEO research data including clients, c
 - `id`: string (UUID)
 - `code`: string (e.g., "01", "02")
 - `name`: string
-- `mainDomain`: string
+- `mainDomain`: string (primary domain, first in domains array)
+- `domains`: string[] (up to 5 domains per client)
 - `notes`: optional string
 - `isActive`: boolean (false = archived)
+
+### DomainProfile
+- `id`: string (UUID)
+- `clientCode`: string (references Client.code)
+- `domain`: string - The domain being profiled
+- `title`: string | null - Website title
+- `metaDescription`: string | null - Meta description
+- `inferredCategory`: string | null - Auto-inferred category from top keywords
+- `topKeywords`: TopKeywordEntry[] - Top ranking keywords (up to 20)
+- `organicTraffic`: number | null - Estimated organic traffic value
+- `organicKeywordsCount`: number | null - Number of organic keywords
+- `backlinksCount`: number | null - Total backlinks
+- `referringDomainsCount`: number | null - Number of referring domains
+- `domainRank`: number | null - Domain rank score
+- `fetchStatus`: 'pending' | 'fetching' | 'success' | 'error'
+- `errorMessage`: string | null
+- `lastFetchedAt`: string | null (ISO date)
+- `createdAt`: string (ISO date)
+- `updatedAt`: string (ISO date)
+
+### TopKeywordEntry
+- `keyword`: string
+- `position`: number - SERP position
+- `searchVolume`: number | null
+- `cpc`: number | null
+- `url`: string | null - URL ranking for this keyword
 
 ### Competitor
 - `id`: string (UUID)
