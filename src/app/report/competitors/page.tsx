@@ -263,6 +263,10 @@ export default function CompetitorReportPage() {
   const [domainFilter, setDomainFilter] = useState('');
   const [labelFilter, setLabelFilter] = useState('');
   const [relevanceFilter, setRelevanceFilter] = useState('');
+  const [domainTypeFilter, setDomainTypeFilter] = useState('');
+  const [pageIntentFilter, setPageIntentFilter] = useState('');
+  const [matchFilter, setMatchFilter] = useState('');
+  const [classificationStatusFilter, setClassificationStatusFilter] = useState('');
   
   const [sortField, setSortField] = useState<SortField>('importanceScore');
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
@@ -455,6 +459,26 @@ export default function CompetitorReportPage() {
       result = result.filter(c => c.classification?.businessRelevanceCategory === relevanceFilter);
     }
 
+    if (domainTypeFilter) {
+      result = result.filter(c => c.classification?.domainType === domainTypeFilter);
+    }
+
+    if (pageIntentFilter) {
+      result = result.filter(c => c.classification?.pageIntent === pageIntentFilter);
+    }
+
+    if (matchFilter) {
+      result = result.filter(c => c.classification?.productMatchScoreBucket === matchFilter);
+    }
+
+    if (classificationStatusFilter) {
+      if (classificationStatusFilter === 'classified') {
+        result = result.filter(c => c.classification);
+      } else if (classificationStatusFilter === 'not_classified') {
+        result = result.filter(c => !c.classification);
+      }
+    }
+
     if (sortField) {
       result.sort((a, b) => {
         let aVal: number, bVal: number;
@@ -473,7 +497,7 @@ export default function CompetitorReportPage() {
     }
     
     return result;
-  }, [competitorList, domainFilter, labelFilter, relevanceFilter, sortField, sortDirection]);
+  }, [competitorList, domainFilter, labelFilter, relevanceFilter, domainTypeFilter, pageIntentFilter, matchFilter, classificationStatusFilter, sortField, sortDirection]);
 
   const labelStats = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -551,13 +575,40 @@ export default function CompetitorReportPage() {
 
   const selectedClientName = clients.find(c => c.code === selectedClientCode)?.name || '';
 
-  const hasFilters = domainFilter || labelFilter || relevanceFilter;
+  const hasFilters = domainFilter || labelFilter || relevanceFilter || domainTypeFilter || pageIntentFilter || matchFilter || classificationStatusFilter;
 
   const clearFilters = () => {
     setDomainFilter('');
     setLabelFilter('');
     setRelevanceFilter('');
+    setDomainTypeFilter('');
+    setPageIntentFilter('');
+    setMatchFilter('');
+    setClassificationStatusFilter('');
   };
+
+  const domainTypes = [
+    'OEM / Manufacturer / Product Provider',
+    'Service Provider / Agency / Integrator',
+    'Marketplace / Directory / Portal',
+    'End Customer / Buyer Organization',
+    'Educational / Media / Research',
+    'Brand / Platform / Corporate Site',
+    'Irrelevant Industry',
+    'Unknown'
+  ];
+
+  const pageIntents = [
+    'Transactional',
+    'Commercial Investigation',
+    'Informational',
+    'Directory / Listing',
+    'Navigational / Brand',
+    'Irrelevant Intent',
+    'Unknown'
+  ];
+
+  const matchBuckets = ['High', 'Medium', 'Low', 'None'];
 
   const showNotification = (type: 'success' | 'error', message: string) => {
     setNotification({ type, message });
@@ -829,27 +880,78 @@ export default function CompetitorReportPage() {
       </div>
 
       <div className="bg-white rounded-lg shadow-sm border p-3 mb-4">
-        <p className="text-xs font-medium text-gray-700 mb-2">Filters</p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="flex justify-between items-center mb-2">
+          <p className="text-xs font-medium text-gray-700">Filters</p>
+          {hasFilters && (
+            <button
+              onClick={clearFilters}
+              className="text-xs text-indigo-600 hover:text-indigo-800"
+            >
+              Clear all filters
+            </button>
+          )}
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
           <div>
             <label className="block text-[10px] text-gray-500 mb-1">Domain Search</label>
             <input
               type="text"
               value={domainFilter}
               onChange={(e) => setDomainFilter(e.target.value)}
-              placeholder="Filter by domain..."
+              placeholder="Filter..."
               className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
             />
           </div>
           <div>
-            <label className="block text-[10px] text-gray-500 mb-1">Label Search</label>
-            <input
-              type="text"
-              value={labelFilter}
-              onChange={(e) => setLabelFilter(e.target.value)}
-              placeholder="Filter by label..."
+            <label className="block text-[10px] text-gray-500 mb-1">Status</label>
+            <select
+              value={classificationStatusFilter}
+              onChange={(e) => setClassificationStatusFilter(e.target.value)}
               className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
-            />
+            >
+              <option value="">All</option>
+              <option value="classified">Classified</option>
+              <option value="not_classified">Not Classified</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-[10px] text-gray-500 mb-1">Domain Type</label>
+            <select
+              value={domainTypeFilter}
+              onChange={(e) => setDomainTypeFilter(e.target.value)}
+              className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            >
+              <option value="">All</option>
+              {domainTypes.map(type => (
+                <option key={type} value={type}>{type.length > 20 ? type.substring(0, 20) + '...' : type}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-[10px] text-gray-500 mb-1">Page Intent</label>
+            <select
+              value={pageIntentFilter}
+              onChange={(e) => setPageIntentFilter(e.target.value)}
+              className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            >
+              <option value="">All</option>
+              {pageIntents.map(intent => (
+                <option key={intent} value={intent}>{intent}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-[10px] text-gray-500 mb-1">Match</label>
+            <select
+              value={matchFilter}
+              onChange={(e) => setMatchFilter(e.target.value)}
+              className="w-full border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            >
+              <option value="">All</option>
+              {matchBuckets.map(bucket => (
+                <option key={bucket} value={bucket}>{bucket}</option>
+              ))}
+            </select>
           </div>
           <div>
             <label className="block text-[10px] text-gray-500 mb-1">Business Relevance</label>
@@ -860,18 +962,18 @@ export default function CompetitorReportPage() {
             >
               <option value="">All</option>
               {relevanceCategories.map(cat => (
-                <option key={cat} value={cat}>{cat}</option>
+                <option key={cat} value={cat}>{cat.length > 18 ? cat.substring(0, 18) + '...' : cat}</option>
               ))}
             </select>
           </div>
         </div>
         {hasFilters && (
-          <button
-            onClick={clearFilters}
-            className="mt-2 text-xs text-indigo-600 hover:text-indigo-800"
-          >
-            Clear all filters
-          </button>
+          <div className="mt-2 pt-2 border-t text-xs text-gray-600">
+            <span className="font-medium text-purple-700">{filteredAndSortedList.length}</span> domains match current filters
+            {classificationStatusFilter === 'not_classified' && (
+              <span className="ml-2 text-orange-600">({filteredAndSortedList.length} pending classification)</span>
+            )}
+          </div>
         )}
       </div>
 
@@ -993,16 +1095,16 @@ export default function CompetitorReportPage() {
                         <button
                           onClick={() => handleClassifyDomain(entry)}
                           disabled={classifyingDomain === entry.domain}
-                          className="text-gray-400 hover:text-indigo-600 text-[10px]"
-                          title="Re-classify"
+                          className="text-gray-500 hover:text-purple-600 text-[10px] font-medium px-2 py-0.5 border border-gray-300 rounded hover:border-purple-400"
+                          title="Re-classify this domain"
                         >
-                          {classifyingDomain === entry.domain ? '...' : '&#8635;'}
+                          {classifyingDomain === entry.domain ? 'Classifying...' : 'Reclassify'}
                         </button>
                       ) : (
                         <button
                           onClick={() => handleClassifyDomain(entry)}
                           disabled={classifyingDomain === entry.domain}
-                          className="text-purple-600 hover:text-purple-800 text-[10px] font-medium"
+                          className="text-white bg-purple-600 hover:bg-purple-700 text-[10px] font-medium px-2 py-0.5 rounded"
                         >
                           {classifyingDomain === entry.domain ? 'Classifying...' : 'Classify'}
                         </button>
