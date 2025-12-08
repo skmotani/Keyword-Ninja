@@ -2448,5 +2448,33 @@
     "explanationSummary": "SERP URLs like /plp/yarn-doubling-machine and /plp/jumbo-winder-machine, plus a supplier page (“Top Suppliers & …”, “compare suppliers, prices”), indicate a B2B listings portal rather than a single OEM, so it’s classified as a Marketplace/Directory. The page intent is directory/listing with category pages, supplier comparisons, and visible pricing. Content aligns strongly with the client’s core products (yarn winding and related doubling/twisting equipment), yielding a high product match score. Given it’s a marketplace with strong topical alignment, it is most relevant as a Marketplace/Channel.",
     "classifiedAt": "2025-12-07T06:35:00.255Z",
     "updatedAt": "2025-12-07T06:35:00.255Z"
+  },
+  {
+    "id": "class-01-rbe-net-in-1765159308450",
+    "clientCode": "01",
+    "domain": "rbe.net.in",
+    "domainType": "OEM / Manufacturer / Product Provider",
+    "pageIntent": "Transactional",
+    "productMatchScoreValue": 0.9,
+    "productMatchScoreBucket": "High",
+    "businessRelevanceCategory": "Direct Competitor",
+    "explanationLink": "#how-this-score-was-calculated",
+    "explanationSummary": "The SERP page is a product/category page for “YARN CONDITIONING & HEAT SETTING MACHINE,” indicating the site offers machinery rather than services or listings, so it fits an OEM/Product Provider. The page intent appears transactional, with catalog-like wording and product listings aimed at enquiries/purchase. This directly matches the client’s core products and topics (heat setting machines, yarn processing), yielding a high product match score. Given OEM status, transactional content, and strong overlap with Meera’s offering, this domain is a direct competitor.",
+    "classifiedAt": "2025-12-08T02:01:48.450Z",
+    "updatedAt": "2025-12-08T02:01:48.450Z"
+  },
+  {
+    "id": "class-01-www-horberghuette-at-1765159311094",
+    "clientCode": "01",
+    "domain": "www.horberghuette.at",
+    "domainType": "Irrelevant Industry",
+    "pageIntent": "Irrelevant Intent",
+    "productMatchScoreValue": 0,
+    "productMatchScoreBucket": "None",
+    "businessRelevanceCategory": "Irrelevant",
+    "explanationLink": "#how-this-score-was-calculated",
+    "explanationSummary": "The ranked URL is a consumer product page for a kite string winder (“Premier Kites 10-Inch Blank Yo-Yo Winder”), which is unrelated to industrial textile machinery. Meera Industries focuses on yarn twisting, winding, and heat-setting machines for mills, while this page targets hobby/consumer use. Therefore the domain is classified as Irrelevant Industry, the intent is irrelevant to the client’s B2B machinery goals, and the product match is 0.00 (None). Consequently, the business relevance is Irrelevant.",
+    "classifiedAt": "2025-12-08T02:01:51.094Z",
+    "updatedAt": "2025-12-08T02:01:51.094Z"
   }
 ]
