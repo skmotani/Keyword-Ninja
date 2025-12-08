@@ -534,10 +534,51 @@ function PriorityExplanationModal({ breakdown, score, tier, onClose }: PriorityE
   const formatWeight = (weight: number) => `${(weight * 100).toFixed(0)}%`;
   const formatScoreVal = (val: number) => val.toFixed(1);
 
+  const intentScoreTable = [
+    { label: 'Transactional', value: 100 },
+    { label: 'Commercial Research', value: 80 },
+    { label: 'Informational', value: 50 },
+    { label: 'Support', value: 20 },
+    { label: 'Navigational', value: 10 },
+    { label: 'Irrelevant SEO', value: 0 },
+  ];
+
+  const pageTypeScoreTable = [
+    { label: 'Product/Service', value: 100 },
+    { label: 'Pricing/Plans', value: 100 },
+    { label: 'Landing/Campaign', value: 90 },
+    { label: 'Category/Collection', value: 70 },
+    { label: 'Blog/Article/News', value: 60 },
+    { label: 'Resource/Guide/Doc', value: 50 },
+    { label: 'Home Page', value: 40 },
+    { label: 'Other/Misc', value: 30 },
+    { label: 'Support/Contact', value: 20 },
+    { label: 'Company/About', value: 10 },
+    { label: 'Careers/HR', value: 0 },
+    { label: 'Legal/Policy', value: 0 },
+    { label: 'Account/Auth', value: 0 },
+  ];
+
+  const businessRelevanceTable = [
+    { label: 'Direct', value: 100 },
+    { label: 'High', value: 80 },
+    { label: 'Medium', value: 60 },
+    { label: 'Low', value: 30 },
+    { label: 'None', value: 0 },
+  ];
+
+  const tierThresholds = [
+    { label: 'Tier 1 - Immediate', range: '80-100', color: 'bg-red-100 text-red-800' },
+    { label: 'Tier 2 - High', range: '60-79', color: 'bg-orange-100 text-orange-800' },
+    { label: 'Tier 3 - Medium', range: '40-59', color: 'bg-yellow-100 text-yellow-800' },
+    { label: 'Tier 4 - Monitor', range: '20-39', color: 'bg-blue-100 text-blue-800' },
+    { label: 'Tier 5 - Ignore', range: '0-19', color: 'bg-gray-100 text-gray-800' },
+  ];
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={onClose}>
-      <div className="bg-white rounded-lg shadow-xl max-w-lg w-full mx-4 max-h-[85vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
-        <div className="sticky top-0 bg-white border-b px-6 py-4 flex justify-between items-start">
+      <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+        <div className="sticky top-0 bg-white border-b px-6 py-4 flex justify-between items-start z-10">
           <div>
             <h3 className="text-lg font-semibold text-gray-900">Priority Score Breakdown</h3>
             <div className="flex items-center gap-2 mt-1">
@@ -560,6 +601,58 @@ function PriorityExplanationModal({ breakdown, score, tier, onClose }: PriorityE
           <div className="text-sm text-gray-600 mb-4">
             Priority = (ETV × 40%) + (Intent × 25%) + (PageType × 20%) + (Relevance × 15%)
           </div>
+
+          <details className="bg-gray-50 rounded-lg p-3 mb-4">
+            <summary className="text-sm font-medium text-gray-700 cursor-pointer hover:text-indigo-600">
+              Score Reference Tables (click to expand)
+            </summary>
+            <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="bg-white rounded p-2 shadow-sm">
+                <div className="text-xs font-semibold text-green-700 mb-1 border-b pb-1">Intent Scores</div>
+                <div className="space-y-0.5">
+                  {intentScoreTable.map(item => (
+                    <div key={item.label} className="flex justify-between text-[10px]">
+                      <span className="text-gray-600">{item.label}</span>
+                      <span className="font-medium text-green-700">{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="bg-white rounded p-2 shadow-sm">
+                <div className="text-xs font-semibold text-purple-700 mb-1 border-b pb-1">Page Type Scores</div>
+                <div className="space-y-0.5 max-h-36 overflow-y-auto">
+                  {pageTypeScoreTable.map(item => (
+                    <div key={item.label} className="flex justify-between text-[10px]">
+                      <span className="text-gray-600">{item.label}</span>
+                      <span className="font-medium text-purple-700">{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="bg-white rounded p-2 shadow-sm">
+                <div className="text-xs font-semibold text-orange-700 mb-1 border-b pb-1">Business Relevance</div>
+                <div className="space-y-0.5">
+                  {businessRelevanceTable.map(item => (
+                    <div key={item.label} className="flex justify-between text-[10px]">
+                      <span className="text-gray-600">{item.label}</span>
+                      <span className="font-medium text-orange-700">{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="bg-white rounded p-2 shadow-sm">
+                <div className="text-xs font-semibold text-indigo-700 mb-1 border-b pb-1">Priority Tiers</div>
+                <div className="space-y-0.5">
+                  {tierThresholds.map(item => (
+                    <div key={item.label} className="flex justify-between text-[10px]">
+                      <span className={`px-1 rounded ${item.color}`}>{item.label}</span>
+                      <span className="font-medium text-gray-600">{item.range}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </details>
 
           <div className="space-y-3">
             <div className="bg-blue-50 rounded-lg p-3">
