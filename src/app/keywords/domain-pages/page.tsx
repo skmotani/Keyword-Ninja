@@ -90,135 +90,302 @@ const SEO_ACTION_OPTIONS: SeoActionValue[] = [
   'IGNORE_IRRELEVANT',
 ];
 
-const TOOLTIPS = {
-  pageType: `Page Type: Identifies the structural type of the page based on URL patterns and Client Master configuration.
-
-Classification priority order:
-1. ACCOUNT_AUTH - Login, signup, dashboard, profile pages (not SEO relevant)
-2. LEGAL_POLICY - Privacy, terms, cookies, GDPR pages (not SEO relevant)
-3. CAREERS_HR - Job listings, career pages (not SEO relevant)
-4. SUPPORT_CONTACT - Help, FAQ, contact, dealer locator pages
-5. HOME_PAGE - Homepage (root URL) - navigational entry point
-6. COMPANY_ABOUT - About/company/team pages
-7. PRODUCT/SERVICE - Product, service, machine, equipment pages
-8. CATEGORY_COLLECTION - Industry, application, solution hub pages
-9. BLOG_ARTICLE_NEWS - Blog posts, news, articles, insights
-10. RESOURCE_GUIDE_DOC - Guides, whitepapers, PDFs, documentation
-11. PRICING_PLANS - Pricing, plans, subscription pages
-12. LANDING_CAMPAIGN - Campaign, promo, demo, webinar pages
-13. OTHER_MISC - Fallback when no patterns match (review candidates)
-
-URL patterns from Client Master's urlClassificationSupport are used to improve accuracy.`,
-  pageIntent: `Page Intent: Indicates the user's purpose when visiting or searching for this page.
-
-- NAVIGATIONAL: Homepage or brand-specific searches (user knows where they want to go)
-- TRANSACTIONAL: Buy, order, pricing signals - ready to convert
-- COMMERCIAL_RESEARCH: Compare, review, best - evaluating options
-- INFORMATIONAL: Educational content, how-to, guides - learning phase
-- SUPPORT: Help, FAQ, contact - existing customer needs
-- IRRELEVANT_SEO: Login, legal pages - no SEO value
-
-Intent is derived from keyword signals, page type, and the Client Master brand configuration.`,
-  isSeoRelevant: `SEO Relevant?: Indicates whether this page matters for SEO and content strategy.
-
-Marked as NOT relevant (false):
-- Legal/Policy pages (privacy, terms, cookies)
-- Account/Auth pages (login, signup, dashboard)
-- Careers/HR pages (jobs, hiring)
-- Pages with IRRELEVANT_SEO intent
-
-Marked as relevant (true):
-- Homepage and company pages (monitoring)
-- Product/Service pages (key targets)
-- Category/Collection pages (topic hubs)
-- Blog/Resource pages (content clusters)
-- Commercial landing pages
-
-This helps you focus on pages that impact organic visibility.`,
-  classificationMethod: `Classification Method: Shows how the classification was determined.
-
-RULE: Classified using URL pattern matching and keyword analysis. Rules use:
-- URL path segments matched against Client Master patterns
-- Content analysis using product/service/blog keywords
-- Homepage detection for root URLs
-- No API cost incurred
-
-AI: Rule-based logic was uncertain (LOW confidence or OTHER_MISC), so OpenAI was used to improve accuracy. This incurs API cost but provides better results for ambiguous pages.`,
-  classificationConfidence: `Classification Confidence: Indicates reliability of the classification.
-
-HIGH: Strong URL pattern match (e.g., /products/, /blog/, /contact/)
-- Matched against Client Master's urlClassificationSupport patterns
-- Clear structural indicators in URL segments
-
-MEDIUM: Content-based match using keywords/titles
-- No strong URL pattern, but product/service/blog keywords found
-- May benefit from AI review for confirmation
-
-LOW: Fallback classification (OTHER_MISC)
-- No patterns matched - candidate for AI classification
-- Manual review recommended`,
-  needsAiReview: `Needs AI Review?: Flags pages for AI-assisted classification.
-
-TRUE when:
-- Page Type is OTHER_MISC (no patterns matched)
-- Classification Confidence is LOW
-
-These pages are sent to OpenAI when you click "Run AI for Uncertain" to get more accurate classifications based on full context analysis.
-
-FALSE when:
-- Strong URL pattern match found
-- Confidence is HIGH or MEDIUM`,
-  seoAction: `SEO Action: Recommended next step based on page type, intent, and traffic.
-
-- HIGH_PRIORITY_TARGET: Commercial page with high traffic (1000+) and transactional intent. Priority competitor page to outrank.
-- ADD_TO_CONTENT_CLUSTER: Blog, resource, or category pages useful for topic cluster strategy.
-- MONITOR_ONLY: Track but not priority - includes homepage, low-traffic commercial pages.
-- IGNORE_IRRELEVANT: Utility pages (legal, login, careers) with no SEO impact.
-
-Traffic thresholds and page type combinations determine the action automatically.`,
-};
-
-interface TooltipProps {
-  text: string;
-  children: React.ReactNode;
+interface HelpContent {
+  title: string;
+  description: string;
+  sections: {
+    heading: string;
+    items: { label: string; description: string }[];
+  }[];
+  source?: string;
+  apiField?: string;
 }
 
-function Tooltip({ text, children }: TooltipProps) {
-  const [show, setShow] = useState(false);
-  const [coords, setCoords] = useState({ top: 0, left: 0 });
-  const triggerRef = useRef<HTMLDivElement>(null);
+const HELP_CONTENT: Record<string, HelpContent> = {
+  traffic: {
+    title: 'Estimated Traffic Value (ETV)',
+    description: 'The estimated monthly organic traffic this page receives based on its ranking positions and search volumes.',
+    sections: [
+      {
+        heading: 'DataForSEO API Details',
+        items: [
+          { label: 'API Endpoint', description: 'DataForSEO Labs API - Domain Pages' },
+          { label: 'Field Name', description: 'etv (Estimated Traffic Value)' },
+          { label: 'Calculation Method', description: 'Sum of (Search Volume × CTR for Position) across all ranking keywords' },
+          { label: 'Data Freshness', description: 'Updated monthly based on SERP data collection' },
+        ],
+      },
+      {
+        heading: 'How to Interpret',
+        items: [
+          { label: 'High Traffic (1000+)', description: 'Priority pages driving significant organic visibility. Target for competitive analysis.' },
+          { label: 'Medium Traffic (100-999)', description: 'Pages with moderate visibility. Good candidates for optimization.' },
+          { label: 'Low Traffic (<100)', description: 'Pages with limited organic reach. May need content improvement or link building.' },
+        ],
+      },
+      {
+        heading: 'CTR Model (Click-Through Rate)',
+        items: [
+          { label: 'Position 1', description: '~28-32% CTR' },
+          { label: 'Position 2', description: '~15-17% CTR' },
+          { label: 'Position 3', description: '~10-11% CTR' },
+          { label: 'Positions 4-10', description: 'Declining CTR from ~8% to ~2%' },
+        ],
+      },
+    ],
+    source: 'DataForSEO Labs API',
+    apiField: 'etv',
+  },
+  keywords: {
+    title: 'Keywords Count',
+    description: 'The total number of unique keywords for which this page ranks in organic search results.',
+    sections: [
+      {
+        heading: 'DataForSEO API Details',
+        items: [
+          { label: 'API Endpoint', description: 'DataForSEO Labs API - Domain Pages' },
+          { label: 'Field Name', description: 'count (Keywords Count)' },
+          { label: 'Scope', description: 'All keywords where this URL appears in top 100 organic results' },
+          { label: 'Data Freshness', description: 'Updated monthly based on SERP data collection' },
+        ],
+      },
+      {
+        heading: 'How to Interpret',
+        items: [
+          { label: 'High Count (50+)', description: 'Page has strong topical authority and ranks for many related terms.' },
+          { label: 'Medium Count (10-49)', description: 'Page has moderate keyword coverage. Opportunity to expand content.' },
+          { label: 'Low Count (<10)', description: 'Page targets a narrow topic or lacks comprehensive content.' },
+        ],
+      },
+      {
+        heading: 'SEO Insights',
+        items: [
+          { label: 'Keyword Cannibalization', description: 'Multiple pages ranking for same keywords may indicate content overlap.' },
+          { label: 'Content Gaps', description: 'Low keyword count on important pages suggests content expansion opportunities.' },
+          { label: 'Topic Clusters', description: 'Pages with high keyword counts often serve as pillar content in topic clusters.' },
+        ],
+      },
+    ],
+    source: 'DataForSEO Labs API',
+    apiField: 'count',
+  },
+  pageType: {
+    title: 'Page Type Classification',
+    description: 'Identifies the structural type of the page based on URL patterns and Client Master configuration.',
+    sections: [
+      {
+        heading: 'Classification Priority Order',
+        items: [
+          { label: '1. ACCOUNT_AUTH', description: 'Login, signup, dashboard, profile pages (not SEO relevant)' },
+          { label: '2. LEGAL_POLICY', description: 'Privacy, terms, cookies, GDPR pages (not SEO relevant)' },
+          { label: '3. CAREERS_HR', description: 'Job listings, career pages (not SEO relevant)' },
+          { label: '4. SUPPORT_CONTACT', description: 'Help, FAQ, contact, dealer locator pages' },
+          { label: '5. HOME_PAGE', description: 'Homepage (root URL) - navigational entry point' },
+          { label: '6. COMPANY_ABOUT', description: 'About/company/team pages' },
+          { label: '7. PRODUCT_SERVICE', description: 'Product, service, machine, equipment pages' },
+          { label: '8. CATEGORY_COLLECTION', description: 'Industry, application, solution hub pages' },
+          { label: '9. BLOG_ARTICLE_NEWS', description: 'Blog posts, news, articles, insights' },
+          { label: '10. RESOURCE_GUIDE_DOC', description: 'Guides, whitepapers, PDFs, documentation' },
+          { label: '11. PRICING_PLANS', description: 'Pricing, plans, subscription pages' },
+          { label: '12. LANDING_CAMPAIGN', description: 'Campaign, promo, demo, webinar pages' },
+          { label: '13. OTHER_MISC', description: 'Fallback when no patterns match (review candidates)' },
+        ],
+      },
+      {
+        heading: 'Pattern Matching',
+        items: [
+          { label: 'URL Patterns', description: 'Matched against Client Master urlClassificationSupport patterns' },
+          { label: 'Slug Detection', description: 'Uses productSlugPatterns, categorySlugPatterns, blogSlugPatterns, etc.' },
+          { label: 'Fallback Logic', description: 'Pages not matching any pattern are marked as OTHER_MISC for AI review' },
+        ],
+      },
+    ],
+  },
+  pageIntent: {
+    title: 'Page Intent Classification',
+    description: 'Indicates the user\'s purpose when visiting or searching for this page.',
+    sections: [
+      {
+        heading: 'Intent Categories',
+        items: [
+          { label: 'NAVIGATIONAL', description: 'Homepage or brand-specific searches. User knows where they want to go.' },
+          { label: 'TRANSACTIONAL', description: 'Buy, order, pricing signals. User is ready to convert.' },
+          { label: 'COMMERCIAL_RESEARCH', description: 'Compare, review, best. User is evaluating options before purchase.' },
+          { label: 'INFORMATIONAL', description: 'Educational content, how-to, guides. User is in learning phase.' },
+          { label: 'SUPPORT', description: 'Help, FAQ, contact. Existing customer needs assistance.' },
+          { label: 'IRRELEVANT_SEO', description: 'Login, legal pages. No organic search value.' },
+        ],
+      },
+      {
+        heading: 'How Intent is Determined',
+        items: [
+          { label: 'Page Type Mapping', description: 'Each page type has a default intent based on typical user behavior' },
+          { label: 'Keyword Signals', description: 'Transactional keywords (buy, price) suggest TRANSACTIONAL intent' },
+          { label: 'Content Analysis', description: 'Educational content indicates INFORMATIONAL intent' },
+        ],
+      },
+    ],
+  },
+  isSeoRelevant: {
+    title: 'SEO Relevance',
+    description: 'Indicates whether this page matters for SEO and content strategy.',
+    sections: [
+      {
+        heading: 'Marked as NOT Relevant (No)',
+        items: [
+          { label: 'Legal/Policy Pages', description: 'Privacy, terms, cookies - necessary but not SEO targets' },
+          { label: 'Account/Auth Pages', description: 'Login, signup, dashboard - utility pages' },
+          { label: 'Careers/HR Pages', description: 'Jobs, hiring - typically separate from main SEO strategy' },
+          { label: 'IRRELEVANT_SEO Intent', description: 'Any page flagged as having no SEO value' },
+        ],
+      },
+      {
+        heading: 'Marked as Relevant (Yes)',
+        items: [
+          { label: 'Homepage/Company', description: 'Brand presence and authority pages' },
+          { label: 'Product/Service Pages', description: 'Key commercial targets for rankings' },
+          { label: 'Category/Collection Pages', description: 'Topic hubs that attract organic traffic' },
+          { label: 'Blog/Resource Pages', description: 'Content that builds topical authority' },
+          { label: 'Landing Pages', description: 'Conversion-focused pages worth optimizing' },
+        ],
+      },
+    ],
+  },
+  seoAction: {
+    title: 'SEO Action Recommendations',
+    description: 'Recommended next step based on page type, intent, and traffic metrics.',
+    sections: [
+      {
+        heading: 'Action Categories',
+        items: [
+          { label: 'HIGH_PRIORITY_TARGET', description: 'Commercial page with high traffic (1000+) and transactional intent. Priority competitor page to outrank.' },
+          { label: 'CREATE_EQUIVALENT_PAGE', description: 'Competitor has valuable content you lack. Create similar or better content.' },
+          { label: 'OPTIMIZE_EXISTING_PAGE', description: 'You have similar content that could be improved to compete.' },
+          { label: 'ADD_TO_CONTENT_CLUSTER', description: 'Blog, resource, or category pages useful for topic cluster strategy.' },
+          { label: 'BACKLINK_PROSPECT', description: 'Resource page that could link to your content.' },
+          { label: 'MONITOR_ONLY', description: 'Track but not priority - includes homepage, low-traffic commercial pages.' },
+          { label: 'IGNORE_IRRELEVANT', description: 'Utility pages (legal, login, careers) with no SEO impact.' },
+        ],
+      },
+      {
+        heading: 'How Actions are Determined',
+        items: [
+          { label: 'Traffic Thresholds', description: 'High traffic pages get priority actions' },
+          { label: 'Page Type Mapping', description: 'Commercial pages get different actions than utility pages' },
+          { label: 'Intent Alignment', description: 'Transactional intent + high traffic = HIGH_PRIORITY_TARGET' },
+        ],
+      },
+    ],
+  },
+  classificationConfidence: {
+    title: 'Classification Confidence',
+    description: 'Indicates the reliability of the page classification.',
+    sections: [
+      {
+        heading: 'Confidence Levels',
+        items: [
+          { label: 'HIGH', description: 'Strong URL pattern match (e.g., /products/, /blog/, /contact/). Matched against Client Master patterns with clear structural indicators.' },
+          { label: 'MEDIUM', description: 'Content-based match using keywords/titles. No strong URL pattern but product/service/blog keywords found. May benefit from AI review.' },
+          { label: 'LOW', description: 'Fallback classification (OTHER_MISC). No patterns matched - candidate for AI classification. Manual review recommended.' },
+        ],
+      },
+    ],
+  },
+  classificationMethod: {
+    title: 'Classification Method',
+    description: 'Shows how the classification was determined.',
+    sections: [
+      {
+        heading: 'Methods',
+        items: [
+          { label: 'RULE', description: 'Classified using URL pattern matching and keyword analysis. Uses Client Master patterns, homepage detection, and content keywords. No API cost incurred.' },
+          { label: 'AI', description: 'Rule-based logic was uncertain (LOW confidence or OTHER_MISC), so OpenAI was used. Incurs API cost but provides better results for ambiguous pages.' },
+        ],
+      },
+    ],
+  },
+};
 
-  const handleMouseEnter = () => {
-    if (triggerRef.current) {
-      const rect = triggerRef.current.getBoundingClientRect();
-      setCoords({
-        top: rect.top - 8,
-        left: rect.left,
-      });
-    }
-    setShow(true);
-  };
+interface HelpModalProps {
+  helpKey: string | null;
+  onClose: () => void;
+}
+
+function HelpModal({ helpKey, onClose }: HelpModalProps) {
+  if (!helpKey || !HELP_CONTENT[helpKey]) return null;
+
+  const content = HELP_CONTENT[helpKey];
 
   return (
-    <div
-      ref={triggerRef}
-      className="relative inline-flex items-center"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={() => setShow(false)}
-    >
-      {children}
-      {show && (
-        <div
-          className="fixed pointer-events-none z-[9999] -translate-y-full"
-          style={{ top: coords.top, left: coords.left }}
-        >
-          <div className="bg-gray-900 text-white text-[10px] leading-tight rounded px-2 py-1.5 shadow-lg max-w-80">
-            {text}
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={onClose}>
+      <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[85vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+        <div className="sticky top-0 bg-white border-b px-6 py-4 flex justify-between items-start">
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900">{content.title}</h3>
+            <p className="text-sm text-gray-600 mt-1">{content.description}</p>
           </div>
-          <div className="absolute left-4 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900" />
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 ml-4">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
-      )}
+
+        <div className="p-6 space-y-6">
+          {content.sections.map((section, idx) => (
+            <div key={idx}>
+              <h4 className="text-sm font-semibold text-indigo-700 mb-3 flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></span>
+                {section.heading}
+              </h4>
+              <div className="space-y-2">
+                {section.items.map((item, itemIdx) => (
+                  <div key={itemIdx} className="flex gap-3 text-sm">
+                    <span className="font-medium text-gray-700 min-w-[140px] shrink-0">{item.label}</span>
+                    <span className="text-gray-600">{item.description}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+
+          {(content.source || content.apiField) && (
+            <div className="mt-6 pt-4 border-t border-gray-200">
+              <div className="flex items-center gap-4 text-xs text-gray-500">
+                {content.source && (
+                  <div className="flex items-center gap-1">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                    <span>Source: <strong>{content.source}</strong></span>
+                  </div>
+                )}
+                {content.apiField && (
+                  <div className="flex items-center gap-1">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                    <span>API Field: <code className="bg-gray-100 px-1 rounded">{content.apiField}</code></span>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
+  );
+}
+
+function HelpIcon({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      onClick={(e) => { e.stopPropagation(); onClick(); }}
+      className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-gray-200 hover:bg-indigo-200 text-gray-500 hover:text-indigo-700 text-[8px] font-bold transition-colors"
+      title="Click for details"
+    >
+      ?
+    </button>
   );
 }
 
@@ -383,6 +550,7 @@ export default function DomainPagesPage() {
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
 
   const [selectedExplanation, setSelectedExplanation] = useState<ClassificationExplanation | null>(null);
+  const [activeHelpModal, setActiveHelpModal] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(50);
 
@@ -690,24 +858,6 @@ export default function DomainPagesPage() {
   useEffect(() => {
     setCurrentPage(1);
   }, [filteredRecords.length]);
-
-  const SortableHeader = ({ field, label, tooltip }: { field: SortField; label: string; tooltip: string }) => (
-    <th
-      className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
-      onClick={() => handleSort(field)}
-    >
-      <Tooltip text={tooltip}>
-        <div className="flex items-center gap-1">
-          {label}
-          {sortField === field && (
-            <span className="text-indigo-600">
-              {sortDirection === 'asc' ? '↑' : '↓'}
-            </span>
-          )}
-        </div>
-      </Tooltip>
-    </th>
-  );
 
   const formatNumber = (num: number | null) => {
     if (num === null || num === undefined) return '-';
@@ -1273,51 +1423,41 @@ export default function DomainPagesPage() {
                 <th className="px-1 py-1.5 text-left text-[9px] font-medium text-gray-500 uppercase w-[180px]">
                   Page URL
                 </th>
-                <th className="px-1 py-1.5 text-right text-[9px] font-medium text-gray-500 uppercase w-[50px] cursor-pointer hover:bg-gray-100" onClick={() => handleSort('estTrafficETV')}>
-                  <Tooltip text="Estimated Traffic Value">
-                    <span className="flex items-center justify-end gap-0.5">
+                <th className="px-1 py-1.5 text-right text-[9px] font-medium text-gray-500 uppercase w-[60px]">
+                  <span className="flex items-center justify-end gap-1">
+                    <span className="cursor-pointer hover:text-gray-700" onClick={() => handleSort('estTrafficETV')}>
                       Traffic
-                      {sortField === 'estTrafficETV' && <span className="text-indigo-600">{sortDirection === 'asc' ? '↑' : '↓'}</span>}
+                      {sortField === 'estTrafficETV' && <span className="text-indigo-600 ml-0.5">{sortDirection === 'asc' ? '↑' : '↓'}</span>}
                     </span>
-                  </Tooltip>
+                    <HelpIcon onClick={() => setActiveHelpModal('traffic')} />
+                  </span>
                 </th>
-                <th className="px-1 py-1.5 text-right text-[9px] font-medium text-gray-500 uppercase w-[35px] cursor-pointer hover:bg-gray-100" onClick={() => handleSort('keywordsCount')}>
-                  <Tooltip text="Number of keywords">
-                    <span className="flex items-center justify-end gap-0.5">
+                <th className="px-1 py-1.5 text-right text-[9px] font-medium text-gray-500 uppercase w-[50px]">
+                  <span className="flex items-center justify-end gap-1">
+                    <span className="cursor-pointer hover:text-gray-700" onClick={() => handleSort('keywordsCount')}>
                       KWs
-                      {sortField === 'keywordsCount' && <span className="text-indigo-600">{sortDirection === 'asc' ? '↑' : '↓'}</span>}
+                      {sortField === 'keywordsCount' && <span className="text-indigo-600 ml-0.5">{sortDirection === 'asc' ? '↑' : '↓'}</span>}
                     </span>
-                  </Tooltip>
+                    <HelpIcon onClick={() => setActiveHelpModal('keywords')} />
+                  </span>
                 </th>
                 <th className="px-1 py-1.5 text-left text-[9px] font-medium text-gray-500 uppercase w-[95px]">
-                  <Tooltip text={TOOLTIPS.pageType}>
-                    <span className="flex items-center gap-0.5">Type <span className="text-gray-400">ⓘ</span></span>
-                  </Tooltip>
+                  <span className="flex items-center gap-0.5">Type <HelpIcon onClick={() => setActiveHelpModal('pageType')} /></span>
                 </th>
                 <th className="px-1 py-1.5 text-left text-[9px] font-medium text-gray-500 uppercase w-[80px]">
-                  <Tooltip text={TOOLTIPS.pageIntent}>
-                    <span className="flex items-center gap-0.5">Intent <span className="text-gray-400">ⓘ</span></span>
-                  </Tooltip>
+                  <span className="flex items-center gap-0.5">Intent <HelpIcon onClick={() => setActiveHelpModal('pageIntent')} /></span>
                 </th>
                 <th className="px-1 py-1.5 text-center text-[9px] font-medium text-gray-500 uppercase w-[35px]">
-                  <Tooltip text={TOOLTIPS.isSeoRelevant}>
-                    <span className="flex items-center gap-0.5">SEO <span className="text-gray-400">ⓘ</span></span>
-                  </Tooltip>
+                  <span className="flex items-center gap-0.5">SEO <HelpIcon onClick={() => setActiveHelpModal('isSeoRelevant')} /></span>
                 </th>
                 <th className="px-1 py-1.5 text-left text-[9px] font-medium text-gray-500 uppercase w-[100px]">
-                  <Tooltip text={TOOLTIPS.seoAction}>
-                    <span className="flex items-center gap-0.5">Action <span className="text-gray-400">ⓘ</span></span>
-                  </Tooltip>
+                  <span className="flex items-center gap-0.5">Action <HelpIcon onClick={() => setActiveHelpModal('seoAction')} /></span>
                 </th>
                 <th className="px-1 py-1.5 text-center text-[9px] font-medium text-gray-500 uppercase w-[40px]">
-                  <Tooltip text={TOOLTIPS.classificationConfidence}>
-                    <span className="flex items-center gap-0.5">Conf <span className="text-gray-400">ⓘ</span></span>
-                  </Tooltip>
+                  <span className="flex items-center gap-0.5">Conf <HelpIcon onClick={() => setActiveHelpModal('classificationConfidence')} /></span>
                 </th>
                 <th className="px-1 py-1.5 text-center text-[9px] font-medium text-gray-500 uppercase w-[40px]">
-                  <Tooltip text={TOOLTIPS.classificationMethod}>
-                    <span className="flex items-center gap-0.5">Mthd <span className="text-gray-400">ⓘ</span></span>
-                  </Tooltip>
+                  <span className="flex items-center gap-0.5">Mthd <HelpIcon onClick={() => setActiveHelpModal('classificationMethod')} /></span>
                 </th>
               </tr>
             </thead>
@@ -1337,16 +1477,15 @@ export default function DomainPagesPage() {
                     </span>
                   </td>
                   <td className="px-1 py-1 text-[9px] w-[180px] overflow-hidden">
-                    <Tooltip text={record.pageURL}>
-                      <a
-                        href={record.pageURL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-indigo-600 hover:text-indigo-800 hover:underline truncate block max-w-[170px]"
-                      >
-                        {truncateUrl(record.pageURL)}
-                      </a>
-                    </Tooltip>
+                    <a
+                      href={record.pageURL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-indigo-600 hover:text-indigo-800 hover:underline truncate block max-w-[170px]"
+                      title={record.pageURL}
+                    >
+                      {truncateUrl(record.pageURL)}
+                    </a>
                   </td>
                   <td className="px-1 py-1 text-[9px] font-medium text-right w-[50px]">
                     {formatNumber(record.estTrafficETV)}
@@ -1440,6 +1579,11 @@ export default function DomainPagesPage() {
           onClose={() => setSelectedExplanation(null)}
         />
       )}
+
+      <HelpModal
+        helpKey={activeHelpModal}
+        onClose={() => setActiveHelpModal(null)}
+      />
     </div>
   );
 }
