@@ -10,7 +10,13 @@ import {
   ClassificationConfidenceValue,
   SeoActionValue,
   ClassificationExplanation,
+  PriorityTier,
+  PriorityScoreBreakdown,
 } from '@/types';
+import {
+  formatPriorityTier,
+  getPriorityTierBadgeColor,
+} from '@/lib/priorityScoring';
 
 interface Client {
   id: string;
@@ -47,6 +53,10 @@ interface DomainPageRecord {
   needsAiReview?: boolean | null;
   seoAction?: SeoActionValue | null;
   classificationExplanation?: ClassificationExplanation | null;
+  priorityScore?: number | null;
+  priorityTier?: PriorityTier | null;
+  priorityScoreBreakdown?: PriorityScoreBreakdown | null;
+  priorityCalculatedAt?: string | null;
 }
 
 const LOCATION_OPTIONS = [
@@ -88,6 +98,14 @@ const SEO_ACTION_OPTIONS: SeoActionValue[] = [
   'BACKLINK_PROSPECT',
   'MONITOR_ONLY',
   'IGNORE_IRRELEVANT',
+];
+
+const PRIORITY_TIER_OPTIONS: PriorityTier[] = [
+  'TIER_1_IMMEDIATE',
+  'TIER_2_HIGH',
+  'TIER_3_MEDIUM',
+  'TIER_4_MONITOR',
+  'TIER_5_IGNORE',
 ];
 
 interface HelpContent {
@@ -304,6 +322,52 @@ const HELP_CONTENT: Record<string, HelpContent> = {
       },
     ],
   },
+  priorityScore: {
+    title: 'Priority Score',
+    description: 'A weighted composite score (0-100) indicating how important this page is for SEO competitive analysis.',
+    sections: [
+      {
+        heading: 'Score Components (Weighted)',
+        items: [
+          { label: 'ETV Score (40%)', description: 'Traffic normalized 0-100 relative to highest traffic page in dataset. Higher traffic = higher priority.' },
+          { label: 'Intent Score (25%)', description: 'Based on page intent classification. TRANSACTIONAL=100, COMMERCIAL_RESEARCH=80, INFORMATIONAL=50, SUPPORT=20, NAVIGATIONAL=10, IRRELEVANT=0.' },
+          { label: 'Page Type Score (20%)', description: 'Based on page type. PRODUCT/PRICING=100, LANDING=90, CATEGORY=70, BLOG=60, RESOURCE=50, HOME=40, SUPPORT=20, COMPANY=10, LEGAL/ACCOUNT/CAREERS=0.' },
+          { label: 'Business Relevance (15%)', description: 'Inferred from page type and intent. DIRECT=100, HIGH=80, MEDIUM=60, LOW=30, NONE=0.' },
+        ],
+      },
+      {
+        heading: 'Calculation',
+        items: [
+          { label: 'Formula', description: 'Priority = (ETV × 0.40) + (Intent × 0.25) + (PageType × 0.20) + (Relevance × 0.15)' },
+          { label: 'Range', description: '0-100 where 100 is highest priority' },
+          { label: 'Click Score', description: 'Click any priority score to see the full breakdown' },
+        ],
+      },
+    ],
+  },
+  priorityTier: {
+    title: 'Priority Tier',
+    description: 'Categorical grouping based on Priority Score for easier filtering and action planning.',
+    sections: [
+      {
+        heading: 'Tier Definitions',
+        items: [
+          { label: 'Tier 1 - Immediate (80-100)', description: 'Top priority pages. High traffic commercial pages with transactional intent. Requires immediate competitive response.' },
+          { label: 'Tier 2 - High (60-79)', description: 'High priority pages worth targeting. Good traffic and commercial value.' },
+          { label: 'Tier 3 - Medium (40-59)', description: 'Moderate priority. Consider for content strategy and topic clusters.' },
+          { label: 'Tier 4 - Monitor (20-39)', description: 'Low priority. Monitor for trends but not immediate action needed.' },
+          { label: 'Tier 5 - Ignore (0-19)', description: 'Lowest priority. Utility pages, low traffic, or irrelevant content. Safe to ignore.' },
+        ],
+      },
+      {
+        heading: 'Usage Tips',
+        items: [
+          { label: 'Filter by Tier', description: 'Use the Priority Tier filter to focus on actionable pages' },
+          { label: 'Export by Tier', description: 'Export Tier 1 & 2 pages for immediate competitive analysis' },
+        ],
+      },
+    ],
+  },
 };
 
 interface HelpModalProps {
@@ -457,7 +521,105 @@ function ExplanationModal({ explanation, onClose }: ExplanationModalProps) {
   );
 }
 
-type SortField = 'estTrafficETV' | 'keywordsCount' | null;
+interface PriorityExplanationModalProps {
+  breakdown: PriorityScoreBreakdown | null;
+  score: number | null;
+  tier: PriorityTier | null;
+  onClose: () => void;
+}
+
+function PriorityExplanationModal({ breakdown, score, tier, onClose }: PriorityExplanationModalProps) {
+  if (!breakdown) return null;
+
+  const formatWeight = (weight: number) => `${(weight * 100).toFixed(0)}%`;
+  const formatScore = (score: number) => score.toFixed(1);
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={onClose}>
+      <div className="bg-white rounded-lg shadow-xl max-w-lg w-full mx-4 max-h-[85vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+        <div className="sticky top-0 bg-white border-b px-6 py-4 flex justify-between items-start">
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900">Priority Score Breakdown</h3>
+            <div className="flex items-center gap-2 mt-1">
+              <span className="text-2xl font-bold text-indigo-600">{score?.toFixed(1) ?? '-'}</span>
+              {tier && (
+                <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${getPriorityTierBadgeColor(tier)}`}>
+                  {formatPriorityTier(tier)}
+                </span>
+              )}
+            </div>
+          </div>
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 ml-4">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="p-6 space-y-4">
+          <div className="text-sm text-gray-600 mb-4">
+            Priority = (ETV × 40%) + (Intent × 25%) + (PageType × 20%) + (Relevance × 15%)
+          </div>
+
+          <div className="space-y-3">
+            <div className="bg-blue-50 rounded-lg p-3">
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-sm font-medium text-blue-800">ETV Score</span>
+                <span className="text-sm text-blue-600">Weight: {formatWeight(breakdown.weights.etv)}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-xs text-blue-600">Raw Score: {formatScore(breakdown.etvScore)}</span>
+                <span className="text-lg font-bold text-blue-800">{formatScore(breakdown.etvScore * breakdown.weights.etv)}</span>
+              </div>
+            </div>
+
+            <div className="bg-green-50 rounded-lg p-3">
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-sm font-medium text-green-800">Intent Score</span>
+                <span className="text-sm text-green-600">Weight: {formatWeight(breakdown.weights.intent)}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-xs text-green-600">Raw Score: {formatScore(breakdown.intentScore)}</span>
+                <span className="text-lg font-bold text-green-800">{formatScore(breakdown.intentScore * breakdown.weights.intent)}</span>
+              </div>
+            </div>
+
+            <div className="bg-purple-50 rounded-lg p-3">
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-sm font-medium text-purple-800">Page Type Score</span>
+                <span className="text-sm text-purple-600">Weight: {formatWeight(breakdown.weights.pageType)}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-xs text-purple-600">Raw Score: {formatScore(breakdown.pageTypeScore)}</span>
+                <span className="text-lg font-bold text-purple-800">{formatScore(breakdown.pageTypeScore * breakdown.weights.pageType)}</span>
+              </div>
+            </div>
+
+            <div className="bg-orange-50 rounded-lg p-3">
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-sm font-medium text-orange-800">Business Relevance Score</span>
+                <span className="text-sm text-orange-600">Weight: {formatWeight(breakdown.weights.businessRelevance)}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-xs text-orange-600">Raw Score: {formatScore(breakdown.businessRelevanceScore)}</span>
+                <span className="text-lg font-bold text-orange-800">{formatScore(breakdown.businessRelevanceScore * breakdown.weights.businessRelevance)}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t pt-4 mt-4">
+            <div className="flex justify-between items-center">
+              <span className="text-sm font-medium text-gray-700">Final Priority Score</span>
+              <span className="text-2xl font-bold text-indigo-600">{formatScore(breakdown.finalScore)}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+type SortField = 'estTrafficETV' | 'keywordsCount' | 'priorityScore' | null;
 type SortDirection = 'asc' | 'desc';
 
 function formatPageType(type: PageTypeValue | null | undefined): string {
@@ -553,6 +715,9 @@ export default function DomainPagesPage() {
   const [activeHelpModal, setActiveHelpModal] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(50);
+  const [calculatingPriority, setCalculatingPriority] = useState(false);
+  const [priorityTierFilter, setPriorityTierFilter] = useState<string>('all');
+  const [selectedPriorityBreakdown, setSelectedPriorityBreakdown] = useState<{ breakdown: PriorityScoreBreakdown; score: number; tier: PriorityTier } | null>(null);
 
   useEffect(() => {
     fetchClients();
@@ -721,6 +886,31 @@ export default function DomainPagesPage() {
     }
   };
 
+  const handleCalculatePriority = async () => {
+    if (!selectedClientCode) return;
+    setCalculatingPriority(true);
+    setNotification(null);
+    try {
+      const res = await fetch('/api/compute-priority', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clientCode: selectedClientCode }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setNotification({ type: 'success', message: data.message });
+        await fetchRecords();
+      } else {
+        setNotification({ type: 'error', message: data.error || 'Failed to calculate priority' });
+      }
+    } catch (error) {
+      console.error('Error calculating priority scores:', error);
+      setNotification({ type: 'error', message: 'Error calculating priority scores' });
+    } finally {
+      setCalculatingPriority(false);
+    }
+  };
+
   const handleSort = (field: SortField) => {
     if (sortField === field) {
       setSortDirection(prev => (prev === 'asc' ? 'desc' : 'asc'));
@@ -786,8 +976,12 @@ export default function DomainPagesPage() {
       filtered = filtered.filter(r => r.classificationMethod === classificationMethodFilter);
     }
 
+    if (priorityTierFilter !== 'all') {
+      filtered = filtered.filter(r => r.priorityTier === priorityTierFilter);
+    }
+
     return filtered;
-  }, [records, domainFilter, locationFilter, urlFilter, trafficMinFilter, keywordsMinFilter, pageTypeFilter, pageIntentFilter, seoRelevantFilter, seoActionFilter, classificationMethodFilter]);
+  }, [records, domainFilter, locationFilter, urlFilter, trafficMinFilter, keywordsMinFilter, pageTypeFilter, pageIntentFilter, seoRelevantFilter, seoActionFilter, classificationMethodFilter, priorityTierFilter]);
 
   const sortedRecords = useMemo(() => {
     if (!sortField) return filteredRecords;
@@ -824,7 +1018,9 @@ export default function DomainPagesPage() {
     const actionBreakdown: Record<string, number> = {};
     const confidenceBreakdown: Record<string, number> = {};
     const methodBreakdown: Record<string, number> = {};
+    const priorityTierBreakdown: Record<string, number> = {};
     let seoYes = 0, seoNo = 0;
+    let priorityCalculatedCount = 0;
 
     filteredRecords.forEach(r => {
       if (r.pageType) {
@@ -842,11 +1038,15 @@ export default function DomainPagesPage() {
       if (r.classificationMethod) {
         methodBreakdown[r.classificationMethod] = (methodBreakdown[r.classificationMethod] || 0) + 1;
       }
+      if (r.priorityTier) {
+        priorityTierBreakdown[r.priorityTier] = (priorityTierBreakdown[r.priorityTier] || 0) + 1;
+        priorityCalculatedCount++;
+      }
       if (r.isSeoRelevant === true) seoYes++;
       if (r.isSeoRelevant === false) seoNo++;
     });
 
-    return { typeBreakdown, intentBreakdown, actionBreakdown, confidenceBreakdown, methodBreakdown, seoYes, seoNo };
+    return { typeBreakdown, intentBreakdown, actionBreakdown, confidenceBreakdown, methodBreakdown, priorityTierBreakdown, priorityCalculatedCount, seoYes, seoNo };
   }, [filteredRecords]);
 
   const totalPages = Math.ceil(sortedRecords.length / itemsPerPage);
@@ -974,6 +1174,29 @@ export default function DomainPagesPage() {
               )}
             </button>
 
+            <button
+              onClick={handleCalculatePriority}
+              disabled={calculatingPriority || summaryStats.classifiedCount === 0}
+              className="px-4 py-2 bg-orange-600 text-white text-sm font-medium rounded-md hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {calculatingPriority ? (
+                <>
+                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  </svg>
+                  Calculating...
+                </>
+              ) : (
+                <>
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                  Calculate Priority
+                </>
+              )}
+            </button>
+
             <ExportButton
               data={sortedRecords}
               columns={[
@@ -988,6 +1211,8 @@ export default function DomainPagesPage() {
                 { key: 'seoAction', header: 'SEO Action' },
                 { key: 'classificationConfidence', header: 'Confidence' },
                 { key: 'classificationMethod', header: 'Method' },
+                { key: 'priorityScore', header: 'Priority Score' },
+                { key: 'priorityTier', header: 'Priority Tier' },
               ] as ExportColumn<DomainPageRecord>[]}
               filename={`domain-pages-${selectedClientCode}-${new Date().toISOString().split('T')[0]}`}
             />
@@ -1218,6 +1443,27 @@ export default function DomainPagesPage() {
                   ))}
               </div>
             </div>
+            
+            {/* Priority Tier Breakdown */}
+            {classificationBreakdown.priorityCalculatedCount > 0 && (
+              <div className="bg-white rounded-lg p-3 shadow-sm">
+                <div className="text-xs font-medium text-gray-600 mb-2">Priority Tier ({classificationBreakdown.priorityCalculatedCount})</div>
+                <div className="space-y-1 max-h-32 overflow-y-auto">
+                  {PRIORITY_TIER_OPTIONS.map(tier => {
+                    const count = classificationBreakdown.priorityTierBreakdown[tier] || 0;
+                    if (count === 0) return null;
+                    return (
+                      <div key={tier} className="flex justify-between text-[10px]">
+                        <span className={`px-1 rounded ${getPriorityTierBadgeColor(tier)}`}>
+                          {formatPriorityTier(tier)}
+                        </span>
+                        <span className="font-medium text-gray-700">{count}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
         </details>
       )}
@@ -1300,6 +1546,19 @@ export default function DomainPagesPage() {
               <option value="all">All</option>
               <option value="true">Yes</option>
               <option value="false">No</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-gray-500 mb-1">Priority Tier</label>
+            <select
+              value={priorityTierFilter}
+              onChange={e => setPriorityTierFilter(e.target.value)}
+              className="w-full border rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="all">All Tiers</option>
+              {PRIORITY_TIER_OPTIONS.map(tier => (
+                <option key={tier} value={tier}>{formatPriorityTier(tier)}</option>
+              ))}
             </select>
           </div>
           <div>
@@ -1459,6 +1718,18 @@ export default function DomainPagesPage() {
                 <th className="px-1 py-1.5 text-center text-[9px] font-medium text-gray-500 uppercase w-[40px]">
                   <span className="flex items-center gap-0.5">Mthd <HelpIcon onClick={() => setActiveHelpModal('classificationMethod')} /></span>
                 </th>
+                <th className="px-1 py-1.5 text-right text-[9px] font-medium text-gray-500 uppercase w-[50px]">
+                  <span className="flex items-center justify-end gap-1">
+                    <span className="cursor-pointer hover:text-gray-700" onClick={() => handleSort('priorityScore')}>
+                      Score
+                      {sortField === 'priorityScore' && <span className="text-indigo-600 ml-0.5">{sortDirection === 'asc' ? '↑' : '↓'}</span>}
+                    </span>
+                    <HelpIcon onClick={() => setActiveHelpModal('priorityScore')} />
+                  </span>
+                </th>
+                <th className="px-1 py-1.5 text-left text-[9px] font-medium text-gray-500 uppercase w-[70px]">
+                  <span className="flex items-center gap-0.5">Tier <HelpIcon onClick={() => setActiveHelpModal('priorityTier')} /></span>
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -1566,6 +1837,32 @@ export default function DomainPagesPage() {
                       <span className="text-gray-400 text-[9px]">-</span>
                     )}
                   </td>
+                  <td className="px-1 py-1 text-right w-[50px]">
+                    {record.priorityScore !== null && record.priorityScore !== undefined ? (
+                      <button
+                        onClick={() => record.priorityScoreBreakdown && setSelectedPriorityBreakdown({
+                          breakdown: record.priorityScoreBreakdown,
+                          score: record.priorityScore!,
+                          tier: record.priorityTier!
+                        })}
+                        className="text-[9px] font-medium text-indigo-600 hover:text-indigo-800 cursor-pointer"
+                        title="Click to view breakdown"
+                      >
+                        {record.priorityScore.toFixed(1)}
+                      </button>
+                    ) : (
+                      <span className="text-gray-400 text-[9px]">-</span>
+                    )}
+                  </td>
+                  <td className="px-1 py-1 whitespace-nowrap w-[70px]">
+                    {record.priorityTier ? (
+                      <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${getPriorityTierBadgeColor(record.priorityTier)}`}>
+                        {formatPriorityTier(record.priorityTier)}
+                      </span>
+                    ) : (
+                      <span className="text-gray-400 text-[9px]">-</span>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -1584,6 +1881,15 @@ export default function DomainPagesPage() {
         helpKey={activeHelpModal}
         onClose={() => setActiveHelpModal(null)}
       />
+
+      {selectedPriorityBreakdown && (
+        <PriorityExplanationModal
+          breakdown={selectedPriorityBreakdown.breakdown}
+          score={selectedPriorityBreakdown.score}
+          tier={selectedPriorityBreakdown.tier}
+          onClose={() => setSelectedPriorityBreakdown(null)}
+        />
+      )}
     </div>
   );
 }

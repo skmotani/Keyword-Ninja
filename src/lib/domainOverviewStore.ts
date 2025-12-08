@@ -312,3 +312,25 @@ export function cleanDomain(domain: string): string {
     .toLowerCase()
     .trim();
 }
+
+export async function updateDomainPagesById(
+  updates: { id: string; data: Partial<DomainPageRecord> }[]
+): Promise<number> {
+  if (updates.length === 0) return 0;
+  
+  const allRecords = await readDomainPages();
+  const updateMap = new Map(updates.map(u => [u.id, u.data]));
+  let updatedCount = 0;
+  
+  const updatedRecords = allRecords.map(record => {
+    const update = updateMap.get(record.id);
+    if (update) {
+      updatedCount++;
+      return { ...record, ...update };
+    }
+    return record;
+  });
+  
+  await writeDomainPages(updatedRecords);
+  return updatedCount;
+}

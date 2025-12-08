@@ -335,6 +335,27 @@ export type SeoActionValue =
   | 'MONITOR_ONLY'
   | 'IGNORE_IRRELEVANT';
 
+export type PriorityTier =
+  | 'TIER_1_IMMEDIATE'
+  | 'TIER_2_HIGH'
+  | 'TIER_3_MEDIUM'
+  | 'TIER_4_MONITOR'
+  | 'TIER_5_IGNORE';
+
+export interface PriorityScoreBreakdown {
+  etvScore: number;
+  intentScore: number;
+  pageTypeScore: number;
+  businessRelevanceScore: number;
+  etvWeight: number;
+  intentWeight: number;
+  pageTypeWeight: number;
+  businessRelevanceWeight: number;
+  rawEtv: number | null;
+  maxEtvInDataset: number;
+  normalizedEtv: number;
+}
+
 export interface ClassificationExplanation {
   source: 'RULE' | 'AI';
   firedRules?: string[];
@@ -389,6 +410,10 @@ export interface DomainPageRecord {
   needsAiReview?: boolean | null;
   seoAction?: SeoActionValue | null;
   classificationExplanation?: ClassificationExplanation | null;
+  priorityScore?: number | null;
+  priorityTier?: PriorityTier | null;
+  priorityScoreBreakdown?: PriorityScoreBreakdown | null;
+  priorityCalculatedAt?: string | null;
 }
 
 export interface DomainKeywordRecord {
