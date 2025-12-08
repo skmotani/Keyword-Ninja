@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import PageHeader from '@/components/PageHeader';
+import ExportButton, { ExportColumn } from '@/components/ExportButton';
 import { Client, Competitor, CompetitorSource } from '@/types';
 
 function getRelevanceBadgeColor(category: string): string {
@@ -267,6 +268,22 @@ export default function CompetitorsPage() {
               Clear
             </button>
           )}
+          <ExportButton
+            data={filteredCompetitors}
+            columns={[
+              { key: 'clientCode', header: 'Client Code' },
+              { key: 'name', header: 'Name' },
+              { key: 'domain', header: 'Domain' },
+              { key: 'importanceScore', header: 'Importance Score' },
+              { key: 'domainType', header: 'Domain Type' },
+              { key: 'pageIntent', header: 'Page Intent' },
+              { key: 'productMatchScore', header: 'Product Match Score' },
+              { key: 'businessRelevanceCategory', header: 'Business Relevance' },
+              { key: 'source', header: 'Source' },
+              { key: 'isActive', header: 'Active' },
+            ] as ExportColumn<Competitor>[]}
+            filename={`competitors-${clientFilter || 'all'}-${new Date().toISOString().split('T')[0]}`}
+          />
         </div>
       </div>
 

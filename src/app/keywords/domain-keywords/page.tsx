@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import PageHeader from '@/components/PageHeader';
+import ExportButton, { ExportColumn } from '@/components/ExportButton';
 
 interface Client {
   id: string;
@@ -397,6 +398,20 @@ export default function DomainKeywordsPage() {
               </>
             )}
           </button>
+
+          <ExportButton
+            data={sortedRecords}
+            columns={[
+              { key: 'domain', header: 'Domain' },
+              { key: 'locationCode', header: 'Location' },
+              { key: 'keyword', header: 'Keyword' },
+              { key: 'position', header: 'Position' },
+              { key: 'searchVolume', header: 'Search Volume' },
+              { key: 'cpc', header: 'CPC' },
+              { key: 'url', header: 'URL' },
+            ] as ExportColumn<DomainKeywordRecord>[]}
+            filename={`domain-keywords-${selectedClientCode}-${new Date().toISOString().split('T')[0]}`}
+          />
         </div>
 
         {competitors.length > 0 && (

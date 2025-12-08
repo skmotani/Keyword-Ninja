@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import PageHeader from '@/components/PageHeader';
+import ExportButton, { ExportColumn } from '@/components/ExportButton';
 import { computeDomainImportanceScores, formatImportanceScore } from '@/lib/domainImportance';
 import { DomainClassification } from '@/types';
 
@@ -982,6 +983,22 @@ export default function CompetitorReportPage() {
               Clear Selection
             </button>
           )}
+          <ExportButton
+            data={filteredAndSortedList}
+            columns={[
+              { key: 'domain', header: 'Domain' },
+              { key: 'label', header: 'Label' },
+              { key: 'importanceScore', header: 'Importance Score', getValue: (row) => row.importanceScore.toFixed(2) },
+              { key: 'appearanceCount', header: 'Appearances' },
+              { key: 'uniqueKeywords', header: 'Unique Keywords' },
+              { key: 'domainType', header: 'Domain Type', getValue: (row) => row.classification?.domainType || '' },
+              { key: 'pageIntent', header: 'Page Intent', getValue: (row) => row.classification?.pageIntent || '' },
+              { key: 'productMatchScore', header: 'Product Match', getValue: (row) => row.classification?.productMatchScoreBucket || '' },
+              { key: 'businessRelevance', header: 'Business Relevance', getValue: (row) => row.classification?.businessRelevanceCategory || '' },
+            ]}
+            filename={`unique-domains-${selectedClientCode}-${new Date().toISOString().split('T')[0]}`}
+            disabled={loading || classifying}
+          />
         </div>
       </div>
 

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import PageHeader from '@/components/PageHeader';
+import ExportButton, { ExportColumn } from '@/components/ExportButton';
 
 interface Client {
   id: string;
@@ -590,7 +591,7 @@ export default function SerpResultsPage() {
               ))}
             </div>
           </div>
-          <div>
+          <div className="flex gap-2">
             <button
               onClick={handleRefresh}
               disabled={refreshing || !selectedClientCode}
@@ -608,6 +609,23 @@ export default function SerpResultsPage() {
                 'Refresh SERP data from API (overwrite old)'
               )}
             </button>
+
+            <ExportButton
+              data={filteredRecords}
+              columns={[
+                { key: 'keyword', header: 'Keyword' },
+                { key: 'locationCode', header: 'Location', getValue: (r) => LOCATION_CODE_MAP[r.locationCode] || String(r.locationCode) },
+                { key: 'rank', header: 'Rank' },
+                { key: 'domain', header: 'Domain' },
+                { key: 'url', header: 'URL' },
+                { key: 'title', header: 'Title' },
+                { key: 'description', header: 'Description' },
+                { key: 'searchVolume', header: 'Search Volume' },
+                { key: 'etv', header: 'ETV' },
+                { key: 'isFeaturedSnippet', header: 'Featured Snippet' },
+              ] as ExportColumn<SerpResultWithVolume>[]}
+              filename={`serp-results-${selectedClientCode}-${new Date().toISOString().split('T')[0]}`}
+            />
           </div>
         </div>
       </div>

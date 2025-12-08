@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import PageHeader from '@/components/PageHeader';
+import ExportButton, { ExportColumn } from '@/components/ExportButton';
 import { Client, DomainProfile, ClientAIProfile } from '@/types';
 
 const MAX_DOMAINS = 5;
@@ -322,6 +323,17 @@ export default function ClientsPage() {
             <div className="text-xs text-gray-600">Archived</div>
           </div>
         </div>
+        <ExportButton
+          data={clients}
+          columns={[
+            { key: 'code', header: 'Code' },
+            { key: 'name', header: 'Name' },
+            { key: 'domains', header: 'Domains', getValue: (c) => (c.domains || []).join(', ') },
+            { key: 'isActive', header: 'Active' },
+            { key: 'notes', header: 'Notes' },
+          ] as ExportColumn<Client>[]}
+          filename={`clients-${new Date().toISOString().split('T')[0]}`}
+        />
       </div>
 
       <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">

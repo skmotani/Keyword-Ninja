@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import PageHeader from '@/components/PageHeader';
+import ExportButton, { ExportColumn } from '@/components/ExportButton';
 
 interface Client {
   id: string;
@@ -364,6 +365,18 @@ export default function DomainOverviewPage() {
               </>
             )}
           </button>
+
+          <ExportButton
+            data={sortedRecords}
+            columns={[
+              { key: 'domain', header: 'Domain' },
+              { key: 'locationCode', header: 'Location' },
+              { key: 'organicTrafficETV', header: 'Organic Traffic (ETV)' },
+              { key: 'organicKeywordsCount', header: 'Organic Keywords' },
+              { key: 'fetchedAt', header: 'Fetched At' },
+            ] as ExportColumn<DomainOverviewRecord>[]}
+            filename={`domain-overview-${selectedClientCode}-${new Date().toISOString().split('T')[0]}`}
+          />
         </div>
 
         {competitors.length > 0 && (

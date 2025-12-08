@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import PageHeader from '@/components/PageHeader';
+import ExportButton, { ExportColumn } from '@/components/ExportButton';
 
 interface Client {
   id: string;
@@ -355,7 +356,7 @@ export default function KeywordApiDataPage() {
               ))}
             </div>
           </div>
-          <div>
+          <div className="flex gap-2">
             <button
               onClick={handleRefresh}
               disabled={refreshing || !selectedClientCode}
@@ -373,6 +374,20 @@ export default function KeywordApiDataPage() {
                 'Refresh keyword data from API (overwrite old)'
               )}
             </button>
+
+            <ExportButton
+              data={filteredRecords}
+              columns={[
+                { key: 'keywordText', header: 'Keyword' },
+                { key: 'searchVolume', header: 'Search Volume' },
+                { key: 'cpc', header: 'CPC' },
+                { key: 'competition', header: 'Competition' },
+                { key: 'lowTopOfPageBid', header: 'Low Top of Page Bid' },
+                { key: 'highTopOfPageBid', header: 'High Top of Page Bid' },
+                { key: 'locationCode', header: 'Location', getValue: (r) => LOCATION_CODE_MAP[r.locationCode] || String(r.locationCode) },
+              ] as ExportColumn<KeywordApiDataRecord>[]}
+              filename={`keyword-api-data-${selectedClientCode}-${new Date().toISOString().split('T')[0]}`}
+            />
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import PageHeader from '@/components/PageHeader';
+import ExportButton, { ExportColumn } from '@/components/ExportButton';
 import { Client, ManualKeyword } from '@/types';
 
 export default function ManualKeywordsPage() {
@@ -156,6 +157,16 @@ export default function ManualKeywordsPage() {
             <div className="text-xs text-gray-600">Archived</div>
           </div>
         </div>
+        <ExportButton
+          data={keywords}
+          columns={[
+            { key: 'clientCode', header: 'Client Code' },
+            { key: 'keywordText', header: 'Keyword' },
+            { key: 'isActive', header: 'Active' },
+            { key: 'notes', header: 'Notes' },
+          ] as ExportColumn<ManualKeyword>[]}
+          filename={`manual-keywords-${new Date().toISOString().split('T')[0]}`}
+        />
       </div>
 
       <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">

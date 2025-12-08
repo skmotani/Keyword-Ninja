@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import PageHeader from '@/components/PageHeader';
+import ExportButton, { ExportColumn } from '@/components/ExportButton';
 import {
   PageTypeValue,
   PageClassificationIntent,
@@ -697,6 +698,24 @@ export default function DomainPagesPage() {
                 </>
               )}
             </button>
+
+            <ExportButton
+              data={sortedRecords}
+              columns={[
+                { key: 'domain', header: 'Domain' },
+                { key: 'locationCode', header: 'Location' },
+                { key: 'pageURL', header: 'Page URL' },
+                { key: 'estTrafficETV', header: 'Est. Traffic (ETV)' },
+                { key: 'keywordsCount', header: 'Keywords Count' },
+                { key: 'pageType', header: 'Page Type' },
+                { key: 'pageIntent', header: 'Page Intent' },
+                { key: 'isSeoRelevant', header: 'SEO Relevant' },
+                { key: 'seoAction', header: 'SEO Action' },
+                { key: 'classificationConfidence', header: 'Confidence' },
+                { key: 'classificationMethod', header: 'Method' },
+              ] as ExportColumn<DomainPageRecord>[]}
+              filename={`domain-pages-${selectedClientCode}-${new Date().toISOString().split('T')[0]}`}
+            />
           </div>
         </div>
 
