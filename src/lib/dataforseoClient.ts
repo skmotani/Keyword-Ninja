@@ -1129,7 +1129,7 @@ export async function fetchDomainTopPages(
     }];
 
     const response = await fetch(
-      'https://api.dataforseo.com/v3/dataforseo_labs/google/pages/live',
+      'https://api.dataforseo.com/v3/dataforseo_labs/google/top_pages/live',
       {
         method: 'POST',
         headers: {
