@@ -321,14 +321,43 @@ export function calculatePriorityBatchWithThresholds(
   const allScores = scoresWithIds.map((s) => s.score);
   const percentileThresholds = computePercentileThresholds(allScores);
   
+  const sorted = [...scoresWithIds].sort((a, b) => b.score - a.score);
+  const n = sorted.length;
+  
+  const tier1Count = Math.ceil(n * 0.10);
+  const tier2Count = Math.ceil(n * 0.20);
+  const tier3Count = Math.ceil(n * 0.30);
+  const tier4Count = Math.ceil(n * 0.20);
+  
+  const tierAssignments = new Map<string, PriorityTier>();
+  
+  for (let i = 0; i < n; i++) {
+    const item = sorted[i];
+    let tier: PriorityTier;
+    
+    if (i < tier1Count) {
+      tier = 'TIER_1_IMMEDIATE';
+    } else if (i < tier1Count + tier2Count) {
+      tier = 'TIER_2_HIGH';
+    } else if (i < tier1Count + tier2Count + tier3Count) {
+      tier = 'TIER_3_MEDIUM';
+    } else if (i < tier1Count + tier2Count + tier3Count + tier4Count) {
+      tier = 'TIER_4_MONITOR';
+    } else {
+      tier = 'TIER_5_IGNORE';
+    }
+    
+    tierAssignments.set(item.id, tier);
+  }
+  
   const results = new Map<string, PriorityCalculationResult>();
   
   for (const item of scoresWithIds) {
-    const priorityTier = assignTierFromPercentiles(item.score, percentileThresholds);
+    const priorityTier = tierAssignments.get(item.id) ?? 'TIER_5_IGNORE';
     
     results.set(item.id, {
       priorityScore: item.score,
-      priorityTier: priorityTier ?? 'TIER_5_IGNORE',
+      priorityTier,
       breakdown: item.breakdown,
     });
   }
