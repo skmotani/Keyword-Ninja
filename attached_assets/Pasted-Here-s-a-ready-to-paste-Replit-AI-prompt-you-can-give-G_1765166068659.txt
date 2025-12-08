@@ -1,0 +1,431 @@
+Here’s a ready-to-paste **Replit AI prompt** you can give Ghostwriter to implement the whole thing.
+
+---
+
+**REPLIT PROMPT (copy–paste this into Replit AI):**
+
+I have an SEO tool that stores competitor “Top Pages” data from DataForSEO, one row per competitor page, with at least these columns:
+
+* `domain` (string)
+* `location` (string)
+* `pageUrl` (string)
+* `keyword` (string)
+* `estTraffic` (number)
+* `etv` (number)
+
+I want you to implement a **generic page classification system + SEO action engine** with:
+
+1. **New derived columns in the data model**
+2. **Rule-based classification (programming only)**
+3. **AI-based classification fallback using the ChatGPT API**
+4. **Tooltips on all new column headers (detailed, human-readable)**
+5. **Clickable “why/how” explanation per derived cell (hyperlinked) that shows the logic and inputs used**
+
+Assume the stack is TypeScript + a typical API/backend + a React table UI (feel free to adapt to my existing stack but keep code clean and modular).
+
+---
+
+### 1. DATA MODEL CHANGES
+
+Extend the existing “CompetitorTopPages” (or equivalent) model in the backend / ORM with these **new fields**:
+
+```ts
+pageType: "PRODUCT_SERVICE" 
+        | "CATEGORY_COLLECTION"
+        | "BLOG_ARTICLE_NEWS"
+        | "RESOURCE_GUIDE_DOC"
+        | "PRICING_PLANS"
+        | "LANDING_CAMPAIGN"
+        | "COMPANY_ABOUT"
+        | "SUPPORT_CONTACT"
+        | "CAREERS_HR"
+        | "LEGAL_POLICY"
+        | "ACCOUNT_AUTH"
+        | "OTHER_MISC" 
+        | null;
+
+pageIntent: "INFORMATIONAL"
+          | "COMMERCIAL_RESEARCH"
+          | "TRANSACTIONAL"
+          | "NAVIGATIONAL"
+          | "SUPPORT"
+          | "IRRELEVANT_SEO"
+          | null;
+
+isSeoRelevant: boolean | null;
+
+classificationMethod: "RULE" | "AI" | null;
+
+classificationConfidence: "HIGH" | "MEDIUM" | "LOW" | null;
+
+needsAiReview: boolean | null;
+
+seoAction: "HIGH_PRIORITY_TARGET"
+         | "CREATE_EQUIVALENT_PAGE"
+         | "OPTIMIZE_EXISTING_PAGE"
+         | "ADD_TO_CONTENT_CLUSTER"
+         | "BACKLINK_PROSPECT"
+         | "MONITOR_ONLY"
+         | "IGNORE_IRRELEVANT"
+         | null;
+
+/**
+ * JSON field storing how the classification was derived:
+ * - which rules fired
+ * - what URL/keyword/title/snippet were used
+ * - which AI prompt/response (if AI used)
+ */
+classificationExplanation: Json | null;
+```
+
+Add DB migration as needed.
+
+---
+
+### 2. CLIENT PROFILE INPUT
+
+I already have a **Client Profile / Client Master** somewhere.
+
+Create (or extend) a central “classification config” object per client that looks like this (TypeScript type):
+
+```ts
+type PageClassificationConfig = {
+  brandNames: string[];        // e.g. ["Meera", "Meera Industries"]
+  productKeywords: string[];   // configurable per client
+  serviceKeywords: string[];   // configurable per client
+  blogMarkers: string[];       // e.g. ["guide", "what is", "how to", "benefits", "vs", "comparison"]
+  nonSeoPathFragments: string[]; // e.g. ["privacy", "terms", "login", "account"]
+};
+```
+
+You can assume there is a way to load this config for a given `clientId` or `domain`. If nothing exists, use a sane default but keep the code ready to use real config.
+
+---
+
+### 3. RULE-BASED CLASSIFICATION ENGINE (PROGRAMMING ONLY)
+
+Create a **pure TypeScript module**, e.g. `pageClassificationRules.ts`, that exports functions like:
+
+```ts
+import type { PageClassificationConfig } from "./types";
+
+type PageRow = {
+  domain: string;
+  location: string | null;
+  pageUrl: string;
+  keyword: string;
+  estTraffic?: number | null;
+  etv?: number | null;
+  pageTitle?: string | null;
+  pageSnippet?: string | null;
+};
+
+type RuleClassificationResult = {
+  pageType: PageRow["pageType"];
+  pageIntent: PageRow["pageIntent"];
+  isSeoRelevant: boolean;
+  classificationMethod: "RULE";
+  classificationConfidence: "HIGH" | "MEDIUM" | "LOW";
+  needsAiReview: boolean;
+  seoAction: PageRow["seoAction"];
+  explanation: {
+    source: "RULE";
+    firedRules: string[];           // human-readable rule IDs / names
+    reasoning: string;             // plain English explanation
+    inputs: {
+      pageUrl: string;
+      keyword: string;
+      pageTitle?: string | null;
+      pageSnippet?: string | null;
+      configSnapshot: PageClassificationConfig;
+    };
+  };
+};
+
+export function classifyPageWithRules(
+  row: PageRow,
+  config: PageClassificationConfig
+): RuleClassificationResult;
+```
+
+#### Rule logic guidance (please implement):
+
+1. **URL-based primary pageType classification** (HIGH confidence):
+
+* If URL contains `(login|signin|signup|account|dashboard|auth)` → `pageType = "ACCOUNT_AUTH"`
+* If URL contains `(privacy|terms|cookies|cookie|disclaimer)` → `pageType = "LEGAL_POLICY"`
+* If URL contains `(career|job|vacancy|join-our-team)` → `pageType = "CAREERS_HR"`
+* If URL contains `(contact|support|help|faq|customer-service|dealer-locator)` → `pageType = "SUPPORT_CONTACT"`
+* If URL contains `(about|our-story|company|who-we-are)` → `pageType = "COMPANY_ABOUT"`
+* If URL contains `(blog|news|article|insights|resources)` → `pageType = "BLOG_ARTICLE_NEWS"`
+* If URL contains `(pricing|plans|rates|quote|subscription)` → `pageType = "PRICING_PLANS"`
+
+When any of these match, set `classificationConfidence = "HIGH"` and record a rule tag like `"RULE_URL_MATCH_<TYPE>"` in `explanation.firedRules`.
+
+2. **Content-/keyword-based pageType classification** (MEDIUM confidence):
+
+Build a single `haystack` string from:
+
+* `pageUrl`
+* `keyword`
+* `pageTitle` (if available)
+* `pageSnippet` (if available)
+
+All lowercased.
+
+Then:
+
+* If any `productKeywords` or `serviceKeywords` from config appear → `pageType = "PRODUCT_SERVICE"`
+* If any `blogMarkers` from config appear → `pageType = "BLOG_ARTICLE_NEWS"`
+* If `haystack` includes `category`, `categories`, `solutions`, `use cases` → `pageType = "CATEGORY_COLLECTION"`
+* Otherwise fallback to `pageType = "OTHER_MISC"` with `classificationConfidence = "LOW"`.
+
+3. **pageIntent logic (generic, non-domain-specific)**
+
+Use `keyword`, `pageType`, and config:
+
+* `NAVIGATIONAL` if keyword is basically brand-only:
+
+  * exact brand name
+  * or brand + “website”
+* `TRANSACTIONAL` if keyword includes `(buy|order|price|cost|quote|near me|book)` OR if `pageType` in `("PRICING_PLANS")`.
+* If `pageType` is `PRODUCT_SERVICE` or `LANDING_CAMPAIGN`:
+
+  * If keyword includes `(best|vs|compare|top|review)` → `pageIntent = "COMMERCIAL_RESEARCH"`
+  * Else → `pageIntent = "TRANSACTIONAL"`
+* If `pageType` is `BLOG_ARTICLE_NEWS` or `RESOURCE_GUIDE_DOC` → `pageIntent = "INFORMATIONAL"`.
+* If `pageType` is `SUPPORT_CONTACT` → `pageIntent = "SUPPORT"`.
+* If `pageType` is `LEGAL_POLICY` or `ACCOUNT_AUTH` → `pageIntent = "IRRELEVANT_SEO"`.
+* Default fallback: `INFORMATIONAL`.
+
+4. **isSeoRelevant**
+
+* If `pageIntent` in `("IRRELEVANT_SEO")` **or** `pageType` in `("LEGAL_POLICY", "ACCOUNT_AUTH", "CAREERS_HR")` → `isSeoRelevant = false`.
+* Else → `isSeoRelevant = true`.
+
+5. **needsAiReview**
+
+* If `pageType = "OTHER_MISC"` OR `classificationConfidence = "LOW"` → `needsAiReview = true`
+* Else → `needsAiReview = false`
+
+6. **seoAction basic rules**
+
+For now, implement a simple but generic rule:
+
+* If `!isSeoRelevant` → `seoAction = "IGNORE_IRRELEVANT"`
+* Else if `pageType` in `("PRODUCT_SERVICE", "PRICING_PLANS", "LANDING_CAMPAIGN")`
+  AND `pageIntent` in `("COMMERCIAL_RESEARCH", "TRANSACTIONAL")`
+  AND `estTraffic` or `etv` is in top 20% within that domain (you can approximate this with a configurable threshold, or leave a TODO and set a simple threshold on raw `estTraffic` for now, e.g. `estTraffic >= 1000`)
+  → `seoAction = "HIGH_PRIORITY_TARGET"`
+* Else if `pageType` in `("BLOG_ARTICLE_NEWS", "RESOURCE_GUIDE_DOC", "CATEGORY_COLLECTION")`
+  → `seoAction = "ADD_TO_CONTENT_CLUSTER"`
+* Else if `pageType` in `("PRODUCT_SERVICE", "PRICING_PLANS")` but traffic is low
+  → `seoAction = "MONITOR_ONLY"`
+* Fallback → `seoAction = "MONITOR_ONLY"`
+
+Include a human-readable `reasoning` string in `explanation.reasoning`, e.g.:
+
+> "Classified as PRODUCT_SERVICE because URL and keyword matched configured product keywords. Intent set to TRANSACTIONAL based on pricing-related terms. Marked HIGH_PRIORITY_TARGET due to high estimated traffic and strong commercial intent."
+
+---
+
+### 4. AI-BASED CLASSIFICATION (ChatGPT API FALLBACK)
+
+Create a server-side function, e.g. in `pageClassificationAi.ts`, that:
+
+* Takes the same `PageRow` + `PageClassificationConfig`.
+* Only gets called when `needsAiReview = true` OR if we explicitly trigger AI reclassification.
+* Uses the OpenAI Chat Completions API (ChatGPT) to classify.
+
+Use `OPENAI_API_KEY` from environment variables; do **not** hardcode the key.
+
+Prompt design (pseudo):
+
+* System message: you are a strict classifier that must only choose from predefined enums.
+* User message: include `pageUrl`, `keyword`, optional `pageTitle`, `pageSnippet`, and a summary of client config. Ask the model to return strictly JSON with `pageType`, `pageIntent`, `isSeoRelevant`, `classificationConfidence`, and `seoAction` chosen from the allowed lists.
+
+Store the full AI explanation into `classificationExplanation`:
+
+```json
+{
+  "source": "AI",
+  "model": "gpt-4.1-mini-or-similar",
+  "prompt": { ... },
+  "rawResponse": { ... },
+  "reasoning": "string that explains what AI did"
+}
+```
+
+Set:
+
+* `classificationMethod = "AI"`
+* `needsAiReview = false`
+
+Also, if the rule-based classification already had values, include those in the prompt as “initial guess from rules” so the AI can confirm or adjust.
+
+---
+
+### 5. API ENDPOINT FOR BATCH CLASSIFICATION
+
+Create an API route, e.g. `POST /api/classify-pages` that:
+
+* Accepts a `clientId` or `domain` parameter.
+* Fetches all competitor pages for that client which:
+
+  * either have no classification yet
+  * or have `needsAiReview = true`
+* For each row:
+
+  * Run rule-based classifier first.
+  * Save rule-based result.
+  * If `needsAiReview = true`, call AI classifier, update row with AI result.
+* Return a summary: count of rule-only classified, count of AI-classified, errors list.
+
+Make sure this endpoint is idempotent and can be safely re-run.
+
+---
+
+### 6. FRONTEND: TABLE COLUMNS + TOOLTIP TEXT + EXPLANATION LINK
+
+On the React page where the competitor Top Pages are shown (the table that currently shows domain, url, keyword, etc.), add the following **new columns**, with:
+
+* column header
+* detailed tooltip (on hover)
+* cell renderer with a hyperlink / icon to show “why/how this value was calculated”
+
+Use any tooltip component you already have (or a simple `<span title="...">` for now). Also add a small “info” icon or link in each derived cell that opens a small modal or popover with the explanation from `classificationExplanation`.
+
+#### New column headers + tooltip copy (please use this text exactly or very close):
+
+1. **Column:** `Page Type` (backed by `pageType`)
+
+   * Tooltip text (long, detailed):
+
+     > **Page Type**
+     > This column shows the structural type of the competitor’s page (Product/Service, Blog, Category, Pricing, Support, Legal, etc.).
+     > It is derived automatically using URL patterns, the client’s profile (product/service keywords), and optional page titles/snippets.
+     > Use this to quickly understand what kind of pages your competitors are investing in (e.g., more product pages vs. more blogs).
+     > The value is first determined by programmed rules, and if those are uncertain, it can be refined by an AI classifier.
+
+2. **Column:** `Page Intent` (backed by `pageIntent`)
+
+   * Tooltip:
+
+     > **Page Intent**
+     > This indicates why a user would visit or search for this page: to get information, compare options, buy, log in, or get support.
+     > It is derived from the keyword, page type, and common intent signals (e.g., words like “buy”, “price”, “best”, “how to”).
+     > Use this to separate informational content from commercial and transactional pages when planning SEO and content strategy.
+
+3. **Column:** `SEO Relevant?` (backed by `isSeoRelevant`)
+
+   * Tooltip:
+
+     > **SEO Relevant?**
+     > Shows whether this page is meaningful for SEO and content strategy.
+     > Legal pages, login/account pages, and HR/career pages are usually marked as NOT relevant.
+     > Product, category, blog, guide, and pricing pages are usually marked as relevant.
+     > This helps you ignore noise and focus only on the pages that matter for ranking and content planning.
+
+4. **Column:** `Classification Method` (backed by `classificationMethod`)
+
+   * Tooltip:
+
+     > **Classification Method**
+     > Indicates whether this row was classified using only programmed rules (`RULE`) or with help from the AI model (`AI`).
+     > RULE = based on URL patterns, keyword analysis, and client-specific configuration (no AI cost).
+     > AI = the rules were uncertain, so a ChatGPT API call was used to refine the classification.
+     > This lets you see when AI was involved and control costs/quality.
+
+5. **Column:** `Confidence` (backed by `classificationConfidence`)
+
+   * Tooltip:
+
+     > **Classification Confidence**
+     > A qualitative score (High, Medium, Low) indicating how confident the system is in the assigned Page Type and Page Intent.
+     > High = strong URL/keyword patterns or clear AI judgement.
+     > Medium = some mixed signals.
+     > Low = ambiguous patterns, usually a candidate for AI review or manual checking.
+     > Use this to decide where manual review or reclassification is needed.
+
+6. **Column:** `Needs AI Review?` (backed by `needsAiReview`)
+
+   * Tooltip:
+
+     > **Needs AI Review?**
+     > TRUE means the rule-based logic could not confidently classify this page, so it is marked for AI review.
+     > When you run the AI classification routine, these rows are sent to the ChatGPT API to improve Page Type, Intent, and SEO Action.
+     > After AI classification, this flag should be set to FALSE.
+
+7. **Column:** `SEO Action` (backed by `seoAction`)
+
+   * Tooltip:
+
+     > **SEO Action**
+     > A suggested next step for your SEO strategy based on the page’s type, intent, and traffic/value.
+     > Examples:
+     > – HIGH_PRIORITY_TARGET: competitor page you should target and try to outrank
+     > – CREATE_EQUIVALENT_PAGE: topic or page type you do not have yet and should create
+     > – ADD_TO_CONTENT_CLUSTER: useful supporting topic for a cluster or pillar page
+     > – BACKLINK_PROSPECT: page worth using for backlink research/outreach
+     > – MONITOR_ONLY: watch performance but no immediate action
+     > – IGNORE_IRRELEVANT: utility or legal pages with no SEO impact
+     > This column converts classification into direct strategic guidance.
+
+#### Per-cell “Why?” / explanation link
+
+For each of these derived columns (`pageType`, `pageIntent`, `isSeoRelevant`, `seoAction`), in the cell renderer:
+
+* Show the value normally (e.g. `PRODUCT_SERVICE`).
+* Next to it, render a small clickable element, e.g. text link `[why?]` or an info icon `ℹ`.
+* On click, open a small modal or popover that reads from `classificationExplanation` and shows:
+
+  * Source: RULE or AI
+  * Rules fired (if RULE)
+  * AI model and brief reasoning (if AI)
+  * Input summary: URL, keyword, title/snippet
+  * The final “reasoning” string explaining in plain English why the value was chosen.
+
+Example UI text in the modal:
+
+* Title: `How this classification was calculated`
+* Body:
+
+  * `Source: RULE`
+  * `Rules fired: RULE_URL_MATCH_PRODUCT, RULE_KEYWORD_MATCH_PRODUCT`
+  * `Reasoning: Classified as PRODUCT_SERVICE because the URL and keyword both contain known product terms from the client profile. Intent set to TRANSACTIONAL based on the presence of pricing-related words in the keyword. Marked as HIGH_PRIORITY_TARGET because estimated traffic is above the configured threshold and the intent is commercial.`
+
+The derived cell content (e.g. `PRODUCT_SERVICE`) should be perceived as “hyperlinked to logic” via this `[why?]` or clickable icon.
+
+---
+
+### 7. UX EXTRAS
+
+* Add a filter bar or column filters so I can filter rows by:
+
+  * `pageType`
+  * `pageIntent`
+  * `isSeoRelevant`
+  * `seoAction`
+  * `classificationMethod`
+* Add a button on top of the table:
+
+  * `“Run AI Classification for Uncertain Rows”`
+  * This should call the batch `/api/classify-pages` endpoint and then refresh the table.
+
+---
+
+### 8. CODE QUALITY NOTES
+
+* Use TypeScript types everywhere.
+* Keep the rule engine in a separate module so that it can be tested or reused.
+* Do not hardcode API keys; use environment variables for ChatGPT.
+* Write small, pure functions for each step and compose them.
+
+Implement all of the above end-to-end:
+
+* DB/Model updates
+* Rule engine
+* AI fallback
+* API endpoint
+* Table columns with tooltips
+* Per-cell clickable explanation (hyperlinked reasoning).
