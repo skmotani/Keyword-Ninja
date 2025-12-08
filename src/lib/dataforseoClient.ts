@@ -1144,11 +1144,6 @@ export async function fetchDomainTopPages(
     const responseText = await response.text();
     result.rawResponse = responseText;
 
-    if (!response.ok) {
-      console.error(`[DataForSEO Domain Pages] API Error for ${cleanDomain}:`, response.status);
-      return result;
-    }
-
     interface TopPagesResponseItem {
       page: string;
       metrics?: {
@@ -1182,7 +1177,13 @@ export async function fetchDomainTopPages(
       tasks: TopPagesTask[];
     }
 
-    const data: TopPagesResponse = JSON.parse(responseText);
+    let data: TopPagesResponse;
+    try {
+      data = JSON.parse(responseText);
+    } catch (parseError) {
+      console.error(`[DataForSEO Domain Pages] Failed to parse response for ${cleanDomain}, HTTP status: ${response.status}`);
+      return result;
+    }
 
     if (data.status_code === 20000) {
       for (const task of data.tasks || []) {
@@ -1201,9 +1202,9 @@ export async function fetchDomainTopPages(
       }
       console.log(`[DataForSEO Top Pages] ${cleanDomain}: Found ${result.pages.length} pages`);
     } else if (data.status_code === 40400) {
-      console.log(`[DataForSEO Domain Pages] No data available for ${cleanDomain} (40400)`);
+      console.log(`[DataForSEO Domain Pages] No data available for ${cleanDomain} (40400 - domain not in database)`);
     } else {
-      console.error(`[DataForSEO Domain Pages] Status error for ${cleanDomain}:`, data.status_message);
+      console.error(`[DataForSEO Domain Pages] API status ${data.status_code} for ${cleanDomain}:`, data.status_message);
     }
   } catch (error) {
     const errMsg = error instanceof Error ? error.message : 'Unknown error';
