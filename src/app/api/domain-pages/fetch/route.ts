@@ -7,10 +7,65 @@ import {
   saveDomainApiLog,
   cleanDomain,
 } from '@/lib/domainOverviewStore';
-import { fetchDomainTopPagesBatch, DOM_TOP_PAGES_LIMIT } from '@/lib/dataforseoClient';
+import { fetchDomainRankedKeywordsBatch } from '@/lib/dataforseoClient';
 import { DomainPageRecord } from '@/types';
 
 const ALL_LOCATIONS = ['IN', 'GL'];
+const KEYWORDS_LIMIT = 200;
+
+function estimateCTR(position: number): number {
+  const ctrByPosition: Record<number, number> = {
+    1: 0.32,
+    2: 0.17,
+    3: 0.11,
+    4: 0.08,
+    5: 0.06,
+    6: 0.05,
+    7: 0.04,
+    8: 0.03,
+    9: 0.025,
+    10: 0.02,
+  };
+  if (position <= 0) return 0;
+  if (position <= 10) return ctrByPosition[position] || 0.02;
+  if (position <= 20) return 0.01;
+  if (position <= 30) return 0.005;
+  return 0.002;
+}
+
+interface PageAggregate {
+  pageURL: string;
+  keywordsCount: number;
+  estTrafficETV: number;
+}
+
+function aggregateKeywordsByPage(keywords: { keyword: string; position: number | null; searchVolume: number | null; url: string | null }[], limit: number): PageAggregate[] {
+  const pageMap = new Map<string, PageAggregate>();
+
+  for (const kw of keywords) {
+    if (!kw.url) continue;
+    
+    const existing = pageMap.get(kw.url);
+    const searchVolume = kw.searchVolume || 0;
+    const position = kw.position || 100;
+    const estTraffic = Math.round(searchVolume * estimateCTR(position));
+
+    if (existing) {
+      existing.keywordsCount += 1;
+      existing.estTrafficETV += estTraffic;
+    } else {
+      pageMap.set(kw.url, {
+        pageURL: kw.url,
+        keywordsCount: 1,
+        estTrafficETV: estTraffic,
+      });
+    }
+  }
+
+  const pages = Array.from(pageMap.values());
+  pages.sort((a, b) => b.estTrafficETV - a.estTrafficETV);
+  return pages.slice(0, limit);
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -24,7 +79,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const pageLimit: number = limit || DOM_TOP_PAGES_LIMIT;
+    const pageLimit: number = limit || 30;
 
     const credential = await getActiveCredentialByService('DATAFORSEO', clientCode);
     if (!credential) {
@@ -69,7 +124,7 @@ export async function POST(request: NextRequest) {
     const cleanedDomains = domains.map(cleanDomain);
     const uniqueDomains = Array.from(new Set(cleanedDomains));
 
-    console.log('[Domain Pages Fetch] Fetching top', pageLimit, 'pages for', uniqueDomains.length, 'domains, locations:', ALL_LOCATIONS.join(', '));
+    console.log('[Domain Pages Fetch] Deriving top pages from ranked keywords for', uniqueDomains.length, 'domains, locations:', ALL_LOCATIONS.join(', '));
 
     const now = new Date().toISOString();
     const snapshotDate = now.split('T')[0];
@@ -78,24 +133,26 @@ export async function POST(request: NextRequest) {
     const locationStats: { location: string; pages: number; domainsWithPages: number }[] = [];
 
     for (const locCode of ALL_LOCATIONS) {
-      console.log(`[Domain Pages Fetch] Fetching for location: ${locCode}`);
+      console.log(`[Domain Pages Fetch] Fetching ranked keywords for location: ${locCode}`);
 
-      const batchResults = await fetchDomainTopPagesBatch(
+      const batchResults = await fetchDomainRankedKeywordsBatch(
         { username: credential.username, password },
         uniqueDomains,
         locCode,
-        pageLimit
+        KEYWORDS_LIMIT
       );
 
-      const rawResponses = batchResults.map(r => ({ domain: r.domain, response: r.rawResponse }));
+      const rawResponses = batchResults.map(r => ({ domain: r.domain, keywordsCount: r.keywords.length }));
       const logFilename = await saveDomainApiLog(clientCode, [locCode], 'pages', JSON.stringify(rawResponses, null, 2));
       logFilenames.push(logFilename);
-      console.log(`[Domain Pages Fetch] Saved API response log for ${locCode}:`, logFilename);
+      console.log(`[Domain Pages Fetch] Saved log for ${locCode}:`, logFilename);
 
       const newRecords: DomainPageRecord[] = [];
       
       for (const result of batchResults) {
-        for (const page of result.pages) {
+        const topPages = aggregateKeywordsByPage(result.keywords, pageLimit);
+        
+        for (const page of topPages) {
           newRecords.push({
             id: uuidv4(),
             clientCode,
@@ -110,6 +167,10 @@ export async function POST(request: NextRequest) {
             snapshotDate,
           });
         }
+        
+        if (topPages.length > 0) {
+          console.log(`[Domain Pages Fetch] ${result.domain} (${locCode}): ${topPages.length} pages from ${result.keywords.length} keywords`);
+        }
       }
 
       await replaceDomainPagesForClientLocationAndDomains(
@@ -119,7 +180,7 @@ export async function POST(request: NextRequest) {
         newRecords
       );
 
-      const domainsWithPages = batchResults.filter(r => r.pages.length > 0).length;
+      const domainsWithPages = batchResults.filter(r => r.keywords.length > 0).length;
       allRecords.push(...newRecords);
       locationStats.push({ location: locCode, pages: newRecords.length, domainsWithPages });
     }
@@ -128,7 +189,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: `Successfully fetched ${allRecords.length} pages across ${ALL_LOCATIONS.length} locations`,
+      message: `Successfully derived ${allRecords.length} top pages from ranked keywords across ${ALL_LOCATIONS.length} locations`,
       totalPages: allRecords.length,
       domainsProcessed: uniqueDomains.length,
       totalDomainsWithPages,

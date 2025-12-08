@@ -1125,8 +1125,6 @@ export async function fetchDomainTopPages(
       location_code: numericLocCode,
       language_code: langCode,
       limit: limit,
-      order_by: ['metrics.organic.etv,desc'],
-      mode: 'subdomains',
     }];
 
     const response = await fetch(
