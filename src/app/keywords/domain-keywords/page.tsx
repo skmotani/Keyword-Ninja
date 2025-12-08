@@ -346,8 +346,17 @@ export default function DomainKeywordsPage() {
     <div className="max-w-7xl mx-auto px-4 py-8">
       <PageHeader 
         title="Domain Top Keywords" 
-        description="View top 100 ranked keywords per domain with search volume, positions, and Google search links for both IN and GL locations"
+        description="View top ranked keywords per domain with search volume, positions, and Google search links for both IN and GL locations"
       />
+
+      <div className="mb-4 flex items-center gap-2">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 border border-purple-200 rounded-full text-xs text-purple-700">
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span className="font-medium">Extraction Limit:</span> 100 keywords per domain per location
+        </div>
+      </div>
 
       <div className="bg-white rounded-lg shadow p-6 mb-6">
         <div className="flex flex-wrap items-end gap-4">
