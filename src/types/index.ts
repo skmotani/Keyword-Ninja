@@ -300,6 +300,7 @@ export interface DomainOverviewRecord {
 }
 
 export type PageTypeValue =
+  | 'HOME_PAGE'
   | 'PRODUCT_SERVICE'
   | 'CATEGORY_COLLECTION'
   | 'BLOG_ARTICLE_NEWS'

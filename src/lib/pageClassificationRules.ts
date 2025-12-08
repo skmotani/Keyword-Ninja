@@ -142,7 +142,7 @@ function classifyPageType(
   if (isHomepage(row.pageUrl)) {
     firedRules.push('RULE_HOMEPAGE_DETECTED');
     return { 
-      pageType: 'COMPANY_ABOUT', 
+      pageType: 'HOME_PAGE', 
       confidence: 'HIGH', 
       firedRules,
       matchDetails: 'Root URL detected as homepage'
@@ -334,6 +334,11 @@ function classifyPageIntent(
     return { pageIntent: 'TRANSACTIONAL', firedRules };
   }
 
+  if (pageType === 'HOME_PAGE') {
+    firedRules.push('RULE_INTENT_NAVIGATIONAL_HOMEPAGE');
+    return { pageIntent: 'NAVIGATIONAL', firedRules };
+  }
+
   if (pageType === 'PRODUCT_SERVICE' || pageType === 'LANDING_CAMPAIGN') {
     if (COMMERCIAL_RESEARCH_KEYWORDS.test(keywordLower)) {
       firedRules.push('RULE_INTENT_COMMERCIAL_RESEARCH');
@@ -379,7 +384,7 @@ function determineIsSeoRelevant(
 ): boolean {
   if (pageIntent === 'IRRELEVANT_SEO') return false;
   if (['LEGAL_POLICY', 'ACCOUNT_AUTH', 'CAREERS_HR'].includes(pageType)) return false;
-  if (isHomepagePage) return true;
+  if (isHomepagePage || pageType === 'HOME_PAGE') return true;
   return true;
 }
 
@@ -399,7 +404,7 @@ function determineSeoAction(
     return { seoAction: 'IGNORE_IRRELEVANT', firedRules };
   }
 
-  if (isHomepagePage) {
+  if (isHomepagePage || pageType === 'HOME_PAGE') {
     firedRules.push('RULE_ACTION_MONITOR_HOMEPAGE');
     return { seoAction: 'MONITOR_ONLY', firedRules };
   }
@@ -448,7 +453,7 @@ function buildReasoningString(
   const pageTypeRule = firedRules.find((r) => r.includes('URL_') || r.includes('CONTENT_') || r.includes('HOMEPAGE') || r.includes('FALLBACK'));
   if (pageTypeRule) {
     if (pageTypeRule.includes('HOMEPAGE')) {
-      parts.push(`Classified as ${pageType} because this is the homepage (root URL).`);
+      parts.push(`Classified as HOME_PAGE because this is the homepage (root URL).`);
     } else if (pageTypeRule.includes('URL_')) {
       parts.push(`Classified as ${pageType} based on URL path pattern matching.`);
     } else if (pageTypeRule.includes('CONTENT_')) {

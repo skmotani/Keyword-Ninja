@@ -56,6 +56,7 @@ const LOCATION_OPTIONS = [
 ];
 
 const PAGE_TYPE_OPTIONS: PageTypeValue[] = [
+  'HOME_PAGE',
   'PRODUCT_SERVICE',
   'CATEGORY_COLLECTION',
   'BLOG_ARTICLE_NEWS',
@@ -97,14 +98,15 @@ Classification priority order:
 2. LEGAL_POLICY - Privacy, terms, cookies, GDPR pages (not SEO relevant)
 3. CAREERS_HR - Job listings, career pages (not SEO relevant)
 4. SUPPORT_CONTACT - Help, FAQ, contact, dealer locator pages
-5. COMPANY_ABOUT - Homepage (root URL) and about/company/team pages
-6. PRODUCT_SERVICE - Product, service, machine, equipment pages
-7. CATEGORY_COLLECTION - Industry, application, solution hub pages
-8. BLOG_ARTICLE_NEWS - Blog posts, news, articles, insights
-9. RESOURCE_GUIDE_DOC - Guides, whitepapers, PDFs, documentation
-10. PRICING_PLANS - Pricing, plans, subscription pages
-11. LANDING_CAMPAIGN - Campaign, promo, demo, webinar pages
-12. OTHER_MISC - Fallback when no patterns match (review candidates)
+5. HOME_PAGE - Homepage (root URL) - navigational entry point
+6. COMPANY_ABOUT - About/company/team pages
+7. PRODUCT/SERVICE - Product, service, machine, equipment pages
+8. CATEGORY_COLLECTION - Industry, application, solution hub pages
+9. BLOG_ARTICLE_NEWS - Blog posts, news, articles, insights
+10. RESOURCE_GUIDE_DOC - Guides, whitepapers, PDFs, documentation
+11. PRICING_PLANS - Pricing, plans, subscription pages
+12. LANDING_CAMPAIGN - Campaign, promo, demo, webinar pages
+13. OTHER_MISC - Fallback when no patterns match (review candidates)
 
 URL patterns from Client Master's urlClassificationSupport are used to improve accuracy.`,
   pageIntent: `Page Intent: Indicates the user's purpose when visiting or searching for this page.
@@ -293,6 +295,8 @@ type SortDirection = 'asc' | 'desc';
 
 function formatPageType(type: PageTypeValue | null | undefined): string {
   if (!type) return '-';
+  if (type === 'HOME_PAGE') return 'Home Page';
+  if (type === 'PRODUCT_SERVICE') return 'Product/Service';
   return type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 }
 
@@ -309,6 +313,7 @@ function formatSeoAction(action: SeoActionValue | null | undefined): string {
 function getPageTypeBadgeColor(type: PageTypeValue | null | undefined): string {
   if (!type) return 'bg-gray-100 text-gray-600';
   const colors: Record<PageTypeValue, string> = {
+    HOME_PAGE: 'bg-teal-100 text-teal-800',
     PRODUCT_SERVICE: 'bg-green-100 text-green-800',
     CATEGORY_COLLECTION: 'bg-blue-100 text-blue-800',
     BLOG_ARTICLE_NEWS: 'bg-purple-100 text-purple-800',

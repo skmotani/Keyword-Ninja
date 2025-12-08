@@ -10,6 +10,7 @@ import {
 import { PageRow, RuleClassificationResult } from './pageClassificationRules';
 
 const VALID_PAGE_TYPES: PageTypeValue[] = [
+  'HOME_PAGE',
   'PRODUCT_SERVICE',
   'CATEGORY_COLLECTION',
   'BLOG_ARTICLE_NEWS',
@@ -69,6 +70,7 @@ function buildSystemPrompt(): string {
   return `You are a strict page classifier for SEO analysis. You MUST classify pages using ONLY the exact enum values provided below. Return ONLY valid JSON with no additional text.
 
 VALID pageType values (choose exactly one):
+- HOME_PAGE: Homepage, root URL, main entry point of a website
 - PRODUCT_SERVICE: Product pages, service pages, solution pages
 - CATEGORY_COLLECTION: Category listings, product collections, solution overviews
 - BLOG_ARTICLE_NEWS: Blog posts, news articles, insights, magazine content
