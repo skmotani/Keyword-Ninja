@@ -414,6 +414,9 @@ export interface DomainPageRecord {
   priorityTier?: PriorityTier | null;
   priorityScoreBreakdown?: PriorityScoreBreakdown | null;
   priorityCalculatedAt?: string | null;
+  matchedProduct?: string | null;
+  clusterName?: string | null;
+  productClassifiedAt?: string | null;
 }
 
 export interface DomainKeywordRecord {
