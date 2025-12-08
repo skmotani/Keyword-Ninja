@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import PageHeader from '@/components/PageHeader';
 import ExportButton, { ExportColumn } from '@/components/ExportButton';
+import ProfileViewModal from '@/components/ProfileViewModal';
 import { Client, DomainProfile, ClientAIProfile } from '@/types';
 
 const MAX_DOMAINS = 5;
@@ -18,6 +19,7 @@ export default function ClientsPage() {
   const [aiProfiles, setAiProfiles] = useState<Record<string, ClientAIProfile>>({});
   const [generatingAiProfile, setGeneratingAiProfile] = useState<string | null>(null);
   const [showDomainsVerification, setShowDomainsVerification] = useState<string | null>(null);
+  const [viewProfileClientCode, setViewProfileClientCode] = useState<string | null>(null);
   
   const [formData, setFormData] = useState({
     code: '',
@@ -754,27 +756,38 @@ export default function ClientsPage() {
                         <div className="bg-white rounded-lg border p-4 mt-4">
                           <div className="flex items-center justify-between mb-3">
                             <h4 className="text-sm font-semibold text-gray-700">AI Client Profile</h4>
-                            <button
-                              onClick={() => handleGenerateAiProfile(client)}
-                              disabled={generatingAiProfile === client.code}
-                              className={`px-3 py-1.5 text-xs rounded flex items-center gap-2 ${
-                                generatingAiProfile === client.code
-                                  ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                                  : 'bg-purple-600 text-white hover:bg-purple-700'
-                              }`}
-                            >
-                              {generatingAiProfile === client.code ? (
-                                <>
-                                  <span className="animate-spin">⟳</span>
-                                  Generating...
-                                </>
-                              ) : (
-                                <>
-                                  <span>✨</span>
-                                  {aiProfiles[client.code] ? 'Regenerate AI Profile' : 'Generate AI Profile'}
-                                </>
+                            <div className="flex items-center gap-2">
+                              {aiProfiles[client.code] && (
+                                <button
+                                  onClick={() => setViewProfileClientCode(client.code)}
+                                  className="px-3 py-1.5 text-xs rounded flex items-center gap-2 bg-indigo-600 text-white hover:bg-indigo-700"
+                                >
+                                  <span>👁️</span>
+                                  View Profile
+                                </button>
                               )}
-                            </button>
+                              <button
+                                onClick={() => handleGenerateAiProfile(client)}
+                                disabled={generatingAiProfile === client.code}
+                                className={`px-3 py-1.5 text-xs rounded flex items-center gap-2 ${
+                                  generatingAiProfile === client.code
+                                    ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                                    : 'bg-purple-600 text-white hover:bg-purple-700'
+                                }`}
+                              >
+                                {generatingAiProfile === client.code ? (
+                                  <>
+                                    <span className="animate-spin">⟳</span>
+                                    Generating...
+                                  </>
+                                ) : (
+                                  <>
+                                    <span>✨</span>
+                                    {aiProfiles[client.code] ? 'Regenerate AI Profile' : 'Generate AI Profile'}
+                                  </>
+                                )}
+                              </button>
+                            </div>
                           </div>
 
                           {aiProfiles[client.code] && (
@@ -1045,6 +1058,13 @@ export default function ClientsPage() {
           </tbody>
         </table>
       </div>
+
+      {viewProfileClientCode && aiProfiles[viewProfileClientCode] && (
+        <ProfileViewModal
+          profile={aiProfiles[viewProfileClientCode]}
+          onClose={() => setViewProfileClientCode(null)}
+        />
+      )}
     </div>
   );
 }
