@@ -383,6 +383,8 @@ export default function DomainPagesPage() {
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
 
   const [selectedExplanation, setSelectedExplanation] = useState<ClassificationExplanation | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(50);
 
   useEffect(() => {
     fetchClients();
@@ -648,6 +650,47 @@ export default function DomainPagesPage() {
     return { uniqueDomains, uniquePages, totalRecords, totalTraffic, totalKeywords, avgTraffic, inCount, glCount, classifiedCount, needsAiReviewCount };
   }, [filteredRecords]);
 
+  const classificationBreakdown = useMemo(() => {
+    const typeBreakdown: Record<string, number> = {};
+    const intentBreakdown: Record<string, number> = {};
+    const actionBreakdown: Record<string, number> = {};
+    const confidenceBreakdown: Record<string, number> = {};
+    const methodBreakdown: Record<string, number> = {};
+    let seoYes = 0, seoNo = 0;
+
+    filteredRecords.forEach(r => {
+      if (r.pageType) {
+        typeBreakdown[r.pageType] = (typeBreakdown[r.pageType] || 0) + 1;
+      }
+      if (r.pageIntent) {
+        intentBreakdown[r.pageIntent] = (intentBreakdown[r.pageIntent] || 0) + 1;
+      }
+      if (r.seoAction) {
+        actionBreakdown[r.seoAction] = (actionBreakdown[r.seoAction] || 0) + 1;
+      }
+      if (r.classificationConfidence) {
+        confidenceBreakdown[r.classificationConfidence] = (confidenceBreakdown[r.classificationConfidence] || 0) + 1;
+      }
+      if (r.classificationMethod) {
+        methodBreakdown[r.classificationMethod] = (methodBreakdown[r.classificationMethod] || 0) + 1;
+      }
+      if (r.isSeoRelevant === true) seoYes++;
+      if (r.isSeoRelevant === false) seoNo++;
+    });
+
+    return { typeBreakdown, intentBreakdown, actionBreakdown, confidenceBreakdown, methodBreakdown, seoYes, seoNo };
+  }, [filteredRecords]);
+
+  const totalPages = Math.ceil(sortedRecords.length / itemsPerPage);
+  const paginatedRecords = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return sortedRecords.slice(start, start + itemsPerPage);
+  }, [sortedRecords, currentPage, itemsPerPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filteredRecords.length]);
+
   const SortableHeader = ({ field, label, tooltip }: { field: SortField; label: string; tooltip: string }) => (
     <th
       className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
@@ -910,6 +953,125 @@ export default function DomainPagesPage() {
         </div>
       </div>
 
+      {/* Classification Breakdown Summary */}
+      {summaryStats.classifiedCount > 0 && (
+        <details className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg shadow p-4 mb-4">
+          <summary className="text-sm font-semibold text-gray-700 cursor-pointer hover:text-indigo-600">
+            Classification Breakdown ({summaryStats.classifiedCount} classified pages)
+          </summary>
+          <div className="mt-3 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {/* Page Type Breakdown */}
+            <div className="bg-white rounded-lg p-3 shadow-sm">
+              <div className="text-xs font-medium text-gray-600 mb-2">Page Types</div>
+              <div className="space-y-1 max-h-32 overflow-y-auto">
+                {Object.entries(classificationBreakdown.typeBreakdown)
+                  .sort((a, b) => b[1] - a[1])
+                  .map(([type, count]) => (
+                    <div key={type} className="flex justify-between text-[10px]">
+                      <span className={`px-1 rounded ${getPageTypeBadgeColor(type as PageTypeValue)}`}>
+                        {formatPageType(type as PageTypeValue)}
+                      </span>
+                      <span className="font-medium text-gray-700">{count}</span>
+                    </div>
+                  ))}
+              </div>
+            </div>
+            
+            {/* Intent Breakdown */}
+            <div className="bg-white rounded-lg p-3 shadow-sm">
+              <div className="text-xs font-medium text-gray-600 mb-2">Page Intent</div>
+              <div className="space-y-1 max-h-32 overflow-y-auto">
+                {Object.entries(classificationBreakdown.intentBreakdown)
+                  .sort((a, b) => b[1] - a[1])
+                  .map(([intent, count]) => (
+                    <div key={intent} className="flex justify-between text-[10px]">
+                      <span className={`px-1 rounded ${getIntentBadgeColor(intent as PageClassificationIntent)}`}>
+                        {formatPageIntent(intent as PageClassificationIntent)}
+                      </span>
+                      <span className="font-medium text-gray-700">{count}</span>
+                    </div>
+                  ))}
+              </div>
+            </div>
+            
+            {/* SEO Action Breakdown */}
+            <div className="bg-white rounded-lg p-3 shadow-sm">
+              <div className="text-xs font-medium text-gray-600 mb-2">SEO Actions</div>
+              <div className="space-y-1 max-h-32 overflow-y-auto">
+                {Object.entries(classificationBreakdown.actionBreakdown)
+                  .sort((a, b) => b[1] - a[1])
+                  .map(([action, count]) => (
+                    <div key={action} className="flex justify-between text-[10px]">
+                      <span className={`px-1 rounded ${getSeoActionBadgeColor(action as SeoActionValue)}`}>
+                        {formatSeoAction(action as SeoActionValue)}
+                      </span>
+                      <span className="font-medium text-gray-700">{count}</span>
+                    </div>
+                  ))}
+              </div>
+            </div>
+            
+            {/* SEO Relevant Breakdown */}
+            <div className="bg-white rounded-lg p-3 shadow-sm">
+              <div className="text-xs font-medium text-gray-600 mb-2">SEO Relevant</div>
+              <div className="space-y-1">
+                <div className="flex justify-between text-[10px]">
+                  <span className="px-1 rounded bg-green-100 text-green-800">Yes</span>
+                  <span className="font-medium text-gray-700">{classificationBreakdown.seoYes}</span>
+                </div>
+                <div className="flex justify-between text-[10px]">
+                  <span className="px-1 rounded bg-gray-100 text-gray-500">No</span>
+                  <span className="font-medium text-gray-700">{classificationBreakdown.seoNo}</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Confidence Breakdown */}
+            <div className="bg-white rounded-lg p-3 shadow-sm">
+              <div className="text-xs font-medium text-gray-600 mb-2">Confidence</div>
+              <div className="space-y-1">
+                {Object.entries(classificationBreakdown.confidenceBreakdown)
+                  .sort((a, b) => {
+                    const order = { HIGH: 0, MEDIUM: 1, LOW: 2 };
+                    return (order[a[0] as keyof typeof order] || 3) - (order[b[0] as keyof typeof order] || 3);
+                  })
+                  .map(([conf, count]) => (
+                    <div key={conf} className="flex justify-between text-[10px]">
+                      <span className={`px-1 rounded ${
+                        conf === 'HIGH' ? 'bg-green-100 text-green-800' :
+                        conf === 'MEDIUM' ? 'bg-yellow-100 text-yellow-800' :
+                        'bg-red-100 text-red-800'
+                      }`}>
+                        {conf}
+                      </span>
+                      <span className="font-medium text-gray-700">{count}</span>
+                    </div>
+                  ))}
+              </div>
+            </div>
+            
+            {/* Method Breakdown */}
+            <div className="bg-white rounded-lg p-3 shadow-sm">
+              <div className="text-xs font-medium text-gray-600 mb-2">Method</div>
+              <div className="space-y-1">
+                {Object.entries(classificationBreakdown.methodBreakdown)
+                  .sort((a, b) => b[1] - a[1])
+                  .map(([method, count]) => (
+                    <div key={method} className="flex justify-between text-[10px]">
+                      <span className={`px-1 rounded ${
+                        method === 'AI' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
+                      }`}>
+                        {method}
+                      </span>
+                      <span className="font-medium text-gray-700">{count}</span>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
+        </details>
+      )}
+
       <div className="bg-white rounded-lg shadow p-4 mb-4">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
           <div>
@@ -1033,8 +1195,54 @@ export default function DomainPagesPage() {
             />
           </div>
         </div>
-        <div className="text-sm text-gray-500 mt-3">
-          Showing {Math.min(sortedRecords.length, 50)} of {sortedRecords.length} filtered ({records.length} total)
+        <div className="flex items-center justify-between mt-3">
+          <div className="text-sm text-gray-500">
+            Showing {paginatedRecords.length} of {sortedRecords.length} filtered ({records.length} total)
+          </div>
+          {totalPages > 1 && (
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setCurrentPage(1)}
+                disabled={currentPage === 1}
+                className="px-2 py-1 text-xs bg-gray-100 hover:bg-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                First
+              </button>
+              <button
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                className="px-2 py-1 text-xs bg-gray-100 hover:bg-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Prev
+              </button>
+              <span className="text-sm text-gray-600">
+                Page {currentPage} of {totalPages}
+              </span>
+              <button
+                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                disabled={currentPage === totalPages}
+                className="px-2 py-1 text-xs bg-gray-100 hover:bg-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Next
+              </button>
+              <button
+                onClick={() => setCurrentPage(totalPages)}
+                disabled={currentPage === totalPages}
+                className="px-2 py-1 text-xs bg-gray-100 hover:bg-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Last
+              </button>
+              <select
+                value={currentPage}
+                onChange={e => setCurrentPage(Number(e.target.value))}
+                className="border rounded px-2 py-1 text-xs"
+              >
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                  <option key={page} value={page}>Go to {page}</option>
+                ))}
+              </select>
+            </div>
+          )}
         </div>
       </div>
 
@@ -1114,7 +1322,7 @@ export default function DomainPagesPage() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {sortedRecords.slice(0, 50).map(record => (
+              {paginatedRecords.map(record => (
                 <tr key={record.id} className="hover:bg-gray-50">
                   <td className="px-1 py-1 text-[9px] text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis w-[100px]">
                     {record.domain.length > 15 ? record.domain.substring(0, 15) + '...' : record.domain}
