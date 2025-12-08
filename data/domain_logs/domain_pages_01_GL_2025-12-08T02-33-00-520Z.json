@@ -1,0 +1,314 @@
+[
+  {
+    "domain": "meera.ind.in",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":2}"
+  },
+  {
+    "domain": "meeraind.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":16}"
+  },
+  {
+    "domain": "aakashtexeng.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":1}"
+  },
+  {
+    "domain": "aakashtexeng.in",
+    "response": "{\n    \"version\": \"0.1.20251203\",\n    \"status_code\": 40400,\n    \"status_message\": \"Not Found.\",\n    \"time\": \"0 sec.\",\n    \"cost\": 0,\n    \"tasks_count\": 0,\n    \"tasks_error\": 0,\n    \"tasks\": null\n}"
+  },
+  {
+    "domain": "aakashtextileengineers.com",
+    "response": "{\n    \"version\": \"0.1.20251203\",\n    \"status_code\": 40400,\n    \"status_message\": \"Not Found.\",\n    \"time\": \"0 sec.\",\n    \"cost\": 0,\n    \"tasks_count\": 0,\n    \"tasks_error\": 0,\n    \"tasks\": null\n}"
+  },
+  {
+    "domain": "aakashthreads.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":1}"
+  },
+  {
+    "domain": "aalidhra.in",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":1}"
+  },
+  {
+    "domain": "aalidhratexpro.in",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":1}"
+  },
+  {
+    "domain": "aawadkrupaextrusion.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":1}"
+  },
+  {
+    "domain": "aawadkrupaplastomech.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":2}"
+  },
+  {
+    "domain": "bcfyarn.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":3}"
+  },
+  {
+    "domain": "bhagat.co",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":4}"
+  },
+  {
+    "domain": "bhargeshengg.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":1}"
+  },
+  {
+    "domain": "jaylaxmitextilespindle.net",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":2}"
+  },
+  {
+    "domain": "jcmachine.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":4}"
+  },
+  {
+    "domain": "jdtextilemachine.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":13}"
+  },
+  {
+    "domain": "jingtianchina.en.made-in-china.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":30}"
+  },
+  {
+    "domain": "jmfibermachine.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":8}"
+  },
+  {
+    "domain": "jmwindia.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":1}"
+  },
+  {
+    "domain": "kristeel.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":30}"
+  },
+  {
+    "domain": "maheshengineers.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":6}"
+  },
+  {
+    "domain": "prtexpro.in",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":2}"
+  },
+  {
+    "domain": "rieter.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":30}"
+  },
+  {
+    "domain": "rifa-texmachine.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":14}"
+  },
+  {
+    "domain": "rifa-textile-machine.en.made-in-china.com",
+    "response": "{\n    \"version\": \"0.1.20251203\",\n    \"status_code\": 40400,\n    \"status_message\": \"Not Found.\",\n    \"time\": \"0 sec.\",\n    \"cost\": 0,\n    \"tasks_count\": 0,\n    \"tasks_error\": 0,\n    \"tasks\": null\n}"
+  },
+  {
+    "domain": "rifatextile.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":30}"
+  },
+  {
+    "domain": "ropemachine.goldsupplier.com",
+    "response": "{\n    \"version\": \"0.1.20251203\",\n    \"status_code\": 40400,\n    \"status_message\": \"Not Found.\",\n    \"time\": \"0 sec.\",\n    \"cost\": 0,\n    \"tasks_count\": 0,\n    \"tasks_error\": 0,\n    \"tasks\": null\n}"
+  },
+  {
+    "domain": "saurer.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":30}"
+  },
+  {
+    "domain": "saviospa.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":16}"
+  },
+  {
+    "domain": "sml.at",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":30}"
+  },
+  {
+    "domain": "ssm.ch",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":7}"
+  },
+  {
+    "domain": "superba.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":8}"
+  },
+  {
+    "domain": "sutexmach.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":30}"
+  },
+  {
+    "domain": "tfoparts.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":1}"
+  },
+  {
+    "domain": "tfotwister.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":4}"
+  },
+  {
+    "domain": "thread-winder.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":13}"
+  },
+  {
+    "domain": "twistechnology.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":6}"
+  },
+  {
+    "domain": "vandewiele.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":30}"
+  },
+  {
+    "domain": "veejaylakshmi.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":1}"
+  },
+  {
+    "domain": "weavetech.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":30}"
+  },
+  {
+    "domain": "weavetech.in",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":3}"
+  },
+  {
+    "domain": "weavingmc.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":11}"
+  },
+  {
+    "domain": "winder.ai",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":30}"
+  },
+  {
+    "domain": "wsf-tex.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":11}"
+  },
+  {
+    "domain": "agteks.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":9}"
+  },
+  {
+    "domain": "alconetex.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":6}"
+  },
+  {
+    "domain": "akiropes.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":20}"
+  },
+  {
+    "domain": "robco-eng.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":22}"
+  },
+  {
+    "domain": "ssbtex.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":4}"
+  },
+  {
+    "domain": "angalammamachinery.co.in",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":2}"
+  },
+  {
+    "domain": "china-tongda.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":30}"
+  },
+  {
+    "domain": "durgajacquard.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":1}"
+  },
+  {
+    "domain": "swastiktextile.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":6}"
+  },
+  {
+    "domain": "aruntexeng.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":5}"
+  },
+  {
+    "domain": "nationaltexeng.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":3}"
+  },
+  {
+    "domain": "jgtextilemachine.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":17}"
+  },
+  {
+    "domain": "ategroup.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":30}"
+  },
+  {
+    "domain": "en.imaginsz.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":4}"
+  },
+  {
+    "domain": "sarangalsteelworks.in",
+    "response": "{\n    \"version\": \"0.1.20251203\",\n    \"status_code\": 40400,\n    \"status_message\": \"Not Found.\",\n    \"time\": \"0 sec.\",\n    \"cost\": 0,\n    \"tasks_count\": 0,\n    \"tasks_error\": 0,\n    \"tasks\": null\n}"
+  },
+  {
+    "domain": "conewinding.com",
+    "response": "{\n    \"version\": \"0.1.20251203\",\n    \"status_code\": 40400,\n    \"status_message\": \"Not Found.\",\n    \"time\": \"0 sec.\",\n    \"cost\": 0,\n    \"tasks_count\": 0,\n    \"tasks_error\": 0,\n    \"tasks\": null\n}"
+  },
+  {
+    "domain": "gaudino.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":8}"
+  },
+  {
+    "domain": "kmmcringtwister.com",
+    "response": "{\n    \"version\": \"0.1.20251203\",\n    \"status_code\": 40400,\n    \"status_message\": \"Not Found.\",\n    \"time\": \"0 sec.\",\n    \"cost\": 0,\n    \"tasks_count\": 0,\n    \"tasks_error\": 0,\n    \"tasks\": null\n}"
+  },
+  {
+    "domain": "polyspintex.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":27}"
+  },
+  {
+    "domain": "dttwister.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":30}"
+  },
+  {
+    "domain": "lohiagroup.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":28}"
+  },
+  {
+    "domain": "fibrxl.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":22}"
+  },
+  {
+    "domain": "rbelectronic.in",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":3}"
+  },
+  {
+    "domain": "fadis.it",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":4}"
+  },
+  {
+    "domain": "power-heat-set.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":5}"
+  },
+  {
+    "domain": "onlineringtwistermachine.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":3}"
+  },
+  {
+    "domain": "reshmiindustries.co.in",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":3}"
+  },
+  {
+    "domain": "ornekmakine.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":2}"
+  },
+  {
+    "domain": "dztpyfj.com",
+    "response": "{\n    \"version\": \"0.1.20251203\",\n    \"status_code\": 40400,\n    \"status_message\": \"Not Found.\",\n    \"time\": \"0 sec.\",\n    \"cost\": 0,\n    \"tasks_count\": 0,\n    \"tasks_error\": 0,\n    \"tasks\": null\n}"
+  },
+  {
+    "domain": "hzcyfj.com",
+    "response": "{\n    \"version\": \"0.1.20251203\",\n    \"status_code\": 40400,\n    \"status_message\": \"Not Found.\",\n    \"time\": \"0 sec.\",\n    \"cost\": 0,\n    \"tasks_count\": 0,\n    \"tasks_error\": 0,\n    \"tasks\": null\n}"
+  },
+  {
+    "domain": "cisscomachinery.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":2}"
+  },
+  {
+    "domain": "stenter-machines.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":8}"
+  },
+  {
+    "domain": "marutiplastotech.com",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":4}"
+  },
+  {
+    "domain": "taining.com.tw",
+    "response": "{\"fallback\":true,\"source\":\"ranked_keywords\",\"pages\":10}"
+  }
+]
