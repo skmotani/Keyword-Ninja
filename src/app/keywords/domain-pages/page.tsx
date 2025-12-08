@@ -17,6 +17,10 @@ import {
   formatPriorityTier,
   getPriorityTierBadgeColor,
 } from '@/lib/priorityScoring';
+import {
+  getClusterBadgeColor,
+  getProductBadgeColor,
+} from '@/lib/productClustering';
 
 interface Client {
   id: string;
@@ -57,6 +61,9 @@ interface DomainPageRecord {
   priorityTier?: PriorityTier | null;
   priorityScoreBreakdown?: PriorityScoreBreakdown | null;
   priorityCalculatedAt?: string | null;
+  matchedProduct?: string | null;
+  clusterName?: string | null;
+  productClassifiedAt?: string | null;
 }
 
 const LOCATION_OPTIONS = [
@@ -801,6 +808,8 @@ export default function DomainPagesPage() {
   const [seoRelevantFilter, setSeoRelevantFilter] = useState<string>('all');
   const [seoActionFilter, setSeoActionFilter] = useState<string>('all');
   const [classificationMethodFilter, setClassificationMethodFilter] = useState<string>('all');
+  const [matchedProductFilter, setMatchedProductFilter] = useState<string>('all');
+  const [clusterNameFilter, setClusterNameFilter] = useState<string>('all');
   const [sortField, setSortField] = useState<SortField>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
 
@@ -1073,8 +1082,24 @@ export default function DomainPagesPage() {
       filtered = filtered.filter(r => r.priorityTier === priorityTierFilter);
     }
 
+    if (matchedProductFilter !== 'all') {
+      if (matchedProductFilter === 'none') {
+        filtered = filtered.filter(r => !r.matchedProduct);
+      } else {
+        filtered = filtered.filter(r => r.matchedProduct === matchedProductFilter);
+      }
+    }
+
+    if (clusterNameFilter !== 'all') {
+      if (clusterNameFilter === 'none') {
+        filtered = filtered.filter(r => !r.clusterName);
+      } else {
+        filtered = filtered.filter(r => r.clusterName === clusterNameFilter);
+      }
+    }
+
     return filtered;
-  }, [records, domainFilter, locationFilter, urlFilter, trafficMinFilter, keywordsMinFilter, pageTypeFilter, pageIntentFilter, seoRelevantFilter, seoActionFilter, classificationMethodFilter, priorityTierFilter]);
+  }, [records, domainFilter, locationFilter, urlFilter, trafficMinFilter, keywordsMinFilter, pageTypeFilter, pageIntentFilter, seoRelevantFilter, seoActionFilter, classificationMethodFilter, priorityTierFilter, matchedProductFilter, clusterNameFilter]);
 
   const sortedRecords = useMemo(() => {
     if (!sortField) return filteredRecords;
@@ -1105,6 +1130,22 @@ export default function DomainPagesPage() {
     return { uniqueDomains, uniquePages, totalRecords, totalTraffic, totalKeywords, avgTraffic, inCount, glCount, classifiedCount, needsAiReviewCount };
   }, [filteredRecords]);
 
+  const uniqueMatchedProducts = useMemo(() => {
+    const products = new Set<string>();
+    records.forEach(r => {
+      if (r.matchedProduct) products.add(r.matchedProduct);
+    });
+    return Array.from(products).sort();
+  }, [records]);
+
+  const uniqueClusterNames = useMemo(() => {
+    const clusters = new Set<string>();
+    records.forEach(r => {
+      if (r.clusterName) clusters.add(r.clusterName);
+    });
+    return Array.from(clusters).sort();
+  }, [records]);
+
   const classificationBreakdown = useMemo(() => {
     const typeBreakdown: Record<string, number> = {};
     const intentBreakdown: Record<string, number> = {};
@@ -1112,8 +1153,11 @@ export default function DomainPagesPage() {
     const confidenceBreakdown: Record<string, number> = {};
     const methodBreakdown: Record<string, number> = {};
     const priorityTierBreakdown: Record<string, number> = {};
+    const productBreakdown: Record<string, number> = {};
+    const clusterBreakdown: Record<string, number> = {};
     let seoYes = 0, seoNo = 0;
     let priorityCalculatedCount = 0;
+    let productClassifiedCount = 0;
 
     filteredRecords.forEach(r => {
       if (r.pageType) {
@@ -1121,6 +1165,13 @@ export default function DomainPagesPage() {
       }
       if (r.pageIntent) {
         intentBreakdown[r.pageIntent] = (intentBreakdown[r.pageIntent] || 0) + 1;
+      }
+      if (r.matchedProduct) {
+        productBreakdown[r.matchedProduct] = (productBreakdown[r.matchedProduct] || 0) + 1;
+        productClassifiedCount++;
+      }
+      if (r.clusterName) {
+        clusterBreakdown[r.clusterName] = (clusterBreakdown[r.clusterName] || 0) + 1;
       }
       if (r.seoAction) {
         actionBreakdown[r.seoAction] = (actionBreakdown[r.seoAction] || 0) + 1;
@@ -1139,7 +1190,7 @@ export default function DomainPagesPage() {
       if (r.isSeoRelevant === false) seoNo++;
     });
 
-    return { typeBreakdown, intentBreakdown, actionBreakdown, confidenceBreakdown, methodBreakdown, priorityTierBreakdown, priorityCalculatedCount, seoYes, seoNo };
+    return { typeBreakdown, intentBreakdown, actionBreakdown, confidenceBreakdown, methodBreakdown, priorityTierBreakdown, priorityCalculatedCount, seoYes, seoNo, productBreakdown, clusterBreakdown, productClassifiedCount };
   }, [filteredRecords]);
 
   const totalPages = Math.ceil(sortedRecords.length / itemsPerPage);
@@ -1557,6 +1608,44 @@ export default function DomainPagesPage() {
                 </div>
               </div>
             )}
+
+            {/* Product Breakdown */}
+            {classificationBreakdown.productClassifiedCount > 0 && (
+              <div className="bg-white rounded-lg p-3 shadow-sm">
+                <div className="text-xs font-medium text-gray-600 mb-2">Matched Products ({classificationBreakdown.productClassifiedCount})</div>
+                <div className="space-y-1 max-h-32 overflow-y-auto">
+                  {Object.entries(classificationBreakdown.productBreakdown)
+                    .sort((a, b) => b[1] - a[1])
+                    .map(([product, count]) => (
+                      <div key={product} className="flex justify-between text-[10px]">
+                        <span className={`px-1 rounded ${getProductBadgeColor(product)}`}>
+                          {product}
+                        </span>
+                        <span className="font-medium text-gray-700">{count}</span>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            )}
+
+            {/* Cluster Breakdown */}
+            {Object.keys(classificationBreakdown.clusterBreakdown).length > 0 && (
+              <div className="bg-white rounded-lg p-3 shadow-sm">
+                <div className="text-xs font-medium text-gray-600 mb-2">Clusters</div>
+                <div className="space-y-1 max-h-32 overflow-y-auto">
+                  {Object.entries(classificationBreakdown.clusterBreakdown)
+                    .sort((a, b) => b[1] - a[1])
+                    .map(([cluster, count]) => (
+                      <div key={cluster} className="flex justify-between text-[10px]">
+                        <span className={`px-1 rounded ${getClusterBadgeColor(cluster)}`}>
+                          {cluster}
+                        </span>
+                        <span className="font-medium text-gray-700">{count}</span>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            )}
           </div>
         </details>
       )}
@@ -1664,6 +1753,34 @@ export default function DomainPagesPage() {
               <option value="all">All</option>
               <option value="RULE">Rule</option>
               <option value="AI">AI</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-gray-500 mb-1">Matched Product</label>
+            <select
+              value={matchedProductFilter}
+              onChange={e => setMatchedProductFilter(e.target.value)}
+              className="w-full border rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="all">All Products</option>
+              <option value="none">No Match</option>
+              {uniqueMatchedProducts.map(product => (
+                <option key={product} value={product}>{product}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-gray-500 mb-1">Cluster</label>
+            <select
+              value={clusterNameFilter}
+              onChange={e => setClusterNameFilter(e.target.value)}
+              className="w-full border rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="all">All Clusters</option>
+              <option value="none">No Cluster</option>
+              {uniqueClusterNames.map(cluster => (
+                <option key={cluster} value={cluster}>{cluster}</option>
+              ))}
             </select>
           </div>
           <div>
@@ -1823,6 +1940,12 @@ export default function DomainPagesPage() {
                 <th className="px-1 py-1.5 text-left text-[9px] font-medium text-gray-500 uppercase w-[70px]">
                   <span className="flex items-center gap-0.5">Tier <HelpIcon onClick={() => setActiveHelpModal('priorityTier')} /></span>
                 </th>
+                <th className="px-1 py-1.5 text-left text-[9px] font-medium text-gray-500 uppercase w-[90px]">
+                  Product
+                </th>
+                <th className="px-1 py-1.5 text-left text-[9px] font-medium text-gray-500 uppercase w-[100px]">
+                  Cluster
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -1951,6 +2074,24 @@ export default function DomainPagesPage() {
                     {record.priorityTier ? (
                       <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${getPriorityTierBadgeColor(record.priorityTier)}`}>
                         {formatPriorityTier(record.priorityTier)}
+                      </span>
+                    ) : (
+                      <span className="text-gray-400 text-[9px]">-</span>
+                    )}
+                  </td>
+                  <td className="px-1 py-1 whitespace-nowrap w-[90px]">
+                    {record.matchedProduct ? (
+                      <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${getProductBadgeColor(record.matchedProduct)}`}>
+                        {record.matchedProduct.length > 12 ? record.matchedProduct.substring(0, 12) + '...' : record.matchedProduct}
+                      </span>
+                    ) : (
+                      <span className="text-gray-400 text-[9px]">-</span>
+                    )}
+                  </td>
+                  <td className="px-1 py-1 whitespace-nowrap w-[100px]">
+                    {record.clusterName ? (
+                      <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${getClusterBadgeColor(record.clusterName)}`}>
+                        {record.clusterName.length > 14 ? record.clusterName.substring(0, 14) + '...' : record.clusterName}
                       </span>
                     ) : (
                       <span className="text-gray-400 text-[9px]">-</span>
