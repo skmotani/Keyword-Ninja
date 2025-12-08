@@ -1034,11 +1034,11 @@ export default function DomainPagesPage() {
           </div>
         </div>
         <div className="text-sm text-gray-500 mt-3">
-          Showing {sortedRecords.length} of {records.length} pages
+          Showing {Math.min(sortedRecords.length, 50)} of {sortedRecords.length} filtered ({records.length} total)
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow overflow-x-auto">
+      <div className="bg-white rounded-lg shadow overflow-auto max-h-[600px]">
         {loading ? (
           <div className="p-8 text-center">
             <svg className="animate-spin h-8 w-8 mx-auto text-indigo-600" viewBox="0 0 24 24">
@@ -1053,68 +1053,74 @@ export default function DomainPagesPage() {
             <p className="text-sm mt-1">Select domains and click "Fetch Data" to get data.</p>
           </div>
         ) : (
-          <table className="min-w-full divide-y divide-gray-200 text-xs">
-            <thead className="bg-gray-50">
+          <table className="w-full divide-y divide-gray-200 text-[10px] table-fixed">
+            <thead className="bg-gray-50 sticky top-0 z-10">
               <tr>
-                <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-1 py-1.5 text-left text-[9px] font-medium text-gray-500 uppercase w-[100px]">
                   Domain
                 </th>
-                <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-1 py-1.5 text-left text-[9px] font-medium text-gray-500 uppercase w-[30px]">
                   Loc
                 </th>
-                <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-1 py-1.5 text-left text-[9px] font-medium text-gray-500 uppercase w-[180px]">
                   Page URL
                 </th>
-                <SortableHeader
-                  field="estTrafficETV"
-                  label="Traffic"
-                  tooltip="Estimated Traffic Value for this page"
-                />
-                <SortableHeader
-                  field="keywordsCount"
-                  label="KWs"
-                  tooltip="Number of keywords this page ranks for"
-                />
-                <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-1 py-1.5 text-right text-[9px] font-medium text-gray-500 uppercase w-[50px] cursor-pointer hover:bg-gray-100" onClick={() => handleSort('estTrafficETV')}>
+                  <Tooltip text="Estimated Traffic Value">
+                    <span className="flex items-center justify-end gap-0.5">
+                      Traffic
+                      {sortField === 'estTrafficETV' && <span className="text-indigo-600">{sortDirection === 'asc' ? '↑' : '↓'}</span>}
+                    </span>
+                  </Tooltip>
+                </th>
+                <th className="px-1 py-1.5 text-right text-[9px] font-medium text-gray-500 uppercase w-[35px] cursor-pointer hover:bg-gray-100" onClick={() => handleSort('keywordsCount')}>
+                  <Tooltip text="Number of keywords">
+                    <span className="flex items-center justify-end gap-0.5">
+                      KWs
+                      {sortField === 'keywordsCount' && <span className="text-indigo-600">{sortDirection === 'asc' ? '↑' : '↓'}</span>}
+                    </span>
+                  </Tooltip>
+                </th>
+                <th className="px-1 py-1.5 text-left text-[9px] font-medium text-gray-500 uppercase w-[95px]">
                   <Tooltip text={TOOLTIPS.pageType}>
-                    <span className="flex items-center gap-1">Page Type <span className="text-gray-400">ⓘ</span></span>
+                    <span className="flex items-center gap-0.5">Type <span className="text-gray-400">ⓘ</span></span>
                   </Tooltip>
                 </th>
-                <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-1 py-1.5 text-left text-[9px] font-medium text-gray-500 uppercase w-[80px]">
                   <Tooltip text={TOOLTIPS.pageIntent}>
-                    <span className="flex items-center gap-1">Intent <span className="text-gray-400">ⓘ</span></span>
+                    <span className="flex items-center gap-0.5">Intent <span className="text-gray-400">ⓘ</span></span>
                   </Tooltip>
                 </th>
-                <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-1 py-1.5 text-center text-[9px] font-medium text-gray-500 uppercase w-[35px]">
                   <Tooltip text={TOOLTIPS.isSeoRelevant}>
-                    <span className="flex items-center gap-1">SEO? <span className="text-gray-400">ⓘ</span></span>
+                    <span className="flex items-center gap-0.5">SEO <span className="text-gray-400">ⓘ</span></span>
                   </Tooltip>
                 </th>
-                <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-1 py-1.5 text-left text-[9px] font-medium text-gray-500 uppercase w-[100px]">
                   <Tooltip text={TOOLTIPS.seoAction}>
-                    <span className="flex items-center gap-1">Action <span className="text-gray-400">ⓘ</span></span>
+                    <span className="flex items-center gap-0.5">Action <span className="text-gray-400">ⓘ</span></span>
                   </Tooltip>
                 </th>
-                <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-1 py-1.5 text-center text-[9px] font-medium text-gray-500 uppercase w-[40px]">
                   <Tooltip text={TOOLTIPS.classificationConfidence}>
-                    <span className="flex items-center gap-1">Conf <span className="text-gray-400">ⓘ</span></span>
+                    <span className="flex items-center gap-0.5">Conf <span className="text-gray-400">ⓘ</span></span>
                   </Tooltip>
                 </th>
-                <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-1 py-1.5 text-center text-[9px] font-medium text-gray-500 uppercase w-[40px]">
                   <Tooltip text={TOOLTIPS.classificationMethod}>
-                    <span className="flex items-center gap-1">Method <span className="text-gray-400">ⓘ</span></span>
+                    <span className="flex items-center gap-0.5">Mthd <span className="text-gray-400">ⓘ</span></span>
                   </Tooltip>
                 </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {sortedRecords.map(record => (
+              {sortedRecords.slice(0, 50).map(record => (
                 <tr key={record.id} className="hover:bg-gray-50">
-                  <td className="px-2 py-1.5 text-[11px] text-gray-500 whitespace-nowrap">
-                    {record.domain.length > 18 ? record.domain.substring(0, 18) + '...' : record.domain}
+                  <td className="px-1 py-1 text-[9px] text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis w-[100px]">
+                    {record.domain.length > 15 ? record.domain.substring(0, 15) + '...' : record.domain}
                   </td>
-                  <td className="px-2 py-1.5 text-[11px]">
-                    <span className={`inline-flex items-center px-1 py-0.5 rounded text-[10px] font-medium ${
+                  <td className="px-1 py-1 text-[9px] w-[30px]">
+                    <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${
                       record.locationCode === 'IN' 
                         ? 'bg-yellow-100 text-yellow-800' 
                         : 'bg-teal-100 text-teal-800'
@@ -1122,34 +1128,34 @@ export default function DomainPagesPage() {
                       {record.locationCode}
                     </span>
                   </td>
-                  <td className="px-2 py-1.5 text-[11px] max-w-[180px]">
+                  <td className="px-1 py-1 text-[9px] w-[180px] overflow-hidden">
                     <Tooltip text={record.pageURL}>
                       <a
                         href={record.pageURL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-indigo-600 hover:text-indigo-800 hover:underline truncate block"
+                        className="text-indigo-600 hover:text-indigo-800 hover:underline truncate block max-w-[170px]"
                       >
                         {truncateUrl(record.pageURL)}
                       </a>
                     </Tooltip>
                   </td>
-                  <td className="px-2 py-1.5 text-[11px] font-medium text-right">
+                  <td className="px-1 py-1 text-[9px] font-medium text-right w-[50px]">
                     {formatNumber(record.estTrafficETV)}
                   </td>
-                  <td className="px-2 py-1.5 text-[11px] font-medium text-right">
+                  <td className="px-1 py-1 text-[9px] font-medium text-right w-[35px]">
                     {formatNumber(record.keywordsCount)}
                   </td>
-                  <td className="px-2 py-1.5 whitespace-nowrap">
+                  <td className="px-1 py-1 whitespace-nowrap w-[95px]">
                     {record.pageType ? (
                       <div className="flex items-center gap-0.5">
-                        <span className={`inline-flex items-center px-1 py-0.5 rounded text-[10px] font-medium ${getPageTypeBadgeColor(record.pageType)}`}>
+                        <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${getPageTypeBadgeColor(record.pageType)}`}>
                           {formatPageType(record.pageType)}
                         </span>
                         {record.classificationExplanation && (
                           <button
                             onClick={() => setSelectedExplanation(record.classificationExplanation!)}
-                            className="text-gray-400 hover:text-indigo-600 text-[10px]"
+                            className="text-gray-400 hover:text-indigo-600 text-[8px]"
                             title="View explanation"
                           >
                             ?
@@ -1157,60 +1163,60 @@ export default function DomainPagesPage() {
                         )}
                       </div>
                     ) : (
-                      <span className="text-gray-400 text-[11px]">-</span>
+                      <span className="text-gray-400 text-[9px]">-</span>
                     )}
                   </td>
-                  <td className="px-2 py-1.5 whitespace-nowrap">
+                  <td className="px-1 py-1 whitespace-nowrap w-[80px]">
                     {record.pageIntent ? (
-                      <span className={`inline-flex items-center px-1 py-0.5 rounded text-[10px] font-medium ${getIntentBadgeColor(record.pageIntent)}`}>
+                      <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${getIntentBadgeColor(record.pageIntent)}`}>
                         {formatPageIntent(record.pageIntent)}
                       </span>
                     ) : (
-                      <span className="text-gray-400 text-[11px]">-</span>
+                      <span className="text-gray-400 text-[9px]">-</span>
                     )}
                   </td>
-                  <td className="px-2 py-1.5 text-center">
+                  <td className="px-1 py-1 text-center w-[35px]">
                     {record.isSeoRelevant !== null && record.isSeoRelevant !== undefined ? (
-                      <span className={`inline-flex items-center px-1 py-0.5 rounded text-[10px] font-medium ${
+                      <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${
                         record.isSeoRelevant ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-500'
                       }`}>
-                        {record.isSeoRelevant ? 'Yes' : 'No'}
+                        {record.isSeoRelevant ? 'Y' : 'N'}
                       </span>
                     ) : (
-                      <span className="text-gray-400 text-[11px]">-</span>
+                      <span className="text-gray-400 text-[9px]">-</span>
                     )}
                   </td>
-                  <td className="px-2 py-1.5 whitespace-nowrap">
+                  <td className="px-1 py-1 whitespace-nowrap w-[100px]">
                     {record.seoAction ? (
-                      <span className={`inline-flex items-center px-1 py-0.5 rounded text-[10px] font-medium ${getSeoActionBadgeColor(record.seoAction)}`}>
+                      <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${getSeoActionBadgeColor(record.seoAction)}`}>
                         {formatSeoAction(record.seoAction)}
                       </span>
                     ) : (
-                      <span className="text-gray-400 text-[11px]">-</span>
+                      <span className="text-gray-400 text-[9px]">-</span>
                     )}
                   </td>
-                  <td className="px-2 py-1.5 text-center">
+                  <td className="px-1 py-1 text-center w-[40px]">
                     {record.classificationConfidence ? (
-                      <span className={`inline-flex items-center px-1 py-0.5 rounded text-[10px] font-medium ${
+                      <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${
                         record.classificationConfidence === 'HIGH' ? 'bg-green-100 text-green-800' :
                         record.classificationConfidence === 'MEDIUM' ? 'bg-yellow-100 text-yellow-800' :
                         'bg-red-100 text-red-800'
                       }`}>
-                        {record.classificationConfidence}
+                        {record.classificationConfidence.substring(0, 3)}
                       </span>
                     ) : (
-                      <span className="text-gray-400 text-[11px]">-</span>
+                      <span className="text-gray-400 text-[9px]">-</span>
                     )}
                   </td>
-                  <td className="px-2 py-1.5 text-center">
+                  <td className="px-1 py-1 text-center w-[40px]">
                     {record.classificationMethod ? (
-                      <span className={`inline-flex items-center px-1 py-0.5 rounded text-[10px] font-medium ${
+                      <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${
                         record.classificationMethod === 'AI' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
                       }`}>
                         {record.classificationMethod}
                       </span>
                     ) : (
-                      <span className="text-gray-400 text-[11px]">-</span>
+                      <span className="text-gray-400 text-[9px]">-</span>
                     )}
                   </td>
                 </tr>
