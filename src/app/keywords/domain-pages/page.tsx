@@ -575,11 +575,11 @@ function PriorityExplanationModal({ breakdown, score, tier, onClose }: PriorityE
   ];
 
   const tierThresholds = [
-    { label: 'Tier 1 - Immediate', range: '80-100', color: 'bg-red-100 text-red-800' },
-    { label: 'Tier 2 - High', range: '60-79', color: 'bg-orange-100 text-orange-800' },
-    { label: 'Tier 3 - Medium', range: '40-59', color: 'bg-yellow-100 text-yellow-800' },
-    { label: 'Tier 4 - Monitor', range: '20-39', color: 'bg-blue-100 text-blue-800' },
-    { label: 'Tier 5 - Ignore', range: '0-19', color: 'bg-gray-100 text-gray-800' },
+    { label: 'Tier 1 - Immediate', range: 'Top 10% (≥P90)', color: 'bg-red-100 text-red-800' },
+    { label: 'Tier 2 - High', range: 'Next 20% (≥P70)', color: 'bg-orange-100 text-orange-800' },
+    { label: 'Tier 3 - Medium', range: 'Next 30% (≥P40)', color: 'bg-yellow-100 text-yellow-800' },
+    { label: 'Tier 4 - Monitor', range: 'Next 20% (≥P20)', color: 'bg-blue-100 text-blue-800' },
+    { label: 'Tier 5 - Ignore', range: 'Bottom 20%', color: 'bg-gray-100 text-gray-800' },
   ];
 
   return (
@@ -648,7 +648,7 @@ function PriorityExplanationModal({ breakdown, score, tier, onClose }: PriorityE
                 </div>
               </div>
               <div className="bg-white rounded p-2 shadow-sm">
-                <div className="text-xs font-semibold text-indigo-700 mb-1 border-b pb-1">Priority Tiers</div>
+                <div className="text-xs font-semibold text-indigo-700 mb-1 border-b pb-1">Priority Tiers (Percentile)</div>
                 <div className="space-y-0.5">
                   {tierThresholds.map(item => (
                     <div key={item.label} className="flex justify-between text-[10px]">

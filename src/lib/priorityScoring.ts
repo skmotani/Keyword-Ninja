@@ -56,6 +56,72 @@ export const PRIORITY_TIER_THRESHOLDS: { tier: PriorityTier; minScore: number }[
   { tier: 'TIER_5_IGNORE', minScore: 0 },
 ];
 
+export interface PercentileThresholds {
+  p90: number | null;
+  p70: number | null;
+  p40: number | null;
+  p20: number | null;
+}
+
+export function getPercentileThreshold(values: number[], percentile: number): number | null {
+  if (!values || values.length === 0) {
+    return null;
+  }
+  
+  const sorted = [...values].sort((a, b) => a - b);
+  const n = sorted.length;
+  
+  if (n === 1) {
+    return sorted[0];
+  }
+  
+  const index = (percentile / 100) * (n - 1);
+  const lowerIndex = Math.floor(index);
+  const upperIndex = Math.ceil(index);
+  
+  if (lowerIndex === upperIndex) {
+    return sorted[lowerIndex];
+  }
+  
+  const fraction = index - lowerIndex;
+  const lowerValue = sorted[lowerIndex];
+  const upperValue = sorted[upperIndex];
+  
+  return lowerValue + fraction * (upperValue - lowerValue);
+}
+
+export function computePercentileThresholds(scores: number[]): PercentileThresholds {
+  const validScores = scores.filter((s) => s !== null && !isNaN(s));
+  
+  if (validScores.length === 0) {
+    return { p90: null, p70: null, p40: null, p20: null };
+  }
+  
+  return {
+    p90: getPercentileThreshold(validScores, 90),
+    p70: getPercentileThreshold(validScores, 70),
+    p40: getPercentileThreshold(validScores, 40),
+    p20: getPercentileThreshold(validScores, 20),
+  };
+}
+
+export function assignTierFromPercentiles(
+  score: number | null,
+  thresholds: PercentileThresholds
+): PriorityTier | null {
+  if (score === null || score === undefined) {
+    return null;
+  }
+  
+  const { p90, p70, p40, p20 } = thresholds;
+  
+  if (p90 !== null && score >= p90) return 'TIER_1_IMMEDIATE';
+  if (p70 !== null && score >= p70) return 'TIER_2_HIGH';
+  if (p40 !== null && score >= p40) return 'TIER_3_MEDIUM';
+  if (p20 !== null && score >= p20) return 'TIER_4_MONITOR';
+  return 'TIER_5_IGNORE';
+}
+
 export function normalizeETV(etv: number | null, maxEtv: number): number {
   if (etv === null || etv <= 0 || maxEtv <= 0) {
     return 0;
@@ -121,6 +187,11 @@ export function getBusinessRelevanceScore(relevance: BusinessRelevanceForScoring
   return BUSINESS_RELEVANCE_SCORES[relevance] ?? 0;
 }
 
+/**
+ * @deprecated Use assignTierFromPercentiles() with percentile thresholds from
+ * calculatePriorityBatchWithThresholds() instead. This function uses fixed numeric
+ * cutoffs which don't adapt to actual score distributions.
+ */
 export function calculatePriorityTier(score: number): PriorityTier {
   for (const threshold of PRIORITY_TIER_THRESHOLDS) {
     if (score >= threshold.minScore) {
@@ -136,6 +207,12 @@ export interface PriorityCalculationResult {
   breakdown: PriorityScoreBreakdown;
 }
 
+/**
+ * Calculates priority score for a single page.
+ * NOTE: The tier returned uses legacy fixed thresholds. For production use with
+ * percentile-based tier assignment, use calculatePriorityBatchWithThresholds()
+ * which computes tiers based on the actual distribution of scores in the dataset.
+ */
 export function calculatePriority(
   page: DomainPageRecord,
   maxEtvInDataset: number
@@ -179,11 +256,26 @@ export function calculatePriority(
   };
 }
 
+export interface PriorityBatchResult {
+  results: Map<string, PriorityCalculationResult>;
+  percentileThresholds: PercentileThresholds;
+}
+
 export function calculatePriorityBatch(
   pages: DomainPageRecord[]
 ): Map<string, PriorityCalculationResult> {
+  const batchResult = calculatePriorityBatchWithThresholds(pages);
+  return batchResult.results;
+}
+
+export function calculatePriorityBatchWithThresholds(
+  pages: DomainPageRecord[]
+): PriorityBatchResult {
   if (pages.length === 0) {
-    return new Map();
+    return {
+      results: new Map(),
+      percentileThresholds: { p90: null, p70: null, p40: null, p20: null },
+    };
   }
   
   const maxEtv = Math.max(
@@ -191,14 +283,57 @@ export function calculatePriorityBatch(
     1
   );
   
-  const results = new Map<string, PriorityCalculationResult>();
+  const scoresWithIds: { id: string; score: number; breakdown: PriorityScoreBreakdown }[] = [];
   
   for (const page of pages) {
-    const result = calculatePriority(page, maxEtv);
-    results.set(page.id, result);
+    const normalizedEtv = normalizeETV(page.estTrafficETV, maxEtv);
+    const etvScore = normalizedEtv;
+    const intentScore = getIntentScore(page.pageIntent);
+    const pageTypeScore = getPageTypeScore(page.pageType);
+    const businessRelevance = inferBusinessRelevanceFromPage(page);
+    const businessRelevanceScore = getBusinessRelevanceScore(businessRelevance);
+    
+    const weightedScore =
+      etvScore * PRIORITY_WEIGHTS.etv +
+      intentScore * PRIORITY_WEIGHTS.intent +
+      pageTypeScore * PRIORITY_WEIGHTS.pageType +
+      businessRelevanceScore * PRIORITY_WEIGHTS.businessRelevance;
+    
+    const priorityScore = Math.round(weightedScore * 100) / 100;
+    
+    const breakdown: PriorityScoreBreakdown = {
+      etvScore: Math.round(etvScore * 100) / 100,
+      intentScore,
+      pageTypeScore,
+      businessRelevanceScore,
+      etvWeight: PRIORITY_WEIGHTS.etv,
+      intentWeight: PRIORITY_WEIGHTS.intent,
+      pageTypeWeight: PRIORITY_WEIGHTS.pageType,
+      businessRelevanceWeight: PRIORITY_WEIGHTS.businessRelevance,
+      rawEtv: page.estTrafficETV,
+      maxEtvInDataset: maxEtv,
+      normalizedEtv: Math.round(normalizedEtv * 100) / 100,
+    };
+    
+    scoresWithIds.push({ id: page.id, score: priorityScore, breakdown });
   }
   
-  return results;
+  const allScores = scoresWithIds.map((s) => s.score);
+  const percentileThresholds = computePercentileThresholds(allScores);
+  
+  const results = new Map<string, PriorityCalculationResult>();
+  
+  for (const item of scoresWithIds) {
+    const priorityTier = assignTierFromPercentiles(item.score, percentileThresholds);
+    
+    results.set(item.id, {
+      priorityScore: item.score,
+      priorityTier: priorityTier ?? 'TIER_5_IGNORE',
+      breakdown: item.breakdown,
+    });
+  }
+  
+  return { results, percentileThresholds };
 }
 
 export function formatPriorityTier(tier: PriorityTier | null | undefined): string {

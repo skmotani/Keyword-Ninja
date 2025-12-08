@@ -5,7 +5,7 @@ import {
   getDomainPagesByClientLocationAndDomain,
   updateDomainPagesById,
 } from '@/lib/domainOverviewStore';
-import { calculatePriorityBatch } from '@/lib/priorityScoring';
+import { calculatePriorityBatchWithThresholds, PercentileThresholds } from '@/lib/priorityScoring';
 import { DomainPageRecord } from '@/types';
 
 export async function POST(request: NextRequest) {
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const priorityResults = calculatePriorityBatch(pages);
+    const { results: priorityResults, percentileThresholds } = calculatePriorityBatchWithThresholds(pages);
 
     const now = new Date().toISOString();
     const updates = pages.map((page) => {
@@ -66,6 +66,12 @@ export async function POST(request: NextRequest) {
       summary: {
         totalPages: pages.length,
         tiersBreakdown: summarizeTiers(priorityResults),
+        percentileThresholds: {
+          p90: percentileThresholds.p90 !== null ? Math.round(percentileThresholds.p90 * 100) / 100 : null,
+          p70: percentileThresholds.p70 !== null ? Math.round(percentileThresholds.p70 * 100) / 100 : null,
+          p40: percentileThresholds.p40 !== null ? Math.round(percentileThresholds.p40 * 100) / 100 : null,
+          p20: percentileThresholds.p20 !== null ? Math.round(percentileThresholds.p20 * 100) / 100 : null,
+        },
       },
     });
   } catch (error) {
