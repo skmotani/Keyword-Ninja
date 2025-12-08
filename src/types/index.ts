@@ -235,6 +235,65 @@ export interface DomainOverviewRecord {
   snapshotDate: string;
 }
 
+export type PageTypeValue =
+  | 'PRODUCT_SERVICE'
+  | 'CATEGORY_COLLECTION'
+  | 'BLOG_ARTICLE_NEWS'
+  | 'RESOURCE_GUIDE_DOC'
+  | 'PRICING_PLANS'
+  | 'LANDING_CAMPAIGN'
+  | 'COMPANY_ABOUT'
+  | 'SUPPORT_CONTACT'
+  | 'CAREERS_HR'
+  | 'LEGAL_POLICY'
+  | 'ACCOUNT_AUTH'
+  | 'OTHER_MISC';
+
+export type PageClassificationIntent =
+  | 'INFORMATIONAL'
+  | 'COMMERCIAL_RESEARCH'
+  | 'TRANSACTIONAL'
+  | 'NAVIGATIONAL'
+  | 'SUPPORT'
+  | 'IRRELEVANT_SEO';
+
+export type ClassificationMethodValue = 'RULE' | 'AI';
+
+export type ClassificationConfidenceValue = 'HIGH' | 'MEDIUM' | 'LOW';
+
+export type SeoActionValue =
+  | 'HIGH_PRIORITY_TARGET'
+  | 'CREATE_EQUIVALENT_PAGE'
+  | 'OPTIMIZE_EXISTING_PAGE'
+  | 'ADD_TO_CONTENT_CLUSTER'
+  | 'BACKLINK_PROSPECT'
+  | 'MONITOR_ONLY'
+  | 'IGNORE_IRRELEVANT';
+
+export interface ClassificationExplanation {
+  source: 'RULE' | 'AI';
+  firedRules?: string[];
+  reasoning: string;
+  inputs: {
+    pageUrl: string;
+    keyword?: string | null;
+    pageTitle?: string | null;
+    pageSnippet?: string | null;
+    configSnapshot?: PageClassificationConfig;
+  };
+  model?: string;
+  prompt?: Record<string, unknown>;
+  rawResponse?: Record<string, unknown>;
+}
+
+export interface PageClassificationConfig {
+  brandNames: string[];
+  productKeywords: string[];
+  serviceKeywords: string[];
+  blogMarkers: string[];
+  nonSeoPathFragments: string[];
+}
+
 export interface DomainPageRecord {
   id: string;
   clientCode: string;
@@ -247,6 +306,14 @@ export interface DomainPageRecord {
   keywordsCount: number | null;
   fetchedAt: string;
   snapshotDate: string;
+  pageType?: PageTypeValue | null;
+  pageIntent?: PageClassificationIntent | null;
+  isSeoRelevant?: boolean | null;
+  classificationMethod?: ClassificationMethodValue | null;
+  classificationConfidence?: ClassificationConfidenceValue | null;
+  needsAiReview?: boolean | null;
+  seoAction?: SeoActionValue | null;
+  classificationExplanation?: ClassificationExplanation | null;
 }
 
 export interface DomainKeywordRecord {
