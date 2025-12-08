@@ -1,8 +1,17 @@
 import OpenAI from 'openai';
-import { DomainProfile, ClientAIProfile } from '@/types';
+import { 
+  DomainProfile, 
+  ClientAIProfile,
+  ProfileMeta,
+  ProfileCoreIdentity,
+  ProfileDomains,
+  ProfileUrlClassificationSupport,
+  ProfileKeywordClassificationSupport,
+  ProfileBusinessRelevanceSupport,
+  PatternWithExamples
+} from '@/types';
 
-// the newest OpenAI model is "gpt-5" which was released August 7, 2025. do not change this unless explicitly requested by the user
-const MODEL = 'gpt-5';
+const MODEL = 'gpt-4o-mini';
 
 interface ClientInputData {
   clientCode: string;
@@ -23,6 +32,11 @@ interface ClientInputData {
       url: string | null;
     }>;
   }>;
+}
+
+interface PatternWithExamplesResponse {
+  description: string;
+  examples: string[];
 }
 
 interface AIProfileResponse {
@@ -56,9 +70,56 @@ interface AIProfileResponse {
     marketplaceChannelDefinition: string;
     irrelevantDefinition: string;
   };
+  meta?: {
+    clientName: string;
+    generatedAt: string;
+    industryTag: string;
+    summary: string;
+  };
+  coreIdentity?: {
+    businessModel: string;
+    primaryOfferTypes: string[];
+    productLines: string[];
+    services: string[];
+    industriesServed: string[];
+    customerSegments: string[];
+  };
+  domains?: {
+    primaryDomains: string[];
+    secondaryDomains: string[];
+    expectedTlds: string[];
+    positiveDomainHints: string[];
+    negativeDomainHints: string[];
+  };
+  urlClassificationSupport?: {
+    productSlugPatterns: PatternWithExamplesResponse;
+    categorySlugPatterns: PatternWithExamplesResponse;
+    blogSlugPatterns: PatternWithExamplesResponse;
+    resourceSlugPatterns: PatternWithExamplesResponse;
+    supportSlugPatterns: PatternWithExamplesResponse;
+    legalSlugPatterns: PatternWithExamplesResponse;
+    accountSlugPatterns: PatternWithExamplesResponse;
+    careersSlugPatterns: PatternWithExamplesResponse;
+    aboutCompanySlugPatterns: PatternWithExamplesResponse;
+    marketingLandingPatterns: PatternWithExamplesResponse;
+  };
+  keywordClassificationSupport?: {
+    brandKeywords: PatternWithExamplesResponse;
+    transactionalPhrases: PatternWithExamplesResponse;
+    commercialResearchPhrases: PatternWithExamplesResponse;
+    informationalPhrases: PatternWithExamplesResponse;
+    directoryPhrases: PatternWithExamplesResponse;
+    irrelevantKeywordTopics: PatternWithExamplesResponse;
+  };
+  businessRelevanceSupport?: {
+    directCompetitorDefinition: string;
+    potentialCustomerDefinition: string;
+    marketplaceDefinition: string;
+    irrelevantDefinition: string;
+  };
 }
 
-const SYSTEM_PROMPT = `You are an AI assistant that builds structured "client profiles" for a SERP intelligence and classification system.
+const SYSTEM_PROMPT = `You are an SEO, data-modeling, and classification expert that builds structured "client profiles" for a SERP intelligence and classification system.
 
 CONTEXT ABOUT THE SYSTEM
 ------------------------
@@ -88,61 +149,115 @@ Given the full "Client Master" record for ONE client (code, name, domains + doma
   - marketplaces/directories,
   - content/educational,
   - irrelevant.
+- Classifying URLs by page type (product, blog, category, etc.)
+- Classifying keywords by intent (transactional, informational, etc.)
 
-You must:
-- Use ALL relevant information from the provided Client Master data.
-- Make reasonable inferences about:
-  - industry type,
-  - business model,
-  - product lines,
-  - target customers,
-  - topic clusters.
-- Keep the output **strictly as JSON**, no extra explanation or comments.
+CRITICAL: You must NOT hard-code any final classification labels. You must only provide patterns, keyword lists, and descriptive rules that programs will use later for domain, URL, and keyword classification.
 
 YOUR TASK
 ---------
 From the provided data, build a **CLIENT PROFILE JSON** with this schema:
 
 {
-  "clientId": string,              // e.g. "01"
-  "clientName": string,            // full name (resolve from code + name + domains if needed)
-  "primaryDomains": string[],      // list of domains that belong to this client (from Client Master)
-  "industryType": string,          // short label like "textile_machinery", "edtech_coaching", "law_firm", etc.
-  "shortSummary": string,          // 2–4 sentence plain-language description of who they are and what they do
-  "businessModel": string,         // e.g. "B2B OEM textile machinery manufacturer", "Online EdTech test-prep platform"
-  "productLines": string[],        // key products / services / categories inferred from titles, meta, and top keywords
-  "targetCustomerSegments": string[], // list of who buys from or uses this client (e.g. 'technical yarn manufacturers', 'NEET/JEE aspirants')
-  "targetGeographies": string[],   // inferred regions or markets (rough, based on context; keep generic like 'India', 'Global', etc.)
-  "coreTopics": string[],          // highly relevant topics/keywords describing what the client offers (derived from top keywords and on-page text)
-  "adjacentTopics": string[],      // related but slightly broader/narrower topics still relevant for discovering leads or context
-  "negativeTopics": string[],      // obvious topics that should be treated as NOT relevant for this client (e.g. hobby knitting, fitness, crypto, etc.)
+  "clientId": string,
+  "clientName": string,
+  "primaryDomains": string[],
+  "industryType": string,
+  "shortSummary": string,
+  "businessModel": string,
+  "productLines": string[],
+  "targetCustomerSegments": string[],
+  "targetGeographies": string[],
+  "coreTopics": string[],
+  "adjacentTopics": string[],
+  "negativeTopics": string[],
   "domainTypePatterns": {
-    "oemManufacturerIndicators": string[],          // phrases that, when found in other domains, suggest they are similar suppliers/manufacturers (for B2B clients)
-    "serviceProviderIndicators": string[],          // phrases that indicate coaching/consulting/service businesses (for service clients)
-    "marketplaceIndicators": string[],              // domain fragments or phrases that usually indicate B2B/B2C marketplaces or listing sites
-    "endCustomerIndicators": string[],              // phrases indicating end-product manufacturers or end-users (for B2B clients this often means potential leads)
-    "educationalMediaIndicators": string[]          // phrases indicating blogs, media, knowledge hubs, docs, etc.
+    "oemManufacturerIndicators": string[],
+    "serviceProviderIndicators": string[],
+    "marketplaceIndicators": string[],
+    "endCustomerIndicators": string[],
+    "educationalMediaIndicators": string[]
   },
   "classificationIntentHints": {
-    "transactionalKeywords": string[],   // words/phrases that usually indicate commercial / buy / enroll / manufacturer intent for THIS client type
-    "informationalKeywords": string[],   // words/phrases that indicate how-to, notes, guides, explanations, lectures, etc.
-    "directoryKeywords": string[]        // words/phrases that indicate directories, listings, portals, marketplaces
+    "transactionalKeywords": string[],
+    "informationalKeywords": string[],
+    "directoryKeywords": string[]
   },
   "businessRelevanceLogicNotes": {
-    "directCompetitorDefinition": string,       // in 2–3 lines, define what qualifies as a direct competitor for THIS client
-    "potentialCustomerDefinition": string,      // in 2–3 lines, define what qualifies as a potential customer/lead
-    "marketplaceChannelDefinition": string,     // in 1–2 lines, define marketplaces/directories for THIS client
-    "irrelevantDefinition": string              // in 1–2 lines, define what is clearly irrelevant
+    "directCompetitorDefinition": string,
+    "potentialCustomerDefinition": string,
+    "marketplaceChannelDefinition": string,
+    "irrelevantDefinition": string
+  },
+  "meta": {
+    "clientName": string,
+    "generatedAt": string,
+    "industryTag": string,
+    "summary": string
+  },
+  "coreIdentity": {
+    "businessModel": string,
+    "primaryOfferTypes": string[],
+    "productLines": string[],
+    "services": string[],
+    "industriesServed": string[],
+    "customerSegments": string[]
+  },
+  "domains": {
+    "primaryDomains": string[],
+    "secondaryDomains": string[],
+    "expectedTlds": string[],
+    "positiveDomainHints": string[],
+    "negativeDomainHints": string[]
+  },
+  "urlClassificationSupport": {
+    "productSlugPatterns": { "description": string, "examples": string[] },
+    "categorySlugPatterns": { "description": string, "examples": string[] },
+    "blogSlugPatterns": { "description": string, "examples": string[] },
+    "resourceSlugPatterns": { "description": string, "examples": string[] },
+    "supportSlugPatterns": { "description": string, "examples": string[] },
+    "legalSlugPatterns": { "description": string, "examples": string[] },
+    "accountSlugPatterns": { "description": string, "examples": string[] },
+    "careersSlugPatterns": { "description": string, "examples": string[] },
+    "aboutCompanySlugPatterns": { "description": string, "examples": string[] },
+    "marketingLandingPatterns": { "description": string, "examples": string[] }
+  },
+  "keywordClassificationSupport": {
+    "brandKeywords": { "description": string, "examples": string[] },
+    "transactionalPhrases": { "description": string, "examples": string[] },
+    "commercialResearchPhrases": { "description": string, "examples": string[] },
+    "informationalPhrases": { "description": string, "examples": string[] },
+    "directoryPhrases": { "description": string, "examples": string[] },
+    "irrelevantKeywordTopics": { "description": string, "examples": string[] }
+  },
+  "businessRelevanceSupport": {
+    "directCompetitorDefinition": string,
+    "potentialCustomerDefinition": string,
+    "marketplaceDefinition": string,
+    "irrelevantDefinition": string
   }
 }
 
+FIELD EXPLANATIONS
+------------------
+- meta.industryTag: short snake_case tag like "textile_machinery_oem" or "online_education"
+- meta.summary: 2-3 sentence explanation of what the client does
+- coreIdentity.primaryOfferTypes: main offer types like ["machines", "equipment", "online_courses", "software_saas"]
+- domains.positiveDomainHints: lowercase words that suggest a domain is relevant to this industry
+- domains.negativeDomainHints: lowercase words that usually mean NOT relevant (e.g. "movie", "music", "game")
+- urlClassificationSupport.*SlugPatterns: each has description (what it identifies) and examples (lowercase slug fragments)
+  - For a textile machinery OEM, productSlugPatterns.examples might be: ["twister", "winder", "heat-setting", "tfo"]
+- keywordClassificationSupport.*: phrases that indicate intent, specific to this client's domain
+  - brandKeywords: brand and near-brand phrases
+  - transactionalPhrases: buying/quote/price intent phrases
+  - irrelevantKeywordTopics: themes that share words but are wrong context
+
 REQUIREMENTS
 ------------
-- Use ONLY the provided Client Master data plus general industry understanding. Do NOT invent detailed financials or traffic numbers.
-- Always fill all fields; if something is unclear, make a reasonable assumption that stays consistent with the domains, titles, meta descriptions, and keywords.
+- Use ONLY the provided Client Master data plus general industry understanding.
+- Fill ALL fields with concrete examples (no "..." placeholders).
+- Use lower-case strings for pattern examples where possible.
 - "industryType" must be a SHORT machine-friendly label (lowercase, underscores).
-- "coreTopics" and "adjacentTopics" should be useful as matching tokens for later domain classification.
-- "negativeTopics" should help filter out garbage SERP results and unrelated industries.
 - Output MUST be a single valid JSON object, no markdown, no comments, no extra text.`;
 
 export function buildClientInputData(
@@ -234,6 +349,8 @@ Generate the CLIENT PROFILE JSON for this client.`;
 
     const domainsUsed = clientInputData.domains.map(d => d.domain);
 
+    const defaultPatternWithExamples = { description: '', examples: [] };
+
     const profile: ClientAIProfile = {
       id: `ai-profile-${clientInputData.clientCode}-${Date.now()}`,
       clientCode: clientInputData.clientCode,
@@ -269,6 +386,53 @@ Generate the CLIENT PROFILE JSON for this client.`;
       },
       generatedAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
+      meta: parsedResponse.meta ? {
+        clientName: parsedResponse.meta.clientName || clientInputData.clientName,
+        generatedAt: new Date().toISOString(),
+        industryTag: parsedResponse.meta.industryTag || parsedResponse.industryType || 'unknown',
+        summary: parsedResponse.meta.summary || parsedResponse.shortSummary || '',
+      } : undefined,
+      coreIdentity: parsedResponse.coreIdentity ? {
+        businessModel: parsedResponse.coreIdentity.businessModel || parsedResponse.businessModel || '',
+        primaryOfferTypes: parsedResponse.coreIdentity.primaryOfferTypes || [],
+        productLines: parsedResponse.coreIdentity.productLines || parsedResponse.productLines || [],
+        services: parsedResponse.coreIdentity.services || [],
+        industriesServed: parsedResponse.coreIdentity.industriesServed || [],
+        customerSegments: parsedResponse.coreIdentity.customerSegments || parsedResponse.targetCustomerSegments || [],
+      } : undefined,
+      domains: parsedResponse.domains ? {
+        primaryDomains: parsedResponse.domains.primaryDomains || domainsUsed,
+        secondaryDomains: parsedResponse.domains.secondaryDomains || [],
+        expectedTlds: parsedResponse.domains.expectedTlds || ['.com', '.in', '.co'],
+        positiveDomainHints: parsedResponse.domains.positiveDomainHints || [],
+        negativeDomainHints: parsedResponse.domains.negativeDomainHints || [],
+      } : undefined,
+      urlClassificationSupport: parsedResponse.urlClassificationSupport ? {
+        productSlugPatterns: parsedResponse.urlClassificationSupport.productSlugPatterns || defaultPatternWithExamples,
+        categorySlugPatterns: parsedResponse.urlClassificationSupport.categorySlugPatterns || defaultPatternWithExamples,
+        blogSlugPatterns: parsedResponse.urlClassificationSupport.blogSlugPatterns || defaultPatternWithExamples,
+        resourceSlugPatterns: parsedResponse.urlClassificationSupport.resourceSlugPatterns || defaultPatternWithExamples,
+        supportSlugPatterns: parsedResponse.urlClassificationSupport.supportSlugPatterns || defaultPatternWithExamples,
+        legalSlugPatterns: parsedResponse.urlClassificationSupport.legalSlugPatterns || defaultPatternWithExamples,
+        accountSlugPatterns: parsedResponse.urlClassificationSupport.accountSlugPatterns || defaultPatternWithExamples,
+        careersSlugPatterns: parsedResponse.urlClassificationSupport.careersSlugPatterns || defaultPatternWithExamples,
+        aboutCompanySlugPatterns: parsedResponse.urlClassificationSupport.aboutCompanySlugPatterns || defaultPatternWithExamples,
+        marketingLandingPatterns: parsedResponse.urlClassificationSupport.marketingLandingPatterns || defaultPatternWithExamples,
+      } : undefined,
+      keywordClassificationSupport: parsedResponse.keywordClassificationSupport ? {
+        brandKeywords: parsedResponse.keywordClassificationSupport.brandKeywords || defaultPatternWithExamples,
+        transactionalPhrases: parsedResponse.keywordClassificationSupport.transactionalPhrases || defaultPatternWithExamples,
+        commercialResearchPhrases: parsedResponse.keywordClassificationSupport.commercialResearchPhrases || defaultPatternWithExamples,
+        informationalPhrases: parsedResponse.keywordClassificationSupport.informationalPhrases || defaultPatternWithExamples,
+        directoryPhrases: parsedResponse.keywordClassificationSupport.directoryPhrases || defaultPatternWithExamples,
+        irrelevantKeywordTopics: parsedResponse.keywordClassificationSupport.irrelevantKeywordTopics || defaultPatternWithExamples,
+      } : undefined,
+      businessRelevanceSupport: parsedResponse.businessRelevanceSupport ? {
+        directCompetitorDefinition: parsedResponse.businessRelevanceSupport.directCompetitorDefinition || '',
+        potentialCustomerDefinition: parsedResponse.businessRelevanceSupport.potentialCustomerDefinition || '',
+        marketplaceDefinition: parsedResponse.businessRelevanceSupport.marketplaceDefinition || '',
+        irrelevantDefinition: parsedResponse.businessRelevanceSupport.irrelevantDefinition || '',
+      } : undefined,
     };
 
     console.log('[OpenAI] Profile generated successfully for:', clientInputData.clientCode);

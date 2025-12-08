@@ -152,6 +152,64 @@ export interface BusinessRelevanceLogicNotes {
   irrelevantDefinition: string;
 }
 
+export interface PatternWithExamples {
+  description: string;
+  examples: string[];
+}
+
+export interface ProfileMeta {
+  clientName: string;
+  generatedAt: string;
+  industryTag: string;
+  summary: string;
+}
+
+export interface ProfileCoreIdentity {
+  businessModel: string;
+  primaryOfferTypes: string[];
+  productLines: string[];
+  services: string[];
+  industriesServed: string[];
+  customerSegments: string[];
+}
+
+export interface ProfileDomains {
+  primaryDomains: string[];
+  secondaryDomains: string[];
+  expectedTlds: string[];
+  positiveDomainHints: string[];
+  negativeDomainHints: string[];
+}
+
+export interface ProfileUrlClassificationSupport {
+  productSlugPatterns: PatternWithExamples;
+  categorySlugPatterns: PatternWithExamples;
+  blogSlugPatterns: PatternWithExamples;
+  resourceSlugPatterns: PatternWithExamples;
+  supportSlugPatterns: PatternWithExamples;
+  legalSlugPatterns: PatternWithExamples;
+  accountSlugPatterns: PatternWithExamples;
+  careersSlugPatterns: PatternWithExamples;
+  aboutCompanySlugPatterns: PatternWithExamples;
+  marketingLandingPatterns: PatternWithExamples;
+}
+
+export interface ProfileKeywordClassificationSupport {
+  brandKeywords: PatternWithExamples;
+  transactionalPhrases: PatternWithExamples;
+  commercialResearchPhrases: PatternWithExamples;
+  informationalPhrases: PatternWithExamples;
+  directoryPhrases: PatternWithExamples;
+  irrelevantKeywordTopics: PatternWithExamples;
+}
+
+export interface ProfileBusinessRelevanceSupport {
+  directCompetitorDefinition: string;
+  potentialCustomerDefinition: string;
+  marketplaceDefinition: string;
+  irrelevantDefinition: string;
+}
+
 export interface ClientAIProfile {
   id: string;
   clientCode: string;
@@ -172,6 +230,12 @@ export interface ClientAIProfile {
   businessRelevanceLogicNotes: BusinessRelevanceLogicNotes;
   generatedAt: string;
   updatedAt: string;
+  meta?: ProfileMeta;
+  coreIdentity?: ProfileCoreIdentity;
+  domains?: ProfileDomains;
+  urlClassificationSupport?: ProfileUrlClassificationSupport;
+  keywordClassificationSupport?: ProfileKeywordClassificationSupport;
+  businessRelevanceSupport?: ProfileBusinessRelevanceSupport;
 }
 
 export type DomainTypeValue =
