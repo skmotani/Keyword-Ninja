@@ -1,0 +1,137 @@
+Goal:
+Strengthen the URL evaluation and page classification logic so that:
+- Far fewer pages end up as "OTHER MISC".
+- Homepages are handled explicitly and meaningfully.
+- Rules make full use of the enriched Client Master (including urlClassificationSupport).
+- No classification is hard-coded for a specific client; everything is driven by the Client Master patterns.
+
+Current context:
+- We already store per-page fields such as: domain, location, page URL, keyword, estimated traffic/value, etc.
+- We already have derived columns such as: Page Type, Page Intent, SEO Relevant, SEO Action, Confidence, Method.
+- Page Type is chosen from a fixed enum (must not change):
+  - PRODUCT SERVICE
+  - CATEGORY COLLECTION
+  - BLOG ARTICLE NEWS
+  - RESOURCE GUIDE DOC
+  - PRICING PLANS
+  - LANDING CAMPAIGN
+  - COMPANY ABOUT
+  - SUPPORT CONTACT
+  - CAREERS HR
+  - LEGAL POLICY
+  - ACCOUNT AUTH
+  - OTHER MISC
+- We now have an enriched Client Master JSON per client, which includes:
+  - domains: positive/negative domain hints, etc.
+  - urlClassificationSupport: productSlugPatterns, categorySlugPatterns, blogSlugPatterns, resourceSlugPatterns, supportSlugPatterns, legalSlugPatterns, accountSlugPatterns, careersSlugPatterns, aboutCompanySlugPatterns, marketingLandingPatterns.
+  - keywordClassificationSupport and businessRelevanceSupport for later.
+
+What I want you to design and implement:
+
+1) Centralize URL classification logic
+- Identify or create a central function/module responsible for classifying a single page record based on:
+  - URL (including parsed pathname and slug segments)
+  - Keyword (optional)
+  - Optional page title/snippet, if available
+  - The current client’s Client Master (especially urlClassificationSupport)
+- This function should return at least:
+  - pageType (one of the existing enum values)
+  - pageIntent (using our current intent categories)
+  - isSeoRelevant (boolean)
+  - classificationConfidence (HIGH/MEDIUM/LOW)
+  - classificationMethod (initially "RULE"; later we can add "AI")
+
+2) Enforce a clear rule order to reduce OTHER MISC
+Update the classification rules so they run in this priority order:
+
+a. Utility / structural pages:
+   - If the URL path contains any patterns from:
+     - accountSlugPatterns → Page Type = ACCOUNT AUTH
+     - legalSlugPatterns   → Page Type = LEGAL POLICY
+     - careersSlugPatterns → Page Type = CAREERS HR
+     - supportSlugPatterns → Page Type = SUPPORT CONTACT
+   - These should be SEO Relevant = false (for content strategy) and Confidence = HIGH.
+
+b. Homepage and basic company pages:
+   - Detect the homepage (root URL: no extra path after the domain).
+   - Also detect “about/company/story/team” style URLs using aboutCompanySlugPatterns.
+   - For these, set:
+     - Page Type = COMPANY ABOUT
+     - Page Intent = NAVIGATIONAL
+     - SEO Relevant = true
+     - SEO Action = MONITOR_ONLY (or equivalent)
+     - Confidence = HIGH.
+
+c. Product / service pages:
+   - Use folder-level hints (e.g. path segments like "product", "products", "machine", "machines", "equipment", "services") **plus**
+     urlClassificationSupport.productSlugPatterns from the Client Master.
+   - If any productSlugPatterns appear in the path/slug, and the page is not already classified in (a) or (b):
+     - Page Type = PRODUCT SERVICE
+     - SEO Relevant = true
+     - Confidence = HIGH.
+
+d. Category / industry / application hubs:
+   - Use folder-level hints (e.g. "industry", "industries", "applications", "solutions", "segments", "markets", "use-cases", "product-category")
+     **plus** urlClassificationSupport.categorySlugPatterns.
+   - If any match, and the page not already classified:
+     - Page Type = CATEGORY COLLECTION
+     - SEO Relevant = true
+     - Confidence = HIGH.
+
+e. Blog / article / news content:
+   - Use folder and slug hints (e.g. "blog", "news", "articles", "insights", "resources", "stories")
+     **plus** urlClassificationSupport.blogSlugPatterns.
+   - If any match:
+     - Page Type = BLOG ARTICLE NEWS
+     - SEO Relevant = true
+     - Confidence = HIGH.
+
+f. Resource / guide / document pages:
+   - Use urlClassificationSupport.resourceSlugPatterns and simple checks like:
+     - URL ends with ".pdf"
+     - slug contains "manual", "whitepaper", "datasheet", "brochure", "guide", "technical-document"
+   - If match:
+     - Page Type = RESOURCE GUIDE DOC
+     - SEO Relevant = true
+     - Confidence = MEDIUM or HIGH depending on clarity.
+
+g. Pricing / landing pages (if supported in current logic):
+   - Reuse any existing rules for PRICING PLANS and LANDING CAMPAIGN.
+   - Optionally, allow urlClassificationSupport.marketingLandingPatterns to improve detection.
+
+h. Fallback:
+   - If none of the above rules match:
+     - Page Type = OTHER MISC
+     - SEO Relevant = false by default (or use existing behavior)
+     - Confidence = LOW.
+   - This bucket should become much smaller after implementing the earlier rules.
+
+3) Make full use of Client Master without hard-coding per-client rules
+- Load the current client’s Client Master JSON for each classification run.
+- Treat urlClassificationSupport.* arrays as inputs to the generic logic, not as one-off conditions.
+- Do NOT write any logic that checks for specific brands or product names in code; rely on Client Master patterns instead.
+- The same code should work for any client by simply changing their Client Master.
+
+4) Keep everything backwards-compatible
+- Do not rename or remove any existing Page Type values or derived columns.
+- If some pages were already classified, either:
+  - Recompute them using the new rules, or
+  - Only apply the new rules to rows that are missing classification or currently OTHER MISC, depending on existing behavior.
+- Make sure the UI continues to work with the existing dropdown options.
+
+5) Add or refine explanatory tooltips for URL-based classification (optional but recommended)
+- For the Page Type column header, ensure the tooltip clearly explains:
+  - Why Page Type exists,
+  - How URL + Client Master patterns are used,
+  - How this helps with SEO (product vs category vs blog vs support, etc.).
+- Similarly, ensure Page Intent, SEO Relevant, SEO Action, Confidence, and Method columns have detailed tooltips so that a user can understand the purpose without reading the code.
+
+6) Implementation notes
+- Avoid hard-coded file names and keep the logic modular so it can be reused in API routes, batch jobs, or UI-driven recalculation.
+- Design the classifier so it can be called per-row with (pageData, clientMaster) as inputs and return a consistent classification object.
+- Ensure that if Client Master is missing a given pattern array, the code safely falls back to an empty array (no crashes).
+
+Deliverables:
+- Updated classification logic module(s) implementing the rule order above and using Client Master urlClassificationSupport patterns.
+- Any necessary wiring to load Client Master and pass it into the classifier.
+- Updated or confirmed column tooltips for Page Type and related fields.

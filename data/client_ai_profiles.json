@@ -1,8 +1,8 @@
 [
   {
-    "id": "ai-profile-01-1765081630635",
+    "id": "ai-profile-01-1765183023861",
     "clientCode": "01",
-    "clientName": "Meera Industries Limited",
+    "clientName": "Meera",
     "primaryDomains": [
       "www.meeraind.com",
       "meeraind.in",
@@ -13,222 +13,290 @@
       "meeraind.in",
       "meera.ind.in"
     ],
-    "industryType": "textile_machinery_oem",
-    "shortSummary": "Meera Industries Limited is an ISO-certified, BSE-listed manufacturer of advanced textile machinery specializing in yarn twisting, winding, and heat-setting solutions. The company designs and exports energy-efficient, high-performance, and custom-built machines for textile and yarn processing. Its portfolio serves spinning mills, filament yarn producers, and other industrial yarn processors globally.",
-    "businessModel": "B2B OEM textile machinery manufacturer and exporter",
+    "industryType": "textile_machinery",
+    "shortSummary": "Meera Industries specializes in advanced machinery solutions for the textile manufacturing industry, including twisting, winding, and heat setting equipment. The company is ISO-certified and delivers energy-efficient solutions globally.",
+    "businessModel": "manufacturing_and_ecommerce",
     "productLines": [
-      "spun/staple yarn twister",
-      "filament yarn twister",
-      "ring twister",
-      "cone-to-cone winder",
-      "cop winder",
-      "assembly winder",
-      "yarn guide winder",
+      "twisting machines",
+      "winding machines",
       "heat setting machines",
-      "TPRS twister"
+      "cotton yarn machines",
+      "filament yarn machines"
     ],
     "targetCustomerSegments": [
-      "spinning mills",
-      "yarn manufacturers (cotton, polyester, nylon, filament)",
-      "textile mills and composite mills",
-      "carpet and industrial yarn processors",
-      "sewing thread, rope and cordage producers",
-      "texturizing and winding units",
-      "machinery distributors/dealers in textile equipment"
+      "textile manufacturers",
+      "yarn producers",
+      "exporters",
+      "OEMs"
     ],
     "targetGeographies": [
-      "Global",
       "India",
-      "South Asia",
-      "Middle East",
-      "Africa",
-      "Southeast Asia",
-      "Latin America"
+      "global"
     ],
     "coreTopics": [
-      "yarn twisting machine",
-      "twisting machines",
-      "ring twister",
-      "spun yarn twister",
-      "staple yarn twister",
-      "filament yarn twister",
-      "cotton yarn twisting machine",
-      "cone winder",
-      "cone-to-cone winding machine",
-      "cop winder",
-      "assembly winder",
-      "yarn guide winder",
-      "yarn winding machinery",
-      "heat setting machine",
+      "twisting technology",
+      "winding technology",
       "heat setting technology",
-      "textile machinery manufacturer",
-      "energy-efficient textile machines",
-      "industrial yarn processing"
+      "textile machinery",
+      "energy-efficient machinery"
     ],
     "adjacentTopics": [
-      "twist direction S Z",
-      "winding types and objectives",
-      "tension control in winding",
-      "package build and doffing",
-      "creel design",
-      "PLC controls and automation",
-      "machine commissioning and installation",
-      "after-sales service and AMC",
-      "spare parts and consumables",
-      "export of textile machinery",
-      "Surat textile machinery manufacturers",
-      "twisting vs cabling",
-      "process optimization in yarn processing",
-      "technical datasheets and brochures",
-      "industrial heat setting methods and benefits"
+      "textile production",
+      "yarn types",
+      "ISO certification",
+      "energy efficiency in manufacturing"
     ],
     "negativeTopics": [
-      "fashion clothing retail",
-      "garments and apparel ecommerce",
-      "knitting patterns and DIY crafts",
-      "crochet tutorials",
-      "handloom hobby weaving",
-      "sewing machines for consumers",
-      "embroidery hobby",
-      "motor/transformer coil winding",
-      "electronics and PCB manufacturing",
-      "crypto and blockchain",
-      "fitness and health",
-      "movies and celebrities named Meera",
-      "stock/share price news",
-      "consumer fabrics and home textiles",
-      "beauty and lifestyle content"
+      "fashion",
+      "apparel",
+      "consumer goods",
+      "music",
+      "movies"
     ],
     "domainTypePatterns": {
       "oemManufacturerIndicators": [
+        "industries",
+        "machinery",
         "manufacturer",
-        "oem",
-        "supplier",
-        "exporter",
-        "textile machinery",
-        "yarn twisting machine",
-        "cone winder",
-        "ring twister",
-        "heat setting machine",
-        "factory",
-        "custom-built",
-        "ISO 9001",
-        "industrial machinery"
+        "supplier"
       ],
       "serviceProviderIndicators": [
-        "installation",
-        "commissioning",
-        "after-sales service",
-        "AMC",
-        "maintenance",
-        "repair",
-        "retrofit",
-        "consulting",
-        "calibration",
-        "spare parts"
+        "services",
+        "support",
+        "consulting"
       ],
       "marketplaceIndicators": [
-        "indiamart",
-        "tradeindia",
-        "alibaba",
-        "made-in-china",
-        "exportersindia",
-        "globalsources",
-        "thomasnet",
-        "justdial",
-        "yellow pages",
-        "b2b marketplace",
-        "directory",
-        "listing"
+        "shop",
+        "buy",
+        "discount"
       ],
       "endCustomerIndicators": [
-        "spinning mill",
-        "yarn manufacturer",
-        "textile mill",
-        "filament yarn",
-        "DTY",
-        "FDY",
-        "POY",
-        "weaving unit",
-        "knitting unit",
-        "carpet yarn",
-        "sewing thread manufacturer",
-        "rope and cordage",
-        "composite mill",
-        "texturizing unit"
+        "products",
+        "catalog",
+        "online-store"
       ],
       "educationalMediaIndicators": [
         "blog",
-        "article",
         "guide",
-        "how to",
-        "wiki",
-        "whitepaper",
-        "knowledge base",
-        "pdf",
-        "catalog",
-        "datasheet",
-        "case study",
-        "research"
+        "tutorial"
       ]
     },
     "classificationIntentHints": {
       "transactionalKeywords": [
-        "price",
-        "quotation",
-        "rfq",
-        "buy",
-        "for sale",
-        "manufacturer",
-        "supplier",
-        "exporter",
-        "dealer",
-        "distributor",
-        "catalog",
-        "brochure",
-        "specifications",
-        "capacity",
-        "industrial",
-        "automatic",
-        "contact sales",
-        "enquiry"
+        "buy twisting machine",
+        "purchase winding equipment",
+        "quote for textile machinery",
+        "winder machine price"
       ],
       "informationalKeywords": [
-        "what is",
-        "how it works",
-        "working principle",
-        "types",
-        "advantages",
-        "methods",
-        "process",
-        "guide",
-        "explained",
-        "notes",
-        "heat setting technology",
-        "winding types",
-        "twist direction S Z"
+        "heat setting techniques",
+        "twisting machine benefits",
+        "textile machinery types"
       ],
       "directoryKeywords": [
-        "manufacturers in",
-        "suppliers in",
-        "top 10",
-        "list of",
-        "directory",
-        "marketplace",
-        "b2b portal",
-        "yellow pages",
-        "trade portal",
-        "catalog listing"
+        "textile machinery manufacturers",
+        "list of oem textile suppliers",
+        "textile machinery directory"
       ]
     },
     "businessRelevanceLogicNotes": {
-      "directCompetitorDefinition": "Companies that design, manufacture, and sell industrial textile machinery for yarn twisting, winding, and heat setting (e.g., ring twisters, cone winders, filament/spun twisters). Typically OEMs or exporters with product specification pages targeting mills and yarn processors.",
-      "potentialCustomerDefinition": "Industrial entities that produce or process yarn and require twisting, winding, or heat-setting capacity—such as spinning mills, filament yarn producers, texturizing units, sewing thread, rope/cordage, carpet yarn manufacturers—and regional machinery distributors/dealers.",
-      "marketplaceChannelDefinition": "B2B marketplaces, procurement portals, and directories listing textile machinery suppliers (e.g., IndiaMART, TradeIndia, Alibaba, ExportersIndia, Thomasnet).",
-      "irrelevantDefinition": "Consumer-focused apparel/fashion sites, hobby crafting content, non-textile machinery sectors (e.g., motor/transformer coil winding, electronics), general entertainment/celebrity content, and pure investor/stock price pages."
+      "directCompetitorDefinition": "Domains offering similar textile machinery products or services.",
+      "potentialCustomerDefinition": "Domains looking to purchase textile manufacturing machinery or related services.",
+      "marketplaceChannelDefinition": "Platforms that enable buying and selling of textile machinery.",
+      "irrelevantDefinition": "Items that do not relate to textile manufacturing or machinery."
     },
-    "generatedAt": "2025-12-07T04:27:10.635Z",
-    "updatedAt": "2025-12-07T04:27:10.635Z"
+    "generatedAt": "2025-12-08T08:37:03.862Z",
+    "updatedAt": "2025-12-08T08:37:03.863Z",
+    "meta": {
+      "clientName": "Meera",
+      "generatedAt": "2025-12-08T08:37:03.862Z",
+      "industryTag": "textile_machinery",
+      "summary": "Meera Industries offers advanced machinery for textile manufacturing including twisting, winding, and heat setting solutions, serving both local and global markets."
+    },
+    "coreIdentity": {
+      "businessModel": "manufacturing_and_ecommerce",
+      "primaryOfferTypes": [
+        "machines",
+        "equipment"
+      ],
+      "productLines": [
+        "twisting machines",
+        "winding machines",
+        "heat setting machines"
+      ],
+      "services": [],
+      "industriesServed": [
+        "textile industry"
+      ],
+      "customerSegments": [
+        "manufacturers",
+        "OEMs",
+        "exporters"
+      ]
+    },
+    "domains": {
+      "primaryDomains": [
+        "www.meeraind.com"
+      ],
+      "secondaryDomains": [
+        "meeraind.in",
+        "meera.ind.in"
+      ],
+      "expectedTlds": [
+        ".com",
+        ".in"
+      ],
+      "positiveDomainHints": [
+        "machinery",
+        "industries",
+        "twisting",
+        "winding"
+      ],
+      "negativeDomainHints": [
+        "music",
+        "game",
+        "movie",
+        "fashion"
+      ]
+    },
+    "urlClassificationSupport": {
+      "productSlugPatterns": {
+        "description": "Identifies product pages related to textile machinery.",
+        "examples": [
+          "twisting-machine",
+          "winding-machine",
+          "heat-setting"
+        ]
+      },
+      "categorySlugPatterns": {
+        "description": "Identifies category pages for grouping of products.",
+        "examples": [
+          "machines",
+          "textile-machinery",
+          "equipment"
+        ]
+      },
+      "blogSlugPatterns": {
+        "description": "Identifies blog content related to textiles.",
+        "examples": [
+          "blog",
+          "learning",
+          "tutorial"
+        ]
+      },
+      "resourceSlugPatterns": {
+        "description": "Identifies resources or educational content.",
+        "examples": [
+          "resources",
+          "guides",
+          "whitepapers"
+        ]
+      },
+      "supportSlugPatterns": {
+        "description": "Identifies customer support and help pages.",
+        "examples": [
+          "support",
+          "help",
+          "contact"
+        ]
+      },
+      "legalSlugPatterns": {
+        "description": "Identifies legal, privacy, or terms pages.",
+        "examples": [
+          "terms",
+          "privacy",
+          "legal"
+        ]
+      },
+      "accountSlugPatterns": {
+        "description": "Identifies account management related pages.",
+        "examples": [
+          "account",
+          "login",
+          "profile"
+        ]
+      },
+      "careersSlugPatterns": {
+        "description": "Identifies career and job opportunity pages.",
+        "examples": [
+          "careers",
+          "jobs",
+          "join-us"
+        ]
+      },
+      "aboutCompanySlugPatterns": {
+        "description": "Identifies pages providing company information.",
+        "examples": [
+          "about",
+          "company",
+          "mission"
+        ]
+      },
+      "marketingLandingPatterns": {
+        "description": "Identifies marketing focused pages or offers.",
+        "examples": [
+          "offers",
+          "promotions",
+          "landing"
+        ]
+      }
+    },
+    "keywordClassificationSupport": {
+      "brandKeywords": {
+        "description": "Keywords related to the brand and its variants.",
+        "examples": [
+          "meera industries",
+          "meera enterprises",
+          "meera ltd"
+        ]
+      },
+      "transactionalPhrases": {
+        "description": "Phrases suggesting intent to buy or request quotes.",
+        "examples": [
+          "buy twisting machine",
+          "order winding equipment",
+          "quote for textile machinery"
+        ]
+      },
+      "commercialResearchPhrases": {
+        "description": "Phrases for research before purchase.",
+        "examples": [
+          "best twisting machines",
+          "compare winding equipment",
+          "textile machine reviews"
+        ]
+      },
+      "informationalPhrases": {
+        "description": "Phrases that suggest looking for information.",
+        "examples": [
+          "what is a twisting machine",
+          "how does a winder work",
+          "benefits of heat setting"
+        ]
+      },
+      "directoryPhrases": {
+        "description": "Phrases typically associated with directories.",
+        "examples": [
+          "top textile manufacturers",
+          "machine suppliers list",
+          "textile equipment directories"
+        ]
+      },
+      "irrelevantKeywordTopics": {
+        "description": "Keywords that indicate irrelevant contexts.",
+        "examples": [
+          "fashion equipment",
+          "movie props",
+          "music instruments"
+        ]
+      }
+    },
+    "businessRelevanceSupport": {
+      "directCompetitorDefinition": "Domains competing in textile machinery manufacturing.",
+      "potentialCustomerDefinition": "Domains seeking to purchase textile manufacturing equipment.",
+      "marketplaceDefinition": "Websites facilitating the buying and selling of textile machinery.",
+      "irrelevantDefinition": "Topics or domains not relevant to textile machinery."
+    }
   },
   {
     "id": "ai-profile-O2-1765081775550",
