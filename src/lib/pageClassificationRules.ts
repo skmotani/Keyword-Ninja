@@ -29,81 +29,212 @@ export interface RuleClassificationResult {
   explanation: ClassificationExplanation;
 }
 
-interface UrlPatternMatch {
-  pattern: RegExp;
-  pageType: PageTypeValue;
-  ruleName: string;
+function parseUrlPath(pageUrl: string): { pathname: string; segments: string[] } {
+  try {
+    const url = new URL(pageUrl);
+    const pathname = url.pathname.toLowerCase();
+    const segments = pathname.split('/').filter(Boolean);
+    return { pathname, segments };
+  } catch {
+    const pathname = pageUrl.toLowerCase().replace(/^https?:\/\/[^\/]+/, '');
+    const segments = pathname.split('/').filter(Boolean);
+    return { pathname, segments };
+  }
 }
 
-const URL_PATTERNS: UrlPatternMatch[] = [
-  {
-    pattern: /\/(login|signin|signup|account|dashboard|auth|register|my-account)/i,
-    pageType: 'ACCOUNT_AUTH',
-    ruleName: 'RULE_URL_MATCH_ACCOUNT_AUTH',
-  },
-  {
-    pattern: /\/(privacy|terms|cookies?|disclaimer|legal|gdpr|policy|tos)/i,
-    pageType: 'LEGAL_POLICY',
-    ruleName: 'RULE_URL_MATCH_LEGAL_POLICY',
-  },
-  {
-    pattern: /\/(career|job|vacancy|join-our-team|hiring|openings|work-with-us)/i,
-    pageType: 'CAREERS_HR',
-    ruleName: 'RULE_URL_MATCH_CAREERS_HR',
-  },
-  {
-    pattern: /\/(contact|support|help|faq|customer-service|dealer-locator|enquiry|inquiry)/i,
-    pageType: 'SUPPORT_CONTACT',
-    ruleName: 'RULE_URL_MATCH_SUPPORT_CONTACT',
-  },
-  {
-    pattern: /\/(about|our-story|company|who-we-are|about-us|team|leadership)/i,
-    pageType: 'COMPANY_ABOUT',
-    ruleName: 'RULE_URL_MATCH_COMPANY_ABOUT',
-  },
-  {
-    pattern: /\/(blog|news|article|insights|resources|magazine|press|media)/i,
-    pageType: 'BLOG_ARTICLE_NEWS',
-    ruleName: 'RULE_URL_MATCH_BLOG_ARTICLE_NEWS',
-  },
-  {
-    pattern: /\/(pricing|plans|rates|quote|subscription|packages|cost)/i,
-    pageType: 'PRICING_PLANS',
-    ruleName: 'RULE_URL_MATCH_PRICING_PLANS',
-  },
-  {
-    pattern: /\/(guide|tutorial|whitepaper|ebook|documentation|docs|manual|handbook)/i,
-    pageType: 'RESOURCE_GUIDE_DOC',
-    ruleName: 'RULE_URL_MATCH_RESOURCE_GUIDE_DOC',
-  },
-  {
-    pattern: /\/(landing|campaign|promo|offer|special|lp|get-started)/i,
-    pageType: 'LANDING_CAMPAIGN',
-    ruleName: 'RULE_URL_MATCH_LANDING_CAMPAIGN',
-  },
-];
+function isHomepage(pageUrl: string): boolean {
+  const { pathname, segments } = parseUrlPath(pageUrl);
+  if (segments.length === 0) return true;
+  if (pathname === '/' || pathname === '') return true;
+  if (segments.length === 1 && (segments[0] === 'index.html' || segments[0] === 'index.htm' || segments[0] === 'home')) return true;
+  return false;
+}
 
-const TRANSACTIONAL_KEYWORDS = /\b(buy|order|price|cost|quote|near me|book|purchase|shop|checkout|add to cart)\b/i;
-const COMMERCIAL_RESEARCH_KEYWORDS = /\b(best|vs|compare|top|review|alternative|comparison|rated)\b/i;
-const CATEGORY_COLLECTION_KEYWORDS = /\b(category|categories|solutions|use cases|products|services|collection)\b/i;
-
-function matchesAny(text: string, patterns: string[]): boolean {
+function matchesAnyPattern(text: string, patterns: string[]): { matched: boolean; matchedPattern: string | null } {
   const lowerText = text.toLowerCase();
-  return patterns.some((pattern) => lowerText.includes(pattern.toLowerCase()));
+  for (const pattern of patterns) {
+    if (lowerText.includes(pattern.toLowerCase())) {
+      return { matched: true, matchedPattern: pattern };
+    }
+  }
+  return { matched: false, matchedPattern: null };
+}
+
+function matchesAnySegment(segments: string[], patterns: string[]): { matched: boolean; matchedPattern: string | null; matchedSegment: string | null } {
+  for (const segment of segments) {
+    const segmentLower = segment.toLowerCase();
+    for (const pattern of patterns) {
+      if (segmentLower === pattern.toLowerCase() || segmentLower.includes(pattern.toLowerCase())) {
+        return { matched: true, matchedPattern: pattern, matchedSegment: segment };
+      }
+    }
+  }
+  return { matched: false, matchedPattern: null, matchedSegment: null };
+}
+
+function isPdfOrDocument(pageUrl: string): boolean {
+  const lowerUrl = pageUrl.toLowerCase();
+  return lowerUrl.endsWith('.pdf') || 
+         lowerUrl.endsWith('.doc') || 
+         lowerUrl.endsWith('.docx') || 
+         lowerUrl.endsWith('.xls') || 
+         lowerUrl.endsWith('.xlsx');
+}
+
+interface ClassifyPageTypeResult {
+  pageType: PageTypeValue;
+  confidence: ClassificationConfidenceValue;
+  firedRules: string[];
+  matchDetails?: string;
 }
 
 function classifyPageType(
   row: PageRow,
   config: PageClassificationConfig
-): { pageType: PageTypeValue; confidence: ClassificationConfidenceValue; firedRules: string[] } {
+): ClassifyPageTypeResult {
   const firedRules: string[] = [];
-  const urlLower = row.pageUrl.toLowerCase();
+  const { pathname, segments } = parseUrlPath(row.pageUrl);
 
-  for (const urlPattern of URL_PATTERNS) {
-    if (urlPattern.pattern.test(urlLower)) {
-      firedRules.push(urlPattern.ruleName);
-      return { pageType: urlPattern.pageType, confidence: 'HIGH', firedRules };
-    }
+  const accountResult = matchesAnySegment(segments, config.accountSlugPatterns);
+  if (accountResult.matched) {
+    firedRules.push('RULE_URL_ACCOUNT_AUTH');
+    return { 
+      pageType: 'ACCOUNT_AUTH', 
+      confidence: 'HIGH', 
+      firedRules,
+      matchDetails: `Matched account pattern "${accountResult.matchedPattern}" in segment "${accountResult.matchedSegment}"`
+    };
+  }
+
+  const legalResult = matchesAnySegment(segments, config.legalSlugPatterns);
+  if (legalResult.matched) {
+    firedRules.push('RULE_URL_LEGAL_POLICY');
+    return { 
+      pageType: 'LEGAL_POLICY', 
+      confidence: 'HIGH', 
+      firedRules,
+      matchDetails: `Matched legal pattern "${legalResult.matchedPattern}" in segment "${legalResult.matchedSegment}"`
+    };
+  }
+
+  const careersResult = matchesAnySegment(segments, config.careersSlugPatterns);
+  if (careersResult.matched) {
+    firedRules.push('RULE_URL_CAREERS_HR');
+    return { 
+      pageType: 'CAREERS_HR', 
+      confidence: 'HIGH', 
+      firedRules,
+      matchDetails: `Matched careers pattern "${careersResult.matchedPattern}" in segment "${careersResult.matchedSegment}"`
+    };
+  }
+
+  const supportResult = matchesAnySegment(segments, config.supportSlugPatterns);
+  if (supportResult.matched) {
+    firedRules.push('RULE_URL_SUPPORT_CONTACT');
+    return { 
+      pageType: 'SUPPORT_CONTACT', 
+      confidence: 'HIGH', 
+      firedRules,
+      matchDetails: `Matched support pattern "${supportResult.matchedPattern}" in segment "${supportResult.matchedSegment}"`
+    };
+  }
+
+  if (isHomepage(row.pageUrl)) {
+    firedRules.push('RULE_HOMEPAGE_DETECTED');
+    return { 
+      pageType: 'COMPANY_ABOUT', 
+      confidence: 'HIGH', 
+      firedRules,
+      matchDetails: 'Root URL detected as homepage'
+    };
+  }
+
+  const aboutResult = matchesAnySegment(segments, config.aboutCompanySlugPatterns);
+  if (aboutResult.matched) {
+    firedRules.push('RULE_URL_COMPANY_ABOUT');
+    return { 
+      pageType: 'COMPANY_ABOUT', 
+      confidence: 'HIGH', 
+      firedRules,
+      matchDetails: `Matched about/company pattern "${aboutResult.matchedPattern}" in segment "${aboutResult.matchedSegment}"`
+    };
+  }
+
+  const productResult = matchesAnySegment(segments, config.productSlugPatterns);
+  if (productResult.matched) {
+    firedRules.push('RULE_URL_PRODUCT_SERVICE');
+    return { 
+      pageType: 'PRODUCT_SERVICE', 
+      confidence: 'HIGH', 
+      firedRules,
+      matchDetails: `Matched product pattern "${productResult.matchedPattern}" in segment "${productResult.matchedSegment}"`
+    };
+  }
+
+  const categoryResult = matchesAnySegment(segments, config.categorySlugPatterns);
+  if (categoryResult.matched) {
+    firedRules.push('RULE_URL_CATEGORY_COLLECTION');
+    return { 
+      pageType: 'CATEGORY_COLLECTION', 
+      confidence: 'HIGH', 
+      firedRules,
+      matchDetails: `Matched category pattern "${categoryResult.matchedPattern}" in segment "${categoryResult.matchedSegment}"`
+    };
+  }
+
+  const blogResult = matchesAnySegment(segments, config.blogSlugPatterns);
+  if (blogResult.matched) {
+    firedRules.push('RULE_URL_BLOG_ARTICLE_NEWS');
+    return { 
+      pageType: 'BLOG_ARTICLE_NEWS', 
+      confidence: 'HIGH', 
+      firedRules,
+      matchDetails: `Matched blog pattern "${blogResult.matchedPattern}" in segment "${blogResult.matchedSegment}"`
+    };
+  }
+
+  if (isPdfOrDocument(row.pageUrl)) {
+    firedRules.push('RULE_URL_DOCUMENT_EXTENSION');
+    return { 
+      pageType: 'RESOURCE_GUIDE_DOC', 
+      confidence: 'HIGH', 
+      firedRules,
+      matchDetails: 'Document file extension detected (.pdf, .doc, etc.)'
+    };
+  }
+
+  const resourceResult = matchesAnySegment(segments, config.resourceSlugPatterns);
+  if (resourceResult.matched) {
+    firedRules.push('RULE_URL_RESOURCE_GUIDE_DOC');
+    return { 
+      pageType: 'RESOURCE_GUIDE_DOC', 
+      confidence: 'HIGH', 
+      firedRules,
+      matchDetails: `Matched resource pattern "${resourceResult.matchedPattern}" in segment "${resourceResult.matchedSegment}"`
+    };
+  }
+
+  const pricingPatterns = ['pricing', 'plans', 'rates', 'quote', 'subscription', 'packages', 'cost'];
+  const pricingResult = matchesAnySegment(segments, pricingPatterns);
+  if (pricingResult.matched) {
+    firedRules.push('RULE_URL_PRICING_PLANS');
+    return { 
+      pageType: 'PRICING_PLANS', 
+      confidence: 'HIGH', 
+      firedRules,
+      matchDetails: `Matched pricing pattern "${pricingResult.matchedPattern}" in segment "${pricingResult.matchedSegment}"`
+    };
+  }
+
+  const landingResult = matchesAnySegment(segments, config.marketingLandingPatterns);
+  if (landingResult.matched) {
+    firedRules.push('RULE_URL_LANDING_CAMPAIGN');
+    return { 
+      pageType: 'LANDING_CAMPAIGN', 
+      confidence: 'HIGH', 
+      firedRules,
+      matchDetails: `Matched landing/campaign pattern "${landingResult.matchedPattern}" in segment "${landingResult.matchedSegment}"`
+    };
   }
 
   const haystack = [
@@ -111,36 +242,77 @@ function classifyPageType(
     row.keyword || '',
     row.pageTitle || '',
     row.pageSnippet || '',
-  ]
-    .join(' ')
-    .toLowerCase();
+  ].join(' ').toLowerCase();
 
-  if (matchesAny(haystack, config.productKeywords) || matchesAny(haystack, config.serviceKeywords)) {
-    firedRules.push('RULE_CONTENT_MATCH_PRODUCT_SERVICE');
-    return { pageType: 'PRODUCT_SERVICE', confidence: 'MEDIUM', firedRules };
+  const productContentResult = matchesAnyPattern(haystack, config.productKeywords);
+  if (productContentResult.matched) {
+    firedRules.push('RULE_CONTENT_PRODUCT_SERVICE');
+    return { 
+      pageType: 'PRODUCT_SERVICE', 
+      confidence: 'MEDIUM', 
+      firedRules,
+      matchDetails: `Content matched product keyword "${productContentResult.matchedPattern}"`
+    };
   }
 
-  if (matchesAny(haystack, config.blogMarkers)) {
-    firedRules.push('RULE_CONTENT_MATCH_BLOG_ARTICLE');
-    return { pageType: 'BLOG_ARTICLE_NEWS', confidence: 'MEDIUM', firedRules };
+  const serviceContentResult = matchesAnyPattern(haystack, config.serviceKeywords);
+  if (serviceContentResult.matched) {
+    firedRules.push('RULE_CONTENT_SERVICE');
+    return { 
+      pageType: 'PRODUCT_SERVICE', 
+      confidence: 'MEDIUM', 
+      firedRules,
+      matchDetails: `Content matched service keyword "${serviceContentResult.matchedPattern}"`
+    };
   }
 
-  if (CATEGORY_COLLECTION_KEYWORDS.test(haystack)) {
-    firedRules.push('RULE_CONTENT_MATCH_CATEGORY_COLLECTION');
-    return { pageType: 'CATEGORY_COLLECTION', confidence: 'MEDIUM', firedRules };
+  const blogContentResult = matchesAnyPattern(haystack, config.blogMarkers);
+  if (blogContentResult.matched) {
+    firedRules.push('RULE_CONTENT_BLOG_ARTICLE');
+    return { 
+      pageType: 'BLOG_ARTICLE_NEWS', 
+      confidence: 'MEDIUM', 
+      firedRules,
+      matchDetails: `Content matched blog marker "${blogContentResult.matchedPattern}"`
+    };
+  }
+
+  const categoryKeywords = /\b(category|categories|solutions|use cases|products|services|collection|industry|industries)\b/i;
+  if (categoryKeywords.test(haystack)) {
+    firedRules.push('RULE_CONTENT_CATEGORY_COLLECTION');
+    return { 
+      pageType: 'CATEGORY_COLLECTION', 
+      confidence: 'MEDIUM', 
+      firedRules,
+      matchDetails: 'Content matched category/collection keywords'
+    };
   }
 
   firedRules.push('RULE_FALLBACK_OTHER_MISC');
-  return { pageType: 'OTHER_MISC', confidence: 'LOW', firedRules };
+  return { 
+    pageType: 'OTHER_MISC', 
+    confidence: 'LOW', 
+    firedRules,
+    matchDetails: 'No patterns matched - falling back to OTHER_MISC'
+  };
 }
+
+const TRANSACTIONAL_KEYWORDS = /\b(buy|order|price|cost|quote|near me|book|purchase|shop|checkout|add to cart)\b/i;
+const COMMERCIAL_RESEARCH_KEYWORDS = /\b(best|vs|compare|top|review|alternative|comparison|rated)\b/i;
 
 function classifyPageIntent(
   row: PageRow,
   pageType: PageTypeValue,
-  config: PageClassificationConfig
+  config: PageClassificationConfig,
+  isHomepagePage: boolean
 ): { pageIntent: PageClassificationIntent; firedRules: string[] } {
   const firedRules: string[] = [];
   const keywordLower = (row.keyword || '').toLowerCase();
+
+  if (isHomepagePage) {
+    firedRules.push('RULE_INTENT_NAVIGATIONAL_HOMEPAGE');
+    return { pageIntent: 'NAVIGATIONAL', firedRules };
+  }
 
   const isBrandOnly = config.brandNames.some((brand) => {
     const brandLower = brand.toLowerCase();
@@ -176,9 +348,19 @@ function classifyPageIntent(
     return { pageIntent: 'INFORMATIONAL', firedRules };
   }
 
+  if (pageType === 'CATEGORY_COLLECTION') {
+    firedRules.push('RULE_INTENT_COMMERCIAL_FROM_CATEGORY');
+    return { pageIntent: 'COMMERCIAL_RESEARCH', firedRules };
+  }
+
   if (pageType === 'SUPPORT_CONTACT') {
     firedRules.push('RULE_INTENT_SUPPORT');
     return { pageIntent: 'SUPPORT', firedRules };
+  }
+
+  if (pageType === 'COMPANY_ABOUT') {
+    firedRules.push('RULE_INTENT_NAVIGATIONAL_COMPANY');
+    return { pageIntent: 'NAVIGATIONAL', firedRules };
   }
 
   if (pageType === 'LEGAL_POLICY' || pageType === 'ACCOUNT_AUTH') {
@@ -192,10 +374,12 @@ function classifyPageIntent(
 
 function determineIsSeoRelevant(
   pageType: PageTypeValue,
-  pageIntent: PageClassificationIntent
+  pageIntent: PageClassificationIntent,
+  isHomepagePage: boolean
 ): boolean {
   if (pageIntent === 'IRRELEVANT_SEO') return false;
   if (['LEGAL_POLICY', 'ACCOUNT_AUTH', 'CAREERS_HR'].includes(pageType)) return false;
+  if (isHomepagePage) return true;
   return true;
 }
 
@@ -203,7 +387,8 @@ function determineSeoAction(
   pageType: PageTypeValue,
   pageIntent: PageClassificationIntent,
   isSeoRelevant: boolean,
-  estTraffic: number | null
+  estTraffic: number | null,
+  isHomepagePage: boolean
 ): { seoAction: SeoActionValue; firedRules: string[] } {
   const firedRules: string[] = [];
   const traffic = estTraffic ?? 0;
@@ -212,6 +397,11 @@ function determineSeoAction(
   if (!isSeoRelevant) {
     firedRules.push('RULE_ACTION_IGNORE_IRRELEVANT');
     return { seoAction: 'IGNORE_IRRELEVANT', firedRules };
+  }
+
+  if (isHomepagePage) {
+    firedRules.push('RULE_ACTION_MONITOR_HOMEPAGE');
+    return { seoAction: 'MONITOR_ONLY', firedRules };
   }
 
   const isCommercialPage = ['PRODUCT_SERVICE', 'PRICING_PLANS', 'LANDING_CAMPAIGN'].includes(pageType);
@@ -232,6 +422,11 @@ function determineSeoAction(
     return { seoAction: 'MONITOR_ONLY', firedRules };
   }
 
+  if (pageType === 'COMPANY_ABOUT') {
+    firedRules.push('RULE_ACTION_MONITOR_COMPANY');
+    return { seoAction: 'MONITOR_ONLY', firedRules };
+  }
+
   firedRules.push('RULE_ACTION_FALLBACK_MONITOR');
   return { seoAction: 'MONITOR_ONLY', firedRules };
 }
@@ -241,31 +436,42 @@ function buildReasoningString(
   pageIntent: PageClassificationIntent,
   seoAction: SeoActionValue,
   firedRules: string[],
-  estTraffic: number | null
+  estTraffic: number | null,
+  matchDetails?: string
 ): string {
   const parts: string[] = [];
 
-  const pageTypeRule = firedRules.find((r) => r.includes('MATCH') || r.includes('FALLBACK'));
-  if (pageTypeRule?.includes('URL_MATCH')) {
-    parts.push(`Classified as ${pageType} based on URL pattern matching.`);
-  } else if (pageTypeRule?.includes('CONTENT_MATCH')) {
-    parts.push(`Classified as ${pageType} based on content/keyword analysis.`);
-  } else {
-    parts.push(`Classified as ${pageType} (fallback - no strong pattern match).`);
+  if (matchDetails) {
+    parts.push(matchDetails + '.');
+  }
+
+  const pageTypeRule = firedRules.find((r) => r.includes('URL_') || r.includes('CONTENT_') || r.includes('HOMEPAGE') || r.includes('FALLBACK'));
+  if (pageTypeRule) {
+    if (pageTypeRule.includes('HOMEPAGE')) {
+      parts.push(`Classified as ${pageType} because this is the homepage (root URL).`);
+    } else if (pageTypeRule.includes('URL_')) {
+      parts.push(`Classified as ${pageType} based on URL path pattern matching.`);
+    } else if (pageTypeRule.includes('CONTENT_')) {
+      parts.push(`Classified as ${pageType} based on content/keyword analysis.`);
+    } else if (pageTypeRule.includes('FALLBACK')) {
+      parts.push(`Classified as ${pageType} (fallback - no strong pattern match).`);
+    }
   }
 
   const intentRule = firedRules.find((r) => r.includes('INTENT'));
   if (intentRule) {
-    if (intentRule.includes('TRANSACTIONAL')) {
-      parts.push(`Intent set to ${pageIntent} due to transactional signals or page type.`);
+    if (intentRule.includes('HOMEPAGE')) {
+      parts.push(`Intent: ${pageIntent} - homepage is typically navigational.`);
+    } else if (intentRule.includes('TRANSACTIONAL')) {
+      parts.push(`Intent: ${pageIntent} due to transactional signals or commercial page type.`);
     } else if (intentRule.includes('COMMERCIAL')) {
-      parts.push(`Intent set to ${pageIntent} based on comparison/research keywords.`);
+      parts.push(`Intent: ${pageIntent} based on comparison/research context.`);
     } else if (intentRule.includes('NAVIGATIONAL')) {
-      parts.push(`Intent set to ${pageIntent} as keyword is brand-focused.`);
+      parts.push(`Intent: ${pageIntent} as keyword is brand-focused or navigational.`);
     } else if (intentRule.includes('INFORMATIONAL')) {
-      parts.push(`Intent set to ${pageIntent} based on educational content signals.`);
+      parts.push(`Intent: ${pageIntent} based on educational content signals.`);
     } else {
-      parts.push(`Intent set to ${pageIntent}.`);
+      parts.push(`Intent: ${pageIntent}.`);
     }
   }
 
@@ -273,12 +479,14 @@ function buildReasoningString(
   if (actionRule) {
     if (seoAction === 'HIGH_PRIORITY_TARGET') {
       parts.push(
-        `Marked as ${seoAction} due to high estimated traffic (${estTraffic}) and strong commercial intent.`
+        `Action: ${seoAction} - high traffic (${estTraffic}) with strong commercial intent.`
       );
     } else if (seoAction === 'ADD_TO_CONTENT_CLUSTER') {
-      parts.push(`Recommended action: ${seoAction} - useful supporting content for topic clusters.`);
+      parts.push(`Action: ${seoAction} - useful supporting content for topic clusters.`);
     } else if (seoAction === 'IGNORE_IRRELEVANT') {
       parts.push(`Action: ${seoAction} - page has no SEO impact.`);
+    } else if (seoAction === 'MONITOR_ONLY') {
+      parts.push(`Action: ${seoAction} - track but not priority for content strategy.`);
     } else {
       parts.push(`Action: ${seoAction}.`);
     }
@@ -293,26 +501,29 @@ export function classifyPageWithRules(
 ): RuleClassificationResult {
   const allFiredRules: string[] = [];
 
-  const { pageType, confidence, firedRules: typeFiredRules } = classifyPageType(row, config);
+  const isHomepagePage = isHomepage(row.pageUrl);
+
+  const { pageType, confidence, firedRules: typeFiredRules, matchDetails } = classifyPageType(row, config);
   allFiredRules.push(...typeFiredRules);
 
-  const { pageIntent, firedRules: intentFiredRules } = classifyPageIntent(row, pageType, config);
+  const { pageIntent, firedRules: intentFiredRules } = classifyPageIntent(row, pageType, config, isHomepagePage);
   allFiredRules.push(...intentFiredRules);
 
-  const isSeoRelevant = determineIsSeoRelevant(pageType, pageIntent);
+  const isSeoRelevant = determineIsSeoRelevant(pageType, pageIntent, isHomepagePage);
 
   const estTraffic = row.estTraffic ?? row.etv ?? null;
   const { seoAction, firedRules: actionFiredRules } = determineSeoAction(
     pageType,
     pageIntent,
     isSeoRelevant,
-    estTraffic
+    estTraffic,
+    isHomepagePage
   );
   allFiredRules.push(...actionFiredRules);
 
   const needsAiReview = pageType === 'OTHER_MISC' || confidence === 'LOW';
 
-  const reasoning = buildReasoningString(pageType, pageIntent, seoAction, allFiredRules, estTraffic);
+  const reasoning = buildReasoningString(pageType, pageIntent, seoAction, allFiredRules, estTraffic, matchDetails);
 
   return {
     pageType,

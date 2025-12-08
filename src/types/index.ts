@@ -356,6 +356,16 @@ export interface PageClassificationConfig {
   serviceKeywords: string[];
   blogMarkers: string[];
   nonSeoPathFragments: string[];
+  productSlugPatterns: string[];
+  categorySlugPatterns: string[];
+  blogSlugPatterns: string[];
+  resourceSlugPatterns: string[];
+  supportSlugPatterns: string[];
+  legalSlugPatterns: string[];
+  accountSlugPatterns: string[];
+  careersSlugPatterns: string[];
+  aboutCompanySlugPatterns: string[];
+  marketingLandingPatterns: string[];
 }
 
 export interface DomainPageRecord {

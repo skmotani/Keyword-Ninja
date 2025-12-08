@@ -90,13 +90,90 @@ const SEO_ACTION_OPTIONS: SeoActionValue[] = [
 ];
 
 const TOOLTIPS = {
-  pageType: `Page Type: This column shows the structural type of the competitor's page (Product/Service, Blog, Category, Pricing, Support, Legal, etc.). It is derived automatically using URL patterns, the client's profile (product/service keywords), and optional page titles/snippets. Use this to quickly understand what kind of pages your competitors are investing in.`,
-  pageIntent: `Page Intent: This indicates why a user would visit or search for this page: to get information, compare options, buy, log in, or get support. It is derived from the keyword, page type, and common intent signals. Use this to separate informational content from commercial and transactional pages.`,
-  isSeoRelevant: `SEO Relevant?: Shows whether this page is meaningful for SEO and content strategy. Legal pages, login/account pages, and HR/career pages are usually marked as NOT relevant. This helps you ignore noise and focus on pages that matter.`,
-  classificationMethod: `Classification Method: Indicates whether this row was classified using only programmed rules (RULE) or with help from the AI model (AI). RULE = based on URL patterns and keyword analysis (no AI cost). AI = rules were uncertain, so a ChatGPT API call was used.`,
-  classificationConfidence: `Classification Confidence: A qualitative score (High, Medium, Low) indicating how confident the system is in the assigned Page Type and Page Intent. Low confidence usually means a candidate for AI review or manual checking.`,
-  needsAiReview: `Needs AI Review?: TRUE means the rule-based logic could not confidently classify this page, so it is marked for AI review. When you run AI classification, these rows are sent to the ChatGPT API to improve accuracy.`,
-  seoAction: `SEO Action: A suggested next step for your SEO strategy based on the page's type, intent, and traffic. HIGH_PRIORITY_TARGET = page you should target and outrank. ADD_TO_CONTENT_CLUSTER = useful supporting topic. IGNORE_IRRELEVANT = utility or legal pages with no SEO impact.`,
+  pageType: `Page Type: Identifies the structural type of the page based on URL patterns and Client Master configuration.
+
+Classification priority order:
+1. ACCOUNT_AUTH - Login, signup, dashboard, profile pages (not SEO relevant)
+2. LEGAL_POLICY - Privacy, terms, cookies, GDPR pages (not SEO relevant)
+3. CAREERS_HR - Job listings, career pages (not SEO relevant)
+4. SUPPORT_CONTACT - Help, FAQ, contact, dealer locator pages
+5. COMPANY_ABOUT - Homepage (root URL) and about/company/team pages
+6. PRODUCT_SERVICE - Product, service, machine, equipment pages
+7. CATEGORY_COLLECTION - Industry, application, solution hub pages
+8. BLOG_ARTICLE_NEWS - Blog posts, news, articles, insights
+9. RESOURCE_GUIDE_DOC - Guides, whitepapers, PDFs, documentation
+10. PRICING_PLANS - Pricing, plans, subscription pages
+11. LANDING_CAMPAIGN - Campaign, promo, demo, webinar pages
+12. OTHER_MISC - Fallback when no patterns match (review candidates)
+
+URL patterns from Client Master's urlClassificationSupport are used to improve accuracy.`,
+  pageIntent: `Page Intent: Indicates the user's purpose when visiting or searching for this page.
+
+- NAVIGATIONAL: Homepage or brand-specific searches (user knows where they want to go)
+- TRANSACTIONAL: Buy, order, pricing signals - ready to convert
+- COMMERCIAL_RESEARCH: Compare, review, best - evaluating options
+- INFORMATIONAL: Educational content, how-to, guides - learning phase
+- SUPPORT: Help, FAQ, contact - existing customer needs
+- IRRELEVANT_SEO: Login, legal pages - no SEO value
+
+Intent is derived from keyword signals, page type, and the Client Master brand configuration.`,
+  isSeoRelevant: `SEO Relevant?: Indicates whether this page matters for SEO and content strategy.
+
+Marked as NOT relevant (false):
+- Legal/Policy pages (privacy, terms, cookies)
+- Account/Auth pages (login, signup, dashboard)
+- Careers/HR pages (jobs, hiring)
+- Pages with IRRELEVANT_SEO intent
+
+Marked as relevant (true):
+- Homepage and company pages (monitoring)
+- Product/Service pages (key targets)
+- Category/Collection pages (topic hubs)
+- Blog/Resource pages (content clusters)
+- Commercial landing pages
+
+This helps you focus on pages that impact organic visibility.`,
+  classificationMethod: `Classification Method: Shows how the classification was determined.
+
+RULE: Classified using URL pattern matching and keyword analysis. Rules use:
+- URL path segments matched against Client Master patterns
+- Content analysis using product/service/blog keywords
+- Homepage detection for root URLs
+- No API cost incurred
+
+AI: Rule-based logic was uncertain (LOW confidence or OTHER_MISC), so OpenAI was used to improve accuracy. This incurs API cost but provides better results for ambiguous pages.`,
+  classificationConfidence: `Classification Confidence: Indicates reliability of the classification.
+
+HIGH: Strong URL pattern match (e.g., /products/, /blog/, /contact/)
+- Matched against Client Master's urlClassificationSupport patterns
+- Clear structural indicators in URL segments
+
+MEDIUM: Content-based match using keywords/titles
+- No strong URL pattern, but product/service/blog keywords found
+- May benefit from AI review for confirmation
+
+LOW: Fallback classification (OTHER_MISC)
+- No patterns matched - candidate for AI classification
+- Manual review recommended`,
+  needsAiReview: `Needs AI Review?: Flags pages for AI-assisted classification.
+
+TRUE when:
+- Page Type is OTHER_MISC (no patterns matched)
+- Classification Confidence is LOW
+
+These pages are sent to OpenAI when you click "Run AI for Uncertain" to get more accurate classifications based on full context analysis.
+
+FALSE when:
+- Strong URL pattern match found
+- Confidence is HIGH or MEDIUM`,
+  seoAction: `SEO Action: Recommended next step based on page type, intent, and traffic.
+
+- HIGH_PRIORITY_TARGET: Commercial page with high traffic (1000+) and transactional intent. Priority competitor page to outrank.
+- ADD_TO_CONTENT_CLUSTER: Blog, resource, or category pages useful for topic cluster strategy.
+- MONITOR_ONLY: Track but not priority - includes homepage, low-traffic commercial pages.
+- IGNORE_IRRELEVANT: Utility pages (legal, login, careers) with no SEO impact.
+
+Traffic thresholds and page type combinations determine the action automatically.`,
 };
 
 interface TooltipProps {
