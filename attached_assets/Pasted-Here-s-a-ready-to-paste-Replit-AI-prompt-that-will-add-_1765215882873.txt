@@ -1,0 +1,584 @@
+Here’s a ready-to-paste Replit AI prompt that will add the Priority Score system, derive tiers using ETV + Page Type + Page Intent + Business Relevance, and show tooltips + “why” popup on the final score.
+
+🔧 REPLIT PROMPT (copy–paste this into Replit AI / Ghostwriter)
+
+I already have a “Competitor Top Pages” dataset with at least these columns:
+
+Domain
+
+Location
+
+Page URL
+
+Est. Traffic (ETV) (Estimated Traffic Value for this page)
+
+Keywords Count
+
+Page Type (enum: PRODUCT_SERVICE, CATEGORY_COLLECTION, BLOG_ARTICLE_NEWS, RESOURCE_GUIDE_DOC, SUPPORT_CONTACT, COMPANY_ABOUT, ACCOUNT_AUTH, CAREERS_HR, LEGAL_POLICY, OTHER_MISC, etc.)
+
+Page Intent (enum: INFORMATIONAL, COMMERCIAL_RESEARCH, TRANSACTIONAL, SUPPORT, IRRELEVANT_SEO)
+
+SEO Relevant (boolean or YES/NO)
+
+SEO Action (current high-level action: HIGH_PRIORITY_TARGET, ADD_TO_CONTENT_CLUSTER, MONITOR_ONLY, OPTIMIZE_EXISTING_PAGE, IGNORE_IRRELEVANT)
+
+Confidence (HIGH / MEDIUM / LOW)
+
+Method (RULE / AI)
+
+Business Relevance (existing column to confirm if the domain is a direct competitor or not)
+
+Stack is TypeScript + API backend + React table UI (as you assumed earlier).
+
+Now I want to implement a second-layer classification that derives a Priority Score and Priority Tier, using:
+
+ETV (Estimated Traffic Value)
+
+Page Intent
+
+Page Type
+
+Business Relevance
+
+…and expose everything in the UI with:
+
+new columns
+
+detailed tooltips
+
+a clickable “why/how” breakdown for the Priority Score (hyperlinked explanation).
+
+1️⃣ DATA MODEL EXTENSION
+
+Extend the backend model / ORM for this table to add these new fields:
+
+priorityScore: number | null;          // 0–100
+priorityTier: "TIER_1_IMMEDIATE"
+            | "TIER_2_HIGH"
+            | "TIER_3_MEDIUM"
+            | "TIER_4_MONITOR"
+            | "TIER_5_IGNORE"
+            | null;
+
+etvNormalizedScore: number | null;     // 0–100
+intentScore: number | null;           // 0–100
+pageTypeScore: number | null;         // 0–100
+businessRelevanceScore: number | null;// 0–100
+
+/**
+ * JSON explanation how the priority score was calculated:
+ * - normalized ETV
+ * - intent score
+ * - page-type score
+ * - business relevance score
+ * - weights used
+ * - intermediate values
+ */
+priorityExplanation: Json | null;
+
+
+If you already have a classificationExplanation JSON, you can either:
+
+keep it separate, or
+
+embed this priority info as a sub-object (but still expose as priorityExplanation in code for clarity).
+
+Add DB migration for these fields.
+
+2️⃣ SCORING LOGIC – BACKEND MODULE
+
+Create a pure TypeScript module, e.g. priorityScoring.ts, that exports a function:
+
+type PageIntent =
+  | "INFORMATIONAL"
+  | "COMMERCIAL_RESEARCH"
+  | "TRANSACTIONAL"
+  | "NAVIGATIONAL"
+  | "SUPPORT"
+  | "IRRELEVANT_SEO";
+
+type PageType =
+  | "PRODUCT_SERVICE"
+  | "CATEGORY_COLLECTION"
+  | "BLOG_ARTICLE_NEWS"
+  | "RESOURCE_GUIDE_DOC"
+  | "PRICING_PLANS"
+  | "LANDING_CAMPAIGN"
+  | "SUPPORT_CONTACT"
+  | "COMPANY_ABOUT"
+  | "CAREERS_HR"
+  | "LEGAL_POLICY"
+  | "ACCOUNT_AUTH"
+  | "OTHER_MISC";
+
+type BusinessRelevanceValue = string | number; // depends on current implementation
+
+type PriorityTier =
+  | "TIER_1_IMMEDIATE"
+  | "TIER_2_HIGH"
+  | "TIER_3_MEDIUM"
+  | "TIER_4_MONITOR"
+  | "TIER_5_IGNORE";
+
+type PriorityInputs = {
+  etv: number | null;                     // Est. Traffic (ETV)
+  pageIntent: PageIntent | null;
+  pageType: PageType | null;
+  businessRelevance: BusinessRelevanceValue | null; // existing column
+};
+
+type PriorityResult = {
+  priorityScore: number;           // 0–100
+  priorityTier: PriorityTier;
+  etvNormalizedScore: number;      // 0–100
+  intentScore: number;             // 0–100
+  pageTypeScore: number;           // 0–100
+  businessRelevanceScore: number;  // 0–100
+  explanation: {
+    etvRaw: number | null;
+    etvMin: number | null;
+    etvMax: number | null;
+    etvNormalizedScore: number;
+    intentScore: number;
+    pageTypeScore: number;
+    businessRelevanceRaw: BusinessRelevanceValue | null;
+    businessRelevanceScore: number;
+    weights: {
+      etv: number;
+      intent: number;
+      pageType: number;
+      businessRelevance: number;
+    };
+    weightedComponents: {
+      etv: number;
+      intent: number;
+      pageType: number;
+      businessRelevance: number;
+    };
+    priorityScore: number;
+    priorityTier: PriorityTier;
+    notes: string;
+  };
+};
+
+export function calculatePriority(
+  inputs: PriorityInputs,
+  options?: {
+    etvMin?: number | null;
+    etvMax?: number | null;
+  }
+): PriorityResult;
+
+2.1 ETV Normalization (0–100)
+
+Implement ETV normalization per client or dataset:
+
+For a given batch (e.g. all pages for one client), compute etvMin and etvMax.
+
+If etvMax === etvMin, return etvNormalizedScore = 0 for all (avoid division by zero).
+
+Else:
+
+etvNormalizedScore = Math.round(
+  ((etv - etvMin) / (etvMax - etvMin)) * 100
+);
+
+
+If etv is null or ≤ 0, treat as 0.
+
+Store etvMin and etvMax used in the explanation.
+
+2.2 Intent Score Mapping (0–100)
+
+Map Page Intent to intentScore as:
+
+TRANSACTIONAL → 100
+
+COMMERCIAL_RESEARCH → 80
+
+INFORMATIONAL → 50
+
+SUPPORT → 20
+
+NAVIGATIONAL → 10
+
+IRRELEVANT_SEO → 0
+
+null/unknown → 0
+
+2.3 Page Type Score Mapping (0–100)
+
+Map Page Type to pageTypeScore as:
+
+PRODUCT_SERVICE → 100
+
+PRICING_PLANS → 100
+
+LANDING_CAMPAIGN → 90
+
+CATEGORY_COLLECTION → 70
+
+BLOG_ARTICLE_NEWS → 60
+
+RESOURCE_GUIDE_DOC → 50
+
+SUPPORT_CONTACT → 20
+
+COMPANY_ABOUT → 10
+
+CAREERS_HR → 0
+
+LEGAL_POLICY → 0
+
+ACCOUNT_AUTH → 0
+
+OTHER_MISC → 30
+
+null/unknown → 0
+
+2.4 Business Relevance Score (0–100)
+
+Use the existing Business Relevance column. It might be:
+
+categorical (e.g. DIRECT, INDIRECT, LOW, NONE), or
+
+numeric (0–1 or 0–100).
+
+Implement robust logic:
+
+If it's numeric:
+
+If 0–1 → multiply by 100.
+
+If 0–100 → use as is but clamp 0–100.
+
+If it's string (case-insensitive):
+
+DIRECT, CORE, PRIMARY → 100
+
+HIGH → 80
+
+MEDIUM / SECONDARY → 60
+
+LOW → 30
+
+NONE, IRRELEVANT → 0
+
+Unknown → 50 (neutral fallback)
+
+Store both raw value and mapped score in explanation.
+
+2.5 Weights and Final Priority Score
+
+Use these weights (you can make them config, but hardcode for now):
+
+etvWeight = 0.40 (40%)
+
+intentWeight = 0.25 (25%)
+
+pageTypeWeight = 0.20 (20%)
+
+businessRelevanceWeight = 0.15 (15%)
+
+Compute weighted components:
+
+weightedEtv = etvNormalizedScore * etvWeight;
+weightedIntent = intentScore * intentWeight;
+weightedPageType = pageTypeScore * pageTypeWeight;
+weightedBusinessRelevance = businessRelevanceScore * businessRelevanceWeight;
+
+
+Then:
+
+priorityScoreRaw = weightedEtv + weightedIntent + weightedPageType + weightedBusinessRelevance;
+priorityScore = Math.round(priorityScoreRaw);
+
+
+Clamp priorityScore to [0, 100].
+
+Fill the explanation.weightedComponents and explanation.weights with these details.
+
+2.6 Priority Tier Buckets
+
+Define Priority Tiers based on priorityScore:
+
+80–100 → TIER_1_IMMEDIATE (Immediate build / attack)
+
+60–79 → TIER_2_HIGH (High priority, 30–60 day window)
+
+40–59 → TIER_3_MEDIUM (Mid-term, content cluster support)
+
+20–39 → TIER_4_MONITOR (Monitor but no immediate action)
+
+0–19 → TIER_5_IGNORE (Ignore from active SEO work)
+
+Set explanation.notes with a simple human-readable sentence like:
+
+"Priority Score 87 → TIER_1_IMMEDIATE (ETV high, transactional intent, product/service page, direct competitor)."
+
+3️⃣ BATCH CALCULATION API
+
+Create an API endpoint, e.g.:
+
+POST /api/compute-priority
+
+Behavior:
+
+Takes a clientId or projectId.
+
+Fetches all competitor pages for that client.
+
+For that set, compute etvMin and etvMax (ignore null).
+
+For each row:
+
+Call calculatePriority with the row’s:
+
+etv
+
+pageIntent
+
+pageType
+
+businessRelevance
+
+and global etvMin / etvMax for that client.
+
+Persist:
+
+priorityScore
+
+priorityTier
+
+etvNormalizedScore
+
+intentScore
+
+pageTypeScore
+
+businessRelevanceScore
+
+priorityExplanation
+
+Return a summary: number of rows updated, min/max ETV, etc.
+
+Also expose a manual trigger in UI (button).
+
+4️⃣ FRONTEND – NEW COLUMNS & TOOLTIP COPY
+
+In the React table where competitor pages are displayed, add these visible columns:
+
+Priority Score (priorityScore)
+
+Priority Tier (priorityTier)
+
+Optionally visible (or collapsible / hidden by default, but still with tooltips):
+
+ETV Score (etvNormalizedScore)
+
+Intent Score (intentScore)
+
+Page Type Score (pageTypeScore)
+
+Business Relevance Score(businessRelevanceScore)
+
+For each column header, attach a detailed tooltip using your existing tooltip component. Please use the following descriptions (or very close):
+
+Column: Priority Score
+
+Backed by: priorityScore
+
+Tooltip text (long):
+
+Priority Score (0–100)
+This score ranks how important each competitor page is for your SEO work, combining:
+– Estimated Traffic Value (ETV)
+– Page Intent (how close the user is to buying)
+– Page Type (product vs blog vs support, etc.)
+– Business Relevance (how directly this domain competes with you)
+The formula uses weighted components:
+– ETV weight: 40%
+– Intent weight: 25%
+– Page Type weight: 20%
+– Business Relevance weight: 15%
+A higher score means this page is more strategic to attack or model.
+Click on the score to see a full breakdown of how it was calculated for that row.
+
+Column: Priority Tier
+
+Backed by: priorityTier
+
+Tooltip:
+
+Priority Tier
+Groups pages into clear, actionable priority levels based on the Priority Score:
+– TIER_1_IMMEDIATE (80–100): Attack immediately (key money pages)
+– TIER_2_HIGH (60–79): High priority (build/rewrite within 30–60 days)
+– TIER_3_MEDIUM (40–59): Medium priority (cluster support, secondary work)
+– TIER_4_MONITOR (20–39): Monitor but no urgent action
+– TIER_5_IGNORE (0–19): Ignore from active SEO tasks
+Use this to break a huge list of pages into manageable work batches.
+
+Column: ETV Score
+
+Backed by: etvNormalizedScore
+
+Tooltip:
+
+ETV Score (0–100)
+Normalized version of Estimated Traffic Value (ETV) for this page.
+Pages with the highest ETV across all competitors get scores close to 100, and the lowest get scores near 0.
+This reflects how valuable the traffic is (based on volume, position and estimated click-through).
+It contributes 40% of the overall Priority Score.
+
+Column: Intent Score
+
+Backed by: intentScore
+
+Tooltip:
+
+Intent Score (0–100)
+Numeric representation of how “close to buying” the search intent is:
+– TRANSACTIONAL → 100
+– COMMERCIAL_RESEARCH → 80
+– INFORMATIONAL → 50
+– SUPPORT → 20
+– NAVIGATIONAL → 10
+– IRRELEVANT_SEO → 0
+This contributes 25% of the overall Priority Score.
+
+Column: Page Type Score
+
+Backed by: pageTypeScore
+
+Tooltip:
+
+Page Type Score (0–100)
+Indicates how commercially important the page type is for SEO:
+– PRODUCT_SERVICE, PRICING_PLANS → 100
+– LANDING_CAMPAIGN → 90
+– CATEGORY_COLLECTION → 70
+– BLOG_ARTICLE_NEWS → 60
+– RESOURCE_GUIDE_DOC → 50
+– SUPPORT_CONTACT → 20
+– COMPANY_ABOUT → 10
+– CAREERS_HR, LEGAL_POLICY, ACCOUNT_AUTH → 0
+– OTHER_MISC → 30
+This contributes 20% of the overall Priority Score.
+
+Column: Business Relevance Score
+
+Backed by: businessRelevanceScore
+
+Tooltip:
+
+Business Relevance Score (0–100)
+Converts the existing Business Relevance field (how directly this domain competes with you) into a numeric score.
+Example mapping:
+– DIRECT / CORE competitors → 100
+– HIGH relevance → 80
+– MEDIUM / SECONDARY → 60
+– LOW → 30
+– NONE / IRRELEVANT → 0
+If the field is already numeric (0–1 or 0–100), it is scaled or used directly.
+This contributes 15% of the overall Priority Score, so pages from closer competitors are prioritized.
+
+5️⃣ HYPERLINK / POPUP FOR “WHY THIS PRIORITY?”
+
+For the Priority Score cell:
+
+Render the numeric score normally (e.g. 87).
+
+Next to it, render:
+
+either the entire score as a clickable element, or
+
+the score plus a small [why?] link or info icon.
+
+On click:
+
+Open a modal or popover that displays the contents of priorityExplanation.
+
+Suggested layout inside the modal:
+
+Title: How this priority was calculated
+
+Sections (read from priorityExplanation):
+
+Raw values:
+
+ETV raw, ETV min, ETV max
+
+Page Intent, Page Intent Score
+
+Page Type, Page Type Score
+
+Business Relevance (raw), Business Relevance Score
+
+Weights:
+
+ETV: 40%
+
+Intent: 25%
+
+Page Type: 20%
+
+Business Relevance: 15%
+
+Weighted components:
+
+ETV: XX * 0.40 = YY
+
+Intent: AA * 0.25 = BB
+
+Page Type: CC * 0.20 = DD
+
+Business Relevance: EE * 0.15 = FF
+
+Final Priority Score and Tier:
+
+e.g. "Priority Score: 87 → Tier: TIER_1_IMMEDIATE"
+
+Notes:
+
+show the human-readable notes string.
+
+This satisfies the requirement:
+
+“the final score should be hyperlinked to know how the priority was decided.”
+
+6️⃣ SMALL UX ADD-ONS
+
+Add filters for:
+
+Priority Tier
+
+minimum Priority Score slider (e.g. >= 60)
+
+Add a “Compute / Recompute Priority” button:
+
+Calls /api/compute-priority
+
+Then refreshes the table.
+
+7️⃣ CODE STYLE
+
+Use TypeScript with proper typings.
+
+Keep calculatePriority pure and testable (no DB inside it).
+
+Make the scoring weights easy to change in one place if needed later.
+
+Ensure tooltips and modal texts are exactly or very close to what I provided.
+
+Implement all of the above end-to-end:
+
+backend model updates
+
+scoring module (priorityScoring.ts)
+
+API for batch compute
+
+React table columns with tooltips
+
+Priority Score cell hyperlinked to the breakdown popup using priorityExplanation.
