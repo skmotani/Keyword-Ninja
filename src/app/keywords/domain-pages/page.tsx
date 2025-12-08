@@ -532,7 +532,7 @@ function PriorityExplanationModal({ breakdown, score, tier, onClose }: PriorityE
   if (!breakdown) return null;
 
   const formatWeight = (weight: number) => `${(weight * 100).toFixed(0)}%`;
-  const formatScore = (score: number) => score.toFixed(1);
+  const formatScoreVal = (val: number) => val.toFixed(1);
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={onClose}>
@@ -565,44 +565,44 @@ function PriorityExplanationModal({ breakdown, score, tier, onClose }: PriorityE
             <div className="bg-blue-50 rounded-lg p-3">
               <div className="flex justify-between items-center mb-1">
                 <span className="text-sm font-medium text-blue-800">ETV Score</span>
-                <span className="text-sm text-blue-600">Weight: {formatWeight(breakdown.weights.etv)}</span>
+                <span className="text-sm text-blue-600">Weight: {formatWeight(breakdown.etvWeight)}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-xs text-blue-600">Raw Score: {formatScore(breakdown.etvScore)}</span>
-                <span className="text-lg font-bold text-blue-800">{formatScore(breakdown.etvScore * breakdown.weights.etv)}</span>
+                <span className="text-xs text-blue-600">Raw Score: {formatScoreVal(breakdown.etvScore)} (Raw ETV: {breakdown.rawEtv?.toLocaleString() ?? '-'}, Max: {breakdown.maxEtvInDataset?.toLocaleString()})</span>
+                <span className="text-lg font-bold text-blue-800">{formatScoreVal(breakdown.etvScore * breakdown.etvWeight)}</span>
               </div>
             </div>
 
             <div className="bg-green-50 rounded-lg p-3">
               <div className="flex justify-between items-center mb-1">
                 <span className="text-sm font-medium text-green-800">Intent Score</span>
-                <span className="text-sm text-green-600">Weight: {formatWeight(breakdown.weights.intent)}</span>
+                <span className="text-sm text-green-600">Weight: {formatWeight(breakdown.intentWeight)}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-xs text-green-600">Raw Score: {formatScore(breakdown.intentScore)}</span>
-                <span className="text-lg font-bold text-green-800">{formatScore(breakdown.intentScore * breakdown.weights.intent)}</span>
+                <span className="text-xs text-green-600">Raw Score: {formatScoreVal(breakdown.intentScore)}</span>
+                <span className="text-lg font-bold text-green-800">{formatScoreVal(breakdown.intentScore * breakdown.intentWeight)}</span>
               </div>
             </div>
 
             <div className="bg-purple-50 rounded-lg p-3">
               <div className="flex justify-between items-center mb-1">
                 <span className="text-sm font-medium text-purple-800">Page Type Score</span>
-                <span className="text-sm text-purple-600">Weight: {formatWeight(breakdown.weights.pageType)}</span>
+                <span className="text-sm text-purple-600">Weight: {formatWeight(breakdown.pageTypeWeight)}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-xs text-purple-600">Raw Score: {formatScore(breakdown.pageTypeScore)}</span>
-                <span className="text-lg font-bold text-purple-800">{formatScore(breakdown.pageTypeScore * breakdown.weights.pageType)}</span>
+                <span className="text-xs text-purple-600">Raw Score: {formatScoreVal(breakdown.pageTypeScore)}</span>
+                <span className="text-lg font-bold text-purple-800">{formatScoreVal(breakdown.pageTypeScore * breakdown.pageTypeWeight)}</span>
               </div>
             </div>
 
             <div className="bg-orange-50 rounded-lg p-3">
               <div className="flex justify-between items-center mb-1">
                 <span className="text-sm font-medium text-orange-800">Business Relevance Score</span>
-                <span className="text-sm text-orange-600">Weight: {formatWeight(breakdown.weights.businessRelevance)}</span>
+                <span className="text-sm text-orange-600">Weight: {formatWeight(breakdown.businessRelevanceWeight)}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-xs text-orange-600">Raw Score: {formatScore(breakdown.businessRelevanceScore)}</span>
-                <span className="text-lg font-bold text-orange-800">{formatScore(breakdown.businessRelevanceScore * breakdown.weights.businessRelevance)}</span>
+                <span className="text-xs text-orange-600">Raw Score: {formatScoreVal(breakdown.businessRelevanceScore)}</span>
+                <span className="text-lg font-bold text-orange-800">{formatScoreVal(breakdown.businessRelevanceScore * breakdown.businessRelevanceWeight)}</span>
               </div>
             </div>
           </div>
@@ -610,7 +610,7 @@ function PriorityExplanationModal({ breakdown, score, tier, onClose }: PriorityE
           <div className="border-t pt-4 mt-4">
             <div className="flex justify-between items-center">
               <span className="text-sm font-medium text-gray-700">Final Priority Score</span>
-              <span className="text-2xl font-bold text-indigo-600">{formatScore(breakdown.finalScore)}</span>
+              <span className="text-2xl font-bold text-indigo-600">{score?.toFixed(1) ?? '-'}</span>
             </div>
           </div>
         </div>
