@@ -1093,100 +1093,6 @@ export interface DomainTopPagesResult {
   rawResponse: string;
 }
 
-async function fetchTopPagesFromRankedKeywords(
-  credentials: { username: string; password: string },
-  domain: string,
-  locationCode: string,
-  limit: number
-): Promise<DomainTopPageItem[]> {
-  const authString = Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64');
-  const numericLocCode = LOCATION_CODE_MAP[locationCode] || 2356;
-  const langCode = LANGUAGE_CODE_MAP[locationCode] || 'en';
-  const cleanDomain = domain.replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/.*$/, '').toLowerCase().trim();
-
-  console.log(`[DataForSEO Top Pages Fallback] Using ranked keywords to calculate top pages for ${cleanDomain}`);
-
-  try {
-    const requestBody = [{
-      target: cleanDomain,
-      location_code: numericLocCode,
-      language_code: langCode,
-      limit: 1000,
-      order_by: ['keyword_data.keyword_info.search_volume,desc'],
-    }];
-
-    const response = await fetch(
-      'https://api.dataforseo.com/v3/dataforseo_labs/google/ranked_keywords/live',
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': `Basic ${authString}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-      }
-    );
-
-    if (!response.ok) {
-      console.error(`[DataForSEO Top Pages Fallback] API Error for ${cleanDomain}:`, response.status);
-      return [];
-    }
-
-    const responseText = await response.text();
-    const data = JSON.parse(responseText);
-
-    if (data.status_code !== 20000) {
-      console.error(`[DataForSEO Top Pages Fallback] Status error for ${cleanDomain}:`, data.status_message);
-      return [];
-    }
-
-    const pageMap: Map<string, { etv: number; keywordCount: number }> = new Map();
-
-    for (const task of data.tasks || []) {
-      if (task.status_code !== 20000 || !task.result) continue;
-      
-      for (const r of task.result) {
-        const items = r.items || [];
-        for (const item of items) {
-          const url = item.ranked_serp_element?.serp_item?.url;
-          if (!url) continue;
-          
-          const searchVolume = item.keyword_data?.keyword_info?.search_volume || 0;
-          const position = item.ranked_serp_element?.serp_item?.rank_group || 100;
-          
-          const ctr = position <= 1 ? 0.28 : 
-                     position <= 3 ? 0.15 : 
-                     position <= 10 ? 0.05 : 
-                     position <= 20 ? 0.02 : 0.01;
-          const estimatedTraffic = searchVolume * ctr;
-          
-          const existing = pageMap.get(url) || { etv: 0, keywordCount: 0 };
-          pageMap.set(url, {
-            etv: existing.etv + estimatedTraffic,
-            keywordCount: existing.keywordCount + 1,
-          });
-        }
-      }
-    }
-
-    const pages: DomainTopPageItem[] = Array.from(pageMap.entries())
-      .map(([url, data]) => ({
-        pageURL: url,
-        estTrafficETV: Math.round(data.etv * 100) / 100,
-        keywordsCount: data.keywordCount,
-      }))
-      .sort((a, b) => (b.estTrafficETV || 0) - (a.estTrafficETV || 0))
-      .slice(0, limit);
-
-    console.log(`[DataForSEO Top Pages Fallback] ${cleanDomain}: Calculated ${pages.length} pages from ranked keywords`);
-    return pages;
-  } catch (error) {
-    const errMsg = error instanceof Error ? error.message : 'Unknown error';
-    console.error(`[DataForSEO Top Pages Fallback] Error for ${cleanDomain}:`, errMsg);
-    return [];
-  }
-}
-
 export async function fetchDomainTopPages(
   credentials: { username: string; password: string },
   domain: string,
@@ -1220,10 +1126,11 @@ export async function fetchDomainTopPages(
       language_code: langCode,
       limit: limit,
       order_by: ['metrics.organic.etv,desc'],
+      mode: 'subdomains',
     }];
 
     const response = await fetch(
-      'https://api.dataforseo.com/v3/dataforseo_labs/google/top_pages/live',
+      'https://api.dataforseo.com/v3/dataforseo_labs/google/domain_pages/live',
       {
         method: 'POST',
         headers: {
@@ -1238,12 +1145,7 @@ export async function fetchDomainTopPages(
     result.rawResponse = responseText;
 
     if (!response.ok) {
-      console.error(`[DataForSEO Top Pages] API Error for ${cleanDomain}:`, response.status);
-      const fallbackPages = await fetchTopPagesFromRankedKeywords(credentials, domain, locationCode, limit);
-      if (fallbackPages.length > 0) {
-        result.pages = fallbackPages;
-        result.rawResponse = JSON.stringify({ fallback: true, source: 'ranked_keywords', pages: fallbackPages.length });
-      }
+      console.error(`[DataForSEO Domain Pages] API Error for ${cleanDomain}:`, response.status);
       return result;
     }
 
@@ -1299,14 +1201,9 @@ export async function fetchDomainTopPages(
       }
       console.log(`[DataForSEO Top Pages] ${cleanDomain}: Found ${result.pages.length} pages`);
     } else if (data.status_code === 40400) {
-      console.log(`[DataForSEO Top Pages] No direct data for ${cleanDomain}, using fallback...`);
-      const fallbackPages = await fetchTopPagesFromRankedKeywords(credentials, domain, locationCode, limit);
-      if (fallbackPages.length > 0) {
-        result.pages = fallbackPages;
-        result.rawResponse = JSON.stringify({ fallback: true, source: 'ranked_keywords', original_status: 40400, pages: fallbackPages.length });
-      }
+      console.log(`[DataForSEO Domain Pages] No data available for ${cleanDomain} (40400)`);
     } else {
-      console.error(`[DataForSEO Top Pages] Status error for ${cleanDomain}:`, data.status_message);
+      console.error(`[DataForSEO Domain Pages] Status error for ${cleanDomain}:`, data.status_message);
     }
   } catch (error) {
     const errMsg = error instanceof Error ? error.message : 'Unknown error';
