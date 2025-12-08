@@ -818,6 +818,7 @@ export default function DomainPagesPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(50);
   const [calculatingPriority, setCalculatingPriority] = useState(false);
+  const [classifyingProducts, setClassifyingProducts] = useState(false);
   const [priorityTierFilter, setPriorityTierFilter] = useState<string>('all');
   const [selectedPriorityBreakdown, setSelectedPriorityBreakdown] = useState<{ breakdown: PriorityScoreBreakdown; score: number; tier: PriorityTier } | null>(null);
 
@@ -1010,6 +1011,31 @@ export default function DomainPagesPage() {
       setNotification({ type: 'error', message: 'Error calculating priority scores' });
     } finally {
       setCalculatingPriority(false);
+    }
+  };
+
+  const handleClassifyProducts = async () => {
+    if (!selectedClientCode) return;
+    setClassifyingProducts(true);
+    setNotification(null);
+    try {
+      const res = await fetch('/api/classify-products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clientCode: selectedClientCode }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setNotification({ type: 'success', message: data.message });
+        await fetchRecords();
+      } else {
+        setNotification({ type: 'error', message: data.error || 'Failed to classify products' });
+      }
+    } catch (error) {
+      console.error('Error classifying products:', error);
+      setNotification({ type: 'error', message: 'Error classifying products' });
+    } finally {
+      setClassifyingProducts(false);
     }
   };
 
@@ -1337,6 +1363,29 @@ export default function DomainPagesPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                   </svg>
                   Calculate Priority
+                </>
+              )}
+            </button>
+
+            <button
+              onClick={handleClassifyProducts}
+              disabled={classifyingProducts || records.length === 0}
+              className="px-4 py-2 bg-cyan-600 text-white text-sm font-medium rounded-md hover:bg-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {classifyingProducts ? (
+                <>
+                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  </svg>
+                  Classifying...
+                </>
+              ) : (
+                <>
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  </svg>
+                  Classify Products
                 </>
               )}
             </button>
