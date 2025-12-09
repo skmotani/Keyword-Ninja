@@ -896,7 +896,7 @@ export default function DomainPagesPage() {
   const [refreshing, setRefreshing] = useState(false);
   const [classifying, setClassifying] = useState(false);
   const [aiClassifying, setAiClassifying] = useState(false);
-  const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [notification, setNotification] = useState<{ type: 'success' | 'error' | 'warning'; message: string } | null>(null);
 
   const [domainFilter, setDomainFilter] = useState<string>('all');
   const [locationFilter, setLocationFilter] = useState('all');
@@ -1156,9 +1156,10 @@ export default function DomainPagesPage() {
       });
       const data = await res.json();
       if (res.ok && data.success) {
+        const hasErrors = data.errors && data.errors.length > 0;
         setNotification({
-          type: 'success',
-          message: `LLM Clustering complete: ${data.totalProcessed} URLs processed, ${data.clustersCreated} clusters created. Sample: ${data.sampleLabels?.slice(0, 3).join(', ')}`,
+          type: hasErrors ? 'warning' : 'success',
+          message: `LLM Clustering complete: ${data.totalProcessed} URLs processed, ${data.clustersCreated} clusters created.${hasErrors ? ` (${data.errors.length} batch(es) had minor issues but were skipped)` : ''} Sample: ${data.sampleLabels?.slice(0, 3).join(', ')}`,
         });
         await fetchRecords();
       } else {
@@ -1633,6 +1634,8 @@ export default function DomainPagesPage() {
           className={`mb-4 p-4 rounded-md ${
             notification.type === 'success'
               ? 'bg-green-50 text-green-800 border border-green-200'
+              : notification.type === 'warning'
+              ? 'bg-yellow-50 text-yellow-800 border border-yellow-200'
               : 'bg-red-50 text-red-800 border border-red-200'
           }`}
         >

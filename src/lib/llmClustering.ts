@@ -335,9 +335,10 @@ export async function runLlmClusteringForDomainPages(
     await writeDomainPages(Array.from(recordMap.values()));
 
     result.sampleLabels = Array.from(allLabels).slice(0, 10);
-    result.success = result.errors.length === 0;
+    // Consider it a success if we processed any URLs, even if some batches failed
+    result.success = result.totalProcessed > 0;
 
-    console.log(`LLM Clustering complete: ${result.totalProcessed} URLs, ${result.totalBatches} batches, ${result.clustersCreated} clusters`);
+    console.log(`LLM Clustering complete: ${result.totalProcessed} URLs, ${result.totalBatches} batches, ${result.clustersCreated} clusters${result.errors.length > 0 ? ` (${result.errors.length} batch errors)` : ''}`);
 
     return result;
   } catch (error) {
