@@ -108,13 +108,45 @@ Items:
 ${itemsText}`;
 }
 
+function repairJson(jsonStr: string): string {
+  let fixed = jsonStr;
+  
+  // Remove any trailing commas before ] or }
+  fixed = fixed.replace(/,(\s*[}\]])/g, '$1');
+  
+  // Fix unescaped newlines in strings
+  fixed = fixed.replace(/(?<!\\)\\n/g, '\\n');
+  
+  // Fix truncated JSON - try to close unclosed brackets
+  const openBrackets = (fixed.match(/\[/g) || []).length;
+  const closeBrackets = (fixed.match(/\]/g) || []).length;
+  const openBraces = (fixed.match(/\{/g) || []).length;
+  const closeBraces = (fixed.match(/\}/g) || []).length;
+  
+  // Add missing closing brackets
+  for (let i = 0; i < openBrackets - closeBrackets; i++) {
+    fixed += ']';
+  }
+  for (let i = 0; i < openBraces - closeBraces; i++) {
+    fixed += '}';
+  }
+  
+  // Remove incomplete last array element if JSON is truncated mid-object
+  // Match pattern: {...}, { incomplete... and remove the incomplete part
+  fixed = fixed.replace(/,\s*\{[^}]*$/g, '');
+  
+  return fixed;
+}
+
 export async function clusterUrlsWithLlm(
   items: UrlItem[],
   options?: {
     batchLabel?: string;
+    maxRetries?: number;
   }
 ): Promise<LlmClusterResult> {
   const openaiApiKey = process.env.OPENAI_API_KEY;
+  const maxRetries = options?.maxRetries ?? 2;
   
   if (!openaiApiKey) {
     throw new Error('OPENAI_API_KEY is not set');
@@ -124,36 +156,69 @@ export async function clusterUrlsWithLlm(
   
   const userPrompt = buildUserPrompt(items);
 
-  try {
-    const response = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [
-        { role: 'system', content: SYSTEM_PROMPT },
-        { role: 'user', content: userPrompt },
-      ],
-      temperature: 0.2,
-      max_tokens: 4000,
-    });
+  let lastError: Error | null = null;
+  
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      const response = await openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages: [
+          { role: 'system', content: SYSTEM_PROMPT },
+          { role: 'user', content: userPrompt },
+        ],
+        temperature: 0.2,
+        max_tokens: 8000, // Increased to prevent truncation
+        response_format: { type: 'json_object' }, // Force JSON output
+      });
 
-    const content = response.choices[0]?.message?.content?.trim() || '';
-    
-    const jsonMatch = content.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) {
-      console.error('Failed to extract JSON from LLM response:', content.substring(0, 500));
-      throw new Error('Failed to extract JSON from LLM response');
+      const content = response.choices[0]?.message?.content?.trim() || '';
+      
+      if (!content) {
+        throw new Error('Empty response from LLM');
+      }
+      
+      // Try to extract JSON object
+      let jsonStr = content;
+      const jsonMatch = content.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        jsonStr = jsonMatch[0];
+      }
+
+      let parsed: LlmClusterResult;
+      try {
+        parsed = JSON.parse(jsonStr) as LlmClusterResult;
+      } catch (parseError) {
+        // Try to repair the JSON
+        console.log(`Attempting JSON repair for batch (attempt ${attempt + 1})...`);
+        const repairedJson = repairJson(jsonStr);
+        parsed = JSON.parse(repairedJson) as LlmClusterResult;
+      }
+      
+      if (!parsed.clusters || !Array.isArray(parsed.clusters)) {
+        throw new Error('Invalid LLM response structure: missing clusters array');
+      }
+
+      // Validate cluster structure
+      for (const cluster of parsed.clusters) {
+        if (!cluster.cluster_id || !cluster.cluster_label || !Array.isArray(cluster.member_ids)) {
+          throw new Error('Invalid cluster structure in response');
+        }
+      }
+
+      return parsed;
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error('Unknown error');
+      console.error(`LLM clustering attempt ${attempt + 1} failed:`, lastError.message);
+      
+      if (attempt < maxRetries) {
+        // Wait before retry (exponential backoff)
+        await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1)));
+      }
     }
-
-    const parsed = JSON.parse(jsonMatch[0]) as LlmClusterResult;
-    
-    if (!parsed.clusters || !Array.isArray(parsed.clusters)) {
-      throw new Error('Invalid LLM response structure: missing clusters array');
-    }
-
-    return parsed;
-  } catch (error) {
-    console.error('LLM clustering error:', error);
-    throw error;
   }
+  
+  console.error('LLM clustering error after all retries:', lastError);
+  throw lastError;
 }
 
 async function readDomainPages(): Promise<DomainPageRecord[]> {
