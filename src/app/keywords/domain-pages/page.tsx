@@ -1214,9 +1214,9 @@ export default function DomainPagesPage() {
 
     if (clusterNameFilter !== 'all') {
       if (clusterNameFilter === 'none') {
-        filtered = filtered.filter(r => !r.clusterName);
+        filtered = filtered.filter(r => !(r.cluster || r.clusterName));
       } else {
-        filtered = filtered.filter(r => r.clusterName === clusterNameFilter);
+        filtered = filtered.filter(r => (r.cluster || r.clusterName) === clusterNameFilter);
       }
     }
 
@@ -1263,7 +1263,8 @@ export default function DomainPagesPage() {
   const uniqueClusterNames = useMemo(() => {
     const clusters = new Set<string>();
     records.forEach(r => {
-      if (r.clusterName) clusters.add(r.clusterName);
+      const clusterValue = r.cluster || r.clusterName;
+      if (clusterValue) clusters.add(clusterValue);
     });
     return Array.from(clusters).sort();
   }, [records]);
@@ -1292,8 +1293,9 @@ export default function DomainPagesPage() {
         productBreakdown[r.matchedProduct] = (productBreakdown[r.matchedProduct] || 0) + 1;
         productClassifiedCount++;
       }
-      if (r.clusterName) {
-        clusterBreakdown[r.clusterName] = (clusterBreakdown[r.clusterName] || 0) + 1;
+      const clusterValue = r.cluster || r.clusterName;
+      if (clusterValue) {
+        clusterBreakdown[clusterValue] = (clusterBreakdown[clusterValue] || 0) + 1;
       }
       if (r.seoAction) {
         actionBreakdown[r.seoAction] = (actionBreakdown[r.seoAction] || 0) + 1;
