@@ -18,7 +18,6 @@ import {
   getPriorityTierBadgeColor,
 } from '@/lib/priorityScoring';
 import {
-  getClusterBadgeColor,
   getProductBadgeColor,
 } from '@/lib/productClustering';
 
@@ -910,7 +909,6 @@ export default function DomainPagesPage() {
   const [seoActionFilter, setSeoActionFilter] = useState<string>('all');
   const [classificationMethodFilter, setClassificationMethodFilter] = useState<string>('all');
   const [matchedProductFilter, setMatchedProductFilter] = useState<string>('all');
-  const [clusterNameFilter, setClusterNameFilter] = useState<string>('all');
   const [llmClusterLabelFilter, setLlmClusterLabelFilter] = useState<string>('all');
   const [llmClustering, setLlmClustering] = useState(false);
   const [sortField, setSortField] = useState<SortField>(null);
@@ -1251,14 +1249,6 @@ export default function DomainPagesPage() {
       }
     }
 
-    if (clusterNameFilter !== 'all') {
-      if (clusterNameFilter === 'none') {
-        filtered = filtered.filter(r => !(r.cluster || r.clusterName));
-      } else {
-        filtered = filtered.filter(r => (r.cluster || r.clusterName) === clusterNameFilter);
-      }
-    }
-
     if (llmClusterLabelFilter !== 'all') {
       if (llmClusterLabelFilter === 'none') {
         filtered = filtered.filter(r => !r.llmClusterLabel);
@@ -1268,7 +1258,7 @@ export default function DomainPagesPage() {
     }
 
     return filtered;
-  }, [records, domainFilter, locationFilter, urlFilter, trafficMinFilter, keywordsMinFilter, pageTypeFilter, pageIntentFilter, seoRelevantFilter, seoActionFilter, classificationMethodFilter, priorityTierFilter, matchedProductFilter, clusterNameFilter, llmClusterLabelFilter]);
+  }, [records, domainFilter, locationFilter, urlFilter, trafficMinFilter, keywordsMinFilter, pageTypeFilter, pageIntentFilter, seoRelevantFilter, seoActionFilter, classificationMethodFilter, priorityTierFilter, matchedProductFilter, llmClusterLabelFilter]);
 
   const sortedRecords = useMemo(() => {
     if (!sortField) return filteredRecords;
@@ -1307,15 +1297,6 @@ export default function DomainPagesPage() {
     return Array.from(products).sort();
   }, [records]);
 
-  const uniqueClusterNames = useMemo(() => {
-    const clusters = new Set<string>();
-    records.forEach(r => {
-      const clusterValue = r.cluster || r.clusterName;
-      if (clusterValue) clusters.add(clusterValue);
-    });
-    return Array.from(clusters).sort();
-  }, [records]);
-
   const uniqueLlmClusterLabels = useMemo(() => {
     const labels = new Set<string>();
     records.forEach(r => {
@@ -1332,7 +1313,6 @@ export default function DomainPagesPage() {
     const methodBreakdown: Record<string, number> = {};
     const priorityTierBreakdown: Record<string, number> = {};
     const productBreakdown: Record<string, number> = {};
-    const clusterBreakdown: Record<string, number> = {};
     const llmClusterBreakdown: Record<string, number> = {};
     let seoYes = 0, seoNo = 0;
     let priorityCalculatedCount = 0;
@@ -1349,10 +1329,6 @@ export default function DomainPagesPage() {
       if (r.matchedProduct) {
         productBreakdown[r.matchedProduct] = (productBreakdown[r.matchedProduct] || 0) + 1;
         productClassifiedCount++;
-      }
-      const clusterValue = r.cluster || r.clusterName;
-      if (clusterValue) {
-        clusterBreakdown[clusterValue] = (clusterBreakdown[clusterValue] || 0) + 1;
       }
       if (r.llmClusterLabel) {
         llmClusterBreakdown[r.llmClusterLabel] = (llmClusterBreakdown[r.llmClusterLabel] || 0) + 1;
@@ -1375,7 +1351,7 @@ export default function DomainPagesPage() {
       if (r.isSeoRelevant === false) seoNo++;
     });
 
-    return { typeBreakdown, intentBreakdown, actionBreakdown, confidenceBreakdown, methodBreakdown, priorityTierBreakdown, priorityCalculatedCount, seoYes, seoNo, productBreakdown, clusterBreakdown, productClassifiedCount, llmClusterBreakdown, llmClusteredCount };
+    return { typeBreakdown, intentBreakdown, actionBreakdown, confidenceBreakdown, methodBreakdown, priorityTierBreakdown, priorityCalculatedCount, seoYes, seoNo, productBreakdown, productClassifiedCount, llmClusterBreakdown, llmClusteredCount };
   }, [filteredRecords]);
 
   const totalPages = Math.ceil(sortedRecords.length / itemsPerPage);
@@ -1590,9 +1566,11 @@ export default function DomainPagesPage() {
                 { key: 'priorityScore', header: 'Priority Score' },
                 { key: 'priorityTier', header: 'Priority Tier' },
                 { key: 'matchedProduct', header: 'Matched Product' },
-                { key: 'cluster', header: 'Cluster' },
+                { key: 'llmClusterId', header: 'LLM Cluster ID' },
                 { key: 'llmClusterLabel', header: 'LLM Cluster Label' },
                 { key: 'llmClusterDescription', header: 'LLM Cluster Description' },
+                { key: 'llmClusterBatchId', header: 'LLM Cluster Batch' },
+                { key: 'llmClusterRunId', header: 'LLM Cluster Run' },
               ] as ExportColumn<DomainPageRecord>[]}
               filename={`domain-pages-${selectedClientCode}-${new Date().toISOString().split('T')[0]}`}
             />
@@ -1864,25 +1842,6 @@ export default function DomainPagesPage() {
               </div>
             )}
 
-            {/* Cluster Breakdown */}
-            {Object.keys(classificationBreakdown.clusterBreakdown).length > 0 && (
-              <div className="bg-white rounded-lg p-3 shadow-sm">
-                <div className="text-xs font-medium text-gray-600 mb-2">Clusters</div>
-                <div className="space-y-1 max-h-32 overflow-y-auto">
-                  {Object.entries(classificationBreakdown.clusterBreakdown)
-                    .sort((a, b) => b[1] - a[1])
-                    .map(([cluster, count]) => (
-                      <div key={cluster} className="flex justify-between text-[10px]">
-                        <span className={`px-1 rounded ${getClusterBadgeColor(cluster)}`}>
-                          {cluster}
-                        </span>
-                        <span className="font-medium text-gray-700">{count}</span>
-                      </div>
-                    ))}
-                </div>
-              </div>
-            )}
-
             {/* LLM Cluster Breakdown */}
             {classificationBreakdown.llmClusteredCount > 0 && (
               <div className="bg-white rounded-lg p-3 shadow-sm">
@@ -2021,20 +1980,6 @@ export default function DomainPagesPage() {
               <option value="none">No Match</option>
               {uniqueMatchedProducts.map(product => (
                 <option key={product} value={product}>{product}</option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1">Cluster</label>
-            <select
-              value={clusterNameFilter}
-              onChange={e => setClusterNameFilter(e.target.value)}
-              className="w-full border rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              <option value="all">All Clusters</option>
-              <option value="none">No Cluster</option>
-              {uniqueClusterNames.map(cluster => (
-                <option key={cluster} value={cluster}>{cluster}</option>
               ))}
             </select>
           </div>
@@ -2212,9 +2157,6 @@ export default function DomainPagesPage() {
                 <th className="px-1 py-1.5 text-left text-[9px] font-medium text-gray-500 uppercase w-[90px]">
                   Product
                 </th>
-                <th className="px-1 py-1.5 text-left text-[9px] font-medium text-gray-500 uppercase w-[100px]">
-                  Cluster
-                </th>
                 <th className="px-1 py-1.5 text-left text-[9px] font-medium text-gray-500 uppercase w-[120px]" title="LLM-based topic clustering using OpenAI">
                   LLM Cluster
                 </th>
@@ -2356,24 +2298,6 @@ export default function DomainPagesPage() {
                       <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${getProductBadgeColor(record.matchedProduct)}`}>
                         {record.matchedProduct.length > 12 ? record.matchedProduct.substring(0, 12) + '...' : record.matchedProduct}
                       </span>
-                    ) : (
-                      <span className="text-gray-400 text-[9px]">-</span>
-                    )}
-                  </td>
-                  <td className="px-1 py-1 whitespace-nowrap w-[100px]">
-                    {(record.cluster || record.clusterName) ? (
-                      <div className="flex items-center gap-1">
-                        <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${getClusterBadgeColor(record.cluster || record.clusterName)}`}>
-                          {((record.cluster || record.clusterName) || '').length > 12 
-                            ? ((record.cluster || record.clusterName) || '').substring(0, 12) + '...' 
-                            : (record.cluster || record.clusterName)}
-                        </span>
-                        {record.clusterSource === 'AI' && (
-                          <span className="inline-flex items-center px-1 py-0 rounded text-[7px] font-bold bg-purple-100 text-purple-700" title="Cluster tagged by AI">
-                            AI
-                          </span>
-                        )}
-                      </div>
                     ) : (
                       <span className="text-gray-400 text-[9px]">-</span>
                     )}
