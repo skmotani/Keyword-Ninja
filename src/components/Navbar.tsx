@@ -13,6 +13,7 @@ const masterItems = [
 const reportItems = [
   { href: '/report/competitors', label: 'Unique Domains' },
   { href: '/report/cluster-intelligence', label: 'Cluster Intelligence' },
+  { href: '/report/cluster-intelligence-1', label: 'Cluster Intelligence (URL)' },
 ];
 
 const seoDataItems = [

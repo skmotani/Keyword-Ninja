@@ -37,6 +37,20 @@ interface Competitor {
   isActive: boolean;
 }
 
+type ClusterSourceType = 'RULE' | 'AI';
+
+interface ClusterExplanationData {
+  source: ClusterSourceType;
+  rulesApplied?: string[];
+  reasoning: string;
+  urlPath: string;
+  pathSegments: string[];
+  genericSegmentsRemoved: string[];
+  selectedSegment?: string;
+  aiPromptSnippet?: string;
+  aiResponseSnippet?: string;
+}
+
 interface DomainPageRecord {
   id: string;
   clientCode: string;
@@ -64,6 +78,10 @@ interface DomainPageRecord {
   matchedProduct?: string | null;
   clusterName?: string | null;
   productClassifiedAt?: string | null;
+  cluster?: string | null;
+  clusterSource?: ClusterSourceType | null;
+  clusterExplanation?: ClusterExplanationData | null;
+  clusterTaggedAt?: string | null;
 }
 
 const LOCATION_OPTIONS = [
@@ -2216,10 +2234,19 @@ export default function DomainPagesPage() {
                     )}
                   </td>
                   <td className="px-1 py-1 whitespace-nowrap w-[100px]">
-                    {record.clusterName ? (
-                      <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${getClusterBadgeColor(record.clusterName)}`}>
-                        {record.clusterName.length > 14 ? record.clusterName.substring(0, 14) + '...' : record.clusterName}
-                      </span>
+                    {(record.cluster || record.clusterName) ? (
+                      <div className="flex items-center gap-1">
+                        <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${getClusterBadgeColor(record.cluster || record.clusterName)}`}>
+                          {((record.cluster || record.clusterName) || '').length > 12 
+                            ? ((record.cluster || record.clusterName) || '').substring(0, 12) + '...' 
+                            : (record.cluster || record.clusterName)}
+                        </span>
+                        {record.clusterSource === 'AI' && (
+                          <span className="inline-flex items-center px-1 py-0 rounded text-[7px] font-bold bg-purple-100 text-purple-700" title="Cluster tagged by AI">
+                            AI
+                          </span>
+                        )}
+                      </div>
                     ) : (
                       <span className="text-gray-400 text-[9px]">-</span>
                     )}

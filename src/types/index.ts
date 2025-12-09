@@ -390,6 +390,20 @@ export interface PageClassificationConfig {
   marketingLandingPatterns: string[];
 }
 
+export type ClusterSourceType = 'RULE' | 'AI';
+
+export interface ClusterExplanationData {
+  source: ClusterSourceType;
+  rulesApplied?: string[];
+  reasoning: string;
+  urlPath: string;
+  pathSegments: string[];
+  genericSegmentsRemoved: string[];
+  selectedSegment?: string;
+  aiPromptSnippet?: string;
+  aiResponseSnippet?: string;
+}
+
 export interface DomainPageRecord {
   id: string;
   clientCode: string;
@@ -417,6 +431,10 @@ export interface DomainPageRecord {
   matchedProduct?: string | null;
   clusterName?: string | null;
   productClassifiedAt?: string | null;
+  cluster?: string | null;
+  clusterSource?: ClusterSourceType | null;
+  clusterExplanation?: ClusterExplanationData | null;
+  clusterTaggedAt?: string | null;
 }
 
 export interface DomainKeywordRecord {
