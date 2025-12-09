@@ -146,6 +146,32 @@ export default function ClusterIntelligencePage() {
     });
   }, [clusterData, priorityFilter]);
 
+  const { matchedClusters, unmatchedClusters } = useMemo(() => {
+    const matched = filteredClusterData.filter(c => c.products.length > 0);
+    const unmatched = filteredClusterData.filter(c => c.products.length === 0);
+    return { matchedClusters: matched, unmatchedClusters: unmatched };
+  }, [filteredClusterData]);
+
+  const sortedMatchedClusters = useMemo(() => {
+    if (!sortField) return matchedClusters;
+    return [...matchedClusters].sort((a, b) => {
+      const aVal = a[sortField];
+      const bVal = b[sortField];
+      if (sortDirection === 'asc') return aVal - bVal;
+      return bVal - aVal;
+    });
+  }, [matchedClusters, sortField, sortDirection]);
+
+  const sortedUnmatchedClusters = useMemo(() => {
+    if (!sortField) return unmatchedClusters;
+    return [...unmatchedClusters].sort((a, b) => {
+      const aVal = a[sortField];
+      const bVal = b[sortField];
+      if (sortDirection === 'asc') return aVal - bVal;
+      return bVal - aVal;
+    });
+  }, [unmatchedClusters, sortField, sortDirection]);
+
   const sortedClusterData = useMemo(() => {
     if (!sortField) return filteredClusterData;
     return [...filteredClusterData].sort((a, b) => {
@@ -164,6 +190,8 @@ export default function ClusterIntelligencePage() {
     const unclassifiedCount = filteredRecords.filter(r => !r.clusterName).length;
     const immediateCount = clusterData.filter(c => c.clusterPriority === 'IMMEDIATE').length;
     const highCount = clusterData.filter(c => c.clusterPriority === 'HIGH').length;
+    const matchedClusterCount = matchedClusters.length;
+    const unmatchedClusterCount = unmatchedClusters.length;
     
     return {
       totalPages,
@@ -173,8 +201,10 @@ export default function ClusterIntelligencePage() {
       unclassifiedCount,
       immediateCount,
       highCount,
+      matchedClusterCount,
+      unmatchedClusterCount,
     };
-  }, [classifiedRecords, clusterData, filteredRecords]);
+  }, [classifiedRecords, clusterData, filteredRecords, matchedClusters, unmatchedClusters]);
 
   const handleSort = (field: 'totalETV' | 'totalPages' | 'avgETV') => {
     if (sortField === field) {
@@ -312,10 +342,18 @@ export default function ClusterIntelligencePage() {
         <>
           <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-lg shadow p-4 mb-4">
             <h3 className="text-sm font-semibold text-gray-700 mb-3">Cluster Summary</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-3">
               <div className="bg-white rounded-lg p-3 shadow-sm">
                 <div className="text-xs text-gray-500">Unique Clusters</div>
                 <div className="text-lg font-bold text-cyan-600">{summaryStats.uniqueClusters}</div>
+              </div>
+              <div className="bg-white rounded-lg p-3 shadow-sm">
+                <div className="text-xs text-gray-500">Matched Clusters</div>
+                <div className="text-lg font-bold text-green-600">{summaryStats.matchedClusterCount}</div>
+              </div>
+              <div className="bg-white rounded-lg p-3 shadow-sm">
+                <div className="text-xs text-gray-500">Unmatched Clusters</div>
+                <div className="text-lg font-bold text-amber-600">{summaryStats.unmatchedClusterCount}</div>
               </div>
               <div className="bg-white rounded-lg p-3 shadow-sm">
                 <div className="text-xs text-gray-500">Unique Products</div>
@@ -355,233 +393,471 @@ export default function ClusterIntelligencePage() {
               </p>
             </div>
           ) : (
-            <div className="bg-white rounded-lg shadow overflow-hidden">
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Cluster
-                      </th>
-                      <th
-                        className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
-                        onClick={() => handleSort('totalPages')}
-                      >
-                        <div className="flex items-center justify-end gap-1">
-                          Pages
-                          <SortIcon field="totalPages" />
-                        </div>
-                      </th>
-                      <th
-                        className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
-                        onClick={() => handleSort('totalETV')}
-                      >
-                        <div className="flex items-center justify-end gap-1">
-                          Total ETV
-                          <SortIcon field="totalETV" />
-                        </div>
-                      </th>
-                      <th
-                        className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
-                        onClick={() => handleSort('avgETV')}
-                      >
-                        <div className="flex items-center justify-end gap-1">
-                          Avg ETV
-                          <SortIcon field="avgETV" />
-                        </div>
-                      </th>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Products
-                      </th>
-                      <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Priority
-                      </th>
-                      <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Intent Mix
-                      </th>
-                      <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Priority Tiers
-                      </th>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Top Domains
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {sortedClusterData.map((cluster, idx) => (
-                      <React.Fragment key={cluster.clusterName}>
-                        <tr
-                          className={`hover:bg-gray-50 cursor-pointer ${expandedCluster === cluster.clusterName ? 'bg-indigo-50' : ''}`}
-                          onClick={() => setExpandedCluster(expandedCluster === cluster.clusterName ? null : cluster.clusterName)}
-                        >
-                          <td className="px-4 py-3 whitespace-nowrap">
-                            <div className="flex items-center gap-2">
-                              <svg
-                                className={`w-4 h-4 text-gray-400 transition-transform ${expandedCluster === cluster.clusterName ? 'rotate-90' : ''}`}
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                              </svg>
-                              <span className={`px-2 py-1 rounded text-xs font-medium ${getClusterBadgeColor(cluster.clusterName)}`}>
-                                {cluster.clusterName}
-                              </span>
-                            </div>
-                          </td>
-                          <td className="px-4 py-3 text-right text-sm text-gray-900">
-                            {formatNumber(cluster.totalPages)}
-                          </td>
-                          <td className="px-4 py-3 text-right text-sm font-medium text-gray-900">
-                            {formatNumber(cluster.totalETV)}
-                          </td>
-                          <td className="px-4 py-3 text-right text-sm text-gray-600">
-                            {cluster.avgETV.toFixed(1)}
-                          </td>
-                          <td className="px-4 py-3">
-                            <div className="flex flex-wrap gap-1 max-w-[200px]">
-                              {cluster.products.slice(0, 3).map((product, pIdx) => (
-                                <span
-                                  key={pIdx}
-                                  className="inline-flex px-1.5 py-0.5 rounded text-[10px] bg-blue-50 text-blue-700 truncate max-w-[80px]"
-                                  title={product}
-                                >
-                                  {product}
-                                </span>
-                              ))}
-                              {cluster.products.length > 3 && (
-                                <span className="text-[10px] text-gray-500">+{cluster.products.length - 3}</span>
-                              )}
-                            </div>
-                          </td>
-                          <td className="px-4 py-3 text-center">
-                            <span className={`inline-flex px-2 py-1 rounded text-xs font-medium ${getClusterPriorityBadgeColor(cluster.clusterPriority)}`}>
-                              {formatPriorityTier(cluster.clusterPriority)}
-                            </span>
-                          </td>
-                          <td className="px-4 py-3">
-                            <div className="flex items-center justify-center gap-1">
-                              {cluster.intentBreakdown.transactional > 0 && (
-                                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-green-100 text-green-700" title="Transactional">
-                                  T: {cluster.intentBreakdown.transactional}
-                                </span>
-                              )}
-                              {cluster.intentBreakdown.commercialResearch > 0 && (
-                                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-purple-100 text-purple-700" title="Commercial Research">
-                                  C: {cluster.intentBreakdown.commercialResearch}
-                                </span>
-                              )}
-                              {cluster.intentBreakdown.informational > 0 && (
-                                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-blue-100 text-blue-700" title="Informational">
-                                  I: {cluster.intentBreakdown.informational}
-                                </span>
-                              )}
-                            </div>
-                          </td>
-                          <td className="px-4 py-3">
-                            <div className="flex items-center justify-center gap-1">
-                              {cluster.priorityTierBreakdown.tier1 > 0 && (
-                                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-red-100 text-red-700" title="Tier 1 - Immediate">
-                                  T1: {cluster.priorityTierBreakdown.tier1}
-                                </span>
-                              )}
-                              {cluster.priorityTierBreakdown.tier2 > 0 && (
-                                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-orange-100 text-orange-700" title="Tier 2 - High">
-                                  T2: {cluster.priorityTierBreakdown.tier2}
-                                </span>
-                              )}
-                              {cluster.priorityTierBreakdown.tier3 > 0 && (
-                                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-yellow-100 text-yellow-700" title="Tier 3 - Medium">
-                                  T3: {cluster.priorityTierBreakdown.tier3}
-                                </span>
-                              )}
-                            </div>
-                          </td>
-                          <td className="px-4 py-3">
-                            <div className="flex flex-wrap gap-1 max-w-[200px]">
-                              {cluster.topDomains.slice(0, 2).map((domain, dIdx) => (
-                                <span
-                                  key={dIdx}
-                                  className="inline-flex px-1.5 py-0.5 rounded text-[10px] bg-gray-100 text-gray-700 truncate max-w-[90px]"
-                                  title={domain}
-                                >
-                                  {domain}
-                                </span>
-                              ))}
-                              {cluster.topDomains.length > 2 && (
-                                <span className="text-[10px] text-gray-500">+{cluster.topDomains.length - 2}</span>
-                              )}
-                            </div>
-                          </td>
-                        </tr>
-                        {expandedCluster === cluster.clusterName && (
+            <>
+              {sortedMatchedClusters.length > 0 && (
+                <div className="mb-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      Clusters Matched with Client Products
+                      <span className="ml-2 text-sm font-normal text-gray-500">({sortedMatchedClusters.length} clusters)</span>
+                    </h3>
+                  </div>
+                  <div className="bg-white rounded-lg shadow overflow-hidden">
+                    <div className="overflow-x-auto">
+                      <table className="min-w-full divide-y divide-gray-200">
+                        <thead className="bg-gray-50">
                           <tr>
-                            <td colSpan={9} className="px-4 py-4 bg-gray-50">
-                              <div className="space-y-4">
-                                <div>
-                                  <h4 className="text-sm font-medium text-gray-700 mb-2">All Products in Cluster</h4>
-                                  <div className="flex flex-wrap gap-2">
-                                    {cluster.products.map((product, pIdx) => (
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              Cluster
+                            </th>
+                            <th
+                              className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+                              onClick={() => handleSort('totalPages')}
+                            >
+                              <div className="flex items-center justify-end gap-1">
+                                Pages
+                                <SortIcon field="totalPages" />
+                              </div>
+                            </th>
+                            <th
+                              className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+                              onClick={() => handleSort('totalETV')}
+                            >
+                              <div className="flex items-center justify-end gap-1">
+                                Total ETV
+                                <SortIcon field="totalETV" />
+                              </div>
+                            </th>
+                            <th
+                              className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+                              onClick={() => handleSort('avgETV')}
+                            >
+                              <div className="flex items-center justify-end gap-1">
+                                Avg ETV
+                                <SortIcon field="avgETV" />
+                              </div>
+                            </th>
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              Products
+                            </th>
+                            <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              Priority
+                            </th>
+                            <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              Intent Mix
+                            </th>
+                            <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              Priority Tiers
+                            </th>
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              Top Domains
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                          {sortedMatchedClusters.map((cluster, idx) => (
+                            <React.Fragment key={cluster.clusterName}>
+                              <tr
+                                className={`hover:bg-gray-50 cursor-pointer ${expandedCluster === cluster.clusterName ? 'bg-indigo-50' : ''}`}
+                                onClick={() => setExpandedCluster(expandedCluster === cluster.clusterName ? null : cluster.clusterName)}
+                              >
+                                <td className="px-4 py-3 whitespace-nowrap">
+                                  <div className="flex items-center gap-2">
+                                    <svg
+                                      className={`w-4 h-4 text-gray-400 transition-transform ${expandedCluster === cluster.clusterName ? 'rotate-90' : ''}`}
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    <span className={`px-2 py-1 rounded text-xs font-medium ${getClusterBadgeColor(cluster.clusterName)}`}>
+                                      {cluster.clusterName}
+                                    </span>
+                                  </div>
+                                </td>
+                                <td className="px-4 py-3 text-right text-sm text-gray-900">
+                                  {formatNumber(cluster.totalPages)}
+                                </td>
+                                <td className="px-4 py-3 text-right text-sm font-medium text-gray-900">
+                                  {formatNumber(cluster.totalETV)}
+                                </td>
+                                <td className="px-4 py-3 text-right text-sm text-gray-600">
+                                  {cluster.avgETV.toFixed(1)}
+                                </td>
+                                <td className="px-4 py-3">
+                                  <div className="flex flex-wrap gap-1 max-w-[200px]">
+                                    {cluster.products.slice(0, 3).map((product, pIdx) => (
                                       <span
                                         key={pIdx}
-                                        className="inline-flex px-2 py-1 rounded text-xs bg-blue-100 text-blue-800"
+                                        className="inline-flex px-1.5 py-0.5 rounded text-[10px] bg-blue-50 text-blue-700 truncate max-w-[80px]"
+                                        title={product}
                                       >
                                         {product}
                                       </span>
                                     ))}
+                                    {cluster.products.length > 3 && (
+                                      <span className="text-[10px] text-gray-500">+{cluster.products.length - 3}</span>
+                                    )}
                                   </div>
-                                </div>
-                                <div>
-                                  <h4 className="text-sm font-medium text-gray-700 mb-2">Top Domains by ETV</h4>
-                                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                                    {cluster.topDomains.map((domain, dIdx) => {
-                                      const domainPages = getClusterPagesForDomain(cluster.clusterName, domain);
-                                      const domainETV = domainPages.reduce((sum, p) => sum + (p.estTrafficETV || 0), 0);
-                                      return (
-                                        <div key={dIdx} className="bg-white rounded-lg p-3 shadow-sm">
-                                          <div className="font-medium text-sm text-gray-900 truncate" title={domain}>
-                                            {domain}
+                                </td>
+                                <td className="px-4 py-3 text-center">
+                                  <span className={`inline-flex px-2 py-1 rounded text-xs font-medium ${getClusterPriorityBadgeColor(cluster.clusterPriority)}`}>
+                                    {formatPriorityTier(cluster.clusterPriority)}
+                                  </span>
+                                </td>
+                                <td className="px-4 py-3">
+                                  <div className="flex items-center justify-center gap-1">
+                                    {cluster.intentBreakdown.transactional > 0 && (
+                                      <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-green-100 text-green-700" title="Transactional">
+                                        T: {cluster.intentBreakdown.transactional}
+                                      </span>
+                                    )}
+                                    {cluster.intentBreakdown.commercialResearch > 0 && (
+                                      <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-purple-100 text-purple-700" title="Commercial Research">
+                                        C: {cluster.intentBreakdown.commercialResearch}
+                                      </span>
+                                    )}
+                                    {cluster.intentBreakdown.informational > 0 && (
+                                      <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-blue-100 text-blue-700" title="Informational">
+                                        I: {cluster.intentBreakdown.informational}
+                                      </span>
+                                    )}
+                                  </div>
+                                </td>
+                                <td className="px-4 py-3">
+                                  <div className="flex items-center justify-center gap-1">
+                                    {cluster.priorityTierBreakdown.tier1 > 0 && (
+                                      <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-red-100 text-red-700" title="Tier 1 - Immediate">
+                                        T1: {cluster.priorityTierBreakdown.tier1}
+                                      </span>
+                                    )}
+                                    {cluster.priorityTierBreakdown.tier2 > 0 && (
+                                      <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-orange-100 text-orange-700" title="Tier 2 - High">
+                                        T2: {cluster.priorityTierBreakdown.tier2}
+                                      </span>
+                                    )}
+                                    {cluster.priorityTierBreakdown.tier3 > 0 && (
+                                      <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-yellow-100 text-yellow-700" title="Tier 3 - Medium">
+                                        T3: {cluster.priorityTierBreakdown.tier3}
+                                      </span>
+                                    )}
+                                  </div>
+                                </td>
+                                <td className="px-4 py-3">
+                                  <div className="flex flex-wrap gap-1 max-w-[200px]">
+                                    {cluster.topDomains.slice(0, 2).map((domain, dIdx) => (
+                                      <span
+                                        key={dIdx}
+                                        className="inline-flex px-1.5 py-0.5 rounded text-[10px] bg-gray-100 text-gray-700 truncate max-w-[90px]"
+                                        title={domain}
+                                      >
+                                        {domain}
+                                      </span>
+                                    ))}
+                                    {cluster.topDomains.length > 2 && (
+                                      <span className="text-[10px] text-gray-500">+{cluster.topDomains.length - 2}</span>
+                                    )}
+                                  </div>
+                                </td>
+                              </tr>
+                              {expandedCluster === cluster.clusterName && (
+                                <tr>
+                                  <td colSpan={9} className="px-4 py-4 bg-gray-50">
+                                    <div className="space-y-4">
+                                      <div>
+                                        <h4 className="text-sm font-medium text-gray-700 mb-2">All Products in Cluster</h4>
+                                        <div className="flex flex-wrap gap-2">
+                                          {cluster.products.map((product, pIdx) => (
+                                            <span
+                                              key={pIdx}
+                                              className="inline-flex px-2 py-1 rounded text-xs bg-blue-100 text-blue-800"
+                                            >
+                                              {product}
+                                            </span>
+                                          ))}
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <h4 className="text-sm font-medium text-gray-700 mb-2">Top Domains by ETV</h4>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                                          {cluster.topDomains.map((domain, dIdx) => {
+                                            const domainPages = getClusterPagesForDomain(cluster.clusterName, domain);
+                                            const domainETV = domainPages.reduce((sum, p) => sum + (p.estTrafficETV || 0), 0);
+                                            return (
+                                              <div key={dIdx} className="bg-white rounded-lg p-3 shadow-sm">
+                                                <div className="font-medium text-sm text-gray-900 truncate" title={domain}>
+                                                  {domain}
+                                                </div>
+                                                <div className="mt-1 flex items-center gap-4 text-xs text-gray-500">
+                                                  <span>Pages: {domainPages.length}</span>
+                                                  <span>ETV: {formatNumber(Math.round(domainETV))}</span>
+                                                </div>
+                                              </div>
+                                            );
+                                          })}
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <h4 className="text-sm font-medium text-gray-700 mb-2">Full Statistics</h4>
+                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                          <div className="bg-white rounded-lg p-2 shadow-sm text-center">
+                                            <div className="text-xs text-gray-500">Transactional</div>
+                                            <div className="text-lg font-bold text-green-600">{cluster.intentBreakdown.transactional}</div>
                                           </div>
-                                          <div className="mt-1 flex items-center gap-4 text-xs text-gray-500">
-                                            <span>Pages: {domainPages.length}</span>
-                                            <span>ETV: {formatNumber(Math.round(domainETV))}</span>
+                                          <div className="bg-white rounded-lg p-2 shadow-sm text-center">
+                                            <div className="text-xs text-gray-500">Commercial</div>
+                                            <div className="text-lg font-bold text-purple-600">{cluster.intentBreakdown.commercialResearch}</div>
+                                          </div>
+                                          <div className="bg-white rounded-lg p-2 shadow-sm text-center">
+                                            <div className="text-xs text-gray-500">Informational</div>
+                                            <div className="text-lg font-bold text-blue-600">{cluster.intentBreakdown.informational}</div>
+                                          </div>
+                                          <div className="bg-white rounded-lg p-2 shadow-sm text-center">
+                                            <div className="text-xs text-gray-500">Other</div>
+                                            <div className="text-lg font-bold text-gray-600">{cluster.intentBreakdown.other}</div>
                                           </div>
                                         </div>
-                                      );
-                                    })}
-                                  </div>
-                                </div>
-                                <div>
-                                  <h4 className="text-sm font-medium text-gray-700 mb-2">Full Statistics</h4>
-                                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <div className="bg-white rounded-lg p-2 shadow-sm text-center">
-                                      <div className="text-xs text-gray-500">Transactional</div>
-                                      <div className="text-lg font-bold text-green-600">{cluster.intentBreakdown.transactional}</div>
+                                      </div>
                                     </div>
-                                    <div className="bg-white rounded-lg p-2 shadow-sm text-center">
-                                      <div className="text-xs text-gray-500">Commercial</div>
-                                      <div className="text-lg font-bold text-purple-600">{cluster.intentBreakdown.commercialResearch}</div>
-                                    </div>
-                                    <div className="bg-white rounded-lg p-2 shadow-sm text-center">
-                                      <div className="text-xs text-gray-500">Informational</div>
-                                      <div className="text-lg font-bold text-blue-600">{cluster.intentBreakdown.informational}</div>
-                                    </div>
-                                    <div className="bg-white rounded-lg p-2 shadow-sm text-center">
-                                      <div className="text-xs text-gray-500">Other</div>
-                                      <div className="text-lg font-bold text-gray-600">{cluster.intentBreakdown.other}</div>
-                                    </div>
-                                  </div>
-                                </div>
+                                  </td>
+                                </tr>
+                              )}
+                            </React.Fragment>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {sortedUnmatchedClusters.length > 0 && (
+                <div className="mb-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <svg className="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      Clusters Not Matched with Client Products
+                      <span className="ml-2 text-sm font-normal text-gray-500">({sortedUnmatchedClusters.length} clusters)</span>
+                    </h3>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-3">
+                    These clusters contain competitor pages but no products from your client&apos;s product list were matched. Consider adding these as potential product opportunities.
+                  </p>
+                  <div className="bg-white rounded-lg shadow overflow-hidden border-l-4 border-amber-400">
+                    <div className="overflow-x-auto">
+                      <table className="min-w-full divide-y divide-gray-200">
+                        <thead className="bg-amber-50">
+                          <tr>
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              Cluster
+                            </th>
+                            <th
+                              className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-amber-100"
+                              onClick={() => handleSort('totalPages')}
+                            >
+                              <div className="flex items-center justify-end gap-1">
+                                Pages
+                                <SortIcon field="totalPages" />
                               </div>
-                            </td>
+                            </th>
+                            <th
+                              className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-amber-100"
+                              onClick={() => handleSort('totalETV')}
+                            >
+                              <div className="flex items-center justify-end gap-1">
+                                Total ETV
+                                <SortIcon field="totalETV" />
+                              </div>
+                            </th>
+                            <th
+                              className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-amber-100"
+                              onClick={() => handleSort('avgETV')}
+                            >
+                              <div className="flex items-center justify-end gap-1">
+                                Avg ETV
+                                <SortIcon field="avgETV" />
+                              </div>
+                            </th>
+                            <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              Priority
+                            </th>
+                            <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              Intent Mix
+                            </th>
+                            <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              Priority Tiers
+                            </th>
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              Top Domains
+                            </th>
                           </tr>
-                        )}
-                      </React.Fragment>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                          {sortedUnmatchedClusters.map((cluster, idx) => (
+                            <React.Fragment key={cluster.clusterName}>
+                              <tr
+                                className={`hover:bg-amber-50 cursor-pointer ${expandedCluster === cluster.clusterName ? 'bg-amber-100' : ''}`}
+                                onClick={() => setExpandedCluster(expandedCluster === cluster.clusterName ? null : cluster.clusterName)}
+                              >
+                                <td className="px-4 py-3 whitespace-nowrap">
+                                  <div className="flex items-center gap-2">
+                                    <svg
+                                      className={`w-4 h-4 text-gray-400 transition-transform ${expandedCluster === cluster.clusterName ? 'rotate-90' : ''}`}
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                    <span className={`px-2 py-1 rounded text-xs font-medium ${getClusterBadgeColor(cluster.clusterName)}`}>
+                                      {cluster.clusterName}
+                                    </span>
+                                  </div>
+                                </td>
+                                <td className="px-4 py-3 text-right text-sm text-gray-900">
+                                  {formatNumber(cluster.totalPages)}
+                                </td>
+                                <td className="px-4 py-3 text-right text-sm font-medium text-gray-900">
+                                  {formatNumber(cluster.totalETV)}
+                                </td>
+                                <td className="px-4 py-3 text-right text-sm text-gray-600">
+                                  {cluster.avgETV.toFixed(1)}
+                                </td>
+                                <td className="px-4 py-3 text-center">
+                                  <span className={`inline-flex px-2 py-1 rounded text-xs font-medium ${getClusterPriorityBadgeColor(cluster.clusterPriority)}`}>
+                                    {formatPriorityTier(cluster.clusterPriority)}
+                                  </span>
+                                </td>
+                                <td className="px-4 py-3">
+                                  <div className="flex items-center justify-center gap-1">
+                                    {cluster.intentBreakdown.transactional > 0 && (
+                                      <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-green-100 text-green-700" title="Transactional">
+                                        T: {cluster.intentBreakdown.transactional}
+                                      </span>
+                                    )}
+                                    {cluster.intentBreakdown.commercialResearch > 0 && (
+                                      <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-purple-100 text-purple-700" title="Commercial Research">
+                                        C: {cluster.intentBreakdown.commercialResearch}
+                                      </span>
+                                    )}
+                                    {cluster.intentBreakdown.informational > 0 && (
+                                      <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-blue-100 text-blue-700" title="Informational">
+                                        I: {cluster.intentBreakdown.informational}
+                                      </span>
+                                    )}
+                                  </div>
+                                </td>
+                                <td className="px-4 py-3">
+                                  <div className="flex items-center justify-center gap-1">
+                                    {cluster.priorityTierBreakdown.tier1 > 0 && (
+                                      <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-red-100 text-red-700" title="Tier 1 - Immediate">
+                                        T1: {cluster.priorityTierBreakdown.tier1}
+                                      </span>
+                                    )}
+                                    {cluster.priorityTierBreakdown.tier2 > 0 && (
+                                      <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-orange-100 text-orange-700" title="Tier 2 - High">
+                                        T2: {cluster.priorityTierBreakdown.tier2}
+                                      </span>
+                                    )}
+                                    {cluster.priorityTierBreakdown.tier3 > 0 && (
+                                      <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-yellow-100 text-yellow-700" title="Tier 3 - Medium">
+                                        T3: {cluster.priorityTierBreakdown.tier3}
+                                      </span>
+                                    )}
+                                  </div>
+                                </td>
+                                <td className="px-4 py-3">
+                                  <div className="flex flex-wrap gap-1 max-w-[200px]">
+                                    {cluster.topDomains.slice(0, 2).map((domain, dIdx) => (
+                                      <span
+                                        key={dIdx}
+                                        className="inline-flex px-1.5 py-0.5 rounded text-[10px] bg-gray-100 text-gray-700 truncate max-w-[90px]"
+                                        title={domain}
+                                      >
+                                        {domain}
+                                      </span>
+                                    ))}
+                                    {cluster.topDomains.length > 2 && (
+                                      <span className="text-[10px] text-gray-500">+{cluster.topDomains.length - 2}</span>
+                                    )}
+                                  </div>
+                                </td>
+                              </tr>
+                              {expandedCluster === cluster.clusterName && (
+                                <tr>
+                                  <td colSpan={8} className="px-4 py-4 bg-amber-50">
+                                    <div className="space-y-4">
+                                      <div className="bg-amber-100 border border-amber-300 rounded-lg p-3">
+                                        <div className="flex items-center gap-2 text-amber-800">
+                                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                          </svg>
+                                          <span className="text-sm font-medium">No matching products found for this cluster</span>
+                                        </div>
+                                        <p className="text-xs text-amber-700 mt-1">
+                                          This cluster represents content from competitors that doesn&apos;t match any of your client&apos;s defined products or services.
+                                        </p>
+                                      </div>
+                                      <div>
+                                        <h4 className="text-sm font-medium text-gray-700 mb-2">Top Domains by ETV</h4>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                                          {cluster.topDomains.map((domain, dIdx) => {
+                                            const domainPages = getClusterPagesForDomain(cluster.clusterName, domain);
+                                            const domainETV = domainPages.reduce((sum, p) => sum + (p.estTrafficETV || 0), 0);
+                                            return (
+                                              <div key={dIdx} className="bg-white rounded-lg p-3 shadow-sm">
+                                                <div className="font-medium text-sm text-gray-900 truncate" title={domain}>
+                                                  {domain}
+                                                </div>
+                                                <div className="mt-1 flex items-center gap-4 text-xs text-gray-500">
+                                                  <span>Pages: {domainPages.length}</span>
+                                                  <span>ETV: {formatNumber(Math.round(domainETV))}</span>
+                                                </div>
+                                              </div>
+                                            );
+                                          })}
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <h4 className="text-sm font-medium text-gray-700 mb-2">Full Statistics</h4>
+                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                          <div className="bg-white rounded-lg p-2 shadow-sm text-center">
+                                            <div className="text-xs text-gray-500">Transactional</div>
+                                            <div className="text-lg font-bold text-green-600">{cluster.intentBreakdown.transactional}</div>
+                                          </div>
+                                          <div className="bg-white rounded-lg p-2 shadow-sm text-center">
+                                            <div className="text-xs text-gray-500">Commercial</div>
+                                            <div className="text-lg font-bold text-purple-600">{cluster.intentBreakdown.commercialResearch}</div>
+                                          </div>
+                                          <div className="bg-white rounded-lg p-2 shadow-sm text-center">
+                                            <div className="text-xs text-gray-500">Informational</div>
+                                            <div className="text-lg font-bold text-blue-600">{cluster.intentBreakdown.informational}</div>
+                                          </div>
+                                          <div className="bg-white rounded-lg p-2 shadow-sm text-center">
+                                            <div className="text-xs text-gray-500">Other</div>
+                                            <div className="text-lg font-bold text-gray-600">{cluster.intentBreakdown.other}</div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                              )}
+                            </React.Fragment>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </>
       )}
