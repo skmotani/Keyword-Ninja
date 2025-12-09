@@ -435,6 +435,11 @@ export interface DomainPageRecord {
   clusterSource?: ClusterSourceType | null;
   clusterExplanation?: ClusterExplanationData | null;
   clusterTaggedAt?: string | null;
+  llmClusterId?: string | null;
+  llmClusterLabel?: string | null;
+  llmClusterDescription?: string | null;
+  llmClusterBatchId?: string | null;
+  llmClusterRunId?: string | null;
 }
 
 export interface DomainKeywordRecord {
