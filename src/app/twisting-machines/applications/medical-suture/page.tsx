@@ -188,7 +188,7 @@ export default function MedicalSuturePage() {
 
           <div className="not-prose my-8 grid md:grid-cols-2 gap-4">
             <a 
-              href="https://www.meera.ind.in/filament-yarn-twister.html"
+              href="https://meeraind.com/filament-yarn-twister.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-teal-50 rounded-lg p-6 hover:bg-teal-100 transition-colors border border-teal-200"
@@ -197,7 +197,7 @@ export default function MedicalSuturePage() {
               <p className="text-teal-700 text-sm">Precision filament twisting with gentle handling suitable for medical-grade yarn processing.</p>
             </a>
             <a 
-              href="https://www.meera.ind.in/ring-twister.html"
+              href="https://meeraind.com/ring-twister.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-teal-50 rounded-lg p-6 hover:bg-teal-100 transition-colors border border-teal-200"
@@ -272,7 +272,7 @@ export default function MedicalSuturePage() {
             </p>
             <div className="flex flex-wrap gap-4">
               <a 
-                href="https://www.meera.ind.in/products.html"
+                href="https://meeraind.com/products.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-teal-600 text-white font-medium rounded-lg hover:bg-teal-700 transition-colors"

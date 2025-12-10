@@ -295,7 +295,7 @@ export default function TFOPriceVsOutputPage() {
             </p>
             <div className="flex flex-wrap gap-4">
               <a 
-                href="https://www.meera.ind.in/tprs-twister-machine.html"
+                href="https://meeraind.com/tprs-twister-machine.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white font-medium rounded-lg hover:bg-emerald-700 transition-colors"

@@ -175,7 +175,7 @@ export default function RopeCordagePage() {
 
           <div className="not-prose my-8 grid md:grid-cols-2 gap-4">
             <a 
-              href="https://www.meera.ind.in/heavy-duty-twister-cabler-machine.html"
+              href="https://meeraind.com/heavy-duty-twister-cabler-machine.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-cyan-50 rounded-lg p-6 hover:bg-cyan-100 transition-colors border border-cyan-200"
@@ -184,7 +184,7 @@ export default function RopeCordagePage() {
               <p className="text-cyan-700 text-sm">Robust cabling machine designed for rope strand production with high tension capacity and large package handling.</p>
             </a>
             <a 
-              href="https://www.meera.ind.in/tprs-twister-machine.html"
+              href="https://meeraind.com/tprs-twister-machine.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-cyan-50 rounded-lg p-6 hover:bg-cyan-100 transition-colors border border-cyan-200"
@@ -257,7 +257,7 @@ export default function RopeCordagePage() {
             </p>
             <div className="flex flex-wrap gap-4">
               <a 
-                href="https://www.meera.ind.in/products.html"
+                href="https://meeraind.com/products.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 transition-colors"

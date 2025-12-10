@@ -262,7 +262,7 @@ export default function YarnBallooningSolutionPage() {
 
           <div className="not-prose mt-12 grid md:grid-cols-2 gap-6">
             <a 
-              href="https://www.meera.ind.in/tprs-twister-machine.html"
+              href="https://meeraind.com/tprs-twister-machine.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-cyan-50 rounded-lg p-6 hover:bg-cyan-100 transition-colors border border-cyan-200"
@@ -271,7 +271,7 @@ export default function YarnBallooningSolutionPage() {
               <p className="text-cyan-700 text-sm">Advanced balloon control features for consistent twist quality across yarn types.</p>
             </a>
             <a 
-              href="https://www.meera.ind.in/filament-yarn-twister.html"
+              href="https://meeraind.com/filament-yarn-twister.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-cyan-50 rounded-lg p-6 hover:bg-cyan-100 transition-colors border border-cyan-200"

@@ -258,7 +258,7 @@ export default function TFOvsRingTwisterPage() {
 
           <div className="not-prose mt-12 grid md:grid-cols-2 gap-6">
             <a 
-              href="https://www.meera.ind.in/tprs-twister-machine.html"
+              href="https://meeraind.com/tprs-twister-machine.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-indigo-50 rounded-lg p-6 hover:bg-indigo-100 transition-colors border border-indigo-200"
@@ -267,7 +267,7 @@ export default function TFOvsRingTwisterPage() {
               <p className="text-indigo-700 text-sm">High-speed TFO machine for maximum productivity in industrial yarn production.</p>
             </a>
             <a 
-              href="https://www.meera.ind.in/ring-twister.html"
+              href="https://meeraind.com/ring-twister.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-green-50 rounded-lg p-6 hover:bg-green-100 transition-colors border border-green-200"

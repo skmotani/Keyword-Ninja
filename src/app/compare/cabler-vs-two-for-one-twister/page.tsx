@@ -257,7 +257,7 @@ export default function CablerVsTFOPage() {
 
           <div className="not-prose mt-12 grid md:grid-cols-2 gap-6">
             <a 
-              href="https://www.meera.ind.in/heavy-duty-twister-cabler-machine.html"
+              href="https://meeraind.com/heavy-duty-twister-cabler-machine.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-purple-50 rounded-lg p-6 hover:bg-purple-100 transition-colors border border-purple-200"
@@ -266,7 +266,7 @@ export default function CablerVsTFOPage() {
               <p className="text-purple-700 text-sm">Robust cabling machine for heavy-duty industrial cord and rope production.</p>
             </a>
             <a 
-              href="https://www.meera.ind.in/tprs-twister-machine.html"
+              href="https://meeraind.com/tprs-twister-machine.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-indigo-50 rounded-lg p-6 hover:bg-indigo-100 transition-colors border border-indigo-200"

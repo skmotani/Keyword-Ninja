@@ -185,7 +185,7 @@ export default function CarpetYarnPage() {
 
           <div className="not-prose my-8 grid md:grid-cols-2 gap-4">
             <a 
-              href="https://www.meera.ind.in/tprs-twister-machine.html"
+              href="https://meeraind.com/tprs-twister-machine.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-amber-50 rounded-lg p-6 hover:bg-amber-100 transition-colors border border-amber-200"
@@ -194,7 +194,7 @@ export default function CarpetYarnPage() {
               <p className="text-amber-700 text-sm">Ideal for BCF carpet yarn twisting with high productivity and consistent twist quality.</p>
             </a>
             <a 
-              href="https://www.meera.ind.in/spun-yarn-twister.html"
+              href="https://meeraind.com/spun-yarn-twister.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-amber-50 rounded-lg p-6 hover:bg-amber-100 transition-colors border border-amber-200"
@@ -251,7 +251,7 @@ export default function CarpetYarnPage() {
             </p>
             <div className="flex flex-wrap gap-4">
               <a 
-                href="https://www.meera.ind.in/products.html"
+                href="https://meeraind.com/products.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 text-white font-medium rounded-lg hover:bg-amber-700 transition-colors"

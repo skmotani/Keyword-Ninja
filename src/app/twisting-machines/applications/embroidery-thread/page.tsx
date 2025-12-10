@@ -177,7 +177,7 @@ export default function EmbroideryThreadPage() {
 
           <div className="not-prose my-8 grid md:grid-cols-2 gap-4">
             <a 
-              href="https://www.meera.ind.in/embroidery-thread-twister.html"
+              href="https://meeraind.com/embroidery-thread-twister.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-pink-50 rounded-lg p-6 hover:bg-pink-100 transition-colors border border-pink-200"
@@ -186,7 +186,7 @@ export default function EmbroideryThreadPage() {
               <p className="text-pink-700 text-sm">Precision machine specifically designed for embroidery thread production with gentle yarn handling and superior luster preservation.</p>
             </a>
             <a 
-              href="https://www.meera.ind.in/ring-twister.html"
+              href="https://meeraind.com/ring-twister.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-pink-50 rounded-lg p-6 hover:bg-pink-100 transition-colors border border-pink-200"
@@ -273,7 +273,7 @@ export default function EmbroideryThreadPage() {
             </p>
             <div className="flex flex-wrap gap-4">
               <a 
-                href="https://www.meera.ind.in/embroidery-thread-twister.html"
+                href="https://meeraind.com/embroidery-thread-twister.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-pink-600 text-white font-medium rounded-lg hover:bg-pink-700 transition-colors"

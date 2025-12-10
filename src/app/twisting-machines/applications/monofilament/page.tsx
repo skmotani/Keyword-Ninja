@@ -189,7 +189,7 @@ export default function MonofilamentPage() {
 
           <div className="not-prose my-8 grid md:grid-cols-2 gap-4">
             <a 
-              href="https://www.meera.ind.in/filament-yarn-twister.html"
+              href="https://meeraind.com/filament-yarn-twister.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-violet-50 rounded-lg p-6 hover:bg-violet-100 transition-colors border border-violet-200"
@@ -198,7 +198,7 @@ export default function MonofilamentPage() {
               <p className="text-violet-700 text-sm">Precision twisting for monofilament and fine filament applications with controlled tension and gentle handling.</p>
             </a>
             <a 
-              href="https://www.meera.ind.in/tprs-twister-machine.html"
+              href="https://meeraind.com/tprs-twister-machine.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-violet-50 rounded-lg p-6 hover:bg-violet-100 transition-colors border border-violet-200"
@@ -265,7 +265,7 @@ export default function MonofilamentPage() {
             </p>
             <div className="flex flex-wrap gap-4">
               <a 
-                href="https://www.meera.ind.in/products.html"
+                href="https://meeraind.com/products.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-violet-600 text-white font-medium rounded-lg hover:bg-violet-700 transition-colors"

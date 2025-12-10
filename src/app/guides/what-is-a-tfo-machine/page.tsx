@@ -255,7 +255,7 @@ export default function WhatIsTFOMachinePage() {
 
           <div className="not-prose mt-12 grid md:grid-cols-2 gap-6">
             <a 
-              href="https://www.meera.ind.in/tprs-twister-machine.html"
+              href="https://meeraind.com/tprs-twister-machine.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-blue-50 rounded-lg p-6 hover:bg-blue-100 transition-colors border border-blue-200"
@@ -264,7 +264,7 @@ export default function WhatIsTFOMachinePage() {
               <p className="text-blue-700 text-sm">Explore Meera Industries&apos; high-performance TFO twisting machine for industrial applications.</p>
             </a>
             <a 
-              href="https://www.meera.ind.in/filament-yarn-twister.html"
+              href="https://meeraind.com/filament-yarn-twister.html"
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-blue-50 rounded-lg p-6 hover:bg-blue-100 transition-colors border border-blue-200"
