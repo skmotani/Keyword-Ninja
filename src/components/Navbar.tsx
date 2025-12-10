@@ -16,6 +16,42 @@ const reportItems = [
   { href: '/report/cluster-intelligence-1', label: 'Cluster Intelligence (URL)' },
 ];
 
+const hubCategories = [
+  { href: '/twisting-machines/tfo-twisters', label: 'TFO Twisters' },
+  { href: '/twisting-machines/ring-twisters', label: 'Ring Twisters' },
+  { href: '/twisting-machines/spun-yarn-twisters', label: 'Spun Yarn Twisters' },
+];
+
+const hubApplications = [
+  { href: '/twisting-machines/applications/industrial-yarn', label: 'Industrial Yarn' },
+  { href: '/twisting-machines/applications/carpet-yarn', label: 'Carpet Yarn' },
+  { href: '/twisting-machines/applications/rope-cordage', label: 'Rope & Cordage' },
+  { href: '/twisting-machines/applications/embroidery-thread', label: 'Embroidery Thread' },
+  { href: '/twisting-machines/applications/medical-suture', label: 'Medical Sutures' },
+  { href: '/twisting-machines/applications/monofilament', label: 'Monofilament' },
+];
+
+const hubComparisons = [
+  { href: '/compare/tfo-vs-ring-twister', label: 'TFO vs Ring Twister' },
+  { href: '/compare/cabler-vs-two-for-one-twister', label: 'Cabler vs TFO' },
+  { href: '/compare/tfo-machine-price-vs-output', label: 'TFO Price vs Output' },
+];
+
+const hubGuides = [
+  { href: '/guides/what-is-a-tfo-machine', label: 'What is TFO?' },
+  { href: '/guides/yarn-twist-calculation', label: 'Twist Calculation' },
+  { href: '/guides/yarn-ballooning-solution', label: 'Ballooning Solutions' },
+  { href: '/guides/twisting-defects-and-solutions', label: 'Defects & Solutions' },
+];
+
+const allHubItems = [
+  { href: '/twisting-machines', label: 'Hub Home' },
+  ...hubCategories,
+  ...hubApplications,
+  ...hubComparisons,
+  ...hubGuides,
+];
+
 const seoDataItems = [
   { href: '/keywords/api-data', label: 'Keyword API Data' },
   { href: '/keywords/serp-results', label: 'SERP Results' },
@@ -29,10 +65,12 @@ export default function Navbar() {
   const [masterOpen, setMasterOpen] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
   const [seoDataOpen, setSeoDataOpen] = useState(false);
+  const [hubOpen, setHubOpen] = useState(false);
   
   const masterRef = useRef<HTMLDivElement>(null);
   const reportRef = useRef<HTMLDivElement>(null);
   const seoDataRef = useRef<HTMLDivElement>(null);
+  const hubRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -45,6 +83,9 @@ export default function Navbar() {
       if (seoDataRef.current && !seoDataRef.current.contains(event.target as Node)) {
         setSeoDataOpen(false);
       }
+      if (hubRef.current && !hubRef.current.contains(event.target as Node)) {
+        setHubOpen(false);
+      }
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -53,6 +94,7 @@ export default function Navbar() {
   const isMasterActive = masterItems.some(item => pathname === item.href);
   const isReportActive = reportItems.some(item => pathname === item.href);
   const isSeoDataActive = seoDataItems.some(item => pathname === item.href);
+  const isHubActive = allHubItems.some(item => pathname === item.href) || pathname.startsWith('/twisting-machines') || pathname.startsWith('/compare') || pathname.startsWith('/guides');
 
   const DropdownArrow = ({ isOpen }: { isOpen: boolean }) => (
     <svg
@@ -92,6 +134,7 @@ export default function Navbar() {
                   setMasterOpen(!masterOpen);
                   setReportOpen(false);
                   setSeoDataOpen(false);
+                  setHubOpen(false);
                 }}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${
                   isMasterActive
@@ -129,6 +172,7 @@ export default function Navbar() {
                   setReportOpen(!reportOpen);
                   setMasterOpen(false);
                   setSeoDataOpen(false);
+                  setHubOpen(false);
                 }}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${
                   isReportActive
@@ -166,6 +210,7 @@ export default function Navbar() {
                   setSeoDataOpen(!seoDataOpen);
                   setMasterOpen(false);
                   setReportOpen(false);
+                  setHubOpen(false);
                 }}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${
                   isSeoDataActive
@@ -185,6 +230,105 @@ export default function Navbar() {
                       href={item.href}
                       onClick={() => setSeoDataOpen(false)}
                       className={`block px-4 py-2 text-sm transition-colors ${
+                        pathname === item.href
+                          ? 'bg-indigo-50 text-indigo-700'
+                          : 'text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="relative" ref={hubRef}>
+              <button
+                onClick={() => {
+                  setHubOpen(!hubOpen);
+                  setMasterOpen(false);
+                  setReportOpen(false);
+                  setSeoDataOpen(false);
+                }}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${
+                  isHubActive
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                }`}
+              >
+                Hub
+                <DropdownArrow isOpen={hubOpen} />
+              </button>
+              
+              {hubOpen && (
+                <div className="absolute right-0 mt-1 w-64 bg-white rounded-md shadow-lg border z-50 max-h-96 overflow-y-auto">
+                  <Link
+                    href="/twisting-machines"
+                    onClick={() => setHubOpen(false)}
+                    className={`block px-4 py-2 text-sm font-semibold transition-colors border-b ${
+                      pathname === '/twisting-machines'
+                        ? 'bg-indigo-50 text-indigo-700'
+                        : 'text-indigo-600 hover:bg-gray-100'
+                    }`}
+                  >
+                    Twisting Machines Hub
+                  </Link>
+                  
+                  <div className="px-4 py-1 text-xs font-semibold text-gray-500 bg-gray-50 uppercase">Categories</div>
+                  {hubCategories.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setHubOpen(false)}
+                      className={`block px-4 py-1.5 text-sm transition-colors ${
+                        pathname === item.href
+                          ? 'bg-indigo-50 text-indigo-700'
+                          : 'text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                  
+                  <div className="px-4 py-1 text-xs font-semibold text-gray-500 bg-gray-50 uppercase">Applications</div>
+                  {hubApplications.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setHubOpen(false)}
+                      className={`block px-4 py-1.5 text-sm transition-colors ${
+                        pathname === item.href
+                          ? 'bg-indigo-50 text-indigo-700'
+                          : 'text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                  
+                  <div className="px-4 py-1 text-xs font-semibold text-gray-500 bg-gray-50 uppercase">Comparisons</div>
+                  {hubComparisons.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setHubOpen(false)}
+                      className={`block px-4 py-1.5 text-sm transition-colors ${
+                        pathname === item.href
+                          ? 'bg-indigo-50 text-indigo-700'
+                          : 'text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                  
+                  <div className="px-4 py-1 text-xs font-semibold text-gray-500 bg-gray-50 uppercase">Guides</div>
+                  {hubGuides.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setHubOpen(false)}
+                      className={`block px-4 py-1.5 text-sm transition-colors ${
                         pathname === item.href
                           ? 'bg-indigo-50 text-indigo-700'
                           : 'text-gray-700 hover:bg-gray-100'

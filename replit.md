@@ -26,6 +26,13 @@ The project uses Next.js with the App Router for server-side rendering and API r
 - **Unique Domains with AI Classification**: Reports page showing unique domains extracted from SERP results. Features AI-powered domain classification using OpenAI GPT-5 that analyzes each domain based on the client's AI profile and SERP context. Classification columns include Domain Type, Page Intent, Product Match Score, and Business Relevance Category. Supports per-domain and batch classification with progress tracking. Click on Business Relevance badge to view detailed explanation of the classification.
 - **API Credentials Settings**: Secure management of API keys for various services (DataForSEO, OpenAI, etc.). Credentials are masked in display and stored, with actual secrets intended for Replit Secrets. Supports multiple authentication types and client-specific credentials.
 - **CSV Export**: All data pages feature an "Export CSV" button that exports the currently filtered/displayed data to a CSV file. The reusable ExportButton component (`src/components/ExportButton.tsx`) handles CSV generation with proper escaping. Supported pages: Clients, Competitors, Manual Keywords, Keyword API Data, SERP Results, Domain Overview, Domain Top Pages, Domain Top Keywords, and Unique Domains (Competitor Report).
+- **Content Hub - Twisting Machines**: A comprehensive content hub for B2B industrial marketing with 17 professionally written pages. Accessible via the "Hub" dropdown in the navbar. Structure includes:
+  - **Main Hub** (`/twisting-machines`): Overview with category cards, application links, and featured products
+  - **Category Pages** (3): TFO Twisters, Ring Twisters, Spun Yarn Twisters - each with product listings and external links to meera.ind.in
+  - **Application Pages** (6): Industrial Yarn, Carpet Yarn, Rope & Cordage, Embroidery Thread, Medical Sutures, Monofilament - each with 1000-1500 word professional content
+  - **Comparison Pages** (3): TFO vs Ring Twister, Cabler vs TFO, TFO Machine Price vs Output - detailed technical comparisons with spec tables
+  - **Guide Pages** (4): What is TFO?, Yarn Twist Calculation, Yarn Ballooning Solutions, Twisting Defects & Solutions - educational content with formulas and troubleshooting
+  - All pages feature: Breadcrumb navigation, gradient hero sections, comprehensive internal linking, external links to meera.ind.in products, and related resources sections
 
 ### System Design Choices
 - **JSON File Persistence**: Data is stored in `data/*.json` files for simplicity, easy backup, and version control.
