@@ -933,14 +933,12 @@ export default function DomainPagesPage() {
     }
   }, [selectedClientCode]);
 
-  const handleClientChange = useCallback((newClientCode: string) => {
+  const handleClientChange = (newClientCode: string) => {
     if (newClientCode === selectedClientCode) return;
     
-    // Clear records first to prevent stale data issues
+    // Batch all state resets together
     setRecords([]);
     setNotification(null);
-    
-    // Reset all filters to defaults
     setDomainFilter('all');
     setLocationFilter('all');
     setUrlFilter('');
@@ -959,10 +957,8 @@ export default function DomainPagesPage() {
     setSortDirection('desc');
     setSelectedExplanation(null);
     setSelectedPriorityBreakdown(null);
-    
-    // Switch to the new client - useEffect will handle fetching
     setSelectedClientCode(newClientCode);
-  }, [selectedClientCode]);
+  };
 
   const fetchClients = async () => {
     try {
