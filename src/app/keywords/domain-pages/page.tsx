@@ -933,15 +933,14 @@ export default function DomainPagesPage() {
     }
   }, [selectedClientCode]);
 
-  const handleClientChange = (newClientCode: string) => {
+  const handleClientChange = useCallback((newClientCode: string) => {
     if (newClientCode === selectedClientCode) return;
     
-    // Clear records and notification immediately to show loading state
+    // Clear records first to prevent stale data issues
     setRecords([]);
     setNotification(null);
-    setLoading(true);
     
-    // Reset all filters to defaults to prevent stale filter issues
+    // Reset all filters to defaults
     setDomainFilter('all');
     setLocationFilter('all');
     setUrlFilter('');
@@ -961,9 +960,9 @@ export default function DomainPagesPage() {
     setSelectedExplanation(null);
     setSelectedPriorityBreakdown(null);
     
-    // Switch to the new client - useEffect will handle fetching competitors/domains/records
+    // Switch to the new client - useEffect will handle fetching
     setSelectedClientCode(newClientCode);
-  };
+  }, [selectedClientCode]);
 
   const fetchClients = async () => {
     try {
