@@ -933,6 +933,38 @@ export default function DomainPagesPage() {
     }
   }, [selectedClientCode]);
 
+  const handleClientChange = (newClientCode: string) => {
+    if (newClientCode === selectedClientCode) return;
+    
+    // Clear records and notification immediately to show loading state
+    setRecords([]);
+    setNotification(null);
+    setLoading(true);
+    
+    // Reset all filters to defaults to prevent stale filter issues
+    setDomainFilter('all');
+    setLocationFilter('all');
+    setUrlFilter('');
+    setTrafficMinFilter('');
+    setKeywordsMinFilter('');
+    setPageTypeFilter('all');
+    setPageIntentFilter('all');
+    setSeoRelevantFilter('all');
+    setSeoActionFilter('all');
+    setClassificationMethodFilter('all');
+    setMatchedProductFilter('all');
+    setLlmClusterLabelFilter('all');
+    setPriorityTierFilter('all');
+    setCurrentPage(1);
+    setSortField(null);
+    setSortDirection('desc');
+    setSelectedExplanation(null);
+    setSelectedPriorityBreakdown(null);
+    
+    // Switch to the new client - useEffect will handle fetching competitors/domains/records
+    setSelectedClientCode(newClientCode);
+  };
+
   const fetchClients = async () => {
     try {
       const res = await fetch('/api/clients');
@@ -1399,7 +1431,7 @@ export default function DomainPagesPage() {
             <label className="block text-sm font-medium text-gray-700 mb-1">Client</label>
             <select
               value={selectedClientCode}
-              onChange={e => setSelectedClientCode(e.target.value)}
+              onChange={e => handleClientChange(e.target.value)}
               className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
               {clients.map(client => (
