@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function RopeCordagePage() {
   return (
@@ -26,6 +27,18 @@ export default function RopeCordagePage() {
             Heavy-duty twisting and cabling solutions for rope, twine, and cordage manufacturing 
             across marine, industrial, and agricultural applications.
           </p>
+        </div>
+      </div>
+
+      {/* Featured Image */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+          <Image 
+            src="/images/hub/rope_cordage_manufac_52827f8c.jpg" 
+            alt="Rope and cordage manufacturing"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
 

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 const products = [
   {
@@ -47,6 +48,18 @@ export default function TFOTwistersPage() {
             Two-For-One (TFO) twisting technology delivers twice the twist per spindle revolution, 
             offering superior efficiency and yarn quality for industrial applications.
           </p>
+        </div>
+      </div>
+
+      {/* Featured Image */}
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+          <Image 
+            src="/images/hub/textile_spinning_mac_b187021d.jpg" 
+            alt="TFO twisting machinery"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
 

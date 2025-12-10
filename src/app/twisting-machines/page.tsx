@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 const categories = [
   {
@@ -78,6 +79,36 @@ export default function TwistingMachinesHub() {
                 Learn About TFO
               </Link>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Featured Image Section */}
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="grid md:grid-cols-3 gap-4">
+          <div className="relative h-48 rounded-xl overflow-hidden shadow-lg">
+            <Image 
+              src="/images/hub/industrial_textile_m_6ab3d47d.jpg" 
+              alt="Industrial textile machinery"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="relative h-48 rounded-xl overflow-hidden shadow-lg">
+            <Image 
+              src="/images/hub/textile_spinning_mac_e0e11a82.jpg" 
+              alt="Textile spinning machine"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="relative h-48 rounded-xl overflow-hidden shadow-lg">
+            <Image 
+              src="/images/hub/industrial_yarn_spoo_a4002aec.jpg" 
+              alt="Industrial yarn spools"
+              fill
+              className="object-cover"
+            />
           </div>
         </div>
       </div>

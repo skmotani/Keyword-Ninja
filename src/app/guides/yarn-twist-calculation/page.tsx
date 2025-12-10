@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function YarnTwistCalculationPage() {
   return (
@@ -24,6 +25,18 @@ export default function YarnTwistCalculationPage() {
             Master the formulas, units, and calculations essential for optimizing yarn twist 
             in your twisting operations.
           </p>
+        </div>
+      </div>
+
+      {/* Featured Image */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+          <Image 
+            src="/images/hub/carpet_manufacturing_6ade3ab2.jpg" 
+            alt="Yarn twist measurement"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
 

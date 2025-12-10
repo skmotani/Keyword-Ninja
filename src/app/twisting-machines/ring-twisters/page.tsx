@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 const products = [
   {
@@ -47,6 +48,18 @@ export default function RingTwistersPage() {
             Time-tested ring twisting technology with modern innovations for versatile yarn processing 
             and consistent quality across diverse applications.
           </p>
+        </div>
+      </div>
+
+      {/* Featured Image */}
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+          <Image 
+            src="/images/hub/industrial_yarn_spoo_a4002aec.jpg" 
+            alt="Ring twisting machinery"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
 

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function EmbroideryThreadPage() {
   return (
@@ -26,6 +27,18 @@ export default function EmbroideryThreadPage() {
             Precision twisting for decorative threads that demand exceptional luster, 
             strength, and stitch definition for machine and hand embroidery.
           </p>
+        </div>
+      </div>
+
+      {/* Featured Image */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+          <Image 
+            src="/images/hub/embroidery_thread_co_1f1ff2a7.jpg" 
+            alt="Colorful embroidery threads"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
 

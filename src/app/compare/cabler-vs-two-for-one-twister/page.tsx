@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function CablerVsTFOPage() {
   return (
@@ -24,6 +25,18 @@ export default function CablerVsTFOPage() {
             Understanding the differences between cabling machines and TFO twisters to select 
             the optimal technology for multi-ply yarn and cord production.
           </p>
+        </div>
+      </div>
+
+      {/* Featured Image */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+          <Image 
+            src="/images/hub/rope_cordage_manufac_67adb301.jpg" 
+            alt="Cabling and twisting machinery"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
 

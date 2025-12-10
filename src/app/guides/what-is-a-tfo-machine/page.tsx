@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function WhatIsTFOMachinePage() {
   return (
@@ -24,6 +25,18 @@ export default function WhatIsTFOMachinePage() {
             A comprehensive guide to Two-For-One twisting technology, its working principles, 
             advantages, and applications in modern yarn manufacturing.
           </p>
+        </div>
+      </div>
+
+      {/* Featured Image */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+          <Image 
+            src="/images/hub/industrial_textile_m_cc525cca.jpg" 
+            alt="TFO machine technology"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
 

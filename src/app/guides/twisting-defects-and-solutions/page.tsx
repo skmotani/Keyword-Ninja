@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function TwistingDefectsPage() {
   return (
@@ -24,6 +25,18 @@ export default function TwistingDefectsPage() {
             A comprehensive troubleshooting guide for identifying, diagnosing, and resolving 
             common quality problems in yarn twisting operations.
           </p>
+        </div>
+      </div>
+
+      {/* Featured Image */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+          <Image 
+            src="/images/hub/monofilament_fishing_f05c5b06.jpg" 
+            alt="Twisting defects troubleshooting"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
 

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function YarnBallooningSolutionPage() {
   return (
@@ -24,6 +25,18 @@ export default function YarnBallooningSolutionPage() {
             Understanding balloon formation in twisting operations and practical solutions 
             for controlling balloon-related quality issues.
           </p>
+        </div>
+      </div>
+
+      {/* Featured Image */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+          <Image 
+            src="/images/hub/embroidery_thread_co_6edc66df.jpg" 
+            alt="Yarn ballooning solutions"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
 

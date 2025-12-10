@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function MonofilamentPage() {
   return (
@@ -26,6 +27,18 @@ export default function MonofilamentPage() {
             Specialized twisting solutions for monofilament processing in fishing line, 
             brush bristles, and technical applications requiring precise handling of single-strand materials.
           </p>
+        </div>
+      </div>
+
+      {/* Featured Image */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+          <Image 
+            src="/images/hub/monofilament_fishing_3db275be.jpg" 
+            alt="Monofilament fishing line production"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
 

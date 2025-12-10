@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 const products = [
   {
@@ -54,6 +55,18 @@ export default function SpunYarnTwistersPage() {
             Specialized machines for spun yarn and heavy-duty applications including cabling, 
             covering, and multi-ply twisting for industrial and technical textiles.
           </p>
+        </div>
+      </div>
+
+      {/* Featured Image */}
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+          <Image 
+            src="/images/hub/textile_spinning_mac_e0e11a82.jpg" 
+            alt="Spun yarn twisting equipment"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
 

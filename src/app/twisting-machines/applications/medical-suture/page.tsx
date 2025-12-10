@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function MedicalSuturePage() {
   return (
@@ -26,6 +27,18 @@ export default function MedicalSuturePage() {
             Precision twisting solutions for surgical sutures demanding exceptional uniformity, 
             biocompatibility, and life-critical reliability.
           </p>
+        </div>
+      </div>
+
+      {/* Featured Image */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+          <Image 
+            src="/images/hub/medical_sutures_surg_2c755785.jpg" 
+            alt="Medical sutures and surgical equipment"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
 

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function TFOvsRingTwisterPage() {
   return (
@@ -24,6 +25,18 @@ export default function TFOvsRingTwisterPage() {
             An in-depth technical comparison of Two-For-One (TFO) twisting and conventional ring twisting 
             technologies to help you choose the right solution for your yarn manufacturing needs.
           </p>
+        </div>
+      </div>
+
+      {/* Featured Image */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+          <Image 
+            src="/images/hub/industrial_textile_m_f0871d73.jpg" 
+            alt="Twisting machine comparison"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
 
