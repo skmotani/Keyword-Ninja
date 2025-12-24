@@ -3484,5 +3484,33 @@
     "explanationSummary": "NCBI (an NIH property) hosts academic and research content; the ranking page is a StatPearls chapter on pharmaceutics. This indicates an Educational/Research domain with strictly informational intent. The content does not address packaging films, CPP/BOPP/BOPET, or flexible packaging solutions, so the product match is none. As a result, despite the pharma context being a served industry, this domain is irrelevant to the client’s offerings in packaging films.",
     "classifiedAt": "2025-12-24T13:59:37.144Z",
     "updatedAt": "2025-12-24T13:59:37.144Z"
+  },
+  {
+    "id": "class-03-www-fda-gov-1766584799936",
+    "clientCode": "03",
+    "domain": "www.fda.gov",
+    "domainType": "Educational / Media / Research",
+    "pageIntent": "Informational",
+    "productMatchScoreValue": 0.12,
+    "productMatchScoreBucket": "Low",
+    "businessRelevanceCategory": "Needs Manual Review",
+    "explanationLink": "#how-this-score-was-calculated",
+    "explanationSummary": "SERP evidence points to FDA’s Drugs section, which is a government information resource, so the domain behaves as Educational/Research and the page intent is informational. The content focuses on drug approvals and safety, not on CPP/BOPP/BOPET films or flexible packaging, giving only a tangential link to the client via the pharmaceutical sector, hence a low product-match score. It is not a competitor, marketplace, service provider, or buyer. Because no clear category fits with a low (not none) match and the domain shows high importance, it’s flagged for Needs Manual Review.",
+    "classifiedAt": "2025-12-24T13:59:59.936Z",
+    "updatedAt": "2025-12-24T13:59:59.936Z"
+  },
+  {
+    "id": "class-03-en-wiktionary-org-1766584832361",
+    "clientCode": "03",
+    "domain": "en.wiktionary.org",
+    "domainType": "Educational / Media / Research",
+    "pageIntent": "Informational",
+    "productMatchScoreValue": 0,
+    "productMatchScoreBucket": "None",
+    "businessRelevanceCategory": "Irrelevant",
+    "explanationLink": "#how-this-score-was-calculated",
+    "explanationSummary": "Wiktionary is a dictionary/reference site, and the ranking URL is a definition page for “pharmaceutical,” which is general educational content. This does not align with the client’s core product lines (CPP/BOPP/BOPET films, flexible packaging) or core topics around packaging films. The intent of the page is informational rather than transactional or buyer-oriented. With no overlap to packaging films, the match score is 0.00 (None), making the domain irrelevant for this client.",
+    "classifiedAt": "2025-12-24T14:00:32.361Z",
+    "updatedAt": "2025-12-24T14:00:32.361Z"
   }
 ]
