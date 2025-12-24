@@ -128,9 +128,17 @@ export async function deleteManualKeyword(id: string): Promise<boolean> {
 }
 
 // Page Config Persistence
+export interface PageComment {
+  id: string;
+  text: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface PageConfig {
   path: string; // The URL path acts as the ID
   userDescription?: string;
+  comments?: PageComment[];
   updatedAt: string;
 }
 

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import HelpInfoIcon, { FieldHelpInfo } from './HelpInfoIcon';
+import PageComments from './PageComments';
 
 interface PageHeaderProps {
   title: string;
@@ -71,6 +72,7 @@ export default function PageHeader({ title, description, helpInfo, extendedDescr
 
       {(extendedDescription || userDescription || isEditing) && (
         <div className="mt-2">
+          {/* ... existing detailed description logic ... */}
           <button
             onClick={() => setIsExpanded(!isExpanded)}
             className="flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-800 transition-colors focus:outline-none"
@@ -154,6 +156,10 @@ export default function PageHeader({ title, description, helpInfo, extendedDescr
           )}
         </div>
       )}
+
+      {/* Page Comments Section */}
+      <PageComments path={pathname} />
+
     </div>
   );
 }

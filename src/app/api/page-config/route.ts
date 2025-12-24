@@ -21,11 +21,20 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: 'Path is required' }, { status: 400 });
         }
 
-        const saved = await savePageConfig({
+        const updateData: any = {
             path: body.path,
-            userDescription: body.userDescription || '',
             updatedAt: new Date().toISOString()
-        });
+        };
+
+        if (body.userDescription !== undefined) {
+            updateData.userDescription = body.userDescription;
+        }
+
+        if (body.comments !== undefined) {
+            updateData.comments = body.comments;
+        }
+
+        const saved = await savePageConfig(updateData);
 
         return NextResponse.json(saved);
     } catch (error) {

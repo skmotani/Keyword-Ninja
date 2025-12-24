@@ -17,6 +17,63 @@
   {
     "path": "/report/competitors",
     "userDescription": "when the serp result generates top 10 pages as per keywords then we also find from them our true competitor by alssify them using AI",
-    "updatedAt": "2025-12-24T13:45:36.029Z"
+    "updatedAt": "2025-12-24T15:25:56.599Z",
+    "comments": [
+      {
+        "id": "c6ec5e83-f37f-4f12-b2c0-ee70509d3a67",
+        "text": "While Classyfy the domain also add the country the company belong for better categorization",
+        "createdAt": "2025-12-24T15:25:56.587Z",
+        "updatedAt": "2025-12-24T15:25:56.587Z"
+      },
+      {
+        "id": "e0167b91-8d13-421d-aece-f02baf40b6f4",
+        "text": "Put this page inside SERP Result so that , it look ina sequence",
+        "createdAt": "2025-12-24T15:25:32.148Z",
+        "updatedAt": "2025-12-24T15:25:32.148Z"
+      }
+    ]
+  },
+  {
+    "path": "/",
+    "userDescription": "",
+    "comments": [
+      {
+        "id": "a15999a3-9cf7-414f-92ee-25878ba62fe7",
+        "text": "Change the coment type with tick mark option so that once done we can mark a gree tick",
+        "createdAt": "2025-12-24T15:22:36.776Z",
+        "updatedAt": "2025-12-24T15:22:36.776Z"
+      },
+      {
+        "id": "2c57656f-6a70-4416-a1a0-e64a6ab93def",
+        "text": "Fix the Top Menu , so that it dont hinde while scrolling down",
+        "createdAt": "2025-12-24T15:21:54.314Z",
+        "updatedAt": "2025-12-24T15:21:54.314Z"
+      }
+    ],
+    "updatedAt": "2025-12-24T15:22:36.794Z"
+  },
+  {
+    "path": "/competitors",
+    "updatedAt": "2025-12-24T15:24:00.871Z",
+    "comments": [
+      {
+        "id": "0dde8d01-595a-4fdf-a3a7-9fd9476da6a8",
+        "text": "make the font of the dta table smaller so that all the cols. are visible",
+        "createdAt": "2025-12-24T15:24:00.528Z",
+        "updatedAt": "2025-12-24T15:24:00.528Z"
+      }
+    ]
+  },
+  {
+    "path": "/keywords/domain-pages",
+    "updatedAt": "2025-12-24T15:32:18.281Z",
+    "comments": [
+      {
+        "id": "e99e7601-f47e-4a19-966e-41bee72807e4",
+        "text": "add tool tip on every command button",
+        "createdAt": "2025-12-24T15:32:18.265Z",
+        "updatedAt": "2025-12-24T15:32:18.265Z"
+      }
+    ]
   }
 ]
