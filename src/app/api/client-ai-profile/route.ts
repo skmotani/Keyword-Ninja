@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getAllAiProfiles, getAiProfileByClientCode } from '@/lib/clientAiProfileStore';
+import { getAllAiProfiles, getAiProfileByClientCode, saveAiProfile } from '@/lib/clientAiProfileStore';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -20,6 +20,27 @@ export async function GET(request: NextRequest) {
     console.error('Error fetching AI profiles:', error);
     return NextResponse.json(
       { error: 'Failed to fetch AI profiles' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PUT(request: NextRequest) {
+  try {
+    const body = await request.json();
+    if (!body.clientCode) {
+      return NextResponse.json(
+        { error: 'clientCode is required' },
+        { status: 400 }
+      );
+    }
+
+    await saveAiProfile(body);
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Error updating AI profile:', error);
+    return NextResponse.json(
+      { error: 'Failed to update AI profile' },
       { status: 500 }
     );
   }

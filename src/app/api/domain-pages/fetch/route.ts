@@ -7,8 +7,8 @@ import {
   saveDomainApiLog,
   cleanDomain,
 } from '@/lib/domainOverviewStore';
-import { 
-  fetchDomainTopPages, 
+import {
+  fetchDomainTopPages,
   fetchDomainRankedKeywords,
   DomainTopPageItem,
 } from '@/lib/dataforseoClient';
@@ -45,14 +45,14 @@ interface PageAggregate {
 }
 
 function aggregateKeywordsByPage(
-  keywords: { keyword: string; position: number | null; searchVolume: number | null; url: string | null }[], 
+  keywords: { keyword: string; position: number | null; searchVolume: number | null; url: string | null }[],
   limit: number
 ): PageAggregate[] {
   const pageMap = new Map<string, PageAggregate>();
 
   for (const kw of keywords) {
     if (!kw.url) continue;
-    
+
     const existing = pageMap.get(kw.url);
     const searchVolume = kw.searchVolume || 0;
     const position = kw.position || 100;
@@ -91,7 +91,7 @@ async function fetchDomainPagesHybrid(
   pageLimit: number
 ): Promise<DomainFetchResult> {
   const result = await fetchDomainTopPages(credentials, domain, locationCode, pageLimit);
-  
+
   if (result.pages.length > 0) {
     console.log(`[Domain Pages Hybrid] ${domain} (${locationCode}): Got ${result.pages.length} pages from domain_pages/live API`);
     return {
@@ -102,11 +102,11 @@ async function fetchDomainPagesHybrid(
       method: 'domain_pages',
     };
   }
-  
+
   console.log(`[Domain Pages Hybrid] ${domain} (${locationCode}): domain_pages/live returned no data, falling back to ranked_keywords`);
-  
+
   const keywordsResult = await fetchDomainRankedKeywords(credentials, domain, locationCode, KEYWORDS_LIMIT);
-  
+
   if (keywordsResult.keywords.length === 0) {
     console.log(`[Domain Pages Hybrid] ${domain} (${locationCode}): ranked_keywords also returned no data - domain may not be in DataForSEO database`);
     return {
@@ -118,11 +118,11 @@ async function fetchDomainPagesHybrid(
       keywordsFetched: 0,
     };
   }
-  
+
   const aggregatedPages = aggregateKeywordsByPage(keywordsResult.keywords, pageLimit);
-  
+
   console.log(`[Domain Pages Hybrid] ${domain} (${locationCode}): Derived ${aggregatedPages.length} pages from ${keywordsResult.keywords.length} ranked keywords`);
-  
+
   return {
     domain: keywordsResult.domain,
     locationCode: keywordsResult.locationCode,
@@ -144,12 +144,12 @@ async function fetchDomainPagesBatchHybrid(
   pageLimit: number
 ): Promise<DomainFetchResult[]> {
   const results: DomainFetchResult[] = [];
-  
+
   for (const domain of domains) {
     const result = await fetchDomainPagesHybrid(credentials, domain, locationCode, pageLimit);
     results.push(result);
   }
-  
+
   return results;
 }
 
@@ -182,7 +182,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const password = process.env.DATAFORSEO_PASSWORD;
+    const password = credential?.password || process.env.DATAFORSEO_PASSWORD;
     if (!password) {
       return NextResponse.json(
         { error: 'DataForSEO password not configured. Please add DATAFORSEO_PASSWORD to secrets.' },
@@ -191,7 +191,7 @@ export async function POST(request: NextRequest) {
     }
 
     let domains: string[] = providedDomains || [];
-    
+
     if (domains.length === 0) {
       const allCompetitors = await getCompetitors();
       const clientCompetitors = allCompetitors.filter(
@@ -209,7 +209,7 @@ export async function POST(request: NextRequest) {
 
     const cleanedDomains = domains.map(cleanDomain);
     const uniqueDomains = Array.from(new Set(cleanedDomains));
-    
+
     const duplicatesRemoved = domains.length - uniqueDomains.length;
     if (duplicatesRemoved > 0) {
       console.log(`[Domain Pages Fetch] Removed ${duplicatesRemoved} duplicate domains (www/non-www normalization)`);
@@ -221,9 +221,9 @@ export async function POST(request: NextRequest) {
     const snapshotDate = now.split('T')[0];
     const allRecords: DomainPageRecord[] = [];
     const logFilenames: string[] = [];
-    const locationStats: { 
-      location: string; 
-      pages: number; 
+    const locationStats: {
+      location: string;
+      pages: number;
       domainsWithPages: number;
       domainPagesApiCount: number;
       rankedKeywordsApiCount: number;
@@ -240,8 +240,8 @@ export async function POST(request: NextRequest) {
         pageLimit
       );
 
-      const logData = batchResults.map(r => ({ 
-        domain: r.domain, 
+      const logData = batchResults.map(r => ({
+        domain: r.domain,
         pagesCount: r.pages.length,
         method: r.method,
         keywordsFetched: r.keywordsFetched,
@@ -251,7 +251,7 @@ export async function POST(request: NextRequest) {
       console.log(`[Domain Pages Fetch] Saved log for ${locCode}:`, logFilename);
 
       const newRecords: DomainPageRecord[] = [];
-      
+
       for (const result of batchResults) {
         for (const page of result.pages) {
           newRecords.push({
@@ -281,17 +281,17 @@ export async function POST(request: NextRequest) {
       const domainPagesApiCount = batchResults.filter(r => r.method === 'domain_pages' && r.pages.length > 0).length;
       const rankedKeywordsApiCount = batchResults.filter(r => r.method === 'ranked_keywords' && r.pages.length > 0).length;
       const domainsWithNoData = batchResults.filter(r => r.pages.length === 0).map(r => r.domain);
-      
+
       allRecords.push(...newRecords);
-      locationStats.push({ 
-        location: locCode, 
-        pages: newRecords.length, 
+      locationStats.push({
+        location: locCode,
+        pages: newRecords.length,
         domainsWithPages,
         domainPagesApiCount,
         rankedKeywordsApiCount,
         domainsWithNoData,
       });
-      
+
       console.log(`[Domain Pages Fetch] ${locCode} summary: ${newRecords.length} pages from ${domainsWithPages} domains (domain_pages: ${domainPagesApiCount}, ranked_keywords: ${rankedKeywordsApiCount})`);
       if (domainsWithNoData.length > 0) {
         console.log(`[Domain Pages Fetch] ${locCode} domains with no data: ${domainsWithNoData.join(', ')}`);

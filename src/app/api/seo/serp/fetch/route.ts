@@ -23,8 +23,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const locCodes: string[] = Array.isArray(locationCodes) 
-      ? locationCodes 
+    const locCodes: string[] = Array.isArray(locationCodes)
+      ? locationCodes
       : (locationCodes ? [locationCodes] : ['IN', 'GL']);
 
     if (locCodes.length === 0) {
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const password = process.env.DATAFORSEO_PASSWORD;
+    const password = credential?.password || process.env.DATAFORSEO_PASSWORD;
     if (!password) {
       return NextResponse.json(
         { error: 'DataForSEO password not configured. Please add DATAFORSEO_PASSWORD to secrets.' },
@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
     }
 
     const uniqueKeywords = Array.from(new Set(keywordRecords.map(r => r.keywordText)));
-    
+
     const sanitizedKeywords: string[] = [];
     for (const keyword of uniqueKeywords) {
       const sanitized = sanitizeKeywordForAPI(keyword);
@@ -107,7 +107,7 @@ export async function POST(request: NextRequest) {
 
       for (const keywordResult of locResult.results) {
         keywordsProcessed++;
-        
+
         for (const item of keywordResult.items) {
           const record: SerpResult = {
             id: uuidv4(),

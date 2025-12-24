@@ -1227,5 +1227,25 @@
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP pages from this domain include product pages like a TFO (two-for-one) twister DM-07 and a doubling machine, indicating an OEM selling yarn twisting machinery. These offerings align directly with the client’s core topics and product lines (e.g., yarn twisting machines, staple/filament twisters). The ranking mix of product detail pages and evaluative content suggests a Commercial Investigation intent. Given the strong product overlap and OEM positioning, this domain is classified as a Direct Competitor with a high match score.",
     "addedAt": "2025-12-07T06:52:43.145Z"
+  },
+  {
+    "id": "19b1ceb7-ff0a-42aa-b106-36e6defd8dd3",
+    "clientCode": "03",
+    "name": "Cosmofilms",
+    "domain": "https://www.cosmofilms.com",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-24T13:16:29.373Z"
+  },
+  {
+    "id": "b963be5c-c56c-4074-ba92-d2fc8a2b622a",
+    "clientCode": "03",
+    "name": "starflexifilms",
+    "domain": "https://www.starflexifilms.com/",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-24T13:17:00.133Z"
   }
 ]

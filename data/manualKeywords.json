@@ -4,1784 +4,2551 @@
     "clientCode": "01",
     "keywordText": "tfo machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "75586613-c1f8-49cd-973b-d8df23df3a2a",
     "clientCode": "01",
     "keywordText": "carpet yarn",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "d9a6e182-2316-438a-b9e7-80fd5d577397",
     "clientCode": "01",
     "keywordText": "pp fibrillated yarn",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "2b822792-c82a-4d6c-b962-4f5f8bc65331",
     "clientCode": "01",
     "keywordText": "Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "765e4175-8000-46f3-bb4e-c1b3d06956b2",
     "clientCode": "01",
     "keywordText": "Yarn Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "2be0fb12-5d7a-4372-9b75-0c4f2dad70d3",
     "clientCode": "01",
     "keywordText": "Two For One Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "a0a9e682-e4c2-4a52-ae72-25359b1c55c5",
     "clientCode": "01",
     "keywordText": "Textile Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "900246c6-9b3b-4033-8610-8b657cb1ba90",
     "clientCode": "01",
     "keywordText": "yarn twisting and doubling machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "24c22cbe-ae78-4aa9-8fea-b09b28b85124",
     "clientCode": "01",
     "keywordText": "Heavy Ring Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "9c32aa97-e1d3-4ace-bd98-31d5fd04eaff",
     "clientCode": "01",
     "keywordText": "TFO",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "adc3f369-1b42-48ec-bda8-2eca18e16b1f",
     "clientCode": "01",
     "keywordText": "Ring Doubler",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "800e590d-8ecf-4294-a1e0-6f2f6eb4aa1b",
     "clientCode": "01",
     "keywordText": "Doubling Machines",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "ec4fb0d2-6be9-4959-b774-71541edc7727",
     "clientCode": "01",
     "keywordText": "Twister And Cabler Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "fcf1429c-58f3-4685-8fef-baa5441e741d",
     "clientCode": "01",
     "keywordText": "S & Z Twist Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "69a96a6b-2798-4318-bbf3-20f253742b62",
     "clientCode": "01",
     "keywordText": "Ring Twister Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "23d54290-88ee-49cd-9b0b-40a584864977",
     "clientCode": "01",
     "keywordText": "Ring Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "6fb66b93-1637-4a74-8f0e-297aa08a5d34",
     "clientCode": "01",
     "keywordText": "Precision Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "fa46b84f-c193-4396-af37-98b9fa4dc450",
     "clientCode": "01",
     "keywordText": "Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "280b40b5-3a3a-4830-8335-651a6ac46f7b",
     "clientCode": "01",
     "keywordText": "Assembly winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "558bbc0c-5c81-4da9-b9ac-04ffde8e3b19",
     "clientCode": "01",
     "keywordText": "Assembly Winder With Creel",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "93de0c5b-7247-497a-ba27-1c270fc48ff2",
     "clientCode": "01",
     "keywordText": "Cone To Cone Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "5bf294fc-f40e-4d49-8982-dc6a9992f1d8",
     "clientCode": "01",
     "keywordText": "Cone to Cone Assembly Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "4bd1a419-6807-45c5-b16c-875b7fabdea7",
     "clientCode": "01",
     "keywordText": "Cops Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "d1fcc174-d79b-45c1-8ed2-3146405a2eb5",
     "clientCode": "01",
     "keywordText": "Servo controlled cops winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "0d35953f-cb87-44d6-98f4-8f4b027d8156",
     "clientCode": "01",
     "keywordText": "Filament Yarn Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "6b503513-4155-447d-8d0b-81fea6fd6265",
     "clientCode": "01",
     "keywordText": "Spun Yarn Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "d5e0c8c2-2aab-4415-a461-5f37afc76e69",
     "clientCode": "01",
     "keywordText": "Filament Yarn Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "952c561b-96c1-4ab9-81c5-5572fe25bf26",
     "clientCode": "01",
     "keywordText": "Cotton TFO Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "54f28492-42a0-477b-bc3d-5fc29d35c78e",
     "clientCode": "01",
     "keywordText": "Fish Net Yarn Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "4f999a02-8a63-44ae-a2ef-96468cac6e1d",
     "clientCode": "01",
     "keywordText": "Sewing Thread Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "9e2fb9ce-acf5-4c83-be9a-608667ad975d",
     "clientCode": "01",
     "keywordText": "Cotton TFO",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "2d00c2ab-c127-4b72-85b5-2eaf08ee2da2",
     "clientCode": "01",
     "keywordText": "Double Deck Spun TFO",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "0533fb05-53c0-4103-9f93-6ef930f54e73",
     "clientCode": "01",
     "keywordText": "Carpet Cabler",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "c15bfba9-b3ef-4e73-ac7c-715dc78c0e3c",
     "clientCode": "01",
     "keywordText": "Ply Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "7d0c6e9c-82db-41a2-bd23-1cc6a8efdf20",
     "clientCode": "01",
     "keywordText": "Carpet Twister / Staple Fiber Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "3d7a887e-fc56-46cf-aeff-042aebc5d337",
     "clientCode": "01",
     "keywordText": "Spun Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "c099f5d3-3b48-460a-a0bf-1694a57205f0",
     "clientCode": "01",
     "keywordText": "Rope Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "1e88dddd-b859-4a75-aed3-d215bfba65e0",
     "clientCode": "01",
     "keywordText": "Twine Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "223223de-1fa5-4b87-adf9-4037cdbac369",
     "clientCode": "01",
     "keywordText": "TPRS",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "6ad80310-7a0b-424d-905a-8bad7592664c",
     "clientCode": "01",
     "keywordText": "PP Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "8c81131f-242c-4b99-8794-38b58206399c",
     "clientCode": "01",
     "keywordText": "Bobbin Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "53194ed8-f6e9-4ff9-8a49-0c35a4836b37",
     "clientCode": "01",
     "keywordText": "Carpet Cabler / Twister for BCF Yarn",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "5b3434eb-4d9a-4982-91c9-4b470fa958ed",
     "clientCode": "01",
     "keywordText": "Embroidery Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "d17eaa4f-8881-48b7-ad60-1cde9d4aad91",
     "clientCode": "01",
     "keywordText": "Compact Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "d6a9ceee-3429-43dc-bdd4-fd26cb6ed7ff",
     "clientCode": "01",
     "keywordText": "Cabler Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "3d0b09a1-cc05-43c8-9572-be21941d1d3d",
     "clientCode": "01",
     "keywordText": "Staple Fiber Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "6da5be6e-d4eb-4df6-85b2-830e1bbdd7a9",
     "clientCode": "01",
     "keywordText": "Industrial Thread Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "4ac88ccb-38fa-4dde-ac18-d7a7b6d0b179",
     "clientCode": "01",
     "keywordText": "Industrial Yarn Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "6ae34a00-7f2f-468b-8b5d-e0c4a6310e94",
     "clientCode": "01",
     "keywordText": "Technical Yarn Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "736440b0-c3df-40b7-8c4b-1b3b5f52271d",
     "clientCode": "01",
     "keywordText": "Ply Cable Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "767dd4e4-d8e0-47b4-b7ea-bc242474614c",
     "clientCode": "01",
     "keywordText": "Direct Cabler",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "b4b9ac49-3008-4251-9aa0-6b776f9ace61",
     "clientCode": "01",
     "keywordText": "Direct Cording Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "d30c9a5f-361d-4e42-b09b-4e45b727990e",
     "clientCode": "01",
     "keywordText": "Fancy Yarn Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "7da8a9e8-bdd9-47c1-bb92-4fd2685b2e48",
     "clientCode": "01",
     "keywordText": "Raffia / Sutli Yarn Twisting Machine 1000, 2000, 4000",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "e991994a-3119-436f-b711-8ddfa121f752",
     "clientCode": "01",
     "keywordText": "Leno Mesh Bag Yarn Twisting Machine 600, 800",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "5916c15b-343d-4d40-be23-bb5266679c6a",
     "clientCode": "01",
     "keywordText": "Spun TFO Machine ( Compact Twister )",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "b6df7bc1-8dc8-4b6c-a793-8625a9b256fa",
     "clientCode": "01",
     "keywordText": "Single Deck Spun TFO Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "a176ec92-6aab-4fbf-ba7e-dc15e4e57017",
     "clientCode": "01",
     "keywordText": "Spun Thread Two For One Twister 2/30, 2/20, 2/40",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "47f5df1d-0308-44b0-a714-70f3fea468b1",
     "clientCode": "01",
     "keywordText": "Industrial Threads Twisting Machine 600, 1000, 2000",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "5c6acfde-beeb-4303-8eb6-8a9088de1f44",
     "clientCode": "01",
     "keywordText": "Agro Net Yarn Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "542ded64-efaf-49c5-8fda-5181c4e25793",
     "clientCode": "01",
     "keywordText": "Staple Fiber Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "1cffac34-3efc-4ea9-83d4-cc2bccca071d",
     "clientCode": "01",
     "keywordText": "Alpaca Yarn Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "539d425a-0e1b-43e3-a32c-552fe05b7fe7",
     "clientCode": "01",
     "keywordText": "Wool Yarn Twisting Machines",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "a3f34478-292b-4e9e-867b-63b4ee3bdd8f",
     "clientCode": "01",
     "keywordText": "FIBC Seam Closing Thread Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "9e42b0ec-d84a-45b3-88f2-749e4db165a6",
     "clientCode": "01",
     "keywordText": "Two For One Twister For Filament yarn",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "9a75962e-d3a5-4b97-b313-41f8bb33424a",
     "clientCode": "01",
     "keywordText": "Two for One Twister for Filament Yarn - (90 POT)",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "ec57e142-3029-4eb5-b646-e95c4869fb2e",
     "clientCode": "01",
     "keywordText": "Two For One Twister For Filament yarn 70 mm Pot",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "9f1a5cbd-c5e8-41cf-9711-a4f79e6437ff",
     "clientCode": "01",
     "keywordText": "Filament TFO For Polyester",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "e3519634-d23a-4fbb-818d-7cd0228a8991",
     "clientCode": "01",
     "keywordText": "Filament TFO For Nylon",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "a6dacc7b-86b9-4de0-8ee3-42f7d9b32910",
     "clientCode": "01",
     "keywordText": "Filament TFO For Viscose",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "43d0b44c-ba2a-4af6-a686-8b45aae28854",
     "clientCode": "01",
     "keywordText": "Embroidery Thread Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "4bf58544-750e-4833-9503-e7a395c893c6",
     "clientCode": "01",
     "keywordText": "Sewing Thread Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "385d4a1e-d0b9-4421-a191-603c4429b1f1",
     "clientCode": "01",
     "keywordText": "Stitch Thread Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "34c0ef55-7159-49ab-b62c-8eb8b363e741",
     "clientCode": "01",
     "keywordText": "Carpet Cabler / Carpet Twister - 1200/2, 2400/2",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "787e2750-5597-4927-87eb-32349245478c",
     "clientCode": "01",
     "keywordText": "PP Fibrillated Tape Twisting Machine 600, 840, 1000",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "7e41c74d-344b-475b-b87f-966f810c7e49",
     "clientCode": "01",
     "keywordText": "High Bulk Yarn Cabling Machine - 1200/2, 2400/2, 2400/3",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "eb42e39d-f96e-451b-b06f-18a5c4614d21",
     "clientCode": "01",
     "keywordText": "BCF Cabler / Twister For PP / Polyester / Nylon",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "d1391d0b-a696-431d-b4e2-90df9b422836",
     "clientCode": "01",
     "keywordText": "Heavy Duty Cabler For PP/ Poly / PA BCF Yarn",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "ceebf778-8068-47eb-a151-71440d3335ad",
     "clientCode": "01",
     "keywordText": "Cabler Twister For Bathmats Yarn",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "6d15f817-50a0-41d1-a76d-a1e3a6c3366e",
     "clientCode": "01",
     "keywordText": "BCF Carpet Yarn Twisting Machine 1200/2, 1800/2, 3600/2",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "18ba1ca3-e387-49bb-9938-a487705ec25a",
     "clientCode": "01",
     "keywordText": "Fishnet / Agriculture Net Yarn Twister (210/2, 210/3 , 420/2, 420/3)",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "c9130251-777a-4fc8-9d4d-e39df1a2d577",
     "clientCode": "01",
     "keywordText": "S/ Z Industrial Thread Doubler / Twister For PP/ Poly / PA / Nylon / PE (840/2, 840/3)",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "6c5f8b67-a47a-4fe8-b191-48a74fefe508",
     "clientCode": "01",
     "keywordText": "Twisting Machine for Heavy Fishnet Twine 210/24, 210/ 27, 210/54",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "32967239-b792-4cf9-93a3-5590f872f1cf",
     "clientCode": "01",
     "keywordText": "Cargo Net Yarn Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "405126cc-664d-44e7-ad18-05f40f26e181",
     "clientCode": "01",
     "keywordText": "FIBC Bag Mouth Closing Twister  For PPMF Fibrillated and Non Fibrillated Yarn",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "5250cfa4-5e38-4fce-98f3-03eb770b36eb",
     "clientCode": "01",
     "keywordText": "PP Filament Yarn Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "e26ba404-dc28-4ad5-8d33-2f9d1b2d19ce",
     "clientCode": "01",
     "keywordText": "Footwear Threads Twisting Machine 1000/2, 1200/3, 3000/3",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "7571b18e-3e4e-4d67-8433-b8504b36f2c5",
     "clientCode": "01",
     "keywordText": "High Tenacity Threads Twisting Machine  1000/2, 1200/3, 3000/3",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "99e1c661-4cb8-42c7-b189-deb615694952",
     "clientCode": "01",
     "keywordText": "PPMF Sewing Threads Twisting Machine  600/2, 840/2, 1000/3",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "dd85b128-0a33-4e7a-9d38-36b1ef2eb645",
     "clientCode": "01",
     "keywordText": "FIBC Mouth Closing Thread Twisting Machine 600/2, 840/2, 1000/3",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "cffd06d2-5124-4c11-bf62-872208339368",
     "clientCode": "01",
     "keywordText": "Fishnet Twine Twisting Machine 210/3, 210/6",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "6d19c2a4-caa9-44b8-8342-6a4629116b48",
     "clientCode": "01",
     "keywordText": "Hose Reinforcement Yarn Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "59ca6c88-1942-4fbc-9f5a-ec3d1f57abc7",
     "clientCode": "01",
     "keywordText": "Prayer Mat Yarn Twisting Machine - 450/2 , 450/3",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "2361b849-8f6d-4c67-a0e3-48634e02c12f",
     "clientCode": "01",
     "keywordText": "Heavy Fishnet Twine Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "9b920529-eb69-4d64-8f0c-d42f944deb8a",
     "clientCode": "01",
     "keywordText": "One Step Twisting, Ply and Cabling Machine ( 840/2, 840/3, 2000/3, 4000/3 )",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "a8dce689-1dcb-40a8-aa7c-5e462f2120ad",
     "clientCode": "01",
     "keywordText": "Heavy Duty Ring Twister For Braids / Cords / Ropes / / Climbing Ropes / Twines / Fence Wire / Conveyor Belt",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "8671f943-9700-4c7f-aa4c-3eddbf7ea833",
     "clientCode": "01",
     "keywordText": "Defence Application Yarn Ring Twister Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "0e558aa3-8234-416b-b49f-b1efbc8c69d9",
     "clientCode": "01",
     "keywordText": "Multiply Carpet Yarn 300/2/6",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "061cc2a9-779b-4875-9e92-0fbb276e53da",
     "clientCode": "01",
     "keywordText": "Dipped Cord Ring Twister Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "3f2a3c5e-f11a-484d-909e-09aa4b037632",
     "clientCode": "01",
     "keywordText": "Glass Yarn Ring Twister Machine Tex 75/2, 140/2",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "6ec67232-5d9c-45a0-9fdd-d25353968225",
     "clientCode": "01",
     "keywordText": "Carbon Fiber Ring Doubling Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "2017afb5-548d-41b1-9571-d0c0e363ce4a",
     "clientCode": "01",
     "keywordText": "Conveyor Belt Fabrics Yarn Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "3eacabf1-8e5f-44eb-9816-396a6df9a0b9",
     "clientCode": "01",
     "keywordText": "Heavy Duty Glass Yarn Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "98a2a72c-75c1-4a58-815f-84441b375f7d",
     "clientCode": "01",
     "keywordText": "Carbon Fiber Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "88e86bec-1736-4912-a58d-efa2b48ce245",
     "clientCode": "01",
     "keywordText": "Heavy Duty Ring Twister For Floor Sweeper and MOP Yarns",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "6545687f-af0f-442a-b578-cb94817c6049",
     "clientCode": "01",
     "keywordText": "Ring Twister For Carbon / Aramid / Glass / Wool / Paper / Artificial Grass / Technical Yarns",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "0f37fc1b-ca25-4b11-93bc-98ac043d0a2e",
     "clientCode": "01",
     "keywordText": "Heavy Duty Ring Twister For Raffia, Packaging Yarns, Tapes, Non Woven / Passementerie",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "ecc2fdcc-433d-44f7-b894-f78522457130",
     "clientCode": "01",
     "keywordText": "Ring Twister For  PP/ Poly / PA / Nylon / PE / HDPE",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "bfdfea27-c36a-4e5d-9de7-43fac000c80c",
     "clientCode": "01",
     "keywordText": "Covering Twisting Machine For Lycra / Spandex / Rubber / Elastane",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "0446a50c-4e66-470e-9599-e501d763f26e",
     "clientCode": "01",
     "keywordText": "Fully Auomatic Lab Covering Twisting Machine For Small Lots and Trials",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "afbedf71-2e90-4ff2-8459-7a536f6ed068",
     "clientCode": "01",
     "keywordText": "Twisting Machine For Trial Purpose",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "c2efc756-8b9f-46bf-b271-d94052420d5f",
     "clientCode": "01",
     "keywordText": "Continuous Bulk & Heat Setting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "fbd333cd-061f-43bc-8008-6400058ef9f7",
     "clientCode": "01",
     "keywordText": "Cone Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "2e6e870a-3c2c-4207-9b56-7c727d8d6f24",
     "clientCode": "01",
     "keywordText": "Lycra yarn Covering Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "89d40f2d-ae1f-47ce-985e-4c0f76d8eba8",
     "clientCode": "01",
     "keywordText": "Lycra Covering Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "4f8b762d-472e-4371-a680-c8452e2f03e1",
     "clientCode": "01",
     "keywordText": "Embroidery Thread Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "f675f2cf-e60f-4331-b5a3-67605e74db7c",
     "clientCode": "01",
     "keywordText": "Heavy Duty Twister & Cabler Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "610d95c2-9fbb-4162-93c9-9a5abaf626e2",
     "clientCode": "01",
     "keywordText": "Twister And Cabler Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "0ec5aae6-eb4c-4fd8-9c39-3eaaf773ddde",
     "clientCode": "01",
     "keywordText": "Servo Controlled Cop Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "e72cdc79-87db-485d-9665-432714205139",
     "clientCode": "01",
     "keywordText": "TPRS Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "c252b41a-9f44-400f-bdf7-a1bbd057b310",
     "clientCode": "01",
     "keywordText": "Shaggy Poly Carpet Yarn Twisting Machines 300/2 , 150/2",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "ea8768d1-94b6-4b8d-ad08-c8c107aff0ef",
     "clientCode": "01",
     "keywordText": "Artificial Grass Yarn Twisting Machine for Polypropylene",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "5eb40776-8967-4865-b6c5-2372da3d39d3",
     "clientCode": "01",
     "keywordText": "Bag Closing Thread Twisting Machine 210/3 , 420/3 , 840/3",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "735080ab-4b04-4df1-abf1-290082931d61",
     "clientCode": "01",
     "keywordText": "Two For One Twister for PP Fibrillated Tape 600, 840, 1000",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "b7edd86f-bc1d-40eb-8de7-e468c11e8a96",
     "clientCode": "01",
     "keywordText": "PP Tape Twine Twisting machine with precision winding 10000, 15000",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "fc0b398f-ee77-4750-aac1-6392bc96d94d",
     "clientCode": "01",
     "keywordText": "Embroidery Threads Twisting Machine  150/2,  300/2",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "892aa8e2-bc8b-4ee3-9f31-d9d030d56d18",
     "clientCode": "01",
     "keywordText": "Polyester One Step High Speed Yarn Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "6708e012-16da-4bb2-a5d1-2d26582330ad",
     "clientCode": "01",
     "keywordText": "8 inch Precision Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "7d6dcfa8-35e8-47f1-a07b-5b22861cb2f7",
     "clientCode": "01",
     "keywordText": "10 inch Precision Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "3a8139b3-c74c-4884-9aea-120664f839e1",
     "clientCode": "01",
     "keywordText": "12 inch Precision Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "55ca6417-5928-41ed-ae85-4b2fb481eeb8",
     "clientCode": "01",
     "keywordText": "10 inch winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "9f0001df-c35e-4ea4-98c7-99d61b75dc3b",
     "clientCode": "01",
     "keywordText": "12 inch winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "d7c10dda-6a88-4bb1-a46f-75eab12e195a",
     "clientCode": "01",
     "keywordText": "Yarn Guide Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "00529005-6497-471a-9a77-48d61d296017",
     "clientCode": "01",
     "keywordText": "Cone to Cone Precision Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "89c61eac-1265-403e-b789-5dd9795ffb6c",
     "clientCode": "01",
     "keywordText": "Coreless Package Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "629273fe-9654-4e1c-b753-ebab3d5f5d36",
     "clientCode": "01",
     "keywordText": "Coreless Precision Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "5ea75421-653c-4388-902e-c023d12c486b",
     "clientCode": "01",
     "keywordText": "Precision Assembly Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "a751b630-345a-49d5-927f-53c976d48213",
     "clientCode": "01",
     "keywordText": "Carpet Yarn Bulking Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "7b830386-5fd5-4ec9-a28b-58bc171a3bb8",
     "clientCode": "01",
     "keywordText": "Coreless Precision Assembly Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "0a335299-5088-49ab-b04d-02c907bfb162",
     "clientCode": "01",
     "keywordText": "Technical Yarn Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "011c5ba9-905a-4579-b1c9-bde351f4952b",
     "clientCode": "01",
     "keywordText": "Ply Cable Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "c0820be1-d5d9-4ca2-b504-a1eff549669b",
     "clientCode": "01",
     "keywordText": "Direct Cording Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "046ed5df-1231-4ec5-b0e5-2ab17ed73dc1",
     "clientCode": "01",
     "keywordText": "Staple Fiber Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "4c29bee4-2563-4c96-a6e2-3055c9baa367",
     "clientCode": "01",
     "keywordText": "Two For One Twister For Filament yarn",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "69529d4a-448c-49d1-9fda-d35a562c8d56",
     "clientCode": "01",
     "keywordText": "Sewing Thread Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "420e2ee6-2d32-4247-948b-10b26eebdff2",
     "clientCode": "01",
     "keywordText": "Stitch Thread Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "1cc7967d-c5ab-4abd-8bd6-72b06a657b1d",
     "clientCode": "01",
     "keywordText": "Embroidery Thread Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "9c13f673-c0f1-4a76-abe6-8683a33982d9",
     "clientCode": "01",
     "keywordText": "Baler Twine Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "1c0da37d-efb0-487b-b56f-f374238569fc",
     "clientCode": "01",
     "keywordText": "Tyre Cord Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "a4496a39-7711-4397-a24a-8acd34391cdf",
     "clientCode": "01",
     "keywordText": "Twisting Machine for Home Textile",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "97679871-8678-4217-a2ca-c39a1d6f7662",
     "clientCode": "01",
     "keywordText": "Industrial Yarn Cop Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "3d72edc4-108f-4f63-937b-a190dca361f5",
     "clientCode": "01",
     "keywordText": "Automatic Assembly Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "6b5797cf-c516-4820-b492-425a1296e14b",
     "clientCode": "01",
     "keywordText": "Servo Controlled Two For One Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "64cec3be-bf66-47b5-a123-bd7e7d8f9d1e",
     "clientCode": "01",
     "keywordText": "Pirn Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "87ca6467-537c-447d-9706-f0d9c453962d",
     "clientCode": "01",
     "keywordText": "Individual Counter Meter Cops Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "039a931f-12cf-4af2-9907-974fe35274e5",
     "clientCode": "01",
     "keywordText": "Precision Winder For Technical Yarn",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "3f898b1e-9488-46f3-95c1-d165b043566b",
     "clientCode": "01",
     "keywordText": "Low Shrinkage HTLS Yarn Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "cc0cac5b-5e56-4338-a04d-50ef15afc361",
     "clientCode": "01",
     "keywordText": "High Tenacity Low Shrinkage Polyester Yarn Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "19580ed8-faef-4595-8dc0-d3e0bf42a5f1",
     "clientCode": "01",
     "keywordText": "Precision Windier for Low Shrinkage HTLS Yarn",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "4d8bd418-37b7-4487-ac8c-175943373096",
     "clientCode": "01",
     "keywordText": "Twisiting Machine For Geo Textile",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "3cdffde6-b323-4528-a31b-3946a715cdac",
     "clientCode": "01",
     "keywordText": "Flanged Bobbin Two For One Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "a9e9892a-8d28-4fe7-aa6d-5e2e8b09f07c",
     "clientCode": "01",
     "keywordText": "Low GSM Filament Yarn TFO Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "d16fb6ab-5452-48b9-9317-4dbab4674e91",
     "clientCode": "01",
     "keywordText": "Double Deck Filament Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "4c253019-f1ff-4eb0-a1a1-f0d8fcd9e0e7",
     "clientCode": "01",
     "keywordText": "Single Deck Filament twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "5159740c-d51b-402f-9d89-d8fdd170ab6e",
     "clientCode": "01",
     "keywordText": "Assembly Winder with Oil Device",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "4b0a7b39-6ea3-450b-8dfb-f98d2e570972",
     "clientCode": "01",
     "keywordText": "HEAT-SETTING LINE FOR CARPET YARN",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "d78e6a85-1152-4713-bfc1-57d80c6534dc",
     "clientCode": "01",
     "keywordText": "TFO Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "c1e70027-5be0-4ceb-b048-1a221f98bd83",
     "clientCode": "01",
     "keywordText": "Textile Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "7a5332ec-7b7c-4980-a639-b03e2216aa49",
     "clientCode": "01",
     "keywordText": "yarn twisting and doubling machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "97928ddd-184a-4ade-baad-6c578e2bd7f7",
     "clientCode": "01",
     "keywordText": "Anti-Hail Nets Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "584d1423-f7f8-4d29-a648-0e180a3bfb56",
     "clientCode": "01",
     "keywordText": "Towels Yarn Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "160441e8-8c56-4dc8-8d3a-3d508304727d",
     "clientCode": "01",
     "keywordText": "Carpet Yarn Bulking Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "5a73492a-4236-41d3-b93f-9d0ca11b9671",
     "clientCode": "01",
     "keywordText": "Continuous Bulking machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "278e00dd-964b-4e41-baa5-67969ff91b10",
     "clientCode": "01",
     "keywordText": "covering machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "9d0a0707-bb2e-4425-b976-6225adfbd818",
     "clientCode": "01",
     "keywordText": "lycra covering machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "1c2e3773-1ab2-48e1-9740-436e48ca332d",
     "clientCode": "01",
     "keywordText": "denim covering machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "e4b3d810-b83c-445d-bc9c-e828a41a4a95",
     "clientCode": "01",
     "keywordText": "jari covering machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "c8333cf0-6a3d-40e2-9a41-81b8a52a29c7",
     "clientCode": "01",
     "keywordText": "air covering yarn machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "ccda4be7-8e2f-4e9e-b5a3-6ad09b3ecc00",
     "clientCode": "01",
     "keywordText": "jari covering machine surat",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "a7f3136d-bee0-46e9-9a05-95161c8cb994",
     "clientCode": "01",
     "keywordText": "polyester air covering machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "e315e964-31ce-4adc-adeb-8d81e3191f16",
     "clientCode": "01",
     "keywordText": "Doubling Machines",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "256fa225-31f6-4a14-9075-e68dc99630f6",
     "clientCode": "01",
     "keywordText": "Ring Doubler",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "d2b52e48-9336-4a82-b19c-589cbfc75c71",
     "clientCode": "01",
     "keywordText": "Doubling Machines",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "06ec16c6-e018-475d-8b46-96294712cb1c",
     "clientCode": "01",
     "keywordText": "Ring Doubler",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "aeccdf20-fcd1-473c-a932-54227203889a",
     "clientCode": "01",
     "keywordText": "S Z Industrial Thread Doubler",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "f6ff62b8-08f9-4b03-bf0c-3d13e2b299b6",
     "clientCode": "01",
     "keywordText": "Carbon Fiber Ring Doubling Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "49c20d9d-5b47-4ca0-9e27-e0a5f1b91176",
     "clientCode": "01",
     "keywordText": "Carbon Fiber Ring Doubling Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "c82ad959-aafa-4272-88da-1a332103e414",
     "clientCode": "01",
     "keywordText": "Ring Doubler",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "dc7ecca3-6f33-4864-a55d-8385148555d7",
     "clientCode": "01",
     "keywordText": "Best Doubling machines",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "2392ddfa-21f9-4760-93e8-be7212ef5b05",
     "clientCode": "01",
     "keywordText": "doubling machine price in india",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "f14e2b92-72c8-4b8b-8523-1beb673c1a25",
     "clientCode": "01",
     "keywordText": "ring doubling machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "aeab3fd5-47b6-4e35-a563-53c6cf8be54a",
     "clientCode": "01",
     "keywordText": "tfo doubling machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "7360484e-1dfd-4130-8cf1-e62e9f10402c",
     "clientCode": "01",
     "keywordText": "doubling machine manufacturers in coimbatore",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "b5529a87-fd86-4389-8910-28942a4224f8",
     "clientCode": "01",
     "keywordText": "doubling machine process",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "a283731b-334c-48dd-93d7-97f972dcefc1",
     "clientCode": "01",
     "keywordText": "textile doubling machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "cc43d5ed-17c5-42d2-9533-4b7f9fbb4547",
     "clientCode": "01",
     "keywordText": "doubling machine in surat",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "21ecc72c-878d-42e4-a66b-83f16db94e8e",
     "clientCode": "01",
     "keywordText": "how to set doubling machine for twisting",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "4ca42a72-bbb6-47fb-a579-ecf186ad9c3f",
     "clientCode": "01",
     "keywordText": "textile doubling machine maker",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "4f2d1320-4b02-4e98-aa83-ee9eb28c2934",
     "clientCode": "01",
     "keywordText": "HEAT-SETTING LINE FOR CARPET YARN",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "057aea9f-6ba4-4e2c-953f-f2eebcea41ae",
     "clientCode": "01",
     "keywordText": "heat setting machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "f6da5468-9c0e-4dd4-bee7-404cf88d4a1f",
     "clientCode": "01",
     "keywordText": "yarn doubling machine manufacturers",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "251da2be-351c-4aeb-b8fc-550231785277",
     "clientCode": "01",
     "keywordText": "heat setting machine price",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "69459dd6-0221-4927-b60c-407262b9de7a",
     "clientCode": "01",
     "keywordText": "tubular heat setting machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "afef866a-5fd7-4f0a-b806-7d9be475e44a",
     "clientCode": "01",
     "keywordText": "yarn heat setting machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "50e3fb7d-5903-440e-bac0-1208dd165ce3",
     "clientCode": "01",
     "keywordText": "heat setting machine fabric",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "a6ea22d4-4c61-4f75-8914-96f76f7b1dec",
     "clientCode": "01",
     "keywordText": "heat setting of polyester machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "14cb2ff3-6059-4d35-9e83-89a2070d8617",
     "clientCode": "01",
     "keywordText": "yarn twisting and doubling machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "dbe9b4bf-879c-47b0-84c3-9eec250fb7e3",
     "clientCode": "01",
     "keywordText": "Double Deck Spun TFO",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "f3a38459-b354-4094-b184-73d07faf390f",
     "clientCode": "01",
     "keywordText": "Double Deck Filament Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "c3d2d23e-f514-4b52-88f2-b240be2e6f8e",
     "clientCode": "01",
     "keywordText": "twisting machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "39c7000e-7373-4f64-bda7-1acf4310fc41",
     "clientCode": "01",
     "keywordText": "staple yarn twisting machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "7a242e14-2898-43ff-bca0-f6f13c89aaf6",
     "clientCode": "01",
     "keywordText": "best TFO machines",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "1feefdd1-20fc-4783-a231-c298e9cf2138",
     "clientCode": "01",
     "keywordText": "Industrial Thread Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "5b03c9f2-54f8-4817-9350-8a6d10214c36",
     "clientCode": "01",
     "keywordText": "Spun Yarn Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "4ab10a5e-1970-4260-8b2d-fd325f973d78",
     "clientCode": "01",
     "keywordText": "Carbon Fiber Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "f5306abd-dfb7-41b3-a050-0a3f7752265d",
     "clientCode": "01",
     "keywordText": "Spun TFO Machine ( Compact Twister )",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "e8d95c8b-5600-4b66-958d-004e83778712",
     "clientCode": "01",
     "keywordText": "Wool Yarn Twisting Machines",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "0e23bf22-c0c3-4337-8121-1b264380a45e",
     "clientCode": "01",
     "keywordText": "Textile Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "04e70a16-f6be-4245-88e3-8bb4d4efaca5",
     "clientCode": "01",
     "keywordText": "Twine Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "50938673-dcbb-4190-97e7-9ae328f940fe",
     "clientCode": "01",
     "keywordText": "S & Z Twist Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "56a9a43f-c40e-4daf-9842-b58449221c7a",
     "clientCode": "01",
     "keywordText": "Twister And Cabler Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "5a15e196-4781-4e6d-a3b6-e5b7cf56cc19",
     "clientCode": "01",
     "keywordText": "Heavy Duty Glass Yarn Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "9452e378-64cc-4637-bc6b-27d822ba8540",
     "clientCode": "01",
     "keywordText": "Double Deck Filament Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "b11f4292-ec8f-44a4-90eb-3c18cd23fcff",
     "clientCode": "01",
     "keywordText": "Single Deck Filament twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "c76fc4ca-7cd2-49cf-82d5-8ea6cf0fd04e",
     "clientCode": "01",
     "keywordText": "Fancy Yarn Twister",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "f56e6c8a-03eb-45e2-891a-b54057255bab",
     "clientCode": "01",
     "keywordText": "Cotton TFO Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "34e24eb0-c6f6-4b21-96d4-8fddfa887cfe",
     "clientCode": "01",
     "keywordText": "Towels Yarn Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "c0d4a634-ee95-4611-b69d-2b0386ea4bf2",
     "clientCode": "01",
     "keywordText": "Two For One Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "dedfbc3c-bf87-475b-9004-0e4ddea04dc5",
     "clientCode": "01",
     "keywordText": "TFO Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "523996b3-01bb-470e-b273-3607af181e74",
     "clientCode": "01",
     "keywordText": "Compound Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "c0423791-b32d-42e2-927f-3ef34cad94f3",
     "clientCode": "01",
     "keywordText": "Heavy Fishnet Twine Twisting Machine",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "39d2fdba-11fd-4c61-90a9-c53e1bf1f9ae",
     "clientCode": "01",
     "keywordText": "twisting machine for labs",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "ddd26fcd-9cd4-4999-af87-c2e577962c7c",
     "clientCode": "01",
     "keywordText": "Servo controlled cops winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "21d389b0-d589-423f-85ec-e2f84218d90e",
     "clientCode": "01",
     "keywordText": "Cone To Cone Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "1dc49f74-753a-42f3-bc0b-a9be4230b439",
     "clientCode": "01",
     "keywordText": "Best Winding Machines",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "d8140dee-d41a-4d4f-954f-9932161d2029",
     "clientCode": "01",
     "keywordText": "Pirn Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "64e6af8e-61fb-4892-846b-d1173a16b740",
     "clientCode": "01",
     "keywordText": "12 inch Precision Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "9e09c7e1-3d09-4b0f-83d7-9527d798a90d",
     "clientCode": "01",
     "keywordText": "Yarn Guide Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "f6d79f36-44f4-44a6-9a3f-59f4aa5fa4dc",
     "clientCode": "01",
     "keywordText": "Cone To Cone Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "82078456-baa3-4b6e-af47-367dbd70030f",
     "clientCode": "01",
     "keywordText": "Cone to Cone Assembly Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "9596aa94-ec2f-4227-a994-3aa26635f576",
     "clientCode": "01",
     "keywordText": "Coreless Package Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "9eea8dbc-d57c-48d2-9d31-66872ff9cc1d",
     "clientCode": "01",
     "keywordText": "Precision Winder For Technical Yarn",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "775279ef-911d-4a72-b44e-4de6c908cb38",
     "clientCode": "01",
     "keywordText": "Precision Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "a3635ff5-082d-4c74-b307-6d4a1761d248",
     "clientCode": "01",
     "keywordText": "Assembly winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "1853951c-df83-4112-8b17-ce1351921859",
     "clientCode": "01",
     "keywordText": "Precision Assembly Winder",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "6094110d-537b-4ec5-b7ff-6171ea86f489",
     "clientCode": "O2",
     "keywordText": "Chemistry test series for JEE",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "35fa6418-33e0-4fb1-bdfe-c86cd10d01c9",
     "clientCode": "O2",
     "keywordText": "Chemistry test series for NEET",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "fae6dc01-f079-40a4-a545-094a2a2e9ac2",
     "clientCode": "O2",
     "keywordText": "JEE chemistry mock tests",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "b3d60dc8-0d68-46d6-8f9a-c31eb1097946",
     "clientCode": "O2",
     "keywordText": "NEET chemistry mock tests",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "dc29a5e2-bc8b-4184-b59b-6b3f7288df55",
     "clientCode": "O2",
     "keywordText": "Online chemistry test series",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "d1e79ffe-9da7-48b9-bb57-9dfa7d442746",
     "clientCode": "O2",
     "keywordText": "Chapter wise chemistry test series",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "d649000b-b7b8-42fb-9514-641862aac3a9",
     "clientCode": "O2",
     "keywordText": "Physical chemistry test series",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "e2f29720-1184-4284-91da-b906bda65eac",
     "clientCode": "O2",
     "keywordText": "Organic chemistry test series",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "93586dd7-f42f-4a65-abfc-0d4451907828",
     "clientCode": "O2",
     "keywordText": "Chemistry full syllabus mock test",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
   },
   {
     "id": "e7075511-71fb-41e5-8b33-b09dc71920e4",
     "clientCode": "O2",
     "keywordText": "Best chemistry test series for JEE and NEET",
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "source": "Manual Entry"
+  },
+  {
+    "id": "f5d64c2a-66cb-4dba-96cd-dd471e71c7b5",
+    "clientCode": "03",
+    "keywordText": "cpp films",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry"
+  },
+  {
+    "id": "254f5f2f-cdb0-49d1-a198-0ea8e3fadaa0",
+    "clientCode": "03",
+    "keywordText": "CPP Clear Films",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry"
+  },
+  {
+    "id": "bea996c5-5b05-42d2-912d-66da7e101996",
+    "clientCode": "03",
+    "keywordText": "cpp film manufacturer",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "cda59490-5422-4727-935d-db8a894749ce",
+    "clientCode": "03",
+    "keywordText": "cpp films supplier",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "5cd1e640-a977-47fe-8827-1127d381c7d3",
+    "clientCode": "03",
+    "keywordText": "buy cpp films",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "48d052e8-eac9-4d4f-b6b3-38263283e842",
+    "clientCode": "03",
+    "keywordText": "cpp film supplier india",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "2d15b759-e0cf-4380-b59d-4198d9b5c437",
+    "clientCode": "03",
+    "keywordText": "cpp films wholesale",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "04587eb1-e200-4922-84d2-2e3301311a7f",
+    "clientCode": "03",
+    "keywordText": "cpp films bulk supplier",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "5f2e4b69-5c89-45f3-a51a-4519cad859f2",
+    "clientCode": "03",
+    "keywordText": "cpp packaging film manufacturer",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "6d57f542-b2aa-4560-9c86-e4c4c514d2b3",
+    "clientCode": "03",
+    "keywordText": "cpp film price per kg",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "b89fe8fd-69cd-4a31-b920-0d9ca1c62aaa",
+    "clientCode": "03",
+    "keywordText": "cpp films for packaging",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "401b0bc1-4b92-4478-bc8f-aa49c8bc1d3f",
+    "clientCode": "03",
+    "keywordText": "custom cpp film manufacturer",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "b970f2b7-9dfa-4876-a9cf-74fff0a9af96",
+    "clientCode": "03",
+    "keywordText": "cpp films for flexible packaging",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "448af508-839b-4900-a4fe-e0ba5c72dc5a",
+    "clientCode": "03",
+    "keywordText": "request quote cpp film",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "2b4ecb59-e694-438c-9409-c1e9fb0c688f",
+    "clientCode": "03",
+    "keywordText": "cpp film producer",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "28ce893d-17b3-4804-9f36-d43a32297267",
+    "clientCode": "03",
+    "keywordText": "cast polypropylene film manufacturer",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "0ceed2ea-b069-4373-b429-778be5189f5b",
+    "clientCode": "03",
+    "keywordText": "cpp film extrusion manufacturer",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "11282d4b-68b3-43a8-a565-0f8beaa698ba",
+    "clientCode": "03",
+    "keywordText": "cpp film manufacturing company",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "04bc9ce4-09c1-4507-93a3-932646c418a2",
+    "clientCode": "03",
+    "keywordText": "cpp film factory",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "31c5ed60-952e-4c6d-a982-f2ab2fe7f3ea",
+    "clientCode": "03",
+    "keywordText": "cpp film suppliers list",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "2dc55d3e-1ff4-44f7-8e55-0b47aed69a80",
+    "clientCode": "03",
+    "keywordText": "cpp film manufacturers directory",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "e7100406-d0e7-4bf8-a9b1-b938745dbbed",
+    "clientCode": "03",
+    "keywordText": "cpp film exporters india",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "9b8183eb-8b61-4418-9112-2042d21f7eca",
+    "clientCode": "03",
+    "keywordText": "cpp film for food packaging",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "7d0fded1-a819-464a-8039-33e25e8abf44",
+    "clientCode": "03",
+    "keywordText": "heat sealable cpp film",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "a1fbb466-0a7c-475b-8560-e5cf687a813f",
+    "clientCode": "03",
+    "keywordText": "cpp film for snack packaging",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "dba11f9d-5ac4-46e1-96c5-4ee721be4f28",
+    "clientCode": "03",
+    "keywordText": "cpp film for bakery packaging",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "e0082679-52c9-401f-a058-4565544363c9",
+    "clientCode": "03",
+    "keywordText": "cpp film for frozen food",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "d627eae8-1cd4-44e1-b53b-642156e47a48",
+    "clientCode": "03",
+    "keywordText": "food grade cpp film supplier",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "cc0b8e83-66c6-4dcd-84db-9c7eec493a4b",
+    "clientCode": "03",
+    "keywordText": "Pharmaceutical",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "29d49bb1-3b21-4575-a900-2695057b115f",
+    "clientCode": "03",
+    "keywordText": "pharmaceutical cpp film",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "27269829-a168-4ff4-aa7a-be777e696cff",
+    "clientCode": "03",
+    "keywordText": "cpp film for pharma packaging",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "967fa172-3c65-4c48-a6c8-600f838f7ed7",
+    "clientCode": "03",
+    "keywordText": "moisture barrier cpp film",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "f540a90c-eb0a-495e-b19a-62727e90cd31",
+    "clientCode": "03",
+    "keywordText": "cpp film for medical packaging",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "9c90cea4-f5dd-43a9-9b38-929d8cd2a57f",
+    "clientCode": "03",
+    "keywordText": "FMCG / Cosmetics",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "4a13024b-1c07-43e9-aeb2-55f22dd14b4a",
+    "clientCode": "03",
+    "keywordText": "cpp film for cosmetic packaging",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "a26e9dc9-1cfd-403d-8171-8931b96bd7bc",
+    "clientCode": "03",
+    "keywordText": "high clarity cpp film",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "4a3e9c78-68df-4618-8566-3f9bc8269ecf",
+    "clientCode": "03",
+    "keywordText": "high gloss cpp film",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "1d30b70a-702a-4cee-bde6-5d868099d7c1",
+    "clientCode": "03",
+    "keywordText": "printable cpp film",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "4a8ab710-6ed1-42f3-bf32-109a102882f6",
+    "clientCode": "03",
+    "keywordText": "Targets knowledgeable buyers & premium accounts.",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "eedcdf5a-3825-4f3d-8bab-df9cea6a3eea",
+    "clientCode": "03",
+    "keywordText": "cast polypropylene film cpp",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "f1ecd1c1-1d83-4d34-bbef-16954ed8e309",
+    "clientCode": "03",
+    "keywordText": "cpp film heat sealable",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "84a30f77-cfdc-4728-94b5-e1566ccbcae2",
+    "clientCode": "03",
+    "keywordText": "cpp film high clarity",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "fca52fdc-1041-474b-9c35-4c48de20d706",
+    "clientCode": "03",
+    "keywordText": "cpp film low temperature sealing",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "e152f6a2-133e-43cc-afb0-d5a2f981b57a",
+    "clientCode": "03",
+    "keywordText": "cpp film high barrier",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "60580184-4086-459e-861a-d0c215c630b0",
+    "clientCode": "03",
+    "keywordText": "metallized cpp film",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "47189f6b-1f2d-457f-8ecf-f31058d2b929",
+    "clientCode": "03",
+    "keywordText": "plain cpp film",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "d0cdcee4-cc38-46f3-8f3f-f8fdeda58254",
+    "clientCode": "03",
+    "keywordText": "corona treated cpp film",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "1c764070-aaa8-44c5-a653-88290463b756",
+    "clientCode": "03",
+    "keywordText": "printable cpp film",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "280da300-5876-4af5-8024-ac2c6ae369a3",
+    "clientCode": "03",
+    "keywordText": "transparent cpp film",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "8e5d0e95-77d1-4f34-ae50-24e2464bd805",
+    "clientCode": "03",
+    "keywordText": "cpp film exporter",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "652dc985-7edb-4838-b56b-8a8d7c36b238",
+    "clientCode": "03",
+    "keywordText": "cpp film exporters india",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "5e994da0-5d31-4601-848d-e1c88ee6e3dd",
+    "clientCode": "03",
+    "keywordText": "cpp film suppliers asia",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "5c7f2127-1a6c-4b5e-b96b-3a50fa3abdeb",
+    "clientCode": "03",
+    "keywordText": "cpp film manufacturers global",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "8232b63a-aff2-4cdd-a5c9-11d590d71ba9",
+    "clientCode": "03",
+    "keywordText": "international cpp film supplier",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "89990b3a-708d-4037-b38d-059f3e220dc4",
+    "clientCode": "03",
+    "keywordText": "best cpp film manufacturers",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "cfd155c4-574c-41e7-adcc-2d13ed6187f5",
+    "clientCode": "03",
+    "keywordText": "cpp film manufacturers in india",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "5b06dd7c-4d99-4274-ade8-ee6736481c0b",
+    "clientCode": "03",
+    "keywordText": "cpp film suppliers for food packaging",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "d06883e6-e51f-4912-9ae6-3aee6fde6176",
+    "clientCode": "03",
+    "keywordText": "cpp film quality standards",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "425fe1c8-12ec-48b0-a5f8-92990dc310a2",
+    "clientCode": "03",
+    "keywordText": "cpp film applications",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "2b6e961b-3fc4-4bb1-b40c-1aa679e0ece2",
+    "clientCode": "03",
+    "keywordText": "cpp film suppliers directory",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "ee97ee1f-9957-4f31-94d1-92d1a251d278",
+    "clientCode": "03",
+    "keywordText": "cpp film manufacturers list",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "7be6ba8d-b422-48fc-a611-a9f821f54d9b",
+    "clientCode": "03",
+    "keywordText": "cpp film vendors",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "6d86ac5d-fdc0-4571-bb1d-bb87f836b63f",
+    "clientCode": "03",
+    "keywordText": "cpp film raw material supplier",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
+  },
+  {
+    "id": "4a393fbb-1063-4908-8b0a-1a9d162c39bb",
+    "clientCode": "03",
+    "keywordText": "cpp packaging film suppliers",
+    "notes": "",
+    "isActive": true,
+    "source": "AI Research"
   }
 ]

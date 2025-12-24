@@ -1,6 +1,7 @@
 import OpenAI from 'openai';
-import { 
-  DomainProfile, 
+import { getActiveCredentialByService } from '@/lib/apiCredentialsStore';
+import {
+  DomainProfile,
   ClientAIProfile,
   ProfileMeta,
   ProfileCoreIdentity,
@@ -299,16 +300,34 @@ export function buildClientInputData(
   };
 }
 
+
+
 export async function generateClientAIProfile(
   clientInputData: ClientInputData
 ): Promise<{ profile: ClientAIProfile; domainsUsed: string[] }> {
-  const apiKey = process.env.OPENAI_API_KEY;
-  
-  if (!apiKey) {
-    throw new Error('OPENAI_API_KEY is not configured');
+  // Try to get credential from store first
+  const credential = await getActiveCredentialByService('OPENAI');
+
+  // Use stored key or fallback to env var
+  const apiKey = credential?.apiKey || credential?.apiKeyMasked || process.env.OPENAI_API_KEY;
+
+  if (!apiKey || apiKey.startsWith('****')) { // Ensure we don't accidentally use a masked value if raw key is missing
+    // Double check if process.env has it if the stored one was masked
+    if (!process.env.OPENAI_API_KEY) {
+      throw new Error('OPENAI_API_KEY is not configured in Settings or environment variables.');
+    }
   }
 
-  const openai = new OpenAI({ apiKey });
+  // Use the valid key (either from store or env)
+  const finalApiKey = (credential?.apiKey && !credential.apiKey.startsWith('****'))
+    ? credential.apiKey
+    : process.env.OPENAI_API_KEY;
+
+  if (!finalApiKey) {
+    throw new Error('Valid OPENAI_API_KEY not found. Please configure in Settings.');
+  }
+
+  const openai = new OpenAI({ apiKey: finalApiKey });
 
   const userPrompt = `NOW HERE IS THE ACTUAL CLIENT MASTER DATA:
 ----------------------------------------------------------------
@@ -332,7 +351,7 @@ Generate the CLIENT PROFILE JSON for this client.`;
     });
 
     const textContent = response.choices[0]?.message?.content;
-    
+
     if (!textContent) {
       throw new Error('No content in OpenAI response');
     }
@@ -440,19 +459,19 @@ Generate the CLIENT PROFILE JSON for this client.`;
     return { profile, domainsUsed };
   } catch (error: any) {
     console.error('[OpenAI] API Error:', error.message);
-    
+
     if (error.status === 401) {
       throw new Error('Invalid OpenAI API key. Please check your API key.');
     }
-    
+
     if (error.status === 429) {
       throw new Error('OpenAI API rate limit exceeded. Please wait a moment and try again.');
     }
-    
+
     if (error.status === 500 || error.status === 503) {
       throw new Error('OpenAI service is temporarily unavailable. Please try again later.');
     }
-    
+
     throw error;
   }
 }

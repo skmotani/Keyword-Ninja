@@ -88,6 +88,34 @@ function Tooltip({ text, children }: TooltipProps) {
 type SortField = 'position' | 'searchVolume' | 'cpc' | null;
 type SortDirection = 'asc' | 'desc';
 
+const domainKeywordsPageHelp = {
+  title: 'Competitor Top Keywords',
+  description: 'See exactly what keywords your competitors are ranking for, along with their position and search volume.',
+  whyWeAddedThis: 'This is the "Spy Tool". Instead of guessing what keywords to target, you can see what is already working for your competitors and "steal" their strategy.',
+  examples: ['Competitor X ranks #1 for "best twisting machine" (Vol: 500)', 'Competitor Y ranks #3 for "textile machinery" (Vol: 1000)'],
+  nuances: 'We fetch the Top 100 keywords for each domain. These are the "head" terms driving the most traffic. For "long-tail" or specific queries, use the SERP Results tool.',
+  useCases: [
+    'Discover high-volume keywords you missed',
+    'See if competitors are ranking for your brand name',
+    'Find content gaps where they rank but you do not'
+  ]
+};
+
+const domainKeywordsPageDescription = `
+  This page reveals the "secret sauce" of your competitors' SEO strategy. 
+  It pulls the list of keywords that are driving the most organic traffic to their websites.
+  
+  **Key Metrics:**
+  *   **Position:** Where they rank on Google (1-100).
+  *   **Search Volume:** How many people search for this term monthly.
+  *   **CPC:** Estimated cost if you were to pay for an ad on this keyword.
+
+  **Data Flow:** 
+  Competitor Domain → DataForSEO (Ranked Keywords API) → List of Keywords & Stats.
+  
+  This data helps prioritize content by showing you what works on [Domain Top Pages](/keywords/domain-pages).
+`;
+
 export default function DomainKeywordsPage() {
   const [clients, setClients] = useState<Client[]>([]);
   const [competitors, setCompetitors] = useState<Competitor[]>([]);
@@ -279,7 +307,7 @@ export default function DomainKeywordsPage() {
     return [...filteredRecords].sort((a, b) => {
       const aVal = a[sortField] ?? (sortField === 'position' ? 999 : 0);
       const bVal = b[sortField] ?? (sortField === 'position' ? 999 : 0);
-      
+
       if (sortDirection === 'asc') {
         return aVal - bVal;
       }
@@ -294,8 +322,8 @@ export default function DomainKeywordsPage() {
     const avgVolume = filteredRecords.length > 0 ? totalVolume / filteredRecords.length : 0;
     const top10Count = filteredRecords.filter(r => (r.position ?? 999) <= 10).length;
     const top3Count = filteredRecords.filter(r => (r.position ?? 999) <= 3).length;
-    const avgCpc = filteredRecords.length > 0 
-      ? filteredRecords.reduce((sum, r) => sum + (r.cpc ?? 0), 0) / filteredRecords.length 
+    const avgCpc = filteredRecords.length > 0
+      ? filteredRecords.reduce((sum, r) => sum + (r.cpc ?? 0), 0) / filteredRecords.length
       : 0;
     const inCount = filteredRecords.filter(r => r.locationCode === 'IN').length;
     const glCount = filteredRecords.filter(r => r.locationCode === 'GL').length;
@@ -345,9 +373,11 @@ export default function DomainKeywordsPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <PageHeader 
-        title="Domain Top Keywords" 
+      <PageHeader
+        title="Domain Top Keywords"
         description="View top ranked keywords per domain with search volume, positions, and Google search links for both IN and GL locations"
+        helpInfo={domainKeywordsPageHelp}
+        extendedDescription={domainKeywordsPageDescription}
       />
 
       <div className="mb-4 flex items-center gap-2">
@@ -439,11 +469,10 @@ export default function DomainKeywordsPage() {
               {competitors.map(comp => (
                 <label
                   key={comp.id}
-                  className={`inline-flex items-center gap-1.5 px-2 py-1 rounded text-xs cursor-pointer transition-colors ${
-                    selectedDomains.includes(comp.domain)
-                      ? 'bg-indigo-100 text-indigo-800 border border-indigo-300'
-                      : 'bg-white text-gray-700 border border-gray-200 hover:border-gray-300'
-                  }`}
+                  className={`inline-flex items-center gap-1.5 px-2 py-1 rounded text-xs cursor-pointer transition-colors ${selectedDomains.includes(comp.domain)
+                    ? 'bg-indigo-100 text-indigo-800 border border-indigo-300'
+                    : 'bg-white text-gray-700 border border-gray-200 hover:border-gray-300'
+                    }`}
                 >
                   <input
                     type="checkbox"
@@ -461,11 +490,10 @@ export default function DomainKeywordsPage() {
 
       {notification && (
         <div
-          className={`mb-4 p-4 rounded-md ${
-            notification.type === 'success'
-              ? 'bg-green-50 text-green-800 border border-green-200'
-              : 'bg-red-50 text-red-800 border border-red-200'
-          }`}
+          className={`mb-4 p-4 rounded-md ${notification.type === 'success'
+            ? 'bg-green-50 text-green-800 border border-green-200'
+            : 'bg-red-50 text-red-800 border border-red-200'
+            }`}
         >
           {notification.message}
         </div>
@@ -638,11 +666,10 @@ export default function DomainKeywordsPage() {
                     {record.domain}
                   </td>
                   <td className="px-4 py-3 text-sm">
-                    <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
-                      record.locationCode === 'IN' 
-                        ? 'bg-yellow-100 text-yellow-800' 
-                        : 'bg-teal-100 text-teal-800'
-                    }`}>
+                    <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${record.locationCode === 'IN'
+                      ? 'bg-yellow-100 text-yellow-800'
+                      : 'bg-teal-100 text-teal-800'
+                      }`}>
                       {record.locationCode}
                     </span>
                   </td>
@@ -660,13 +687,12 @@ export default function DomainKeywordsPage() {
                     </a>
                   </td>
                   <td className="px-4 py-3 text-sm">
-                    <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
-                      record.position && record.position <= 3
-                        ? 'bg-green-100 text-green-800'
-                        : record.position && record.position <= 10
+                    <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${record.position && record.position <= 3
+                      ? 'bg-green-100 text-green-800'
+                      : record.position && record.position <= 10
                         ? 'bg-yellow-100 text-yellow-800'
                         : 'bg-gray-100 text-gray-800'
-                    }`}>
+                      }`}>
                       {record.position ?? '-'}
                     </span>
                   </td>

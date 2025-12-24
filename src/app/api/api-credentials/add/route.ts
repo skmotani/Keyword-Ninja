@@ -11,16 +11,16 @@ function ensureMasked(value: string | undefined): string | undefined {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    
+
     const { serviceType, authType, label } = body;
-    
+
     if (!serviceType || !authType || !label) {
       return NextResponse.json(
         { error: 'Missing required fields: serviceType, authType, label' },
         { status: 400 }
       );
     }
-    
+
     if (authType === 'USERNAME_PASSWORD') {
       if (!body.username || !body.passwordMasked) {
         return NextResponse.json(
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
         );
       }
     }
-    
+
     if (authType === 'API_KEY') {
       if (!body.apiKeyMasked) {
         return NextResponse.json(
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
         );
       }
     }
-    
+
     const credentialData: Omit<ApiCredential, 'id' | 'createdAt' | 'updatedAt'> = {
       userId: body.userId || 'admin',
       serviceType,
@@ -47,12 +47,15 @@ export async function POST(request: NextRequest) {
       username: body.username,
       passwordMasked: ensureMasked(body.passwordMasked),
       apiKeyMasked: ensureMasked(body.apiKeyMasked),
+      // Store raw values if they act as the source of truth (i.e. not already masked)
+      password: body.passwordMasked && !body.passwordMasked.startsWith('****') ? body.passwordMasked : undefined,
+      apiKey: body.apiKeyMasked && !body.apiKeyMasked.startsWith('****') ? body.apiKeyMasked : undefined,
       customConfig: body.customConfig ? '****config' : undefined,
       clientCode: body.clientCode,
       notes: body.notes,
       isActive: body.isActive ?? true,
     };
-    
+
     const newCredential = await addApiCredential(credentialData);
     return NextResponse.json(newCredential, { status: 201 });
   } catch (error) {

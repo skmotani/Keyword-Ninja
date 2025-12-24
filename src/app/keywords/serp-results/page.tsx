@@ -143,6 +143,34 @@ interface ProgressState {
   resultsCollected: number;
 }
 
+const serpResultsPageHelp = {
+  title: 'SERP Results Analysis',
+  description: 'View the actual Google Search results (Top 10) for your tracked keywords to understand the competitive landscape.',
+  whyWeAddedThis: 'Knowing WHO ranks is as important as knowing WHAT they rank for. This allows you to see if the top results are competitors, marketplaces, or informational sites.',
+  examples: ['"yarn twisting machine" - Top result is Indiamart (Marketplace)', '"two-for-one twister" - Top result is a Competitor Video'],
+  nuances: 'We fetch the top 10 organic results. We also flag "Featured Snippets" to show if there is an opportunity to steal position zero.',
+  useCases: [
+    'Analyze the intent of the top results (Informational vs Transactional)',
+    'Identify new competitors appearing in the top 10',
+    'Check if your site is appearing in the top results'
+  ]
+};
+
+const serpResultsPageDescription = `
+  This page is the "Ground Truth" of search results. It shows you exactly what a user sees when they search for your keywords in Google 
+  (filtered to India or Global locations).
+
+  **What you can do here:**
+  *   **Group by Keyword:** See the Top 10 results grouped together for each keyword.
+  *   **Filter by Domain:** See every keyword for which a specific competitor ranks in the top 10.
+  *   **Analyze SERP Features:** Identify text ads, video results, or featured snippets.
+
+  **Data Flow:** 
+  [Keyword Manual Master](/keywords/manual) or [Domain Organic Keywords](/keywords/domain-keywords) → DataForSEO (SERP API) → Raw Result Parsing → Interactive Table. 
+  
+  The data displayed here is fed into the [Competitor Intelligence Report](/report/competitors) for classification.
+`;
+
 export default function SerpResultsPage() {
   const [clients, setClients] = useState<Client[]>([]);
   const [selectedClientCode, setSelectedClientCode] = useState<string>('');
@@ -205,17 +233,17 @@ export default function SerpResultsPage() {
         fetch(`/api/seo/serp?clientCode=${selectedClientCode}&locationCodes=${selectedLocationCodes.join(',')}`),
         fetch(`/api/seo/keywords?clientCode=${selectedClientCode}&locationCodes=${selectedLocationCodes.join(',')}`)
       ]);
-      
+
       if (!serpRes.ok) {
         console.error('Failed to fetch SERP data:', serpRes.status);
         setRecords([]);
         setKeywordApiData([]);
         return;
       }
-      
+
       const serpData = await serpRes.json();
       setRecords(serpData);
-      
+
       if (keywordRes.ok) {
         const keywordData = await keywordRes.json();
         if (Array.isArray(keywordData)) {
@@ -267,7 +295,7 @@ export default function SerpResultsPage() {
       totalKeywords: 0,
       resultsCollected: 0,
     });
-    
+
     try {
       const res = await fetch('/api/seo/serp/fetch-stream', {
         method: 'POST',
@@ -310,7 +338,7 @@ export default function SerpResultsPage() {
           if (line.startsWith('data: ')) {
             try {
               const data = JSON.parse(line.slice(6));
-              
+
               if (data.type === 'start') {
                 setProgress(prev => ({
                   ...prev,
@@ -331,8 +359,8 @@ export default function SerpResultsPage() {
                 }));
               } else if (data.type === 'complete') {
                 const timestamp = new Date().toLocaleString();
-                setNotification({ 
-                  type: 'success', 
+                setNotification({
+                  type: 'success',
                   message: `SERP data refreshed successfully at ${timestamp}. Total ${data.totalResults} results fetched.`
                 });
                 if (data.stats) {
@@ -350,7 +378,7 @@ export default function SerpResultsPage() {
       setNotification({ type: 'error', message: 'Network error while fetching SERP data' });
       setProgress(prev => ({ ...prev, isActive: false }));
     }
-    
+
     await fetchRecords();
     setRefreshing(false);
   };
@@ -441,7 +469,7 @@ export default function SerpResultsPage() {
 
   const filteredRecords = useMemo(() => {
     const result = [...filteredRecordsBase];
-    
+
     if (sortField && !groupByKeyword) {
       result.sort((a, b) => {
         const aVal = a[sortField];
@@ -557,6 +585,8 @@ export default function SerpResultsPage() {
       <PageHeader
         title="SERP Results"
         description="Google organic search results for your keywords (top 10 per keyword)"
+        helpInfo={serpResultsPageHelp}
+        extendedDescription={serpResultsPageDescription}
       />
 
       <div className="bg-white rounded-lg shadow-sm border p-4 mb-4">
@@ -632,11 +662,10 @@ export default function SerpResultsPage() {
 
       {notification && (
         <div
-          className={`mb-4 p-3 rounded-md text-sm ${
-            notification.type === 'success'
-              ? 'bg-green-50 text-green-800 border border-green-200'
-              : 'bg-red-50 text-red-800 border border-red-200'
-          }`}
+          className={`mb-4 p-3 rounded-md text-sm ${notification.type === 'success'
+            ? 'bg-green-50 text-green-800 border border-green-200'
+            : 'bg-red-50 text-red-800 border border-red-200'
+            }`}
         >
           {notification.message}
         </div>
@@ -650,14 +679,14 @@ export default function SerpResultsPage() {
             </p>
             <span className="text-sm font-bold text-indigo-600">{progress.percent}%</span>
           </div>
-          
+
           <div className="w-full bg-indigo-100 rounded-full h-3 mb-3 overflow-hidden">
-            <div 
+            <div
               className="bg-indigo-600 h-3 rounded-full transition-all duration-300 ease-out"
               style={{ width: `${progress.percent}%` }}
             />
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
             <div className="bg-white rounded p-2 border border-indigo-100">
               <p className="text-gray-500">Progress</p>
@@ -684,7 +713,7 @@ export default function SerpResultsPage() {
               </p>
             </div>
           </div>
-          
+
           {progress.currentKeyword && (
             <div className="mt-3 text-xs text-indigo-700">
               <span className="font-medium">Current keyword:</span>{' '}
@@ -757,14 +786,12 @@ export default function SerpResultsPage() {
             <span className="text-xs text-gray-600">Group by Keyword + Location</span>
             <button
               onClick={() => setGroupByKeyword(!groupByKeyword)}
-              className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
-                groupByKeyword ? 'bg-indigo-600' : 'bg-gray-300'
-              }`}
+              className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${groupByKeyword ? 'bg-indigo-600' : 'bg-gray-300'
+                }`}
             >
               <span
-                className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
-                  groupByKeyword ? 'translate-x-5' : 'translate-x-1'
-                }`}
+                className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${groupByKeyword ? 'translate-x-5' : 'translate-x-1'
+                  }`}
               />
             </button>
           </label>
@@ -1132,9 +1159,9 @@ export default function SerpResultsPage() {
                         {record.domain}
                       </td>
                       <td className="py-2 px-2 text-xs text-blue-600 truncate">
-                        <a 
-                          href={record.url} 
-                          target="_blank" 
+                        <a
+                          href={record.url}
+                          target="_blank"
                           rel="noopener noreferrer"
                           className="hover:underline truncate block"
                           title={record.url}

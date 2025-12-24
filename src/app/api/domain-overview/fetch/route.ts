@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const password = process.env.DATAFORSEO_PASSWORD;
+    const password = credential?.password || process.env.DATAFORSEO_PASSWORD;
     if (!password) {
       return NextResponse.json(
         { error: 'DataForSEO password not configured. Please add DATAFORSEO_PASSWORD to secrets.' },
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
     }
 
     let domains: string[] = providedDomains || [];
-    
+
     if (domains.length === 0) {
       const allCompetitors = await getCompetitors();
       const clientCompetitors = allCompetitors.filter(
@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
 
     for (const locCode of ALL_LOCATIONS) {
       console.log(`[Domain Overview Fetch] Fetching for location: ${locCode}`);
-      
+
       const batchResult = await fetchDomainRankOverviewBatch(
         { username: credential.username, password },
         uniqueDomains,

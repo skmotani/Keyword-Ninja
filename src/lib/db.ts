@@ -90,7 +90,11 @@ export async function deleteCompetitor(id: string): Promise<boolean> {
 }
 
 export async function getManualKeywords(): Promise<ManualKeyword[]> {
-  return readJsonFile<ManualKeyword>('manualKeywords.json');
+  const keywords = await readJsonFile<ManualKeyword>('manualKeywords.json');
+  return keywords.map(k => ({
+    ...k,
+    source: k.source || 'Manual Entry',
+  }));
 }
 
 export async function getManualKeyword(id: string): Promise<ManualKeyword | undefined> {
@@ -114,10 +118,41 @@ export async function updateManualKeyword(id: string, updates: Partial<ManualKey
   return keywords[index];
 }
 
+
 export async function deleteManualKeyword(id: string): Promise<boolean> {
   const keywords = await getManualKeywords();
   const filteredKeywords = keywords.filter(k => k.id !== id);
   if (filteredKeywords.length === keywords.length) return false;
   await writeJsonFile('manualKeywords.json', filteredKeywords);
   return true;
+}
+
+// Page Config Persistence
+export interface PageConfig {
+  path: string; // The URL path acts as the ID
+  userDescription?: string;
+  updatedAt: string;
+}
+
+export async function getPageConfigs(): Promise<PageConfig[]> {
+  return readJsonFile<PageConfig>('pageConfigs.json');
+}
+
+export async function getPageConfig(path: string): Promise<PageConfig | undefined> {
+  const configs = await getPageConfigs();
+  return configs.find(c => c.path === path);
+}
+
+export async function savePageConfig(config: PageConfig): Promise<PageConfig> {
+  const configs = await getPageConfigs();
+  const index = configs.findIndex(c => c.path === config.path);
+
+  if (index >= 0) {
+    configs[index] = { ...configs[index], ...config, updatedAt: new Date().toISOString() };
+  } else {
+    configs.push({ ...config, updatedAt: new Date().toISOString() });
+  }
+
+  await writeJsonFile('pageConfigs.json', configs);
+  return index >= 0 ? configs[index] : configs[configs.length - 1];
 }

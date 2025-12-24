@@ -531,5 +531,303 @@
     },
     "generatedAt": "2025-12-07T04:29:35.550Z",
     "updatedAt": "2025-12-07T04:29:35.550Z"
+  },
+  {
+    "id": "ai-profile-03-1766565120004",
+    "clientCode": "03",
+    "clientName": "MEERA-CCP",
+    "primaryDomains": [
+      "cosmofilms.com",
+      "starflexifilms.com",
+      "jpflfilms.com",
+      "kanodiaindia.com"
+    ],
+    "domainsUsedForGeneration": [
+      "https://www.cosmofilms.com",
+      "https://www.starflexifilms.com",
+      "https://www.jpflfilms.com/",
+      "https://kanodiaindia.com"
+    ],
+    "industryType": "packaging_manufacturing",
+    "shortSummary": "Meera-CCP specializes in the manufacturing and supply of clear films and various types of packaging films, serving diverse sectors with innovative packaging solutions.",
+    "businessModel": "B2B manufacturing",
+    "productLines": [
+      "CPP films",
+      "BOPP films",
+      "BOPET films",
+      "flexible packaging",
+      "lamination products"
+    ],
+    "targetCustomerSegments": [
+      "packaging manufacturers",
+      "food and beverage companies",
+      "cosmetic and pharmaceutical industries"
+    ],
+    "targetGeographies": [
+      "India",
+      "Asia",
+      "global markets"
+    ],
+    "coreTopics": [
+      "packaging films",
+      "film manufacturing",
+      "flexible packaging solutions"
+    ],
+    "adjacentTopics": [
+      "sustainable packaging",
+      "innovations in food preservation",
+      "lamination technologies"
+    ],
+    "negativeTopics": [
+      "movie downloads",
+      "film industry entertainment",
+      "unrelated movie content"
+    ],
+    "domainTypePatterns": {
+      "oemManufacturerIndicators": [
+        "manufacturer",
+        "supplier",
+        "produces",
+        "specializes"
+      ],
+      "serviceProviderIndicators": [
+        "services",
+        "supply chain",
+        "consulting"
+      ],
+      "marketplaceIndicators": [
+        "shop",
+        "store",
+        "buy",
+        "purchase"
+      ],
+      "endCustomerIndicators": [
+        "order online",
+        "direct purchase",
+        "contact us"
+      ],
+      "educationalMediaIndicators": [
+        "blog",
+        "guide",
+        "how-to",
+        "resources"
+      ]
+    },
+    "classificationIntentHints": {
+      "transactionalKeywords": [
+        "buy cpp films",
+        "order flexible packaging",
+        "request for quote",
+        "bopp films supplier"
+      ],
+      "informationalKeywords": [
+        "packaging films applications",
+        "benefits of cpp films",
+        "how to use bopp films"
+      ],
+      "directoryKeywords": [
+        "packaging manufacturers",
+        "film suppliers",
+        "packaging industry directory"
+      ]
+    },
+    "businessRelevanceLogicNotes": {
+      "directCompetitorDefinition": "Companies offering similar packaging film products and services, targeting the same customer segments.",
+      "potentialCustomerDefinition": "Firms needing packaging solutions for their products across various sectors, including food, beverages, cosmetics, and pharmaceuticals.",
+      "marketplaceChannelDefinition": "Online platforms specializing in the sale of packaging products, materials suppliers, and related services.",
+      "irrelevantDefinition": "Domains primarily focusing on film entertainment, movie downloads, and unrelated industries such as music or gaming."
+    },
+    "generatedAt": "2025-12-24T08:32:00.004Z",
+    "updatedAt": "2025-12-24T09:39:49.314Z",
+    "meta": {
+      "clientName": "MEERA-CCP",
+      "generatedAt": "2025-12-24T08:32:00.004Z",
+      "industryTag": "packaging_manufacturing",
+      "summary": "Meera-CCP is a leader in manufacturing clear films and various packaging solutions, catering to a wide range of industries with innovative and sustainable products."
+    },
+    "coreIdentity": {
+      "businessModel": "B2B manufacturing",
+      "primaryOfferTypes": [
+        "films",
+        "packaging solutions"
+      ],
+      "productLines": [
+        "CPP films"
+      ],
+      "services": [
+        "custom film manufacturing"
+      ],
+      "industriesServed": [
+        "food and beverage",
+        "pharmaceuticals",
+        "cosmetics"
+      ],
+      "customerSegments": [
+        "B2B clients",
+        "manufacturers",
+        "end-users in packaging"
+      ]
+    },
+    "domains": {
+      "primaryDomains": [
+        "cosmofilms.com",
+        "starflexifilms.com",
+        "jpflfilms.com",
+        "kanodiaindia.com"
+      ],
+      "secondaryDomains": [],
+      "expectedTlds": [
+        ".com",
+        ".in"
+      ],
+      "positiveDomainHints": [
+        "films",
+        "packaging",
+        "manufacturer"
+      ],
+      "negativeDomainHints": [
+        "movie",
+        "download",
+        "entertainment"
+      ]
+    },
+    "urlClassificationSupport": {
+      "productSlugPatterns": {
+        "description": "Identifies pages related to specific products offered by the client.",
+        "examples": [
+          "cpp-films",
+          "bopp-films",
+          "packaging-solutions"
+        ]
+      },
+      "categorySlugPatterns": {
+        "description": "Identifies pages grouping similar types of products.",
+        "examples": [
+          "packaging-films",
+          "flexible-packaging",
+          "lamination-products"
+        ]
+      },
+      "blogSlugPatterns": {
+        "description": "Identifies educational content and articles related to the industry.",
+        "examples": [
+          "blog",
+          "resources",
+          "guides"
+        ]
+      },
+      "resourceSlugPatterns": {
+        "description": "Identifies downloadable resources and tools.",
+        "examples": [
+          "downloads",
+          "resources",
+          "toolkits"
+        ]
+      },
+      "supportSlugPatterns": {
+        "description": "Identifies customer support and help pages.",
+        "examples": [
+          "support",
+          "contact-us",
+          "faqs"
+        ]
+      },
+      "legalSlugPatterns": {
+        "description": "Identifies legal pages such as terms and privacy.",
+        "examples": [
+          "terms-of-service",
+          "privacy-policy",
+          "legal-notice"
+        ]
+      },
+      "accountSlugPatterns": {
+        "description": "Identifies pages for user account management.",
+        "examples": [
+          "login",
+          "register",
+          "account"
+        ]
+      },
+      "careersSlugPatterns": {
+        "description": "Identifies pages for career and job opportunities.",
+        "examples": [
+          "careers",
+          "jobs",
+          "work-with-us"
+        ]
+      },
+      "aboutCompanySlugPatterns": {
+        "description": "Identifies company information and history.",
+        "examples": [
+          "about-us",
+          "company",
+          "our-history"
+        ]
+      },
+      "marketingLandingPatterns": {
+        "description": "Identifies pages meant for marketing campaigns.",
+        "examples": [
+          "promotions",
+          "special-offers",
+          "landing-page"
+        ]
+      }
+    },
+    "keywordClassificationSupport": {
+      "brandKeywords": {
+        "description": "Identifies keywords related to the client's brand or products.",
+        "examples": [
+          "meera cpp",
+          "jpfl films",
+          "kanodia films"
+        ]
+      },
+      "transactionalPhrases": {
+        "description": "Indicates an intent to buy or request quotes related to products.",
+        "examples": [
+          "buy cpp films",
+          "order packaging films",
+          "request a quote for bopp"
+        ]
+      },
+      "commercialResearchPhrases": {
+        "description": "Keywords indicating a comparison or research intent.",
+        "examples": [
+          "bopp films manufacturers",
+          "best packaging films in india",
+          "comparing cpp and bopp films"
+        ]
+      },
+      "informationalPhrases": {
+        "description": "Keywords focusing on educational content.",
+        "examples": [
+          "benefits of cpp films",
+          "what is bopp",
+          "how to choose packaging films"
+        ]
+      },
+      "directoryPhrases": {
+        "description": "Keywords relating to finding suppliers or manufacturers.",
+        "examples": [
+          "packaging suppliers",
+          "film manufacturers list",
+          "bopp films directory"
+        ]
+      },
+      "irrelevantKeywordTopics": {
+        "description": "Keywords that might confuse context due to similar terms.",
+        "examples": [
+          "movies download",
+          "film industry news",
+          "entertainment updates"
+        ]
+      }
+    },
+    "businessRelevanceSupport": {
+      "directCompetitorDefinition": "Companies providing similar or substitute packaging films.",
+      "potentialCustomerDefinition": "Businesses looking for innovative film solutions and packaging products.",
+      "marketplaceDefinition": "Platforms where film products are sold to consumers or businesses.",
+      "irrelevantDefinition": "Providers that primarily focus on non-packaging related content."
+    }
   }
 ]

@@ -30,8 +30,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const locCodes: string[] = Array.isArray(locationCodes) 
-      ? locationCodes 
+    const locCodes: string[] = Array.isArray(locationCodes)
+      ? locationCodes
       : (locationCodes ? [locationCodes] : ['IN', 'GL']);
 
     if (locCodes.length === 0) {
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const password = process.env.DATAFORSEO_PASSWORD;
+    const password = credential?.password || process.env.DATAFORSEO_PASSWORD;
     if (!password) {
       return NextResponse.json(
         { error: 'DataForSEO password not configured. Please add DATAFORSEO_PASSWORD to secrets.' },
@@ -81,7 +81,7 @@ export async function POST(request: NextRequest) {
 
     const sanitizedToOriginalsMap = new Map<string, string[]>();
     const sanitizedKeywords: string[] = [];
-    
+
     let skippedCount = 0;
     for (const originalKeyword of keywordTexts) {
       const sanitized = sanitizeKeywordForAPI(originalKeyword);
@@ -96,7 +96,7 @@ export async function POST(request: NextRequest) {
         skippedCount++;
       }
     }
-    
+
     if (skippedCount > 0) {
       console.log('[Fetch] Skipped', skippedCount, 'keywords with invalid characters or too many words');
     }
@@ -132,15 +132,15 @@ export async function POST(request: NextRequest) {
 
       for (const result of locResult.results) {
         const originalKeywords = sanitizedToOriginalsMap.get(result.keyword) || [result.keyword];
-        
+
         for (const originalKeyword of originalKeywords) {
           const normalizedKey = `${locResult.numericLocationCode}:${normalizeKeyword(originalKeyword)}`;
-          
+
           if (dedupeMap.has(normalizedKey)) {
             duplicatesRemoved++;
             continue;
           }
-          
+
           const record: KeywordApiDataRecord = {
             id: uuidv4(),
             clientCode,
@@ -157,7 +157,7 @@ export async function POST(request: NextRequest) {
             snapshotDate,
             lastPulledAt: now,
           };
-          
+
           dedupeMap.set(normalizedKey, record);
         }
       }

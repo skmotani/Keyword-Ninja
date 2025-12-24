@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
-import { 
-  ClientAIProfile, 
+import {
+  ClientAIProfile,
   DomainClassification,
   DomainTypeValue,
   PageIntentValue,
@@ -53,10 +53,10 @@ function summarizeSerpData(serpRows: DomainSerpRow[]): DomainSerpRow[] {
 
   // Sort by position (rank) ascending - lower position = higher rank
   const sorted = [...serpRows].sort((a, b) => a.position - b.position);
-  
+
   // Take top 10 rows
   const limited = sorted.slice(0, 10);
-  
+
   // Truncate snippets and return optimized rows
   return limited.map(row => ({
     ...row,
@@ -367,22 +367,25 @@ Return a SINGLE JSON object:
   "explanationSummary": "2–4 sentences explaining why this domainType, pageIntent, product match, and business relevance were chosen, referencing the client profile and the typical SERP pages for this domain."
 }`;
 
+import { getActiveCredentialByService } from '@/lib/apiCredentialsStore';
+
 export async function classifyDomain(
   clientProfile: ClientAIProfile,
   domainRow: UniqueDomainRow,
   serpRows: DomainSerpRow[]
 ): Promise<DomainClassification> {
-  const apiKey = process.env.OPENAI_API_KEY;
-  
+  const credential = await getActiveCredentialByService('OPENAI', clientProfile.clientCode);
+  const apiKey = credential?.apiKey || process.env.OPENAI_API_KEY;
+
   if (!apiKey) {
-    throw new Error('OPENAI_API_KEY is not configured');
+    throw new Error('OPENAI_API_KEY is not configured in Settings or Environment Variables');
   }
 
   const openai = new OpenAI({ apiKey });
 
   // Optimize SERP data to reduce token usage
   const optimizedSerpRows = summarizeSerpData(serpRows);
-  
+
   console.log(`[DomainClassifier] SERP data optimized: ${serpRows.length} rows -> ${optimizedSerpRows.length} rows for ${domainRow.domain}`);
 
   const userPrompt = `Here are the three JSON inputs for classification:
@@ -412,7 +415,7 @@ Based on the classification logic, generate the classification output for this d
     });
 
     const textContent = response.choices[0]?.message?.content;
-    
+
     if (!textContent) {
       throw new Error('No content in OpenAI response');
     }
@@ -447,15 +450,15 @@ Based on the classification logic, generate the classification output for this d
     return classification;
   } catch (error: any) {
     console.error('[DomainClassifier] API Error:', error.message);
-    
+
     if (error.status === 401) {
       throw new Error('Invalid OpenAI API key');
     }
-    
+
     if (error.status === 429) {
       throw new Error('OpenAI API rate limit exceeded. Please wait and try again.');
     }
-    
+
     throw error;
   }
 }
@@ -467,15 +470,15 @@ export async function classifyDomains(
   onProgress?: (completed: number, total: number, domain: string) => void
 ): Promise<DomainClassification[]> {
   const results: DomainClassification[] = [];
-  
+
   for (let i = 0; i < domainRows.length; i++) {
     const domainRow = domainRows[i];
     const serpRows = serpRowsByDomain[domainRow.domain.toLowerCase()] || [];
-    
+
     try {
       const classification = await classifyDomain(clientProfile, domainRow, serpRows);
       results.push(classification);
-      
+
       if (onProgress) {
         onProgress(i + 1, domainRows.length, domainRow.domain);
       }
@@ -484,6 +487,6 @@ export async function classifyDomains(
       throw error;
     }
   }
-  
+
   return results;
 }

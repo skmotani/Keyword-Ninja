@@ -1,4 +1,5 @@
 import { DomainProfile, ClientAIProfile } from '@/types';
+import { getActiveCredentialByService } from '@/lib/apiCredentialsStore';
 
 interface ClientInputData {
   clientCode: string;
@@ -180,13 +181,20 @@ export function buildClientInputData(
   };
 }
 
+
 export async function generateClientAIProfile(
   clientInputData: ClientInputData
 ): Promise<{ profile: ClientAIProfile; domainsUsed: string[] }> {
-  const apiKey = process.env.GEMINI_API_KEY;
-  
+  // Try to get credential from store first
+  const credential = await getActiveCredentialByService('GEMINI');
+
+  // Use stored key or fallback to env var
+  const apiKey = (credential?.apiKey && !credential.apiKey.startsWith('****'))
+    ? credential.apiKey
+    : (credential?.apiKeyMasked && !credential.apiKeyMasked.startsWith('****') ? credential.apiKeyMasked : process.env.GEMINI_API_KEY);
+
   if (!apiKey) {
-    throw new Error('GEMINI_API_KEY is not configured');
+    throw new Error('GEMINI_API_KEY is not configured in Settings or environment variables.');
   }
 
   const userPrompt = `NOW HERE IS THE ACTUAL CLIENT MASTER DATA:
@@ -229,15 +237,15 @@ Generate the CLIENT PROFILE JSON for this client.`;
   if (!response.ok) {
     const errorText = await response.text();
     console.error('[Gemini] API Error:', errorText);
-    
+
     if (response.status === 429) {
       throw new Error('Gemini API quota exceeded. Please wait a minute and try again, or check your API key quota at ai.dev/usage');
     }
-    
+
     if (response.status === 404) {
       throw new Error('Gemini model not found. The API may have changed.');
     }
-    
+
     throw new Error(`Gemini API error: ${response.status}`);
   }
 
@@ -245,7 +253,7 @@ Generate the CLIENT PROFILE JSON for this client.`;
   console.log('[Gemini] Response received');
 
   const textContent = result.candidates?.[0]?.content?.parts?.[0]?.text;
-  
+
   if (!textContent) {
     throw new Error('No content in Gemini response');
   }

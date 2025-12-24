@@ -482,6 +482,33 @@ function HelpIcon({ onClick }: { onClick: () => void }) {
   );
 }
 
+const domainPagesPageHelp = {
+  title: 'Competitor Top Pages',
+  description: 'A list of your competitors\' most important pages, ranked by estimated organic traffic value.',
+  whyWeAddedThis: 'SEO is not just about keywords; it is about PAGES. This view helps you understand which specific URLs are driving traffic for your competitors so you can reverse-engineer their content strategy.',
+  examples: ['Competitor X - /products/twisting-machine (High Value)', 'Competitor Y - /blog/top-10-textile-tips (Medium Value)'],
+  nuances: 'We automatically classify pages (e.g., Product, Blog, Homepage) using AI and Rules to help you focus on what matters. We also assign a "Priority Score" to highlight pages you must pay attention to.',
+  useCases: [
+    'Find high-value product pages to replicate',
+    'Identify top-performing blog posts for content ideas',
+    'See which pages are "winning" for your competitors'
+  ]
+};
+
+const domainPagesPageDescription = `
+  This intelligent view analyzes your competitors' sitemaps and traffic data to reveal their **Content Strategy**.
+  
+  It goes beyond raw data by providing:
+  *   **Page Classification:** Automatically tags pages as Product, Blog, Homepage, etc.
+  *   **Priority Scoring:** A 0-100 score indicating how critical this page is for your SEO strategy.
+  *   **Traffic Value (ETV):** The estimated monthly value of the traffic this page generates.
+
+  **Data Flow:** 
+  Competitor Domain → DataForSEO (Top Pages) → Rule-Based Classification → AI refinement → Priority Scoring.
+  
+  This data feeds into [Cluster Intelligence](/report/cluster-intelligence) for strategic grouping.
+`;
+
 interface ExplanationModalProps {
   explanation: ClassificationExplanation | null;
   onClose: () => void;
@@ -506,9 +533,8 @@ function ExplanationModal({ explanation, onClose }: ExplanationModalProps) {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <span className="text-sm font-medium text-gray-500">Source:</span>
-              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                explanation.source === 'AI' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
-              }`}>
+              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${explanation.source === 'AI' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
+                }`}>
                 {explanation.source}
               </span>
               {explanation.model && (
@@ -935,7 +961,7 @@ export default function DomainPagesPage() {
 
   const handleClientChange = (newClientCode: string) => {
     if (newClientCode === selectedClientCode) return;
-    
+
     // Batch all state resets together
     setRecords([]);
     setNotification(null);
@@ -1072,7 +1098,7 @@ export default function DomainPagesPage() {
 
   const handleClassifyPages = async (useAi: boolean = false) => {
     if (!selectedClientCode) return;
-    
+
     if (useAi) {
       setAiClassifying(true);
     } else {
@@ -1294,7 +1320,7 @@ export default function DomainPagesPage() {
     return [...filteredRecords].sort((a, b) => {
       const aVal = a[sortField] ?? 0;
       const bVal = b[sortField] ?? 0;
-      
+
       if (sortDirection === 'asc') {
         return aVal - bVal;
       }
@@ -1406,8 +1432,8 @@ export default function DomainPagesPage() {
 
   return (
     <div className="max-w-full mx-auto px-4 py-8">
-      <PageHeader 
-        title="Domain Top Pages" 
+      <PageHeader
+        title="Domain Top Pages"
         description="View top organic pages per domain with traffic, keyword counts, and page classification for SEO strategy"
       />
 
@@ -1636,11 +1662,10 @@ export default function DomainPagesPage() {
               {competitors.map(comp => (
                 <label
                   key={comp.id}
-                  className={`inline-flex items-center gap-1.5 px-2 py-1 rounded text-xs cursor-pointer transition-colors ${
-                    selectedDomains.includes(comp.domain)
-                      ? 'bg-indigo-100 text-indigo-800 border border-indigo-300'
-                      : 'bg-white text-gray-700 border border-gray-200 hover:border-gray-300'
-                  }`}
+                  className={`inline-flex items-center gap-1.5 px-2 py-1 rounded text-xs cursor-pointer transition-colors ${selectedDomains.includes(comp.domain)
+                    ? 'bg-indigo-100 text-indigo-800 border border-indigo-300'
+                    : 'bg-white text-gray-700 border border-gray-200 hover:border-gray-300'
+                    }`}
                 >
                   <input
                     type="checkbox"
@@ -1658,13 +1683,12 @@ export default function DomainPagesPage() {
 
       {notification && (
         <div
-          className={`mb-4 p-4 rounded-md ${
-            notification.type === 'success'
-              ? 'bg-green-50 text-green-800 border border-green-200'
-              : notification.type === 'warning'
+          className={`mb-4 p-4 rounded-md ${notification.type === 'success'
+            ? 'bg-green-50 text-green-800 border border-green-200'
+            : notification.type === 'warning'
               ? 'bg-yellow-50 text-yellow-800 border border-yellow-200'
               : 'bg-red-50 text-red-800 border border-red-200'
-          }`}
+            }`}
         >
           {notification.message}
         </div>
@@ -1739,7 +1763,7 @@ export default function DomainPagesPage() {
                   ))}
               </div>
             </div>
-            
+
             {/* Intent Breakdown */}
             <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="text-xs font-medium text-gray-600 mb-2">Page Intent</div>
@@ -1756,7 +1780,7 @@ export default function DomainPagesPage() {
                   ))}
               </div>
             </div>
-            
+
             {/* SEO Action Breakdown */}
             <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="text-xs font-medium text-gray-600 mb-2">SEO Actions</div>
@@ -1773,7 +1797,7 @@ export default function DomainPagesPage() {
                   ))}
               </div>
             </div>
-            
+
             {/* SEO Relevant Breakdown */}
             <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="text-xs font-medium text-gray-600 mb-2">SEO Relevant</div>
@@ -1788,7 +1812,7 @@ export default function DomainPagesPage() {
                 </div>
               </div>
             </div>
-            
+
             {/* Confidence Breakdown */}
             <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="text-xs font-medium text-gray-600 mb-2">Confidence</div>
@@ -1800,11 +1824,10 @@ export default function DomainPagesPage() {
                   })
                   .map(([conf, count]) => (
                     <div key={conf} className="flex justify-between text-[10px]">
-                      <span className={`px-1 rounded ${
-                        conf === 'HIGH' ? 'bg-green-100 text-green-800' :
+                      <span className={`px-1 rounded ${conf === 'HIGH' ? 'bg-green-100 text-green-800' :
                         conf === 'MEDIUM' ? 'bg-yellow-100 text-yellow-800' :
-                        'bg-red-100 text-red-800'
-                      }`}>
+                          'bg-red-100 text-red-800'
+                        }`}>
                         {conf}
                       </span>
                       <span className="font-medium text-gray-700">{count}</span>
@@ -1812,7 +1835,7 @@ export default function DomainPagesPage() {
                   ))}
               </div>
             </div>
-            
+
             {/* Method Breakdown */}
             <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="text-xs font-medium text-gray-600 mb-2">Method</div>
@@ -1821,9 +1844,8 @@ export default function DomainPagesPage() {
                   .sort((a, b) => b[1] - a[1])
                   .map(([method, count]) => (
                     <div key={method} className="flex justify-between text-[10px]">
-                      <span className={`px-1 rounded ${
-                        method === 'AI' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
-                      }`}>
+                      <span className={`px-1 rounded ${method === 'AI' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
+                        }`}>
                         {method}
                       </span>
                       <span className="font-medium text-gray-700">{count}</span>
@@ -1831,7 +1853,7 @@ export default function DomainPagesPage() {
                   ))}
               </div>
             </div>
-            
+
             {/* Priority Tier Breakdown */}
             {classificationBreakdown.priorityCalculatedCount > 0 && (
               <div className="bg-white rounded-lg p-3 shadow-sm">
@@ -2199,11 +2221,10 @@ export default function DomainPagesPage() {
                     {record.domain.length > 15 ? record.domain.substring(0, 15) + '...' : record.domain}
                   </td>
                   <td className="px-1 py-1 text-[9px] w-[30px]">
-                    <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${
-                      record.locationCode === 'IN' 
-                        ? 'bg-yellow-100 text-yellow-800' 
-                        : 'bg-teal-100 text-teal-800'
-                    }`}>
+                    <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${record.locationCode === 'IN'
+                      ? 'bg-yellow-100 text-yellow-800'
+                      : 'bg-teal-100 text-teal-800'
+                      }`}>
                       {record.locationCode}
                     </span>
                   </td>
@@ -2255,9 +2276,8 @@ export default function DomainPagesPage() {
                   </td>
                   <td className="px-1 py-1 text-center w-[35px]">
                     {record.isSeoRelevant !== null && record.isSeoRelevant !== undefined ? (
-                      <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${
-                        record.isSeoRelevant ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-500'
-                      }`}>
+                      <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${record.isSeoRelevant ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-500'
+                        }`}>
                         {record.isSeoRelevant ? 'Y' : 'N'}
                       </span>
                     ) : (
@@ -2275,11 +2295,10 @@ export default function DomainPagesPage() {
                   </td>
                   <td className="px-1 py-1 text-center w-[40px]">
                     {record.classificationConfidence ? (
-                      <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${
-                        record.classificationConfidence === 'HIGH' ? 'bg-green-100 text-green-800' :
+                      <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${record.classificationConfidence === 'HIGH' ? 'bg-green-100 text-green-800' :
                         record.classificationConfidence === 'MEDIUM' ? 'bg-yellow-100 text-yellow-800' :
-                        'bg-red-100 text-red-800'
-                      }`}>
+                          'bg-red-100 text-red-800'
+                        }`}>
                         {record.classificationConfidence.substring(0, 3)}
                       </span>
                     ) : (
@@ -2288,9 +2307,8 @@ export default function DomainPagesPage() {
                   </td>
                   <td className="px-1 py-1 text-center w-[40px]">
                     {record.classificationMethod ? (
-                      <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${
-                        record.classificationMethod === 'AI' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
-                      }`}>
+                      <span className={`inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium ${record.classificationMethod === 'AI' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
+                        }`}>
                         {record.classificationMethod}
                       </span>
                     ) : (
@@ -2334,12 +2352,12 @@ export default function DomainPagesPage() {
                   </td>
                   <td className="px-1 py-1 whitespace-nowrap w-[120px]">
                     {record.llmClusterLabel ? (
-                      <span 
+                      <span
                         className="inline-flex items-center px-0.5 py-0 rounded text-[8px] font-medium bg-violet-100 text-violet-800"
                         title={record.llmClusterDescription || record.llmClusterLabel}
                       >
-                        {record.llmClusterLabel.length > 15 
-                          ? record.llmClusterLabel.substring(0, 15) + '...' 
+                        {record.llmClusterLabel.length > 15
+                          ? record.llmClusterLabel.substring(0, 15) + '...'
                           : record.llmClusterLabel}
                       </span>
                     ) : (

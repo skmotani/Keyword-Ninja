@@ -120,13 +120,13 @@ function normalizeDomainForComparison(root: string): string {
 
 function findLongestCommonSubstring(str1: string, str2: string, minLength: number = 4): string | null {
   if (str1.length === 0 || str2.length === 0) return null;
-  
+
   const m = str1.length;
   const n = str2.length;
   const dp: number[][] = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
   let maxLen = 0;
   let endIdx = 0;
-  
+
   for (let i = 1; i <= m; i++) {
     for (let j = 1; j <= n; j++) {
       if (str1[i - 1] === str2[j - 1]) {
@@ -138,7 +138,7 @@ function findLongestCommonSubstring(str1: string, str2: string, minLength: numbe
       }
     }
   }
-  
+
   if (maxLen >= minLength) {
     return str1.substring(endIdx - maxLen, endIdx);
   }
@@ -249,6 +249,36 @@ function getMatchBucketColor(bucket: string): string {
 type SortField = 'importanceScore' | 'appearanceCount' | 'uniqueKeywords' | 'productMatchScoreValue' | null;
 type SortDirection = 'asc' | 'desc';
 
+const competitorReportPageHelp = {
+  title: 'Competitor Intelligence Report',
+  description: 'A comprehensive analysis of competitors in your SERPs, including their traffic value, keyword strategies, and business relevance.',
+  whyWeAddedThis: 'SERPs are noisy. This report cuts through the noise to tell you exactly who matters, why they rank, and whether they are a threat or an opportunity.',
+  examples: ['Competitor X: High Relevance, 100 Common Keywords', 'Marketplace Y: Low Relevance, High Traffic'],
+  nuances: 'This report combines data from SERP Results (Who is ranking?) with Domain Classification (What kind of site is it?) to give a holistic view.',
+  useCases: [
+    'Identify top 5 direct competitors to track closely',
+    'Find "weak" competitors that you can easily outrank',
+    'Discover potential partners or B2B leads from the SERPs'
+  ]
+};
+
+const competitorReportPageDescription = `
+  This page is the primary interface for **Competitive Intelligence**. It aggregates data from thousands of search results to build a profile for every domain that appears in your keyword landscape.
+
+  **Key Features:**
+  *   **Importance Score**: A proprietary metric that calculates how "visible" a domain is for your specific keyword set.
+  *   **Classification Engine**: Tools to label domains as "Competitor", "Partner", "Marketplace", etc.
+  *   **Gap Analysis**: See which keywords a competitor ranks for that you don't.
+
+  **Workflow:**
+  1.  Review the "Unclassified" domains.
+  2.  Use the "Classify" tool to tag them (AI or Manual).
+  3.  Add high-priority targets to your "Competitor Master" list.
+
+  **Data Flow:**
+  [SERP Results](/keywords/serp-results) → Domain Aggregation → AI Classification → [Competitor Master](/competitors).
+`;
+
 export default function CompetitorReportPage() {
   const [clients, setClients] = useState<Client[]>([]);
   const [selectedClientCode, setSelectedClientCode] = useState<string>('');
@@ -260,7 +290,7 @@ export default function CompetitorReportPage() {
   const [classifyingDomain, setClassifyingDomain] = useState<string | null>(null);
   const [classifyProgress, setClassifyProgress] = useState({ current: 0, total: 0 });
   const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
-  
+
   const [domainFilter, setDomainFilter] = useState('');
   const [labelFilter, setLabelFilter] = useState('');
   const [relevanceFilter, setRelevanceFilter] = useState('');
@@ -268,7 +298,7 @@ export default function CompetitorReportPage() {
   const [pageIntentFilter, setPageIntentFilter] = useState('');
   const [matchFilter, setMatchFilter] = useState('');
   const [classificationStatusFilter, setClassificationStatusFilter] = useState('');
-  
+
   const [sortField, setSortField] = useState<SortField>('importanceScore');
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
 
@@ -321,10 +351,10 @@ export default function CompetitorReportPage() {
       const serpData = await serpRes.json();
       const keywordData = await keywordRes.json();
       const classData = await classRes.json();
-      
+
       setSerpResults(serpData);
       setKeywordApiData(keywordData);
-      
+
       const classMap: Record<string, DomainClassification> = {};
       for (const c of classData) {
         classMap[c.domain.toLowerCase().trim()] = c;
@@ -360,7 +390,7 @@ export default function CompetitorReportPage() {
       const d = r.domain.toLowerCase().trim();
       const volKey = `${r.keyword.toLowerCase().trim()}_${r.locationCode}`;
       const searchVolume = keywordVolumeMap[volKey] || 0;
-      
+
       let rankWeight = 0;
       if (typeof r.rank === 'number' && !isNaN(r.rank) && r.rank > 0) {
         rankWeight = 1 / (r.rank + 1);
@@ -418,9 +448,9 @@ export default function CompetitorReportPage() {
       uniqueCounts[d] = kwSet.size;
     }
 
-    return { 
-      importanceScores: scores, 
-      appearanceCounts: counts, 
+    return {
+      importanceScores: scores,
+      appearanceCounts: counts,
       uniqueKeywordCounts: uniqueCounts,
       domainBreakdowns: breakdowns,
       serpRowsByDomain: serpByDomain
@@ -448,12 +478,12 @@ export default function CompetitorReportPage() {
 
   const filteredAndSortedList = useMemo(() => {
     let result = [...competitorList];
-    
+
     if (domainFilter) {
       const lower = domainFilter.toLowerCase();
       result = result.filter(c => c.domain.toLowerCase().includes(lower));
     }
-    
+
     if (labelFilter) {
       const lower = labelFilter.toLowerCase();
       result = result.filter(c => c.label.toLowerCase().includes(lower));
@@ -499,7 +529,7 @@ export default function CompetitorReportPage() {
         return bVal - aVal;
       });
     }
-    
+
     return result;
   }, [competitorList, domainFilter, labelFilter, relevanceFilter, domainTypeFilter, pageIntentFilter, matchFilter, classificationStatusFilter, sortField, sortDirection]);
 
@@ -538,31 +568,31 @@ export default function CompetitorReportPage() {
 
   const modalFilteredDomains = useMemo(() => {
     let candidates = competitorList.filter(c => !c.classification);
-    
+
     if (importanceThreshold > 0) {
       candidates = candidates.filter(c => c.importanceScore >= importanceThreshold);
     }
-    
+
     if (maxRankFilter < 100) {
       candidates = candidates.filter(c => {
         const avgRank = domainAvgRanks[c.domain.toLowerCase().trim()] || 999;
         return avgRank <= maxRankFilter;
       });
     }
-    
+
     if (onPageTopFilter > 0) {
       candidates = candidates.filter(c => {
         const bestRank = domainBestRanks[c.domain.toLowerCase().trim()] || 999;
         return bestRank <= onPageTopFilter;
       });
     }
-    
+
     candidates = candidates.sort((a, b) => b.importanceScore - a.importanceScore);
-    
+
     if (topNFilter > 0) {
       candidates = candidates.slice(0, topNFilter);
     }
-    
+
     return candidates;
   }, [competitorList, importanceThreshold, maxRankFilter, topNFilter, domainAvgRanks, onPageTopFilter, domainBestRanks]);
 
@@ -621,11 +651,11 @@ export default function CompetitorReportPage() {
 
   const handleClassifyDomain = async (entry: CompetitorEntry) => {
     setClassifyingDomain(entry.domain);
-    
+
     try {
       const domainLower = entry.domain.toLowerCase().trim();
       const serpRows = serpRowsByDomain[domainLower] || [];
-      
+
       const res = await fetch('/api/domain-classification/classify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -641,9 +671,9 @@ export default function CompetitorReportPage() {
           serpRows
         })
       });
-      
+
       const result = await res.json();
-      
+
       if (res.ok && result.classification) {
         setClassifications(prev => ({
           ...prev,
@@ -674,23 +704,23 @@ export default function CompetitorReportPage() {
       showNotification('error', 'No domains selected for classification');
       return;
     }
-    
+
     setShowClassifyModal(false);
     setClassifying(true);
     setClassifyProgress({ current: 0, total: domainsToClassify.length });
-    
+
     const failedDomains: string[] = [];
     let successCount = 0;
-    
+
     try {
       for (let i = 0; i < domainsToClassify.length; i++) {
         const entry = domainsToClassify[i];
         setClassifyingDomain(entry.domain);
         setClassifyProgress({ current: i + 1, total: domainsToClassify.length });
-        
+
         const domainLower = entry.domain.toLowerCase().trim();
         const serpRows = serpRowsByDomain[domainLower] || [];
-        
+
         try {
           const res = await fetch('/api/domain-classification/classify', {
             method: 'POST',
@@ -707,9 +737,9 @@ export default function CompetitorReportPage() {
               serpRows
             })
           });
-          
+
           const result = await res.json();
-          
+
           if (res.ok && result.classification) {
             setClassifications(prev => ({
               ...prev,
@@ -725,7 +755,7 @@ export default function CompetitorReportPage() {
           console.error(`Error classifying ${entry.domain}:`, fetchError);
         }
       }
-      
+
       if (failedDomains.length === 0) {
         showNotification('success', `Successfully classified ${successCount} domains`);
       } else if (successCount > 0) {
@@ -759,7 +789,7 @@ export default function CompetitorReportPage() {
       .filter(c => maxRankFilter === 100 || (domainAvgRanks[c.domain.toLowerCase().trim()] || 999) <= maxRankFilter)
       .filter(c => onPageTopFilter === 0 || (domainBestRanks[c.domain.toLowerCase().trim()] || 999) <= onPageTopFilter)
       .sort((a, b) => b.importanceScore - a.importanceScore);
-    
+
     if (topNFilter > 0) {
       domainsToSelect = domainsToSelect.slice(0, topNFilter);
     }
@@ -847,13 +877,13 @@ export default function CompetitorReportPage() {
         const result = await res.json();
         const addedCount = result.added || domainsToAdd.length;
         const addedDomains = domainsToAdd.map(c => c.domain);
-        
+
         localStorage.setItem('competitorMasterNotification', JSON.stringify({
           message: `${addedCount} new competitor(s) added via SERP Search${skippedCount > 0 ? `. ${skippedCount} duplicate(s) skipped.` : ''}`,
           domains: addedDomains,
           timestamp: Date.now()
         }));
-        
+
         if (skippedCount > 0) {
           showNotification('success', `Added ${addedCount} domain(s) to Competition Master. Skipped ${skippedCount} duplicate(s).`);
         } else {
@@ -876,7 +906,7 @@ export default function CompetitorReportPage() {
     const domainLower = modalDomain.toLowerCase().trim();
     const breakdown = domainBreakdowns[domainLower] || [];
     const entry = competitorList.find(c => c.domain.toLowerCase().trim() === domainLower);
-    
+
     const sorted = [...breakdown].sort((a, b) => b.contribution - a.contribution);
     const baseScore = sorted.reduce((sum, row) => sum + row.contribution, 0);
     const appearanceWeight = 1 + (breakdown.length / 10);
@@ -909,16 +939,17 @@ export default function CompetitorReportPage() {
   return (
     <div className="max-w-7xl mx-auto p-4">
       <PageHeader
-        title="Unique Domains"
+        title="Competitor Intelligence Report"
         description="Unique domains from SERP Results with AI-powered classification"
+        helpInfo={competitorReportPageHelp}
+        extendedDescription={competitorReportPageDescription}
       />
 
       {notification && (
-        <div className={`mb-4 p-3 rounded-lg text-sm ${
-          notification.type === 'success' 
-            ? 'bg-green-50 text-green-800 border border-green-200' 
-            : 'bg-red-50 text-red-800 border border-red-200'
-        }`}>
+        <div className={`mb-4 p-3 rounded-lg text-sm ${notification.type === 'success'
+          ? 'bg-green-50 text-green-800 border border-green-200'
+          : 'bg-red-50 text-red-800 border border-red-200'
+          }`}>
           {notification.message}
         </div>
       )}
@@ -939,23 +970,25 @@ export default function CompetitorReportPage() {
               ))}
             </select>
           </div>
-          <button
-            onClick={openClassifyModal}
-            disabled={classifying || loading || competitorList.length === 0}
-            className="px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-md hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-2"
-          >
-            {classifying ? (
-              <>
-                <span className="animate-spin">&#9696;</span>
-                Classifying {classifyProgress.current}/{classifyProgress.total}...
-              </>
-            ) : (
-              <>
-                <span>&#10024;</span>
-                Classify Domains
-              </>
-            )}
-          </button>
+          <Tooltip text="Use AI to automatically classify domains based on their content and relevance to your client.">
+            <button
+              onClick={openClassifyModal}
+              disabled={classifying || loading || competitorList.length === 0}
+              className="px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-md hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {classifying ? (
+                <>
+                  <span className="animate-spin">&#9696;</span>
+                  Classifying {classifyProgress.current}/{classifyProgress.total}...
+                </>
+              ) : (
+                <>
+                  <span>&#10024;</span>
+                  Classify Domains
+                </>
+              )}
+            </button>
+          </Tooltip>
           {domainsToAddToMaster.size > 0 && (
             <button
               onClick={handleAddToMaster}
@@ -1145,7 +1178,7 @@ export default function CompetitorReportPage() {
                     <span className="cursor-help border-b border-dashed border-gray-400">Domain</span>
                   </Tooltip>
                 </th>
-                <th 
+                <th
                   className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[8%] cursor-pointer hover:bg-gray-100"
                   onClick={() => handleSort('importanceScore')}
                 >
@@ -1165,7 +1198,7 @@ export default function CompetitorReportPage() {
                     <span className="cursor-help border-b border-dashed border-gray-400">Page Intent</span>
                   </Tooltip>
                 </th>
-                <th 
+                <th
                   className="text-center text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[8%] cursor-pointer hover:bg-gray-100"
                   onClick={() => handleSort('productMatchScoreValue')}
                 >
@@ -1193,7 +1226,7 @@ export default function CompetitorReportPage() {
               ) : filteredAndSortedList.length === 0 ? (
                 <tr>
                   <td colSpan={9} className="text-center py-8 text-gray-500 text-sm">
-                    {competitorList.length === 0 
+                    {competitorList.length === 0
                       ? 'No domains found. Fetch SERP data first from the SERP Results page.'
                       : 'No records match your filters.'}
                   </td>
@@ -1509,8 +1542,8 @@ export default function CompetitorReportPage() {
                       const avgRank = domainAvgRanks[entry.domain.toLowerCase().trim()] || 0;
                       const bestRank = domainBestRanks[entry.domain.toLowerCase().trim()] || 0;
                       return (
-                        <tr 
-                          key={entry.domain} 
+                        <tr
+                          key={entry.domain}
                           className={`hover:bg-gray-50 cursor-pointer ${selectedDomains.has(entry.domain) ? 'bg-purple-50' : ''}`}
                           onClick={() => toggleDomainSelection(entry.domain)}
                         >

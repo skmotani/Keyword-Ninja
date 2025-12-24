@@ -23,5 +23,19 @@
     ],
     "notes": "",
     "isActive": true
+  },
+  {
+    "id": "c08b0436-9294-4a27-b287-5643d1e58577",
+    "code": "03",
+    "name": "MEERA-CCP",
+    "mainDomain": "https://www.cosmofilms.com",
+    "domains": [
+      "https://www.cosmofilms.com",
+      "https://www.starflexifilms.com",
+      "https://www.jpflfilms.com/",
+      "https://kanodiaindia.com"
+    ],
+    "notes": "CPP Means Clear films without any coating",
+    "isActive": true
   }
 ]

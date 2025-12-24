@@ -52,8 +52,8 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  const locCodes: string[] = Array.isArray(locationCodes) 
-    ? locationCodes 
+  const locCodes: string[] = Array.isArray(locationCodes)
+    ? locationCodes
     : (locationCodes ? [locationCodes] : ['IN', 'GL']);
 
   if (locCodes.length === 0) {
@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  const password = process.env.DATAFORSEO_PASSWORD;
+  const password = credential?.password || process.env.DATAFORSEO_PASSWORD;
   if (!password) {
     return new Response(JSON.stringify({ error: 'DataForSEO password not configured' }), {
       status: 400,

@@ -1,9 +1,12 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import PageHeader from '@/components/PageHeader';
 import ExportButton, { ExportColumn } from '@/components/ExportButton';
 import { Client, Competitor, CompetitorSource } from '@/types';
+
+// ... (keep helper functions getRelevanceBadgeColor and getMatchBucketColor as is) ...
 
 function getRelevanceBadgeColor(category: string): string {
   switch (category) {
@@ -31,18 +34,51 @@ function getMatchBucketColor(bucket: string): string {
   }
 }
 
+const competitorsPageHelp = {
+  title: 'Competitors & Classification',
+  description: 'A master list of potential competitors, partners, and customers identified from SERPs or manual entry.',
+  whyWeAddedThis: 'Not every domain ranking for your keywords is a direct competitor. Some are marketplaces, directories, or even potential customers. This module classifies them so you can focus on the right targets.',
+  examples: ['"meeraind.com" (Self)', '"indiamart.com" (Marketplace)', '"competitor-x.com" (Direct Competitor)'],
+  nuances: 'The "Business Relevance" field is the most important. It tells you RELATIONSHIP to the client. This is often AI-determined based on product match and domain intent.',
+  useCases: [
+    'Filter out irrelevant domains from keyword research',
+    'Identify new direct competitors',
+    'Find potential customer leads (B2B)'
+  ]
+};
+
+const competitorsPageDescription = `
+  This page lists all the external domains that have been identified as relevant to your clients. 
+  They are classified by their relationship to the client (e.g., Direct Competitor, Marketplace, Potential Customer).
+
+  Domains here come from two sources:
+  1. **Manual Entry:** You added them directly.
+  2. **SERP Analysis:** They were found ranking for the client's keywords and were deemed relevant.
+
+  **Data Flow:** 
+  SERP Data → AI Classification → Competitor Master Database.
+`;
+
 export default function CompetitorsPage() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const [competitors, setCompetitors] = useState<Competitor[]>([]);
   const [clients, setClients] = useState<Client[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [notification, setNotification] = useState<{ type: 'success' | 'error' | 'info'; message: string } | null>(null);
   const [recentlyAddedDomains, setRecentlyAddedDomains] = useState<Set<string>>(new Set());
-  const [clientFilter, setClientFilter] = useState<string>('');
+
+  // Initialize filter from URL
+  const initialClientFilter = searchParams.get('client') || '';
+  const [clientFilter, setClientFilter] = useState<string>(initialClientFilter);
+
   const [explanationModal, setExplanationModal] = useState<Competitor | null>(null);
-  
+
   const [formData, setFormData] = useState({
-    clientCode: '',
+    clientCode: initialClientFilter, // Default to filter
     name: '',
     domain: '',
     notes: '',
@@ -57,12 +93,28 @@ export default function CompetitorsPage() {
   });
 
   const [showBulkImport, setShowBulkImport] = useState(false);
-  const [bulkClientCode, setBulkClientCode] = useState('');
+  const [bulkClientCode, setBulkClientCode] = useState(initialClientFilter); // Default to filter
   const [bulkDomains, setBulkDomains] = useState('');
+
+  // Update URL and form defaults when filter changes
+  const handleFilterChange = (newClientCode: string) => {
+    setClientFilter(newClientCode);
+    setFormData(prev => ({ ...prev, clientCode: newClientCode }));
+    setBulkClientCode(newClientCode);
+
+    // Update URL
+    const params = new URLSearchParams(searchParams);
+    if (newClientCode) {
+      params.set('client', newClientCode);
+    } else {
+      params.delete('client');
+    }
+    router.replace(`${pathname}?${params.toString()}`);
+  };
 
   useEffect(() => {
     fetchData();
-    
+
     const storedNotification = localStorage.getItem('competitorMasterNotification');
     if (storedNotification) {
       try {
@@ -104,33 +156,33 @@ export default function CompetitorsPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    
+
     await fetch('/api/competitors', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
     });
-    
-    setFormData({ clientCode: '', name: '', domain: '', notes: '' });
+
+    setFormData({ clientCode: clientFilter, name: '', domain: '', notes: '' }); // Keep client selected
     fetchData();
   }
 
   async function handleBulkImport(e: React.FormEvent) {
     e.preventDefault();
-    
+
     const lines = bulkDomains
       .split('\n')
       .map(line => line.trim())
       .filter(line => line.length > 0);
-    
+
     if (lines.length === 0) return;
-    
+
     const competitors = lines.map(domain => {
       let cleanDomain = domain.replace(/^https?:\/\//, '').replace(/^www\./, '');
       cleanDomain = cleanDomain.split('/')[0];
       const name = cleanDomain.split('.')[0];
       const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
-      
+
       return {
         clientCode: bulkClientCode,
         name: capitalizedName,
@@ -138,13 +190,13 @@ export default function CompetitorsPage() {
         notes: '',
       };
     });
-    
+
     await fetch('/api/competitors', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ bulk: true, competitors }),
     });
-    
+
     setBulkClientCode('');
     setBulkDomains('');
     setShowBulkImport(false);
@@ -153,16 +205,16 @@ export default function CompetitorsPage() {
 
   async function handleUpdate(id: string) {
     const wasSourceChanged = competitors.find(c => c.id === id)?.source !== editFormData.source;
-    
+
     await fetch('/api/competitors', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id, ...editFormData }),
     });
-    
+
     setEditingId(null);
     fetchData();
-    
+
     if (wasSourceChanged) {
       setNotification({ type: 'info', message: `Source updated to "${editFormData.source}"` });
       setTimeout(() => setNotification(null), 3000);
@@ -175,7 +227,7 @@ export default function CompetitorsPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: competitor.id, isActive: !competitor.isActive }),
     });
-    
+
     fetchData();
   }
 
@@ -183,11 +235,11 @@ export default function CompetitorsPage() {
     if (!confirm('Are you sure you want to permanently delete this competitor? This action cannot be undone.')) {
       return;
     }
-    
+
     await fetch(`/api/competitors?id=${id}`, {
       method: 'DELETE',
     });
-    
+
     fetchData();
   }
 
@@ -208,21 +260,22 @@ export default function CompetitorsPage() {
 
   return (
     <div>
-      <PageHeader 
-        title="Competitor Master" 
+      <PageHeader
+        title="Competitor Master"
         description="Track competitors for each client"
+        helpInfo={competitorsPageHelp}
+        extendedDescription={competitorsPageDescription}
       />
 
       {notification && (
-        <div className={`mb-4 p-3 rounded-lg text-sm flex items-center justify-between ${
-          notification.type === 'success' 
-            ? 'bg-green-50 text-green-800 border border-green-200' 
-            : notification.type === 'info'
+        <div className={`mb-4 p-3 rounded-lg text-sm flex items-center justify-between ${notification.type === 'success'
+          ? 'bg-green-50 text-green-800 border border-green-200'
+          : notification.type === 'info'
             ? 'bg-blue-50 text-blue-800 border border-blue-200'
             : 'bg-red-50 text-red-800 border border-red-200'
-        }`}>
+          }`}>
           <span>{notification.message}</span>
-          <button 
+          <button
             onClick={() => setNotification(null)}
             className="text-gray-500 hover:text-gray-700 ml-2"
           >
@@ -421,153 +474,154 @@ export default function CompetitorsPage() {
                 const isRecentlyAdded = recentlyAddedDomains.has(competitor.domain.toLowerCase().trim());
                 const domainUrl = competitor.domain.startsWith('http') ? competitor.domain : `https://${competitor.domain}`;
                 return (
-                <tr key={competitor.id} className={`${!competitor.isActive ? 'bg-gray-50 opacity-60' : ''} ${isRecentlyAdded ? 'bg-green-50 ring-2 ring-green-200 ring-inset' : ''}`}>
-                  {editingId === competitor.id ? (
-                    <>
-                      <td className="px-3 py-3 text-sm text-gray-500">{index + 1}</td>
-                      <td className="px-3 py-3">
-                        <select
-                          value={editFormData.clientCode}
-                          onChange={(e) => setEditFormData({ ...editFormData, clientCode: e.target.value })}
-                          className="w-full px-2 py-1 border rounded text-sm"
-                        >
-                          {clients.map((client) => (
-                            <option key={client.id} value={client.code}>
-                              {client.code} - {client.name}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                      <td className="px-3 py-3">
-                        <input
-                          type="text"
-                          value={editFormData.name}
-                          onChange={(e) => setEditFormData({ ...editFormData, name: e.target.value })}
-                          className="w-full px-2 py-1 border rounded text-sm"
-                        />
-                      </td>
-                      <td className="px-3 py-3">
-                        <input
-                          type="text"
-                          value={editFormData.domain}
-                          onChange={(e) => setEditFormData({ ...editFormData, domain: e.target.value })}
-                          className="w-full px-2 py-1 border rounded text-sm"
-                        />
-                      </td>
-                      <td className="px-2 py-3 text-xs text-gray-400">-</td>
-                      <td className="px-2 py-3 text-xs text-gray-400">-</td>
-                      <td className="px-2 py-3 text-xs text-gray-400">-</td>
-                      <td className="px-2 py-3 text-xs text-gray-400">-</td>
-                      <td className="px-2 py-3 text-xs text-gray-400">-</td>
-                      <td className="px-2 py-3">
-                        <select
-                          value={editFormData.source}
-                          onChange={(e) => setEditFormData({ ...editFormData, source: e.target.value as CompetitorSource })}
-                          className="px-2 py-1 border rounded text-xs"
-                        >
-                          <option value="Manual Entry">Manual Entry</option>
-                          <option value="Via SERP Search">Via SERP Search</option>
-                        </select>
-                      </td>
-                      <td className="px-2 py-3">
-                        <span className={`px-2 py-1 text-xs rounded-full ${competitor.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
-                          {competitor.isActive ? 'Yes' : 'No'}
-                        </span>
-                      </td>
-                      <td className="px-3 py-3 space-x-2">
-                        <button
-                          onClick={() => handleUpdate(competitor.id)}
-                          className="text-green-600 hover:text-green-800 text-sm"
-                        >
-                          Save
-                        </button>
-                        <button
-                          onClick={() => setEditingId(null)}
-                          className="text-gray-600 hover:text-gray-800 text-sm"
-                        >
-                          Cancel
-                        </button>
-                      </td>
-                    </>
-                  ) : (
-                    <>
-                      <td className="px-3 py-3 whitespace-nowrap text-sm text-gray-500">{index + 1}</td>
-                      <td className="px-3 py-3 whitespace-nowrap text-sm text-gray-900">{getClientName(competitor.clientCode)}</td>
-                      <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">{competitor.name}</td>
-                      <td className="px-3 py-3 whitespace-nowrap text-sm">
-                        <a 
-                          href={domainUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-indigo-600 hover:text-indigo-800 hover:underline"
-                        >
-                          {competitor.domain}
-                        </a>
-                      </td>
-                      <td className="px-2 py-3 whitespace-nowrap text-xs text-gray-600">
-                        {typeof competitor.importanceScore === 'number' ? competitor.importanceScore.toFixed(1) : <span className="text-gray-300">-</span>}
-                      </td>
-                      <td className="px-2 py-3 whitespace-nowrap text-xs text-gray-600 max-w-32 truncate" title={competitor.domainType}>
-                        {competitor.domainType || <span className="text-gray-300">-</span>}
-                      </td>
-                      <td className="px-2 py-3 whitespace-nowrap text-xs text-gray-600">
-                        {competitor.pageIntent || <span className="text-gray-300">-</span>}
-                      </td>
-                      <td className="px-2 py-3 whitespace-nowrap text-xs">
-                        {competitor.productMatchScoreValue !== undefined ? (
-                          <span className={getMatchBucketColor(competitor.productMatchScoreBucket || 'None')}>
-                            {Math.round(competitor.productMatchScoreValue * 100)}%
-                          </span>
-                        ) : (
-                          <span className="text-gray-300">-</span>
-                        )}
-                      </td>
-                      <td className="px-2 py-3 whitespace-nowrap">
-                        {competitor.businessRelevanceCategory ? (
-                          <button
-                            onClick={() => setExplanationModal(competitor)}
-                            className={`inline-block px-2 py-0.5 rounded text-[10px] font-medium cursor-pointer hover:opacity-80 ${getRelevanceBadgeColor(competitor.businessRelevanceCategory)}`}
+                  <tr key={competitor.id} className={`${!competitor.isActive ? 'bg-gray-50 opacity-60' : ''} ${isRecentlyAdded ? 'bg-green-50 ring-2 ring-green-200 ring-inset' : ''}`}>
+                    {editingId === competitor.id ? (
+                      <>
+                        <td className="px-3 py-3 text-sm text-gray-500">{index + 1}</td>
+                        <td className="px-3 py-3">
+                          <select
+                            value={editFormData.clientCode}
+                            onChange={(e) => setEditFormData({ ...editFormData, clientCode: e.target.value })}
+                            className="w-full px-2 py-1 border rounded text-sm"
                           >
-                            {competitor.businessRelevanceCategory}
+                            {clients.map((client) => (
+                              <option key={client.id} value={client.code}>
+                                {client.code} - {client.name}
+                              </option>
+                            ))}
+                          </select>
+                        </td>
+                        <td className="px-3 py-3">
+                          <input
+                            type="text"
+                            value={editFormData.name}
+                            onChange={(e) => setEditFormData({ ...editFormData, name: e.target.value })}
+                            className="w-full px-2 py-1 border rounded text-sm"
+                          />
+                        </td>
+                        <td className="px-3 py-3">
+                          <input
+                            type="text"
+                            value={editFormData.domain}
+                            onChange={(e) => setEditFormData({ ...editFormData, domain: e.target.value })}
+                            className="w-full px-2 py-1 border rounded text-sm"
+                          />
+                        </td>
+                        <td className="px-2 py-3 text-xs text-gray-400">-</td>
+                        <td className="px-2 py-3 text-xs text-gray-400">-</td>
+                        <td className="px-2 py-3 text-xs text-gray-400">-</td>
+                        <td className="px-2 py-3 text-xs text-gray-400">-</td>
+                        <td className="px-2 py-3 text-xs text-gray-400">-</td>
+                        <td className="px-2 py-3">
+                          <select
+                            value={editFormData.source}
+                            onChange={(e) => setEditFormData({ ...editFormData, source: e.target.value as CompetitorSource })}
+                            className="px-2 py-1 border rounded text-xs"
+                          >
+                            <option value="Manual Entry">Manual Entry</option>
+                            <option value="Via SERP Search">Via SERP Search</option>
+                          </select>
+                        </td>
+                        <td className="px-2 py-3">
+                          <span className={`px-2 py-1 text-xs rounded-full ${competitor.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
+                            {competitor.isActive ? 'Yes' : 'No'}
+                          </span>
+                        </td>
+                        <td className="px-3 py-3 space-x-2">
+                          <button
+                            onClick={() => handleUpdate(competitor.id)}
+                            className="text-green-600 hover:text-green-800 text-sm"
+                          >
+                            Save
                           </button>
-                        ) : (
-                          <span className="text-gray-300 text-xs">-</span>
-                        )}
-                      </td>
-                      <td className="px-2 py-3 whitespace-nowrap">
-                        <span className={`px-2 py-1 text-xs rounded-full ${competitor.source === 'Via SERP Search' ? 'bg-purple-100 text-purple-800' : 'bg-gray-100 text-gray-700'}`}>
-                          {competitor.source || 'Manual Entry'}
-                        </span>
-                      </td>
-                      <td className="px-2 py-3 whitespace-nowrap">
-                        <span className={`px-2 py-1 text-xs rounded-full ${competitor.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
-                          {competitor.isActive ? 'Yes' : 'No'}
-                        </span>
-                      </td>
-                      <td className="px-3 py-3 whitespace-nowrap text-sm space-x-2">
-                        <button
-                          onClick={() => startEdit(competitor)}
-                          className="text-indigo-600 hover:text-indigo-800"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => toggleActive(competitor)}
-                          className={competitor.isActive ? 'text-orange-600 hover:text-orange-800' : 'text-green-600 hover:text-green-800'}
-                        >
-                          {competitor.isActive ? 'Archive' : 'Unarchive'}
-                        </button>
-                        <button
-                          onClick={() => handleDelete(competitor.id)}
-                          className="text-red-600 hover:text-red-800"
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </>
-                  )}
-                </tr>
-              );})
+                          <button
+                            onClick={() => setEditingId(null)}
+                            className="text-gray-600 hover:text-gray-800 text-sm"
+                          >
+                            Cancel
+                          </button>
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        <td className="px-3 py-3 whitespace-nowrap text-sm text-gray-500">{index + 1}</td>
+                        <td className="px-3 py-3 whitespace-nowrap text-sm text-gray-900">{getClientName(competitor.clientCode)}</td>
+                        <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">{competitor.name}</td>
+                        <td className="px-3 py-3 whitespace-nowrap text-sm">
+                          <a
+                            href={domainUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-indigo-600 hover:text-indigo-800 hover:underline"
+                          >
+                            {competitor.domain}
+                          </a>
+                        </td>
+                        <td className="px-2 py-3 whitespace-nowrap text-xs text-gray-600">
+                          {typeof competitor.importanceScore === 'number' ? competitor.importanceScore.toFixed(1) : <span className="text-gray-300">-</span>}
+                        </td>
+                        <td className="px-2 py-3 whitespace-nowrap text-xs text-gray-600 max-w-32 truncate" title={competitor.domainType}>
+                          {competitor.domainType || <span className="text-gray-300">-</span>}
+                        </td>
+                        <td className="px-2 py-3 whitespace-nowrap text-xs text-gray-600">
+                          {competitor.pageIntent || <span className="text-gray-300">-</span>}
+                        </td>
+                        <td className="px-2 py-3 whitespace-nowrap text-xs">
+                          {competitor.productMatchScoreValue !== undefined ? (
+                            <span className={getMatchBucketColor(competitor.productMatchScoreBucket || 'None')}>
+                              {Math.round(competitor.productMatchScoreValue * 100)}%
+                            </span>
+                          ) : (
+                            <span className="text-gray-300">-</span>
+                          )}
+                        </td>
+                        <td className="px-2 py-3 whitespace-nowrap">
+                          {competitor.businessRelevanceCategory ? (
+                            <button
+                              onClick={() => setExplanationModal(competitor)}
+                              className={`inline-block px-2 py-0.5 rounded text-[10px] font-medium cursor-pointer hover:opacity-80 ${getRelevanceBadgeColor(competitor.businessRelevanceCategory)}`}
+                            >
+                              {competitor.businessRelevanceCategory}
+                            </button>
+                          ) : (
+                            <span className="text-gray-300 text-xs">-</span>
+                          )}
+                        </td>
+                        <td className="px-2 py-3 whitespace-nowrap">
+                          <span className={`px-2 py-1 text-xs rounded-full ${competitor.source === 'Via SERP Search' ? 'bg-purple-100 text-purple-800' : 'bg-gray-100 text-gray-700'}`}>
+                            {competitor.source || 'Manual Entry'}
+                          </span>
+                        </td>
+                        <td className="px-2 py-3 whitespace-nowrap">
+                          <span className={`px-2 py-1 text-xs rounded-full ${competitor.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
+                            {competitor.isActive ? 'Yes' : 'No'}
+                          </span>
+                        </td>
+                        <td className="px-3 py-3 whitespace-nowrap text-sm space-x-2">
+                          <button
+                            onClick={() => startEdit(competitor)}
+                            className="text-indigo-600 hover:text-indigo-800"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => toggleActive(competitor)}
+                            className={competitor.isActive ? 'text-orange-600 hover:text-orange-800' : 'text-green-600 hover:text-green-800'}
+                          >
+                            {competitor.isActive ? 'Archive' : 'Unarchive'}
+                          </button>
+                          <button
+                            onClick={() => handleDelete(competitor.id)}
+                            className="text-red-600 hover:text-red-800"
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </>
+                    )}
+                  </tr>
+                );
+              })
             )}
           </tbody>
         </table>
@@ -602,8 +656,8 @@ export default function CompetitorsPage() {
                 <div>
                   <p className="text-[10px] text-gray-500 uppercase">Product Match</p>
                   <p className={`text-sm font-medium ${getMatchBucketColor(explanationModal.productMatchScoreBucket || 'None')}`}>
-                    {explanationModal.productMatchScoreValue !== undefined 
-                      ? `${Math.round(explanationModal.productMatchScoreValue * 100)}% (${explanationModal.productMatchScoreBucket})` 
+                    {explanationModal.productMatchScoreValue !== undefined
+                      ? `${Math.round(explanationModal.productMatchScoreValue * 100)}% (${explanationModal.productMatchScoreBucket})`
                       : '-'}
                   </p>
                 </div>

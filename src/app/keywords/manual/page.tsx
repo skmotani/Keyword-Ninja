@@ -1,31 +1,69 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import PageHeader from '@/components/PageHeader';
 import ExportButton, { ExportColumn } from '@/components/ExportButton';
 import { Client, ManualKeyword } from '@/types';
+
+const manualKeywordsPageHelp = {
+  title: 'Manual Keyword Entry',
+  description: 'This interface allows you to manually input, track, and manage specific keywords for each client.',
+  whyWeAddedThis: 'While AI and automated tools generate many keywords, human insight is often critical. This tool ensures you can track high-value, specific terms that automated tools might miss.',
+  examples: ['"yarn twisting machine price"', '"textile machinery manufacturers in india"'],
+  nuances: 'Keywords entered here are "Manual Entry" source by default but can be tagged differently. They are prioritized in some tracking workflows.',
+  useCases: [
+    'Add specific keywords requested by the client',
+    'Track competitor brand names manually',
+    'Input keywords found during manual SERP research'
+  ]
+};
+
+const manualKeywordsPageDescription = `
+  This page is your workbench for manual keyword management. It allows you to build a curated list of keywords 
+  that are important for your client's SEO strategy but might not have been discovered by automated scans.
+
+  You can add keywords one by one or bulk import them from a list. You can also tag them with a specific "Source" 
+  to track where they came from (e.g., "Client Request", "Competitor Website").
+
+  **Data Flow:** 
+  User Input → Local Database (Manual Keywords Table). 
+  
+  These keywords serve as the input for:
+  *   Search Volume fetching in [Keyword API Data](/keywords/api-data)
+  *   Rank tracking in [SERP Results](/keywords/serp-results)
+`;
 
 export default function ManualKeywordsPage() {
   const [keywords, setKeywords] = useState<ManualKeyword[]>([]);
   const [clients, setClients] = useState<Client[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState<string | null>(null);
-  
+
+  // Filter State
+  const [filterClientCode, setFilterClientCode] = useState('');
+
   const [formData, setFormData] = useState({
     clientCode: '',
     keywordText: '',
     notes: '',
+    source: 'Manual Entry',
+    isNewSource: false,
+    newSourceText: ''
   });
 
   const [editFormData, setEditFormData] = useState({
     clientCode: '',
     keywordText: '',
     notes: '',
+    source: ''
   });
 
   const [showBulkImport, setShowBulkImport] = useState(false);
   const [bulkClientCode, setBulkClientCode] = useState('');
   const [bulkKeywords, setBulkKeywords] = useState('');
+  const [bulkSource, setBulkSource] = useState('Manual Entry');
+  const [isNewBulkSource, setIsNewBulkSource] = useState(false);
+  const [newBulkSourceText, setNewBulkSourceText] = useState('');
 
   useEffect(() => {
     fetchData();
@@ -43,6 +81,26 @@ export default function ManualKeywordsPage() {
     setLoading(false);
   }
 
+  // Derived unique sources
+  const uniqueSources = useMemo(() => {
+    const sources = new Set<string>();
+    sources.add('Manual Entry');
+    sources.add('SERP Related');
+    sources.add('Competitor Analysis');
+    sources.add('AI Research');
+
+    keywords.forEach(k => {
+      if (k.source) sources.add(k.source);
+    });
+
+    return Array.from(sources).sort();
+  }, [keywords]);
+
+  const filteredKeywords = useMemo(() => {
+    if (!filterClientCode) return keywords;
+    return keywords.filter(k => k.clientCode === filterClientCode);
+  }, [keywords, filterClientCode]);
+
   function getClientName(clientCode: string) {
     const client = clients.find(c => c.code === clientCode);
     return client ? `${client.code} - ${client.name}` : clientCode;
@@ -50,41 +108,59 @@ export default function ManualKeywordsPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    
+
+    const finalSource = formData.isNewSource ? formData.newSourceText : formData.source;
+
     await fetch('/api/keywords', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({
+        ...formData,
+        source: finalSource
+      }),
     });
-    
-    setFormData({ clientCode: '', keywordText: '', notes: '' });
+
+    setFormData({
+      clientCode: '',
+      keywordText: '',
+      notes: '',
+      source: 'Manual Entry',
+      isNewSource: false,
+      newSourceText: ''
+    });
     fetchData();
   }
 
   async function handleBulkImport(e: React.FormEvent) {
     e.preventDefault();
-    
+
     const lines = bulkKeywords
       .split('\n')
       .map(line => line.trim())
       .filter(line => line.length > 0);
-    
+
     if (lines.length === 0) return;
-    
+
+    const finalSource = isNewBulkSource ? newBulkSourceText : bulkSource;
+
     const keywords = lines.map(keywordText => ({
       clientCode: bulkClientCode,
       keywordText: keywordText,
       notes: '',
+      source: finalSource
     }));
-    
+
     await fetch('/api/keywords', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ bulk: true, keywords }),
     });
-    
+
     setBulkClientCode('');
     setBulkKeywords('');
+    setBulkSource('Manual Entry');
+    setIsNewBulkSource(false);
+    setNewBulkSourceText('');
     setShowBulkImport(false);
     fetchData();
   }
@@ -95,7 +171,7 @@ export default function ManualKeywordsPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id, ...editFormData }),
     });
-    
+
     setEditingId(null);
     fetchData();
   }
@@ -106,7 +182,7 @@ export default function ManualKeywordsPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: keyword.id, isActive: !keyword.isActive }),
     });
-    
+
     fetchData();
   }
 
@@ -114,11 +190,11 @@ export default function ManualKeywordsPage() {
     if (!confirm('Are you sure you want to permanently delete this keyword? This action cannot be undone.')) {
       return;
     }
-    
+
     await fetch(`/api/keywords?id=${id}`, {
       method: 'DELETE',
     });
-    
+
     fetchData();
   }
 
@@ -128,6 +204,7 @@ export default function ManualKeywordsPage() {
       clientCode: keyword.clientCode,
       keywordText: keyword.keywordText,
       notes: keyword.notes || '',
+      source: keyword.source || 'Manual Entry'
     });
   }
 
@@ -137,36 +214,58 @@ export default function ManualKeywordsPage() {
 
   return (
     <div>
-      <PageHeader 
-        title="Keyword Manual Master" 
+      <PageHeader
+        title="Keyword Manual Master"
         description="Manage manually collected keywords from client interviews"
+        helpInfo={manualKeywordsPageHelp}
+        extendedDescription={manualKeywordsPageDescription}
       />
 
-      <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 mb-6 flex items-center justify-between">
+      <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 mb-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-6">
           <div className="text-center">
-            <div className="text-2xl font-bold text-indigo-600">{keywords.length}</div>
+            <div className="text-2xl font-bold text-indigo-600">{filteredKeywords.length}</div>
             <div className="text-xs text-gray-600">Total Keywords</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-green-600">{keywords.filter(k => k.isActive).length}</div>
+            <div className="text-2xl font-bold text-green-600">{filteredKeywords.filter(k => k.isActive).length}</div>
             <div className="text-xs text-gray-600">Active</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-gray-500">{keywords.filter(k => !k.isActive).length}</div>
+            <div className="text-2xl font-bold text-gray-500">{filteredKeywords.filter(k => !k.isActive).length}</div>
             <div className="text-xs text-gray-600">Archived</div>
           </div>
         </div>
-        <ExportButton
-          data={keywords}
-          columns={[
-            { key: 'clientCode', header: 'Client Code' },
-            { key: 'keywordText', header: 'Keyword' },
-            { key: 'isActive', header: 'Active' },
-            { key: 'notes', header: 'Notes' },
-          ] as ExportColumn<ManualKeyword>[]}
-          filename={`manual-keywords-${new Date().toISOString().split('T')[0]}`}
-        />
+
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <label className="text-sm font-medium text-gray-700">Filter Client:</label>
+            <select
+              value={filterClientCode}
+              onChange={(e) => setFilterClientCode(e.target.value)}
+              className="px-3 py-1.5 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 min-w-[200px]"
+            >
+              <option value="">All Clients</option>
+              {clients.map((client) => (
+                <option key={client.id} value={client.code}>
+                  {client.code} - {client.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <ExportButton
+            data={filteredKeywords}
+            columns={[
+              { key: 'clientCode', header: 'Client Code' },
+              { key: 'keywordText', header: 'Keyword' },
+              { key: 'source', header: 'Source' },
+              { key: 'isActive', header: 'Active' },
+              { key: 'notes', header: 'Notes' },
+            ] as ExportColumn<ManualKeyword>[]}
+            filename={`manual-keywords-${new Date().toISOString().split('T')[0]}`}
+          />
+        </div>
       </div>
 
       <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
@@ -181,7 +280,7 @@ export default function ManualKeywordsPage() {
         </div>
 
         {!showBulkImport ? (
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-5 gap-4 items-start">
             <select
               value={formData.clientCode}
               onChange={(e) => setFormData({ ...formData, clientCode: e.target.value })}
@@ -195,6 +294,46 @@ export default function ManualKeywordsPage() {
                 </option>
               ))}
             </select>
+
+            <div className="flex flex-col gap-1">
+              {!formData.isNewSource ? (
+                <select
+                  value={formData.source}
+                  onChange={(e) => {
+                    if (e.target.value === 'NEW_SOURCE') {
+                      setFormData(prev => ({ ...prev, isNewSource: true, source: '' }));
+                    } else {
+                      setFormData(prev => ({ ...prev, source: e.target.value }));
+                    }
+                  }}
+                  className="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                >
+                  {uniqueSources.map(s => (
+                    <option key={s} value={s}>{s}</option>
+                  ))}
+                  <option value="NEW_SOURCE">+ Add New Source</option>
+                </select>
+              ) : (
+                <div className="flex gap-1">
+                  <input
+                    type="text"
+                    required
+                    placeholder="Enter new source..."
+                    value={formData.newSourceText}
+                    onChange={(e) => setFormData(prev => ({ ...prev, newSourceText: e.target.value }))}
+                    className="flex-1 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setFormData(prev => ({ ...prev, isNewSource: false, newSourceText: '', source: 'Manual Entry' }))}
+                    className="px-2 text-gray-500 hover:text-gray-700 font-bold"
+                  >
+                    ×
+                  </button>
+                </div>
+              )}
+            </div>
+
             <input
               type="text"
               placeholder="Keyword"
@@ -205,7 +344,7 @@ export default function ManualKeywordsPage() {
             />
             <input
               type="text"
-              placeholder="Notes (optional, e.g. from client interview)"
+              placeholder="Notes (optional)"
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
               className="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -219,7 +358,7 @@ export default function ManualKeywordsPage() {
           </form>
         ) : (
           <form onSubmit={handleBulkImport} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Select Client
@@ -238,6 +377,49 @@ export default function ManualKeywordsPage() {
                   ))}
                 </select>
               </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Source
+                </label>
+                {!isNewBulkSource ? (
+                  <select
+                    value={bulkSource}
+                    onChange={(e) => {
+                      if (e.target.value === 'NEW_SOURCE') {
+                        setIsNewBulkSource(true);
+                      } else {
+                        setBulkSource(e.target.value);
+                      }
+                    }}
+                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  >
+                    {uniqueSources.map(s => (
+                      <option key={s} value={s}>{s}</option>
+                    ))}
+                    <option value="NEW_SOURCE">+ Add New Source</option>
+                  </select>
+                ) : (
+                  <div className="flex gap-1">
+                    <input
+                      type="text"
+                      required
+                      placeholder="Enter new source..."
+                      value={newBulkSourceText}
+                      onChange={(e) => setNewBulkSourceText(e.target.value)}
+                      className="flex-1 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => { setIsNewBulkSource(false); setNewBulkSourceText(''); setBulkSource('Manual Entry'); }}
+                      className="px-2 text-gray-500 hover:text-gray-700 font-bold"
+                    >
+                      ×
+                    </button>
+                  </div>
+                )}
+              </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Keywords (one per line)
@@ -250,9 +432,6 @@ export default function ManualKeywordsPage() {
                   rows={5}
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 font-mono text-sm"
                 />
-                <p className="text-xs text-gray-500 mt-1">
-                  Paste keywords from your notes or spreadsheet, one per line.
-                </p>
               </div>
             </div>
             <button
@@ -275,20 +454,21 @@ export default function ManualKeywordsPage() {
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">S.No</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider max-w-[180px]">Keyword</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Source</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Active?</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Notes</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {keywords.length === 0 ? (
+            {filteredKeywords.length === 0 ? (
               <tr>
-                <td colSpan={6} className="px-6 py-4 text-center text-gray-500">
-                  No keywords yet. Add your first keyword above.
+                <td colSpan={7} className="px-6 py-4 text-center text-gray-500">
+                  {filterClientCode ? 'No keywords found for this client.' : 'No keywords yet. Add your first keyword above.'}
                 </td>
               </tr>
             ) : (
-              keywords.map((keyword, index) => (
+              filteredKeywords.map((keyword, index) => (
                 <tr key={keyword.id} className={!keyword.isActive ? 'bg-gray-50 opacity-60' : ''}>
                   {editingId === keyword.id ? (
                     <>
@@ -311,6 +491,14 @@ export default function ManualKeywordsPage() {
                           type="text"
                           value={editFormData.keywordText}
                           onChange={(e) => setEditFormData({ ...editFormData, keywordText: e.target.value })}
+                          className="w-full px-2 py-1 border rounded"
+                        />
+                      </td>
+                      <td className="px-6 py-4">
+                        <input
+                          type="text"
+                          value={editFormData.source}
+                          onChange={(e) => setEditFormData({ ...editFormData, source: e.target.value })}
                           className="w-full px-2 py-1 border rounded"
                         />
                       </td>
@@ -347,6 +535,7 @@ export default function ManualKeywordsPage() {
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{index + 1}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{getClientName(keyword.clientCode)}</td>
                       <td className="px-6 py-4 text-sm font-medium text-gray-900 max-w-[180px] truncate whitespace-nowrap overflow-hidden text-ellipsis" title={keyword.keywordText}>{keyword.keywordText}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{keyword.source}</td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className={`px-2 py-1 text-xs rounded-full ${keyword.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
                           {keyword.isActive ? 'Yes' : 'No'}

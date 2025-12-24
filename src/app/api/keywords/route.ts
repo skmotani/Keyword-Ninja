@@ -10,7 +10,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  
+
   if (body.bulk && Array.isArray(body.keywords)) {
     const createdKeywords: ManualKeyword[] = [];
     for (const kw of body.keywords) {
@@ -20,21 +20,23 @@ export async function POST(request: NextRequest) {
         keywordText: kw.keywordText,
         notes: kw.notes || '',
         isActive: true,
+        source: kw.source || 'Manual Entry',
       };
       await createManualKeyword(newKeyword);
       createdKeywords.push(newKeyword);
     }
     return NextResponse.json(createdKeywords, { status: 201 });
   }
-  
+
   const newKeyword: ManualKeyword = {
     id: uuidv4(),
     clientCode: body.clientCode,
     keywordText: body.keywordText,
     notes: body.notes || '',
     isActive: true,
+    source: body.source || 'Manual Entry',
   };
-  
+
   await createManualKeyword(newKeyword);
   return NextResponse.json(newKeyword, { status: 201 });
 }
@@ -42,27 +44,27 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   const body = await request.json();
   const { id, ...updates } = body;
-  
+
   const updated = await updateManualKeyword(id, updates);
   if (!updated) {
     return NextResponse.json({ error: 'Keyword not found' }, { status: 404 });
   }
-  
+
   return NextResponse.json(updated);
 }
 
 export async function DELETE(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get('id');
-  
+
   if (!id) {
     return NextResponse.json({ error: 'ID is required' }, { status: 400 });
   }
-  
+
   const deleted = await deleteManualKeyword(id);
   if (!deleted) {
     return NextResponse.json({ error: 'Keyword not found' }, { status: 404 });
   }
-  
+
   return NextResponse.json({ success: true });
 }

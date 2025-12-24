@@ -4,9 +4,49 @@ import React, { useState, useEffect } from 'react';
 import PageHeader from '@/components/PageHeader';
 import ExportButton, { ExportColumn } from '@/components/ExportButton';
 import ProfileViewModal from '@/components/ProfileViewModal';
+import HelpInfoIcon from '@/components/HelpInfoIcon';
 import { Client, DomainProfile, ClientAIProfile } from '@/types';
 
 const MAX_DOMAINS = 5;
+
+const refreshOverviewHelp = {
+  title: 'Domain Overview Refresh',
+  description: 'Fetches fresh real-time SEO metrics for this domain from DataForSEO, including Organic Traffic, Total Keywords, Backlinks count, and checks if the website is live (Title/Meta).',
+  whyWeAddedThis: 'SEO data changes frequently. Competitors gain traffic, change their titles, or go offline. This button ensures you aren\'t looking at stale data from last month.',
+  examples: [],
+  nuances: 'This action consumes API credits. It fetches a "Live" overview, so it may take a few seconds. Use it when you suspect the data is outdated or when you first add a domain.',
+  useCases: [
+    'Get the latest traffic numbers for a client report',
+    'Verify if a domain is still active/resolvable',
+    'Update keyword counts after a major SEO update'
+  ]
+};
+
+const clientsPageHelp = {
+  title: 'Client Master Data',
+  description: 'This is the primary registry for all your clients. It links business entities (Clients) to their digital properties (Domains) and AI Profiles.',
+  whyWeAddedThis: 'Centralizing client management ensures that all downstream tools (Keyword Research, Competitor Analysis, Rank Tracking) calculate data for the correct entity.',
+  examples: ['Client: "Meera Industries", Domain: "meeraind.com"'],
+  nuances: 'A client can have multiple domains (e.g., localized versions like .in, .de). The "Active" status controls whether background jobs run for this client.',
+  useCases: [
+    'Add new clients to the system',
+    'Update domain lists for existing clients',
+    'Generate and manage AI Business Profiles',
+    'Monitor high-level domain health metrics'
+  ]
+};
+
+const clientsPageDescription = `
+  This page serves as the control center for your agency's client portfolio. 
+  Here you can register new clients, map their website domains, and generate comprehensive AI Business Profiles 
+  that power the rest of the application's intelligence. 
+  
+  You can also perform quick health checks on client domains to verify uptime and SEO basics 
+  (Title, Meta, Traffic estimates) via the DataForSEO integration. 
+  
+  **Data Flow:** 
+  User Input (Client Details) → Local Database → DataForSEO API (Domain Metrics) & OpenAI/Gemini (Profile Generation).
+`;
 
 export default function ClientsPage() {
   const [clients, setClients] = useState<Client[]>([]);
@@ -20,7 +60,7 @@ export default function ClientsPage() {
   const [generatingAiProfile, setGeneratingAiProfile] = useState<string | null>(null);
   const [showDomainsVerification, setShowDomainsVerification] = useState<string | null>(null);
   const [viewProfileClientCode, setViewProfileClientCode] = useState<string | null>(null);
-  
+
   const [formData, setFormData] = useState({
     code: '',
     name: '',
@@ -85,11 +125,11 @@ export default function ClientsPage() {
   async function handleGenerateAiProfile(client: Client) {
     setGeneratingAiProfile(client.code);
     setNotification(null);
-    
+
     try {
       const profiles = domainProfiles[client.code] || [];
       const domains = (client.domains || [client.mainDomain]).filter(Boolean);
-      
+
       const res = await fetch('/api/client-ai-profile/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -101,9 +141,9 @@ export default function ClientsPage() {
           domainProfiles: profiles,
         }),
       });
-      
+
       const result = await res.json();
-      
+
       if (res.ok && result.profile) {
         setAiProfiles(prev => ({
           ...prev,
@@ -122,7 +162,7 @@ export default function ClientsPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    
+
     await fetch('/api/clients', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -131,7 +171,7 @@ export default function ClientsPage() {
         domains: formData.domains.filter(d => d.trim()),
       }),
     });
-    
+
     setFormData({ code: '', name: '', domains: [''], notes: '' });
     fetchClients();
     showNotification('success', 'Client added successfully');
@@ -141,13 +181,13 @@ export default function ClientsPage() {
     await fetch('/api/clients', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 
-        id, 
+      body: JSON.stringify({
+        id,
         ...editFormData,
         domains: editFormData.domains.filter(d => d.trim()),
       }),
     });
-    
+
     setEditingId(null);
     fetchClients();
     showNotification('success', 'Client updated successfully');
@@ -159,7 +199,7 @@ export default function ClientsPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: client.id, isActive: !client.isActive }),
     });
-    
+
     fetchClients();
   }
 
@@ -167,11 +207,12 @@ export default function ClientsPage() {
     if (!confirm('Are you sure you want to permanently delete this client? This action cannot be undone.')) {
       return;
     }
-    
+
     await fetch(`/api/clients?id=${id}`, {
       method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
     });
-    
+
     fetchClients();
     showNotification('success', 'Client deleted');
   }
@@ -179,16 +220,16 @@ export default function ClientsPage() {
   async function handleFetchDomainOverview(clientCode: string, domain: string) {
     setFetchingDomain(`${clientCode}_${domain}`);
     setNotification(null);
-    
+
     try {
       const res = await fetch('/api/domain-profiles/fetch', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ clientCode, domain, locationCode: 'IN' }),
       });
-      
+
       const result = await res.json();
-      
+
       if (res.ok) {
         showNotification('success', `Domain overview fetched for ${domain}`);
         await fetchDomainProfilesForClient(clientCode);
@@ -295,17 +336,18 @@ export default function ClientsPage() {
 
   return (
     <div>
-      <PageHeader 
-        title="Client Master" 
+      <PageHeader
+        title="Client Master"
         description="Manage your client database with domain profiling"
+        helpInfo={clientsPageHelp}
+        extendedDescription={clientsPageDescription}
       />
 
       {notification && (
-        <div className={`mb-4 p-3 rounded-lg text-sm ${
-          notification.type === 'success' 
-            ? 'bg-green-50 text-green-800 border border-green-200' 
-            : 'bg-red-50 text-red-800 border border-red-200'
-        }`}>
+        <div className={`mb-4 p-3 rounded-lg text-sm ${notification.type === 'success'
+          ? 'bg-green-50 text-green-800 border border-green-200'
+          : 'bg-red-50 text-red-800 border border-red-200'
+          }`}>
           {notification.message}
         </div>
       )}
@@ -372,7 +414,7 @@ export default function ClientsPage() {
               Add Client
             </button>
           </div>
-          
+
           <div className="border-t pt-4">
             <div className="flex items-center justify-between mb-2">
               <label className="text-sm font-medium text-gray-700">Domains (up to 5)</label>
@@ -566,22 +608,21 @@ export default function ClientsPage() {
                             {(client.domains || [client.mainDomain]).filter(Boolean).map((domain, domainIndex) => {
                               const profile = getProfileForDomain(client.code, domain);
                               const isFetching = fetchingDomain === `${client.code}_${domain}`;
-                              
+
                               return (
                                 <div key={domainIndex} className="border rounded-lg p-3">
                                   <div className="flex items-center justify-between mb-2">
                                     <div className="flex items-center gap-2">
                                       <span className="font-medium text-gray-800">{domain}</span>
                                       {profile && (
-                                        <span className={`text-xs px-2 py-0.5 rounded ${
-                                          profile.fetchStatus === 'success' 
-                                            ? 'bg-green-100 text-green-700'
-                                            : profile.fetchStatus === 'error'
+                                        <span className={`text-xs px-2 py-0.5 rounded ${profile.fetchStatus === 'success'
+                                          ? 'bg-green-100 text-green-700'
+                                          : profile.fetchStatus === 'error'
                                             ? 'bg-red-100 text-red-700'
                                             : profile.fetchStatus === 'fetching'
-                                            ? 'bg-yellow-100 text-yellow-700'
-                                            : 'bg-gray-100 text-gray-600'
-                                        }`}>
+                                              ? 'bg-yellow-100 text-yellow-700'
+                                              : 'bg-gray-100 text-gray-600'
+                                          }`}>
                                           {profile.fetchStatus}
                                         </span>
                                       )}
@@ -589,16 +630,16 @@ export default function ClientsPage() {
                                     <button
                                       onClick={() => handleFetchDomainOverview(client.code, domain)}
                                       disabled={isFetching}
-                                      className={`px-3 py-1 text-xs rounded ${
-                                        isFetching
-                                          ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                                          : 'bg-indigo-600 text-white hover:bg-indigo-700'
-                                      }`}
+                                      className={`px-3 py-1 text-xs rounded ${isFetching
+                                        ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                                        : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                                        }`}
                                     >
                                       {isFetching ? 'Fetching...' : profile ? 'Refresh Overview' : 'Fetch Domain Overview'}
                                     </button>
+                                    <HelpInfoIcon helpInfo={refreshOverviewHelp} />
                                   </div>
-                                  
+
                                   {profile && profile.fetchStatus === 'success' && (
                                     <div className="mt-3 space-y-4">
                                       {/* Title and Meta Description */}
@@ -678,7 +719,7 @@ export default function ClientsPage() {
                                           )}
                                         </div>
                                       </div>
-                                      
+
                                       {/* Info banner if backlinks data is unavailable */}
                                       {profile.backlinksCount === null && profile.referringDomainsCount === null && profile.domainRank === null && (
                                         <div className="bg-amber-50 border border-amber-200 rounded-lg p-2 text-xs text-amber-800 flex items-center gap-2">
@@ -686,7 +727,7 @@ export default function ClientsPage() {
                                           <span>Backlinks, Referring Domains, and Domain Rank require a Backlinks API subscription in your DataForSEO account.</span>
                                         </div>
                                       )}
-                                      
+
                                       {/* Top Keywords Table */}
                                       {profile.topKeywords && profile.topKeywords.length > 0 && (
                                         <div>
@@ -707,12 +748,11 @@ export default function ClientsPage() {
                                                   <tr key={i} className="hover:bg-gray-50">
                                                     <td className="px-3 py-1.5 text-gray-800 font-medium">{kw.keyword}</td>
                                                     <td className="px-3 py-1.5 text-right">
-                                                      <span className={`inline-block px-1.5 py-0.5 rounded text-xs ${
-                                                        kw.position <= 3 ? 'bg-green-100 text-green-700' :
+                                                      <span className={`inline-block px-1.5 py-0.5 rounded text-xs ${kw.position <= 3 ? 'bg-green-100 text-green-700' :
                                                         kw.position <= 10 ? 'bg-blue-100 text-blue-700' :
-                                                        kw.position <= 20 ? 'bg-yellow-100 text-yellow-700' :
-                                                        'bg-gray-100 text-gray-600'
-                                                      }`}>
+                                                          kw.position <= 20 ? 'bg-yellow-100 text-yellow-700' :
+                                                            'bg-gray-100 text-gray-600'
+                                                        }`}>
                                                         {kw.position}
                                                       </span>
                                                     </td>
@@ -732,7 +772,7 @@ export default function ClientsPage() {
                                           </div>
                                         </div>
                                       )}
-                                      
+
                                       {profile.lastFetchedAt && (
                                         <div className="text-xs text-gray-400">
                                           Last fetched: {new Date(profile.lastFetchedAt).toLocaleString()}
@@ -740,7 +780,7 @@ export default function ClientsPage() {
                                       )}
                                     </div>
                                   )}
-                                  
+
                                   {profile && profile.fetchStatus === 'error' && (
                                     <div className="mt-2 text-xs text-red-600">
                                       Error: {profile.errorMessage || 'Failed to fetch'}
@@ -769,11 +809,10 @@ export default function ClientsPage() {
                               <button
                                 onClick={() => handleGenerateAiProfile(client)}
                                 disabled={generatingAiProfile === client.code}
-                                className={`px-3 py-1.5 text-xs rounded flex items-center gap-2 ${
-                                  generatingAiProfile === client.code
-                                    ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                                    : 'bg-purple-600 text-white hover:bg-purple-700'
-                                }`}
+                                className={`px-3 py-1.5 text-xs rounded flex items-center gap-2 ${generatingAiProfile === client.code
+                                  ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                                  : 'bg-purple-600 text-white hover:bg-purple-700'
+                                  }`}
                               >
                                 {generatingAiProfile === client.code ? (
                                   <>
@@ -807,7 +846,7 @@ export default function ClientsPage() {
                                   Generated: {new Date(aiProfiles[client.code].generatedAt).toLocaleString()}
                                 </span>
                               </div>
-                              
+
                               {showDomainsVerification === client.code && (
                                 <div className="bg-gray-50 rounded-lg p-3 text-xs">
                                   <div className="font-medium text-gray-700 mb-2">Domains used for profile generation:</div>
@@ -1063,6 +1102,12 @@ export default function ClientsPage() {
         <ProfileViewModal
           profile={aiProfiles[viewProfileClientCode]}
           onClose={() => setViewProfileClientCode(null)}
+          onProfileUpdated={(updatedProfile) => {
+            setAiProfiles(prev => ({
+              ...prev,
+              [updatedProfile.clientCode]: updatedProfile
+            }));
+          }}
         />
       )}
     </div>

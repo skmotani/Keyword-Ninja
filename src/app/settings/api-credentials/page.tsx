@@ -27,6 +27,30 @@ const SERVICE_TYPE_COLORS: Record<string, string> = {
   CUSTOM: 'bg-gray-100 text-gray-800',
 };
 
+const apiPageHelp = {
+  title: 'API & Service Credentials',
+  description: 'Central hub for managing authentication tokens and passwords for all external services.',
+  whyWeAddedThis: 'Securely managing API keys is crucial. This system separates the raw secrets (stored in Replit Secrets) from the metadata needed by the app (labels, service types).',
+  examples: ['DataForSEO Username/Password', 'OpenAI API Key', 'Custom GSC Config'],
+  nuances: 'The actual raw passwords/keys are NOT displayed here for security. You put the "Masked" version here just for reference, but the backend uses the secure environment variables.',
+  useCases: [
+    'Update DataForSEO credentials when they expire',
+    'Switch between different OpenAI API keys',
+    'Configure custom integrations'
+  ]
+};
+
+const apiPageDescription = `
+  This settings page allows you to configure the connection points to external services. 
+  
+  **Security Note:** 
+  For security reasons, this application reads actual API secrets from the server's environment variables (Replit Secrets). 
+  This UI is primarily for managing the *references* to those secrets and toggling them on/off, or providing specific overrides if configured to do so securely.
+
+  **Data Flow:** 
+  Local Config → API Handler → External Service (DataForSEO / OpenAI / etc.)
+`;
+
 export default function ApiCredentialsPage() {
   const [credentials, setCredentials] = useState<ApiCredential[]>([]);
   const [loading, setLoading] = useState(true);
@@ -63,11 +87,15 @@ export default function ApiCredentialsPage() {
     }
   }
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   function openAddModal(category: CredentialCategory) {
+    setSubmitError(null);
     setModalCategory(category);
     setModalMode('add');
     setEditingCredential(null);
-    
+
     if (category === 'dataforseo') {
       setFormData({
         label: '',
@@ -111,9 +139,10 @@ export default function ApiCredentialsPage() {
   }
 
   function openEditModal(credential: ApiCredential) {
+    setSubmitError(null);
     setEditingCredential(credential);
     setModalMode('edit');
-    
+
     if (credential.authType === 'USERNAME_PASSWORD') {
       setModalCategory('dataforseo');
     } else if (credential.authType === 'API_KEY') {
@@ -121,7 +150,7 @@ export default function ApiCredentialsPage() {
     } else {
       setModalCategory('custom');
     }
-    
+
     setFormData({
       label: credential.label,
       serviceType: credential.serviceType,
@@ -143,32 +172,60 @@ export default function ApiCredentialsPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    
+    setIsSubmitting(true);
+    setSubmitError(null);
+
     const payload = {
       ...formData,
       userId: 'admin',
     };
-    
+
     try {
+      let res;
       if (modalMode === 'add') {
-        await fetch('/api/api-credentials/add', {
+        res = await fetch('/api/api-credentials/add', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         });
       } else if (modalMode === 'edit' && editingCredential) {
-        await fetch('/api/api-credentials/update', {
+        res = await fetch('/api/api-credentials/update', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id: editingCredential.id, ...payload }),
         });
       }
-      
+
+      if (res && !res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || 'Failed to save credential');
+      }
+
       await fetchCredentials();
       closeModal();
     } catch (error) {
       console.error('Failed to save credential:', error);
+      setSubmitError(error instanceof Error ? error.message : 'An unknown error occurred');
+    } finally {
+      setIsSubmitting(false);
     }
+  }
+
+  // ... (inside return)
+
+  {
+    modalMode && (
+      <Modal
+        mode={modalMode}
+        category={modalCategory}
+        formData={formData}
+        setFormData={setFormData}
+        onClose={closeModal}
+        onSubmit={handleSubmit}
+        isSubmitting={isSubmitting}
+        error={submitError}
+      />
+    )
   }
 
   async function handleToggleActive(id: string) {
@@ -213,10 +270,11 @@ export default function ApiCredentialsPage() {
 
   return (
     <div className="p-6 max-w-7xl mx-auto">
-      <PageHeader title="API Credentials Settings" />
-      <p className="text-gray-600 mb-6 text-sm">
-        Manage API credential references. Only masked values are stored here - real secrets should be stored in Replit Secrets.
-      </p>
+      <PageHeader
+        title="API Credentials Settings"
+        helpInfo={apiPageHelp}
+        extendedDescription={apiPageDescription}
+      />
 
       <div className="space-y-6">
         <CredentialBox
@@ -312,7 +370,7 @@ function CredentialBox({
           {addButtonText}
         </button>
       </div>
-      
+
       <div className="overflow-x-auto">
         {credentials.length === 0 ? (
           <p className="text-gray-500 text-xs p-4">No credentials configured.</p>
@@ -368,14 +426,12 @@ function CredentialBox({
                   <td className="px-2 py-1">
                     <button
                       onClick={() => onToggle(cred.id)}
-                      className={`w-8 h-4 rounded-full transition-colors ${
-                        cred.isActive ? 'bg-green-500' : 'bg-gray-300'
-                      }`}
+                      className={`w-8 h-4 rounded-full transition-colors ${cred.isActive ? 'bg-green-500' : 'bg-gray-300'
+                        }`}
                     >
                       <span
-                        className={`block w-3 h-3 bg-white rounded-full transition-transform ${
-                          cred.isActive ? 'translate-x-4' : 'translate-x-0.5'
-                        }`}
+                        className={`block w-3 h-3 bg-white rounded-full transition-transform ${cred.isActive ? 'translate-x-4' : 'translate-x-0.5'
+                          }`}
                       />
                     </button>
                   </td>
@@ -412,6 +468,8 @@ function Modal({
   setFormData,
   onClose,
   onSubmit,
+  isSubmitting,
+  error,
 }: {
   mode: ModalMode;
   category: CredentialCategory;
@@ -430,6 +488,8 @@ function Modal({
   setFormData: React.Dispatch<React.SetStateAction<typeof formData>>;
   onClose: () => void;
   onSubmit: (e: React.FormEvent) => void;
+  isSubmitting: boolean;
+  error: string | null;
 }) {
   const title = mode === 'add' ? 'Add Credential' : 'Edit Credential';
 
@@ -437,7 +497,13 @@ function Modal({
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
         <h3 className="text-lg font-semibold mb-4">{title}</h3>
-        
+
+        {error && (
+          <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 text-sm rounded">
+            {error}
+          </div>
+        )}
+
         <form onSubmit={onSubmit} className="space-y-4">
           <div>
             <label className="block text-xs font-medium text-gray-700 mb-1">Label *</label>
@@ -447,6 +513,7 @@ function Modal({
               onChange={(e) => setFormData({ ...formData, label: e.target.value })}
               className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
               required
+              disabled={isSubmitting}
             />
           </div>
 
@@ -457,6 +524,7 @@ function Modal({
                 value={formData.serviceType}
                 onChange={(e) => setFormData({ ...formData, serviceType: e.target.value as ApiCredential['serviceType'] })}
                 className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
+                disabled={isSubmitting}
               >
                 <option value="OPENAI">OpenAI</option>
                 <option value="SEO_SERP">SEO SERP</option>
@@ -473,6 +541,7 @@ function Modal({
                 value={formData.serviceType}
                 onChange={(e) => setFormData({ ...formData, serviceType: e.target.value as ApiCredential['serviceType'] })}
                 className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
+                disabled={isSubmitting}
               >
                 <option value="GSC">Google Search Console</option>
                 <option value="CUSTOM">Custom</option>
@@ -488,6 +557,7 @@ function Modal({
                   value={formData.serviceType}
                   onChange={(e) => setFormData({ ...formData, serviceType: e.target.value as ApiCredential['serviceType'] })}
                   className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
+                  disabled={isSubmitting}
                 >
                   <option value="DATAFORSEO">DataForSEO</option>
                   <option value="SEO_SERP">SEO SERP</option>
@@ -502,6 +572,7 @@ function Modal({
                   placeholder="e.g., user@example.com"
                   className="w-full border border-gray-300 rounded px-3 py-2 text-sm font-mono"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               <div>
@@ -513,6 +584,7 @@ function Modal({
                   placeholder="e.g., ****abcd"
                   className="w-full border border-gray-300 rounded px-3 py-2 text-sm font-mono"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
             </>
@@ -528,6 +600,7 @@ function Modal({
                 placeholder="e.g., sk-****abcd"
                 className="w-full border border-gray-300 rounded px-3 py-2 text-sm font-mono"
                 required
+                disabled={isSubmitting}
               />
             </div>
           )}
@@ -540,6 +613,7 @@ function Modal({
                 onChange={(e) => setFormData({ ...formData, customConfig: e.target.value })}
                 placeholder="JSON config or description..."
                 className="w-full border border-gray-300 rounded px-3 py-2 text-sm font-mono h-20"
+                disabled={isSubmitting}
               />
             </div>
           )}
@@ -552,6 +626,7 @@ function Modal({
               onChange={(e) => setFormData({ ...formData, clientCode: e.target.value })}
               placeholder="Leave empty for global credential"
               className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
+              disabled={isSubmitting}
             />
           </div>
 
@@ -561,6 +636,7 @@ function Modal({
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
               className="w-full border border-gray-300 rounded px-3 py-2 text-sm h-16"
+              disabled={isSubmitting}
             />
           </div>
 
@@ -571,6 +647,7 @@ function Modal({
               checked={formData.isActive}
               onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
               className="rounded"
+              disabled={isSubmitting}
             />
             <label htmlFor="isActive" className="text-sm text-gray-700">Active</label>
           </div>
@@ -580,14 +657,16 @@ function Modal({
               type="button"
               onClick={onClose}
               className="flex-1 px-4 py-2 border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-50"
+              disabled={isSubmitting}
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 px-4 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-700"
+              className={`flex-1 px-4 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed`}
+              disabled={isSubmitting}
             >
-              {mode === 'add' ? 'Add' : 'Save'}
+              {isSubmitting ? 'Saving...' : (mode === 'add' ? 'Add' : 'Save')}
             </button>
           </div>
         </form>

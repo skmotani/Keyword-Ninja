@@ -47,6 +47,33 @@ interface ClusterRowData extends ClusterSummary {
   topDomains: string[];
 }
 
+const clusterIntelligencePageHelp = {
+  title: 'Cluster Intelligence Analysis',
+  description: 'Visualizes how your competitors structure their content by grouping pages into "Product Clusters" or "Topic Clusters".',
+  whyWeAddedThis: 'Competitors rarely rank with just one page. They have clusters of pages (product page + blog + case study). This view reveals their Content Architecture.',
+  examples: ['Cluster: "Twisting Machines" (45 Pages)', 'Cluster: "Textile Spare Parts" (12 Pages)'],
+  nuances: 'Clusters are AI-generated based on URL patterns, page titles, and content topics. The "Priority" is calculated based on total traffic value (ETV) and product relevance.',
+  useCases: [
+    'Identify which product lines drive the most traffic for competitors',
+    'Spot content gaps (e.g., Competitors have 50 blogs on "Yarn Quality" and you have 0)',
+    'Prioritize new content creation based on high-value clusters'
+  ]
+};
+
+const clusterIntelligencePageDescription = `
+  This report provides a strategic view of the competitive landscape by grouping thousands of individual pages into meaningful **Clusters**.
+  
+  Instead of looking at 5,000 separate URLs, you can see that Competitor A has a "Heavy Machinery" cluster worth $50k/month in traffic, while Competitor B focuses on "Spare Parts".
+
+  **Key Metrics:**
+  *   **Total ETV**: Estimated Traffic Value of the entire cluster.
+  *   **Intent Mix**: Breakdown of Transactional vs. Informational pages.
+  *   **Top Domains**: Which competitors dominate this specific cluster.
+
+  **Data Flow:** 
+  [Domain Top Pages](/keywords/domain-pages) → AI Product Matching (Server) → Cluster Aggregation → Visualization.
+`;
+
 export default function ClusterIntelligencePage() {
   const [clients, setClients] = useState<Client[]>([]);
   const [selectedClientCode, setSelectedClientCode] = useState<string>('');
@@ -111,7 +138,7 @@ export default function ClusterIntelligencePage() {
 
   const clusterData = useMemo((): ClusterRowData[] => {
     const summaries = aggregateClusterStats(classifiedRecords);
-    
+
     const domainsByCluster = new Map<string, Map<string, number>>();
     for (const record of classifiedRecords) {
       if (!record.clusterName) continue;
@@ -122,7 +149,7 @@ export default function ClusterIntelligencePage() {
       const currentEtv = domainMap.get(record.domain) || 0;
       domainMap.set(record.domain, currentEtv + (record.estTrafficETV || 0));
     }
-    
+
     return summaries.map(summary => {
       const clusterPriority = calculateClusterPriorityTier(summary);
       const domainMap = domainsByCluster.get(summary.clusterName) || new Map();
@@ -130,7 +157,7 @@ export default function ClusterIntelligencePage() {
         .sort((a, b) => b[1] - a[1])
         .slice(0, 5)
         .map(([domain]) => domain);
-      
+
       return {
         ...summary,
         clusterPriority,
@@ -192,7 +219,7 @@ export default function ClusterIntelligencePage() {
     const highCount = clusterData.filter(c => c.clusterPriority === 'HIGH').length;
     const matchedClusterCount = matchedClusters.length;
     const unmatchedClusterCount = unmatchedClusters.length;
-    
+
     return {
       totalPages,
       totalETV,
@@ -243,6 +270,8 @@ export default function ClusterIntelligencePage() {
       <PageHeader
         title="Cluster Intelligence"
         description="Analyze product/topic clusters across competitor pages to identify strategic opportunities"
+        helpInfo={clusterIntelligencePageHelp}
+        extendedDescription={clusterIntelligencePageDescription}
       />
 
       <div className="bg-white rounded-lg shadow p-4 mb-4">

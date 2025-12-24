@@ -97,6 +97,34 @@ function Tooltip({ text, children }: TooltipProps) {
 type SortField = 'searchVolume' | 'cpc' | 'lowTopOfPageBid' | 'highTopOfPageBid' | null;
 type SortDirection = 'asc' | 'desc';
 
+const keywordApiDataPageHelp = {
+  title: 'Keyword Search Metrics',
+  description: 'The raw "Search Volume", "CPC", and "Competition" data from Google Ads for your keyword list.',
+  whyWeAddedThis: 'This is the foundation of keyword research. You cannot make decisions without knowing how many people search for a term (Volume) and how hard it is to rank (Competition).',
+  examples: ['"yarn twisting machine" - SV: 500, CPC: $2.50, Comp: HIGH', '"custom textile machinery" - SV: 50, CPC: $1.0, Comp: LOW'],
+  nuances: 'We fetch this data directly from the DataForSEO Google Ads API. The "Competition" metric refers to PAID competition (Google Ads), but it is often a good proxy for organic difficulty.',
+  useCases: [
+    'Filter out low-volume keywords that are not worth targeting',
+    'Find high-CPC keywords that might be valuable for lead generation',
+    'Prioritize keywords with "Low" competition for easier quick wins'
+  ]
+};
+
+const keywordApiDataPageDescription = `
+  This page displays the comprehensive metrics for your **entire keyword library**, sourced directly from Google Ads via DataForSEO.
+  
+  Unlike snippets or summaries, this view provides the granular data for every single keyword you are tracking.
+
+  **Key Metrics:**
+  *   **Search Volume (Monthly):** Average number of times people search for this exact term.
+  *   **CPC (Cost Per Click):** Estimated cost to bid on this keyword in Google Ads.
+  *   **Competition:** Level of competition in Google Ads (High/Medium/Low).
+  *   **Top of Page Bid:** The bid range (Low to High) required to appear at the top of the ad results.
+
+  **Data Flow:** 
+  [Keyword Manual Master](/keywords/manual) + [Domain Organic Keywords](/keywords/domain-keywords) → DataForSEO (Search Volume API) → Metrics Table.
+`;
+
 export default function KeywordApiDataPage() {
   const [clients, setClients] = useState<Client[]>([]);
   const [selectedClientCode, setSelectedClientCode] = useState<string>('');
@@ -175,7 +203,7 @@ export default function KeywordApiDataPage() {
     setRefreshing(true);
     setNotification(null);
     setRefreshStats(null);
-    
+
     try {
       const res = await fetch('/api/seo/keywords/fetch', {
         method: 'POST',
@@ -186,13 +214,13 @@ export default function KeywordApiDataPage() {
         }),
       });
       const data = await res.json();
-      
+
       if (!res.ok) {
         setNotification({ type: 'error', message: data.error || 'Failed to fetch keyword data' });
       } else {
         const timestamp = new Date().toLocaleString();
-        setNotification({ 
-          type: 'success', 
+        setNotification({
+          type: 'success',
           message: `Keyword data refreshed successfully at ${timestamp}. Total ${data.count} records created.`
         });
         if (data.stats) {
@@ -202,7 +230,7 @@ export default function KeywordApiDataPage() {
     } catch (error) {
       setNotification({ type: 'error', message: 'Network error while fetching keyword data' });
     }
-    
+
     await fetchRecords();
     setRefreshing(false);
   };
@@ -322,6 +350,8 @@ export default function KeywordApiDataPage() {
       <PageHeader
         title="Keyword API Data"
         description="View keyword metrics fetched from SEO data providers"
+        helpInfo={keywordApiDataPageHelp}
+        extendedDescription={keywordApiDataPageDescription}
       />
 
       <div className="bg-white rounded-lg shadow-sm border p-4 mb-4">
@@ -394,11 +424,10 @@ export default function KeywordApiDataPage() {
 
       {notification && (
         <div
-          className={`mb-4 p-3 rounded-md text-sm ${
-            notification.type === 'success'
-              ? 'bg-green-50 text-green-800 border border-green-200'
-              : 'bg-red-50 text-red-800 border border-red-200'
-          }`}
+          className={`mb-4 p-3 rounded-md text-sm ${notification.type === 'success'
+            ? 'bg-green-50 text-green-800 border border-green-200'
+            : 'bg-red-50 text-red-800 border border-red-200'
+            }`}
         >
           {notification.message}
         </div>
@@ -632,7 +661,7 @@ export default function KeywordApiDataPage() {
               ) : filteredRecords.length === 0 ? (
                 <tr>
                   <td colSpan={10} className="text-center py-8 text-gray-500 text-sm">
-                    {records.length === 0 
+                    {records.length === 0
                       ? 'No keyword data available. Click "Refresh Data" to fetch keyword metrics.'
                       : 'No records match your filters. Try adjusting the filter criteria.'}
                   </td>
@@ -650,12 +679,11 @@ export default function KeywordApiDataPage() {
                     </td>
                     <td className="text-xs text-gray-600 py-1 px-2 leading-tight">
                       {record.competition ? (
-                        <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${
-                          record.competition === 'HIGH' ? 'bg-red-100 text-red-800' :
+                        <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${record.competition === 'HIGH' ? 'bg-red-100 text-red-800' :
                           record.competition === 'MEDIUM' ? 'bg-yellow-100 text-yellow-800' :
-                          record.competition === 'LOW' ? 'bg-green-100 text-green-800' :
-                          'bg-gray-100 text-gray-800'
-                        }`}>
+                            record.competition === 'LOW' ? 'bg-green-100 text-green-800' :
+                              'bg-gray-100 text-gray-800'
+                          }`}>
                           {record.competition}
                         </span>
                       ) : '-'}
@@ -675,7 +703,7 @@ export default function KeywordApiDataPage() {
                     <td className="text-xs text-gray-600 py-1 px-2 leading-tight">
                       {(() => {
                         const d = new Date(record.lastPulledAt);
-                        return `${d.getMonth()+1}/${d.getDate()} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`;
+                        return `${d.getMonth() + 1}/${d.getDate()} ${d.getHours()}:${String(d.getMinutes()).padStart(2, '0')}`;
                       })()}
                     </td>
                   </tr>
@@ -705,7 +733,7 @@ export default function KeywordApiDataPage() {
         {showLogs && (
           <div className="mt-4 bg-gray-900 rounded-lg p-4">
             <h3 className="text-sm font-medium text-gray-200 mb-3">Recent API Responses</h3>
-            
+
             {apiLogs.length === 0 ? (
               <p className="text-gray-400 text-sm">No API logs available. Refresh keyword data to generate logs.</p>
             ) : (

@@ -85,6 +85,35 @@ function Tooltip({ text, children }: TooltipProps) {
 type SortField = 'organicTrafficETV' | 'organicKeywordsCount' | null;
 type SortDirection = 'asc' | 'desc';
 
+const domainOverviewPageHelp = {
+  title: 'Organic Traffic Overview',
+  description: 'Track how visible a domain is in search engines based on estimated traffic and keyword counts.',
+  whyWeAddedThis: 'To know "who is winning" in SEO, we need high-level metrics. Traffic ETV (Estimated Traffic Value) is a better metric than just traffic because it accounts for the value of the keywords.',
+  examples: ['Competitor X has 10k traffic but $50k ETV (High Value)', 'Competitor Y has 50k traffic but $500 ETV (Low Value)'],
+  nuances: 'We fetch data for BOTH India (IN) and Global (GL) locations every time to see if a competitor is focused locally or globally.',
+  useCases: [
+    'Benchmarking client performance vs competitors',
+    'Identifying if a competitor is growing or shrinking',
+    'Spotting high-value competitors to analyze deeply'
+  ]
+};
+
+const domainOverviewPageDescription = `
+  This page provides high-level "health metrics" for domains. It shows how much organic traffic they get and how many keywords they rank for.
+  It is excellent for competitive benchmarking.
+
+  **Metrics Explained:**
+  *   **Organic Traffic ETV:** A score representing the *value* of the organic traffic. If they rank for expensive keywords, this is high.
+  *   **Organic Keywords:** The total number of keywords the domain ranks for in the top 100 results.
+
+  **Data Flow:** 
+  DataForSEO (Domain Overview API) → App Database → This View.
+  
+  From here, you can dive deeper into:
+  *   [Domain Organic Keywords](/keywords/domain-keywords) (Specific keywords they rank for)
+  *   [Domain Top Pages](/keywords/domain-pages) (Their best content)
+`;
+
 export default function DomainOverviewPage() {
   const [clients, setClients] = useState<Client[]>([]);
   const [competitors, setCompetitors] = useState<Competitor[]>([]);
@@ -274,7 +303,7 @@ export default function DomainOverviewPage() {
     return [...filteredRecords].sort((a, b) => {
       const aVal = a[sortField] ?? 0;
       const bVal = b[sortField] ?? 0;
-      
+
       if (sortDirection === 'asc') {
         return aVal - bVal;
       }
@@ -321,9 +350,11 @@ export default function DomainOverviewPage() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <PageHeader 
-        title="Domain Overview" 
+      <PageHeader
+        title="Domain Overview"
         description="View domain-level organic visibility metrics (Traffic ETV & Keyword Counts) for both IN and GL locations"
+        helpInfo={domainOverviewPageHelp}
+        extendedDescription={domainOverviewPageDescription}
       />
 
       <div className="bg-white rounded-lg shadow p-6 mb-6">
@@ -404,11 +435,10 @@ export default function DomainOverviewPage() {
               {competitors.map(comp => (
                 <label
                   key={comp.id}
-                  className={`inline-flex items-center gap-1.5 px-2 py-1 rounded text-xs cursor-pointer transition-colors ${
-                    selectedDomains.includes(comp.domain)
-                      ? 'bg-indigo-100 text-indigo-800 border border-indigo-300'
-                      : 'bg-white text-gray-700 border border-gray-200 hover:border-gray-300'
-                  }`}
+                  className={`inline-flex items-center gap-1.5 px-2 py-1 rounded text-xs cursor-pointer transition-colors ${selectedDomains.includes(comp.domain)
+                    ? 'bg-indigo-100 text-indigo-800 border border-indigo-300'
+                    : 'bg-white text-gray-700 border border-gray-200 hover:border-gray-300'
+                    }`}
                 >
                   <input
                     type="checkbox"
@@ -426,11 +456,10 @@ export default function DomainOverviewPage() {
 
       {notification && (
         <div
-          className={`mb-4 p-4 rounded-md ${
-            notification.type === 'success'
-              ? 'bg-green-50 text-green-800 border border-green-200'
-              : 'bg-red-50 text-red-800 border border-red-200'
-          }`}
+          className={`mb-4 p-4 rounded-md ${notification.type === 'success'
+            ? 'bg-green-50 text-green-800 border border-green-200'
+            : 'bg-red-50 text-red-800 border border-red-200'
+            }`}
         >
           {notification.message}
         </div>
@@ -589,11 +618,10 @@ export default function DomainOverviewPage() {
                     </a>
                   </td>
                   <td className="px-4 py-3 text-sm">
-                    <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
-                      record.locationCode === 'IN' 
-                        ? 'bg-yellow-100 text-yellow-800' 
-                        : 'bg-teal-100 text-teal-800'
-                    }`}>
+                    <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${record.locationCode === 'IN'
+                      ? 'bg-yellow-100 text-yellow-800'
+                      : 'bg-teal-100 text-teal-800'
+                      }`}>
                       {record.locationCode}
                     </span>
                   </td>

@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const password = process.env.DATAFORSEO_PASSWORD;
+    const password = credential?.password || process.env.DATAFORSEO_PASSWORD;
     if (!password) {
       return NextResponse.json(
         { error: 'DataForSEO password not configured. Please add DATAFORSEO_PASSWORD to secrets.' },

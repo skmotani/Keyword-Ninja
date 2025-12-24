@@ -62,6 +62,7 @@ export interface ManualKeyword {
   keywordText: string;
   notes?: string;
   isActive: boolean;
+  source: string;
 }
 
 export interface ApiCredential {
@@ -72,6 +73,8 @@ export interface ApiCredential {
   username?: string;
   passwordMasked?: string;
   apiKeyMasked?: string;
+  password?: string; // Stored locally for non-Replit usage
+  apiKey?: string;   // Stored locally for non-Replit usage
   customConfig?: string;
   label: string;
   clientCode?: string;
