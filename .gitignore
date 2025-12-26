@@ -32,3 +32,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Data
+data/serp_raw/
+data/jobs/
+data/serp_results/
+data/*.json
+!data/client_positions.json
+!data/curated_keywords.json
+# Allow basics but ignore generated logs

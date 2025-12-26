@@ -5,10 +5,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { PageConfig, PageComment } from '@/lib/db'; // We need to export PageComment from db.ts (already done)
 
 interface PageCommentsProps {
-    path: string;
+    pagePath: string;
 }
 
-export default function PageComments({ path }: PageCommentsProps) {
+export default function PageComments({ pagePath }: PageCommentsProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [comments, setComments] = useState<PageComment[]>([]);
     const [loading, setLoading] = useState(false);
@@ -20,12 +20,12 @@ export default function PageComments({ path }: PageCommentsProps) {
         if (isOpen) {
             fetchComments();
         }
-    }, [isOpen, path]);
+    }, [isOpen, pagePath]);
 
     async function fetchComments() {
         setLoading(true);
         try {
-            const res = await fetch(`/api/page-config?path=${encodeURIComponent(path)}`);
+            const res = await fetch(`/api/page-config?path=${encodeURIComponent(pagePath)}`);
             if (res.ok) {
                 const data = await res.json();
                 const sorted = (data.comments || []).sort((a: PageComment, b: PageComment) =>
@@ -46,7 +46,7 @@ export default function PageComments({ path }: PageCommentsProps) {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    path,
+                    path: pagePath,
                     comments: updatedComments
                 }),
             });

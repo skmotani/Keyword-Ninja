@@ -12,16 +12,16 @@ export function sanitizeKeywordForAPI(keyword: string): string | null {
     .replace(/[;:!@#$%^&*()+=\[\]{}<>|~`"']/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
-  
+
   if (sanitized.length > 80) {
     sanitized = sanitized.substring(0, 80).trim();
   }
-  
+
   const words = sanitized.split(' ').filter(w => w.length > 0);
   if (words.length > 10) {
     return null;
   }
-  
+
   return sanitized;
 }
 
@@ -153,9 +153,9 @@ export async function fetchKeywordsFromDataForSEOBatch(
 
       const rawResponseText = await response.text();
       allRawResponses.push(rawResponseText);
-      
+
       console.log(`[DataForSEO] Response status for ${locCode}:`, response.status);
-      
+
       if (!response.ok) {
         console.error(`[DataForSEO] API Error for ${locCode}:`, rawResponseText);
         errors.push(`${locCode}: HTTP ${response.status}`);
@@ -192,7 +192,7 @@ export async function fetchKeywordsFromDataForSEOBatch(
 
         const taskLocationCode = task.data?.location_code;
         const taskLanguageCode = task.data?.language_code || 'en';
-        
+
         const locCodeStr = Object.entries(LOCATION_CODE_MAP).find(
           ([, num]) => num === taskLocationCode
         )?.[0] || locCode;
@@ -353,8 +353,13 @@ export async function fetchSerpFromDataForSEO(
 
     for (let i = 0; i < keywords.length; i++) {
       const keyword = keywords[i];
-      
+
       try {
+        // Small delay to prevent throttling
+        if (i > 0) {
+          await new Promise(resolve => setTimeout(resolve, 250));
+        }
+
         const requestBody = [{
           keyword: keyword,
           location_code: numericLocCode,
@@ -641,7 +646,7 @@ async function fetchWebsiteMeta(domain: string): Promise<{ title: string | null;
       }
 
       const html = await response.text();
-      
+
       let title: string | null = null;
       const titleMatch = html.match(/<title[^>]*>([^<]*)<\/title>/i);
       if (titleMatch && titleMatch[1]) {
@@ -651,7 +656,7 @@ async function fetchWebsiteMeta(domain: string): Promise<{ title: string | null;
 
       let metaDescription: string | null = null;
       const metaMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["'][^>]*>/i) ||
-                        html.match(/<meta[^>]*content=["']([^"']*)["'][^>]*name=["']description["'][^>]*>/i);
+        html.match(/<meta[^>]*content=["']([^"']*)["'][^>]*name=["']description["'][^>]*>/i);
       if (metaMatch && metaMatch[1]) {
         metaDescription = metaMatch[1].trim().replace(/\s+/g, ' ');
         if (metaDescription.length > 500) metaDescription = metaDescription.substring(0, 500) + '...';
@@ -746,14 +751,14 @@ export async function fetchDomainOverview(
             hasResult: !!task.result,
             resultLength: task.result?.length || 0,
           });
-          
+
           if (task.status_code === 20000 && task.result) {
             for (const r of task.result) {
               const items = r.items || [];
               console.log('[DataForSEO Domain Overview] Overview result items:', {
                 itemsCount: items.length,
               });
-              
+
               for (const item of items) {
                 console.log('[DataForSEO Domain Overview] Item metrics:', {
                   hasOrganic: !!item.metrics?.organic,
@@ -873,7 +878,7 @@ export async function fetchDomainOverview(
             hasResult: !!task.result,
             resultLength: task.result?.length || 0,
           });
-          
+
           if (task.status_code === 20000 && task.result) {
             for (const r of task.result) {
               console.log('[DataForSEO Domain Overview] Backlinks result data:', {
@@ -990,7 +995,7 @@ export async function fetchDomainRankOverviewBatch(
 
   for (const domain of domains) {
     const cleanDomain = domain.replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/.*$/, '').toLowerCase().trim();
-    
+
     try {
       const requestBody = [{
         target: cleanDomain,
@@ -1322,12 +1327,12 @@ export async function fetchDomainTopPagesBatch(
   limit: number = DOM_TOP_PAGES_LIMIT
 ): Promise<DomainTopPagesResult[]> {
   const results: DomainTopPagesResult[] = [];
-  
+
   for (const domain of domains) {
     const result = await fetchDomainTopPages(credentials, domain, locationCode, limit);
     results.push(result);
   }
-  
+
   return results;
 }
 
@@ -1338,11 +1343,11 @@ export async function fetchDomainRankedKeywordsBatch(
   limit: number = DOM_TOP_KEYWORDS_LIMIT
 ): Promise<DomainRankedKeywordsResult[]> {
   const results: DomainRankedKeywordsResult[] = [];
-  
+
   for (const domain of domains) {
     const result = await fetchDomainRankedKeywords(credentials, domain, locationCode, limit);
     results.push(result);
   }
-  
+
   return results;
 }
