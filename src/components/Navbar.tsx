@@ -14,6 +14,7 @@ const curatedItems = [
   { href: '/curated/keywords', label: 'Curated Keywords' },
   { href: '/curated/links', label: 'Curated Links' },
   { href: '/curated/client-position', label: 'Client Position' },
+  { href: '/curated/client-rank', label: 'Client Rank' },
   { href: '/curated/client-serp', label: 'Client SERP' },
 ];
 
@@ -133,8 +134,8 @@ export default function Navbar() {
             <Link
               href="/"
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${pathname === '/'
-                  ? 'bg-indigo-100 text-indigo-700'
-                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                ? 'bg-indigo-100 text-indigo-700'
+                : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                 }`}
             >
               Home
@@ -150,8 +151,8 @@ export default function Navbar() {
                   setHubOpen(false);
                 }}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${isMasterActive
-                    ? 'bg-indigo-100 text-indigo-700'
-                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                  ? 'bg-indigo-100 text-indigo-700'
+                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                   }`}
               >
                 Master
@@ -166,8 +167,8 @@ export default function Navbar() {
                       href={item.href}
                       onClick={() => setMasterOpen(false)}
                       className={`block px-4 py-2 text-sm transition-colors ${pathname === item.href
-                          ? 'bg-indigo-50 text-indigo-700'
-                          : 'text-gray-700 hover:bg-gray-100'
+                        ? 'bg-indigo-50 text-indigo-700'
+                        : 'text-gray-700 hover:bg-gray-100'
                         }`}
                     >
                       {item.label}
@@ -187,8 +188,8 @@ export default function Navbar() {
                   setHubOpen(false);
                 }}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${isCuratedActive
-                    ? 'bg-indigo-100 text-indigo-700'
-                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                  ? 'bg-indigo-100 text-indigo-700'
+                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                   }`}
               >
                 Curated
@@ -203,8 +204,8 @@ export default function Navbar() {
                       href={item.href}
                       onClick={() => setCuratedOpen(false)}
                       className={`block px-4 py-2 text-sm transition-colors ${pathname === item.href
-                          ? 'bg-indigo-50 text-indigo-700'
-                          : 'text-gray-700 hover:bg-gray-100'
+                        ? 'bg-indigo-50 text-indigo-700'
+                        : 'text-gray-700 hover:bg-gray-100'
                         }`}
                     >
                       {item.label}
@@ -223,8 +224,8 @@ export default function Navbar() {
                   setHubOpen(false);
                 }}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${isReportActive
-                    ? 'bg-indigo-100 text-indigo-700'
-                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                  ? 'bg-indigo-100 text-indigo-700'
+                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                   }`}
               >
                 Reports
@@ -239,8 +240,8 @@ export default function Navbar() {
                       href={item.href}
                       onClick={() => setReportOpen(false)}
                       className={`block px-4 py-2 text-sm transition-colors ${pathname === item.href
-                          ? 'bg-indigo-50 text-indigo-700'
-                          : 'text-gray-700 hover:bg-gray-100'
+                        ? 'bg-indigo-50 text-indigo-700'
+                        : 'text-gray-700 hover:bg-gray-100'
                         }`}
                     >
                       {item.label}
@@ -259,8 +260,8 @@ export default function Navbar() {
                   setHubOpen(false);
                 }}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${isSeoDataActive
-                    ? 'bg-indigo-100 text-indigo-700'
-                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                  ? 'bg-indigo-100 text-indigo-700'
+                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                   }`}
               >
                 SeoData
@@ -275,8 +276,8 @@ export default function Navbar() {
                       href={item.href}
                       onClick={() => setSeoDataOpen(false)}
                       className={`block px-4 py-2 text-sm transition-colors ${pathname === item.href
-                          ? 'bg-indigo-50 text-indigo-700'
-                          : 'text-gray-700 hover:bg-gray-100'
+                        ? 'bg-indigo-50 text-indigo-700'
+                        : 'text-gray-700 hover:bg-gray-100'
                         }`}
                     >
                       {item.label}
@@ -295,8 +296,8 @@ export default function Navbar() {
                   setSeoDataOpen(false);
                 }}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${isHubActive
-                    ? 'bg-indigo-100 text-indigo-700'
-                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                  ? 'bg-indigo-100 text-indigo-700'
+                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                   }`}
               >
                 Hub
@@ -309,8 +310,8 @@ export default function Navbar() {
                     href="/twisting-machines"
                     onClick={() => setHubOpen(false)}
                     className={`block px-4 py-2 text-sm font-semibold transition-colors border-b ${pathname === '/twisting-machines'
-                        ? 'bg-indigo-50 text-indigo-700'
-                        : 'text-indigo-600 hover:bg-gray-100'
+                      ? 'bg-indigo-50 text-indigo-700'
+                      : 'text-indigo-600 hover:bg-gray-100'
                       }`}
                   >
                     Twisting Machines Hub
@@ -323,8 +324,8 @@ export default function Navbar() {
                       href={item.href}
                       onClick={() => setHubOpen(false)}
                       className={`block px-4 py-1.5 text-sm transition-colors ${pathname === item.href
-                          ? 'bg-indigo-50 text-indigo-700'
-                          : 'text-gray-700 hover:bg-gray-100'
+                        ? 'bg-indigo-50 text-indigo-700'
+                        : 'text-gray-700 hover:bg-gray-100'
                         }`}
                     >
                       {item.label}
@@ -338,8 +339,8 @@ export default function Navbar() {
                       href={item.href}
                       onClick={() => setHubOpen(false)}
                       className={`block px-4 py-1.5 text-sm transition-colors ${pathname === item.href
-                          ? 'bg-indigo-50 text-indigo-700'
-                          : 'text-gray-700 hover:bg-gray-100'
+                        ? 'bg-indigo-50 text-indigo-700'
+                        : 'text-gray-700 hover:bg-gray-100'
                         }`}
                     >
                       {item.label}
@@ -353,8 +354,8 @@ export default function Navbar() {
                       href={item.href}
                       onClick={() => setHubOpen(false)}
                       className={`block px-4 py-1.5 text-sm transition-colors ${pathname === item.href
-                          ? 'bg-indigo-50 text-indigo-700'
-                          : 'text-gray-700 hover:bg-gray-100'
+                        ? 'bg-indigo-50 text-indigo-700'
+                        : 'text-gray-700 hover:bg-gray-100'
                         }`}
                     >
                       {item.label}
@@ -368,8 +369,8 @@ export default function Navbar() {
                       href={item.href}
                       onClick={() => setHubOpen(false)}
                       className={`block px-4 py-1.5 text-sm transition-colors ${pathname === item.href
-                          ? 'bg-indigo-50 text-indigo-700'
-                          : 'text-gray-700 hover:bg-gray-100'
+                        ? 'bg-indigo-50 text-indigo-700'
+                        : 'text-gray-700 hover:bg-gray-100'
                         }`}
                     >
                       {item.label}
@@ -382,8 +383,8 @@ export default function Navbar() {
             <Link
               href="/settings/api-credentials"
               className={`ml-4 p-2 rounded-md transition-colors cursor-pointer ${pathname === '/settings/api-credentials'
-                  ? 'text-indigo-700 bg-indigo-100'
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                ? 'text-indigo-700 bg-indigo-100'
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                 }`}
               title="API & Credential Settings"
             >
