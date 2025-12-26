@@ -239,6 +239,45 @@ export interface ClientAIProfile {
   urlClassificationSupport?: ProfileUrlClassificationSupport;
   keywordClassificationSupport?: ProfileKeywordClassificationSupport;
   businessRelevanceSupport?: ProfileBusinessRelevanceSupport;
+  matchingDictionary?: MatchingDictionary;
+}
+
+export type DictionaryScope = 'GLOBAL' | 'CLIENT' | 'DOMAIN';
+
+export interface TokenEntry {
+  token: string;
+  scope: DictionaryScope;
+  isHardNegative?: boolean; // Only relevance for Negative bucket
+  updatedAt?: string;
+}
+
+export interface MatchingDictionary {
+  version: number;
+
+  // Buckets containing Rich Token Entries
+  brandTokens: TokenEntry[];
+  positiveTokens: TokenEntry[]; // Replaces core/adjacent/product-specific lists
+  negativeTokens: TokenEntry[];
+  ambiguousTokens: TokenEntry[]; // New bucket for terms requiring anchors
+  ignoreTokens: TokenEntry[];    // New bucket for noise/stop words
+  anchorTokens: TokenEntry[];    // New bucket for context validation
+
+  // Product mapping (Token Text -> Product Line Enum)
+  // This maps a specific positive token to a product line
+  productLineMap: Record<string, string[]>;
+
+  // Legacy fields for backward compatibility (optional)
+  coreTokens?: string[];
+  adjacentTokens?: string[];
+  productLineTokens?: Record<string, string[]>;
+  intentTokens?: Record<string, string[]>;
+  stopTokens?: string[];
+  industryIndicators?: string[];
+}
+
+export interface EffectiveDictionary extends MatchingDictionary {
+  // Runtime snapshot doesn't need distinct types for now, 
+  // it shares the same structure but represents the "merged" state.
 }
 
 export type DomainTypeValue =
@@ -459,4 +498,40 @@ export interface DomainKeywordRecord {
   url: string | null;
   fetchedAt: string;
   snapshotDate: string;
+  tagId?: string;
+  tagData?: KeywordTag;
+}
+
+export type FitStatus = 'BRAND_KW' | 'CORE_MATCH' | 'ADJACENT_MATCH' | 'REVIEW' | 'NO_MATCH' | 'BLANK';
+export type ProductLine = 'BRAND_KW' | 'TWISTING' | 'WINDING' | 'HEAT_SETTING' | 'MULTIPLE' | 'NONE' | 'BLANK';
+
+export interface KeywordTag {
+  id: string; // clientCode_uniqueKey
+  clientCode: string;
+  profileVersion: string;
+  keyword: string; // normalized
+  fitStatus: FitStatus;
+  productLine: ProductLine;
+  rationale: string;
+  modelRunId: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface AnalyzeKeywordsRequest {
+  clientCode: string;
+  keywords: string[]; // Raw keyword strings
+  profileVersion?: string; // Optional override
+  runLabel?: string;
+}
+
+export interface AnalyzeKeywordsResponse {
+  success: boolean;
+  rows: KeywordTag[];
+  error?: string;
+  meta?: {
+    model: string;
+    totalTokens: number;
+    processingTimeMs: number;
+  };
 }

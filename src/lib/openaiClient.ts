@@ -9,7 +9,8 @@ import {
   ProfileUrlClassificationSupport,
   ProfileKeywordClassificationSupport,
   ProfileBusinessRelevanceSupport,
-  PatternWithExamples
+  PatternWithExamples,
+  MatchingDictionary
 } from '@/types';
 
 const MODEL = 'gpt-4o-mini';
@@ -118,148 +119,67 @@ interface AIProfileResponse {
     marketplaceDefinition: string;
     irrelevantDefinition: string;
   };
+  matchingDictionary?: MatchingDictionary;
 }
 
-const SYSTEM_PROMPT = `You are an SEO, data-modeling, and classification expert that builds structured "client profiles" for a SERP intelligence and classification system.
+const SYSTEM_PROMPT = `
+You are an SEO Keyword Tagging Engine Architect building a scalable, explainable keyword classification system.
 
-CONTEXT ABOUT THE SYSTEM
-------------------------
-We maintain a "Client Master" where each client has:
-- A short code (e.g. "01")
-- A name (e.g. "Meera Industries")
-- Up to 5 domains
-- For each domain, a "Domain Profile" with SEO information:
-  - Title (page title)
-  - Meta Description
-  - Inferred Category (e.g. E-commerce, Education, etc.)
-  - Organic Traffic, Organic Keywords (numbers; just for context)
-  - Top Keywords table:
-    - keyword
-    - position
-    - search volume
-    - CPC (optional)
-    - URL
+Your task is to generate a Client AI Profile containing a "Matching Dictionary" that classifies keywords for the given client domain context.
 
-Your job is:
-Given the full "Client Master" record for ONE client (code, name, domains + domain profiles + keywords), generate a **machine-usable AI profile** that will act as the "brain" for:
-- Understanding what this client does.
-- Understanding what topics and intents are relevant to this client.
-- Later classifying external domains and SERP results as:
-  - direct competitors,
-  - potential customers/leads,
-  - marketplaces/directories,
-  - content/educational,
-  - irrelevant.
-- Classifying URLs by page type (product, blog, category, etc.)
-- Classifying keywords by intent (transactional, informational, etc.)
+# Master Dictionary Architecture
+The dictionary uses "Token Buckets" to classify keywords deterministically.
+1. Brand Tokens: Variations of the client's brand name.
+2. Positive Tokens: Core product terms, synonyms, and strong relevance signals.
+3. Negative Tokens: Terms that indicate irrelevance.
+   - You can flag some as "Hard Negatives" if they strictly disqualify a keyword.
+4. Ambiguous Tokens: Terms that are relevant ONLY if an Anchor approach is present.
+   - e.g. "ring" is ambiguous (jewelry vs machinery). "twist" is positive. "machine" is an Anchor.
+5. Anchor Tokens: Context validators (e.g. "machine", "equipment", "service", "manufacturer").
+6. Ignore Tokens: Stopwords or noise to be stripped before matching.
 
-CRITICAL: You must NOT hard-code any final classification labels. You must only provide patterns, keyword lists, and descriptive rules that programs will use later for domain, URL, and keyword classification.
+# Normalization
+All tokens should be lowercase, singular (if possible), and stripped of punctuation.
 
-YOUR TASK
----------
-From the provided data, build a **CLIENT PROFILE JSON** with this schema:
+# Output Schema
+You must return a JSON object satisfying this structure:
 
 {
-  "clientId": string,
-  "clientName": string,
-  "primaryDomains": string[],
-  "industryType": string,
-  "shortSummary": string,
-  "businessModel": string,
-  "productLines": string[],
-  "targetCustomerSegments": string[],
-  "targetGeographies": string[],
-  "coreTopics": string[],
-  "adjacentTopics": string[],
-  "negativeTopics": string[],
-  "domainTypePatterns": {
-    "oemManufacturerIndicators": string[],
-    "serviceProviderIndicators": string[],
-    "marketplaceIndicators": string[],
-    "endCustomerIndicators": string[],
-    "educationalMediaIndicators": string[]
+  "clientCode": "string",
+  "domainType": "string",
+  "coreIdentity": {
+    "brandName": "string",
+    "primaryIndustry": "string",
+    "coreOfferings": ["string"]
+  },
+  "matchingDictionary": {
+    "version": 2,
+    "brandTokens": [ { "token": "string", "scope": "GLOBAL" } ],
+    "positiveTokens": [ { "token": "string", "scope": "GLOBAL" } ],
+    "negativeTokens": [ { "token": "string", "scope": "GLOBAL", "isHardNegative": true/false } ],
+    "ambiguousTokens": [ { "token": "string", "scope": "GLOBAL" } ],
+    "anchorTokens": [ { "token": "string", "scope": "GLOBAL" } ],
+    "ignoreTokens": [ { "token": "string", "scope": "GLOBAL" } ],
+    "productLineMap": { "token": ["PRODUCT_LINE_ENUM"] }
   },
   "classificationIntentHints": {
-    "transactionalKeywords": string[],
-    "informationalKeywords": string[],
-    "directoryKeywords": string[]
+     "informationalIntentKeywords": ["string"],
+     "commercialResearchKeywords": ["string"],
+     "transactionalKeywords": ["string"],
+     "directoryKeywords": ["string"]
   },
   "businessRelevanceLogicNotes": {
-    "directCompetitorDefinition": string,
-    "potentialCustomerDefinition": string,
-    "marketplaceChannelDefinition": string,
-    "irrelevantDefinition": string
-  },
-  "meta": {
-    "clientName": string,
-    "generatedAt": string,
-    "industryTag": string,
-    "summary": string
-  },
-  "coreIdentity": {
-    "businessModel": string,
-    "primaryOfferTypes": string[],
-    "productLines": string[],
-    "services": string[],
-    "industriesServed": string[],
-    "customerSegments": string[]
-  },
-  "domains": {
-    "primaryDomains": string[],
-    "secondaryDomains": string[],
-    "expectedTlds": string[],
-    "positiveDomainHints": string[],
-    "negativeDomainHints": string[]
-  },
-  "urlClassificationSupport": {
-    "productSlugPatterns": { "description": string, "examples": string[] },
-    "categorySlugPatterns": { "description": string, "examples": string[] },
-    "blogSlugPatterns": { "description": string, "examples": string[] },
-    "resourceSlugPatterns": { "description": string, "examples": string[] },
-    "supportSlugPatterns": { "description": string, "examples": string[] },
-    "legalSlugPatterns": { "description": string, "examples": string[] },
-    "accountSlugPatterns": { "description": string, "examples": string[] },
-    "careersSlugPatterns": { "description": string, "examples": string[] },
-    "aboutCompanySlugPatterns": { "description": string, "examples": string[] },
-    "marketingLandingPatterns": { "description": string, "examples": string[] }
-  },
-  "keywordClassificationSupport": {
-    "brandKeywords": { "description": string, "examples": string[] },
-    "transactionalPhrases": { "description": string, "examples": string[] },
-    "commercialResearchPhrases": { "description": string, "examples": string[] },
-    "informationalPhrases": { "description": string, "examples": string[] },
-    "directoryPhrases": { "description": string, "examples": string[] },
-    "irrelevantKeywordTopics": { "description": string, "examples": string[] }
-  },
-  "businessRelevanceSupport": {
-    "directCompetitorDefinition": string,
-    "potentialCustomerDefinition": string,
-    "marketplaceDefinition": string,
-    "irrelevantDefinition": string
+     "directCompetitorDefinition": "string",
+     "potentialCustomerDefinition": "string",
+     "marketplaceChannelDefinition": "string",
+     "irrelevantDefinition": "string"
   }
 }
 
-FIELD EXPLANATIONS
-------------------
-- meta.industryTag: short snake_case tag like "textile_machinery_oem" or "online_education"
-- meta.summary: 2-3 sentence explanation of what the client does
-- coreIdentity.primaryOfferTypes: main offer types like ["machines", "equipment", "online_courses", "software_saas"]
-- domains.positiveDomainHints: lowercase words that suggest a domain is relevant to this industry
-- domains.negativeDomainHints: lowercase words that usually mean NOT relevant (e.g. "movie", "music", "game")
-- urlClassificationSupport.*SlugPatterns: each has description (what it identifies) and examples (lowercase slug fragments)
-  - For a textile machinery OEM, productSlugPatterns.examples might be: ["twister", "winder", "heat-setting", "tfo"]
-- keywordClassificationSupport.*: phrases that indicate intent, specific to this client's domain
-  - brandKeywords: brand and near-brand phrases
-  - transactionalPhrases: buying/quote/price intent phrases
-  - irrelevantKeywordTopics: themes that share words but are wrong context
-
-REQUIREMENTS
-------------
-- Use ONLY the provided Client Master data plus general industry understanding.
-- Fill ALL fields with concrete examples (no "..." placeholders).
-- Use lower-case strings for pattern examples where possible.
-- "industryType" must be a SHORT machine-friendly label (lowercase, underscores).
-- Output MUST be a single valid JSON object, no markdown, no comments, no extra text.`;
+Ensure "scope" is always "GLOBAL" for your generated rules.
+Populate "productLineMap" to map Positive Tokens to specific Product Lines (e.g. "twister" -> ["TWISTING"]).
+Use one of these enums for product lines if applicable: "TWISTING", "WINDING", "HEAT_SETTING", "OTHER".
+`;
 
 export function buildClientInputData(
   clientCode: string,
@@ -331,10 +251,10 @@ export async function generateClientAIProfile(
 
   const userPrompt = `NOW HERE IS THE ACTUAL CLIENT MASTER DATA:
 ----------------------------------------------------------------
-${JSON.stringify(clientInputData, null, 2)}
+  ${JSON.stringify(clientInputData, null, 2)}
 ----------------------------------------------------------------
 
-Generate the CLIENT PROFILE JSON for this client.`;
+  Generate the CLIENT PROFILE JSON for this client.`;
 
   console.log('[OpenAI] Sending request to generate client profile for:', clientInputData.clientCode);
   console.log('[OpenAI] Number of domains:', clientInputData.domains.length);
@@ -366,12 +286,78 @@ Generate the CLIENT PROFILE JSON for this client.`;
       throw new Error('Failed to parse OpenAI response as JSON');
     }
 
+    // --- VALIDATION & NORMALIZATION START ---
+
+    if (!parsedResponse.matchingDictionary) {
+      console.error('[OpenAI] Invalid Response: Missing matchingDictionary');
+      throw new Error('AI Response invalid: Missing matchingDictionary section. Please retry.');
+    }
+
+    const dict = parsedResponse.matchingDictionary;
+    if (!dict.brandTokens || dict.brandTokens.length === 0) {
+      throw new Error('AI Response invalid: brandTokens empty.');
+    }
+    if (!dict.negativeTokens) {
+      // Tolerant but warn
+      dict.negativeTokens = [];
+    }
+    if (!dict.productLineTokens || Object.keys(dict.productLineTokens).length === 0) {
+      throw new Error('AI Response invalid: productLineTokens missing/empty.');
+    }
+
+    // Normalize Product Line Keys
+    // We strictly map to "TWISTING", "WINDING", "HEAT_SETTING", "OTHER"
+    const normalizedPlTokens: Record<string, string[]> = {};
+
+    // Helper to merge arrays unique
+    const merge = (target: string[], source: string[]) => {
+      const s = new Set([...target, ...source.map(x => x.toLowerCase().trim())]);
+      return Array.from(s);
+    };
+
+    // Initialize Standard Keys
+    normalizedPlTokens['TWISTING'] = [];
+    normalizedPlTokens['WINDING'] = [];
+    normalizedPlTokens['HEAT_SETTING'] = [];
+    normalizedPlTokens['OTHER'] = [];
+
+    // Process each key from AI
+    Object.entries(dict.productLineTokens).forEach(([key, tokens]) => {
+      const uKey = key.toUpperCase();
+      if (!Array.isArray(tokens)) return;
+
+      if (uKey.includes('TWIST')) {
+        normalizedPlTokens['TWISTING'] = merge(normalizedPlTokens['TWISTING'], tokens);
+      } else if (uKey.includes('WIND')) {
+        normalizedPlTokens['WINDING'] = merge(normalizedPlTokens['WINDING'], tokens);
+      } else if (uKey.includes('HEAT') || uKey.includes('SETTING')) {
+        normalizedPlTokens['HEAT_SETTING'] = merge(normalizedPlTokens['HEAT_SETTING'], tokens);
+      } else if (uKey === 'OTHER') {
+        normalizedPlTokens['OTHER'] = merge(normalizedPlTokens['OTHER'], tokens);
+      } else {
+        // Fallback: If AI made up a new key like "TEXTILE_MACHINES", dump it in OTHER or try to map?
+        // Or maybe we should keep the key if it's really distinct?
+        // But the frontend expects standard keys for colors usually.
+        // Let's dump to OTHER for safety to ensure Enum compliance if strict.
+        normalizedPlTokens['OTHER'] = merge(normalizedPlTokens['OTHER'], tokens);
+      }
+    });
+
+    // Cleanup empty keys from OTHER if we want cleaner UI? 
+    // Actually, Typescript interface says Record<string, string[]> so any key is valid technically.
+    // BUT we want deterministic tagging to work well.
+    // Let's replace the dict.productLineTokens with our normalized version.
+    dict.productLineTokens = normalizedPlTokens;
+
+    // --- VALIDATION & NORMALIZATION END ---
+
+
     const domainsUsed = clientInputData.domains.map(d => d.domain);
 
     const defaultPatternWithExamples = { description: '', examples: [] };
 
     const profile: ClientAIProfile = {
-      id: `ai-profile-${clientInputData.clientCode}-${Date.now()}`,
+      id: `ai - profile - ${clientInputData.clientCode} -${Date.now()} `,
       clientCode: clientInputData.clientCode,
       clientName: parsedResponse.clientName || clientInputData.clientName,
       primaryDomains: parsedResponse.primaryDomains || domainsUsed,
@@ -452,6 +438,7 @@ Generate the CLIENT PROFILE JSON for this client.`;
         marketplaceDefinition: parsedResponse.businessRelevanceSupport.marketplaceDefinition || '',
         irrelevantDefinition: parsedResponse.businessRelevanceSupport.irrelevantDefinition || '',
       } : undefined,
+      matchingDictionary: dict, // Use normalized dictionary
     };
 
     console.log('[OpenAI] Profile generated successfully for:', clientInputData.clientCode);

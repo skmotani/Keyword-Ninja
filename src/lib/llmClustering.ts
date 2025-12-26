@@ -2,6 +2,7 @@ import OpenAI from 'openai';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { DomainPageRecord } from '@/types';
+import { getActiveCredentialByService } from '@/lib/apiCredentialsStore';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 const DOMAIN_PAGES_FILE = path.join(DATA_DIR, 'domain_pages.json');
@@ -110,19 +111,19 @@ ${itemsText}`;
 
 function repairJson(jsonStr: string): string {
   let fixed = jsonStr;
-  
+
   // Remove any trailing commas before ] or }
   fixed = fixed.replace(/,(\s*[}\]])/g, '$1');
-  
+
   // Fix unescaped newlines in strings
   fixed = fixed.replace(/(?<!\\)\\n/g, '\\n');
-  
+
   // Fix truncated JSON - try to close unclosed brackets
   const openBrackets = (fixed.match(/\[/g) || []).length;
   const closeBrackets = (fixed.match(/\]/g) || []).length;
   const openBraces = (fixed.match(/\{/g) || []).length;
   const closeBraces = (fixed.match(/\}/g) || []).length;
-  
+
   // Add missing closing brackets
   for (let i = 0; i < openBrackets - closeBrackets; i++) {
     fixed += ']';
@@ -130,11 +131,11 @@ function repairJson(jsonStr: string): string {
   for (let i = 0; i < openBraces - closeBraces; i++) {
     fixed += '}';
   }
-  
+
   // Remove incomplete last array element if JSON is truncated mid-object
   // Match pattern: {...}, { incomplete... and remove the incomplete part
   fixed = fixed.replace(/,\s*\{[^}]*$/g, '');
-  
+
   return fixed;
 }
 
@@ -143,21 +144,22 @@ export async function clusterUrlsWithLlm(
   options?: {
     batchLabel?: string;
     maxRetries?: number;
+    apiKey?: string;
   }
 ): Promise<LlmClusterResult> {
-  const openaiApiKey = process.env.OPENAI_API_KEY;
+  const openaiApiKey = options?.apiKey || process.env.OPENAI_API_KEY;
   const maxRetries = options?.maxRetries ?? 2;
-  
+
   if (!openaiApiKey) {
     throw new Error('OPENAI_API_KEY is not set');
   }
 
   const openai = new OpenAI({ apiKey: openaiApiKey });
-  
+
   const userPrompt = buildUserPrompt(items);
 
   let lastError: Error | null = null;
-  
+
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
       const response = await openai.chat.completions.create({
@@ -172,11 +174,11 @@ export async function clusterUrlsWithLlm(
       });
 
       const content = response.choices[0]?.message?.content?.trim() || '';
-      
+
       if (!content) {
         throw new Error('Empty response from LLM');
       }
-      
+
       // Try to extract JSON object
       let jsonStr = content;
       const jsonMatch = content.match(/\{[\s\S]*\}/);
@@ -193,7 +195,7 @@ export async function clusterUrlsWithLlm(
         const repairedJson = repairJson(jsonStr);
         parsed = JSON.parse(repairedJson) as LlmClusterResult;
       }
-      
+
       if (!parsed.clusters || !Array.isArray(parsed.clusters)) {
         throw new Error('Invalid LLM response structure: missing clusters array');
       }
@@ -209,14 +211,14 @@ export async function clusterUrlsWithLlm(
     } catch (error) {
       lastError = error instanceof Error ? error : new Error('Unknown error');
       console.error(`LLM clustering attempt ${attempt + 1} failed:`, lastError.message);
-      
+
       if (attempt < maxRetries) {
         // Wait before retry (exponential backoff)
         await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1)));
       }
     }
   }
-  
+
   console.error('LLM clustering error after all retries:', lastError);
   throw lastError;
 }
@@ -272,8 +274,15 @@ export async function runLlmClusteringForDomainPages(
   };
 
   try {
+    const credential = await getActiveCredentialByService('OPENAI', clientCode);
+    const apiKey = credential?.apiKey || process.env.OPENAI_API_KEY;
+
+    if (!apiKey) {
+      throw new Error('OPENAI_API_KEY is not configured in Settings or Environment Variables');
+    }
+
     const allRecords = await readDomainPages();
-    
+
     let targetRecords = allRecords.filter(r => {
       if (clientCode && r.clientCode !== clientCode) return false;
       if (locationCode && r.locationCode !== locationCode) return false;
@@ -305,7 +314,7 @@ export async function runLlmClusteringForDomainPages(
       }));
 
       try {
-        const clusterResult = await clusterUrlsWithLlm(items, { batchLabel });
+        const clusterResult = await clusterUrlsWithLlm(items, { batchLabel, apiKey });
 
         for (const cluster of clusterResult.clusters) {
           allLabels.add(cluster.cluster_label);

@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import PageHeader from '@/components/PageHeader';
 import ExportButton, { ExportColumn } from '@/components/ExportButton';
-import ProfileViewModal from '@/components/ProfileViewModal';
 import HelpInfoIcon from '@/components/HelpInfoIcon';
+import MatchingDictionaryEditor from '@/components/MatchingDictionaryEditor';
 import { Client, DomainProfile, ClientAIProfile } from '@/types';
 
 const MAX_DOMAINS = 5;
@@ -59,7 +59,7 @@ export default function ClientsPage() {
   const [aiProfiles, setAiProfiles] = useState<Record<string, ClientAIProfile>>({});
   const [generatingAiProfile, setGeneratingAiProfile] = useState<string | null>(null);
   const [showDomainsVerification, setShowDomainsVerification] = useState<string | null>(null);
-  const [viewProfileClientCode, setViewProfileClientCode] = useState<string | null>(null);
+  const [recentlyRefreshedClientCode, setRecentlyRefreshedClientCode] = useState<string | null>(null);
 
   const [formData, setFormData] = useState({
     code: '',
@@ -149,6 +149,9 @@ export default function ClientsPage() {
           ...prev,
           [client.code]: result.profile,
         }));
+        setExpandedClientId(client.id);
+        setRecentlyRefreshedClientCode(client.code);
+        setTimeout(() => setRecentlyRefreshedClientCode(null), 2500);
         showNotification('success', `AI Profile generated using ${result.domainsUsed?.length || 0} domain(s)`);
       } else {
         showNotification('error', result.error || 'Failed to generate AI profile');
@@ -797,15 +800,6 @@ export default function ClientsPage() {
                           <div className="flex items-center justify-between mb-3">
                             <h4 className="text-sm font-semibold text-gray-700">AI Client Profile</h4>
                             <div className="flex items-center gap-2">
-                              {aiProfiles[client.code] && (
-                                <button
-                                  onClick={() => setViewProfileClientCode(client.code)}
-                                  className="px-3 py-1.5 text-xs rounded flex items-center gap-2 bg-indigo-600 text-white hover:bg-indigo-700"
-                                >
-                                  <span>👁️</span>
-                                  View Profile
-                                </button>
-                              )}
                               <button
                                 onClick={() => handleGenerateAiProfile(client)}
                                 disabled={generatingAiProfile === client.code}
@@ -845,6 +839,9 @@ export default function ClientsPage() {
                                 <span className="text-gray-500">
                                   Generated: {new Date(aiProfiles[client.code].generatedAt).toLocaleString()}
                                 </span>
+                                {recentlyRefreshedClientCode === client.code && (
+                                  <span className="ml-2 text-xs text-green-600 font-medium">• Profile refreshed</span>
+                                )}
                               </div>
 
                               {showDomainsVerification === client.code && (
@@ -1054,6 +1051,18 @@ export default function ClientsPage() {
                                 </div>
                               </div>
 
+                              {/* Matching Dictionary Editor (Interactive) */}
+                              <MatchingDictionaryEditor
+                                clientCode={client.code}
+                                profile={aiProfiles[client.code]}
+                                onProfileUpdated={(p) => {
+                                  setAiProfiles(prev => ({
+                                    ...prev,
+                                    [client.code]: p
+                                  }));
+                                }}
+                              />
+
                               {/* Business Relevance Logic Notes */}
                               <div className="bg-slate-50 rounded-lg p-4">
                                 <h5 className="text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
@@ -1078,6 +1087,24 @@ export default function ClientsPage() {
                                   </div>
                                 </div>
                               </div>
+
+                              {/* Advanced: Raw Profile JSON */}
+                              <details className="group border rounded-lg bg-gray-50 p-2 mt-4">
+                                <summary className="cursor-pointer text-xs font-medium text-gray-600 flex items-center gap-2 select-none">
+                                  <span>⚙️</span> Advanced: Raw Profile JSON
+                                </summary>
+                                <div className="mt-3 relative">
+                                  <pre className="text-xs bg-gray-900 text-green-400 p-4 rounded overflow-auto max-h-96">
+                                    {JSON.stringify(aiProfiles[client.code], null, 2)}
+                                  </pre>
+                                  <button
+                                    onClick={() => navigator.clipboard.writeText(JSON.stringify(aiProfiles[client.code], null, 2))}
+                                    className="absolute top-4 right-4 text-xs bg-white text-gray-700 px-2 py-1 rounded hover:bg-gray-100 border shadow-sm"
+                                  >
+                                    Copy JSON
+                                  </button>
+                                </div>
+                              </details>
                             </div>
                           )}
 
@@ -1098,18 +1125,6 @@ export default function ClientsPage() {
         </table>
       </div>
 
-      {viewProfileClientCode && aiProfiles[viewProfileClientCode] && (
-        <ProfileViewModal
-          profile={aiProfiles[viewProfileClientCode]}
-          onClose={() => setViewProfileClientCode(null)}
-          onProfileUpdated={(updatedProfile) => {
-            setAiProfiles(prev => ({
-              ...prev,
-              [updatedProfile.clientCode]: updatedProfile
-            }));
-          }}
-        />
-      )}
     </div>
   );
 }

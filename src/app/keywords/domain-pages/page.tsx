@@ -912,6 +912,30 @@ function getSeoActionBadgeColor(action: SeoActionValue | null | undefined): stri
   return colors[action] || 'bg-gray-100 text-gray-600';
 }
 
+// Tooltip component for Detailed Action Explanations
+function ActionTooltip({ children, title, input, output, description }: { children: React.ReactNode; title: string; input: string; output: string; description: string }) {
+  const [show, setShow] = useState(false);
+  return (
+    <div className="relative inline-flex flex-col items-center" onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
+      {children}
+      {show && (
+        <div className="absolute z-50 bottom-full left-1/2 transform -translate-x-1/2 mb-3 w-80 bg-gray-900/95 backdrop-blur-sm text-white text-xs rounded-xl shadow-2xl border border-gray-700/50 p-4 pointer-events-none animate-in fade-in zoom-in-95 duration-200">
+          <div className="font-bold text-sm text-indigo-300 mb-1.5 border-b border-gray-700 pb-1">{title}</div>
+          <div className="mb-3 text-gray-300 leading-relaxed text-[11px]">{description}</div>
+          <div className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1.5 bg-gray-800/80 p-2.5 rounded-lg border border-gray-700/50">
+            <span className="font-semibold text-green-400 uppercase tracking-wider text-[10px] self-start mt-0.5">Input</span>
+            <span className="text-gray-200 font-mono text-[10px]">{input}</span>
+            <div className="col-span-2 border-t border-gray-700/50 my-0.5"></div>
+            <span className="font-semibold text-blue-400 uppercase tracking-wider text-[10px] self-start mt-0.5">Output</span>
+            <span className="text-gray-200 font-mono text-[10px]">{output}</span>
+          </div>
+          <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-px border-8 border-transparent border-t-gray-900/95"></div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function DomainPagesPage() {
   const [clients, setClients] = useState<Client[]>([]);
   const [competitors, setCompetitors] = useState<Competitor[]>([]);
@@ -1464,170 +1488,218 @@ export default function DomainPagesPage() {
           </div>
 
           <div className="flex gap-2 flex-wrap">
-            <button
-              onClick={handleRefresh}
-              disabled={refreshing || selectedDomains.length === 0}
-              className="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            <ActionTooltip
+              title="Fetch Domain Table"
+              description="Retrieves the top organic pages for the selected domain(s) from the DataForSEO API. Use this to refresh traffic stats and discover new pages."
+              input="Selected Domain(s) + Location"
+              output="Table with ETV & Keyword Counts"
             >
-              {refreshing ? (
-                <>
-                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                  </svg>
-                  Fetching...
-                </>
-              ) : (
-                <>
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                  </svg>
-                  Fetch Data
-                </>
-              )}
-            </button>
+              <button
+                onClick={handleRefresh}
+                disabled={refreshing || selectedDomains.length === 0}
+                className="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              >
+                {refreshing ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    Fetching...
+                  </>
+                ) : (
+                  <>
+                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    Fetch Data
+                  </>
+                )}
+              </button>
+            </ActionTooltip>
 
-            <button
-              onClick={() => handleClassifyPages(false)}
-              disabled={classifying || records.length === 0}
-              className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            <ActionTooltip
+              title="Rule-Based Classification"
+              description="Quickly tags pages using predefined URL regex patterns defined in the Client Master. Free & instant, but less accurate for ambiguous URLs."
+              input="Page URL structure"
+              output="Page Type (e.g., Blog, Product)"
             >
-              {classifying ? (
-                <>
-                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                  </svg>
-                  Classifying...
-                </>
-              ) : (
-                <>
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                  </svg>
-                  Classify (Rules)
-                </>
-              )}
-            </button>
+              <button
+                onClick={() => handleClassifyPages(false)}
+                disabled={classifying || records.length === 0}
+                className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              >
+                {classifying ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    Classifying...
+                  </>
+                ) : (
+                  <>
+                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                    Classify (Rules)
+                  </>
+                )}
+              </button>
+            </ActionTooltip>
 
-            <button
-              onClick={() => handleClassifyPages(true)}
-              disabled={aiClassifying || summaryStats.needsAiReviewCount === 0}
-              className="px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-md hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            <ActionTooltip
+              title="AI Classification"
+              description="Uses LLM to analyze ambiguous pages (marked 'Other/Misc' or Low Confidence). More accurate intent detection but consumes API credits."
+              input="Title, Snippet, Keywords"
+              output="Intent, Type, Reasoning"
             >
-              {aiClassifying ? (
-                <>
-                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                  </svg>
-                  AI Classifying...
-                </>
-              ) : (
-                <>
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                  Run AI for Uncertain ({summaryStats.needsAiReviewCount})
-                </>
-              )}
-            </button>
+              <button
+                onClick={() => handleClassifyPages(true)}
+                disabled={aiClassifying || summaryStats.needsAiReviewCount === 0}
+                className="px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-md hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              >
+                {aiClassifying ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    AI Classifying...
+                  </>
+                ) : (
+                  <>
+                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                    Run AI for Uncertain ({summaryStats.needsAiReviewCount})
+                  </>
+                )}
+              </button>
+            </ActionTooltip>
 
-            <button
-              onClick={handleCalculatePriority}
-              disabled={calculatingPriority || summaryStats.classifiedCount === 0}
-              className="px-4 py-2 bg-orange-600 text-white text-sm font-medium rounded-md hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            <ActionTooltip
+              title="Priority Calculation"
+              description="Computes a weighted 0-100 score (ETV + Intent + Relevance) to highlight high-value pages. Use this after fetching and classifying."
+              input="ETV, Intent, Page Type"
+              output="Priority Score & Tier"
             >
-              {calculatingPriority ? (
-                <>
-                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                  </svg>
-                  Calculating...
-                </>
-              ) : (
-                <>
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                  Calculate Priority
-                </>
-              )}
-            </button>
+              <button
+                onClick={handleCalculatePriority}
+                disabled={calculatingPriority || summaryStats.classifiedCount === 0}
+                className="px-4 py-2 bg-orange-600 text-white text-sm font-medium rounded-md hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              >
+                {calculatingPriority ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    Calculating...
+                  </>
+                ) : (
+                  <>
+                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                    Calculate Priority
+                  </>
+                )}
+              </button>
+            </ActionTooltip>
 
-            <button
-              onClick={handleClassifyProducts}
-              disabled={classifyingProducts || records.length === 0}
-              className="px-4 py-2 bg-cyan-600 text-white text-sm font-medium rounded-md hover:bg-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            <ActionTooltip
+              title="Product Matching"
+              description="Matches generic product pages to your specific Client Product Catalog. Helps track coverage and gaps."
+              input="Content vs Product List"
+              output="Matched Product ID"
             >
-              {classifyingProducts ? (
-                <>
-                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                  </svg>
-                  Classifying...
-                </>
-              ) : (
-                <>
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                  </svg>
-                  Classify Products
-                </>
-              )}
-            </button>
+              <button
+                onClick={handleClassifyProducts}
+                disabled={classifyingProducts || records.length === 0}
+                className="px-4 py-2 bg-cyan-600 text-white text-sm font-medium rounded-md hover:bg-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              >
+                {classifyingProducts ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    Classifying...
+                  </>
+                ) : (
+                  <>
+                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                    Classify Products
+                  </>
+                )}
+              </button>
+            </ActionTooltip>
 
-            <button
-              onClick={handleRunLlmClustering}
-              disabled={llmClustering || records.length === 0}
-              className="px-4 py-2 bg-violet-600 text-white text-sm font-medium rounded-md hover:bg-violet-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-              title="Run LLM-based topic clustering on all pages using OpenAI"
+            <ActionTooltip
+              title="Semantic Clustering"
+              description="Uses LLM (embeddings) to group related pages into topical clusters. Helps identify content silos and strategy."
+              input="Batch of Page Titles"
+              output="Cluster Label & Desc."
             >
-              {llmClustering ? (
-                <>
-                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                  </svg>
-                  LLM Clustering...
-                </>
-              ) : (
-                <>
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                  Run LLM Clustering
-                </>
-              )}
-            </button>
+              <button
+                onClick={handleRunLlmClustering}
+                disabled={llmClustering || records.length === 0}
+                className="px-4 py-2 bg-violet-600 text-white text-sm font-medium rounded-md hover:bg-violet-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              >
+                {llmClustering ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    LLM Clustering...
+                  </>
+                ) : (
+                  <>
+                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                    Run LLM Clustering
+                  </>
+                )}
+              </button>
+            </ActionTooltip>
 
-            <ExportButton
-              data={sortedRecords}
-              columns={[
-                { key: 'domain', header: 'Domain' },
-                { key: 'locationCode', header: 'Location' },
-                { key: 'pageURL', header: 'Page URL' },
-                { key: 'estTrafficETV', header: 'Est. Traffic (ETV)' },
-                { key: 'keywordsCount', header: 'Keywords Count' },
-                { key: 'pageType', header: 'Page Type' },
-                { key: 'pageIntent', header: 'Page Intent' },
-                { key: 'isSeoRelevant', header: 'SEO Relevant' },
-                { key: 'seoAction', header: 'SEO Action' },
-                { key: 'classificationConfidence', header: 'Confidence' },
-                { key: 'classificationMethod', header: 'Method' },
-                { key: 'priorityScore', header: 'Priority Score' },
-                { key: 'priorityTier', header: 'Priority Tier' },
-                { key: 'matchedProduct', header: 'Matched Product' },
-                { key: 'llmClusterId', header: 'LLM Cluster ID' },
-                { key: 'llmClusterLabel', header: 'LLM Cluster Label' },
-                { key: 'llmClusterDescription', header: 'LLM Cluster Description' },
-                { key: 'llmClusterBatchId', header: 'LLM Cluster Batch' },
-                { key: 'llmClusterRunId', header: 'LLM Cluster Run' },
-              ] as ExportColumn<DomainPageRecord>[]}
-              filename={`domain-pages-${selectedClientCode}-${new Date().toISOString().split('T')[0]}`}
-            />
+            <ActionTooltip
+              title="Export Data"
+              description="Downloads the current filtered view as a CSV file for offline analysis and reporting."
+              input="Current Table View"
+              output="CSV File Download"
+            >
+              <ExportButton
+                data={sortedRecords}
+                columns={[
+                  { key: 'domain', header: 'Domain' },
+                  { key: 'locationCode', header: 'Location' },
+                  { key: 'pageURL', header: 'Page URL' },
+                  { key: 'estTrafficETV', header: 'Est. Traffic (ETV)' },
+                  { key: 'keywordsCount', header: 'Keywords Count' },
+                  { key: 'pageType', header: 'Page Type' },
+                  { key: 'pageIntent', header: 'Page Intent' },
+                  { key: 'isSeoRelevant', header: 'SEO Relevant' },
+                  { key: 'seoAction', header: 'SEO Action' },
+                  { key: 'classificationConfidence', header: 'Confidence' },
+                  { key: 'classificationMethod', header: 'Method' },
+                  { key: 'priorityScore', header: 'Priority Score' },
+                  { key: 'priorityTier', header: 'Priority Tier' },
+                  { key: 'matchedProduct', header: 'Matched Product' },
+                  { key: 'llmClusterId', header: 'LLM Cluster ID' },
+                  { key: 'llmClusterLabel', header: 'LLM Cluster Label' },
+                  { key: 'llmClusterDescription', header: 'LLM Cluster Description' },
+                  { key: 'llmClusterBatchId', header: 'LLM Cluster Batch' },
+                  { key: 'llmClusterRunId', header: 'LLM Cluster Run' },
+                ] as ExportColumn<DomainPageRecord>[]}
+                filename={`domain-pages-${selectedClientCode}-${new Date().toISOString().split('T')[0]}`}
+              />
+            </ActionTooltip>
           </div>
         </div>
 

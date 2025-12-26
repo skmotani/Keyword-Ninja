@@ -8,8 +8,10 @@
     "start": "next start -p 5000 -H 0.0.0.0"
   },
   "dependencies": {
+    "@types/pdfkit": "^0.17.4",
     "next": "^14.2.5",
     "openai": "^6.10.0",
+    "pdfkit": "^0.17.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "uuid": "^9.0.1"

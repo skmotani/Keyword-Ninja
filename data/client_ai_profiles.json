@@ -1,6 +1,6 @@
 [
   {
-    "id": "ai-profile-01-1765183023861",
+    "id": "ai-profile-01-1766633087809",
     "clientCode": "01",
     "clientName": "Meera",
     "primaryDomains": [
@@ -13,125 +13,117 @@
       "meeraind.in",
       "meera.ind.in"
     ],
-    "industryType": "textile_machinery",
-    "shortSummary": "Meera Industries specializes in advanced machinery solutions for the textile manufacturing industry, including twisting, winding, and heat setting equipment. The company is ISO-certified and delivers energy-efficient solutions globally.",
-    "businessModel": "manufacturing_and_ecommerce",
+    "industryType": "textile_manufacturing",
+    "shortSummary": "Meera Industries specializes in advanced twisting, winding, and heat setting machinery for the textile manufacturing industry, providing innovative and custom solutions.",
+    "businessModel": "B2B",
     "productLines": [
       "twisting machines",
       "winding machines",
-      "heat setting machines",
-      "cotton yarn machines",
-      "filament yarn machines"
+      "heat setting machinery"
     ],
     "targetCustomerSegments": [
       "textile manufacturers",
-      "yarn producers",
-      "exporters",
-      "OEMs"
+      "fabric producers",
+      "yarn producers"
     ],
     "targetGeographies": [
       "India",
-      "global"
+      "International"
     ],
     "coreTopics": [
-      "twisting technology",
-      "winding technology",
-      "heat setting technology",
       "textile machinery",
+      "manufacturing equipment",
       "energy-efficient machinery"
     ],
     "adjacentTopics": [
-      "textile production",
-      "yarn types",
-      "ISO certification",
-      "energy efficiency in manufacturing"
+      "yarn production",
+      "fabric technology",
+      "industrial machinery"
     ],
     "negativeTopics": [
-      "fashion",
-      "apparel",
-      "consumer goods",
-      "music",
-      "movies"
+      "textile jobs",
+      "weaving equipment",
+      "textile jobs"
     ],
     "domainTypePatterns": {
       "oemManufacturerIndicators": [
-        "industries",
-        "machinery",
         "manufacturer",
-        "supplier"
+        "supplier",
+        "exporter"
       ],
       "serviceProviderIndicators": [
-        "services",
-        "support",
-        "consulting"
+        "custom-built",
+        "solutions"
       ],
       "marketplaceIndicators": [
         "shop",
-        "buy",
-        "discount"
+        "store"
       ],
       "endCustomerIndicators": [
-        "products",
-        "catalog",
-        "online-store"
+        "for consumers",
+        "retail"
       ],
       "educationalMediaIndicators": [
-        "blog",
         "guide",
-        "tutorial"
+        "tutorial",
+        "how to"
       ]
     },
     "classificationIntentHints": {
       "transactionalKeywords": [
-        "buy twisting machine",
-        "purchase winding equipment",
-        "quote for textile machinery",
-        "winder machine price"
+        "buy",
+        "purchase",
+        "price",
+        "order",
+        "supplier"
       ],
       "informationalKeywords": [
-        "heat setting techniques",
-        "twisting machine benefits",
-        "textile machinery types"
+        "what is",
+        "how to",
+        "guide",
+        "benefits"
       ],
       "directoryKeywords": [
-        "textile machinery manufacturers",
-        "list of oem textile suppliers",
-        "textile machinery directory"
+        "list of",
+        "directory",
+        "suppliers list"
       ]
     },
     "businessRelevanceLogicNotes": {
-      "directCompetitorDefinition": "Domains offering similar textile machinery products or services.",
-      "potentialCustomerDefinition": "Domains looking to purchase textile manufacturing machinery or related services.",
-      "marketplaceChannelDefinition": "Platforms that enable buying and selling of textile machinery.",
-      "irrelevantDefinition": "Items that do not relate to textile manufacturing or machinery."
+      "directCompetitorDefinition": "Domains that offer similar textile machinery and manufacturing solutions.",
+      "potentialCustomerDefinition": "Companies and individuals looking to purchase textile manufacturing machines.",
+      "marketplaceChannelDefinition": "Directories or platforms where multiple suppliers of machinery are listed.",
+      "irrelevantDefinition": "Domains unrelated to textile machinery or job postings in unrelated fields."
     },
-    "generatedAt": "2025-12-08T08:37:03.862Z",
-    "updatedAt": "2025-12-08T08:37:03.863Z",
+    "generatedAt": "2025-12-25T03:24:47.809Z",
+    "updatedAt": "2025-12-25T03:28:43.128Z",
     "meta": {
       "clientName": "Meera",
-      "generatedAt": "2025-12-08T08:37:03.862Z",
-      "industryTag": "textile_machinery",
-      "summary": "Meera Industries offers advanced machinery for textile manufacturing including twisting, winding, and heat setting solutions, serving both local and global markets."
+      "generatedAt": "2025-12-25T03:24:47.809Z",
+      "industryTag": "textile manufacturing",
+      "summary": "Meera Industries specializes in sophisticated machinery for the textile sector."
     },
     "coreIdentity": {
-      "businessModel": "manufacturing_and_ecommerce",
+      "businessModel": "B2B",
       "primaryOfferTypes": [
-        "machines",
-        "equipment"
+        "textile machinery",
+        "industrial solutions"
       ],
       "productLines": [
         "twisting machines",
         "winding machines",
-        "heat setting machines"
+        "heat setting machinery"
       ],
-      "services": [],
+      "services": [
+        "custom machinery solutions"
+      ],
       "industriesServed": [
-        "textile industry"
+        "textile",
+        "manufacturing"
       ],
       "customerSegments": [
-        "manufacturers",
-        "OEMs",
-        "exporters"
+        "textile manufacturers",
+        "yarn producers"
       ]
     },
     "domains": {
@@ -143,159 +135,290 @@
         "meera.ind.in"
       ],
       "expectedTlds": [
-        ".com",
-        ".in"
+        "com",
+        "in"
       ],
       "positiveDomainHints": [
-        "machinery",
+        "ind",
         "industries",
-        "twisting",
-        "winding"
+        "textile"
       ],
       "negativeDomainHints": [
-        "music",
-        "game",
-        "movie",
-        "fashion"
+        "jobs",
+        "employment",
+        "weaving"
       ]
     },
     "urlClassificationSupport": {
       "productSlugPatterns": {
-        "description": "Identifies product pages related to textile machinery.",
+        "description": "Patterns indicating a product page for machinery.",
         "examples": [
-          "twisting-machine",
-          "winding-machine",
-          "heat-setting"
+          "product/",
+          "spun-yarn-twister",
+          "cone-to-cone-winder"
         ]
       },
       "categorySlugPatterns": {
-        "description": "Identifies category pages for grouping of products.",
+        "description": "Patterns indicating a category page for different machinery types.",
         "examples": [
-          "machines",
-          "textile-machinery",
-          "equipment"
+          "category/",
+          "machines/",
+          "twisting/"
         ]
       },
       "blogSlugPatterns": {
-        "description": "Identifies blog content related to textiles.",
+        "description": "Patterns indicating blog content on machinery or textile processes.",
         "examples": [
-          "blog",
-          "learning",
-          "tutorial"
+          "blog/",
+          "how-to/",
+          "guide/"
         ]
       },
       "resourceSlugPatterns": {
-        "description": "Identifies resources or educational content.",
+        "description": "Patterns indicating resource or educational pages.",
         "examples": [
-          "resources",
-          "guides",
-          "whitepapers"
+          "resources/",
+          "faq/",
+          "instruction/"
         ]
       },
       "supportSlugPatterns": {
-        "description": "Identifies customer support and help pages.",
+        "description": "Patterns indicating support pages for customers.",
         "examples": [
-          "support",
-          "help",
-          "contact"
+          "support/",
+          "help/",
+          "contact/"
         ]
       },
       "legalSlugPatterns": {
-        "description": "Identifies legal, privacy, or terms pages.",
+        "description": "Patterns for legal terms and conditions or policies.",
         "examples": [
-          "terms",
-          "privacy",
-          "legal"
+          "terms/",
+          "privacy/"
         ]
       },
       "accountSlugPatterns": {
-        "description": "Identifies account management related pages.",
+        "description": "Patterns indicating account management pages.",
         "examples": [
-          "account",
-          "login",
-          "profile"
+          "account/",
+          "login/",
+          "register/"
         ]
       },
       "careersSlugPatterns": {
-        "description": "Identifies career and job opportunity pages.",
+        "description": "Patterns for job openings or company careers.",
         "examples": [
-          "careers",
-          "jobs",
-          "join-us"
+          "careers/",
+          "jobs/"
         ]
       },
       "aboutCompanySlugPatterns": {
-        "description": "Identifies pages providing company information.",
+        "description": "Patterns indicating information about the company.",
         "examples": [
-          "about",
-          "company",
-          "mission"
+          "about/",
+          "our-story/",
+          "company-info/"
         ]
       },
       "marketingLandingPatterns": {
-        "description": "Identifies marketing focused pages or offers.",
+        "description": "Patterns indicating landing pages designed for marketing campaigns.",
         "examples": [
-          "offers",
-          "promotions",
-          "landing"
+          "landing/",
+          "promotion/",
+          "offer/"
         ]
       }
     },
     "keywordClassificationSupport": {
       "brandKeywords": {
-        "description": "Keywords related to the brand and its variants.",
+        "description": "Keywords directly related to the brand name and variations.",
         "examples": [
+          "meera",
           "meera industries",
-          "meera enterprises",
-          "meera ltd"
+          "meera industries ltd",
+          "meera enterprises"
         ]
       },
       "transactionalPhrases": {
-        "description": "Phrases suggesting intent to buy or request quotes.",
+        "description": "Phrases indicating transactional intent.",
         "examples": [
           "buy twisting machine",
-          "order winding equipment",
-          "quote for textile machinery"
+          "order winding machine",
+          "price of heat setting machinery"
         ]
       },
       "commercialResearchPhrases": {
-        "description": "Phrases for research before purchase.",
+        "description": "Phrases indicating commercial research intent.",
         "examples": [
           "best twisting machines",
-          "compare winding equipment",
-          "textile machine reviews"
+          "top winding machinery",
+          "reviews on textile equipment"
         ]
       },
       "informationalPhrases": {
-        "description": "Phrases that suggest looking for information.",
+        "description": "Phrases for informational content.",
         "examples": [
-          "what is a twisting machine",
-          "how does a winder work",
-          "benefits of heat setting"
+          "what is twisting machine",
+          "how to use heat setting machinery",
+          "guide to yarn production"
         ]
       },
       "directoryPhrases": {
-        "description": "Phrases typically associated with directories.",
+        "description": "Phrases indicating directory or listing intent.",
         "examples": [
-          "top textile manufacturers",
-          "machine suppliers list",
-          "textile equipment directories"
+          "list of textile machinery manufacturers",
+          "suppliers of winder machines"
         ]
       },
       "irrelevantKeywordTopics": {
-        "description": "Keywords that indicate irrelevant contexts.",
+        "description": "Keywords related to irrelevant topics.",
         "examples": [
-          "fashion equipment",
-          "movie props",
-          "music instruments"
+          "textile jobs",
+          "weaving",
+          "cotton textile"
         ]
       }
     },
     "businessRelevanceSupport": {
-      "directCompetitorDefinition": "Domains competing in textile machinery manufacturing.",
-      "potentialCustomerDefinition": "Domains seeking to purchase textile manufacturing equipment.",
-      "marketplaceDefinition": "Websites facilitating the buying and selling of textile machinery.",
-      "irrelevantDefinition": "Topics or domains not relevant to textile machinery."
+      "directCompetitorDefinition": "Any domain offering similar machinery for textile manufacturing.",
+      "potentialCustomerDefinition": "Entities looking to buy textile machinery and equipment.",
+      "marketplaceDefinition": "Platforms grouping various textile machinery suppliers.",
+      "irrelevantDefinition": "Domains not associated with textile equipment or services."
+    },
+    "matchingDictionary": {
+      "version": 1,
+      "brandTokens": [
+        "meera",
+        "meeraind",
+        "meera enterprises",
+        "meera industries ltd",
+        "meera industries limited",
+        "meera exports",
+        "meera corporation",
+        "meera laser solutions",
+        "meera glass industries"
+      ],
+      "negativeTokens": [
+        "jobs",
+        "salary",
+        "weaving",
+        "employment",
+        "cheap",
+        "repair",
+        "used machinery",
+        "second hand",
+        "scrap"
+      ],
+      "industryIndicators": [
+        "textile",
+        "machinery",
+        "manufacturer",
+        "equipment",
+        "textile production",
+        "textile equipment",
+        "fabric production",
+        "textile technology"
+      ],
+      "productLineTokens": {
+        "TWISTING": [
+          "twisting machine",
+          "twisting machines",
+          "cotton yarn twisting machine",
+          "ring twister",
+          "yarn twister",
+          "rotary yarn twister",
+          "fiber twisting machine"
+        ],
+        "WINDING": [
+          "winding machine",
+          "cone winder",
+          "cone winder machine",
+          "winders",
+          "automatic winding machine",
+          "yarn winding machine",
+          "cone winding"
+        ],
+        "HEAT_SETTING": [
+          "heat setting",
+          "heat setting machinery",
+          "heat setting process",
+          "heat setting unit",
+          "heat treatment machine",
+          "thermal setting machine"
+        ],
+        "OTHER": [
+          "textile finishing",
+          "fiber processing equipment",
+          "yarn processing machine"
+        ]
+      },
+      "coreTokens": [
+        "textile",
+        "machinery",
+        "energy-efficient",
+        "manufacturing",
+        "advanced",
+        "innovation",
+        "textile solutions",
+        "high-performance",
+        "customized"
+      ],
+      "adjacentTokens": [
+        "yarn",
+        "fabric",
+        "production",
+        "industrial",
+        "thread",
+        "fiber",
+        "spinning",
+        "weaving technology"
+      ],
+      "intentTokens": {
+        "TRANSACTIONAL": [
+          "buy",
+          "purchase",
+          "supplier",
+          "manufacturer",
+          "for sale",
+          "order",
+          "request quote",
+          "get estimate"
+        ],
+        "COMMERCIAL_RESEARCH": [
+          "best",
+          "top",
+          "reviews",
+          "comparison",
+          "specs",
+          "cost analysis",
+          "market trends",
+          "industry standards"
+        ],
+        "INFORMATIONAL": [
+          "what is",
+          "how to",
+          "guide",
+          "benefits",
+          "applications",
+          "processes",
+          "tutorial",
+          "overview"
+        ],
+        "DIRECTORY": [
+          "list of",
+          "directory",
+          "suppliers list",
+          "manufacturers directory",
+          "vendors list"
+        ]
+      },
+      "stopTokens": [
+        "the",
+        "a",
+        "on",
+        "in",
+        "for"
+      ]
     }
   },
   {
@@ -533,14 +656,14 @@
     "updatedAt": "2025-12-07T04:29:35.550Z"
   },
   {
-    "id": "ai-profile-03-1766565120004",
+    "id": "ai-profile-03-1766631593625",
     "clientCode": "03",
     "clientName": "MEERA-CCP",
     "primaryDomains": [
-      "cosmofilms.com",
-      "starflexifilms.com",
-      "jpflfilms.com",
-      "kanodiaindia.com"
+      "https://www.cosmofilms.com",
+      "https://www.starflexifilms.com",
+      "https://www.jpflfilms.com/",
+      "https://kanodiaindia.com"
     ],
     "domainsUsedForGeneration": [
       "https://www.cosmofilms.com",
@@ -548,286 +671,343 @@
       "https://www.jpflfilms.com/",
       "https://kanodiaindia.com"
     ],
-    "industryType": "packaging_manufacturing",
-    "shortSummary": "Meera-CCP specializes in the manufacturing and supply of clear films and various types of packaging films, serving diverse sectors with innovative packaging solutions.",
-    "businessModel": "B2B manufacturing",
+    "industryType": "packaging",
+    "shortSummary": "Manufacturer of CPP and flexible packaging films, serving diverse industries with innovative packaging solutions.",
+    "businessModel": "B2B Manufacturing",
     "productLines": [
-      "CPP films",
-      "BOPP films",
-      "BOPET films",
-      "flexible packaging",
-      "lamination products"
+      "CPP Films",
+      "BOPP Films",
+      "Polyester Films",
+      "Flexible Packaging",
+      "Coated Films"
     ],
     "targetCustomerSegments": [
-      "packaging manufacturers",
-      "food and beverage companies",
-      "cosmetic and pharmaceutical industries"
+      "Packaging Industry",
+      "Food and Beverage",
+      "Consumer Goods",
+      "Pharmaceuticals"
     ],
     "targetGeographies": [
       "India",
-      "Asia",
-      "global markets"
+      "Asia-Pacific",
+      "Global"
     ],
     "coreTopics": [
       "packaging films",
-      "film manufacturing",
-      "flexible packaging solutions"
+      "CPP films",
+      "BOPP films",
+      "flexible packaging"
     ],
     "adjacentTopics": [
-      "sustainable packaging",
-      "innovations in food preservation",
-      "lamination technologies"
+      "lamination",
+      "manufacturing processes",
+      "printing technologies",
+      "cosmetic packaging"
     ],
     "negativeTopics": [
-      "movie downloads",
-      "film industry entertainment",
-      "unrelated movie content"
+      "textiles",
+      "jobs",
+      "weaving",
+      "textile job"
     ],
     "domainTypePatterns": {
       "oemManufacturerIndicators": [
         "manufacturer",
-        "supplier",
-        "produces",
-        "specializes"
+        "suppliers"
       ],
       "serviceProviderIndicators": [
         "services",
-        "supply chain",
-        "consulting"
+        "solutions"
       ],
-      "marketplaceIndicators": [
-        "shop",
-        "store",
-        "buy",
-        "purchase"
-      ],
+      "marketplaceIndicators": [],
       "endCustomerIndicators": [
-        "order online",
-        "direct purchase",
-        "contact us"
+        "buy",
+        "order"
       ],
       "educationalMediaIndicators": [
-        "blog",
         "guide",
-        "how-to",
-        "resources"
+        "tutorial"
       ]
     },
     "classificationIntentHints": {
       "transactionalKeywords": [
         "buy cpp films",
-        "order flexible packaging",
-        "request for quote",
-        "bopp films supplier"
+        "order bopp films",
+        "custom packaging solutions"
       ],
       "informationalKeywords": [
-        "packaging films applications",
-        "benefits of cpp films",
-        "how to use bopp films"
+        "what are cpp films",
+        "benefits of bopp films",
+        "packaging film applications"
       ],
       "directoryKeywords": [
-        "packaging manufacturers",
-        "film suppliers",
-        "packaging industry directory"
+        "packaging suppliers list",
+        "film manufacturers directory"
       ]
     },
     "businessRelevanceLogicNotes": {
-      "directCompetitorDefinition": "Companies offering similar packaging film products and services, targeting the same customer segments.",
-      "potentialCustomerDefinition": "Firms needing packaging solutions for their products across various sectors, including food, beverages, cosmetics, and pharmaceuticals.",
-      "marketplaceChannelDefinition": "Online platforms specializing in the sale of packaging products, materials suppliers, and related services.",
-      "irrelevantDefinition": "Domains primarily focusing on film entertainment, movie downloads, and unrelated industries such as music or gaming."
+      "directCompetitorDefinition": "Companies that manufacture CPP, BOPP, and polyester films catering to similar markets.",
+      "potentialCustomerDefinition": "Businesses in need of packaging solutions across various sectors including food, cosmetics, and pharmaceuticals.",
+      "marketplaceChannelDefinition": "Platforms where multiple suppliers of packaging materials can offer their products to buyers.",
+      "irrelevantDefinition": "Domains focused on textile manufacturing or unrelated job industries."
     },
-    "generatedAt": "2025-12-24T08:32:00.004Z",
-    "updatedAt": "2025-12-24T09:39:49.314Z",
+    "generatedAt": "2025-12-25T02:59:53.625Z",
+    "updatedAt": "2025-12-25T02:59:53.626Z",
     "meta": {
       "clientName": "MEERA-CCP",
-      "generatedAt": "2025-12-24T08:32:00.004Z",
-      "industryTag": "packaging_manufacturing",
-      "summary": "Meera-CCP is a leader in manufacturing clear films and various packaging solutions, catering to a wide range of industries with innovative and sustainable products."
+      "generatedAt": "2025-12-25T02:59:53.625Z",
+      "industryTag": "packaging",
+      "summary": "MEERA-CCP specializes in the manufacturing of innovative packaging films."
     },
     "coreIdentity": {
-      "businessModel": "B2B manufacturing",
+      "businessModel": "B2B Manufacturing",
       "primaryOfferTypes": [
-        "films",
-        "packaging solutions"
+        "packaging films",
+        "coated films",
+        "laminates"
       ],
       "productLines": [
-        "CPP films"
+        "CPP Films",
+        "BOPP Films",
+        "Polyester Films"
       ],
       "services": [
-        "custom film manufacturing"
+        "custom film solutions",
+        "technical support"
       ],
       "industriesServed": [
-        "food and beverage",
-        "pharmaceuticals",
-        "cosmetics"
+        "food packaging",
+        "beverage packaging",
+        "pharmaceutical packaging",
+        "consumer goods packaging"
       ],
       "customerSegments": [
-        "B2B clients",
-        "manufacturers",
-        "end-users in packaging"
+        "brand owners",
+        "packaging converters",
+        "distributors"
       ]
     },
     "domains": {
       "primaryDomains": [
-        "cosmofilms.com",
-        "starflexifilms.com",
-        "jpflfilms.com",
-        "kanodiaindia.com"
+        "https://www.cosmofilms.com",
+        "https://www.starflexifilms.com",
+        "https://www.jpflfilms.com/",
+        "https://kanodiaindia.com"
       ],
       "secondaryDomains": [],
       "expectedTlds": [
-        ".com",
-        ".in"
+        ".com"
       ],
       "positiveDomainHints": [
         "films",
-        "packaging",
-        "manufacturer"
+        "packaging"
       ],
       "negativeDomainHints": [
-        "movie",
-        "download",
-        "entertainment"
+        "textile",
+        "jobs"
       ]
     },
     "urlClassificationSupport": {
       "productSlugPatterns": {
-        "description": "Identifies pages related to specific products offered by the client.",
+        "description": "Patterns indicating product-related pages.",
         "examples": [
+          "products",
           "cpp-films",
-          "bopp-films",
-          "packaging-solutions"
+          "bopp-films"
         ]
       },
       "categorySlugPatterns": {
-        "description": "Identifies pages grouping similar types of products.",
+        "description": "Patterns for category level pages.",
         "examples": [
-          "packaging-films",
-          "flexible-packaging",
-          "lamination-products"
+          "cpp-packaging",
+          "bopp-packaging",
+          "films"
         ]
       },
       "blogSlugPatterns": {
-        "description": "Identifies educational content and articles related to the industry.",
+        "description": "Patterns for blog or informational pages.",
         "examples": [
           "blog",
-          "resources",
+          "articles",
           "guides"
         ]
       },
       "resourceSlugPatterns": {
-        "description": "Identifies downloadable resources and tools.",
+        "description": "Patterns for downloadable resources.",
         "examples": [
-          "downloads",
           "resources",
-          "toolkits"
+          "downloads"
         ]
       },
       "supportSlugPatterns": {
-        "description": "Identifies customer support and help pages.",
+        "description": "Patterns for customer support pages.",
         "examples": [
           "support",
-          "contact-us",
-          "faqs"
+          "contact-us"
         ]
       },
       "legalSlugPatterns": {
-        "description": "Identifies legal pages such as terms and privacy.",
+        "description": "Patterns for legal pages such as terms or privacy.",
         "examples": [
-          "terms-of-service",
           "privacy-policy",
-          "legal-notice"
+          "terms-and-conditions"
         ]
       },
       "accountSlugPatterns": {
-        "description": "Identifies pages for user account management.",
+        "description": "Patterns indicating account management pages.",
         "examples": [
+          "account",
           "login",
-          "register",
-          "account"
+          "register"
         ]
       },
       "careersSlugPatterns": {
-        "description": "Identifies pages for career and job opportunities.",
+        "description": "Patterns indicating job and career pages.",
         "examples": [
           "careers",
-          "jobs",
-          "work-with-us"
+          "jobs"
         ]
       },
       "aboutCompanySlugPatterns": {
-        "description": "Identifies company information and history.",
+        "description": "Patterns for company information pages.",
         "examples": [
           "about-us",
-          "company",
-          "our-history"
+          "company-profile"
         ]
       },
       "marketingLandingPatterns": {
-        "description": "Identifies pages meant for marketing campaigns.",
+        "description": "Patterns for landing pages aimed at marketing.",
         "examples": [
-          "promotions",
-          "special-offers",
-          "landing-page"
+          "landing",
+          "offers"
         ]
       }
     },
     "keywordClassificationSupport": {
       "brandKeywords": {
-        "description": "Identifies keywords related to the client's brand or products.",
+        "description": "Keywords directly related to the brand.",
         "examples": [
-          "meera cpp",
-          "jpfl films",
-          "kanodia films"
+          "meera films",
+          "meera packaging"
         ]
       },
       "transactionalPhrases": {
-        "description": "Indicates an intent to buy or request quotes related to products.",
+        "description": "Common phrases indicating purchase intent.",
         "examples": [
           "buy cpp films",
-          "order packaging films",
-          "request a quote for bopp"
+          "order bopp films"
         ]
       },
       "commercialResearchPhrases": {
-        "description": "Keywords indicating a comparison or research intent.",
+        "description": "Phrases used for comparing products or gathering prices.",
         "examples": [
-          "bopp films manufacturers",
-          "best packaging films in india",
-          "comparing cpp and bopp films"
+          "best packaging films",
+          "top bopp suppliers"
         ]
       },
       "informationalPhrases": {
-        "description": "Keywords focusing on educational content.",
+        "description": "Phrases for seeking information.",
         "examples": [
-          "benefits of cpp films",
-          "what is bopp",
-          "how to choose packaging films"
+          "what are cpp films",
+          "applications of bopp films"
         ]
       },
       "directoryPhrases": {
-        "description": "Keywords relating to finding suppliers or manufacturers.",
+        "description": "Phrases used for finding lists or directories.",
         "examples": [
-          "packaging suppliers",
-          "film manufacturers list",
-          "bopp films directory"
+          "packaging film suppliers list",
+          "film manufacturers directory"
         ]
       },
       "irrelevantKeywordTopics": {
-        "description": "Keywords that might confuse context due to similar terms.",
+        "description": "Keywords indicating irrelevant topics.",
         "examples": [
-          "movies download",
-          "film industry news",
-          "entertainment updates"
+          "jobs",
+          "careers in weaving",
+          "textile jobs"
         ]
       }
     },
     "businessRelevanceSupport": {
-      "directCompetitorDefinition": "Companies providing similar or substitute packaging films.",
-      "potentialCustomerDefinition": "Businesses looking for innovative film solutions and packaging products.",
-      "marketplaceDefinition": "Platforms where film products are sold to consumers or businesses.",
-      "irrelevantDefinition": "Providers that primarily focus on non-packaging related content."
+      "directCompetitorDefinition": "Companies producing similar films and products targeting the same customer base.",
+      "potentialCustomerDefinition": "Entities in need of packaging solutions across various sectors.",
+      "marketplaceDefinition": "Platforms hosting various packaging products from multiple manufacturers.",
+      "irrelevantDefinition": "Businesses focused on unrelated industries such as textiles or weaving."
+    },
+    "matchingDictionary": {
+      "version": 1,
+      "brandTokens": [
+        "meera",
+        "meera ccp",
+        "meera films"
+      ],
+      "negativeTokens": [
+        "weaving",
+        "jobs",
+        "textiles"
+      ],
+      "industryIndicators": [
+        "packaging",
+        "films",
+        "cpp",
+        "bopp"
+      ],
+      "productLineTokens": {
+        "TWISTING": [],
+        "WINDING": [],
+        "HEAT_SETTING": [],
+        "OTHER": [
+          "cpp films",
+          "bopp films",
+          "polyester films",
+          "coated films",
+          "flexible packaging"
+        ]
+      },
+      "coreTokens": [
+        "packaging",
+        "films",
+        "cpp",
+        "bopp",
+        "flexible"
+      ],
+      "adjacentTokens": [
+        "lamination",
+        "manufacturing",
+        "innovative",
+        "cosmetic"
+      ],
+      "intentTokens": {
+        "TRANSACTIONAL": [
+          "buy",
+          "order",
+          "purchase",
+          "cost"
+        ],
+        "COMMERCIAL_RESEARCH": [
+          "best",
+          "top",
+          "comparison",
+          "reviews"
+        ],
+        "INFORMATIONAL": [
+          "what is",
+          "how to",
+          "guide",
+          "applications"
+        ],
+        "DIRECTORY": [
+          "suppliers list",
+          "directory"
+        ]
+      },
+      "stopTokens": [
+        "the",
+        "a",
+        "on",
+        "in",
+        "for"
+      ]
     }
   }
 ]

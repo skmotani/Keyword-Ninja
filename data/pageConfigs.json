@@ -66,13 +66,74 @@
   },
   {
     "path": "/keywords/domain-pages",
-    "updatedAt": "2025-12-24T15:32:18.281Z",
+    "updatedAt": "2025-12-24T17:00:16.232Z",
     "comments": [
+      {
+        "id": "ff2d58b3-902a-442c-9bd4-89aa3dae7ed8",
+        "text": "https://chatgpt.com/share/694c1c02-cbf8-8010-9804-04ef64e33e21 - learn proper competitive classification",
+        "createdAt": "2025-12-24T17:00:15.910Z",
+        "updatedAt": "2025-12-24T17:00:15.910Z"
+      },
+      {
+        "id": "88ccd011-aed9-4056-910e-56449c53f148",
+        "text": "Also Show the count of all the filter with inside values seperately to know ow mny blog a company has written etc",
+        "createdAt": "2025-12-24T15:54:40.264Z",
+        "updatedAt": "2025-12-24T15:54:40.264Z"
+      },
+      {
+        "id": "3194f72f-f02c-4c23-8df4-c1fef5f4910a",
+        "text": "WE should also add a button to show combind report where etv (traffic) and KW showuld be shown",
+        "createdAt": "2025-12-24T15:38:59.946Z",
+        "updatedAt": "2025-12-24T15:38:59.946Z"
+      },
+      {
+        "id": "3803c13f-2f14-4bd5-bd2f-0c7b084f85a3",
+        "text": "change col name Traffic to ETV (USD / month)",
+        "createdAt": "2025-12-24T15:37:04.994Z",
+        "updatedAt": "2025-12-24T15:43:09.227Z"
+      },
       {
         "id": "e99e7601-f47e-4a19-966e-41bee72807e4",
         "text": "add tool tip on every command button",
         "createdAt": "2025-12-24T15:32:18.265Z",
         "updatedAt": "2025-12-24T15:32:18.265Z"
+      }
+    ]
+  },
+  {
+    "path": "/keywords/domain-keywords",
+    "updatedAt": "2025-12-24T18:30:33.085Z",
+    "userDescription": "Keyword ETV = Search Volume × CTR(position) × CPC",
+    "comments": [
+      {
+        "id": "8be0540c-777b-4358-8252-b205895e730e",
+        "text": "lock the heder table header when we go down",
+        "createdAt": "2025-12-24T18:30:33.064Z",
+        "updatedAt": "2025-12-24T18:30:33.064Z"
+      },
+      {
+        "id": "0a1065dc-ff03-4456-a07e-66840d397d00",
+        "text": "make option to add the selected keyword to keyword master or some where elase to know about the customer key word, intent, etv, top pages to make a strategy for content and website",
+        "createdAt": "2025-12-24T16:23:28.854Z",
+        "updatedAt": "2025-12-24T16:23:28.854Z"
+      },
+      {
+        "id": "c5ede729-f15d-449a-8f86-9540efb62468",
+        "text": "calculate etv value from the coloumn avaialble",
+        "createdAt": "2025-12-24T16:22:30.710Z",
+        "updatedAt": "2025-12-24T16:22:30.710Z"
+      },
+      {
+        "id": "4394c923-6909-44f5-ac4a-d3c700edfe64",
+        "text": "add intent classificatin of each keyword to know ",
+        "createdAt": "2025-12-24T16:22:18.386Z",
+        "updatedAt": "2025-12-24T16:22:18.386Z"
+      },
+      {
+        "id": "0d9df98a-d77b-4e92-b251-29a862b4e489",
+        "text": "tag each keyword if that matches the client product or not",
+        "createdAt": "2025-12-24T16:21:53.849Z",
+        "updatedAt": "2025-12-24T16:21:53.849Z"
       }
     ]
   }
