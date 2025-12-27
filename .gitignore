@@ -36,6 +36,7 @@ next-env.d.ts
 data/serp_raw/
 data/jobs/
 data/serp_results/
+data/api_logs/
 data/*.json
 !data/client_positions.json
 !data/curated_keywords.json
