@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { postSerpTaskChunk, getCompletedSerpTasks } from '@/lib/dataforseoStandard';
+import { postSerpTaskChunk, waitForSerpResults } from '@/lib/dataforseoStandard';
 import path from 'path';
 import fs from 'fs';
 
@@ -25,21 +25,19 @@ export async function GET(req: Request) {
         // 1. Post
         const taskIds = await postSerpTaskChunk([keyword], locCode, 50, testJobId, logOptions);
 
-        // 2. Poll
-        let results: any[] = [];
-        let attempts = 0;
+        // 2. Poll (using new waitForSerpResults)
+        const wrappers = await waitForSerpResults(taskIds, logOptions);
 
-        while (results.length === 0 && attempts < 30) {
-            await new Promise(r => setTimeout(r, 2000));
-            attempts++;
-            const attemptLog = { ...logOptions, attempt: attempts };
-            results = await getCompletedSerpTasks(taskIds, attemptLog);
-        }
+        // Extract successful results
+        const results = wrappers
+            .filter(w => w.status === 'COMPLETED' && w.data)
+            .map(w => w.data);
 
         if (results.length === 0) {
             return NextResponse.json({
                 ok: false,
-                error: 'Timed out waiting for SERP',
+                error: 'Timed out or failed to get SERP',
+                details: wrappers,
                 rawFolderPath: rawDir
             });
         }
@@ -48,8 +46,6 @@ export async function GET(req: Request) {
         // Parse basic info to prove success
         let organicCount = 0;
         let topDomains: string[] = [];
-        let matchedRank = null;
-        let matchedDomain = null;
 
         if (task.result && task.result[0] && task.result[0].items) {
             const items = task.result[0].items.filter((i: any) => i.type === 'organic');

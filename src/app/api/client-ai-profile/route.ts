@@ -35,6 +35,16 @@ export async function PUT(request: NextRequest) {
       );
     }
 
+    // --- GUARD PROMPT REQUIREMENT: Kill Harvest Terms ---
+    // Prevent writes to matchingDictionary (Manual Rules)
+    if (body.matchingDictionary) {
+      return NextResponse.json(
+        { error: 'HARVEST_TERMS_DISABLED', message: 'Harvest Terms / Manual Dictionary updates are deprecated. Use Tag All (Rules).' },
+        { status: 400 } // Or 410 Gone? 400 is fine for Bad Request.
+      );
+    }
+    // ----------------------------------------------------
+
     await saveAiProfile(body);
     return NextResponse.json({ success: true });
   } catch (error) {

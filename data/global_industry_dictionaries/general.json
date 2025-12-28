@@ -1,0 +1,327 @@
+{
+  "industryKey": "general",
+  "version": 1,
+  "updatedAt": "2025-12-27T08:17:00.951Z",
+  "terms": [
+    {
+      "term": "machine",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 3,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "yarn",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 3,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "textile",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 3,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "machines",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 3,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "twisting",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 3,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "cotton",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 3,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "rope",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 3,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "winding",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 3,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "machinery",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 3,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "thread",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "twister",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "ring",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "winder",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "manufacturing",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "sewing",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "doubling",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "dyneema",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "surat",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "tfo",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "twist",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "embroidery",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "carpet",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "doubler",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "fibers",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "meera",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "yarns",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "polyester",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "monofilament",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "covering",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "weavetech",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "limited",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 2,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "industrial",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 2,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "www",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 2,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "www swastik",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 2,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "winding",
+      "ngramType": "trigram",
+      "bucket": "include",
+      "supportCount": 2,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "www swastik",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 2,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "loom",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "spinning",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "weaving",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "fabric",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    }
+  ]
+}

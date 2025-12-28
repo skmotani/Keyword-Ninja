@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import PageHeader from '@/components/PageHeader';
 import ExportButton, { ExportColumn } from '@/components/ExportButton';
 import HelpInfoIcon from '@/components/HelpInfoIcon';
-import MatchingDictionaryEditor from '@/components/MatchingDictionaryEditor';
+
 import { Client, DomainProfile, ClientAIProfile } from '@/types';
 
 const MAX_DOMAINS = 5;
@@ -1052,16 +1052,10 @@ export default function ClientsPage() {
                               </div>
 
                               {/* Matching Dictionary Editor (Interactive) */}
-                              <MatchingDictionaryEditor
-                                clientCode={client.code}
-                                profile={aiProfiles[client.code]}
-                                onProfileUpdated={(p) => {
-                                  setAiProfiles(prev => ({
-                                    ...prev,
-                                    [client.code]: p
-                                  }));
-                                }}
-                              />
+                              {/* Matching Dictionary Editor (Interactive) REMOVED */}
+                              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center text-sm text-gray-500">
+                                <em>Manual Dictionary Editing is disabled. Use Tag All (Rules) instead.</em>
+                              </div>
 
                               {/* Business Relevance Logic Notes */}
                               <div className="bg-slate-50 rounded-lg p-4">

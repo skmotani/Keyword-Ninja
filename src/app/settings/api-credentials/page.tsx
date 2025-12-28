@@ -322,6 +322,8 @@ export default function ApiCredentialsPage() {
           setFormData={setFormData}
           onClose={closeModal}
           onSubmit={handleSubmit}
+          isSubmitting={isSubmitting}
+          error={submitError}
         />
       )}
 

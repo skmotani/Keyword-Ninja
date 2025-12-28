@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import PageHeader from '@/components/PageHeader';
 
 const categories = [
   {
@@ -31,38 +32,38 @@ const categories = [
 ];
 
 const industries = [
-  { 
-    title: 'Packaging Materials', 
+  {
+    title: 'Packaging Materials',
     description: 'High-performance twisting solutions for packaging yarn and reinforcement threads.',
     href: '/twisting-machines/applications/industrial-yarn',
     image: '/images/hub/industrial_yarn_spoo_7565ea41.jpg'
   },
-  { 
-    title: 'Carpet & Rugs', 
+  {
+    title: 'Carpet & Rugs',
     description: 'Specialized heat setting and bulking machinery for carpet yarn processing.',
     href: '/twisting-machines/applications/carpet-yarn',
     image: '/images/hub/carpet_manufacturing_5649cc7e.jpg'
   },
-  { 
-    title: 'Technical Textiles', 
+  {
+    title: 'Technical Textiles',
     description: 'Advanced machinery solutions for high-performance technical textiles.',
     href: '/twisting-machines/applications/rope-cordage',
     image: '/images/hub/rope_cordage_manufac_52827f8c.jpg'
   },
-  { 
-    title: 'Sewing Industry', 
+  {
+    title: 'Sewing Industry',
     description: 'Reliable machinery for high-quality sewing threads and embroidery yarns.',
     href: '/twisting-machines/applications/embroidery-thread',
     image: '/images/hub/embroidery_thread_co_1f1ff2a7.jpg'
   },
-  { 
-    title: 'Medical Textiles', 
+  {
+    title: 'Medical Textiles',
     description: 'Precision solutions for surgical sutures and medical-grade yarns.',
     href: '/twisting-machines/applications/medical-suture',
     image: '/images/hub/medical_sutures_surg_2c755785.jpg'
   },
-  { 
-    title: 'Fishing & Marine', 
+  {
+    title: 'Fishing & Marine',
     description: 'Heavy-duty solutions for fishing lines and marine rope manufacturing.',
     href: '/twisting-machines/applications/monofilament',
     image: '/images/hub/monofilament_fishing_3db275be.jpg'
@@ -92,6 +93,9 @@ const comparisons = [
 export default function TwistingMachinesHub() {
   return (
     <div className="min-h-screen bg-white">
+      <div className="max-w-7xl mx-auto px-4 pt-4">
+        <PageHeader title="Twisting Machines Hub" description="Hub page for twisting machines." />
+      </div>
       {/* Hero Section - Meeraind Style */}
       <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 text-white">
         <div className="max-w-7xl mx-auto px-4 py-20">
@@ -106,17 +110,17 @@ export default function TwistingMachinesHub() {
               Welcome to the World of <span className="text-white font-semibold">SmartPower. SmartOutput. SmartUser.</span> Machines engineered to save energy, boost output, and simplify operation.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a 
-                href="https://meeraind.com/contact" 
-                target="_blank" 
+              <a
+                href="https://meeraind.com/contact"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg"
               >
                 Request Custom Quote
               </a>
-              <a 
-                href="https://meeraind.com/#products" 
-                target="_blank" 
+              <a
+                href="https://meeraind.com/#products"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg border border-white/30 transition-all"
               >
@@ -155,14 +159,13 @@ export default function TwistingMachinesHub() {
 
         <div className="space-y-8">
           {categories.map((category, index) => (
-            <div 
+            <div
               key={category.href}
-              className={`group relative bg-slate-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all ${
-                index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-              } md:flex`}
+              className={`group relative bg-slate-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                } md:flex`}
             >
               <div className="md:w-1/2 relative h-64 md:h-auto min-h-[300px]">
-                <Image 
+                <Image
                   src={category.image}
                   alt={category.title}
                   fill
@@ -172,7 +175,7 @@ export default function TwistingMachinesHub() {
               <div className="md:w-1/2 p-8 flex flex-col justify-center">
                 <div className="flex flex-wrap gap-2 mb-4">
                   {category.tags.map((tag) => (
-                    <span 
+                    <span
                       key={tag}
                       className="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full"
                     >
@@ -183,7 +186,7 @@ export default function TwistingMachinesHub() {
                 <h3 className="text-2xl font-bold text-slate-900 mb-3">{category.title}</h3>
                 <p className="text-slate-600 mb-6">{category.description}</p>
                 <div className="flex flex-wrap gap-3">
-                  <Link 
+                  <Link
                     href={category.href}
                     className="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-lg transition-colors"
                   >
@@ -192,7 +195,7 @@ export default function TwistingMachinesHub() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </Link>
-                  <a 
+                  <a
                     href={category.externalLink}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -225,12 +228,12 @@ export default function TwistingMachinesHub() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {industries.map((industry) => (
-              <Link 
+              <Link
                 key={industry.href}
                 href={industry.href}
                 className="group relative h-64 rounded-xl overflow-hidden"
               >
-                <Image 
+                <Image
                   src={industry.image}
                   alt={industry.title}
                   fill
@@ -333,7 +336,7 @@ export default function TwistingMachinesHub() {
               </div>
               <div className="space-y-3">
                 {guides.map((guide) => (
-                  <Link 
+                  <Link
                     key={guide.href}
                     href={guide.href}
                     className="flex items-center justify-between p-4 rounded-xl bg-slate-50 hover:bg-blue-50 transition-colors group"
@@ -359,7 +362,7 @@ export default function TwistingMachinesHub() {
               </div>
               <div className="space-y-3">
                 {comparisons.map((comp) => (
-                  <Link 
+                  <Link
                     key={comp.href}
                     href={comp.href}
                     className="flex items-center justify-between p-4 rounded-xl bg-slate-50 hover:bg-orange-50 transition-colors group"
@@ -385,9 +388,9 @@ export default function TwistingMachinesHub() {
           <p className="text-slate-300 mb-8 max-w-2xl mx-auto">
             We custom-build fully automated yarn-processing machines—from 20 to 200,000 denier, whether bamboo, silk, carbon, aramid, or any fiber—to your exact specs.
           </p>
-          <a 
-            href="https://meeraind.com/contact" 
-            target="_blank" 
+          <a
+            href="https://meeraind.com/contact"
+            target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg"
           >

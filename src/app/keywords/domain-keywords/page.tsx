@@ -1,15 +1,17 @@
 'use client';
 
-import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef, Fragment } from 'react';
 import PageHeader from '@/components/PageHeader';
 import ExportButton, { ExportColumn } from '@/components/ExportButton';
-import HarvestModal from '@/components/HarvestModal';
+import AiKwBuilderPanel from './_components/AiKwBuilderPanel';
 import { Client, KeywordTag, FitStatus, ProductLine, ClientAIProfile } from '@/types';
 
 // Helper for clientside normalization matches backend
 const normalizeKeyword = (keyword: string): string => {
   return keyword.trim().toLowerCase().replace(/\s+/g, ' ');
 };
+
+
 
 interface Competitor {
   id: string;
@@ -148,6 +150,9 @@ function MatchingDictionaryPanel({ profile, collapsed, onToggle }: { profile: Cl
   const brandTokens = profile.matchingDictionary.brandTokens || [];
   const negativeTokens = profile.matchingDictionary.negativeTokens || [];
 
+  // Safe access for AI Terms (Client Dictionary) from the new field
+  const aiTerms = (profile as any).ai_kw_builder_term_dictionary?.terms || [];
+
   return (
     <div className="bg-white rounded-lg shadow mb-4 border border-gray-100">
       <div
@@ -184,11 +189,6 @@ function MatchingDictionaryPanel({ profile, collapsed, onToggle }: { profile: Cl
           <div>
             <div className="font-semibold text-blue-700 mb-1">Product Lines</div>
             <div className="space-y-2 max-h-32 overflow-y-auto">
-              {/* ProductLineMap is now Record<token, lines[]>. Inverted display needed or deprecated? 
-                    The previous view showed productLineTokens (Line -> Tokens).
-                    New schema has productLineMap (Token -> Lines).
-                    Let's just show a note or simplified view for now to fix error.
-                */}
               <div className="text-gray-400 text-[10px] italic">View on Client Profile for details</div>
             </div>
           </div>
@@ -201,89 +201,21 @@ function MatchingDictionaryPanel({ profile, collapsed, onToggle }: { profile: Cl
                 {(profile.matchingDictionary.positiveTokens?.length || 0) > 15 && <span className="text-gray-400">...</span>}
               </div>
             </div>
+
+            {/* AI Dictionary Section Added Here */}
+            <div className="mt-2 pt-2 border-t border-gray-100">
+              <div className="font-semibold text-indigo-700 mb-1">AI KW builder Data</div>
+              <div className="text-gray-500">
+                {aiTerms.length > 0 ? (
+                  <span>{aiTerms.length} terms saved in Client Profile</span>
+                ) : (
+                  <span className="italic text-gray-400">No AI terms saved yet</span>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       )}
-    </div>
-  );
-}
-
-// Helper component for Add Token Modal
-function AddTokenModal({ isOpen, onClose, initialValue, onSave, products }: { isOpen: boolean, onClose: () => void, initialValue: string, onSave: (type: string, value: string, productKey?: string) => void, products: string[] }) {
-  const [token, setToken] = useState(initialValue);
-  const [type, setType] = useState('negativeTokens');
-  const [productKey, setProductKey] = useState(products[0] || '');
-
-  useEffect(() => {
-    if (isOpen) setToken(initialValue);
-  }, [isOpen, initialValue]);
-
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
-        <h3 className="text-lg font-medium text-gray-900 mb-4">Add Dictionary Token</h3>
-
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Token (Word or Phrase)</label>
-            <input
-              type="text"
-              value={token}
-              onChange={(e) => setToken(e.target.value)}
-              className="w-full border rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500"
-              autoFocus
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Token Type</label>
-            <select
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-              className="w-full border rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500"
-            >
-              <option value="brandTokens">Brand (Brand Match)</option>
-              <option value="negativeTokens">Negative (No Match)</option>
-              <option value="productLineTokens">Product Line (Core Match)</option>
-              <option value="coreTokens">Core Topic (Scoring +3)</option>
-              <option value="adjacentTokens">Adjacent Topic (Scoring +1)</option>
-            </select>
-          </div>
-
-          {type === 'productLineTokens' && products.length > 0 && (
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Product Line</label>
-              <select
-                value={productKey}
-                onChange={(e) => setProductKey(e.target.value)}
-                className="w-full border rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500"
-              >
-                {products.map(p => (
-                  <option key={p} value={p}>{p}</option>
-                ))}
-              </select>
-            </div>
-          )}
-        </div>
-
-        <div className="mt-6 flex justify-end gap-3">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={() => onSave(type, token, type === 'productLineTokens' ? productKey : undefined)}
-            disabled={!token.trim()}
-            className="px-4 py-2 text-sm text-white bg-indigo-600 hover:bg-indigo-700 rounded-md disabled:opacity-50"
-          >
-            Save & Update
-          </button>
-        </div>
-      </div>
     </div>
   );
 }
@@ -300,14 +232,49 @@ export default function DomainKeywordsPage() {
   const [refreshing, setRefreshing] = useState(false);
   const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
-  const [domainFilter, setDomainFilter] = useState<string>('all');
+  const [domainFilter, setDomainFilter] = useState<string[]>([]);
+  const [isDomainFilterOpen, setIsDomainFilterOpen] = useState(false);
+  const [domainFilterSearch, setDomainFilterSearch] = useState('');
+  const domainFilterRef = useRef<HTMLDivElement>(null);
+  const [includeSelf, setIncludeSelf] = useState(false); // Toggle to include client domain
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (domainFilterRef.current && !domainFilterRef.current.contains(event.target as Node)) {
+        setIsDomainFilterOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Compute available domains for selection (Competitors + optional Self)
+  const domainList = useMemo(() => {
+    const list = [...competitors];
+    if (includeSelf && selectedClientCode) {
+      const client = clients.find(c => c.code === selectedClientCode);
+      // Ensure we don't duplicate if client domain is already in competitors
+      if (client && client.mainDomain && !list.some(c => c.domain.toLowerCase() === client.mainDomain.toLowerCase())) {
+        list.unshift({
+          id: 'CLIENT_SELF',
+          clientCode: selectedClientCode,
+          name: `${client.name} (Self)`,
+          domain: client.mainDomain,
+          isActive: true
+        });
+      }
+    }
+    return list;
+  }, [competitors, includeSelf, clients, selectedClientCode]);
   const [locationFilter, setLocationFilter] = useState('all');
   const [keywordFilter, setKeywordFilter] = useState('');
   const [positionMaxFilter, setPositionMaxFilter] = useState('');
   const [volumeMinFilter, setVolumeMinFilter] = useState('');
   const [sortField, setSortField] = useState<SortField>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
-  const [harvestModalOpen, setHarvestModalOpen] = useState(false);
+
+  const [showAiBuilder, setShowAiBuilder] = useState(false);
 
   // Tagging State (Rule Based)
   const [tags, setTags] = useState<Record<string, KeywordTag>>({});
@@ -322,7 +289,8 @@ export default function DomainKeywordsPage() {
 
   // UI State
   const [dictPanelCollapsed, setDictPanelCollapsed] = useState(false);
-  const [addTokenModal, setAddTokenModal] = useState<{ open: boolean, keyword: string } | null>(null);
+
+  const client = useMemo(() => clients.find(c => c.code === selectedClientCode), [clients, selectedClientCode]);
 
   useEffect(() => {
     fetchClients();
@@ -415,65 +383,70 @@ export default function DomainKeywordsPage() {
     }
   }, [selectedClientCode, fetchRecords]);
 
+  // Calculate domain counts
+  const domainCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    records.forEach(r => {
+      counts[r.domain] = (counts[r.domain] || 0) + 1;
+    });
+    return counts;
+  }, [records]);
+
   // Derived Filtered Records
   const filteredRecords = useMemo(() => {
-    let filtered = records;
+    let res = records;
 
-    if (domainFilter !== 'all') {
-      filtered = filtered.filter(r => r.domain === domainFilter);
+    // Domain Filter (Multi-select)
+    if (domainFilter.length > 0) {
+      res = res.filter(r => domainFilter.includes(r.domain));
     }
 
     if (locationFilter !== 'all') {
-      filtered = filtered.filter(r => r.locationCode === locationFilter);
+      res = res.filter(r => r.locationCode === locationFilter);
     }
 
-    if (keywordFilter) {
-      const lower = keywordFilter.toLowerCase();
-      filtered = filtered.filter(r => r.keyword.toLowerCase().includes(lower));
+    if (keywordFilter.trim()) {
+      const term = keywordFilter.toLowerCase();
+      res = res.filter(r => r.keyword.toLowerCase().includes(term));
     }
 
     if (positionMaxFilter) {
       const max = parseInt(positionMaxFilter);
       if (!isNaN(max)) {
-        filtered = filtered.filter(r => (r.position ?? 999) <= max);
+        res = res.filter(r => (r.position ?? 999) <= max);
       }
     }
 
     if (volumeMinFilter) {
       const min = parseInt(volumeMinFilter);
       if (!isNaN(min)) {
-        filtered = filtered.filter(r => (r.searchVolume ?? 0) >= min);
+        res = res.filter(r => (r.searchVolume ?? 0) >= min);
       }
     }
 
     if (fitFilter !== 'all') {
-      filtered = filtered.filter(r => {
+      res = res.filter(r => {
         const tag = tags[normalizeKeyword(r.keyword)];
-        if (fitFilter === 'BLANK') return !tag;
-        return tag && tag.fitStatus === fitFilter;
+        const status = tag?.fitStatus || 'BLANK';
+        return status === fitFilter;
       });
     }
 
     if (productFilter !== 'all') {
-      filtered = filtered.filter(r => {
+      res = res.filter(r => {
         const tag = tags[normalizeKeyword(r.keyword)];
         if (productFilter === 'BLANK') return !tag;
         return tag && tag.productLine === productFilter;
       });
     }
 
-    return filtered;
+    return res;
   }, [records, domainFilter, locationFilter, keywordFilter, positionMaxFilter, volumeMinFilter, fitFilter, productFilter, tags]);
 
   const uniqueDomainsInRecords = useMemo(() => {
     const domains = new Set(records.map(r => r.domain));
     return Array.from(domains).sort();
   }, [records]);
-
-  // Add Token Handlers
-  const handleOpenAddToken = (record: DomainKeywordRecord) => {
-    setAddTokenModal({ open: true, keyword: record.keyword });
-  };
 
   const handleTagAllKeywords = async () => {
     if (!selectedClientCode) return;
@@ -505,58 +478,7 @@ export default function DomainKeywordsPage() {
     }
   };
 
-  const handleSaveToken = async (type: string, value: string, productKey?: string) => {
-    if (!profile) {
-      setNotification({ type: 'error', message: 'Client Profile not loaded. Cannot update dictionary.' });
-      return;
-    }
 
-    // Construct bucketPath
-    let bucketPath = type;
-    if (type === 'productLineTokens' && productKey) {
-      bucketPath = `productLineTokens.${productKey}`;
-    } else if (type === 'intentTokens') {
-      // Logic in modal currently doesn't support picking specific intent type, usually generic? 
-      // If modal supports intent type selection, we'd append it. 
-      // For now, let's assume 'intentTokens.INFORMATIONAL' default or handle it? 
-      // The modal options are: Brand, Negative, ProductLine, Core, Adjacent.
-      // It doesn't seem to offer Intent selection in the visible code. 
-      // If I need to support Intent, I should update Modal.
-      // The user requirement said "Assign Intent (adds to intentTokens bucket)".
-      // I will stick to what the modal offers.
-    }
-
-    try {
-      const res = await fetch('/api/client-ai-profile/dictionary/add-token', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          clientCode: selectedClientCode,
-          bucketPath,
-          token: value
-        })
-      });
-
-      if (res.ok) {
-        const data = await res.json();
-        // Update local profile with returned dictionary
-        if (data.matchingDictionary) {
-          setProfile(prev => prev ? ({ ...prev, matchingDictionary: data.matchingDictionary }) : null);
-        }
-        setAddTokenModal(null);
-        setNotification({ type: 'success', message: 'Token added. Re-classifying...' });
-
-        // Trigger re-tagging (Tag All for consistency)
-        await handleTagAllKeywords();
-      } else {
-        const err = await res.json();
-        setNotification({ type: 'error', message: `Failed to add token: ${err.error}` });
-      }
-    } catch (e) {
-      console.error("Failed to save token", e);
-      setNotification({ type: 'error', message: 'Error saving token.' });
-    }
-  };
 
 
 
@@ -608,7 +530,7 @@ export default function DomainKeywordsPage() {
   };
 
   const selectAllDomains = () => {
-    setSelectedDomains(competitors.map(c => c.domain));
+    setSelectedDomains(domainList.map(c => c.domain));
   };
 
   const deselectAllDomains = () => {
@@ -690,7 +612,55 @@ export default function DomainKeywordsPage() {
     return sortedRecords.slice(startIndex, startIndex + itemsPerPage);
   }, [sortedRecords, currentPage, itemsPerPage]);
 
-  const totalPages = Math.ceil(sortedRecords.length / itemsPerPage);
+  // Grouping State
+  const [groupByKeyword, setGroupByKeyword] = useState(false);
+  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
+
+  const toggleGroup = (groupKey: string) => {
+    const newSet = new Set(expandedGroups);
+    if (newSet.has(groupKey)) newSet.delete(groupKey);
+    else newSet.add(groupKey);
+    setExpandedGroups(newSet);
+  };
+
+  const groupedData = useMemo(() => {
+    if (!groupByKeyword) return [];
+
+    const groups: Record<string, DomainKeywordRecord[]> = {};
+    sortedRecords.forEach(r => {
+      // Group by Keyword + Location
+      const key = `${normalizeKeyword(r.keyword)}|${r.locationCode}`;
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(r);
+    });
+
+    // Convert to array and preserve sort order (roughly)
+    // We rely on sortedRecords order. We pick unique keys in order of appearance.
+    const uniqueKeys = new Set<string>();
+    const groupList: { key: string, items: DomainKeywordRecord[], bestPos: number, volume: number }[] = [];
+
+    sortedRecords.forEach(r => {
+      const key = `${normalizeKeyword(r.keyword)}|${r.locationCode}`;
+      if (!uniqueKeys.has(key)) {
+        uniqueKeys.add(key);
+        const items = groups[key];
+        const bestPos = Math.min(...items.map(i => i.position ?? 999));
+        const volume = items[0].searchVolume ?? 0;
+        groupList.push({ key, items, bestPos, volume });
+      }
+    });
+
+    return groupList;
+  }, [sortedRecords, groupByKeyword]);
+
+  const paginatedGroups = useMemo(() => {
+    if (!groupByKeyword) return [];
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return groupedData.slice(startIndex, startIndex + itemsPerPage);
+  }, [groupedData, currentPage, itemsPerPage, groupByKeyword]);
+
+  const totalPages = Math.ceil((groupByKeyword ? groupedData.length : sortedRecords.length) / itemsPerPage);
+
 
   const summaryStats = useMemo(() => {
     const uniqueDomains = new Set(filteredRecords.map(r => r.domain)).size;
@@ -830,23 +800,42 @@ export default function DomainKeywordsPage() {
         </div>
 
         <div className="mt-4 pt-4 border-t">
-          {/* Domain Selection Checkboxes */}
-          <div className="flex items-center justify-between mb-2">
-            <label className="block text-sm font-medium text-gray-700">
-              Select Domains ({selectedDomains.length}/{competitors.length})
-            </label>
+          {/* Domain Selection Header & Toggle */}
+          <div className="flex flex-wrap items-center justify-between mb-2">
+            <div className="flex items-center gap-4">
+              <label className="block text-sm font-medium text-gray-700">
+                Select Domains ({selectedDomains.length}/{domainList.length})
+              </label>
+
+              {/* Add Self Toggle */}
+              <div className="flex items-center gap-2">
+                <label className="text-xs text-gray-600 font-medium">Add Self?</label>
+                <button
+                  onClick={() => setIncludeSelf(!includeSelf)}
+                  className={`relative inline-flex h-4 w-8 items-center rounded-full transition-colors focus:outline-none ${includeSelf ? 'bg-indigo-600' : 'bg-gray-200'}`}
+                  title="Include Client Domain in selection list"
+                >
+                  <span
+                    className={`inline-block h-2.5 w-2.5 transform rounded-full bg-white transition-transform ${includeSelf ? 'translate-x-[18px]' : 'translate-x-[2px]'}`}
+                  />
+                </button>
+              </div>
+            </div>
+
             <div className="flex gap-2">
               <button onClick={selectAllDomains} className="text-xs text-indigo-600 hover:text-indigo-800">Select All</button>
               <button onClick={deselectAllDomains} className="text-xs text-gray-600 hover:text-gray-800">Deselect All</button>
             </div>
           </div>
+
+          {/* Checkbox List */}
           <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto p-2 bg-gray-50 rounded-md">
-            {competitors.map(comp => (
+            {domainList.map(comp => (
               <label
                 key={comp.id}
                 className={`inline-flex items-center gap-1.5 px-2 py-1 rounded text-xs cursor-pointer transition-colors ${selectedDomains.includes(comp.domain)
                   ? 'bg-indigo-100 text-indigo-800 border border-indigo-300'
-                  : 'bg-white text-gray-700 border border-gray-200 hover:border-gray-300'
+                  : 'bg-white text-gray-600 border border-gray-200 hover:border-gray-300'
                   }`}
               >
                 <input
@@ -855,7 +844,9 @@ export default function DomainKeywordsPage() {
                   onChange={() => toggleDomain(comp.domain)}
                   className="sr-only"
                 />
-                {comp.domain}
+                <span className={comp.id === 'CLIENT_SELF' ? 'font-bold underline decoration-dotted' : ''}>
+                  {comp.domain}
+                </span>
               </label>
             ))}
           </div>
@@ -901,7 +892,27 @@ export default function DomainKeywordsPage() {
 
       {/* Summary Stats */}
       <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg shadow p-4 mb-4">
-        <h3 className="text-sm font-semibold text-gray-700 mb-3">Summary Statistics</h3>
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-sm font-semibold text-gray-700">Summary Statistics</h3>
+
+          {/* Grouping Toggle */}
+          <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full shadow-sm border border-purple-100">
+            <span className="text-xs font-medium text-gray-600">Keyword Grouping:</span>
+            <button
+              onClick={() => { setGroupByKeyword(!groupByKeyword); setCurrentPage(1); }}
+              className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${groupByKeyword ? 'bg-indigo-600' : 'bg-gray-200'}`}
+            >
+              <span
+                className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${groupByKeyword ? 'translate-x-4.5' : 'translate-x-1'}`}
+                style={{ transform: groupByKeyword ? 'translateX(18px)' : 'translateX(2px)' }}
+              />
+            </button>
+            <span className="text-xs font-bold text-indigo-700">
+              {groupByKeyword ? `Yes (${formatNumber(groupedData.length)})` : 'No'}
+            </span>
+          </div>
+        </div>
+
         <div className="grid grid-cols-2 lg:grid-cols-9 gap-4">
           <div className="bg-white rounded-lg p-3 shadow-sm">
             <div className="text-xs text-gray-500">Domains</div>
@@ -951,20 +962,77 @@ export default function DomainKeywordsPage() {
 
       <div className="bg-white rounded-lg shadow p-4 mb-4">
         <div className="flex flex-wrap items-end gap-4">
-          <div className="min-w-[150px]">
+          {/* Multi-Select Domain Filter */}
+          <div className="min-w-[200px] relative" ref={domainFilterRef}>
             <label className="block text-xs font-medium text-gray-500 mb-1">Filter by Domain</label>
-            <select
-              value={domainFilter}
-              onChange={e => setDomainFilter(e.target.value)}
-              className="w-full border rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            <button
+              onClick={() => setIsDomainFilterOpen(!isDomainFilterOpen)}
+              className="w-full text-left border rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white flex items-center justify-between"
             >
-              <option value="all">All Domains</option>
-              {uniqueDomainsInRecords.map(domain => (
-                <option key={domain} value={domain}>
-                  {domain}
-                </option>
-              ))}
-            </select>
+              <span className="truncate">
+                {domainFilter.length === 0
+                  ? 'All Domains'
+                  : `${domainFilter.length} Selected`
+                }
+              </span>
+              <svg className="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {isDomainFilterOpen && (
+              <div className="absolute z-10 w-[280px] mt-1 bg-white rounded-md shadow-lg border border-gray-200 p-2">
+                <input
+                  type="text"
+                  placeholder="Search domains..."
+                  value={domainFilterSearch}
+                  onChange={(e) => setDomainFilterSearch(e.target.value)}
+                  className="w-full border rounded px-2 py-1 text-sm mb-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  autoFocus
+                  onClick={(e) => e.stopPropagation()}
+                />
+                <div className="max-h-[200px] overflow-y-auto space-y-1">
+                  <div
+                    className={`flex items-center px-2 py-1.5 rounded cursor-pointer hover:bg-gray-100 ${domainFilter.length === 0 ? 'bg-indigo-50 text-indigo-700' : 'text-gray-700'}`}
+                    onClick={() => { setDomainFilter([]); setIsDomainFilterOpen(false); }}
+                  >
+                    <span className="text-sm font-medium">All Domains</span>
+                  </div>
+                  {uniqueDomainsInRecords
+                    .filter(d => d.toLowerCase().includes(domainFilterSearch.toLowerCase()))
+                    .map(domain => {
+                      const count = domainCounts[domain] || 0;
+                      const isSelected = domainFilter.includes(domain);
+                      return (
+                        <div
+                          key={domain}
+                          className={`flex items-center px-2 py-1.5 rounded cursor-pointer hover:bg-gray-100 ${isSelected ? 'bg-indigo-50' : ''}`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (isSelected) {
+                              setDomainFilter(domainFilter.filter(d => d !== domain));
+                            } else {
+                              setDomainFilter([...domainFilter, domain]);
+                            }
+                          }}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={isSelected}
+                            readOnly
+                            className="h-3 w-3 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 pointer-events-none"
+                          />
+                          <span className="ml-2 text-sm text-gray-700 flex-1 truncate">{domain}</span>
+                          <span className="text-xs text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded-full">{count}</span>
+                        </div>
+                      );
+                    })}
+                  {uniqueDomainsInRecords.filter(d => d.toLowerCase().includes(domainFilterSearch.toLowerCase())).length === 0 && (
+                    <div className="px-2 py-2 text-sm text-gray-500 text-center">No matches</div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="min-w-[120px]">
@@ -1045,11 +1113,15 @@ export default function DomainKeywordsPage() {
       </div>
 
       <div className="flex justify-end gap-2 mb-4">
+        {/* Harvest Terms button removed */}
         <button
-          onClick={() => setHarvestModalOpen(true)}
-          className="px-3 py-1.5 bg-yellow-100 hover:bg-yellow-200 text-yellow-800 rounded border border-yellow-200 text-xs font-semibold flex items-center gap-1 shadow-sm"
+          onClick={() => setShowAiBuilder(true)}
+          className="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded border border-purple-600 text-xs font-bold shadow-sm flex items-center gap-1 animate-pulse"
         >
-          <span>🌾</span> Harvest Terms
+          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+          </svg>
+          AI KW Builder
         </button>
         <button
           onClick={handleTagAllKeywords}
@@ -1072,7 +1144,7 @@ export default function DomainKeywordsPage() {
             </svg>
             <p className="mt-2 text-gray-500">Loading domain keywords data...</p>
           </div>
-        ) : sortedRecords.length === 0 ? (
+        ) : (groupByKeyword ? groupedData : sortedRecords).length === 0 ? (
           <div className="p-8 text-center text-gray-500">
             <p>No domain keywords data found or all filtered out.</p>
             <p className="text-sm mt-1">Adjust filters or select domains and click "Fetch".</p>
@@ -1082,88 +1154,126 @@ export default function DomainKeywordsPage() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider w-[24px]">
-                    {/* Action column */}
-                  </th>
-                  <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
-                    Domain
-                  </th>
-                  <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider w-[35px]">
-                    Loc
-                  </th>
-                  <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider max-w-[150px]">
-                    Keyword
-                  </th>
-                  <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider w-[120px]">
-                    Fit
-                  </th>
-                  <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider w-[120px]">
-                    Product
-                  </th>
-                  <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider max-w-[150px]">
-                    Rationale
-                  </th>
-                  <SortableHeader
-                    field="position"
-                    label="Pos"
-                    tooltip="Position"
-                  />
-                  <SortableHeader
-                    field="searchVolume"
-                    label="Vol"
-                    tooltip="Search Volume"
-                  />
-                  <SortableHeader
-                    field="cpc"
-                    label="CPC"
-                    tooltip="Cost Per Click"
-                  />
-                  <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider w-[50px]">
-                    URL
-                  </th>
+                  <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider w-[24px]"></th>
+                  {groupByKeyword ? (
+                    <>
+                      <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
+                        Keyword Group
+                      </th>
+                      <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider w-[35px]">
+                        Loc
+                      </th>
+                      <SortableHeader field="position" label="Best Pos" tooltip="Best Position across domains" />
+                      <SortableHeader field="searchVolume" label="Vol" tooltip="Search Volume" />
+                      <SortableHeader field="cpc" label="CPC" tooltip="Cost Per Click" />
+                      <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
+                        Domains
+                      </th>
+                    </>
+                  ) : (
+                    <>
+                      <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">Domain</th>
+                      <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider w-[35px]">Loc</th>
+                      <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider max-w-[150px]">Keyword</th>
+                      <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider w-[120px]">Fit</th>
+                      <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider w-[120px]">Product</th>
+                      <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider max-w-[150px]">Rationale</th>
+                      <SortableHeader field="position" label="Pos" tooltip="Position" />
+                      <SortableHeader field="searchVolume" label="Vol" tooltip="Search Volume" />
+                      <SortableHeader field="cpc" label="CPC" tooltip="Cost Per Click" />
+                      <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider w-[50px]">URL</th>
+                    </>
+                  )}
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {paginatedRecords.map(record => {
-                  const tag = tags[normalizeKeyword(record.keyword)];
-                  const fit = tag?.fitStatus || 'BLANK';
-                  const prod = tag?.productLine || 'BLANK';
+                {groupByKeyword ? (
+                  paginatedGroups.map(group => {
+                    const isExpanded = expandedGroups.has(group.key);
+                    const first = group.items[0];
+                    const domains = group.items.map(i => i.domain).join(', ');
 
-                  return (
-                    <tr key={record.id} className="hover:bg-gray-50 group">
-                      <td className="px-2 py-1.5 text-[10px] w-[24px]">
-                        {/* Add Token Action */}
-                        <button
-                          onClick={() => handleOpenAddToken(record)}
-                          className="text-gray-400 hover:text-indigo-600 transition-colors"
-                          title="Add to Matching Dictionary"
-                        >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                        </button>
-                      </td>
-                      <td className="px-2 py-1.5 text-[10px] text-gray-500 whitespace-nowrap">
-                        {record.domain}
-                      </td>
-                      <td className="px-2 py-1.5 text-[10px] text-gray-500">
-                        {record.locationCode}
-                      </td>
-                      <td className="px-2 py-1.5 text-[10px]">
-                        <a
-                          href={getGoogleSearchUrl(record.keyword)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-indigo-600 hover:text-indigo-800 hover:underline inline-flex items-center gap-1 truncate max-w-[200px]"
-                          title={record.keyword}
-                        >
-                          {record.keyword}
-                        </a>
-                      </td>
+                    return (
+                      <Fragment key={group.key}>
+                        <tr className="hover:bg-gray-50 cursor-pointer bg-gray-50/50" onClick={() => toggleGroup(group.key)}>
+                          <td className="px-2 py-2 text-[10px] text-center">
+                            <span className="text-gray-400 font-bold">{isExpanded ? '▼' : '▶'}</span>
+                          </td>
+                          <td className="px-2 py-2 text-[11px] font-semibold text-gray-900">
+                            {first.keyword} <span className="text-gray-400 font-normal ml-1">({group.items.length})</span>
+                          </td>
+                          <td className="px-2 py-2 text-[10px] text-gray-500">{first.locationCode}</td>
+                          <td className="px-2 py-2 text-[10px] font-bold text-green-700">{group.bestPos}</td>
+                          <td className="px-2 py-2 text-[10px]">{formatNumber(first.searchVolume)}</td>
+                          <td className="px-2 py-2 text-[10px]">{formatCurrency(first.cpc)}</td>
+                          <td className="px-2 py-2 text-[10px] text-gray-400 truncate max-w-[200px]" title={domains}>
+                            {domains}
+                          </td>
+                        </tr>
+                        {isExpanded && group.items.map(record => {
+                          const tag = tags[normalizeKeyword(record.keyword)];
+                          const fit = tag?.fitStatus || 'BLANK';
+                          const prod = tag?.productLine || 'BLANK';
 
-                      {/* FIT COLUMN */}
-                      <td className="px-2 py-1.5 text-[10px]">
-                        {fit === 'REVIEW' || fit === 'BLANK' || fit === 'NO_MATCH' || fit === 'CORE_MATCH' || fit === 'ADJACENT_MATCH' || fit === 'BRAND_KW' ? (
+                          return (
+                            <tr key={record.id} className="bg-white hover:bg-gray-50 border-l-4 border-l-indigo-500">
+                              <td className="px-2 py-1.5 text-[10px]"></td>
+                              <td colSpan={2} className="px-2 py-1.5 text-[10px] pl-6 text-gray-700 font-medium">
+                                {record.domain}
+                              </td>
+                              <td className="px-2 py-1.5 text-[10px] text-gray-600">{record.position}</td>
+                              <td className="px-2 py-1.5 text-[10px] font-mono text-gray-400">{formatNumber(record.searchVolume)}</td>
+                              <td className="px-2 py-1.5 text-[10px] font-mono text-gray-400">{formatCurrency(record.cpc)}</td>
+                              <td className="px-2 py-1.5 text-[10px]">
+                                <div className="flex gap-2">
+                                  <a href={record.url || '#'} target="_blank" className="text-indigo-600 hover:text-indigo-800 underline text-[10px]">View Page</a>
+                                  <select
+                                    value={fit}
+                                    onChange={(e) => handleUpdateTag(record.keyword, 'fitStatus', e.target.value)}
+                                    onClick={e => e.stopPropagation()}
+                                    className={`text-[9px] py-0 px-1 rounded border-0 focus:ring-0 ${getFitStatusColor(fit)}`}
+                                  >
+                                    {['BRAND_KW', 'CORE_MATCH', 'ADJACENT_MATCH', 'REVIEW', 'NO_MATCH', 'BLANK'].map(opt => (
+                                      <option key={opt} value={opt}>{opt.replace('_', ' ')}</option>
+                                    ))}
+                                  </select>
+                                </div>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </Fragment>
+                    );
+                  })
+                ) : (
+                  paginatedRecords.map(record => {
+                    const tag = tags[normalizeKeyword(record.keyword)];
+                    const fit = tag?.fitStatus || 'BLANK';
+                    const prod = tag?.productLine || 'BLANK';
+
+                    return (
+                      <tr key={record.id} className="hover:bg-gray-50 group">
+                        <td className="px-2 py-1.5 text-[10px] w-[24px]">
+                          {/* Add Token Button Removed */}
+                        </td>
+                        <td className="px-2 py-1.5 text-[10px] text-gray-500 whitespace-nowrap">
+                          {record.domain}
+                        </td>
+                        <td className="px-2 py-1.5 text-[10px] text-gray-500">
+                          {record.locationCode}
+                        </td>
+                        <td className="px-2 py-1.5 text-[10px]">
+                          <a
+                            href={getGoogleSearchUrl(record.keyword)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-indigo-600 hover:text-indigo-800 hover:underline inline-flex items-center gap-1 truncate max-w-[200px]"
+                            title={record.keyword}
+                          >
+                            {record.keyword}
+                          </a>
+                        </td>
+                        <td className="px-2 py-1.5 text-[10px]">
                           <select
                             value={fit}
                             onChange={(e) => handleUpdateTag(record.keyword, 'fitStatus', e.target.value)}
@@ -1173,66 +1283,41 @@ export default function DomainKeywordsPage() {
                               <option key={opt} value={opt}>{opt.replace('_', ' ')}</option>
                             ))}
                           </select>
-                        ) : (
-                          <span className={`inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium border rounded ${getFitStatusColor(fit)}`}>
-                            {String(fit).replace('_', ' ')}
-                          </span>
-                        )}
-                      </td>
-
-                      {/* PRODUCT COLUMN */}
-                      <td className="px-2 py-1.5 text-[10px]">
-                        <select
-                          value={prod}
-                          onChange={(e) => handleUpdateTag(record.keyword, 'productLine', e.target.value)}
-                          className={`block w-full text-[10px] py-0.5 px-1 rounded border-0 focus:ring-1 focus:ring-indigo-500 ${getProductLineColor(prod)}`}
-                        >
-                          {['TWISTING', 'WINDING', 'HEAT_SETTING', 'BRAND_KW', 'MULTIPLE', 'NONE', 'BLANK'].map(opt => (
-                            <option key={opt} value={opt}>{opt.replace('_', ' ')}</option>
-                          ))}
-                        </select>
-                      </td>
-
-                      {/* RATIONALE COLUMN */}
-                      <td className="px-2 py-1.5 text-[9px] text-gray-500 max-w-[150px] truncate" title={tag?.rationale}>
-                        {tag?.rationale || '-'}
-                      </td>
-
-                      <td className="px-2 py-1.5 text-[10px]">
-                        {record.position ?? '-'}
-                      </td>
-                      <td className="px-2 py-1.5 text-[10px]">
-                        {formatNumber(record.searchVolume)}
-                      </td>
-                      <td className="px-2 py-1.5 text-[10px]">
-                        {formatCurrency(record.cpc)}
-                      </td>
-
-                      <td className="px-2 py-1.5 text-[10px]">
-                        {record.url ? (
-                          <Tooltip text={record.url}>
-                            <a
-                              href={record.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-indigo-600 hover:text-indigo-800 hover:underline"
-                            >
-                              Link
-                            </a>
-                          </Tooltip>
-                        ) : (
-                          '-'
-                        )}
-                      </td>
-                    </tr>
-                  );
-                })}
+                        </td>
+                        <td className="px-2 py-1.5 text-[10px]">
+                          <select
+                            value={prod}
+                            onChange={(e) => handleUpdateTag(record.keyword, 'productLine', e.target.value)}
+                            className={`block w-full text-[10px] py-0.5 px-1 rounded border-0 focus:ring-1 focus:ring-indigo-500 ${getProductLineColor(prod)}`}
+                          >
+                            {['TWISTING', 'WINDING', 'HEAT_SETTING', 'BRAND_KW', 'MULTIPLE', 'NONE', 'BLANK'].map(opt => (
+                              <option key={opt} value={opt}>{opt.replace('_', ' ')}</option>
+                            ))}
+                          </select>
+                        </td>
+                        <td className="px-2 py-1.5 text-[9px] text-gray-500 max-w-[150px] truncate" title={tag?.rationale}>
+                          {tag?.rationale || '-'}
+                        </td>
+                        <td className="px-2 py-1.5 text-[10px]">{record.position ?? '-'}</td>
+                        <td className="px-2 py-1.5 text-[10px]">{formatNumber(record.searchVolume)}</td>
+                        <td className="px-2 py-1.5 text-[10px]">{formatCurrency(record.cpc)}</td>
+                        <td className="px-2 py-1.5 text-[10px]">
+                          {record.url ? (
+                            <Tooltip text={record.url}>
+                              <a href={record.url} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-800 hover:underline">Link</a>
+                            </Tooltip>
+                          ) : '-'}
+                        </td>
+                      </tr>
+                    );
+                  })
+                )}
               </tbody>
             </table>
           </div>
         )}
 
-        {sortedRecords.length > 0 && (
+        {(groupByKeyword ? groupedData : sortedRecords).length > 0 && (
           <div className="bg-white px-4 py-3 border-t border-gray-200 flex items-center justify-between sm:px-6">
             <div className="flex-1 flex justify-between sm:hidden">
               <button
@@ -1253,7 +1338,7 @@ export default function DomainKeywordsPage() {
             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
               <div>
                 <p className="text-sm text-gray-700">
-                  Showing <span className="font-medium">{(currentPage - 1) * itemsPerPage + 1}</span> to <span className="font-medium">{Math.min(currentPage * itemsPerPage, sortedRecords.length)}</span> of <span className="font-medium">{sortedRecords.length}</span> results
+                  Showing <span className="font-medium">{(currentPage - 1) * itemsPerPage + 1}</span> to <span className="font-medium">{Math.min(currentPage * itemsPerPage, (groupByKeyword ? groupedData : sortedRecords).length)}</span> of <span className="font-medium">{(groupByKeyword ? groupedData : sortedRecords).length}</span> {groupByKeyword ? 'groups' : 'results'}
                 </p>
               </div>
               <div>
@@ -1285,20 +1370,13 @@ export default function DomainKeywordsPage() {
         )}
       </div>
 
-      <AddTokenModal
-        isOpen={!!addTokenModal}
-        onClose={() => setAddTokenModal(null)}
-        initialValue={addTokenModal?.keyword || ''}
-        onSave={handleSaveToken}
-        products={Object.keys(profile?.matchingDictionary?.productLineTokens || {})}
-      />
-
-      <HarvestModal
-        isOpen={harvestModalOpen}
-        onClose={() => setHarvestModalOpen(false)}
-        keywords={sortedRecords.map(r => r.keyword)}
+      <AiKwBuilderPanel
+        isOpen={showAiBuilder}
+        onClose={() => setShowAiBuilder(false)}
         clientCode={selectedClientCode}
-        onHarvestComplete={handleTagAllKeywords}
+        domain={client?.mainDomain || ''}
+        industryKey="general"
+        rawKeywords={filteredRecords.map(r => r.keyword)}
       />
 
     </div >

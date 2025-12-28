@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import PageHeader from '@/components/PageHeader';
 
 const products = [
   {
@@ -31,6 +32,9 @@ const relatedLinks = [
 export default function TFOTwistersPage() {
   return (
     <div className="min-h-screen bg-white">
+      <div className="max-w-7xl mx-auto px-4 pt-4">
+        <PageHeader title="TFO Twisters" description="Two-For-One Twister overview." />
+      </div>
       {/* Breadcrumb */}
       <div className="bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 py-3">
@@ -65,15 +69,15 @@ export default function TFOTwistersPage() {
                 Spun Twister utilizing Two For One Twisting Technology to produce high-quality yarns with double productivity and lower energy consumption.
               </p>
               <div className="flex flex-wrap gap-4">
-                <a 
-                  href="https://meeraind.com/product/spun-staple-yarn-twister" 
-                  target="_blank" 
+                <a
+                  href="https://meeraind.com/product/spun-staple-yarn-twister"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg"
                 >
                   Explore Our Products
                 </a>
-                <Link 
+                <Link
                   href="/guides/what-is-a-tfo-machine"
                   className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg border border-white/30 transition-all"
                 >
@@ -82,8 +86,8 @@ export default function TFOTwistersPage() {
               </div>
             </div>
             <div className="relative h-80 rounded-2xl overflow-hidden shadow-2xl">
-              <Image 
-                src="/images/hub/textile_spinning_mac_b187021d.jpg" 
+              <Image
+                src="/images/hub/textile_spinning_mac_b187021d.jpg"
                 alt="TFO twisting machinery"
                 fill
                 className="object-cover"
@@ -100,13 +104,13 @@ export default function TFOTwistersPage() {
             <p className="text-orange-500 font-medium text-sm uppercase tracking-wider mb-2">Technology Overview</p>
             <h2 className="text-3xl font-bold text-slate-900 mb-6">About TFO Twisting Technology</h2>
             <p className="text-slate-600 mb-4">
-              TFO (Two-For-One) twisting is an advanced yarn twisting technology that imparts two twists to the yarn 
-              for every single rotation of the spindle. This revolutionary approach doubles the productivity compared 
+              TFO (Two-For-One) twisting is an advanced yarn twisting technology that imparts two twists to the yarn
+              for every single rotation of the spindle. This revolutionary approach doubles the productivity compared
               to conventional ring twisting while reducing energy consumption and floor space requirements.
             </p>
             <p className="text-slate-600 mb-6">
-              Meera Industries offers a comprehensive range of TFO twisters designed for various yarn types and 
-              applications. Our machines feature robust construction, precision engineering, and user-friendly 
+              Meera Industries offers a comprehensive range of TFO twisters designed for various yarn types and
+              applications. Our machines feature robust construction, precision engineering, and user-friendly
               controls to ensure consistent quality and maximum uptime.
             </p>
             <div className="grid grid-cols-2 gap-4">
@@ -121,8 +125,8 @@ export default function TFOTwistersPage() {
             </div>
           </div>
           <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
-            <Image 
-              src="/images/hub/industrial_textile_m_cc525cca.jpg" 
+            <Image
+              src="/images/hub/industrial_textile_m_cc525cca.jpg"
               alt="TFO technology demonstration"
               fill
               className="object-cover"
@@ -143,7 +147,7 @@ export default function TFOTwistersPage() {
             {products.map((product) => (
               <div key={product.name} className="bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-200 hover:shadow-xl transition-all group">
                 <div className="relative h-56">
-                  <Image 
+                  <Image
                     src={product.image}
                     alt={product.name}
                     fill
@@ -160,7 +164,7 @@ export default function TFOTwistersPage() {
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900 mb-3">{product.name}</h3>
                   <p className="text-slate-600 mb-6">{product.description}</p>
-                  
+
                   <div className="mb-6">
                     <h4 className="text-sm font-semibold text-slate-700 mb-3">Key Features:</h4>
                     <div className="grid grid-cols-2 gap-2">
@@ -175,7 +179,7 @@ export default function TFOTwistersPage() {
                     </div>
                   </div>
 
-                  <a 
+                  <a
                     href={product.href}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -229,9 +233,9 @@ export default function TFOTwistersPage() {
           <p className="text-slate-300 mb-6">
             Contact Meera Industries for customized TFO solutions tailored to your specific requirements.
           </p>
-          <a 
-            href="https://meeraind.com/contact" 
-            target="_blank" 
+          <a
+            href="https://meeraind.com/contact"
+            target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg"
           >

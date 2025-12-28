@@ -131,6 +131,7 @@ export async function deleteManualKeyword(id: string): Promise<boolean> {
 export interface PageComment {
   id: string;
   text: string;
+  status?: 'pending' | 'completed'; // Added for task tracking
   createdAt: string;
   updatedAt: string;
 }
@@ -151,16 +152,32 @@ export async function getPageConfig(path: string): Promise<PageConfig | undefine
   return configs.find(c => c.path === path);
 }
 
-export async function savePageConfig(config: PageConfig): Promise<PageConfig> {
-  const configs = await getPageConfigs();
-  const index = configs.findIndex(c => c.path === config.path);
-
-  if (index >= 0) {
-    configs[index] = { ...configs[index], ...config, updatedAt: new Date().toISOString() };
-  } else {
-    configs.push({ ...config, updatedAt: new Date().toISOString() });
+const pageConfigLock = { locked: false };
+async function acquireLock() {
+  while (pageConfigLock.locked) {
+    await new Promise(resolve => setTimeout(resolve, 50));
   }
+  pageConfigLock.locked = true;
+}
+function releaseLock() {
+  pageConfigLock.locked = false;
+}
 
-  await writeJsonFile('pageConfigs.json', configs);
-  return index >= 0 ? configs[index] : configs[configs.length - 1];
+export async function savePageConfig(config: PageConfig): Promise<PageConfig> {
+  await acquireLock();
+  try {
+    const configs = await getPageConfigs();
+    const index = configs.findIndex(c => c.path === config.path);
+
+    if (index >= 0) {
+      configs[index] = { ...configs[index], ...config, updatedAt: new Date().toISOString() };
+    } else {
+      configs.push({ ...config, updatedAt: new Date().toISOString() });
+    }
+
+    await writeJsonFile('pageConfigs.json', configs);
+    return index >= 0 ? configs[index] : configs[configs.length - 1];
+  } finally {
+    releaseLock();
+  }
 }

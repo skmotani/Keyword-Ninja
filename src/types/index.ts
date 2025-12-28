@@ -1,5 +1,7 @@
 export * from './curated';
 export * from './serp';
+import { ClientTermDictionary } from './termDictionary';
+
 export interface Client {
   id: string;
   code: string;
@@ -8,6 +10,7 @@ export interface Client {
   domains: string[];
   notes?: string;
   isActive: boolean;
+  industry?: string;
 }
 
 export interface DomainProfile {
@@ -242,6 +245,7 @@ export interface ClientAIProfile {
   keywordClassificationSupport?: ProfileKeywordClassificationSupport;
   businessRelevanceSupport?: ProfileBusinessRelevanceSupport;
   matchingDictionary?: MatchingDictionary;
+  ai_kw_builder_term_dictionary?: ClientTermDictionary;
 }
 
 export type DictionaryScope = 'GLOBAL' | 'CLIENT' | 'DOMAIN';

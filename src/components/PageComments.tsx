@@ -63,6 +63,7 @@ export default function PageComments({ pagePath }: PageCommentsProps) {
         const comment: PageComment = {
             id: uuidv4(),
             text: newComment,
+            status: 'pending',
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
         };

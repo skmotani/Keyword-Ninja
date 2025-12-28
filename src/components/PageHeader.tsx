@@ -158,7 +158,7 @@ export default function PageHeader({ title, description, helpInfo, extendedDescr
       )}
 
       {/* Page Comments Section */}
-      <PageComments path={pathname} />
+      <PageComments pagePath={pathname} />
 
     </div>
   );

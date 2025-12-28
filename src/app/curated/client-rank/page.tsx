@@ -201,6 +201,44 @@ export default function ClientRankPage() {
         return val;
     };
 
+    const handleExportCSV = () => {
+        if (!filteredRecords.length) return;
+
+        // Headers
+        const headers = [
+            'Keyword', 'Location', 'Volume', 'CPC', 'Competition', 'Rank',
+            'Rank URL', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', 'C10'
+        ];
+
+        // Rows
+        const rows = filteredRecords.map(r => {
+            const competitors = r.competitors.map(c => c.domain || '-');
+            // Pad to 10
+            while (competitors.length < 10) competitors.push('-');
+
+            return [
+                `"${r.keyword.replace(/"/g, '""')}"`,
+                r.location,
+                r.searchVolume || 0,
+                r.cpc || 0,
+                r.competition || '-',
+                r.rank || 'Not Ranked',
+                `"${(r.rankUrl || '').replace(/"/g, '""')}"`,
+                ...competitors.map(c => `"${c.replace(/"/g, '""')}"`)
+            ].join(',');
+        });
+
+        const csvContent = [headers.join(','), ...rows].join('\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', `client_rank_export_${clientCode}_${new Date().toISOString().split('T')[0]}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
     return (
         <div className="p-6 max-w-full mx-auto h-screen flex flex-col">
             <PageHeader
@@ -248,11 +286,30 @@ export default function ClientRankPage() {
                     </select>
                 </div>
 
+                <div className="flex gap-2">
+                    <button
+                        onClick={handleExportCSV}
+                        disabled={filteredRecords.length === 0}
+                        className="px-3 py-1.5 border rounded bg-white hover:bg-green-50 text-green-700 text-xs font-medium flex items-center gap-1 disabled:opacity-50"
+                        title="Download as CSV (Excel compatible)"
+                    >
+                        <span>📊</span> Export CSV
+                    </button>
+                    <button
+                        onClick={() => window.print()}
+                        disabled={filteredRecords.length === 0}
+                        className="px-3 py-1.5 border rounded bg-white hover:bg-gray-50 text-gray-700 text-xs font-medium flex items-center gap-1 disabled:opacity-50"
+                        title="Print or Save as PDF"
+                    >
+                        <span>🖨️</span> PDF / Print
+                    </button>
+                </div>
+
                 <div className="flex-1 text-right self-center text-xs text-gray-500">
                     {loading ? 'Loading...' : `Showing ${filteredRecords.length} of ${records.length} records`}
                 </div>
 
-                <div className="w-48">
+                <div className="w-48 no-print">
                     <input
                         type="text"
                         placeholder="Search keywords..."
@@ -262,6 +319,21 @@ export default function ClientRankPage() {
                     />
                 </div>
             </div>
+
+            {/* Print Styles */}
+            <style jsx global>{`
+                @media print {
+                    .no-print, header, nav, .bg-gray-100 { display: none !important; }
+                    .h-screen { height: auto !important; overflow: visible !important; }
+                    .overflow-hidden { overflow: visible !important; }
+                    .overflow-auto { overflow: visible !important; }
+                    table { font-size: 9px !important; width: 100% !important; }
+                    th, td { padding: 4px !important; }
+                    body { background: white !important; }
+                    /* Adjust Page Margins */
+                    @page { margin: 10mm; size: landscape; }
+                }
+            `}</style>
 
             {/* Table Container with Scroll */}
             <div className="bg-white border rounded-lg shadow-sm flex-1 overflow-hidden flex flex-col min-h-0">

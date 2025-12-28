@@ -25,7 +25,8 @@ export interface KeywordSerpData {
 interface SerpResultDatabase {
     [clientCode: string]: {
         [keyword: string]: {
-            [locationType: 'IN' | 'GL']: KeywordSerpData;
+            IN?: KeywordSerpData;
+            GL?: KeywordSerpData;
         };
     };
 }
@@ -58,7 +59,7 @@ export async function saveSerpResults(
     selectedDomain: string
 ): Promise<void> {
     const db = await readDatabase();
-    
+
     // Initialize structure if needed
     if (!db[clientCode]) {
         db[clientCode] = {};
@@ -66,7 +67,7 @@ export async function saveSerpResults(
     if (!db[clientCode][keyword]) {
         db[clientCode][keyword] = {};
     }
-    
+
     // Save the results
     db[clientCode][keyword][locationType] = {
         lastFetched: new Date().toISOString(),
@@ -82,7 +83,7 @@ export async function saveSerpResults(
             type: item.type || 'organic'
         }))
     };
-    
+
     await writeDatabase(db);
 }
 
@@ -103,7 +104,7 @@ export async function getSerpResults(
  */
 export async function getAllResultsForClient(
     clientCode: string
-): Promise<Record<string, Record<'IN' | 'GL', KeywordSerpData | undefined>>> {
+): Promise<Record<string, { IN?: KeywordSerpData; GL?: KeywordSerpData }>> {
     const db = await readDatabase();
     return db[clientCode] || {};
 }

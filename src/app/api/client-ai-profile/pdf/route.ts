@@ -51,8 +51,8 @@ export async function GET(request: NextRequest) {
             doc.moveDown(0.5);
         };
 
-        printSection('Brand Tokens', dict.brandTokens, 'purple');
-        printSection('Negative Tokens', dict.negativeTokens, 'red');
+        printSection('Brand Tokens', (dict.brandTokens || []).map(t => typeof t === 'string' ? t : t.token), 'purple');
+        printSection('Negative Tokens', (dict.negativeTokens || []).map(t => typeof t === 'string' ? t : t.token), 'red');
 
         // Product Lines
         doc.fontSize(11).fillColor('blue').text('Product Line Tokens');
@@ -61,9 +61,9 @@ export async function GET(request: NextRequest) {
         });
         doc.moveDown(0.5);
 
-        printSection('Industry Indicators', dict.industryIndicators);
-        printSection('Core Tokens', dict.coreTokens, 'green');
-        printSection('Adjacent Tokens', dict.adjacentTokens, 'orange');
+        printSection('Industry Indicators', dict.industryIndicators || []);
+        printSection('Core Tokens', dict.coreTokens || [], 'green');
+        printSection('Adjacent Tokens', dict.adjacentTokens || [], 'orange');
     } else {
         doc.fontSize(12).fillColor('red').text('⚠️ Missing Matching Dictionary');
     }

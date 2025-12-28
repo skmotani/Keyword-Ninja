@@ -7,6 +7,7 @@ import { useState, useRef, useEffect } from 'react';
 const masterItems = [
   { href: '/clients', label: 'Clients' },
   { href: '/competitors', label: 'Competitors' },
+  { href: '/master/domain-credibility-age', label: 'Domain Credibility, Age' },
   { href: '/keywords/manual', label: 'Keyword Manual' },
 ];
 
@@ -68,6 +69,11 @@ const seoDataItems = [
   { href: '/keywords/domain-keywords', label: 'Domain Top Keywords' },
 ];
 
+const adminItems = [
+  { href: '/admin/comments', label: 'Comments & Tasks' },
+  { href: '/admin/site-master', label: 'Site Master' },
+];
+
 export default function Navbar() {
   const pathname = usePathname();
   const [masterOpen, setMasterOpen] = useState(false);
@@ -75,12 +81,14 @@ export default function Navbar() {
   const [seoDataOpen, setSeoDataOpen] = useState(false);
   const [curatedOpen, setCuratedOpen] = useState(false);
   const [hubOpen, setHubOpen] = useState(false);
+  const [adminOpen, setAdminOpen] = useState(false);
 
   const masterRef = useRef<HTMLDivElement>(null);
   const reportRef = useRef<HTMLDivElement>(null);
   const seoDataRef = useRef<HTMLDivElement>(null);
   const curatedRef = useRef<HTMLDivElement>(null);
   const hubRef = useRef<HTMLDivElement>(null);
+  const adminRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -99,6 +107,9 @@ export default function Navbar() {
       if (curatedRef.current && !curatedRef.current.contains(event.target as Node)) {
         setCuratedOpen(false);
       }
+      if (adminRef.current && !adminRef.current.contains(event.target as Node)) {
+        setAdminOpen(false);
+      }
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -109,6 +120,7 @@ export default function Navbar() {
   const isSeoDataActive = seoDataItems.some(item => pathname === item.href);
   const isCuratedActive = curatedItems.some(item => pathname === item.href);
   const isHubActive = allHubItems.some(item => pathname === item.href) || pathname.startsWith('/twisting-machines') || pathname.startsWith('/compare') || pathname.startsWith('/guides');
+  const isAdminActive = adminItems.some(item => pathname === item.href);
 
   const DropdownArrow = ({ isOpen }: { isOpen: boolean }) => (
     <svg
@@ -149,6 +161,7 @@ export default function Navbar() {
                   setSeoDataOpen(false);
                   setCuratedOpen(false);
                   setHubOpen(false);
+                  setAdminOpen(false);
                 }}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${isMasterActive
                   ? 'bg-indigo-100 text-indigo-700'
@@ -186,6 +199,7 @@ export default function Navbar() {
                   setReportOpen(false);
                   setSeoDataOpen(false);
                   setHubOpen(false);
+                  setAdminOpen(false);
                 }}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${isCuratedActive
                   ? 'bg-indigo-100 text-indigo-700'
@@ -222,6 +236,7 @@ export default function Navbar() {
                   setMasterOpen(false);
                   setSeoDataOpen(false);
                   setHubOpen(false);
+                  setAdminOpen(false);
                 }}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${isReportActive
                   ? 'bg-indigo-100 text-indigo-700'
@@ -258,6 +273,7 @@ export default function Navbar() {
                   setMasterOpen(false);
                   setReportOpen(false);
                   setHubOpen(false);
+                  setAdminOpen(false);
                 }}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${isSeoDataActive
                   ? 'bg-indigo-100 text-indigo-700'
@@ -294,6 +310,7 @@ export default function Navbar() {
                   setMasterOpen(false);
                   setReportOpen(false);
                   setSeoDataOpen(false);
+                  setAdminOpen(false);
                 }}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${isHubActive
                   ? 'bg-indigo-100 text-indigo-700'
@@ -316,7 +333,7 @@ export default function Navbar() {
                   >
                     Twisting Machines Hub
                   </Link>
-
+                  {/* ... rest of hub items ... */}
                   <div className="px-4 py-1 text-xs font-semibold text-gray-500 bg-gray-50 uppercase">Categories</div>
                   {hubCategories.map((item) => (
                     <Link
@@ -331,7 +348,7 @@ export default function Navbar() {
                       {item.label}
                     </Link>
                   ))}
-
+                  {/* ... other sections ... */}
                   <div className="px-4 py-1 text-xs font-semibold text-gray-500 bg-gray-50 uppercase">Applications</div>
                   {hubApplications.map((item) => (
                     <Link
@@ -346,7 +363,6 @@ export default function Navbar() {
                       {item.label}
                     </Link>
                   ))}
-
                   <div className="px-4 py-1 text-xs font-semibold text-gray-500 bg-gray-50 uppercase">Comparisons</div>
                   {hubComparisons.map((item) => (
                     <Link
@@ -361,7 +377,6 @@ export default function Navbar() {
                       {item.label}
                     </Link>
                   ))}
-
                   <div className="px-4 py-1 text-xs font-semibold text-gray-500 bg-gray-50 uppercase">Guides</div>
                   {hubGuides.map((item) => (
                     <Link
@@ -369,6 +384,44 @@ export default function Navbar() {
                       href={item.href}
                       onClick={() => setHubOpen(false)}
                       className={`block px-4 py-1.5 text-sm transition-colors ${pathname === item.href
+                        ? 'bg-indigo-50 text-indigo-700'
+                        : 'text-gray-700 hover:bg-gray-100'
+                        }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="relative" ref={adminRef}>
+              <button
+                onClick={() => {
+                  setAdminOpen(!adminOpen);
+                  setMasterOpen(false);
+                  setReportOpen(false);
+                  setSeoDataOpen(false);
+                  setCuratedOpen(false);
+                  setHubOpen(false);
+                }}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${isAdminActive
+                  ? 'bg-indigo-100 text-indigo-700'
+                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                  }`}
+              >
+                Admin
+                <DropdownArrow isOpen={adminOpen} />
+              </button>
+
+              {adminOpen && (
+                <div className="absolute left-0 mt-1 w-48 bg-white rounded-md shadow-lg border z-50">
+                  {adminItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setAdminOpen(false)}
+                      className={`block px-4 py-2 text-sm transition-colors ${pathname === item.href
                         ? 'bg-indigo-50 text-indigo-700'
                         : 'text-gray-700 hover:bg-gray-100'
                         }`}

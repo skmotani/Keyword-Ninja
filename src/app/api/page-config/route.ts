@@ -9,8 +9,20 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({ error: 'Path is required' }, { status: 400 });
     }
 
-    const config = await getPageConfig(path);
-    return NextResponse.json(config || { path, userDescription: '', updatedAt: '' });
+    let config = await getPageConfig(path);
+
+    if (!config) {
+        // Auto-register page on first visit
+        config = {
+            path,
+            userDescription: '',
+            comments: [],
+            updatedAt: new Date().toISOString()
+        };
+        await savePageConfig(config);
+    }
+
+    return NextResponse.json(config);
 }
 
 export async function POST(request: NextRequest) {

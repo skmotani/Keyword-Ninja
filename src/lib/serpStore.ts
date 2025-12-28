@@ -82,3 +82,76 @@ export async function upsertClientPositionSerpRecords(
 
   await writeSerpRecords(updatedList);
 }
+
+// --------------------------------------------------------
+// SERP RESULTS (Detailed Top 10) - serp_results.json
+// --------------------------------------------------------
+
+const SERP_RESULTS_FILE = 'serp_results.json';
+import { SerpResult } from '@/types';
+
+async function readSerpResultRecords(): Promise<SerpResult[]> {
+  try {
+    const filePath = path.join(DATA_DIR, SERP_RESULTS_FILE);
+    const data = await fs.readFile(filePath, 'utf-8');
+    return JSON.parse(data) as SerpResult[];
+  } catch {
+    return [];
+  }
+}
+
+async function writeSerpResultRecords(records: SerpResult[]): Promise<void> {
+  const filePath = path.join(DATA_DIR, SERP_RESULTS_FILE);
+  await fs.writeFile(filePath, JSON.stringify(records, null, 2), 'utf-8');
+}
+
+export async function getSerpDataByClientAndLocations(
+  clientCode: string,
+  locationCodes: number[]
+): Promise<SerpResult[]> {
+  const all = await readSerpResultRecords();
+  return all.filter(r =>
+    r.clientCode === clientCode &&
+    locationCodes.includes(r.locationCode)
+  );
+}
+
+export async function replaceSerpDataForClientAndLocations(
+  clientCode: string,
+  locationCodes: number[],
+  newRecords: SerpResult[]
+): Promise<void> {
+  const all = await readSerpResultRecords();
+
+  // Remove existing records for this client + locations
+  // filtering out strictly what matches BOTH client AND one of the locations
+  const filtered = all.filter(r =>
+    !(r.clientCode === clientCode && locationCodes.includes(r.locationCode))
+  );
+
+  // Append new records
+  const updated = [...filtered, ...newRecords];
+
+  await writeSerpResultRecords(updated);
+}
+
+export async function saveSerpApiLog(clientCode: string, locCodes: string[], rawResponse: any): Promise<string> {
+  try {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const filename = `serp_fetch_${clientCode}_${timestamp}.json`;
+    const logDir = path.join(DATA_DIR, 'api_logs');
+
+    await fs.mkdir(logDir, { recursive: true });
+    await fs.writeFile(path.join(logDir, filename), JSON.stringify({
+      clientCode,
+      locCodes,
+      timestamp,
+      response: rawResponse
+    }, null, 2));
+
+    return filename;
+  } catch (e) {
+    console.error('Failed to save SERP log', e);
+    return 'error_saving_log.json';
+  }
+}

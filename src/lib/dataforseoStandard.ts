@@ -37,7 +37,7 @@ async function logRawData(filename: string, data: any, options?: ForensicLogOpti
     } catch { /* ignore */ }
 }
 
-async function getDfsCredentials(): Promise<ApiCredential | null> {
+export async function getDfsCredentials(): Promise<ApiCredential | null> {
     try {
         const filePath = path.join(process.cwd(), 'data', 'api_credentials.json');
         const data = await fs.readFile(filePath, 'utf-8');
@@ -53,7 +53,7 @@ async function getDfsCredentials(): Promise<ApiCredential | null> {
  * - GET for task_get endpoints (no body)
  * - POST for task_post (JSON array body)
  */
-async function fetchDfs(endpoint: string, payload: any, creds: ApiCredential) {
+export async function fetchDfs(endpoint: string, payload: any, creds: ApiCredential) {
     const auth = Buffer.from(`${creds.username}:${creds.password}`).toString('base64');
     const fullUrl = `https://api.dataforseo.com/v3/${endpoint}`;
 
@@ -89,8 +89,26 @@ async function fetchDfs(endpoint: string, payload: any, creds: ApiCredential) {
         const res = await fetch(fullUrl, fetchOptions);
         clearTimeout(timeoutId);
 
-        const jsonData = await res.json();
+        if (!res.ok) {
+            const text = await res.text();
+            console.error(`[DFS] Error ${res.status}: ${text.substring(0, 200)}`);
+            throw new Error(`DataForSEO API Error: ${res.status} ${res.statusText}`);
+        }
+
+        const text = await res.text();
+        let jsonData;
+        try {
+            jsonData = JSON.parse(text);
+        } catch (e) {
+            console.error(`[DFS] Invalid JSON: ${text.substring(0, 200)}`);
+            throw new Error(`Invalid JSON response from DataForSEO (Status ${res.status})`);
+        }
+
         console.log(`[DFS] ${method} ${endpoint} => HTTP ${res.status}, status_code=${jsonData.status_code}`);
+
+        if (jsonData.status_code && jsonData.status_code >= 40000) {
+            throw new Error(`DataForSEO Task Error: ${jsonData?.status_message || 'Unknown'} (Code ${jsonData.status_code})`);
+        }
 
         return jsonData;
 
@@ -100,8 +118,6 @@ async function fetchDfs(endpoint: string, payload: any, creds: ApiCredential) {
         throw e;
     }
 }
-
-// METRICS
 export async function postMetricsTask(keywords: string[], locationCode: number, jobId: string) {
     const creds = await getDfsCredentials();
     if (!creds) throw new Error('No DataForSEO credentials found');
@@ -221,8 +237,8 @@ export async function waitForSerpResults(
                     resultsMap.set(id, { id, status: 'COMPLETED', data: task });
                     pending.delete(id);
                     if (onResult) await onResult(resultsMap.get(id)!);
-                } else if (task.status_code === 40602) {
-                    // QUEUED - still processing, keep waiting
+                } else if (task.status_code === 40602 || String(task.status_code) === '20100' || (task.status_message && task.status_message.includes('Task Handed'))) {
+                    // QUEUED (40602) or Task Handed (20100) - still processing, keep waiting
                     // Don't log every time to reduce noise
                 } else if (task.status_code === 40501) {
                     // Task not found - error
@@ -232,7 +248,7 @@ export async function waitForSerpResults(
                     if (onResult) await onResult(resultsMap.get(id)!);
                 } else {
                     // Other error
-                    console.log(`[task ${id}] ERROR ${task.status_code}: ${task.status_message}`);
+                    console.log(`[task ${id}] UNHANDLED STATUS CODE: ${task.status_code} (${typeof task.status_code}). Message: ${task.status_message}`);
                     resultsMap.set(id, { id, status: 'ERROR', error: task.status_message });
                     pending.delete(id);
                     if (onResult) await onResult(resultsMap.get(id)!);

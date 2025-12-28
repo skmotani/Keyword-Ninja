@@ -1,12 +1,10 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, Suspense } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import PageHeader from '@/components/PageHeader';
 import ExportButton, { ExportColumn } from '@/components/ExportButton';
 import { Client, Competitor, CompetitorSource } from '@/types';
-
-// ... (keep helper functions getRelevanceBadgeColor and getMatchBucketColor as is) ...
 
 function getRelevanceBadgeColor(category: string): string {
   switch (category) {
@@ -59,7 +57,7 @@ const competitorsPageDescription = `
   SERP Data → AI Classification → Competitor Master Database.
 `;
 
-export default function CompetitorsPage() {
+function CompetitorsContent() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -699,5 +697,13 @@ export default function CompetitorsPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function CompetitorsPage() {
+  return (
+    <Suspense fallback={<div className="text-center py-8">Loading...</div>}>
+      <CompetitorsContent />
+    </Suspense>
   );
 }
