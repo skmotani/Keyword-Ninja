@@ -52,6 +52,13 @@ export default function DomainCredibilityPage() {
     const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
     const [filterText, setFilterText] = useState('');
 
+    // Helper: Normalize Domain (Same as backend)
+    const normalizeDomain = (d: string) => {
+        return d.toLowerCase()
+            .replace(/^(https?:\/\/)?(www\.)?/, '')
+            .replace(/\/.*$/, '');
+    };
+
     // Fetch Clients on Mount
     useEffect(() => {
         const fetchClients = async () => {
@@ -229,11 +236,14 @@ export default function DomainCredibilityPage() {
                 pipeline.startStep('update_ui');
                 // Merge results (replace existing for same domain, but preserve name/type)
                 setResults(prev => {
-                    const newMap = new Map(prev.map(r => [r.domain, r]));
+                    // Use normalized keys for the map
+                    const newMap = new Map(prev.map(r => [normalizeDomain(r.domain), r]));
                     data.results.forEach((r: any) => {
+                        const rNorm = normalizeDomain(r.domain);
                         // The API result 'r' lacks 'type' and 'name'. We must preserve them.
-                        const meta = selectedItems.find(i => i.domain === r.domain);
-                        const existing = newMap.get(r.domain);
+                        // Match leniently
+                        const meta = selectedItems.find(i => normalizeDomain(i.domain) === rNorm);
+                        const existing = newMap.get(rNorm);
 
                         const merged = {
                             ...existing,
@@ -242,7 +252,7 @@ export default function DomainCredibilityPage() {
                             type: meta?.type || existing?.type || 'other',
                             name: meta?.name || existing?.name || r.domain
                         };
-                        newMap.set(r.domain, merged);
+                        newMap.set(rNorm, merged);
                     });
                     return Array.from(newMap.values());
                 });
@@ -287,7 +297,9 @@ export default function DomainCredibilityPage() {
 
         // 3. Map to Rows with Data
         let rows = domains.map(d => {
-            const record = results.find(r => r.domain === d.domain);
+            // Loose match on normalized domain
+            const dNorm = normalizeDomain(d.domain);
+            const record = results.find(r => normalizeDomain(r.domain) === dNorm);
             return {
                 id: d.id,
                 domainObj: d,
