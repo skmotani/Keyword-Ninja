@@ -59,6 +59,9 @@ export interface Competitor {
   businessRelevanceCategory?: BusinessRelevanceCategoryValue;
   explanationSummary?: string;
   addedAt?: string;
+  // New tagging fields
+  competitionType?: string;  // e.g., "Main Competitor", "Partial Competitor", "Not a Competitor"
+  competitorForProducts?: string[];  // Product lines this competitor competes for
 }
 
 export interface ManualKeyword {

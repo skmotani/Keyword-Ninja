@@ -118,9 +118,23 @@
   },
   {
     "path": "/keywords/domain-keywords",
-    "updatedAt": "2025-12-28T23:42:39.297Z",
+    "updatedAt": "2025-12-29T01:51:07.597Z",
     "userDescription": "Keyword ETV = Search Volume × CTR(position) × CPC",
     "comments": [
+      {
+        "id": "8e0a8893-6053-4372-a0c9-913381e4de8f",
+        "text": "suppose the indstry key woprds that we have genereted through serp results do not have good intenet commerical , trnsactonal, education kw , and if we develop them , will it give us an advantage.\nYes — developing missing commercial, transactional, and educational keywords even if they do not currently exist in SERP can give you a competitive advantage. In fact, this is a classic B2B SEO advantage strategy called:\n\n“Category Creation through Intent Expansion.”\n\nIf the current industry keyword set is mostly informational/low-intent or technical (which is common in machinery, textile, and B2B industrial sectors), building high-intent pages around missing commercial terms can position you as the authority before demand catches up, and before competitors even realize those keywords matter.\n\nrefer to full discussin here https://chatgpt.com/s/t_6951de73ed9481918eefdf2ef3e97e0c\n",
+        "status": "pending",
+        "createdAt": "2025-12-29T01:45:35.938Z",
+        "updatedAt": "2025-12-29T01:51:06.904Z"
+      },
+      {
+        "id": "3c4ee8d5-0668-4403-9e6f-18d555b2bf38",
+        "text": "on this page we should calculate the total search volumne across the key word to know industry search traffic volume\n\nalso we can calculate the etv frpm the given cpc, vol, and rank matrics",
+        "status": "pending",
+        "createdAt": "2025-12-29T01:41:06.390Z",
+        "updatedAt": "2025-12-29T01:41:06.390Z"
+      },
       {
         "id": "06d63a7b-3350-4e68-9d66-6168937a7924",
         "text": "STEP 4 — PRIORITY SCORING\n\nDon’t treat all keywords equally.\nScore them using 3 factors:\n\nPriority=Search Volume+Intent Weight+Competitor Rank AdvantagePriority = Search\\ Volume + Intent\\ Weight + Competitor\\ Rank\\ AdvantagePriority=Search Volume+Intent Weight+Competitor Rank Advantage\n\nIf a competitor ranks in top 10 → urgent\nIf a keyword has price intent → urgent\nIf search volume is high but no buyer intent → low",

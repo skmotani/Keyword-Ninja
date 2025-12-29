@@ -4,7 +4,7 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 
 // Types
 interface Client { id: string; code: string; name: string; domains?: string[]; isActive: boolean; }
-interface Competitor { id: string; clientCode: string; name: string; domain: string; isActive: boolean; }
+interface Competitor { id: string; clientCode: string; name: string; domain: string; isActive: boolean; competitionType?: string; competitorForProducts?: string[]; }
 interface CredibilityRecord {
     id: string; clientCode: string; domain: string; domainType: 'client' | 'competitor';
     domainAgeYears: number | null; referringDomains: number | null; totalBacklinks: number | null;
@@ -19,6 +19,7 @@ interface DomainEntry {
     domain: string; cleanDomain: string; type: 'client' | 'competitor'; label?: string;
     selected: boolean; storedData: CredibilityRecord | null;
     needsWhois: boolean; needsBacklinks: boolean; needsLabs: boolean; estimatedCost: number;
+    competitionType?: string; competitorForProducts?: string[];
 }
 interface FetchPlan {
     totalDomains: number; domainsNeedingFetch: number; domainsComplete: number;
@@ -439,6 +440,8 @@ export default function DomainAuthorityPage() {
     // Filters - Domain is multi-select, Status is multi-select
     const [domainFilter, setDomainFilter] = useState<string[]>([]);  // Empty = all domains
     const [statusFilter, setStatusFilter] = useState<string[]>([]); // ['complete', 'partial', 'none']
+    const [competitionFilter, setCompetitionFilter] = useState<string[]>([]); // Competition type filter
+    const [productFilter, setProductFilter] = useState<string[]>([]); // Product filter
 
     // Load data
     useEffect(() => {
@@ -463,7 +466,7 @@ export default function DomainAuthorityPage() {
         if (!clientCode) { setDomains([]); return; }
         const seen = new Set<string>(), list: DomainEntry[] = [];
         const client = clients.find(c => c.code === clientCode);
-        const add = (raw: string, type: 'client' | 'competitor', label?: string) => {
+        const add = (raw: string, type: 'client' | 'competitor', label?: string, competitionType?: string, competitorForProducts?: string[]) => {
             const c = clean(raw);
             if (!c || seen.has(c)) return;
             seen.add(c);
@@ -474,10 +477,13 @@ export default function DomainAuthorityPage() {
                 domain: raw.replace(/^https?:\/\//, '').replace(/\/$/, ''), cleanDomain: c, type, label, selected: true, storedData: stored,
                 needsWhois: nW, needsBacklinks: nB, needsLabs: nL,
                 estimatedCost: (nW ? 0.101 : 0) + (nB ? 0.020 : 0) + (nL ? 0.101 : 0),
+                competitionType, competitorForProducts,
             });
         };
         (client?.domains || []).forEach(d => add(d, 'client', client?.name));
-        competitors.filter(c => c.clientCode === clientCode && c.isActive).forEach(c => add(c.domain, 'competitor', c.name));
+        competitors.filter(c => c.clientCode === clientCode && c.isActive).forEach(c =>
+            add(c.domain, 'competitor', c.name, c.competitionType, c.competitorForProducts)
+        );
         setDomains(list);
     }, [clientCode, clients, competitors, records]);
 
@@ -501,6 +507,22 @@ export default function DomainAuthorityPage() {
                 if (statusFilter.includes('partial') && e.storedData && !complete) return true;
                 if (statusFilter.includes('none') && !e.storedData) return true;
                 return false;
+            });
+        }
+
+        // Competition type filter
+        if (competitionFilter.length > 0) {
+            result = result.filter(e => {
+                if (e.type === 'client') return competitionFilter.includes('Client');
+                return e.competitionType && competitionFilter.includes(e.competitionType);
+            });
+        }
+
+        // Product filter
+        if (productFilter.length > 0) {
+            result = result.filter(e => {
+                if (!e.competitorForProducts || e.competitorForProducts.length === 0) return false;
+                return e.competitorForProducts.some(p => productFilter.includes(p));
             });
         }
 
@@ -534,7 +556,7 @@ export default function DomainAuthorityPage() {
         });
 
         return result;
-    }, [domains, domainFilter, statusFilter, sortKey, sortDir]);
+    }, [domains, domainFilter, statusFilter, competitionFilter, productFilter, sortKey, sortDir]);
 
     const selected = useMemo(() => domains.filter(d => d.selected), [domains]);
 
@@ -675,6 +697,8 @@ export default function DomainAuthorityPage() {
                             <th className="px-2 py-3 w-10 bg-gray-50 text-left text-gray-500 font-medium">#</th>
                             <th className="px-4 py-3 text-left bg-gray-50 cursor-pointer hover:bg-gray-100 font-medium text-gray-700" onClick={() => handleSort('domain')}>Domain<Tip k="domain" /><SortIcon col="domain" /></th>
                             <th className="px-3 py-3 w-12 bg-gray-50 cursor-pointer hover:bg-gray-100 text-center font-medium text-gray-700" onClick={() => handleSort('type')}>T<Tip k="type" /><SortIcon col="type" /></th>
+                            <th className="px-3 py-3 w-20 bg-gray-50 text-center font-medium text-gray-700">Comp</th>
+                            <th className="px-3 py-3 w-24 bg-gray-50 text-center font-medium text-gray-700">Products</th>
                             <th className="px-3 py-3 w-16 bg-gray-50 cursor-pointer hover:bg-gray-100 text-right font-medium text-gray-700" onClick={() => handleSort('age')}>Age<Tip k="age" /><SortIcon col="age" /></th>
                             <th className="px-3 py-3 w-16 bg-gray-50 cursor-pointer hover:bg-gray-100 text-right font-medium text-gray-700" onClick={() => handleSort('rd')}>RD<Tip k="rd" /><SortIcon col="rd" /></th>
                             <th className="px-3 py-3 w-16 bg-gray-50 cursor-pointer hover:bg-gray-100 text-right font-medium text-gray-700" onClick={() => handleSort('bl')}>BL<Tip k="bl" /><SortIcon col="bl" /></th>
@@ -702,9 +726,25 @@ export default function DomainAuthorityPage() {
                                     placeholder="All Domains"
                                 />
                             </th>
-                            <th className="px-1 py-2 bg-gray-50"></th>
-                            <th className="px-1 py-2 bg-gray-50"></th>
-                            <th className="px-1 py-2 bg-gray-50"></th>
+                            <th className="px-2 py-2 bg-gray-50">
+                                <MultiSelectFilter
+                                    options={[
+                                        { value: 'Client', label: 'Client' },
+                                        ...Array.from(new Set(domains.filter(d => d.competitionType).map(d => d.competitionType!))).map(t => ({ value: t, label: t }))
+                                    ]}
+                                    selected={competitionFilter}
+                                    onChange={setCompetitionFilter}
+                                    placeholder="Competition"
+                                />
+                            </th>
+                            <th className="px-2 py-2 bg-gray-50">
+                                <MultiSelectFilter
+                                    options={Array.from(new Set(domains.flatMap(d => d.competitorForProducts || []))).map(p => ({ value: p, label: p }))}
+                                    selected={productFilter}
+                                    onChange={setProductFilter}
+                                    placeholder="Products"
+                                />
+                            </th>
                             <th className="px-1 py-2 bg-gray-50"></th>
                             <th className="px-1 py-2 bg-gray-50"></th>
                             <th className="px-1 py-2 bg-gray-50"></th>
@@ -740,6 +780,29 @@ export default function DomainAuthorityPage() {
                                         <div className="text-[11px] text-gray-400 mt-0.5">{complete ? '✓ Complete' : `Need: ${[!hasWhois && 'Age', !hasBacklinks && 'BL', !hasLabs && 'KW'].filter(Boolean).join(', ')}`}</div>
                                     </td>
                                     <td className="px-3 py-2.5 text-center"><span className={`inline-block w-6 h-6 leading-6 text-center rounded text-xs font-medium ${e.type === 'client' ? 'bg-blue-200 text-blue-800' : 'bg-gray-200 text-gray-600'}`}>{e.type === 'client' ? 'C' : 'X'}</span></td>
+                                    <td className="px-3 py-2.5 text-center text-[10px]">
+                                        {e.type === 'client' ? (
+                                            <span className="px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">Client</span>
+                                        ) : e.competitionType ? (
+                                            <span className={`px-1.5 py-0.5 rounded ${e.competitionType === 'Main Competitor' ? 'bg-red-100 text-red-700' :
+                                                    e.competitionType === 'Partial Competitor' ? 'bg-amber-100 text-amber-700' :
+                                                        e.competitionType === 'Not a Competitor' ? 'bg-gray-100 text-gray-600' :
+                                                            'bg-purple-100 text-purple-700'
+                                                }`}>{e.competitionType}</span>
+                                        ) : <span className="text-gray-300">-</span>}
+                                    </td>
+                                    <td className="px-3 py-2.5 text-center text-[10px]">
+                                        {e.competitorForProducts && e.competitorForProducts.length > 0 ? (
+                                            <div className="flex flex-wrap gap-0.5 justify-center">
+                                                {e.competitorForProducts.slice(0, 2).map(p => (
+                                                    <span key={p} className="px-1 py-0.5 bg-purple-100 text-purple-700 rounded">{p}</span>
+                                                ))}
+                                                {e.competitorForProducts.length > 2 && (
+                                                    <span className="text-gray-400">+{e.competitorForProducts.length - 2}</span>
+                                                )}
+                                            </div>
+                                        ) : <span className="text-gray-300">-</span>}
+                                    </td>
                                     <td className={`px-3 py-2.5 text-right font-mono text-xs ${!hasWhois ? 'text-gray-300' : 'text-gray-700'}`}>{d?.domainAgeYears != null ? d.domainAgeYears.toFixed(1) + 'y' : '-'}</td>
                                     <td className={`px-3 py-2.5 text-right font-mono text-xs ${!hasBacklinks ? 'text-gray-300' : 'text-gray-700'}`}>{fmt(d?.referringDomains)}</td>
                                     <td className={`px-3 py-2.5 text-right font-mono text-xs ${!hasBacklinks ? 'text-gray-300' : 'text-gray-700'}`}>{fmt(d?.totalBacklinks)}</td>

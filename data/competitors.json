@@ -6,7 +6,9 @@
     "domain": "meera.ind.in",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Self",
+    "competitorForProducts": []
   },
   {
     "id": "7f1b1b50-846c-4643-8d0f-fd663921fb6c",
@@ -15,7 +17,8 @@
     "domain": "meeraind.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Self"
   },
   {
     "id": "08397a8e-f9b1-4733-8de4-b07cd94e56a8",
@@ -24,7 +27,8 @@
     "domain": "aakashtexeng.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Small Competitor"
   },
   {
     "id": "7eac598a-c1a0-4dfe-b56d-ff6deb87ca76",
@@ -33,7 +37,8 @@
     "domain": "aakashtexeng.in",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Main Competitor"
   },
   {
     "id": "e238bb51-b66f-4752-a36a-6659cf8e2d5e",
@@ -42,7 +47,8 @@
     "domain": "aakashtextileengineers.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Main Competitor"
   },
   {
     "id": "aee84fc8-5edf-4bcf-aa6e-c45353b1bdfc",
@@ -51,7 +57,8 @@
     "domain": "aakashthreads.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Not a Competitor"
   },
   {
     "id": "d3c327b4-857e-42d5-9639-fe37fadd12d0",
@@ -60,7 +67,8 @@
     "domain": "aalidhra.in",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Main Competitor"
   },
   {
     "id": "e00eede8-2248-4d2f-92a9-96d4849c9f8f",
@@ -69,7 +77,8 @@
     "domain": "aalidhratexpro.in",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Main Competitor"
   },
   {
     "id": "eeeb87ab-0d28-48cd-bbb7-111ed768df86",
@@ -78,7 +87,8 @@
     "domain": "aawadkrupaextrusion.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Main Competitor"
   },
   {
     "id": "83aa7efc-121a-48ba-affb-94e6e25e4324",
@@ -87,7 +97,8 @@
     "domain": "aawadkrupaplastomech.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Main Competitor"
   },
   {
     "id": "3e1c6d67-e16b-410d-a785-ae3d2bc31d81",
@@ -96,7 +107,8 @@
     "domain": "bcfyarn.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Not a Competitor"
   },
   {
     "id": "34f1337d-60dc-4821-967c-4362c3b4e8bd",
@@ -105,7 +117,8 @@
     "domain": "bhagat.co",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Partial Competitor"
   },
   {
     "id": "ba35bd12-0ea6-491a-8787-e69b6c95792f",
@@ -114,7 +127,8 @@
     "domain": "bhargeshengg.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Not a Competitor"
   },
   {
     "id": "ae9a942c-3a72-44ba-b16f-77fbf81e518d",
@@ -123,7 +137,8 @@
     "domain": "jaylaxmitextilespindle.net",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Not a Competitor"
   },
   {
     "id": "7fdfce53-d8ed-4deb-97c4-cf678c8d0332",
@@ -132,7 +147,8 @@
     "domain": "jcmachine.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Main Competitor"
   },
   {
     "id": "3aa02c76-3206-48fe-8bf2-7faa1ed849eb",
@@ -141,7 +157,8 @@
     "domain": "jdtextilemachine.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Not a Competitor"
   },
   {
     "id": "ed3282b8-8857-4cd3-8799-af01e54e16e8",
@@ -150,7 +167,8 @@
     "domain": "jingtianchina.en.made-in-china.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Not a Competitor"
   },
   {
     "id": "66627723-e321-459a-8d69-751b12315135",
@@ -159,7 +177,8 @@
     "domain": "jmfibermachine.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Not a Competitor"
   },
   {
     "id": "3999c656-f4cb-4ffc-aaa4-ba6ed8400945",
@@ -168,7 +187,11 @@
     "domain": "jmwindia.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "436ac7c4-740d-4be7-b2e2-0c326bb6622a",
@@ -177,7 +200,11 @@
     "domain": "kristeel.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Partial Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "d44774cb-46a0-4f8c-a6f2-907fabc1b979",
@@ -186,7 +213,8 @@
     "domain": "maheshengineers.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Not a Competitor"
   },
   {
     "id": "417fd88f-25b2-488d-afa0-bebcf9097dd4",
@@ -195,7 +223,11 @@
     "domain": "prtexpro.in",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "5c7da993-da9d-4fe3-8606-cfb44f1e5240",
@@ -249,7 +281,11 @@
     "domain": "saurer.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "ec5fdf29-49cd-4009-b0b3-da35cb5ef03f",
@@ -258,7 +294,11 @@
     "domain": "saviospa.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "8edf0a86-81ea-4cff-8cc1-12d71f42055b",
@@ -303,7 +343,8 @@
     "domain": "tfoparts.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Not a Competitor"
   },
   {
     "id": "b363eae2-bab1-465e-81ad-d9c5ec8d50fa",
@@ -312,7 +353,11 @@
     "domain": "tfotwister.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "d2027de3-682b-47f4-8186-1ce83fcfbc8d",
@@ -330,7 +375,11 @@
     "domain": "twistechnology.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "06bd5e44-7483-471c-9fcf-bce29cebe385",
@@ -348,7 +397,11 @@
     "domain": "veejaylakshmi.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "3c2c2644-e4f5-4111-9343-4d8edb597e9c",
@@ -357,7 +410,11 @@
     "domain": "weavetech.com",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "60729c08-be73-44fe-9abe-8e9bd60e3bdf",
@@ -366,7 +423,11 @@
     "domain": "weavetech.in",
     "notes": "",
     "isActive": true,
-    "source": "Manual Entry"
+    "source": "Manual Entry",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "5bfb8dec-12f8-44a0-a742-edff2e2f01d2",
@@ -410,7 +471,11 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP pages from this domain are product pages for TFO/twisting machines and winding machines (e.g., Spun Yarn TFO Twister, Filament Yarn TFO Twister, Cops/Pirn Winders), matching the client’s core product lines. Snippets feature specifications and sales language (“best price,” series pages), indicating a mainly transactional intent, though some articles (e.g., “What is Two-for-One Twister”) add informational content. The overlap with the client’s core topics (yarn twisting, winding) is very high, yielding a high product match score. Given it is an OEM selling the same machinery categories, this site is a direct competitor.",
-    "addedAt": "2025-12-07T06:52:43.015Z"
+    "addedAt": "2025-12-07T06:52:43.015Z",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "575f5c1f-8247-47cd-b13d-806d5c125a18",
@@ -427,7 +492,11 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP pages from this domain are product pages labeled “Manufacturer from Surat” for TFO twisters, assembly winders, thread twisters, covering machines, and tyre cord twisters, with detailed specs and pricing/enquiry cues. These offerings align directly with Meera’s core product lines in yarn twisting and winding machinery, yielding a high product match. The content is clearly transactional, aiming to sell or capture enquiries. Consequently, this site is an OEM/product provider and a direct competitor for the client.",
-    "addedAt": "2025-12-07T06:52:43.020Z"
+    "addedAt": "2025-12-07T06:52:43.020Z",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "d90fccc4-7eb7-4b1c-a3e9-641fb5b42dd4",
@@ -444,7 +513,11 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "This site lists and promotes textile machinery such as two-for-one twisters, short/filament fiber twisters, and assembly/precision winding machines, which directly align with the client's twisting and winding product lines. The ranking pages are predominantly product/category pages with specifications and manufacturer language, indicating sales/lead-gen intent, alongside some supporting educational posts (e.g., “What Is a TFO Machine?”). Given the strong overlap with the client's coreTopics and productLines, it scores a high product match and is classified as a direct competitor.",
-    "addedAt": "2025-12-07T06:52:43.026Z"
+    "addedAt": "2025-12-07T06:52:43.026Z",
+    "competitionType": "Partial Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "4607b15c-166e-4a8d-9337-075fbf1cfc48",
@@ -478,7 +551,11 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP pages from this domain are product pages for yarn twisting/TFO machines (e.g., spun and filament TFO twisters) with specifications and price cues like “Get Best Price,” matching OEM/manufacturer indicators. This aligns directly with the client’s core product lines such as spun/filament yarn twisters, ring twisters, and winding solutions. The content is clearly sales-oriented, so intent is transactional. Given the strong overlap with core topics, the match is high and the domain is a direct competitor.",
-    "addedAt": "2025-12-07T06:52:43.034Z"
+    "addedAt": "2025-12-07T06:52:43.034Z",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "893242df-b6cf-4a93-98c1-6129c442e661",
@@ -546,7 +623,11 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP pages for this domain are product/category pages for industrial yarn/twine twisting machines (e.g., “Twisting machines of high quality and productivity”), aligning directly with the client’s core products like yarn twisting machines and ring twisters. This indicates an OEM/product provider offering machines to the same buyer segments. The intent is transactional because the pages are about specific machinery offerings and specifications, not general education or listings. Given the strong overlap with core topics and products, the match is high and the domain is classified as a direct competitor.",
-    "addedAt": "2025-12-07T06:52:43.046Z"
+    "addedAt": "2025-12-07T06:52:43.046Z",
+    "competitionType": "",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "9bbb639c-05a5-4e7a-9e10-f1d05a9386c7",
@@ -563,7 +644,8 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP pages show SSB Tex Engineering manufacturing ring doubling and yarn twisting machines, plus related components—matching OEM/manufacturer indicators and the client’s core machinery domain. The ranking page is a product category page with clear sales language (manufactures, offered), indicating transactional intent. The offerings align closely with Meera’s core topics like yarn twisting and ring/ring-style processes, yielding a high product match. Given the OEM nature, transactional pages, and strong overlap with the client’s product lines, this domain is classified as a Direct Competitor.",
-    "addedAt": "2025-12-07T06:52:43.047Z"
+    "addedAt": "2025-12-07T06:52:43.047Z",
+    "competitionType": "Not a Competitor"
   },
   {
     "id": "05eb66b1-fd13-49e5-b8e2-35a29c99063c",
@@ -614,7 +696,11 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP pages are product detail listings for Cone Winder and Pirn Winder with “Manufacturer, Exporter and Supplier” language and specifications, indicating an OEM selling textile winding machinery. This aligns directly with the client’s core product lines (e.g., cone winder, yarn winding machinery). The intent is transactional, focused on enquiries/purchase. Given the strong product overlap and selling posture, this domain is a direct competitor with a high product match.",
-    "addedAt": "2025-12-07T06:52:43.054Z"
+    "addedAt": "2025-12-07T06:52:43.054Z",
+    "competitionType": "Partial Competitor",
+    "competitorForProducts": [
+      "winding machines"
+    ]
   },
   {
     "id": "b73f0411-d3ba-4fac-ad5b-87b10ec38c84",
@@ -665,7 +751,11 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP results show product pages for TFO doubler machines, filament/spun TFO (single and double deck), and jari covering equipment—clearly OEM textile machinery offerings. These align closely with the client’s core topics and product lines around yarn twisting machinery (spun/filament twisters, industrial yarn processing). The pages are sales-oriented with features/specs, indicating transactional intent. Due to the strong product overlap and OEM positioning, this domain is classified as a direct competitor with a high match score.",
-    "addedAt": "2025-12-07T06:52:43.060Z"
+    "addedAt": "2025-12-07T06:52:43.060Z",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "e737b7ea-f0a7-4eff-9b54-320ba55409be",
@@ -716,7 +806,11 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP pages for this domain are product/category pages for assembly winders and air-covering machines, indicating an OEM textile machinery provider rather than a marketplace or service firm. The intent is commercial investigation, with users evaluating machinery specs and solutions. This closely matches the client’s core products (e.g., assembly winder, winding solutions) and coreTopics, yielding a high product match. Given the OEM status and high overlap with the client’s offering, this domain is classified as a direct competitor.",
-    "addedAt": "2025-12-07T06:52:43.065Z"
+    "addedAt": "2025-12-07T06:52:43.065Z",
+    "competitionType": "Partial Competitor",
+    "competitorForProducts": [
+      "winding machines"
+    ]
   },
   {
     "id": "a32a2709-7cd9-4a9e-b46b-f82bc6952904",
@@ -784,7 +878,11 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP pages like “Filament Yarn TFO Twister Machine Manufacturer from Surat” and “Assembly Bobbin Winder Manufacturer” indicate an OEM selling twisting and winding machines. The pages feature specifications, ranges, speeds, and ‘Ask Price’ cues, reflecting transactional intent. These offerings map directly to the client’s core product lines (filament/spun twisters, assembly/ bobbin winders), yielding a high match score. Given OEM status, sales-focused pages, and near-identical products, this domain is a direct competitor.",
-    "addedAt": "2025-12-07T06:52:43.073Z"
+    "addedAt": "2025-12-07T06:52:43.073Z",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "d94285d2-8ec8-4e51-8a66-9688985283c9",
@@ -801,7 +899,8 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP pages are product detail/solution pages for assembly winders, filament and staple fiber twisters, carpet twisters, and an air covering winding machine—machines that align directly with the client’s core products and topics (twisters, winders, industrial yarn processing). The site behaves like a machinery OEM with model-specific specifications, indicating a product provider. These product pages suggest lead-generation/quotation intent, so we classify the intent as transactional. Given the strong overlap with the client’s offerings, the product match is high, leading to a Direct Competitor classification.",
-    "addedAt": "2025-12-07T06:52:43.075Z"
+    "addedAt": "2025-12-07T06:52:43.075Z",
+    "competitionType": "Main Competitor"
   },
   {
     "id": "94d8bfa2-1f4d-4f7f-8d8f-e8300521db22",
@@ -818,7 +917,8 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP pages are product listings for Heat Setting Machines with terms like Manufacturer, Supplier, price, delivery time, and industrial specifications, indicating an OEM selling machinery. Heat setting machines are a core product/topic in the client profile, creating strong overlap. Given the transactional cues and direct product alignment, this domain behaves as a competing machinery provider. Therefore it is classified as an OEM with transactional intent, high product match, and a Direct Competitor.",
-    "addedAt": "2025-12-07T06:52:43.078Z"
+    "addedAt": "2025-12-07T06:52:43.078Z",
+    "competitionType": "Not a Competitor"
   },
   {
     "id": "edfd4424-2d54-408f-a623-181d18eed248",
@@ -835,7 +935,11 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP pages are product listings like Assembly Winding Machine, Cone Winding Machine, and Two-For-One Twisting Machine with specs, prices, and “Manufacturer” cues, indicating an OEM selling machines. These products align directly with the client’s core lines (assembly/cone winding, yarn twisting). The presence of prices/specifications and manufacturer language signals transactional intent. Given the strong product overlap and OEM posture, this domain is a direct competitor with a high product match.",
-    "addedAt": "2025-12-07T06:52:43.080Z"
+    "addedAt": "2025-12-07T06:52:43.080Z",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "winding machines"
+    ]
   },
   {
     "id": "ea43482b-0757-4328-b104-400e3ac8aa3d",
@@ -852,7 +956,8 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP pages show Officine Gaudino producing combination twisters and cop winding equipment, which aligns directly with the client's core product lines in yarn twisting and winding. The pages are product/category pages (“Machines for twisting-doubling-twisting”, “Cop winding…”) indicating a selling/enquiry intent rather than general education. Because these offerings closely match Meera Industries’ twisters and winders, the product match is high. As an OEM with transactional pages in the same machinery niche, this domain is classified as a Direct Competitor.",
-    "addedAt": "2025-12-07T06:52:43.083Z"
+    "addedAt": "2025-12-07T06:52:43.083Z",
+    "competitionType": "Main Competitor"
   },
   {
     "id": "abc87d28-2342-4db0-9b29-03ba92abf9ba",
@@ -869,7 +974,8 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP listings show Kamdhenu Machinery manufacturing Ring Doublers, Heavy Ring Twisters, and Online Ring Winders, which directly overlap with the client’s core product lines (ring twister, winding machines). Page titles like “Ring Twister Machine Manufacturer in India” and specs-focused snippets signal transactional intent to sell or generate inquiries. Given the clear OEM positioning and high overlap with twisting/winding machinery, the product match is very high. Therefore, this domain is classified as a Direct Competitor with transactional pages.",
-    "addedAt": "2025-12-07T06:52:43.085Z"
+    "addedAt": "2025-12-07T06:52:43.085Z",
+    "competitionType": "Not a Competitor"
   },
   {
     "id": "c14cebf5-e957-429d-8d06-00e024e52769",
@@ -937,7 +1043,8 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP URLs are product pages for multifilament extrusion & winding machines, precision winders, and a twister, indicating an OEM selling textile/yarn processing machinery. These are transactional product pages aimed at inquiries and specifications rather than purely informational content. The offerings align closely with the client’s core topics of yarn twisting and winding machinery, yielding a high product match. Given OEM status, transactional intent, and strong overlap with twisting/winding solutions, this domain is classified as a Direct Competitor.",
-    "addedAt": "2025-12-07T06:52:43.105Z"
+    "addedAt": "2025-12-07T06:52:43.105Z",
+    "competitionType": "Not a Competitor"
   },
   {
     "id": "1d30d600-3e4b-44a3-8708-a2ce07a1aefa",
@@ -954,7 +1061,8 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP pages from fibrxl.com are product-oriented for ring twisting and two-for-one twisting machines, referencing high-performance machines (including partners like Galan and Twist Technology), which indicates a machinery provider role. The page content supports evaluation of specific machine types rather than being a directory or purely educational, so intent is commercial investigation. These topics directly match the client’s core offerings (ring twister, TFO twisting), yielding a high product match. Given the provider positioning and strong overlap with Meera’s machinery portfolio, this domain is classified as a direct competitor.",
-    "addedAt": "2025-12-07T06:52:43.108Z"
+    "addedAt": "2025-12-07T06:52:43.108Z",
+    "competitionType": "Not a Competitor"
   },
   {
     "id": "11060b6d-6995-4b3c-8265-94853632e5fa",
@@ -1005,7 +1113,11 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP results show product pages for Two For One Twister, Spun TFO machines, and Polyester TFO with specifications and pricing, indicating an OEM selling yarn twisting machinery. This directly aligns with the client’s core product lines (spun/filament yarn twisters, ring twisters, winding solutions) and core topics. The presence of prices, specs, and capacity data signals transactional intent. Given the strong product overlap and sales-focused pages, this domain is classified as a Direct Competitor with a high product match.",
-    "addedAt": "2025-12-07T06:52:43.118Z"
+    "addedAt": "2025-12-07T06:52:43.118Z",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "bd5c5b85-a338-4cf9-9de4-11d84dc848ac",
@@ -1022,7 +1134,11 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP pages are product ranges for assembly winding, cops winding, and air-covering machines with specifications and performance claims, indicating an OEM selling textile machinery. These align closely with the client’s core products (assembly winder, cop winder, yarn winding machinery). The content is sales-oriented/spec-driven, matching transactional intent. Given the high topical overlap and OEM positioning, this domain is classified as a direct competitor.",
-    "addedAt": "2025-12-07T06:52:43.120Z"
+    "addedAt": "2025-12-07T06:52:43.120Z",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "winding machines"
+    ]
   },
   {
     "id": "cd8313d0-f669-44f1-919b-17280b9fb66e",
@@ -1073,7 +1189,11 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP results show products like Precision Soft-Package Winder, Fully Automatic Cone Winder, and Assembly Winder from a Coimbatore-based manufacturer, which directly align with the client’s core product lines (cone/assembly winders, yarn winding machinery). These are OEM product pages and updates aimed at buyers, indicating transactional intent. The content strongly matches the client’s core topics, justifying a high product match score. Given the OEM nature and high overlap, this domain is classified as a direct competitor.",
-    "addedAt": "2025-12-07T06:52:43.125Z"
+    "addedAt": "2025-12-07T06:52:43.125Z",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "winding machines"
+    ]
   },
   {
     "id": "a73f2bac-c8d8-4fec-bd69-3c3268264624",
@@ -1107,7 +1227,11 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP results show product pages for a Two-for-One Twister and a Ring Doubler, indicating an OEM selling yarn twisting/doubling machinery. These products map directly to the client's core topics such as yarn twisting machines, spun/staple twisters, and ring twisters. Product-focused pages imply transactional intent (specs/enquiry-oriented). Given the close product overlap and sales-oriented pages, this domain is a high-match direct competitor.",
-    "addedAt": "2025-12-07T06:52:43.130Z"
+    "addedAt": "2025-12-07T06:52:43.130Z",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "5a083ce0-fd72-48c1-a088-295f111a4ba7",
@@ -1124,7 +1248,8 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP results show a product page titled 'Heat Setting Machine' for tubular polyester/spandex/Lycra fabrics, indicating an OEM selling machinery. This aligns directly with the client’s core topics and product lines that include heat setting machines. The page is clearly transactional (product description/spec usage), not just informational or directory content. Given the close product overlap and sales intent, this domain is classified as a direct competitor with a high product match.",
-    "addedAt": "2025-12-07T06:52:43.132Z"
+    "addedAt": "2025-12-07T06:52:43.132Z",
+    "competitionType": "Not a Competitor"
   },
   {
     "id": "fd4eddc8-4dfb-47ff-9517-6a72a1b95ea1",
@@ -1192,7 +1317,8 @@
     "productMatchScoreBucket": "High",
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "The SERP pages are product/specification pages for twisting machinery (e.g., Ring Twister, Inflow Twister with twist range, S/Z lay, PLC), indicating an OEM selling industrial yarn twisting equipment. This aligns directly with the client’s core product lines and core topics such as ring twister and yarn twisting machines. The pages are sales-oriented with specs/features, so the dominant intent is transactional. Given the high topical overlap and OEM nature, this domain is a direct competitor.",
-    "addedAt": "2025-12-07T06:52:43.141Z"
+    "addedAt": "2025-12-07T06:52:43.141Z",
+    "competitionType": "Not a Competitor"
   },
   {
     "id": "2b9e83e8-1924-4343-84eb-ab776055dfa5",
@@ -3171,5 +3297,19 @@
     "businessRelevanceCategory": "Adjacent / Weak Competitor",
     "explanationSummary": "The ranking page is an Organic Chemistry Practice Tests resource offering practice tests, AI tutoring, flashcards, and diagnostics, which aligns with tutoring/coaching services in the client’s space. Given the strong “tutor” signal and service-oriented offerings, the site behaves like a service provider rather than a directory. The page intent is informational (practice/learning content) rather than transactional. Content overlaps with the client’s core topics like organic chemistry and test/mock practice but is not JEE/NEET-specific, so the match is medium, leading to an Adjacent/Weak Competitor classification.",
     "addedAt": "2025-12-27T01:23:24.375Z"
+  },
+  {
+    "id": "70b89133-cbe1-452f-9090-d7643495f430",
+    "clientCode": "01",
+    "name": "smew textile machinery pvt. ltd.",
+    "domain": "http://www.smew-india.com/",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-29T00:40:09.899Z",
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "winding machines"
+    ]
   }
 ]
