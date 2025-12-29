@@ -7,7 +7,16 @@
   {
     "path": "/keywords/serp-results",
     "userDescription": "Data is coming from Keyword API Data http://localhost:5000/keywords/api-data",
-    "updatedAt": "2025-12-24T13:19:15.958Z"
+    "updatedAt": "2025-12-28T23:59:17.719Z",
+    "comments": [
+      {
+        "id": "db038a09-913d-4033-bc1b-28f6b82b3dfd",
+        "text": "we must also setup a competion analysis on the basis of number of pages vs number ofclient pages along with the intent analysis to know how much content is online. \nalso we can track the pace at which this content is created, how often are we creating the new content. ",
+        "status": "pending",
+        "createdAt": "2025-12-28T23:59:17.383Z",
+        "updatedAt": "2025-12-28T23:59:17.383Z"
+      }
+    ]
   },
   {
     "path": "/keywords/api-data",
@@ -38,6 +47,13 @@
     "userDescription": "",
     "comments": [
       {
+        "id": "29424d00-db56-4848-b188-18377861b888",
+        "text": "SERP API\nGoogle Organic SERP API\nGoogle AI Mode SERP API\nGoogle Maps SERP API\nGoogle Local Finder SERP API\nGoogle News SERP API\nGoogle Events SERP API\nGoogle Images SERP API\nGoogle Search by Image SERP API\nGoogle Jobs SERP API\nGoogle Autocomplete SERP API\nGoogle Ads Search SERP API\nGoogle Finance SERP API\nBing Organic SERP API\nYouTube SERP API\nYahoo SERP API\nBaidu Organic SERP API\nNaver Organic SERP API\nSeznam Organic SERP API\nAI Optimization API\nBacklinks API\nContent Analysis API\nContent Generation API\nDataForSEO Labs API\nKeywords Data API\nOnPage API\nMerchant API\nApp Data API\nBusiness Data API\nReviews API\nSocial Media API\nDomain Analytics API",
+        "status": "pending",
+        "createdAt": "2025-12-28T12:25:58.601Z",
+        "updatedAt": "2025-12-28T12:25:58.601Z"
+      },
+      {
         "id": "a15999a3-9cf7-414f-92ee-25878ba62fe7",
         "text": "Change the coment type with tick mark option so that once done we can mark a gree tick",
         "createdAt": "2025-12-24T15:22:36.776Z",
@@ -50,7 +66,7 @@
         "updatedAt": "2025-12-24T15:21:54.314Z"
       }
     ],
-    "updatedAt": "2025-12-24T15:22:36.794Z"
+    "updatedAt": "2025-12-28T12:25:58.630Z"
   },
   {
     "path": "/competitors",
@@ -102,9 +118,58 @@
   },
   {
     "path": "/keywords/domain-keywords",
-    "updatedAt": "2025-12-24T18:30:33.085Z",
+    "updatedAt": "2025-12-28T23:42:39.297Z",
     "userDescription": "Keyword ETV = Search Volume × CTR(position) × CPC",
     "comments": [
+      {
+        "id": "06d63a7b-3350-4e68-9d66-6168937a7924",
+        "text": "STEP 4 — PRIORITY SCORING\n\nDon’t treat all keywords equally.\nScore them using 3 factors:\n\nPriority=Search Volume+Intent Weight+Competitor Rank AdvantagePriority = Search\\ Volume + Intent\\ Weight + Competitor\\ Rank\\ AdvantagePriority=Search Volume+Intent Weight+Competitor Rank Advantage\n\nIf a competitor ranks in top 10 → urgent\nIf a keyword has price intent → urgent\nIf search volume is high but no buyer intent → low",
+        "status": "pending",
+        "createdAt": "2025-12-28T23:42:38.966Z",
+        "updatedAt": "2025-12-28T23:42:38.966Z"
+      },
+      {
+        "id": "20ff1c38-e5fd-4386-aeec-8dd322a7dd38",
+        "text": "STEP 3 — INTENT TAGGING (NOW IT MAKES SENSE)\n\nNow assign the buyer intent — but only to relevant clusters.\n\nIntent\tWhy You Tag It\nTransactional\tImmediate RFQs\nCommercial\tPrice-based buyers\nEvaluation\tSteal competitor enquiries\nConsideration\tBuild category hubs\nAwareness (Optional)\tLong-term SEO\n\nThis is where the RFQ funnel design begins.",
+        "status": "pending",
+        "createdAt": "2025-12-28T23:42:04.043Z",
+        "updatedAt": "2025-12-28T23:42:04.043Z"
+      },
+      {
+        "id": "15af9c37-cbb1-4d95-9e89-adb11a2904f3",
+        "text": "After the relevence filter make cluster by product group\n\nSTEP 2 — CLUSTER BY PRODUCT GROUP\n\nGroup the remaining keywords by machine/application family.\n\nExample textile-equipment clusters:\n\nMachine / Category\tCluster\nTFO / TFO Machine\tTFO Cluster\nWinder Machine\tWinder Cluster\nRope Making Machine / Cabling\tCabling & Rope Cluster\nHeat Setting / Stenter / Hot Air\tHeat Treatment Cluster\nTwisting / Texturising\tTwisting Line Cluster\n\nOUTPUT: You now know which product lines have market demand & competitor advantage.",
+        "status": "pending",
+        "createdAt": "2025-12-28T23:41:45.987Z",
+        "updatedAt": "2025-12-28T23:41:45.987Z"
+      },
+      {
+        "id": "acf1f31e-3650-4ac5-945c-662586da03df",
+        "text": "Replace the name of the AI KW Builder to  PRODUCT RELEVANCE FILTER \nSTEP 1 — PRODUCT RELEVANCE FILTER (MOST IMPORTANT)\nFirst, remove irrelevant keywords.\nGoal: Keep only the queries connected to your machines / categories / buyers.\nThis prevents noise from other competitor product lines.\n\nFilter by:\n\nMachine family (TFO / Winder / Heat Setting / Cabling / Texturising)\n\nApplication (Yarn, Fabric, Rope, Twisting, Warping, Stentering)\n\nBuyer environments (mills, PP yarn, PES, POY/FDY, garment units)\n\nCountry relevance (India / export)\n\nOUTPUT: Clean dataset of only your market.",
+        "status": "pending",
+        "createdAt": "2025-12-28T23:40:33.193Z",
+        "updatedAt": "2025-12-28T23:40:33.193Z"
+      },
+      {
+        "id": "6b662df3-8ae0-4408-8b3f-8d3b5b10ae3b",
+        "text": "Classify the client pages in the intent bucket like below\nCommercial\tprice / cost / quotation / catalog / download\nTransactional\tdealer / supplier / near me / buy / distributor\nEvaluation\tvs / review / compare / alternative / best\nAwareness\thow to / problems with / troubleshooting\nConsideration\tprocess / system / technology / types\n\nthis is importnt to know the gaps between me vs others to prepare the content strategy\n\nadd priority to each intent to take action",
+        "status": "pending",
+        "createdAt": "2025-12-28T23:39:19.685Z",
+        "updatedAt": "2025-12-28T23:39:19.685Z"
+      },
+      {
+        "id": "98a421e3-7442-48a4-9e85-158e528f7449",
+        "text": "Your RFQ loss is not due to low traffic — it is due to missing commercial, transactional, and evaluation pages for the exact keywords where buyers are ready to contact someone.",
+        "status": "pending",
+        "createdAt": "2025-12-28T23:28:03.232Z",
+        "updatedAt": "2025-12-28T23:28:03.232Z"
+      },
+      {
+        "id": "92d234a5-a7e8-42f4-8313-61742d721691",
+        "text": "very important discussion on intent classification, gap evaluaton and how t increase the RFQ instantly\nhttps://chatgpt.com/s/t_6951b9a05f988191851c04fc4fd00c37",
+        "status": "pending",
+        "createdAt": "2025-12-28T23:14:44.107Z",
+        "updatedAt": "2025-12-28T23:14:44.107Z"
+      },
       {
         "id": "8be0540c-777b-4358-8252-b205895e730e",
         "text": "lock the heder table header when we go down",
