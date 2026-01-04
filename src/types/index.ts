@@ -11,6 +11,14 @@ export interface Client {
   notes?: string;
   isActive: boolean;
   industry?: string;
+  // Business metrics for conversion funnel calculations
+  businessMetrics?: {
+    ctrTop5?: string;        // CTR (Top 1-5) - Higher CTR for top positions
+    ctrTop10?: string;       // CTR (Top 1-10) - % of searches captured if ranking Top 10
+    visitToRfq?: string;     // Visit → RFQ - % visitors submitting RFQ
+    rfqToOrder?: string;     // RFQ → Order Win - % RFQs converting to orders
+    avgTicketSize?: string;  // Average machinery ticket size
+  };
 }
 
 export interface DomainProfile {
@@ -62,6 +70,7 @@ export interface Competitor {
   // New tagging fields
   competitionType?: string;  // e.g., "Main Competitor", "Partial Competitor", "Not a Competitor"
   competitorForProducts?: string[];  // Product lines this competitor competes for
+  brandNames?: string[];  // Brand names for tagging branded keyword traffic (comma-separated input)
 }
 
 export interface ManualKeyword {
@@ -514,6 +523,9 @@ export interface DomainKeywordRecord {
 export type FitStatus = 'BRAND_KW' | 'CORE_MATCH' | 'ADJACENT_MATCH' | 'REVIEW' | 'NO_MATCH' | 'BLANK';
 export type ProductLine = 'BRAND_KW' | 'TWISTING' | 'WINDING' | 'HEAT_SETTING' | 'MULTIPLE' | 'NONE' | 'BLANK';
 
+// Product Relevance Filter 2 status
+export type Tag2Status = 'RELEVANT' | 'IRRELEVANT' | 'BRAND' | 'REVIEW' | 'BLANK';
+
 export interface KeywordTag {
   id: string; // clientCode_uniqueKey
   clientCode: string;
@@ -525,6 +537,9 @@ export interface KeywordTag {
   modelRunId: string;
   createdAt: string;
   updatedAt: string;
+  // Product Relevance Filter 2 fields
+  tag2Status?: Tag2Status;
+  tag2Rationale?: string;
 }
 
 export interface AnalyzeKeywordsRequest {

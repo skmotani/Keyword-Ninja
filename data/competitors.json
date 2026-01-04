@@ -1,26 +1,5 @@
 [
   {
-    "id": "dc19f851-fdc8-4613-8dc9-cc47b29bbe54",
-    "clientCode": "01",
-    "name": "Meera",
-    "domain": "meera.ind.in",
-    "notes": "",
-    "isActive": true,
-    "source": "Manual Entry",
-    "competitionType": "Self",
-    "competitorForProducts": []
-  },
-  {
-    "id": "7f1b1b50-846c-4643-8d0f-fd663921fb6c",
-    "clientCode": "01",
-    "name": "Meeraind",
-    "domain": "meeraind.com",
-    "notes": "",
-    "isActive": true,
-    "source": "Manual Entry",
-    "competitionType": "Self"
-  },
-  {
     "id": "08397a8e-f9b1-4733-8de4-b07cd94e56a8",
     "clientCode": "01",
     "name": "Aakashtexeng",
@@ -38,7 +17,10 @@
     "notes": "",
     "isActive": true,
     "source": "Manual Entry",
-    "competitionType": "Main Competitor"
+    "competitionType": "Small Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "e238bb51-b66f-4752-a36a-6659cf8e2d5e",
@@ -48,7 +30,7 @@
     "notes": "",
     "isActive": true,
     "source": "Manual Entry",
-    "competitionType": "Main Competitor"
+    "competitionType": "Small Competitor"
   },
   {
     "id": "aee84fc8-5edf-4bcf-aa6e-c45353b1bdfc",
@@ -68,7 +50,10 @@
     "notes": "",
     "isActive": true,
     "source": "Manual Entry",
-    "competitionType": "Main Competitor"
+    "competitionType": "Not a Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "e00eede8-2248-4d2f-92a9-96d4849c9f8f",
@@ -78,7 +63,10 @@
     "notes": "",
     "isActive": true,
     "source": "Manual Entry",
-    "competitionType": "Main Competitor"
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "eeeb87ab-0d28-48cd-bbb7-111ed768df86",
@@ -88,7 +76,7 @@
     "notes": "",
     "isActive": true,
     "source": "Manual Entry",
-    "competitionType": "Main Competitor"
+    "competitionType": "Partial Competitor"
   },
   {
     "id": "83aa7efc-121a-48ba-affb-94e6e25e4324",
@@ -98,7 +86,7 @@
     "notes": "",
     "isActive": true,
     "source": "Manual Entry",
-    "competitionType": "Main Competitor"
+    "competitionType": "Partial Competitor"
   },
   {
     "id": "3e1c6d67-e16b-410d-a785-ae3d2bc31d81",
@@ -148,7 +136,10 @@
     "notes": "",
     "isActive": true,
     "source": "Manual Entry",
-    "competitionType": "Main Competitor"
+    "competitionType": "Main Competitor",
+    "competitorForProducts": [
+      "twisting machines"
+    ]
   },
   {
     "id": "3aa02c76-3206-48fe-8bf2-7faa1ed849eb",
@@ -475,6 +466,9 @@
     "competitionType": "Main Competitor",
     "competitorForProducts": [
       "twisting machines"
+    ],
+    "brandNames": [
+      "Weavetech"
     ]
   },
   {
@@ -496,6 +490,9 @@
     "competitionType": "Main Competitor",
     "competitorForProducts": [
       "twisting machines"
+    ],
+    "brandNames": [
+      "RIMA"
     ]
   },
   {
@@ -555,6 +552,9 @@
     "competitionType": "Main Competitor",
     "competitorForProducts": [
       "twisting machines"
+    ],
+    "brandNames": [
+      "PR Texpro"
     ]
   },
   {
@@ -755,6 +755,9 @@
     "competitionType": "Main Competitor",
     "competitorForProducts": [
       "twisting machines"
+    ],
+    "brandNames": [
+      "national"
     ]
   },
   {
@@ -882,6 +885,9 @@
     "competitionType": "Main Competitor",
     "competitorForProducts": [
       "twisting machines"
+    ],
+    "brandNames": [
+      "weavetech"
     ]
   },
   {
@@ -900,7 +906,10 @@
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP pages are product detail/solution pages for assembly winders, filament and staple fiber twisters, carpet twisters, and an air covering winding machine—machines that align directly with the client’s core products and topics (twisters, winders, industrial yarn processing). The site behaves like a machinery OEM with model-specific specifications, indicating a product provider. These product pages suggest lead-generation/quotation intent, so we classify the intent as transactional. Given the strong overlap with the client’s offerings, the product match is high, leading to a Direct Competitor classification.",
     "addedAt": "2025-12-07T06:52:43.075Z",
-    "competitionType": "Main Competitor"
+    "competitionType": "Main Competitor",
+    "brandNames": [
+      "imagine"
+    ]
   },
   {
     "id": "94d8bfa2-1f4d-4f7f-8d8f-e8300521db22",
@@ -939,6 +948,9 @@
     "competitionType": "Main Competitor",
     "competitorForProducts": [
       "winding machines"
+    ],
+    "brandNames": [
+      "JSK"
     ]
   },
   {
@@ -957,7 +969,10 @@
     "businessRelevanceCategory": "Direct Competitor",
     "explanationSummary": "SERP pages show Officine Gaudino producing combination twisters and cop winding equipment, which aligns directly with the client's core product lines in yarn twisting and winding. The pages are product/category pages (“Machines for twisting-doubling-twisting”, “Cop winding…”) indicating a selling/enquiry intent rather than general education. Because these offerings closely match Meera Industries’ twisters and winders, the product match is high. As an OEM with transactional pages in the same machinery niche, this domain is classified as a Direct Competitor.",
     "addedAt": "2025-12-07T06:52:43.083Z",
-    "competitionType": "Main Competitor"
+    "competitionType": "Main Competitor",
+    "brandNames": [
+      "quadino"
+    ]
   },
   {
     "id": "abc87d28-2342-4db0-9b29-03ba92abf9ba",
@@ -1117,6 +1132,9 @@
     "competitionType": "Main Competitor",
     "competitorForProducts": [
       "twisting machines"
+    ],
+    "brandNames": [
+      "aakash"
     ]
   },
   {
@@ -1138,6 +1156,9 @@
     "competitionType": "Main Competitor",
     "competitorForProducts": [
       "winding machines"
+    ],
+    "brandNames": [
+      "fadis"
     ]
   },
   {
@@ -1193,6 +1214,9 @@
     "competitionType": "Main Competitor",
     "competitorForProducts": [
       "winding machines"
+    ],
+    "brandNames": [
+      "reshmi"
     ]
   },
   {
@@ -1231,6 +1255,9 @@
     "competitionType": "Main Competitor",
     "competitorForProducts": [
       "twisting machines"
+    ],
+    "brandNames": [
+      "veejaylakshmi"
     ]
   },
   {
@@ -3310,6 +3337,284 @@
     "competitionType": "Main Competitor",
     "competitorForProducts": [
       "winding machines"
+    ],
+    "brandNames": [
+      "smew"
     ]
+  },
+  {
+    "id": "f7b3315f-390f-44a9-85b6-c3b6ce70d442",
+    "clientCode": "04",
+    "name": "Dashtoon",
+    "domain": "dashtoon.com",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-30T09:14:06.380Z"
+  },
+  {
+    "id": "a01837bc-bd1d-4d72-917a-187805daeb6f",
+    "clientCode": "04",
+    "name": "Weekday",
+    "domain": "weekday.works",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-30T09:14:06.386Z"
+  },
+  {
+    "id": "ce2159c1-6460-4f2f-a2cb-665d41cb6504",
+    "clientCode": "04",
+    "name": "Pocketly",
+    "domain": "pocketly.com",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-30T09:14:06.391Z"
+  },
+  {
+    "id": "a245ba44-3c33-428a-8bd2-ab3bfe8413ff",
+    "clientCode": "04",
+    "name": "Vcomply",
+    "domain": "vcomply.com",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-30T09:14:06.396Z"
+  },
+  {
+    "id": "4b6e6955-e9ab-44e6-8ce2-0899d089c716",
+    "clientCode": "04",
+    "name": "Tratta",
+    "domain": "tratta.io",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-30T09:14:06.400Z"
+  },
+  {
+    "id": "c40cb409-47e3-48cf-a6b7-0361390eb120",
+    "clientCode": "04",
+    "name": "Nudge",
+    "domain": "nudge.ai",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-30T09:14:06.404Z"
+  },
+  {
+    "id": "76f6a770-fe45-44e7-aac7-329d04d41ea5",
+    "clientCode": "04",
+    "name": "Timelinesai",
+    "domain": "timelinesai.com",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-30T09:14:06.407Z"
+  },
+  {
+    "id": "7e9ce6ca-0101-44bd-a2e0-54539e8a922c",
+    "clientCode": "04",
+    "name": "Pazago",
+    "domain": "pazago.com",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-30T09:14:06.412Z"
+  },
+  {
+    "id": "f176710b-8644-4ccb-9965-b287ce8be3eb",
+    "clientCode": "04",
+    "name": "Recurclub",
+    "domain": "recurclub.com",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-30T09:14:06.415Z"
+  },
+  {
+    "id": "4d4a316c-7282-4c11-87fd-2c194638853b",
+    "clientCode": "04",
+    "name": "Codewave",
+    "domain": "codewave.org",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-30T09:14:06.420Z"
+  },
+  {
+    "id": "6d463a74-bfec-4286-9063-ff3b29d61ae3",
+    "clientCode": "04",
+    "name": "Soundartist",
+    "domain": "soundartist.com",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-30T09:14:06.424Z"
+  },
+  {
+    "id": "c9ad66da-ffa0-47ff-a25a-fc9e8cd4eaec",
+    "clientCode": "04",
+    "name": "Thegoodbug",
+    "domain": "thegoodbug.com",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-30T09:14:06.428Z"
+  },
+  {
+    "id": "873f046f-a39f-4ef7-9a3b-c54dc3b1cfbb",
+    "clientCode": "04",
+    "name": "Fielddrive",
+    "domain": "fielddrive.be",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-30T09:14:06.432Z"
+  },
+  {
+    "id": "19cf110a-003b-4d0b-961a-f63e307d43f0",
+    "clientCode": "04",
+    "name": "Activated-scale",
+    "domain": "activated-scale.com",
+    "notes": "",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-30T09:14:06.437Z"
+  },
+  {
+    "id": "9fcf7ed3-ccd2-417a-b78e-b65e899e4fa0",
+    "clientCode": "04",
+    "name": "Gushwork",
+    "domain": "https://www.gushwork.ai/",
+    "notes": "Self",
+    "isActive": true,
+    "source": "Manual Entry",
+    "addedAt": "2025-12-30T09:17:32.817Z"
+  },
+  {
+    "id": "9824d3f1-a060-4f56-b16e-c2c2b50bdcd5",
+    "clientCode": "01",
+    "name": "Meeraind",
+    "domain": "meeraind.com",
+    "notes": "",
+    "isActive": true,
+    "source": "Via SERP Search",
+    "importanceScore": 6768.32619047619,
+    "domainType": "Brand / Platform / Corporate Site",
+    "pageIntent": "Navigational / Brand",
+    "productMatchScoreValue": 1,
+    "productMatchScoreBucket": "High",
+    "businessRelevanceCategory": "Self",
+    "explanationSummary": "This is Meera Industries Limited's own domain. It has been automatically classified as \"Self\" since it belongs to the client.",
+    "addedAt": "2026-01-01T22:32:07.352Z",
+    "competitionType": "Self",
+    "competitorForProducts": [
+      "twisting machines"
+    ],
+    "brandNames": [
+      "Meera"
+    ]
+  },
+  {
+    "id": "6dfd0a36-68ad-42bc-8bbe-fe6bcef4d52c",
+    "clientCode": "01",
+    "name": "Www",
+    "domain": "www.meera.ind.in",
+    "notes": "",
+    "isActive": true,
+    "source": "Via SERP Search",
+    "importanceScore": 2881.750793650793,
+    "domainType": "Brand / Platform / Corporate Site",
+    "pageIntent": "Navigational / Brand",
+    "productMatchScoreValue": 1,
+    "productMatchScoreBucket": "High",
+    "businessRelevanceCategory": "Self",
+    "explanationSummary": "This is Meera Industries Limited's own domain. It has been automatically classified as \"Self\" since it belongs to the client.",
+    "addedAt": "2026-01-01T22:32:07.359Z",
+    "competitionType": "Self",
+    "brandNames": [
+      "Meera"
+    ]
+  },
+  {
+    "id": "583aa810-44ee-4859-b29a-b08703ca47f2",
+    "clientCode": "01",
+    "name": "Dir",
+    "domain": "dir.indiamart.com",
+    "notes": "",
+    "isActive": true,
+    "source": "Via SERP Search",
+    "importanceScore": 31053.82936507937,
+    "domainType": "Marketplace / Directory / Portal",
+    "pageIntent": "Directory / Listing",
+    "productMatchScoreValue": 0.88,
+    "productMatchScoreBucket": "High",
+    "businessRelevanceCategory": "Marketplace / Channel",
+    "explanationSummary": "This domain is IndiaMART’s directory portal, with SERP pages that list multiple sellers for categories like Yarn Twisting Machine, TFO/Two-For-One Twister, Ring Twister, Cone/Precision/Assembly Winders, and Heat Setting Machines. These categories directly match the client’s core product lines and topics, so the content match is high. The page intent is directory/listing (e.g., “at Best Price in India,” location filters, many suppliers). As a result, it functions as a B2B marketplace/channel rather than a direct competitor.",
+    "addedAt": "2026-01-02T07:57:56.137Z",
+    "competitionType": "Main Competitor",
+    "brandNames": [
+      "indiamart"
+    ]
+  },
+  {
+    "id": "2329e9ae-b19b-4ccf-8926-b39cb44bc159",
+    "clientCode": "01",
+    "name": "Www",
+    "domain": "www.tradeindia.com",
+    "notes": "",
+    "isActive": true,
+    "source": "Via SERP Search",
+    "importanceScore": 5392.361111111112,
+    "domainType": "Marketplace / Directory / Portal",
+    "pageIntent": "Directory / Listing",
+    "productMatchScoreValue": 0.9,
+    "productMatchScoreBucket": "High",
+    "businessRelevanceCategory": "Marketplace / Channel",
+    "explanationSummary": "SERP pages are category and product listings like “Yarn Twisting Machine at Best Price from Manufacturers” and “Jari Covering Machine,” indicating a B2B marketplace/directory. Titles and snippets use directory and transactional cues (manufacturers, suppliers, best price, catalog), so the dominant intent is listing. The content closely overlaps Meera’s core topics (twisters, ring twisters, winders), yielding a high product match. Given it’s a procurement portal rather than an OEM, it’s best classified as a Marketplace/Channel.",
+    "addedAt": "2026-01-02T07:57:56.142Z",
+    "competitionType": "Main Competitor",
+    "brandNames": [
+      "tradeindia"
+    ]
+  },
+  {
+    "id": "3f61bb02-17a3-45d5-b348-81ba2ba2d4da",
+    "clientCode": "01",
+    "name": "Www",
+    "domain": "www.indiamart.com",
+    "notes": "",
+    "isActive": true,
+    "source": "Via SERP Search",
+    "importanceScore": 3327.142857142857,
+    "domainType": "Marketplace / Directory / Portal",
+    "pageIntent": "Directory / Listing",
+    "productMatchScoreValue": 0.92,
+    "productMatchScoreBucket": "High",
+    "businessRelevanceCategory": "Marketplace / Channel",
+    "explanationSummary": "The SERP results are IndiaMART product/listing pages for core textile machinery such as ring twisters, TFO twisters, assembly winders, precision winders, and heat-setting machines—direct matches to the client’s product lines and core topics. IndiaMART is explicitly a B2B directory/marketplace (matching the profile’s marketplace indicators), and page titles/snippets show “best price,” “manufacturer/supplier,” and enquiry prompts, indicating listing/lead-gen intent. Because the content strongly aligns with the client’s machinery offerings, the product match is high. As a result, this domain functions as a sales channel/marketplace rather than a direct competitor.",
+    "addedAt": "2026-01-02T07:57:56.145Z",
+    "competitionType": "Main Competitor",
+    "brandNames": [
+      "indiamart"
+    ]
+  },
+  {
+    "id": "e1d3df75-5c64-4244-90b5-ae30b986ce06",
+    "clientCode": "01",
+    "name": "Www",
+    "domain": "www.exportersindia.com",
+    "notes": "",
+    "isActive": true,
+    "source": "Via SERP Search",
+    "importanceScore": 647.6119047619047,
+    "domainType": "Marketplace / Directory / Portal",
+    "pageIntent": "Directory / Listing",
+    "productMatchScoreValue": 0.84,
+    "productMatchScoreBucket": "High",
+    "businessRelevanceCategory": "Marketplace / Channel",
+    "explanationSummary": "This domain is a B2B marketplace that lists suppliers and products, evidenced by pages like “Doubling Machine at Best Price from Manufacturers …” and category listings with prices and multiple vendors. The SERP pages target directory-style discovery (manufacturers, suppliers, best price), so the primary intent is Directory/Listing. The content aligns closely with the client’s core machinery—yarn twisters and heat-setting machines—resulting in a high product match. Therefore, it is most relevant as a Marketplace/Channel rather than a direct competitor.",
+    "addedAt": "2026-01-02T07:57:56.150Z"
   }
 ]

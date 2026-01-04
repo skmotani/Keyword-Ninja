@@ -253,7 +253,8 @@ export async function getLogEntries(options: {
     }
 
     if (options.endpoint) {
-        filtered = filtered.filter(e => e.endpoint.includes(options.endpoint));
+        const ep = options.endpoint;
+        filtered = filtered.filter(e => e.endpoint.includes(ep));
     }
 
     if (options.correlationId) {

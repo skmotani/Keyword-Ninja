@@ -1,0 +1,198 @@
+[
+    {
+        "metricKey": "search_volume",
+        "definition": "The average monthly search volume for a keyword in Google Search over the past 12 months. Represents the number of times users searched for a specific keyword per month.",
+        "notes": "Values are rounded. Volume can vary by location and language.",
+        "source": "https://docs.dataforseo.com/v3/keywords_data/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "cpc",
+        "definition": "Cost Per Click - the average price advertisers pay per click for a keyword in Google Ads. Indicates commercial intent and keyword value.",
+        "notes": "Currency is typically USD. Higher CPC often indicates higher commercial value.",
+        "source": "https://docs.dataforseo.com/v3/keywords_data/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "competition",
+        "definition": "A value from 0 to 1 representing the level of competition among advertisers for a keyword in Google Ads. 1 = highest competition.",
+        "notes": "This is paid search competition, not organic SEO competition.",
+        "source": "https://docs.dataforseo.com/v3/keywords_data/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "etv",
+        "definition": "Estimated Traffic Volume - the estimated organic traffic a page receives from ranking for a keyword, calculated as search_volume × CTR for the rank position.",
+        "notes": "Higher positions receive higher CTR, thus higher ETV.",
+        "source": "https://docs.dataforseo.com/v3/serp/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "rank",
+        "definition": "The organic search ranking position (1-100) of a URL for a specific keyword in Google Search results.",
+        "notes": "Position 1 is the top result. Positions beyond 100 are typically not tracked.",
+        "source": "https://docs.dataforseo.com/v3/serp/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "position",
+        "definition": "The organic search ranking position of a URL for a specific keyword. Same as 'rank'.",
+        "notes": "Lower position numbers indicate higher visibility.",
+        "source": "https://docs.dataforseo.com/v3/serp/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "rank_absolute",
+        "definition": "The absolute ranking position in SERP including all result types (organic, ads, featured snippets, etc).",
+        "notes": "May differ from organic rank due to SERP features above organic results.",
+        "source": "https://docs.dataforseo.com/v3/serp/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "organic_traffic",
+        "definition": "The estimated monthly organic traffic to a domain or page, calculated from keyword rankings, search volumes, and expected CTR.",
+        "notes": "This is an estimate based on known keyword rankings.",
+        "source": "https://docs.dataforseo.com/v3/domain_analytics/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "domain_rank",
+        "definition": "A proprietary ranking score (0-1000) representing the overall authority/strength of a domain based on backlinks and other factors.",
+        "notes": "Similar to Domain Authority (Moz) or Domain Rating (Ahrefs).",
+        "source": "https://docs.dataforseo.com/v3/domain_analytics/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "backlinks_count",
+        "definition": "The total number of backlinks (inbound links) pointing to a domain or page from external websites.",
+        "notes": "Includes both dofollow and nofollow links.",
+        "source": "https://docs.dataforseo.com/v3/backlinks/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "referring_domains_count",
+        "definition": "The number of unique domains linking to a target domain or page. A subset of backlinks that counts each domain only once.",
+        "notes": "More referring domains generally indicates a more natural link profile.",
+        "source": "https://docs.dataforseo.com/v3/backlinks/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "low_top_of_page_bid",
+        "definition": "The low range of what advertisers pay for a top-of-page ad placement in Google Ads.",
+        "notes": "Useful for estimating minimum ad spend for competitive keywords.",
+        "source": "https://docs.dataforseo.com/v3/keywords_data/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "high_top_of_page_bid",
+        "definition": "The high range of what advertisers pay for a top-of-page ad placement in Google Ads.",
+        "notes": "Represents premium positions at the top of search results.",
+        "source": "https://docs.dataforseo.com/v3/keywords_data/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "keyword_difficulty",
+        "definition": "A score (0-100) estimating how difficult it would be to rank organically for a keyword based on current top-ranking pages.",
+        "notes": "Higher scores indicate more competition and established authority needed.",
+        "source": "https://docs.dataforseo.com/v3/keywords_data/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "domain_type",
+        "definition": "Classification of a domain based on its business model: OEM/Manufacturer, Service Provider, Marketplace, End Customer, Educational/Media, or Irrelevant.",
+        "notes": "Used for competitive analysis and business relevance scoring.",
+        "source": "Internal classification system",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "page_type",
+        "definition": "Classification of a URL/page type: Product/Service, Category, Blog/Article, Resource/Guide, Pricing, Landing Page, About, Support, etc.",
+        "notes": "Used for prioritizing SEO actions and content strategy.",
+        "source": "Internal classification system",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "page_intent",
+        "definition": "The user intent classification of a page: Transactional, Commercial Investigation, Informational, Navigational, or Support.",
+        "notes": "Helps determine SEO priority and content optimization strategy.",
+        "source": "Internal classification system",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "priority_score",
+        "definition": "A weighted score (0-100) combining ETV, intent, page type, and business relevance to rank pages for SEO priority.",
+        "notes": "Higher scores indicate higher priority for SEO action.",
+        "source": "Internal calculation",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "priority_tier",
+        "definition": "Categorization of pages into priority tiers for SEO action: Tier 1 (Immediate), Tier 2 (High), Tier 3 (Medium), Tier 4 (Monitor), Tier 5 (Ignore).",
+        "notes": "Derived from priority_score for actionable segmentation.",
+        "source": "Internal classification",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "seo_action",
+        "definition": "Recommended SEO action for a page: High Priority Target, Create Equivalent Page, Optimize Existing Page, Add to Content Cluster, Backlink Prospect, Monitor Only, or Ignore.",
+        "notes": "Actionable recommendation derived from page analysis.",
+        "source": "Internal classification",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "featured_snippet",
+        "definition": "Boolean indicating whether a SERP result appears as a featured snippet (position 0) at the top of Google search results.",
+        "notes": "Featured snippets receive significantly higher CTR than regular results.",
+        "source": "https://docs.dataforseo.com/v3/serp/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "organic_keywords_count",
+        "definition": "The total number of keywords for which a domain or page ranks in organic search results.",
+        "notes": "Indicates the organic search footprint of a domain.",
+        "source": "https://docs.dataforseo.com/v3/domain_analytics/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "estimated_paid_traffic_cost",
+        "definition": "The estimated cost to acquire the same traffic through paid ads in Google Ads, based on keyword CPCs and traffic volume.",
+        "notes": "Useful for valuing organic traffic in monetary terms.",
+        "source": "https://docs.dataforseo.com/v3/domain_analytics/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "location_code",
+        "definition": "A numeric code identifying the geographic location for search data. Common codes: 2840 (US), 2356 (India), 2826 (UK).",
+        "notes": "Search volumes and rankings vary by location.",
+        "source": "https://docs.dataforseo.com/v3/appendix/locations/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "language_code",
+        "definition": "A two-letter ISO 639-1 code identifying the language for search data (e.g., 'en' for English, 'hi' for Hindi).",
+        "notes": "Search volumes and rankings vary by language.",
+        "source": "https://docs.dataforseo.com/v3/appendix/languages/",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "snapshot_date",
+        "definition": "The date when the data was captured from the DataForSEO API.",
+        "notes": "SEO data changes over time; snapshot date indicates data freshness.",
+        "source": "Internal field",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "fetched_at",
+        "definition": "The timestamp when the data was fetched and stored in the system.",
+        "notes": "Indicates when the data was last updated in the local database.",
+        "source": "Internal field",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+        "metricKey": "last_pulled_at",
+        "definition": "The timestamp of the most recent data pull from the external API.",
+        "notes": "Same as fetched_at; indicates data freshness.",
+        "source": "Internal field",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+    }
+]

@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useMemo, useRef, Fragment } from 'rea
 import PageHeader from '@/components/PageHeader';
 import ExportButton, { ExportColumn } from '@/components/ExportButton';
 import AiKwBuilderPanel from './_components/AiKwBuilderPanel';
-import { Client, KeywordTag, FitStatus, ProductLine, ClientAIProfile } from '@/types';
+import { Client, KeywordTag, FitStatus, ProductLine, ClientAIProfile, Tag2Status } from '@/types';
 
 // Helper for clientside normalization matches backend
 const normalizeKeyword = (keyword: string): string => {
@@ -19,6 +19,7 @@ interface Competitor {
   name: string;
   domain: string;
   isActive: boolean;
+  competitionType?: string; // Main Competitor, Partial Competitor, Not a Competitor, etc.
 }
 
 interface DomainKeywordRecord {
@@ -64,6 +65,18 @@ const getProductLineColor = (line: string) => {
     case 'MULTIPLE': return 'text-indigo-600 bg-indigo-50 ring-indigo-500/10 font-medium';
     case 'BLANK': return 'text-gray-400 bg-gray-50 ring-gray-500/10 border-gray-200 border-dashed';
     default: return 'text-gray-500 bg-gray-50 ring-gray-500/10';
+  }
+};
+
+// Product Relevance Filter 2 - TAG2 column colors
+const getTag2StatusColor = (status: string) => {
+  switch (status) {
+    case 'RELEVANT': return 'bg-green-100 text-green-800 border-green-300';
+    case 'IRRELEVANT': return 'bg-red-100 text-red-800 border-red-300';
+    case 'BRAND': return 'bg-yellow-100 text-yellow-800 border-yellow-300';
+    case 'REVIEW': return 'bg-blue-100 text-blue-800 border-blue-300';
+    case 'BLANK': return 'bg-gray-50 text-gray-400 border-gray-200 border-dashed';
+    default: return 'bg-gray-50 text-gray-400 border-gray-200';
   }
 };
 
@@ -144,14 +157,16 @@ const domainKeywordsPageDescription = `
 
 // Helper component for Dictionary Panel
 function MatchingDictionaryPanel({ profile, collapsed, onToggle }: { profile: ClientAIProfile | null, collapsed: boolean, onToggle: () => void }) {
-  if (!profile || !profile.matchingDictionary) return null;
+  if (!profile) return null;
 
-  // Adaptation for new schema (using safe access)
-  const brandTokens = profile.matchingDictionary.brandTokens || [];
-  const negativeTokens = profile.matchingDictionary.negativeTokens || [];
-
-  // Safe access for AI Terms (Client Dictionary) from the new field
+  // Product Relevance Filter Dictionary (primary)
   const aiTerms = (profile as any).ai_kw_builder_term_dictionary?.terms || [];
+  const includeTerms = aiTerms.filter((t: any) => t.bucket === 'include');
+  const excludeTerms = aiTerms.filter((t: any) => t.bucket === 'exclude');
+  const brandTerms = aiTerms.filter((t: any) => t.bucket === 'brand');
+  const reviewTerms = aiTerms.filter((t: any) => t.bucket === 'review');
+
+  const hasProductRelevanceData = aiTerms.length > 0;
 
   return (
     <div className="bg-white rounded-lg shadow mb-4 border border-gray-100">
@@ -160,8 +175,9 @@ function MatchingDictionaryPanel({ profile, collapsed, onToggle }: { profile: Cl
         onClick={onToggle}
       >
         <h3 className="text-sm font-semibold text-gray-800 flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
-          Matching Dictionary in Use
+          <span className="w-2 h-2 rounded-full bg-purple-500"></span>
+          Product Relevance Filter Dictionary
+          {hasProductRelevanceData && <span className="text-xs text-green-600 font-normal ml-2">✓ Active</span>}
         </h3>
         <button className="text-gray-400 hover:text-gray-600">
           {collapsed ? 'Show' : 'Hide'}
@@ -169,51 +185,67 @@ function MatchingDictionaryPanel({ profile, collapsed, onToggle }: { profile: Cl
       </div>
 
       {!collapsed && (
-        <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-          <div>
-            <div className="font-semibold text-purple-700 mb-1">Brand Tokens ({brandTokens.length})</div>
-            <div className="flex flex-wrap gap-1">
-              {brandTokens.map(t => (
-                <span key={t.token} className="px-1.5 py-0.5 bg-purple-50 text-purple-700 rounded border border-purple-100">{t.token}</span>
-              ))}
-            </div>
-          </div>
-          <div>
-            <div className="font-semibold text-red-700 mb-1">Negative Tokens ({negativeTokens.length})</div>
-            <div className="flex flex-wrap gap-1 max-h-32 overflow-y-auto">
-              {negativeTokens.map(t => (
-                <span key={t.token} className="px-1.5 py-0.5 bg-red-50 text-red-700 rounded border border-red-100">{t.token}</span>
-              ))}
-            </div>
-          </div>
-          <div>
-            <div className="font-semibold text-blue-700 mb-1">Product Lines</div>
-            <div className="space-y-2 max-h-32 overflow-y-auto">
-              <div className="text-gray-400 text-[10px] italic">View on Client Profile for details</div>
-            </div>
-          </div>
-          <div>
-            <div className="font-semibold text-green-700 mb-1">Scoring Tokens</div>
-            <div className="mb-2">
-              <span className="text-gray-500 mb-0.5 block">Positive ({profile.matchingDictionary.positiveTokens?.length || 0})</span>
-              <div className="flex flex-wrap gap-1 max-h-16 overflow-y-auto">
-                {profile.matchingDictionary.positiveTokens?.slice(0, 15).map(t => <span key={t.token} className="px-1.5 py-0.5 bg-green-50 text-green-700 rounded border border-green-100">{t.token}</span>)}
-                {(profile.matchingDictionary.positiveTokens?.length || 0) > 15 && <span className="text-gray-400">...</span>}
+        <div className="p-4">
+          {hasProductRelevanceData ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+              {/* Include Bucket */}
+              <div>
+                <div className="font-semibold text-green-700 mb-1 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                  Include → CORE_MATCH ({includeTerms.length})
+                </div>
+                <div className="flex flex-wrap gap-1 max-h-36 overflow-y-auto">
+                  {includeTerms.map((t: any) => (
+                    <span key={t.term} className="px-1.5 py-0.5 bg-green-50 text-green-700 rounded border border-green-100">{t.term}</span>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            {/* AI Dictionary Section Added Here */}
-            <div className="mt-2 pt-2 border-t border-gray-100">
-              <div className="font-semibold text-indigo-700 mb-1">AI KW builder Data</div>
-              <div className="text-gray-500">
-                {aiTerms.length > 0 ? (
-                  <span>{aiTerms.length} terms saved in Client Profile</span>
-                ) : (
-                  <span className="italic text-gray-400">No AI terms saved yet</span>
-                )}
+              {/* Exclude Bucket */}
+              <div>
+                <div className="font-semibold text-red-700 mb-1 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                  Exclude → NO_MATCH ({excludeTerms.length})
+                </div>
+                <div className="flex flex-wrap gap-1 max-h-36 overflow-y-auto">
+                  {excludeTerms.map((t: any) => (
+                    <span key={t.term} className="px-1.5 py-0.5 bg-red-50 text-red-700 rounded border border-red-100">{t.term}</span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Brand Bucket */}
+              <div>
+                <div className="font-semibold text-purple-700 mb-1 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+                  Brand → BRAND_KW ({brandTerms.length})
+                </div>
+                <div className="flex flex-wrap gap-1 max-h-36 overflow-y-auto">
+                  {brandTerms.map((t: any) => (
+                    <span key={t.term} className="px-1.5 py-0.5 bg-purple-50 text-purple-700 rounded border border-purple-100">{t.term}</span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Review Bucket */}
+              <div>
+                <div className="font-semibold text-yellow-700 mb-1 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+                  Review → REVIEW ({reviewTerms.length})
+                </div>
+                <div className="flex flex-wrap gap-1 max-h-36 overflow-y-auto">
+                  {reviewTerms.map((t: any) => (
+                    <span key={t.term} className="px-1.5 py-0.5 bg-yellow-50 text-yellow-700 rounded border border-yellow-100">{t.term}</span>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="text-center py-4">
+              <p className="text-gray-500 text-sm mb-2">No Product Relevance Filter dictionary saved yet.</p>
+              <p className="text-gray-400 text-xs">Click "Product Relevance Filter" button above to classify keywords into buckets.</p>
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -237,6 +269,7 @@ export default function DomainKeywordsPage() {
   const [domainFilterSearch, setDomainFilterSearch] = useState('');
   const domainFilterRef = useRef<HTMLDivElement>(null);
   const [includeSelf, setIncludeSelf] = useState(false); // Toggle to include client domain
+  const [competitionTypeFilter, setCompetitionTypeFilter] = useState<string[]>([]); // Multi-select competition type filter
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -251,7 +284,20 @@ export default function DomainKeywordsPage() {
 
   // Compute available domains for selection (Competitors + optional Self)
   const domainList = useMemo(() => {
-    const list = [...competitors];
+    let list = [...competitors];
+
+    // Filter by competition types if any selected
+    if (competitionTypeFilter.length > 0) {
+      list = list.filter(c => {
+        // Handle "Not Assigned" special case
+        if (competitionTypeFilter.includes('Not Assigned')) {
+          if (!c.competitionType) return true;
+        }
+        // Check if competitor's type is in selected filters
+        return c.competitionType && competitionTypeFilter.includes(c.competitionType);
+      });
+    }
+
     if (includeSelf && selectedClientCode) {
       const client = clients.find(c => c.code === selectedClientCode);
       // Ensure we don't duplicate if client domain is already in competitors
@@ -261,12 +307,39 @@ export default function DomainKeywordsPage() {
           clientCode: selectedClientCode,
           name: `${client.name} (Self)`,
           domain: client.mainDomain,
-          isActive: true
+          isActive: true,
+          competitionType: 'Client'
         });
       }
     }
     return list;
-  }, [competitors, includeSelf, clients, selectedClientCode]);
+  }, [competitors, includeSelf, clients, selectedClientCode, competitionTypeFilter]);
+
+  // Get unique competition types for filter dropdown (including Not Assigned)
+  const uniqueCompetitionTypes = useMemo(() => {
+    const types = new Set<string>();
+    let hasUnassigned = false;
+    competitors.forEach(c => {
+      if (c.competitionType) {
+        types.add(c.competitionType);
+      } else {
+        hasUnassigned = true;
+      }
+    });
+    const sortedTypes = Array.from(types).sort();
+    if (hasUnassigned) sortedTypes.push('Not Assigned');
+    return sortedTypes;
+  }, [competitors]);
+
+  // Count for each competition type
+  const competitionTypeCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    competitors.forEach(c => {
+      const type = c.competitionType || 'Not Assigned';
+      counts[type] = (counts[type] || 0) + 1;
+    });
+    return counts;
+  }, [competitors]);
   const [locationFilter, setLocationFilter] = useState('all');
   const [keywordFilter, setKeywordFilter] = useState('');
   const [positionMaxFilter, setPositionMaxFilter] = useState('');
@@ -283,6 +356,16 @@ export default function DomainKeywordsPage() {
 
   const [fitFilter, setFitFilter] = useState<string>('all');
   const [productFilter, setProductFilter] = useState<string>('all');
+  const [tableCompetitionFilter, setTableCompetitionFilter] = useState<string[]>([]); // Multi-select competition filter for table
+
+  // Create domain to competition type mapping for filtering
+  const domainToCompetitionType = useMemo(() => {
+    const map: Record<string, string> = {};
+    competitors.forEach(c => {
+      map[c.domain.toLowerCase()] = c.competitionType || 'Not Assigned';
+    });
+    return map;
+  }, [competitors]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(100);
@@ -440,8 +523,16 @@ export default function DomainKeywordsPage() {
       });
     }
 
+    // Competition Type Filter (Multi-select based on domain's competition type)
+    if (tableCompetitionFilter.length > 0) {
+      res = res.filter(r => {
+        const compType = domainToCompetitionType[r.domain.toLowerCase()] || 'Not Assigned';
+        return tableCompetitionFilter.includes(compType);
+      });
+    }
+
     return res;
-  }, [records, domainFilter, locationFilter, keywordFilter, positionMaxFilter, volumeMinFilter, fitFilter, productFilter, tags]);
+  }, [records, domainFilter, locationFilter, keywordFilter, positionMaxFilter, volumeMinFilter, fitFilter, productFilter, tags, tableCompetitionFilter, domainToCompetitionType]);
 
   const uniqueDomainsInRecords = useMemo(() => {
     const domains = new Set(records.map(r => r.domain));
@@ -465,16 +556,54 @@ export default function DomainKeywordsPage() {
       const res = await output.json();
       setNotification({ type: 'success', message: `Tagged ${res.taggedCount} keywords. Impact: ${res.impactSummary?.length || 0} updates.` });
 
-      // Refresh data
+      // Refresh data - MUST include fetchTags to update FIT column
       await Promise.all([
         fetchRecords(),
-        fetchProfile() // Refresh effective dictionary snapshot
+        fetchProfile(),
+        fetchTags() // Refresh tags to show updated FIT statuses
       ]);
     } catch (err) {
       console.error(err);
       setNotification({ type: 'error', message: 'Failed to tag all keywords' });
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Product Relevance Filter 2 - Dynamic Classification
+  const [isRunningV2, setIsRunningV2] = useState(false);
+
+  const handleTagAllV2 = async () => {
+    if (!selectedClientCode) return;
+    try {
+      setIsRunningV2(true);
+      const output = await fetch('/api/domain-keywords/tag-all-v2', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ clientCode: selectedClientCode })
+      });
+
+      if (!output.ok) throw new Error('Failed to run tag-all-v2');
+
+      const res = await output.json();
+      if (res.success) {
+        setNotification({
+          type: 'success',
+          message: `PRF2 Complete! Relevant: ${res.stats.relevant}, Irrelevant: ${res.stats.irrelevant}, Brand: ${res.stats.brand}, Review: ${res.stats.review}`
+        });
+      } else {
+        throw new Error(res.error || 'Unknown error');
+      }
+
+      // Refresh tags to get TAG2 values
+      await fetchTags();
+    } catch (err) {
+      console.error(err);
+      setNotification({ type: 'error', message: 'Failed to run Product Relevance Filter 2' });
+    } finally {
+      setIsRunningV2(false);
     }
   };
 
@@ -591,7 +720,7 @@ export default function DomainKeywordsPage() {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [domainFilter, locationFilter, keywordFilter, positionMaxFilter, volumeMinFilter, fitFilter, productFilter]);
+  }, [domainFilter, locationFilter, keywordFilter, positionMaxFilter, volumeMinFilter, fitFilter, productFilter, tableCompetitionFilter]);
 
   const sortedRecords = useMemo(() => {
     if (!sortField) return filteredRecords;
@@ -796,6 +925,34 @@ export default function DomainKeywordsPage() {
                 </>
               )}
             </button>
+
+            {/* Product Relevance Filter 2 Button */}
+            <button
+              onClick={handleTagAllV2}
+              disabled={isRunningV2 || records.length === 0}
+              className={`px-4 py-2 text-sm font-medium rounded-md flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed ${isRunningV2
+                ? 'bg-emerald-100 text-emerald-700 cursor-wait'
+                : 'bg-emerald-50 text-emerald-600 border border-emerald-200 hover:bg-emerald-100'
+                }`}
+              title="Dynamic classification using AI Profile patterns → TAG2 column"
+            >
+              {isRunningV2 ? (
+                <>
+                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  </svg>
+                  Running PRF2...
+                </>
+              ) : (
+                <>
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  PRF2 (AI Profile)
+                </>
+              )}
+            </button>
           </div>
         </div>
 
@@ -820,6 +977,50 @@ export default function DomainKeywordsPage() {
                   />
                 </button>
               </div>
+
+              {/* Competition Type Filter - Multi-select */}
+              <div className="flex items-center gap-2 ml-4 pl-4 border-l border-gray-300 relative">
+                <label className="text-xs text-gray-600 font-medium">Competition:</label>
+                <div className="flex flex-wrap gap-1">
+                  {uniqueCompetitionTypes.map(type => {
+                    const isSelected = competitionTypeFilter.includes(type);
+                    const count = competitionTypeCounts[type] || 0;
+                    const colorClass = type === 'Main Competitor' ? 'border-red-400 bg-red-50 text-red-700' :
+                      type === 'Partial Competitor' ? 'border-yellow-400 bg-yellow-50 text-yellow-700' :
+                        type === 'Indirect Competitor' ? 'border-orange-400 bg-orange-50 text-orange-700' :
+                          type === 'Not a Competitor' ? 'border-gray-300 bg-gray-50 text-gray-600' :
+                            type === 'Not Assigned' ? 'border-purple-400 bg-purple-50 text-purple-700' :
+                              'border-gray-300 bg-gray-50 text-gray-600';
+                    return (
+                      <button
+                        key={type}
+                        onClick={() => {
+                          if (isSelected) {
+                            setCompetitionTypeFilter(prev => prev.filter(t => t !== type));
+                          } else {
+                            setCompetitionTypeFilter(prev => [...prev, type]);
+                          }
+                        }}
+                        className={`text-[10px] px-1.5 py-0.5 rounded border transition-all ${isSelected
+                          ? `${colorClass} ring-1 ring-offset-1 ring-indigo-400 font-bold`
+                          : 'border-gray-200 bg-white text-gray-500 hover:border-gray-400'
+                          }`}
+                      >
+                        {type} ({count})
+                      </button>
+                    );
+                  })}
+                  {competitionTypeFilter.length > 0 && (
+                    <button
+                      onClick={() => setCompetitionTypeFilter([])}
+                      className="text-[10px] px-1.5 py-0.5 text-gray-500 hover:text-red-600"
+                      title="Clear all filters"
+                    >
+                      ✕ Clear
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
 
             <div className="flex gap-2">
@@ -830,25 +1031,40 @@ export default function DomainKeywordsPage() {
 
           {/* Checkbox List */}
           <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto p-2 bg-gray-50 rounded-md">
-            {domainList.map(comp => (
-              <label
-                key={comp.id}
-                className={`inline-flex items-center gap-1.5 px-2 py-1 rounded text-xs cursor-pointer transition-colors ${selectedDomains.includes(comp.domain)
-                  ? 'bg-indigo-100 text-indigo-800 border border-indigo-300'
-                  : 'bg-white text-gray-600 border border-gray-200 hover:border-gray-300'
-                  }`}
-              >
-                <input
-                  type="checkbox"
-                  checked={selectedDomains.includes(comp.domain)}
-                  onChange={() => toggleDomain(comp.domain)}
-                  className="sr-only"
-                />
-                <span className={comp.id === 'CLIENT_SELF' ? 'font-bold underline decoration-dotted' : ''}>
-                  {comp.domain}
-                </span>
-              </label>
-            ))}
+            {domainList.map(comp => {
+              // Color based on competition type
+              const getCompetitionColor = () => {
+                if (comp.id === 'CLIENT_SELF') return 'border-l-2 border-l-blue-500';
+                switch (comp.competitionType) {
+                  case 'Main Competitor': return 'border-l-2 border-l-red-500';
+                  case 'Partial Competitor': return 'border-l-2 border-l-yellow-500';
+                  case 'Indirect Competitor': return 'border-l-2 border-l-orange-400';
+                  case 'Not a Competitor': return 'border-l-2 border-l-gray-300';
+                  default: return '';
+                }
+              };
+
+              return (
+                <label
+                  key={comp.id}
+                  title={comp.competitionType || 'Client'}
+                  className={`inline-flex items-center gap-1.5 px-2 py-1 rounded text-xs cursor-pointer transition-colors ${getCompetitionColor()} ${selectedDomains.includes(comp.domain)
+                    ? 'bg-indigo-100 text-indigo-800 border border-indigo-300'
+                    : 'bg-white text-gray-600 border border-gray-200 hover:border-gray-300'
+                    }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={selectedDomains.includes(comp.domain)}
+                    onChange={() => toggleDomain(comp.domain)}
+                    className="sr-only"
+                  />
+                  <span className={comp.id === 'CLIENT_SELF' ? 'font-bold underline decoration-dotted' : ''}>
+                    {comp.domain}
+                  </span>
+                </label>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -1043,7 +1259,7 @@ export default function DomainKeywordsPage() {
               className="w-full border rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
               <option value="all">All Fits</option>
-              {['BRAND_KW', 'CORE_MATCH', 'ADJACENT_MATCH', 'REVIEW', 'NO_MATCH', 'BLANK'].map(f => (
+              {['BRAND_KW', 'CORE_MATCH', 'NO_MATCH'].map(f => (
                 <option key={f} value={f}>{f.replace('_', ' ')}</option>
               ))}
             </select>
@@ -1074,6 +1290,51 @@ export default function DomainKeywordsPage() {
                 <option key={loc.code} value={loc.code}>{loc.label}</option>
               ))}
             </select>
+          </div>
+
+          {/* Competition Type Filter - Multi-select */}
+          <div className="min-w-[200px]">
+            <label className="block text-xs font-medium text-gray-500 mb-1">Competition Type</label>
+            <div className="flex flex-wrap gap-1 border rounded-md px-2 py-1 bg-white min-h-[32px] items-center">
+              {uniqueCompetitionTypes.map(type => {
+                const isSelected = tableCompetitionFilter.includes(type);
+                const count = competitionTypeCounts[type] || 0;
+                const colorClass = type === 'Main Competitor' ? 'bg-red-100 text-red-700 border-red-300' :
+                  type === 'Partial Competitor' ? 'bg-yellow-100 text-yellow-700 border-yellow-300' :
+                    type === 'Indirect Competitor' ? 'bg-orange-100 text-orange-700 border-orange-300' :
+                      type === 'Not a Competitor' ? 'bg-gray-100 text-gray-600 border-gray-300' :
+                        type === 'Not Assigned' ? 'bg-purple-100 text-purple-700 border-purple-300' :
+                          'bg-gray-100 text-gray-600 border-gray-300';
+                return (
+                  <button
+                    key={type}
+                    onClick={() => {
+                      if (isSelected) {
+                        setTableCompetitionFilter(prev => prev.filter(t => t !== type));
+                      } else {
+                        setTableCompetitionFilter(prev => [...prev, type]);
+                      }
+                    }}
+                    className={`text-[10px] px-1.5 py-0.5 rounded border transition-all ${isSelected
+                      ? `${colorClass} font-bold ring-1 ring-indigo-400`
+                      : 'bg-white text-gray-400 border-gray-200 hover:border-gray-400'
+                      }`}
+                    title={`${type} (${count} domains)`}
+                  >
+                    {type.replace(' Competitor', '')} ({count})
+                  </button>
+                );
+              })}
+              {tableCompetitionFilter.length > 0 && (
+                <button
+                  onClick={() => setTableCompetitionFilter([])}
+                  className="text-[10px] px-1 text-gray-400 hover:text-red-500"
+                  title="Clear filter"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
           </div>
           <div className="flex-1 min-w-[180px]">
             <label className="block text-xs font-medium text-gray-500 mb-1">Filter by Keyword</label>
@@ -1117,22 +1378,98 @@ export default function DomainKeywordsPage() {
         <button
           onClick={() => setShowAiBuilder(true)}
           className="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded border border-purple-600 text-xs font-bold shadow-sm flex items-center gap-1 animate-pulse"
+          title="Open Product Relevance Filter to classify keywords into Include, Exclude, Brand, and Review buckets. Saved dictionary powers the Tag All (Rules) feature."
         >
           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
           </svg>
-          AI KW Builder
+          Product Relevance Filter
+        </button>
+        <button
+          onClick={async () => {
+            if (!confirm('Reset all FIT statuses to BLANK? This cannot be undone.')) return;
+            try {
+              setLoading(true);
+              const res = await fetch('/api/domain-keywords/reset-tags', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ clientCode: selectedClientCode })
+              });
+              if (res.ok) {
+                setNotification({ type: 'success', message: 'All tags reset to BLANK' });
+                await fetchTags();
+              } else {
+                throw new Error('Failed to reset');
+              }
+            } catch (e) {
+              setNotification({ type: 'error', message: 'Failed to reset tags' });
+            } finally {
+              setLoading(false);
+            }
+          }}
+          disabled={loading || !selectedClientCode}
+          className="px-3 py-1.5 bg-gray-500 hover:bg-gray-600 text-white rounded text-xs font-bold shadow-sm disabled:opacity-50 flex items-center gap-1"
+          title="Reset all FIT statuses to BLANK"
+        >
+          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          Reset Tags
         </button>
         <button
           onClick={handleTagAllKeywords}
           disabled={loading || !selectedClientCode}
           className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded text-xs font-bold shadow-sm disabled:opacity-50 flex items-center gap-1"
+          title="🏷️ Tagging Rules (Priority Order):\n1. Exclude bucket → NO_MATCH\n2. Brand bucket → BRAND_KW\n3. Include bucket → CORE_MATCH\n4. No match → BLANK"
         >
           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
           </svg>
           Tag All (Rules)
         </button>
+        <ExportButton
+          data={filteredRecords.map(record => {
+            const tag = tags[normalizeKeyword(record.keyword)];
+            const compType = domainToCompetitionType[record.domain.toLowerCase()] || 'Not Assigned';
+            return {
+              domain: record.domain,
+              competitionType: compType,
+              label: record.label || '',
+              location: record.locationCode,
+              language: record.languageCode,
+              keyword: record.keyword,
+              fit: tag?.fitStatus || 'BLANK',
+              product: tag?.productLine || 'NONE',
+              tag2: tag?.tag2Status || '',
+              tag2Rationale: tag?.tag2Rationale || '',
+              rationale: tag?.rationale || '',
+              position: record.position ?? '',
+              volume: record.searchVolume ?? '',
+              cpc: record.cpc ?? '',
+              url: record.url || '',
+              fetchedAt: record.fetchedAt || '',
+              snapshotDate: record.snapshotDate || ''
+            };
+          })}
+          columns={[
+            { key: 'domain', header: 'DOMAIN' },
+            { key: 'competitionType', header: 'COMP_TYPE' },
+            { key: 'label', header: 'LABEL' },
+            { key: 'location', header: 'LOC' },
+            { key: 'language', header: 'LANG' },
+            { key: 'keyword', header: 'KEYWORD' },
+            { key: 'fit', header: 'FIT' },
+
+            { key: 'rationale', header: 'RATIONALE' },
+            { key: 'position', header: 'POS' },
+            { key: 'volume', header: 'VOL' },
+            { key: 'cpc', header: 'CPC' },
+            { key: 'url', header: 'URL' },
+            { key: 'fetchedAt', header: 'FETCHED_AT' },
+            { key: 'snapshotDate', header: 'SNAPSHOT_DATE' }
+          ]}
+          filename={`domain-keywords-${selectedClientCode}-${new Date().toISOString().split('T')[0]}`}
+        />
       </div>
 
       <div className="bg-white rounded-lg shadow overflow-hidden">
@@ -1176,7 +1513,6 @@ export default function DomainKeywordsPage() {
                       <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider w-[35px]">Loc</th>
                       <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider max-w-[150px]">Keyword</th>
                       <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider w-[120px]">Fit</th>
-                      <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider w-[120px]">Product</th>
                       <th className="px-2 py-2 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider max-w-[150px]">Rationale</th>
                       <SortableHeader field="position" label="Pos" tooltip="Position" />
                       <SortableHeader field="searchVolume" label="Vol" tooltip="Search Volume" />
@@ -1284,17 +1620,7 @@ export default function DomainKeywordsPage() {
                             ))}
                           </select>
                         </td>
-                        <td className="px-2 py-1.5 text-[10px]">
-                          <select
-                            value={prod}
-                            onChange={(e) => handleUpdateTag(record.keyword, 'productLine', e.target.value)}
-                            className={`block w-full text-[10px] py-0.5 px-1 rounded border-0 focus:ring-1 focus:ring-indigo-500 ${getProductLineColor(prod)}`}
-                          >
-                            {['TWISTING', 'WINDING', 'HEAT_SETTING', 'BRAND_KW', 'MULTIPLE', 'NONE', 'BLANK'].map(opt => (
-                              <option key={opt} value={opt}>{opt.replace('_', ' ')}</option>
-                            ))}
-                          </select>
-                        </td>
+
                         <td className="px-2 py-1.5 text-[9px] text-gray-500 max-w-[150px] truncate" title={tag?.rationale}>
                           {tag?.rationale || '-'}
                         </td>
@@ -1376,7 +1702,8 @@ export default function DomainKeywordsPage() {
         clientCode={selectedClientCode}
         domain={client?.mainDomain || ''}
         industryKey="general"
-        rawKeywords={filteredRecords.map(r => r.keyword)}
+        rawKeywords={records.map(r => r.keyword)}
+        onDictionaryChange={fetchProfile}
       />
 
     </div >

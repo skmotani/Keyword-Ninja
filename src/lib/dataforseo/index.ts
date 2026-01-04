@@ -61,31 +61,31 @@ export {
 // Whois
 export {
     fetchWhoisOverview,
-    WhoisResult,
     WHOIS_VERSION,
 } from './endpoints/whois';
+export type { WhoisResult } from './endpoints/whois';
 
 // Backlinks
 export {
     fetchBacklinksSummary,
-    BacklinksResult,
     BACKLINKS_VERSION,
 } from './endpoints/backlinks';
+export type { BacklinksResult } from './endpoints/backlinks';
 
 // Labs
 export {
     fetchDomainRankOverview,
-    LabsResult,
     LABS_VERSION,
 } from './endpoints/labs';
+export type { LabsResult } from './endpoints/labs';
 
 // Credibility (Combined)
 export {
     fetchDomainCredibility,
     toCredibilityRecord,
-    CredibilityFetchOptions,
     CREDIBILITY_VERSION,
 } from './endpoints/credibility';
+export type { CredibilityFetchOptions } from './endpoints/credibility';
 
 // ============================================================================
 // UTILITY HELPERS

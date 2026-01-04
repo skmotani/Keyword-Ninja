@@ -1,0 +1,2002 @@
+[
+  {
+    "columnName": "id",
+    "displayName": "ID",
+    "dataType": "string",
+    "sourceField": "id",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "da01-id-001",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "clientCode",
+    "displayName": "Client Code",
+    "dataType": "string",
+    "sourceField": "clientCode",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "da01-clientcode-002",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "domain",
+    "displayName": "Domain",
+    "dataType": "string",
+    "sourceField": "domain",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "da01-domain-003",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "domainType",
+    "displayName": "Domain Type",
+    "dataType": "string",
+    "sourceField": "domainType",
+    "metricMatchKey": null,
+    "notes": "Values: client or competitor",
+    "id": "da01-domaintype-004",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "domainAgeYears",
+    "displayName": "Domain Age (Years)",
+    "dataType": "number",
+    "sourceField": "domainAgeYears",
+    "metricMatchKey": null,
+    "notes": "Years since domain registration from WHOIS data",
+    "id": "da01-age-005",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "referringDomains",
+    "displayName": "Referring Domains",
+    "dataType": "number",
+    "sourceField": "referringDomains",
+    "metricMatchKey": null,
+    "notes": "Count of unique domains linking to this site",
+    "id": "da01-rd-006",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "totalBacklinks",
+    "displayName": "Total Backlinks",
+    "dataType": "number",
+    "sourceField": "totalBacklinks",
+    "metricMatchKey": null,
+    "notes": "Total number of incoming links",
+    "id": "da01-bl-007",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "dofollowBacklinks",
+    "displayName": "Dofollow Backlinks",
+    "dataType": "number",
+    "sourceField": "dofollowBacklinks",
+    "metricMatchKey": null,
+    "notes": "Links that pass PageRank/SEO value",
+    "id": "da01-df-008",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "nofollowBacklinks",
+    "displayName": "Nofollow Backlinks",
+    "dataType": "number",
+    "sourceField": "nofollowBacklinks",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "da01-nf-009",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "organicTraffic",
+    "displayName": "Organic Traffic",
+    "dataType": "number",
+    "sourceField": "organicTraffic",
+    "metricMatchKey": null,
+    "notes": "Estimated monthly organic visitors from Google",
+    "id": "da01-traffic-010",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "organicCost",
+    "displayName": "Organic Cost (ETV)",
+    "dataType": "number",
+    "sourceField": "organicCost",
+    "metricMatchKey": null,
+    "notes": "Estimated Traffic Value - what you would pay for equivalent traffic via Google Ads",
+    "id": "da01-etv-011",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "organicKeywordsCount",
+    "displayName": "Organic Keywords",
+    "dataType": "number",
+    "sourceField": "organicKeywordsCount",
+    "metricMatchKey": null,
+    "notes": "Number of organic keywords the domain ranks for",
+    "id": "da01-orgkw-012",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "paidKeywordsCount",
+    "displayName": "Paid Keywords",
+    "dataType": "number",
+    "sourceField": "paidKeywordsCount",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "da01-paidkw-013",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "organicTop3",
+    "displayName": "Top 3 Keywords",
+    "dataType": "number",
+    "sourceField": "organicTop3",
+    "metricMatchKey": null,
+    "notes": "Keywords ranking in positions 1-3",
+    "id": "da01-top3-014",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "organicTop10",
+    "displayName": "Top 10 Keywords",
+    "dataType": "number",
+    "sourceField": "organicTop10",
+    "metricMatchKey": null,
+    "notes": "Keywords ranking in positions 1-10 (first page)",
+    "id": "da01-top10-015",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "organicTop100",
+    "displayName": "Top 100 Keywords",
+    "dataType": "number",
+    "sourceField": "organicTop100",
+    "metricMatchKey": null,
+    "notes": "Keywords ranking in positions 1-100",
+    "id": "da01-top100-016",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "keywordVisibilityScore",
+    "displayName": "Visibility Score",
+    "dataType": "number",
+    "sourceField": "keywordVisibilityScore",
+    "metricMatchKey": null,
+    "notes": "Keyword ranking strength (0-100)",
+    "id": "da01-vis-017",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "paidTraffic",
+    "displayName": "Paid Traffic",
+    "dataType": "number",
+    "sourceField": "paidTraffic",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "da01-paidtr-018",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "paidCost",
+    "displayName": "Paid Cost",
+    "dataType": "number",
+    "sourceField": "paidCost",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "da01-paidcost-019",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "fetchedAt",
+    "displayName": "Fetched At",
+    "dataType": "date",
+    "sourceField": "fetchedAt",
+    "metricMatchKey": null,
+    "notes": "Timestamp when data was fetched from DataForSEO",
+    "id": "da01-fetched-020",
+    "pageKey": "domain-authority"
+  },
+  {
+    "columnName": "id",
+    "displayName": "ID",
+    "dataType": "string",
+    "sourceField": "id",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "pia-001-id",
+    "pageKey": "page-intent-analysis"
+  },
+  {
+    "columnName": "clientCode",
+    "displayName": "Client Code",
+    "dataType": "string",
+    "sourceField": "clientCode",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "pia-002-clientcode",
+    "pageKey": "page-intent-analysis"
+  },
+  {
+    "columnName": "domain",
+    "displayName": "Domain",
+    "dataType": "string",
+    "sourceField": "domain",
+    "metricMatchKey": null,
+    "notes": "The competitor or client domain",
+    "id": "pia-003-domain",
+    "pageKey": "page-intent-analysis"
+  },
+  {
+    "columnName": "url",
+    "displayName": "Sitemap URL",
+    "dataType": "string",
+    "sourceField": "url",
+    "metricMatchKey": null,
+    "notes": "Full URL from the domain's sitemap",
+    "id": "pia-004-url",
+    "pageKey": "page-intent-analysis"
+  },
+  {
+    "columnName": "intent",
+    "displayName": "Intent Bucket",
+    "dataType": "string",
+    "sourceField": "intent",
+    "metricMatchKey": null,
+    "notes": "AI-classified intent bucket: problem_aware_solution_tofu, educational_informational_tofu, commercial_investigation_mofu, trust_proof_mofu, brand_navigation_bofu, transactional_bofu",
+    "id": "pia-005-intent",
+    "pageKey": "page-intent-analysis"
+  },
+  {
+    "columnName": "intentLabel",
+    "displayName": "Intent Label",
+    "dataType": "string",
+    "sourceField": "intentLabel",
+    "metricMatchKey": null,
+    "notes": "Human-readable intent label derived from intent bucket",
+    "id": "pia-006-intentlabel",
+    "pageKey": "page-intent-analysis"
+  },
+  {
+    "columnName": "funnelStage",
+    "displayName": "Funnel Stage",
+    "dataType": "string",
+    "sourceField": "funnelStage",
+    "metricMatchKey": null,
+    "notes": "TOFU (Top of Funnel), MOFU (Middle of Funnel), or BOFU (Bottom of Funnel)",
+    "id": "pia-007-funnelstage",
+    "pageKey": "page-intent-analysis"
+  },
+  {
+    "columnName": "createdAt",
+    "displayName": "Analyzed At",
+    "dataType": "date",
+    "sourceField": "createdAt",
+    "metricMatchKey": null,
+    "notes": "Timestamp when the URL was analyzed",
+    "id": "pia-008-createdat",
+    "pageKey": "page-intent-analysis"
+  },
+  {
+    "columnName": "id",
+    "displayName": "ID",
+    "dataType": "string",
+    "sourceField": "id",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "e5f3af79-132d-49bd-9389-4ab2ccbda7a3",
+    "pageKey": "client-master"
+  },
+  {
+    "columnName": "code",
+    "displayName": "Client Code",
+    "dataType": "string",
+    "sourceField": "code",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "4edb63a3-7357-421f-9d87-5e4a01206382",
+    "pageKey": "client-master"
+  },
+  {
+    "columnName": "name",
+    "displayName": "Client Name",
+    "dataType": "string",
+    "sourceField": "name",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "d9a5af58-2740-46a3-a3be-793ca30253b6",
+    "pageKey": "client-master"
+  },
+  {
+    "columnName": "mainDomain",
+    "displayName": "Main Domain",
+    "dataType": "string",
+    "sourceField": "mainDomain",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "16e0779e-2bef-4a92-90eb-789bcf0cd857",
+    "pageKey": "client-master"
+  },
+  {
+    "columnName": "domains",
+    "displayName": "All Domains",
+    "dataType": "string",
+    "sourceField": "domains",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "46485395-81b7-44aa-a122-183738f324d1",
+    "pageKey": "client-master"
+  },
+  {
+    "columnName": "notes",
+    "displayName": "Notes",
+    "dataType": "string",
+    "sourceField": "notes",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "177505cf-af2b-4801-a118-249e1ca98456",
+    "pageKey": "client-master"
+  },
+  {
+    "columnName": "isActive",
+    "displayName": "Is Active",
+    "dataType": "boolean",
+    "sourceField": "isActive",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "46f7ad25-d0a9-4198-859b-b8993b67f35e",
+    "pageKey": "client-master"
+  },
+  {
+    "columnName": "industry",
+    "displayName": "Industry",
+    "dataType": "string",
+    "sourceField": "industry",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "5aaf325d-f551-4559-8558-7efad16f8375",
+    "pageKey": "client-master"
+  },
+  {
+    "columnName": "ctrTop5",
+    "displayName": "CTR (Top 1-5)",
+    "dataType": "string",
+    "sourceField": "businessMetrics.ctrTop5",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "5d6a0905-b278-4174-a2e8-296247a10fe0",
+    "pageKey": "client-master"
+  },
+  {
+    "columnName": "ctrTop10",
+    "displayName": "CTR (Top 1-10)",
+    "dataType": "string",
+    "sourceField": "businessMetrics.ctrTop10",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "ef572a51-42a0-460f-b199-8997cea6e0f6",
+    "pageKey": "client-master"
+  },
+  {
+    "columnName": "visitToRfq",
+    "displayName": "Visit→RFQ %",
+    "dataType": "string",
+    "sourceField": "businessMetrics.visitToRfq",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "bae6bf9a-8a0b-4e1d-a138-934b6681ed82",
+    "pageKey": "client-master"
+  },
+  {
+    "columnName": "rfqToOrder",
+    "displayName": "RFQ→Order %",
+    "dataType": "string",
+    "sourceField": "businessMetrics.rfqToOrder",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "8db88238-50dd-439b-b84e-81ba22fc2f6a",
+    "pageKey": "client-master"
+  },
+  {
+    "columnName": "avgTicketSize",
+    "displayName": "Avg Ticket Size",
+    "dataType": "string",
+    "sourceField": "businessMetrics.avgTicketSize",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "e43debf9-9d5c-4ca4-8c2e-a42a20ba8647",
+    "pageKey": "client-master"
+  },
+  {
+    "columnName": "id",
+    "displayName": "ID",
+    "dataType": "string",
+    "sourceField": "id",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "69e683de-5259-4e35-a027-461ccd9de2cb",
+    "pageKey": "client-ai-profile"
+  },
+  {
+    "columnName": "clientCode",
+    "displayName": "Client Code",
+    "dataType": "string",
+    "sourceField": "clientCode",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "c8dd8570-8d53-40b0-bf78-d349c41e347f",
+    "pageKey": "client-ai-profile"
+  },
+  {
+    "columnName": "clientName",
+    "displayName": "Client Name",
+    "dataType": "string",
+    "sourceField": "clientName",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "bfa46b98-c3f6-4c13-9360-10eae6bec6cb",
+    "pageKey": "client-ai-profile"
+  },
+  {
+    "columnName": "primaryDomains",
+    "displayName": "Primary Domains",
+    "dataType": "string",
+    "sourceField": "primaryDomains",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "1398c2a1-a9be-4e00-980f-8693ced0cd56",
+    "pageKey": "client-ai-profile"
+  },
+  {
+    "columnName": "domainsUsedForGeneration",
+    "displayName": "Domains Used",
+    "dataType": "string",
+    "sourceField": "domainsUsedForGeneration",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "fec0e752-e446-4d11-91dc-bfbcea115132",
+    "pageKey": "client-ai-profile"
+  },
+  {
+    "columnName": "industryType",
+    "displayName": "Industry Type",
+    "dataType": "string",
+    "sourceField": "industryType",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "2abb67a2-851e-4e31-aac4-3195f88bafab",
+    "pageKey": "client-ai-profile"
+  },
+  {
+    "columnName": "shortSummary",
+    "displayName": "Short Summary",
+    "dataType": "string",
+    "sourceField": "shortSummary",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "bba40c62-f413-4fdf-b613-18bfa75acf77",
+    "pageKey": "client-ai-profile"
+  },
+  {
+    "columnName": "businessModel",
+    "displayName": "Business Model",
+    "dataType": "string",
+    "sourceField": "businessModel",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "10088176-bcf6-4d2b-bab2-0b129024a72c",
+    "pageKey": "client-ai-profile"
+  },
+  {
+    "columnName": "productLines",
+    "displayName": "Product Lines",
+    "dataType": "string",
+    "sourceField": "productLines",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "89efe47e-4ffa-461c-a9aa-c92b13215de7",
+    "pageKey": "client-ai-profile"
+  },
+  {
+    "columnName": "targetCustomerSegments",
+    "displayName": "Target Segments",
+    "dataType": "string",
+    "sourceField": "targetCustomerSegments",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "03a56e6c-baee-4de2-8e6a-91671c318944",
+    "pageKey": "client-ai-profile"
+  },
+  {
+    "columnName": "targetGeographies",
+    "displayName": "Target Geographies",
+    "dataType": "string",
+    "sourceField": "targetGeographies",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "deca73a6-d61a-4de1-a2ca-5e7826fe10ad",
+    "pageKey": "client-ai-profile"
+  },
+  {
+    "columnName": "coreTopics",
+    "displayName": "Core Topics",
+    "dataType": "string",
+    "sourceField": "coreTopics",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "0fc8d8ae-692b-4f10-900c-69f0bae4c32c",
+    "pageKey": "client-ai-profile"
+  },
+  {
+    "columnName": "adjacentTopics",
+    "displayName": "Adjacent Topics",
+    "dataType": "string",
+    "sourceField": "adjacentTopics",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "2929561c-e266-4f56-b4a1-4484c76a397b",
+    "pageKey": "client-ai-profile"
+  },
+  {
+    "columnName": "negativeTopics",
+    "displayName": "Negative Topics",
+    "dataType": "string",
+    "sourceField": "negativeTopics",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "e014655e-2cde-4c33-b7f7-cf6b8d92c49e",
+    "pageKey": "client-ai-profile"
+  },
+  {
+    "columnName": "generatedAt",
+    "displayName": "Generated At",
+    "dataType": "date",
+    "sourceField": "generatedAt",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "a66b58db-ee94-4d88-9180-da12757f9b88",
+    "pageKey": "client-ai-profile"
+  },
+  {
+    "columnName": "updatedAt",
+    "displayName": "Updated At",
+    "dataType": "date",
+    "sourceField": "updatedAt",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "5bccf8a3-f79b-4ec5-ba47-d57c40e79395",
+    "pageKey": "client-ai-profile"
+  },
+  {
+    "columnName": "id",
+    "displayName": "ID",
+    "dataType": "string",
+    "sourceField": "id",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "b2fad0aa-e1ab-4a13-b273-cc6d455dae23",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "clientCode",
+    "displayName": "Client Code",
+    "dataType": "string",
+    "sourceField": "clientCode",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "1854ad85-f790-4f02-9af6-2b1d893a178a",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "name",
+    "displayName": "Competitor Name",
+    "dataType": "string",
+    "sourceField": "name",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "2d0e2c6e-e93d-4083-a9d9-4e09098aa2c4",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "domain",
+    "displayName": "Domain",
+    "dataType": "string",
+    "sourceField": "domain",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "940693b8-448d-44ec-9c4b-b90b1b284268",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "notes",
+    "displayName": "Notes",
+    "dataType": "string",
+    "sourceField": "notes",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "4935a482-f592-4fdb-b836-607121deb00e",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "isActive",
+    "displayName": "Is Active",
+    "dataType": "boolean",
+    "sourceField": "isActive",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "af2809e1-5fbd-4e21-aef5-57dcb7555bbe",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "source",
+    "displayName": "Source",
+    "dataType": "string",
+    "sourceField": "source",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "1acb3b42-db15-492b-b416-6e900f056529",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "importanceScore",
+    "displayName": "Importance Score",
+    "dataType": "number",
+    "sourceField": "importanceScore",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "3d3b6df2-e465-4f6c-868a-287d428af3de",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "domainType",
+    "displayName": "Domain Type",
+    "dataType": "string",
+    "sourceField": "domainType",
+    "metricMatchKey": "domain_type",
+    "notes": null,
+    "id": "4e8641e5-7bcd-4b5c-8491-49d696d01ef9",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "pageIntent",
+    "displayName": "Page Intent",
+    "dataType": "string",
+    "sourceField": "pageIntent",
+    "metricMatchKey": "page_intent",
+    "notes": null,
+    "id": "8e25c2a0-8fca-42f3-964f-c756b17361c6",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "productMatchScoreValue",
+    "displayName": "Product Match Score",
+    "dataType": "number",
+    "sourceField": "productMatchScoreValue",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "116b11d3-0b27-4f65-93c2-b9fcdf6b2d47",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "productMatchScoreBucket",
+    "displayName": "Product Match Bucket",
+    "dataType": "string",
+    "sourceField": "productMatchScoreBucket",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "47b557a4-021a-4317-b973-7f837423acf8",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "businessRelevanceCategory",
+    "displayName": "Business Relevance",
+    "dataType": "string",
+    "sourceField": "businessRelevanceCategory",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "269f268b-2ead-44ee-afa4-6af83e9834d0",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "explanationSummary",
+    "displayName": "Explanation",
+    "dataType": "string",
+    "sourceField": "explanationSummary",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "8d068027-32f6-49ec-91c3-cf7a970bb660",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "competitionType",
+    "displayName": "Competition Type",
+    "dataType": "string",
+    "sourceField": "competitionType",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "118a8c5c-af96-4c79-bd3d-004cbe82b50b",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "competitorForProducts",
+    "displayName": "Competitor For Products",
+    "dataType": "string",
+    "sourceField": "competitorForProducts",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "c1d2db33-2753-454c-a60b-64e913d7d7b7",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "brandNames",
+    "displayName": "Brand Names",
+    "dataType": "string",
+    "sourceField": "brandNames",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "aee5acdc-3e9c-4454-b2e1-2ed33c0d30b9",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "addedAt",
+    "displayName": "Added At",
+    "dataType": "date",
+    "sourceField": "addedAt",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "9ea0bb17-6ba4-42fd-bf80-9e2a0027a039",
+    "pageKey": "competitors"
+  },
+  {
+    "columnName": "id",
+    "displayName": "ID",
+    "dataType": "string",
+    "sourceField": "id",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "1c396243-b546-4bc3-90c9-c51f2cafe498",
+    "pageKey": "domain-keywords"
+  },
+  {
+    "columnName": "clientCode",
+    "displayName": "Client Code",
+    "dataType": "string",
+    "sourceField": "clientCode",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "afec929c-12ea-4e6d-8432-26e1090cea9c",
+    "pageKey": "domain-keywords"
+  },
+  {
+    "columnName": "domain",
+    "displayName": "Domain",
+    "dataType": "string",
+    "sourceField": "domain",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "d2a02d4d-109d-47c5-8e38-a298dc2eede8",
+    "pageKey": "domain-keywords"
+  },
+  {
+    "columnName": "label",
+    "displayName": "Label",
+    "dataType": "string",
+    "sourceField": "label",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "81965e40-2f07-4a15-9238-9d275c2aa452",
+    "pageKey": "domain-keywords"
+  },
+  {
+    "columnName": "locationCode",
+    "displayName": "Location Code",
+    "dataType": "string",
+    "sourceField": "locationCode",
+    "metricMatchKey": "location_code",
+    "notes": null,
+    "id": "6e2deb60-d03d-4b0b-be9e-ee772f7b0559",
+    "pageKey": "domain-keywords"
+  },
+  {
+    "columnName": "languageCode",
+    "displayName": "Language Code",
+    "dataType": "string",
+    "sourceField": "languageCode",
+    "metricMatchKey": "language_code",
+    "notes": null,
+    "id": "e8540ae0-f40f-41ca-bba8-6bde699431fb",
+    "pageKey": "domain-keywords"
+  },
+  {
+    "columnName": "keyword",
+    "displayName": "Keyword",
+    "dataType": "string",
+    "sourceField": "keyword",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "19b72762-e651-4bcf-a096-ba4bce305b7d",
+    "pageKey": "domain-keywords"
+  },
+  {
+    "columnName": "position",
+    "displayName": "Position",
+    "dataType": "number",
+    "sourceField": "position",
+    "metricMatchKey": "position",
+    "notes": null,
+    "id": "42e52cb9-798d-48fd-8018-6d4414d093b1",
+    "pageKey": "domain-keywords"
+  },
+  {
+    "columnName": "searchVolume",
+    "displayName": "Search Volume",
+    "dataType": "number",
+    "sourceField": "searchVolume",
+    "metricMatchKey": "search_volume",
+    "notes": null,
+    "id": "525e5cbb-71c1-4fbb-9b42-8f854ec46b5c",
+    "pageKey": "domain-keywords"
+  },
+  {
+    "columnName": "cpc",
+    "displayName": "CPC",
+    "dataType": "number",
+    "sourceField": "cpc",
+    "metricMatchKey": "cpc",
+    "notes": null,
+    "id": "a1fc42b6-1c5e-4922-af7b-ba800a14e4de",
+    "pageKey": "domain-keywords"
+  },
+  {
+    "columnName": "url",
+    "displayName": "Ranking URL",
+    "dataType": "string",
+    "sourceField": "url",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "0b173bea-94ee-4ee9-8a45-f550b7cf01c6",
+    "pageKey": "domain-keywords"
+  },
+  {
+    "columnName": "fetchedAt",
+    "displayName": "Fetched At",
+    "dataType": "date",
+    "sourceField": "fetchedAt",
+    "metricMatchKey": "fetched_at",
+    "notes": null,
+    "id": "0c9ef00b-d6b8-49db-8830-a2745ab7b41c",
+    "pageKey": "domain-keywords"
+  },
+  {
+    "columnName": "snapshotDate",
+    "displayName": "Snapshot Date",
+    "dataType": "date",
+    "sourceField": "snapshotDate",
+    "metricMatchKey": "snapshot_date",
+    "notes": null,
+    "id": "935926bb-e7a4-46a3-a701-9fc2f0474b30",
+    "pageKey": "domain-keywords"
+  },
+  {
+    "columnName": "id",
+    "displayName": "ID",
+    "dataType": "string",
+    "sourceField": "id",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "95d795a7-e663-4bf7-80ef-1334ddd5a651",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "clientCode",
+    "displayName": "Client Code",
+    "dataType": "string",
+    "sourceField": "clientCode",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "0a14b691-e652-43f3-bf31-574881bacc99",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "domain",
+    "displayName": "Domain",
+    "dataType": "string",
+    "sourceField": "domain",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "00c691da-10d2-4337-8074-f23278004b93",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "label",
+    "displayName": "Label",
+    "dataType": "string",
+    "sourceField": "label",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "a6789158-7eb3-4548-bcf5-d503d3d22c8e",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "locationCode",
+    "displayName": "Location Code",
+    "dataType": "string",
+    "sourceField": "locationCode",
+    "metricMatchKey": "location_code",
+    "notes": null,
+    "id": "ca0b67ea-78b0-416d-a781-b7197331289d",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "languageCode",
+    "displayName": "Language Code",
+    "dataType": "string",
+    "sourceField": "languageCode",
+    "metricMatchKey": "language_code",
+    "notes": null,
+    "id": "ee8d051b-51c2-480a-b378-356ef829e62a",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "pageURL",
+    "displayName": "Page URL",
+    "dataType": "string",
+    "sourceField": "pageURL",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "b9a03502-9a9d-47a1-b1a5-a36fef9781ac",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "estTrafficETV",
+    "displayName": "Est. Traffic (ETV)",
+    "dataType": "number",
+    "sourceField": "estTrafficETV",
+    "metricMatchKey": "etv",
+    "notes": null,
+    "id": "16adc898-c2c3-4660-98e8-8bf249bebd0c",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "keywordsCount",
+    "displayName": "Keywords Count",
+    "dataType": "number",
+    "sourceField": "keywordsCount",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "4c2febea-1da5-4114-b758-3888e783e025",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "fetchedAt",
+    "displayName": "Fetched At",
+    "dataType": "date",
+    "sourceField": "fetchedAt",
+    "metricMatchKey": "fetched_at",
+    "notes": null,
+    "id": "027bdb0b-d92d-432f-b2de-edb6022ef7df",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "snapshotDate",
+    "displayName": "Snapshot Date",
+    "dataType": "date",
+    "sourceField": "snapshotDate",
+    "metricMatchKey": "snapshot_date",
+    "notes": null,
+    "id": "5b61829c-3545-4e04-a9bf-ac22d4c1b7d7",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "pageType",
+    "displayName": "Page Type",
+    "dataType": "string",
+    "sourceField": "pageType",
+    "metricMatchKey": "page_type",
+    "notes": null,
+    "id": "1dd63a4e-2090-474d-86ea-3a68140b1df5",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "pageIntent",
+    "displayName": "Page Intent",
+    "dataType": "string",
+    "sourceField": "pageIntent",
+    "metricMatchKey": "page_intent",
+    "notes": null,
+    "id": "99d6df70-b59f-4a7f-b127-dd18dd950491",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "isSeoRelevant",
+    "displayName": "SEO Relevant",
+    "dataType": "boolean",
+    "sourceField": "isSeoRelevant",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "e76e64b4-efac-47fe-8d43-6766b77f2830",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "seoAction",
+    "displayName": "SEO Action",
+    "dataType": "string",
+    "sourceField": "seoAction",
+    "metricMatchKey": "seo_action",
+    "notes": null,
+    "id": "f0aa9036-6289-4736-858c-2ad27adf713b",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "priorityScore",
+    "displayName": "Priority Score",
+    "dataType": "number",
+    "sourceField": "priorityScore",
+    "metricMatchKey": "priority_score",
+    "notes": null,
+    "id": "6dc0b346-a09f-4211-b21c-68c00fb25f48",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "priorityTier",
+    "displayName": "Priority Tier",
+    "dataType": "string",
+    "sourceField": "priorityTier",
+    "metricMatchKey": "priority_tier",
+    "notes": null,
+    "id": "ef5b3c10-9f62-4cde-92fd-171d632bc12a",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "matchedProduct",
+    "displayName": "Matched Product",
+    "dataType": "string",
+    "sourceField": "matchedProduct",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "234a40b4-9e16-43b0-b77d-b7031ad0b3ec",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "clusterName",
+    "displayName": "Cluster Name",
+    "dataType": "string",
+    "sourceField": "clusterName",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "7e75c54b-a7b9-4f23-a5e5-4ec944753cef",
+    "pageKey": "domain-pages"
+  },
+  {
+    "columnName": "id",
+    "displayName": "ID",
+    "dataType": "string",
+    "sourceField": "id",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "02f089bd-d4f2-4d79-81ec-0abaf03170a9",
+    "pageKey": "domain-overview"
+  },
+  {
+    "columnName": "clientCode",
+    "displayName": "Client Code",
+    "dataType": "string",
+    "sourceField": "clientCode",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "1138544a-6c7a-46bc-8d3d-10ae52e10350",
+    "pageKey": "domain-overview"
+  },
+  {
+    "columnName": "domain",
+    "displayName": "Domain",
+    "dataType": "string",
+    "sourceField": "domain",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "04208587-bac5-446e-8ac4-84e11e2e8b91",
+    "pageKey": "domain-overview"
+  },
+  {
+    "columnName": "label",
+    "displayName": "Label",
+    "dataType": "string",
+    "sourceField": "label",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "f5693121-1c69-4815-bbed-4018b25f6b2d",
+    "pageKey": "domain-overview"
+  },
+  {
+    "columnName": "locationCode",
+    "displayName": "Location Code",
+    "dataType": "string",
+    "sourceField": "locationCode",
+    "metricMatchKey": "location_code",
+    "notes": null,
+    "id": "148a183f-c5d3-482e-b94e-c6d06295b7f3",
+    "pageKey": "domain-overview"
+  },
+  {
+    "columnName": "languageCode",
+    "displayName": "Language Code",
+    "dataType": "string",
+    "sourceField": "languageCode",
+    "metricMatchKey": "language_code",
+    "notes": null,
+    "id": "0c3e7f41-4b0b-4a82-8c8a-7427ae3e5b3d",
+    "pageKey": "domain-overview"
+  },
+  {
+    "columnName": "organicTrafficETV",
+    "displayName": "Organic Traffic (ETV)",
+    "dataType": "number",
+    "sourceField": "organicTrafficETV",
+    "metricMatchKey": "etv",
+    "notes": null,
+    "id": "d3c8a80c-01e8-4856-8e7a-aca07157e566",
+    "pageKey": "domain-overview"
+  },
+  {
+    "columnName": "organicKeywordsCount",
+    "displayName": "Organic Keywords Count",
+    "dataType": "number",
+    "sourceField": "organicKeywordsCount",
+    "metricMatchKey": "organic_keywords_count",
+    "notes": null,
+    "id": "3395a326-5803-4250-82cb-b7232b3d782d",
+    "pageKey": "domain-overview"
+  },
+  {
+    "columnName": "fetchedAt",
+    "displayName": "Fetched At",
+    "dataType": "date",
+    "sourceField": "fetchedAt",
+    "metricMatchKey": "fetched_at",
+    "notes": null,
+    "id": "4caa9bfd-8fb7-4ab1-a2cf-7364a13ebcaa",
+    "pageKey": "domain-overview"
+  },
+  {
+    "columnName": "snapshotDate",
+    "displayName": "Snapshot Date",
+    "dataType": "date",
+    "sourceField": "snapshotDate",
+    "metricMatchKey": "snapshot_date",
+    "notes": null,
+    "id": "67d882c7-677a-4f8f-aaa6-2251a85ddaff",
+    "pageKey": "domain-overview"
+  },
+  {
+    "columnName": "id",
+    "displayName": "ID",
+    "dataType": "string",
+    "sourceField": "id",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "532e86f9-ffc1-4d8d-845e-dec2ca581aad",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "clientCode",
+    "displayName": "Client Code",
+    "dataType": "string",
+    "sourceField": "clientCode",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "5629936f-dd4a-40b9-907f-d0d8b69b1894",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "keyword",
+    "displayName": "Keyword",
+    "dataType": "string",
+    "sourceField": "keyword",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "b4c3f91d-38a0-4148-8f31-77e6876c6074",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "locationCode",
+    "displayName": "Location Code",
+    "dataType": "number",
+    "sourceField": "locationCode",
+    "metricMatchKey": "location_code",
+    "notes": null,
+    "id": "728e3592-968d-4bb8-97ad-4ad223977a4d",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "languageCode",
+    "displayName": "Language Code",
+    "dataType": "string",
+    "sourceField": "languageCode",
+    "metricMatchKey": "language_code",
+    "notes": null,
+    "id": "ba24a506-769e-45a5-8984-dcbf2bd34ebf",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "rank",
+    "displayName": "Rank",
+    "dataType": "number",
+    "sourceField": "rank",
+    "metricMatchKey": "rank",
+    "notes": null,
+    "id": "9be9448e-9672-46f1-878f-158dc410daa3",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "rankAbsolute",
+    "displayName": "Rank Absolute",
+    "dataType": "number",
+    "sourceField": "rankAbsolute",
+    "metricMatchKey": "rank_absolute",
+    "notes": null,
+    "id": "77656d32-568c-49a5-9c4e-18589bb61eea",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "url",
+    "displayName": "URL",
+    "dataType": "string",
+    "sourceField": "url",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "5c68eb85-4398-4e2c-98c6-dcb29f626b5e",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "title",
+    "displayName": "Title",
+    "dataType": "string",
+    "sourceField": "title",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "ec5dbd9a-5211-4257-bc8c-a0438980df9c",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "description",
+    "displayName": "Description",
+    "dataType": "string",
+    "sourceField": "description",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "bd8caf9d-c4e8-468d-821b-bd94fadf7faa",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "domain",
+    "displayName": "Domain",
+    "dataType": "string",
+    "sourceField": "domain",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "cce304c9-5f96-41ac-b6e6-ba717b9df410",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "breadcrumb",
+    "displayName": "Breadcrumb",
+    "dataType": "string",
+    "sourceField": "breadcrumb",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "3c530ae1-5a9d-4d90-ae03-21096e588c73",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "isFeaturedSnippet",
+    "displayName": "Featured Snippet",
+    "dataType": "boolean",
+    "sourceField": "isFeaturedSnippet",
+    "metricMatchKey": "featured_snippet",
+    "notes": null,
+    "id": "b76e4bf8-8a73-468e-902f-b9103ad07fd8",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "isImage",
+    "displayName": "Is Image",
+    "dataType": "boolean",
+    "sourceField": "isImage",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "05bbf6c4-5d3e-4049-9548-676acefc8e00",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "isVideo",
+    "displayName": "Is Video",
+    "dataType": "boolean",
+    "sourceField": "isVideo",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "e6fed292-feb1-4cea-9a4e-5caa12479d55",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "etv",
+    "displayName": "ETV",
+    "dataType": "number",
+    "sourceField": "etv",
+    "metricMatchKey": "etv",
+    "notes": null,
+    "id": "4485bdca-8a79-4040-96d5-9e7fa7c352d0",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "estimatedPaidTrafficCost",
+    "displayName": "Est. Paid Traffic Cost",
+    "dataType": "number",
+    "sourceField": "estimatedPaidTrafficCost",
+    "metricMatchKey": "estimated_paid_traffic_cost",
+    "notes": null,
+    "id": "f755b221-91fa-40da-a7d3-a7d77b64e962",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "fetchedAt",
+    "displayName": "Fetched At",
+    "dataType": "date",
+    "sourceField": "fetchedAt",
+    "metricMatchKey": "fetched_at",
+    "notes": null,
+    "id": "51b015e3-f508-4b4a-b4f2-c267d25a19ef",
+    "pageKey": "serp-results"
+  },
+  {
+    "columnName": "id",
+    "displayName": "ID",
+    "dataType": "string",
+    "sourceField": "id",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "a2d656c8-1839-43d6-ad07-0cc8c1910388",
+    "pageKey": "keyword-api-data"
+  },
+  {
+    "columnName": "clientCode",
+    "displayName": "Client Code",
+    "dataType": "string",
+    "sourceField": "clientCode",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "6c8512a3-1651-45e7-b9b2-660b50df0519",
+    "pageKey": "keyword-api-data"
+  },
+  {
+    "columnName": "keywordText",
+    "displayName": "Keyword",
+    "dataType": "string",
+    "sourceField": "keywordText",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "9b394e2c-db86-4c15-9d23-26908ffe26ba",
+    "pageKey": "keyword-api-data"
+  },
+  {
+    "columnName": "normalizedKeyword",
+    "displayName": "Normalized Keyword",
+    "dataType": "string",
+    "sourceField": "normalizedKeyword",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "0899d96a-2a60-451e-ac0e-90f99b44a64d",
+    "pageKey": "keyword-api-data"
+  },
+  {
+    "columnName": "searchVolume",
+    "displayName": "Search Volume",
+    "dataType": "number",
+    "sourceField": "searchVolume",
+    "metricMatchKey": "search_volume",
+    "notes": null,
+    "id": "fd39bf28-95ef-4246-bb2f-77e6f71e09c5",
+    "pageKey": "keyword-api-data"
+  },
+  {
+    "columnName": "cpc",
+    "displayName": "CPC",
+    "dataType": "number",
+    "sourceField": "cpc",
+    "metricMatchKey": "cpc",
+    "notes": null,
+    "id": "2696f234-fe2d-418c-9ed1-3948e3aeccb4",
+    "pageKey": "keyword-api-data"
+  },
+  {
+    "columnName": "competition",
+    "displayName": "Competition",
+    "dataType": "string",
+    "sourceField": "competition",
+    "metricMatchKey": "competition",
+    "notes": null,
+    "id": "4f4e6686-2015-4719-b7c5-0319e8eb82a4",
+    "pageKey": "keyword-api-data"
+  },
+  {
+    "columnName": "lowTopOfPageBid",
+    "displayName": "Low Top of Page Bid",
+    "dataType": "number",
+    "sourceField": "lowTopOfPageBid",
+    "metricMatchKey": "low_top_of_page_bid",
+    "notes": null,
+    "id": "751706fc-7764-44bb-abfe-dc545e31291e",
+    "pageKey": "keyword-api-data"
+  },
+  {
+    "columnName": "highTopOfPageBid",
+    "displayName": "High Top of Page Bid",
+    "dataType": "number",
+    "sourceField": "highTopOfPageBid",
+    "metricMatchKey": "high_top_of_page_bid",
+    "notes": null,
+    "id": "d7962cfb-7730-4740-a64f-f94707e361ce",
+    "pageKey": "keyword-api-data"
+  },
+  {
+    "columnName": "locationCode",
+    "displayName": "Location Code",
+    "dataType": "number",
+    "sourceField": "locationCode",
+    "metricMatchKey": "location_code",
+    "notes": null,
+    "id": "ffa7e901-1238-4787-9de4-741bb8a5e4b1",
+    "pageKey": "keyword-api-data"
+  },
+  {
+    "columnName": "languageCode",
+    "displayName": "Language Code",
+    "dataType": "string",
+    "sourceField": "languageCode",
+    "metricMatchKey": "language_code",
+    "notes": null,
+    "id": "90289943-8bb1-42ef-a254-d163d2e2a8ef",
+    "pageKey": "keyword-api-data"
+  },
+  {
+    "columnName": "sourceApi",
+    "displayName": "Source API",
+    "dataType": "string",
+    "sourceField": "sourceApi",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "b256ee1a-b35c-4d8f-975f-bf3d9b424627",
+    "pageKey": "keyword-api-data"
+  },
+  {
+    "columnName": "snapshotDate",
+    "displayName": "Snapshot Date",
+    "dataType": "date",
+    "sourceField": "snapshotDate",
+    "metricMatchKey": "snapshot_date",
+    "notes": null,
+    "id": "fae670fe-10df-49c9-ba39-4a1ba970443d",
+    "pageKey": "keyword-api-data"
+  },
+  {
+    "columnName": "lastPulledAt",
+    "displayName": "Last Pulled At",
+    "dataType": "date",
+    "sourceField": "lastPulledAt",
+    "metricMatchKey": "last_pulled_at",
+    "notes": null,
+    "id": "3de2d217-b9a3-46c1-9479-c4f90a7f193e",
+    "pageKey": "keyword-api-data"
+  },
+  {
+    "columnName": "id",
+    "displayName": "ID",
+    "dataType": "string",
+    "sourceField": "id",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "36bc4297-76d5-4921-a810-8e391020a940",
+    "pageKey": "manual-keywords"
+  },
+  {
+    "columnName": "clientCode",
+    "displayName": "Client Code",
+    "dataType": "string",
+    "sourceField": "clientCode",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "98f2663f-1fbd-4b61-8588-2b4530ee9116",
+    "pageKey": "manual-keywords"
+  },
+  {
+    "columnName": "keywordText",
+    "displayName": "Keyword",
+    "dataType": "string",
+    "sourceField": "keywordText",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "1bb200cb-e4cc-4a8c-9a81-34b54fde339b",
+    "pageKey": "manual-keywords"
+  },
+  {
+    "columnName": "notes",
+    "displayName": "Notes",
+    "dataType": "string",
+    "sourceField": "notes",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "aa7633e5-bb8a-419c-a561-e0300d61cbae",
+    "pageKey": "manual-keywords"
+  },
+  {
+    "columnName": "isActive",
+    "displayName": "Is Active",
+    "dataType": "boolean",
+    "sourceField": "isActive",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "0005c791-de40-442f-9ae0-5e1e556b8b84",
+    "pageKey": "manual-keywords"
+  },
+  {
+    "columnName": "source",
+    "displayName": "Source",
+    "dataType": "string",
+    "sourceField": "source",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "f229b7d6-56a5-472b-bf03-76d10f065c55",
+    "pageKey": "manual-keywords"
+  },
+  {
+    "columnName": "id",
+    "displayName": "ID",
+    "dataType": "string",
+    "sourceField": "id",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "0cef88f8-951a-4c50-8996-4233522e9d39",
+    "pageKey": "client-position"
+  },
+  {
+    "columnName": "clientCode",
+    "displayName": "Client Code",
+    "dataType": "string",
+    "sourceField": "clientCode",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "129dba67-6de5-4b8d-863c-84b08f7c63cb",
+    "pageKey": "client-position"
+  },
+  {
+    "columnName": "keyword",
+    "displayName": "Keyword",
+    "dataType": "string",
+    "sourceField": "keyword",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "0468aa1f-7da9-49c0-850c-c0e275fa40dd",
+    "pageKey": "client-position"
+  },
+  {
+    "columnName": "locationType",
+    "displayName": "Location Type",
+    "dataType": "string",
+    "sourceField": "locationType",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "fb351ab5-804e-4e2d-9d2e-32659431eadb",
+    "pageKey": "client-position"
+  },
+  {
+    "columnName": "selectedDomain",
+    "displayName": "Client Domain",
+    "dataType": "string",
+    "sourceField": "selectedDomain",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "7b527355-629f-47a1-9b77-6eafc611ed57",
+    "pageKey": "client-position"
+  },
+  {
+    "columnName": "rank",
+    "displayName": "Rank",
+    "dataType": "number",
+    "sourceField": "rank",
+    "metricMatchKey": "rank",
+    "notes": null,
+    "id": "f986b56e-a81f-4ffe-9b0b-94a10f24a274",
+    "pageKey": "client-position"
+  },
+  {
+    "columnName": "rankLabel",
+    "displayName": "Rank Label",
+    "dataType": "string",
+    "sourceField": "rankLabel",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "50e3fd8f-ed75-425a-baf5-b57477e22e62",
+    "pageKey": "client-position"
+  },
+  {
+    "columnName": "searchVolume",
+    "displayName": "Search Volume",
+    "dataType": "number",
+    "sourceField": "searchVolume",
+    "metricMatchKey": "search_volume",
+    "notes": null,
+    "id": "436a7ff7-4313-4afe-9b74-831f4f8f5ccf",
+    "pageKey": "client-position"
+  },
+  {
+    "columnName": "cpc",
+    "displayName": "CPC",
+    "dataType": "number",
+    "sourceField": "cpc",
+    "metricMatchKey": "cpc",
+    "notes": null,
+    "id": "658fdbf6-4b58-45b5-b55a-522fcabad62e",
+    "pageKey": "client-position"
+  },
+  {
+    "columnName": "competition",
+    "displayName": "Competition",
+    "dataType": "number",
+    "sourceField": "competition",
+    "metricMatchKey": "competition",
+    "notes": null,
+    "id": "a4131b36-8fa7-42ed-9147-83d64fa1df8b",
+    "pageKey": "client-position"
+  },
+  {
+    "columnName": "source",
+    "displayName": "Source",
+    "dataType": "string",
+    "sourceField": "source",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "7023e871-5ba2-431b-99cb-58ece8f2991f",
+    "pageKey": "client-position"
+  },
+  {
+    "columnName": "lastPulledAt",
+    "displayName": "Last Pulled At",
+    "dataType": "date",
+    "sourceField": "lastPulledAt",
+    "metricMatchKey": "last_pulled_at",
+    "notes": null,
+    "id": "f30017a9-d7b4-4d1a-91a8-9171c56b8ae5",
+    "pageKey": "client-position"
+  },
+  {
+    "columnName": "id",
+    "displayName": "ID",
+    "dataType": "string",
+    "sourceField": "id",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "cdf645b3-c59f-4330-9679-5fb240cebebf",
+    "pageKey": "client-rank"
+  },
+  {
+    "columnName": "clientCode",
+    "displayName": "Client Code",
+    "dataType": "string",
+    "sourceField": "clientCode",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "bca151cf-fe13-4b88-9a44-ac3248c1f683",
+    "pageKey": "client-rank"
+  },
+  {
+    "columnName": "keywordOrTheme",
+    "displayName": "Keyword/Theme",
+    "dataType": "string",
+    "sourceField": "keywordOrTheme",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "2587eb3d-5e14-4330-809e-e9a531a47828",
+    "pageKey": "client-rank"
+  },
+  {
+    "columnName": "currentPosition",
+    "displayName": "Current Position",
+    "dataType": "string",
+    "sourceField": "currentPosition",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "43ff4fa5-fc9c-4a68-862e-9d98cc1d7484",
+    "pageKey": "client-rank"
+  },
+  {
+    "columnName": "competitor",
+    "displayName": "Competitor",
+    "dataType": "string",
+    "sourceField": "competitor",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "f065e60d-0cf8-4427-81b5-6cfadb259157",
+    "pageKey": "client-rank"
+  },
+  {
+    "columnName": "source",
+    "displayName": "Source",
+    "dataType": "string",
+    "sourceField": "source",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "b1036241-05db-4d09-a567-e24a4eb0d463",
+    "pageKey": "client-rank"
+  },
+  {
+    "columnName": "notes",
+    "displayName": "Notes",
+    "dataType": "string",
+    "sourceField": "notes",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "bef4d541-57e5-4980-aa89-853810712d05",
+    "pageKey": "client-rank"
+  },
+  {
+    "columnName": "asOfDate",
+    "displayName": "As Of Date",
+    "dataType": "date",
+    "sourceField": "asOfDate",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "887cedd4-9ec1-48fe-9e14-22d6027dda4c",
+    "pageKey": "client-rank"
+  },
+  {
+    "columnName": "createdAt",
+    "displayName": "Created At",
+    "dataType": "date",
+    "sourceField": "createdAt",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "e76ee3ba-7774-41aa-9a2b-da75b67750e7",
+    "pageKey": "client-rank"
+  },
+  {
+    "columnName": "updatedAt",
+    "displayName": "Updated At",
+    "dataType": "date",
+    "sourceField": "updatedAt",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "9a9c50e6-076a-40c3-8342-a5b22a4bf720",
+    "pageKey": "client-rank"
+  },
+  {
+    "columnName": "id",
+    "displayName": "ID",
+    "dataType": "string",
+    "sourceField": "id",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "2a6755fa-dc41-4101-8a5d-d2cd770ae7bc",
+    "pageKey": "curated-keywords"
+  },
+  {
+    "columnName": "clientCode",
+    "displayName": "Client Code",
+    "dataType": "string",
+    "sourceField": "clientCode",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "cd5fe654-4022-411b-beed-525d4e879cc3",
+    "pageKey": "curated-keywords"
+  },
+  {
+    "columnName": "keyword",
+    "displayName": "Keyword",
+    "dataType": "string",
+    "sourceField": "keyword",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "d0b54aee-35be-4714-b55e-abe667f9718d",
+    "pageKey": "curated-keywords"
+  },
+  {
+    "columnName": "source",
+    "displayName": "Source",
+    "dataType": "string",
+    "sourceField": "source",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "172ba0b4-08df-44a4-b365-91c7daf02a8e",
+    "pageKey": "curated-keywords"
+  },
+  {
+    "columnName": "notes",
+    "displayName": "Notes",
+    "dataType": "string",
+    "sourceField": "notes",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "72aabb89-35a9-4c22-8b25-828d481bc98e",
+    "pageKey": "curated-keywords"
+  },
+  {
+    "columnName": "createdAt",
+    "displayName": "Created At",
+    "dataType": "date",
+    "sourceField": "createdAt",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "76d3db6e-4212-476a-879b-4fe2e235f661",
+    "pageKey": "curated-keywords"
+  },
+  {
+    "columnName": "updatedAt",
+    "displayName": "Updated At",
+    "dataType": "date",
+    "sourceField": "updatedAt",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "3526868a-a197-4d3a-8ee3-761aa8c70c96",
+    "pageKey": "curated-keywords"
+  },
+  {
+    "columnName": "id",
+    "displayName": "ID",
+    "dataType": "string",
+    "sourceField": "id",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "9015ff17-84c7-468e-a758-a134c58f1f76",
+    "pageKey": "domain-profiles"
+  },
+  {
+    "columnName": "clientCode",
+    "displayName": "Client Code",
+    "dataType": "string",
+    "sourceField": "clientCode",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "a4ca96c4-4848-42bc-9ddf-a3d125d7a8b0",
+    "pageKey": "domain-profiles"
+  },
+  {
+    "columnName": "domain",
+    "displayName": "Domain",
+    "dataType": "string",
+    "sourceField": "domain",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "6c271fca-b1a3-4143-8bbd-ad07acc0182b",
+    "pageKey": "domain-profiles"
+  },
+  {
+    "columnName": "title",
+    "displayName": "Title",
+    "dataType": "string",
+    "sourceField": "title",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "a35f4ba1-1c78-4aa7-b291-be3ee38f319d",
+    "pageKey": "domain-profiles"
+  },
+  {
+    "columnName": "metaDescription",
+    "displayName": "Meta Description",
+    "dataType": "string",
+    "sourceField": "metaDescription",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "b156ee5d-1ef1-41d7-90b5-dfd77c51f104",
+    "pageKey": "domain-profiles"
+  },
+  {
+    "columnName": "inferredCategory",
+    "displayName": "Inferred Category",
+    "dataType": "string",
+    "sourceField": "inferredCategory",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "618c29d4-7ac1-414a-95f2-742a4edd1198",
+    "pageKey": "domain-profiles"
+  },
+  {
+    "columnName": "organicTraffic",
+    "displayName": "Organic Traffic",
+    "dataType": "number",
+    "sourceField": "organicTraffic",
+    "metricMatchKey": "organic_traffic",
+    "notes": null,
+    "id": "587cd554-caa6-4aeb-90ad-3e842bf18c57",
+    "pageKey": "domain-profiles"
+  },
+  {
+    "columnName": "organicKeywordsCount",
+    "displayName": "Organic Keywords Count",
+    "dataType": "number",
+    "sourceField": "organicKeywordsCount",
+    "metricMatchKey": "organic_keywords_count",
+    "notes": null,
+    "id": "d0de255c-efb0-4ff5-93cb-0b8a998811d4",
+    "pageKey": "domain-profiles"
+  },
+  {
+    "columnName": "backlinksCount",
+    "displayName": "Backlinks Count",
+    "dataType": "number",
+    "sourceField": "backlinksCount",
+    "metricMatchKey": "backlinks_count",
+    "notes": null,
+    "id": "e3706e8a-641f-41ae-8a51-0f6fcdfd4e70",
+    "pageKey": "domain-profiles"
+  },
+  {
+    "columnName": "referringDomainsCount",
+    "displayName": "Referring Domains Count",
+    "dataType": "number",
+    "sourceField": "referringDomainsCount",
+    "metricMatchKey": "referring_domains_count",
+    "notes": null,
+    "id": "56777749-4d3d-4119-80e5-c4f945336b25",
+    "pageKey": "domain-profiles"
+  },
+  {
+    "columnName": "domainRank",
+    "displayName": "Domain Rank",
+    "dataType": "number",
+    "sourceField": "domainRank",
+    "metricMatchKey": "domain_rank",
+    "notes": null,
+    "id": "512f2c5c-062a-4088-ba4d-43556664989b",
+    "pageKey": "domain-profiles"
+  },
+  {
+    "columnName": "fetchStatus",
+    "displayName": "Fetch Status",
+    "dataType": "string",
+    "sourceField": "fetchStatus",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "6d78d079-bcc5-422e-acb5-5ac1257b7cb2",
+    "pageKey": "domain-profiles"
+  },
+  {
+    "columnName": "errorMessage",
+    "displayName": "Error Message",
+    "dataType": "string",
+    "sourceField": "errorMessage",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "f868f684-c757-4471-a338-4525057c464b",
+    "pageKey": "domain-profiles"
+  },
+  {
+    "columnName": "lastFetchedAt",
+    "displayName": "Last Fetched At",
+    "dataType": "date",
+    "sourceField": "lastFetchedAt",
+    "metricMatchKey": "last_pulled_at",
+    "notes": null,
+    "id": "edb18f81-b761-4ee5-92a0-de31f189f212",
+    "pageKey": "domain-profiles"
+  },
+  {
+    "columnName": "createdAt",
+    "displayName": "Created At",
+    "dataType": "date",
+    "sourceField": "createdAt",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "e2296fb7-33d4-4081-a4df-ade5dbf9ed45",
+    "pageKey": "domain-profiles"
+  },
+  {
+    "columnName": "updatedAt",
+    "displayName": "Updated At",
+    "dataType": "date",
+    "sourceField": "updatedAt",
+    "metricMatchKey": null,
+    "notes": null,
+    "id": "d19b587d-4f71-473e-aed3-181820ae32a9",
+    "pageKey": "domain-profiles"
+  }
+]

@@ -21,9 +21,11 @@ const curatedItems = [
 ];
 
 const reportItems = [
+  { href: '/report/dashboard', label: 'Dashboard' },
   { href: '/report/competitors', label: 'Unique Domains' },
   { href: '/report/cluster-intelligence', label: 'Cluster Intelligence' },
   { href: '/report/cluster-intelligence-1', label: 'Cluster Intelligence (URL)' },
+  { href: '/report/client-data-export', label: 'Page Client Data Export' },
 ];
 
 const hubCategories = [
@@ -68,6 +70,7 @@ const seoDataItems = [
   { href: '/keywords/domain-overview', label: 'Domain Overview' },
   { href: '/keywords/domain-pages', label: 'Domain Top Pages' },
   { href: '/keywords/domain-keywords', label: 'Domain Top Keywords' },
+  { href: '/keywords/page-intent-analysis', label: 'Page Intent Analysis' },
 ];
 
 const gapContentItems = [

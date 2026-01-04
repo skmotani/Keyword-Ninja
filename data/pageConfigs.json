@@ -47,6 +47,76 @@
     "userDescription": "",
     "comments": [
       {
+        "id": "428bd4f7-c48a-48cb-a856-cdebb130a66b",
+        "text": "In modern SEO, search engines like Google are moving away from just matching \"keywords\" and toward understanding \"Entities\" (people, places, things, and concepts). Wikidata is a primary source for this evolution.",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:27:55.811Z",
+        "updatedAt": "2025-12-31T02:27:55.811Z"
+      },
+      {
+        "id": "a329166c-8fde-4703-bda3-793bc20ffb99",
+        "text": "https://www.wikidata.org/wiki/Wikidata:Main_Page\n\nhttps://gemini.google.com/share/63bf5fafad12",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:27:52.258Z",
+        "updatedAt": "2025-12-31T02:34:39.635Z"
+      },
+      {
+        "id": "155a7afb-12ee-4725-9263-5bed19e00818",
+        "text": "Executive Summary: Strategic Search Dominance & AI Integration (FY 2026)\nPrepared for: [Client Name]\n\nObjective: To secure market leadership across the Search & AI Ecosystem and capture $[X]M in untapped intent-driven revenue.\n\n1. The Strategic Challenge\nWhile [Client Name] maintains a baseline presence, our gap analysis reveals a \"Visibility Leak\" in high-intent conversion clusters. Currently, 65% of your target audience’s journey is being captured by [Competitor A] and [Competitor B] through AI-optimized citations and authoritative long-form content. In the current 2026 landscape, being \"indexed\" is no longer enough; you must be \"Preferred\" by LLMs and search agents.\n\n2. Our Three-Pillar Approach\nPillar I: Entity-First Optimization (The Foundation) We will move your brand from a collection of pages to a Verified Entity. By restructuring your site’s data architecture, we ensure that AI agents (Gemini, ChatGPT, Perplexity) cite [Client Name] as the primary source of truth for your industry.\n\nPillar II: Experience-Led Content (E-E-A-T) AI-generated content has saturated the market. We will differentiate your brand by leveraging your internal subject matter experts to create \"Human-First\" original research and first-party data. This is the only content Google’s 2026 algorithms are currently prioritizing for top-tier rankings.\n\nPillar III: Omnichannel Search Presence Search is no longer confined to a box. We will optimize your brand presence across Vertical Search (Social, Video, and Marketplaces) to ensure a 360-degree \"Share of Voice\" wherever your customers are asking questions.\n\n3. Forecasted Business Impact\nOur goal is not just traffic; it is sustainable, low-CPA growth. By the end of Q3, our roadmap targets:\n\n[X]% Increase in \"Direct-to-Answer\" AI Citations.\n\n[X]% Growth in Organic Qualified Leads (SQLs) by targeting high-value intent clusters.\n\n[X]% Reduction in Blended Customer Acquisition Cost (CAC) by decreasing reliance on paid search.\n\n4. Why Now?\nThe \"AI-Snapshot\" features are currently re-shuffling market leaders. The next 6 months represent a window of opportunity to claim \"Authority Status\" before the cost of entry doubles. We are not just optimizing for a search engine; we are future-proofing your brand's digital existence.\n\nKey Communication Tip: Notice there is no mention of \"Meta Tags,\" \"H1s,\" or \"Backlinks\" in this summary. Those are discussed in the technical appendices. The top experts keep the main proposal focused on money, risk, and market share.\n\nWould you like me to create a \"Competitive Gap Analysis\" table to include in this proposal to show the client exactly where they are losing money?\n\nhttps://gemini.google.com/share/c6332af9576c",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:24:43.893Z",
+        "updatedAt": "2025-12-31T02:24:43.893Z"
+      },
+      {
+        "id": "52d6b743-b6f4-4093-a74b-2e2b93814691",
+        "text": "Content Type: What type of content are you planning to publish? (e.g., blog posts, whitepapers, case studies, research reports, expert interviews) -tag each blog post as per above\n",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:21:46.264Z",
+        "updatedAt": "2025-12-31T02:21:46.264Z"
+      },
+      {
+        "id": "403855ad-3d6d-4e21-9643-0f1fc8599a3b",
+        "text": "How to Implement an E-E-A-T Strategy:\nShow, Don't Just Tell: Provide case studies, testimonials, and original insights.\nBe Transparent: Have clear author bios with credentials and contact info.\nCite Sources: Link to authoritative, high-E-E-A-T sources.\nSecure Your Site: Use HTTPS and have clear privacy/cookie policies.\nBuild Reputation: Earn links from respected sites and engage with your community.\nFocus on YMYL: Pay extra attention to E-E-A-T for topics affecting health, finance, or safety.",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:20:36.348Z",
+        "updatedAt": "2025-12-31T02:20:36.348Z"
+      },
+      {
+        "id": "ffb2ffbe-56b2-424e-8be4-0bce80bed0f7",
+        "text": "Experts present case studies not just as ranking improvements, but as \"Trust Building\" exercises. They emphasize how they've secured mentions on third-party sites, podcast appearances, and expert interviews to validate the brand's authority.",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:19:59.020Z",
+        "updatedAt": "2025-12-31T02:19:59.020Z"
+      },
+      {
+        "id": "a1f030c5-ba06-47a3-a7a2-33c255b4e84a",
+        "text": "EEAT as Social Proof\nBuilding verifiable expertise and trustworthiness through third-party validation",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:19:21.789Z",
+        "updatedAt": "2025-12-31T02:19:21.789Z"
+      },
+      {
+        "id": "e7cade81-dd65-425a-9dca-e13fece0d2eb",
+        "text": "Branded Search Association\nManufacturing word-of-mouth to increase branded search volume - product search with brand name increase the authenticity of the brand",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:18:19.586Z",
+        "updatedAt": "2025-12-31T02:18:19.586Z"
+      },
+      {
+        "id": "f9c2d1e8-452a-41d7-935e-2a8b6678a39c",
+        "text": "AEO (Answer Engine Optimization)\nOptimizing for AI Overviews and LLM-based search engines",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:17:24.543Z",
+        "updatedAt": "2025-12-31T02:17:24.543Z"
+      },
+      {
+        "id": "11681f01-7a07-4aab-bf94-e515f63c9cd2",
+        "text": "The Pitch: \"We aren't just making you rank; we are ensuring your brand is the verified source that AI agents use to answer customer questions",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:17:06.144Z",
+        "updatedAt": "2025-12-31T02:17:06.144Z"
+      },
+      {
         "id": "29424d00-db56-4848-b188-18377861b888",
         "text": "SERP API\nGoogle Organic SERP API\nGoogle AI Mode SERP API\nGoogle Maps SERP API\nGoogle Local Finder SERP API\nGoogle News SERP API\nGoogle Events SERP API\nGoogle Images SERP API\nGoogle Search by Image SERP API\nGoogle Jobs SERP API\nGoogle Autocomplete SERP API\nGoogle Ads Search SERP API\nGoogle Finance SERP API\nBing Organic SERP API\nYouTube SERP API\nYahoo SERP API\nBaidu Organic SERP API\nNaver Organic SERP API\nSeznam Organic SERP API\nAI Optimization API\nBacklinks API\nContent Analysis API\nContent Generation API\nDataForSEO Labs API\nKeywords Data API\nOnPage API\nMerchant API\nApp Data API\nBusiness Data API\nReviews API\nSocial Media API\nDomain Analytics API",
         "status": "pending",
@@ -66,12 +136,26 @@
         "updatedAt": "2025-12-24T15:21:54.314Z"
       }
     ],
-    "updatedAt": "2025-12-28T12:25:58.630Z"
+    "updatedAt": "2025-12-31T02:34:39.979Z"
   },
   {
     "path": "/competitors",
-    "updatedAt": "2025-12-24T15:24:00.871Z",
+    "updatedAt": "2026-01-01T22:34:40.380Z",
     "comments": [
+      {
+        "id": "c573d77b-f613-4e3a-b77e-9846aeece789",
+        "text": "self , Clent data to be also added from unique domain page while adding to competiotion master",
+        "status": "pending",
+        "createdAt": "2026-01-01T22:34:40.044Z",
+        "updatedAt": "2026-01-01T22:34:40.044Z"
+      },
+      {
+        "id": "11e658bc-5684-4242-9533-a275bac03c12",
+        "text": "make competition filter multiselect",
+        "status": "pending",
+        "createdAt": "2026-01-01T22:32:58.060Z",
+        "updatedAt": "2026-01-01T22:32:58.060Z"
+      },
       {
         "id": "0dde8d01-595a-4fdf-a3a7-9fd9476da6a8",
         "text": "make the font of the dta table smaller so that all the cols. are visible",
@@ -118,9 +202,16 @@
   },
   {
     "path": "/keywords/domain-keywords",
-    "updatedAt": "2025-12-29T01:51:07.597Z",
+    "updatedAt": "2025-12-30T03:43:39.808Z",
     "userDescription": "Keyword ETV = Search Volume × CTR(position) × CPC",
     "comments": [
+      {
+        "id": "5108241f-cbcd-4057-8360-aba00b0c4aeb",
+        "text": "Layer#2 - we will implement televent and intent tagging automaotion later, for now we will use cloaude ai import export\n",
+        "status": "pending",
+        "createdAt": "2025-12-29T13:31:18.795Z",
+        "updatedAt": "2025-12-29T13:31:18.795Z"
+      },
       {
         "id": "8e0a8893-6053-4372-a0c9-913381e4de8f",
         "text": "suppose the indstry key woprds that we have genereted through serp results do not have good intenet commerical , trnsactonal, education kw , and if we develop them , will it give us an advantage.\nYes — developing missing commercial, transactional, and educational keywords even if they do not currently exist in SERP can give you a competitive advantage. In fact, this is a classic B2B SEO advantage strategy called:\n\n“Category Creation through Intent Expansion.”\n\nIf the current industry keyword set is mostly informational/low-intent or technical (which is common in machinery, textile, and B2B industrial sectors), building high-intent pages around missing commercial terms can position you as the authority before demand catches up, and before competitors even realize those keywords matter.\n\nrefer to full discussin here https://chatgpt.com/s/t_6951de73ed9481918eefdf2ef3e97e0c\n",
@@ -188,7 +279,8 @@
         "id": "8be0540c-777b-4358-8252-b205895e730e",
         "text": "lock the heder table header when we go down",
         "createdAt": "2025-12-24T18:30:33.064Z",
-        "updatedAt": "2025-12-24T18:30:33.064Z"
+        "updatedAt": "2025-12-30T03:43:39.807Z",
+        "status": "completed"
       },
       {
         "id": "0a1065dc-ff03-4456-a07e-66840d397d00",
@@ -401,5 +493,38 @@
     "userDescription": "",
     "comments": [],
     "updatedAt": "2025-12-27T10:00:04.388Z"
+  },
+  {
+    "path": "/report/client-data-export",
+    "userDescription": "",
+    "comments": [
+      {
+        "id": "b0dc0bc5-d7c4-4429-8f9d-470416cb221a",
+        "text": "in client master also export the Client Ai profile",
+        "status": "pending",
+        "createdAt": "2026-01-02T00:48:31.623Z",
+        "updatedAt": "2026-01-02T00:48:31.623Z"
+      },
+      {
+        "id": "7cd0115a-b0c9-4c54-ad15-b9ecc47bfd46",
+        "text": "Afraid of losing business to the competitor\nAfraid of losing the turf\nAfraid of losing market share\nAfraid of absence from an opportunity\n",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:39:24.590Z",
+        "updatedAt": "2025-12-31T02:39:24.590Z"
+      }
+    ],
+    "updatedAt": "2026-01-02T00:48:31.649Z"
+  },
+  {
+    "path": "/keywords/page-intent-analysis",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-31T03:47:55.041Z"
+  },
+  {
+    "path": "/report/dashboard",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2026-01-02T04:16:05.958Z"
   }
 ]

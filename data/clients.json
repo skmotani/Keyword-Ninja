@@ -6,11 +6,18 @@
     "mainDomain": "www.meeraind.com",
     "domains": [
       "www.meeraind.com",
-      "meeraind.in",
-      "meera.ind.in"
+      "meera.ind.in",
+      "meeraind.com"
     ],
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "businessMetrics": {
+      "ctrTop5": "25%",
+      "ctrTop10": "15%",
+      "visitToRfq": "2%",
+      "rfqToOrder": "2%",
+      "avgTicketSize": "2500000"
+    }
   },
   {
     "id": "ff1e7b43-006c-4aa8-8781-86fe6ec34f17",
@@ -22,7 +29,14 @@
       "https://www.chemistryshiksha.com/"
     ],
     "notes": "",
-    "isActive": true
+    "isActive": true,
+    "businessMetrics": {
+      "ctrTop5": "25%",
+      "ctrTop10": "15%",
+      "visitToRfq": "2%",
+      "rfqToOrder": "2%",
+      "avgTicketSize": "10000"
+    }
   },
   {
     "id": "c08b0436-9294-4a27-b287-5643d1e58577",
@@ -36,6 +50,24 @@
       "https://kanodiaindia.com"
     ],
     "notes": "CPP Means Clear films without any coating",
+    "isActive": true,
+    "businessMetrics": {
+      "ctrTop5": "25%",
+      "ctrTop10": "15%",
+      "visitToRfq": "2%",
+      "rfqToOrder": "2%",
+      "avgTicketSize": "1000000"
+    }
+  },
+  {
+    "id": "cccfa5bb-9a53-451a-8b31-d24bfdee596b",
+    "code": "04",
+    "name": "Gushwork",
+    "mainDomain": "https://www.gushwork.ai/",
+    "domains": [
+      "https://www.gushwork.ai/"
+    ],
+    "notes": "",
     "isActive": true
   }
 ]

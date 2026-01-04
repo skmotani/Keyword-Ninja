@@ -634,6 +634,7 @@ function CompetitorsContent() {
                   { key: 'businessRelevanceCategory', header: 'Business Relevance' },
                   { key: 'source', header: 'Source' },
                   { key: 'isActive', header: 'Active' },
+                  { key: 'brandNames', header: 'Brand Names' },
                   { key: 'notes', header: 'Notes' },
                 ] as ExportColumn<Competitor>[]}
                 filename={`competitors-${clientFilter || 'all'}-${new Date().toISOString().split('T')[0]}`}
@@ -740,6 +741,7 @@ function CompetitorsContent() {
                 <th onClick={() => toggleSort('relevance')} className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100 w-24">Relevance<SortIcon col="relevance" /></th>
                 <th onClick={() => toggleSort('source')} className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100 w-14">Src<SortIcon col="source" /></th>
                 <th onClick={() => toggleSort('isActive')} className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100 w-10">Act<SortIcon col="isActive" /></th>
+                <th className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase w-28" title="This col will be used to tag branded keyword traffic from domain keywords">Brand Names</th>
                 <th className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase w-20">Actions</th>
               </tr>
             </thead>
@@ -820,6 +822,7 @@ function CompetitorsContent() {
                           </select>
                         </td>
                         <td className="px-2 py-2"></td>
+                        <td className="px-2 py-2 text-xs text-gray-400">-</td>
                         <td className="px-2 py-2 space-x-1">
                           <button onClick={() => handleUpdate(c.id)} className="text-green-600 hover:underline text-xs">Save</button>
                           <button onClick={() => setEditingId(null)} className="text-gray-500 hover:underline text-xs">Cancel</button>
@@ -902,6 +905,21 @@ function CompetitorsContent() {
                         <span className={`px-1.5 py-0.5 text-[9px] rounded ${c.isActive ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
                           {c.isActive ? 'Yes' : 'No'}
                         </span>
+                      </td>
+                      <td className="px-2 py-2">
+                        <input
+                          type="text"
+                          defaultValue={(c.brandNames || []).join(', ')}
+                          placeholder="e.g., Meera, MI"
+                          onBlur={(e) => {
+                            const brands = e.target.value.split(',').map(b => b.trim()).filter(b => b.length > 0);
+                            if (JSON.stringify(brands) !== JSON.stringify(c.brandNames || [])) {
+                              updateCompetitorField(c.id, 'brandNames', brands);
+                            }
+                          }}
+                          className="w-full px-1.5 py-0.5 border rounded text-[10px] focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+                          title="Comma-separated brand names for tagging branded keyword traffic"
+                        />
                       </td>
                       <td className="px-2 py-2 text-xs space-x-1 whitespace-nowrap">
                         <button onClick={() => startEdit(c)} className="text-indigo-600 hover:underline">Edit</button>

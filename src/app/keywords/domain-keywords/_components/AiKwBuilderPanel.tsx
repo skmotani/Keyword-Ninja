@@ -17,6 +17,8 @@ interface AiKwBuilderPanelProps {
     industryKey?: string;
     // We accept raw keywords to build terms from if load doesn't provide them
     rawKeywords?: string[];
+    // Callback to refresh profile data after dictionary changes
+    onDictionaryChange?: () => void;
 }
 
 // Visual constants
@@ -28,7 +30,29 @@ const COLORS = {
     unassigned: { bg: 'bg-gray-50', text: 'text-gray-600', border: 'border-gray-200', fill: '#f9fafb' }
 };
 
-export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, industryKey = 'general', rawKeywords = [] }: AiKwBuilderPanelProps) {
+// Auto-exclude common words (pronouns, conjunctions, articles, company suffixes, prepositions, etc.)
+const COMMON_EXCLUSIONS = new Set([
+    // Pronouns
+    'i', 'you', 'he', 'she', 'it', 'we', 'they', 'this', 'that', 'these', 'those', 'who', 'what', 'which',
+    // Conjunctions
+    'and', 'or', 'but', 'if', 'for', 'so', 'yet', 'nor',
+    // Articles
+    'a', 'an', 'the',
+    // Company suffixes
+    'ltd', 'llp', 'pvt', 'inc', 'corp', 'limited', 'private', 'company', 'co',
+    // Common adjectives
+    'best', 'top', 'good', 'new', 'great', 'free', 'online', 'cheap', 'easy', 'fast', 'high', 'low', 'big', 'small',
+    // Verbs
+    'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'get', 'got', 'can', 'will', 'would', 'should', 'could', 'may', 'might',
+    // Prepositions
+    'in', 'on', 'at', 'to', 'from', 'with', 'by', 'of', 'about', 'into', 'through', 'during', 'before', 'after', 'above', 'below', 'between', 'under', 'over',
+    // Question words
+    'how', 'why', 'when', 'where',
+    // Common words
+    'more', 'most', 'very', 'just', 'also', 'only', 'any', 'all', 'no', 'not', 'yes'
+]);
+
+export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, industryKey = 'general', rawKeywords = [], onDictionaryChange }: AiKwBuilderPanelProps) {
     // --- State ---
     const [terms, setTerms] = useState<UiTermEntry[]>([]);
     const [loading, setLoading] = useState(false);
@@ -37,26 +61,110 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
     // Multi-select state
     const [selectedTerms, setSelectedTerms] = useState<Set<string>>(new Set());
 
+    // Brand names from Competitor Master for auto-tagging
+    const [domainBrandNames, setDomainBrandNames] = useState<string[]>([]);
+
     const [filters, setFilters] = useState({
         ngram: 'unigram' as NgramType | 'full',
         minFreq: 2,
         search: '',
-        showUnassignedOnly: true,
+        showUnassignedOnly: false,
+        bucketFilter: [] as string[], // Multi-select: include, exclude, brand, review, unassigned
         limit: 150
     });
 
     // --- Loading Logic ---
+    // Reset state when clientCode changes (client switch)
+    useEffect(() => {
+        // Clear all terms and reset state for new client
+        setTerms([]);
+        setDomainBrandNames([]);
+        setHasUnsavedChanges(false);
+        setSelectedTerms(new Set());
+    }, [clientCode]);
+
+    // Fetch brand names from Competitor Master for this domain
+    useEffect(() => {
+        if (isOpen && clientCode && domain) {
+            fetchDomainBrandNames();
+        }
+    }, [isOpen, clientCode, domain]);
+
+    const fetchDomainBrandNames = async () => {
+        try {
+            const res = await fetch('/api/competitors');
+            const competitors = await res.json();
+
+            // Collect ONLY brand names from brandNames column in Competitor Master
+            // Do NOT extract from domain names to avoid false matches
+            const allBrandNames = new Set<string>();
+
+            competitors
+                .filter((c: any) => c.clientCode === clientCode && c.isActive)
+                .forEach((c: any) => {
+                    // Add brand names from Competitor Master brandNames column ONLY
+                    if (c.brandNames) {
+                        let brands: string[] = [];
+                        if (Array.isArray(c.brandNames)) {
+                            brands = c.brandNames;
+                        } else if (typeof c.brandNames === 'string') {
+                            // Split by comma
+                            brands = c.brandNames.split(',').map((b: string) => b.trim()).filter((b: string) => b);
+                        }
+                        brands.forEach((b: string) => {
+                            if (b && b.trim().length >= 2) {
+                                allBrandNames.add(b.toLowerCase().trim());
+                            }
+                        });
+                    }
+                    // NOTE: We intentionally do NOT extract from domain names
+                    // as this causes false matches (e.g., "meeraind" → "ind" → matches "winder")
+                });
+
+            if (allBrandNames.size > 0) {
+                setDomainBrandNames(Array.from(allBrandNames));
+                console.log('[AiKwBuilder] Brand names loaded from Competitor Master:', Array.from(allBrandNames));
+            } else {
+                console.log('[AiKwBuilder] No brand names found in Competitor Master');
+                setDomainBrandNames([]);
+            }
+        } catch (e) {
+            console.error('Failed to fetch brand names:', e);
+        }
+    };
+
     useEffect(() => {
         if (isOpen && clientCode) {
             loadDictionary();
         }
     }, [isOpen, clientCode]);
+    // Create a hash of rawKeywords to detect content changes (not just length)
+    const rawKeywordsHash = useMemo(() => {
+        if (rawKeywords.length === 0) return '';
+        // Use first 10 and last 10 keywords to create a unique hash
+        const sample = [...rawKeywords.slice(0, 10), ...rawKeywords.slice(-10)].join('|');
+        return `${rawKeywords.length}_${sample.length}_${sample.substring(0, 100)}`;
+    }, [rawKeywords]);
 
-    // Initial Term Generation with Examples
+    // Track previous hash to detect changes
+    const [prevRawKeywordsHash, setPrevRawKeywordsHash] = useState('');
+
+    // Initial Term Generation with Examples - regenerate when rawKeywords content changes
     useEffect(() => {
-        if (rawKeywords.length > 0 && terms.length === 0) {
+        // Force regeneration if hash changed (means different keywords, not just different length)
+        if (rawKeywordsHash !== prevRawKeywordsHash && rawKeywords.length > 0) {
+            console.log('[AiKwBuilder] rawKeywords changed, regenerating terms');
+            console.log('[AiKwBuilder] Old hash:', prevRawKeywordsHash.substring(0, 50));
+            console.log('[AiKwBuilder] New hash:', rawKeywordsHash.substring(0, 50));
+            setPrevRawKeywordsHash(rawKeywordsHash);
+            // Clear and regenerate
+            setTerms([]);
             const newTerms: UiTermEntry[] = [];
             const ngramTypes: (NgramType | 'full')[] = ['unigram', 'bigram', 'full'];
+
+            // Log raw keywords count for debugging
+            console.log('[AiKwBuilder] Raw keywords received:', rawKeywords.length);
+            console.log('[AiKwBuilder] Unique keywords:', new Set(rawKeywords).size);
 
             ngramTypes.forEach(type => {
                 const freqMap = new Map<string, number>();
@@ -90,26 +198,55 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
                             }
                         }
                     } else if (type === 'full') {
-                        if (kw.length > 3) {
-                            freqMap.set(kw, (freqMap.get(kw) || 0) + 1);
-                            if (!examplesMap.has(kw)) examplesMap.set(kw, [kw]);
-                        }
+                        // Include ALL keywords regardless of length
+                        freqMap.set(kw, (freqMap.get(kw) || 0) + 1);
+                        if (!examplesMap.has(kw)) examplesMap.set(kw, [kw]);
                     }
                 });
 
                 const entries: UiTermEntry[] = Array.from(freqMap.entries())
                     .filter(([_, freq]) => freq >= 1)
                     .map(([term, freq]) => {
-                        const domainBrand = domain.split('.')[0].toLowerCase();
-                        const isBrand = term.includes(domainBrand);
+                        // Use brand names from Competitor Master (or fallback to domain-based extraction)
+                        const brandNamesToCheck = domainBrandNames.length > 0
+                            ? domainBrandNames
+                            : (() => {
+                                const domainParts = domain.split('.')[0].toLowerCase();
+                                const fallback = [domainParts];
+                                if (domainParts.length > 4) {
+                                    for (let len = 4; len < domainParts.length; len++) {
+                                        fallback.push(domainParts.substring(0, len));
+                                    }
+                                }
+                                return fallback;
+                            })();
+
+                        // Check if term contains any brand name (case-insensitive partial match)
+                        const normalizedTerm = term.toLowerCase();
+                        const isBrand = brandNamesToCheck.some(b => normalizedTerm.includes(b) && b.length >= 3);
+                        const isExclude = COMMON_EXCLUSIONS.has(term.toLowerCase());
+
+                        let bucket: TermBucket | undefined;
+                        let source: 'user' | 'ai' | 'system' = 'system';
+                        let confidence = 0;
+
+                        if (isBrand) {
+                            bucket = 'brand';
+                            source = 'ai';
+                            confidence = 0.95;
+                        } else if (isExclude && type === 'unigram') {
+                            bucket = 'exclude';
+                            source = 'ai';
+                            confidence = 0.90;
+                        }
 
                         return {
                             term,
                             freq,
                             ngramType: (type === 'full' ? 'trigram' : type) as NgramType,
-                            source: isBrand ? 'ai' : 'system',
-                            bucket: isBrand ? 'brand' : undefined,
-                            confidence: isBrand ? 0.95 : 0,
+                            source,
+                            bucket,
+                            confidence,
                             locked: false,
                             examples: examplesMap.get(term) || [],
                             isPending: false,
@@ -123,8 +260,47 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
             newTerms.sort((a, b) => b.freq - a.freq);
             setTerms(prev => newTerms);
         }
-    }, [rawKeywords, domain, terms.length]);
+    }, [rawKeywordsHash, prevRawKeywordsHash, rawKeywords, domain, domainBrandNames]);
 
+    // Apply brand auto-tagging when brand names are loaded (after initial term generation)
+    // Also put ALL non-brand terms into exclude bucket by default
+    useEffect(() => {
+        if (domainBrandNames.length > 0 && terms.length > 0) {
+            console.log('[AiKwBuilder] Applying brand tagging with brands:', domainBrandNames);
+            let brandCount = 0;
+            setTerms(prev => prev.map(t => {
+                // Skip if term already has a user-assigned bucket
+                if (t.source === 'user') {
+                    return t;
+                }
+
+                // Check if term contains any brand name (case-insensitive, substring match)
+                // Brand names can be part of a larger word - user can manually remove false positives
+                const normalizedTerm = t.term.toLowerCase();
+                const matchesBrand = domainBrandNames.some(b => {
+                    const brandLower = b.toLowerCase();
+                    if (brandLower.length < 2) return false;
+                    // Substring match - "meera" matches "meeraind" as well
+                    return normalizedTerm.includes(brandLower);
+                });
+
+                if (matchesBrand) {
+                    brandCount++;
+                    // Put in Brand bucket
+                    return {
+                        ...t,
+                        bucket: 'brand' as const,
+                        source: 'ai' as const,
+                        confidence: 0.95,
+                        isPending: false
+                    };
+                }
+                // Leave non-brand terms as unassigned - user will manually assign to Include/Exclude
+                return t;
+            }));
+            console.log('[AiKwBuilder] Brand terms found:', brandCount);
+        }
+    }, [domainBrandNames, terms.length]);
     const mergeTerms = (currentTerms: UiTermEntry[], loadedTerms: TermEntry[]): UiTermEntry[] => {
         const dictMap = new Map(loadedTerms.map(t => [t.term.toLowerCase(), t]));
         return currentTerms.map(t => {
@@ -178,7 +354,7 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
                     domain,
                     industryKey,
                     saveToClient: true,
-                    saveToGlobal: true,
+                    saveToGlobal: false, // Disabled - only save to Client Profile
                     terms: termsToSave
                 })
             });
@@ -186,6 +362,8 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
             setTerms(prev => prev.map(t => ({ ...t, isPending: false })));
             setHasUnsavedChanges(false);
             alert('Dictionary Saved');
+            // Refresh main page sidebar
+            onDictionaryChange?.();
         } catch (e) {
             alert('Save failed');
         }
@@ -231,6 +409,24 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
         setSelectedTerms(new Set()); // Clear selection after assignment
     };
 
+    // Remove term from bucket (returns to unassigned)
+    const removeFromBucket = (termName: string) => {
+        setHasUnsavedChanges(true);
+        setTerms(prev => prev.map(t => {
+            if (t.term === termName) {
+                return {
+                    ...t,
+                    bucket: undefined,
+                    source: 'system' as const,
+                    locked: false,
+                    confidence: 0,
+                    isPending: false
+                };
+            }
+            return t;
+        }));
+    };
+
     // --- Filtering ---
     const visibleTerms = useMemo(() => {
         return terms
@@ -240,7 +436,12 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
             })
             .filter(t => t.freq >= filters.minFreq)
             .filter(t => !filters.search || t.term.includes(filters.search))
-            .filter(t => !filters.showUnassignedOnly || !t.bucket || (t as any).isPending)
+            .filter(t => {
+                // Bucket filter (multi-select)
+                if (filters.bucketFilter.length === 0) return true;
+                const termBucket = t.bucket || 'unassigned';
+                return filters.bucketFilter.includes(termBucket);
+            })
             .slice(0, filters.limit);
     }, [terms, filters]);
 
@@ -273,34 +474,64 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
                 {/* Header */}
                 <div className="px-6 py-4 border-b flex justify-between items-center bg-gray-50">
                     <div className="flex items-center gap-3">
-                        <h2 className="text-xl font-bold text-gray-800">AI KW Builder</h2>
+                        <h2 className="text-xl font-bold text-gray-800">Product Relevance Filter</h2>
+
+                        {/* Client indicator */}
+                        <span className="px-2 py-0.5 bg-indigo-100 text-indigo-700 rounded text-xs font-bold border border-indigo-200">
+                            Client: {clientCode}
+                        </span>
+                        <span className="text-xs text-gray-400">
+                            (Raw KWs: {rawKeywords.length})
+                        </span>
 
                         <div className="group relative ml-2">
                             <svg className="w-5 h-5 text-gray-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             <div className="hidden group-hover:block absolute top-full left-0 mt-2 w-96 p-4 bg-gray-900 text-white text-sm rounded-lg shadow-xl z-50">
-                                <h3 className="font-bold mb-2">How AI KW Builder Works</h3>
-                                <p className="mb-2">Terms are classified into 4 buckets to speed up keyword tagging.</p>
+                                <h3 className="font-bold mb-2">How Product Relevance Filter Works</h3>
+                                <p className="mb-2">Classify keywords into 4 buckets. These power the "Tag All (Rules)" feature.</p>
                                 <ul className="space-y-1 mb-3">
-                                    <li><strong className="text-green-400">Include</strong> – Relevant commercial or product intent</li>
-                                    <li><strong className="text-red-400">Exclude</strong> – Irrelevant or blocking intent</li>
-                                    <li><strong className="text-purple-400">Brand</strong> – Client or competitor brand terms (mostly auto-detected)</li>
-                                    <li><strong className="text-yellow-400">Review</strong> – Unclear terms needing human judgment</li>
+                                    <li><strong className="text-green-400">Include</strong> → FIT = CORE_MATCH (target these keywords)</li>
+                                    <li><strong className="text-red-400">Exclude</strong> → FIT = NO_MATCH (ignore these keywords)</li>
+                                    <li><strong className="text-purple-400">Brand</strong> → FIT = BRAND_KW (brand-related keywords)</li>
+                                    <li><strong className="text-yellow-400">Review</strong> → FIT = REVIEW (needs human review)</li>
                                 </ul>
-                                <p className="mb-2">AI suggests classifications with confidence. Your confirmed decisions are saved to:</p>
-                                <ul className="list-disc pl-4 text-gray-300">
-                                    <li>Client Dictionary (domain-specific)</li>
-                                    <li>Global Industry Dictionary (reusable across clients)</li>
-                                </ul>
+                                <p className="mb-2 text-xs text-gray-400">Priority: Exclude → Brand → Include → Review</p>
+                                <p>Auto-detection: Brand terms from domain name, common words auto-excluded.</p>
                             </div>
                         </div>
 
                         <div className="flex gap-4 ml-6 text-sm border-l pl-6">
                             <div className="flex flex-col">
-                                <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Total Terms</span>
+                                <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Unigram</span>
+                                <span className="font-bold text-gray-900 text-base">{filterCounts.unigram}</span>
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Bigram</span>
+                                <span className="font-bold text-gray-900 text-base">{filterCounts.bigram}</span>
+                            </div>
+                            <div className="flex flex-col group relative">
+                                <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold flex items-center gap-1">
+                                    Full Keyword
+                                    <svg className="w-3 h-3 text-gray-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </span>
+                                <span className="font-bold text-blue-600 text-base">{filterCounts.full}</span>
+                                <span className="text-[10px] text-gray-400">Unique Keywords</span>
+                                {/* Tooltip */}
+                                <div className="hidden group-hover:block absolute top-full left-0 mt-1 w-72 p-3 bg-gray-900 text-white text-xs rounded-lg shadow-xl z-50">
+                                    <p className="font-bold mb-1">Why is this different from the main page?</p>
+                                    <p className="text-gray-300">The main page shows <strong>total rows</strong> (includes duplicates across domains). This panel shows <strong>unique keywords</strong> to avoid classifying the same keyword twice.</p>
+                                    <p className="mt-2 text-gray-400 text-[10px]">Example: "textile machine" may appear for 3 domains = 3 rows, but 1 unique keyword.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex gap-4 text-sm border-l pl-6">
+                            <div className="flex flex-col">
+                                <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Current View</span>
                                 <span className="font-bold text-gray-900 text-base">{totalCount}</span>
-                                <span className="text-[10px] text-gray-400">Current View</span>
                             </div>
                             <div className="flex flex-col">
                                 <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Unassigned</span>
@@ -316,6 +547,58 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
                     </div>
 
                     <div className="flex items-center gap-4">
+                        {/* Reset Dictionary Button */}
+                        <button
+                            onClick={async () => {
+                                if (confirm('Reset all bucket assignments? This will clear Include/Exclude/Brand from BOTH UI and database (Client Profile + Global Dictionary).')) {
+                                    try {
+                                        // 1. Clear local UI state
+                                        setTerms(prev => prev.map(t => {
+                                            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                                            const { bucket, source, ...rest } = t;
+                                            return { ...rest, isPending: false } as UiTermEntry;
+                                        }));
+                                        setSelectedTerms(new Set());
+
+                                        // 2. Save empty dictionary to database
+                                        await fetch('/api/dictionary/term-builder/save', {
+                                            method: 'POST',
+                                            body: JSON.stringify({
+                                                clientCode,
+                                                domain,
+                                                industryKey,
+                                                saveToClient: true,
+                                                saveToGlobal: false, // Disabled - only save to Client Profile
+                                                terms: [] // Empty array clears the dictionary
+                                            })
+                                        });
+
+                                        setHasUnsavedChanges(false);
+                                        alert('Dictionary reset and saved to database.');
+                                        // Refresh main page sidebar
+                                        onDictionaryChange?.();
+                                    } catch (e) {
+                                        alert('Reset saved locally but database save failed.');
+                                        setHasUnsavedChanges(true);
+                                    }
+                                }
+                            }}
+                            className="px-3 py-2 rounded-lg text-sm font-medium border border-red-300 text-red-600 hover:bg-red-50 transition-colors"
+                            title="Clear all bucket assignments and save to database"
+                        >
+                            Reset Dictionary
+                        </button>
+                        {/* Select All Visible Button */}
+                        <button
+                            onClick={() => {
+                                const allVisibleTermNames = visibleTerms.map(t => t.term);
+                                setSelectedTerms(new Set(allVisibleTermNames));
+                            }}
+                            className="px-3 py-2 rounded-lg text-sm font-medium border border-indigo-300 text-indigo-600 hover:bg-indigo-50 transition-colors"
+                            title="Select all visible terms in current view"
+                        >
+                            Select All Visible ({visibleTerms.length})
+                        </button>
                         <button
                             onClick={handleSave}
                             disabled={!hasUnsavedChanges}
@@ -378,18 +661,53 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
                             <option value="300">300</option>
                             <option value="500">500</option>
                             <option value="1000">1000</option>
+                            <option value="99999">All</option>
                         </select>
                     </div>
-
-                    <label className="flex items-center gap-2 cursor-pointer select-none ml-auto text-gray-700">
-                        <input
-                            type="checkbox"
-                            checked={filters.showUnassignedOnly}
-                            onChange={e => setFilters({ ...filters, showUnassignedOnly: e.target.checked })}
-                            className="rounded text-indigo-600 focus:ring-indigo-500"
-                        />
-                        Show Unassigned Only
-                    </label>
+                    {/* Bucket Filter (Multi-select) */}
+                    <div className="flex items-center gap-2 border-l pl-4">
+                        <span className="text-gray-500 text-xs">Bucket:</span>
+                        <div className="flex gap-1">
+                            {(['include', 'exclude', 'brand', 'review', 'unassigned'] as const).map(bucket => {
+                                const isSelected = filters.bucketFilter.includes(bucket);
+                                const colors: Record<string, string> = {
+                                    include: 'bg-green-100 text-green-800 border-green-300',
+                                    exclude: 'bg-red-100 text-red-800 border-red-300',
+                                    brand: 'bg-purple-100 text-purple-800 border-purple-300',
+                                    review: 'bg-yellow-100 text-yellow-800 border-yellow-300',
+                                    unassigned: 'bg-gray-100 text-gray-600 border-gray-300'
+                                };
+                                return (
+                                    <button
+                                        key={bucket}
+                                        onClick={() => {
+                                            setFilters(prev => ({
+                                                ...prev,
+                                                bucketFilter: isSelected
+                                                    ? prev.bucketFilter.filter(b => b !== bucket)
+                                                    : [...prev.bucketFilter, bucket]
+                                            }));
+                                        }}
+                                        className={`px-2 py-0.5 text-[10px] rounded border capitalize transition-all ${isSelected
+                                            ? `${colors[bucket]} ring-2 ring-offset-1 ring-indigo-400`
+                                            : 'bg-white text-gray-400 border-gray-200 hover:border-gray-400'
+                                            }`}
+                                    >
+                                        {bucket}
+                                    </button>
+                                );
+                            })}
+                            {filters.bucketFilter.length > 0 && (
+                                <button
+                                    onClick={() => setFilters(prev => ({ ...prev, bucketFilter: [] }))}
+                                    className="px-1.5 py-0.5 text-[10px] text-gray-400 hover:text-gray-600"
+                                    title="Clear all bucket filters"
+                                >
+                                    ✕
+                                </button>
+                            )}
+                        </div>
+                    </div>
                 </div>
 
                 {/* Main Content */}
@@ -426,11 +744,11 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
                                             onClick={() => handleTermClick(term)}
                                             style={scaleStyle}
                                             className={`
-                                                transition-all duration-150 rounded-full px-3 py-1 leading-none
+                                                transition-colors duration-75 rounded-full px-3 py-1 leading-none
                                                 ${style.bg} ${style.text}
                                                 border-2
-                                                ${isSelected ? 'border-indigo-600 shadow-[0_0_0_2px_rgba(79,70,229,0.3)] scale-105 z-10' : style.border}
-                                                hover:opacity-90 hover:scale-105 hover:shadow-md
+                                                ${isSelected ? 'border-indigo-600 ring-2 ring-indigo-400 z-10' : style.border}
+                                                hover:opacity-80 active:scale-95
                                                 focus:outline-none
                                                 cursor-pointer select-none
                                             `}
@@ -467,7 +785,8 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
                         </div>
 
                         {(['include', 'exclude', 'brand', 'review'] as const).map(bucket => {
-                            const count = activeTypeTerms.filter(t => t.bucket === bucket).length;
+                            // Use ALL terms (not filtered by ngram) for bucket counts
+                            const count = terms.filter(t => t.bucket === bucket).length;
                             return (
                                 <div
                                     key={bucket}
@@ -483,15 +802,25 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
                                         </span>
                                     </div>
 
-                                    {/* Mini visuals of tokens */}
-                                    <div className="h-12 overflow-hidden relative rounded bg-white border border-gray-100 p-1">
-                                        <div className="flex flex-wrap gap-1 opacity-70">
-                                            {activeTypeTerms.filter(t => t.bucket === bucket).slice(0, 6).map(t => (
-                                                <span key={t.term} className="text-[9px] bg-gray-50 border border-gray-100 px-1 rounded">
+                                    {/* Bucket terms with remove buttons */}
+                                    <div className="max-h-36 overflow-y-auto rounded bg-white border border-gray-100 p-1.5">
+                                        <div className="flex flex-wrap gap-1">
+                                            {/* Show ALL terms in this bucket (not filtered by ngram) */}
+                                            {terms.filter(t => t.bucket === bucket).map(t => (
+                                                <span
+                                                    key={t.term}
+                                                    className={`group inline-flex items-center gap-0.5 text-[9px] ${COLORS[bucket].bg} ${COLORS[bucket].text} px-1.5 py-0.5 rounded border ${COLORS[bucket].border}`}
+                                                >
                                                     {t.term}
+                                                    <button
+                                                        onClick={(e) => { e.stopPropagation(); removeFromBucket(t.term); }}
+                                                        className="opacity-0 group-hover:opacity-100 ml-0.5 text-gray-500 hover:text-red-600 transition-opacity"
+                                                        title="Remove from bucket"
+                                                    >
+                                                        ✕
+                                                    </button>
                                                 </span>
                                             ))}
-                                            {count > 6 && <span className="text-[8px] text-gray-400 self-center">...</span>}
                                         </div>
                                     </div>
 

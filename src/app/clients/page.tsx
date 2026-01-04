@@ -60,6 +60,8 @@ export default function ClientsPage() {
   const [generatingAiProfile, setGeneratingAiProfile] = useState<string | null>(null);
   const [showDomainsVerification, setShowDomainsVerification] = useState<string | null>(null);
   const [recentlyRefreshedClientCode, setRecentlyRefreshedClientCode] = useState<string | null>(null);
+  const [businessMetricsEditing, setBusinessMetricsEditing] = useState<Record<string, Client['businessMetrics']>>({});
+  const [savingBusinessMetrics, setSavingBusinessMetrics] = useState<string | null>(null);
 
   const [formData, setFormData] = useState({
     code: '',
@@ -272,7 +274,45 @@ export default function ClientsPage() {
       if (!aiProfiles[client.code]) {
         fetchAiProfileForClient(client.code);
       }
+      // Initialize business metrics editing state
+      if (!businessMetricsEditing[client.code]) {
+        setBusinessMetricsEditing(prev => ({
+          ...prev,
+          [client.code]: client.businessMetrics || {}
+        }));
+      }
     }
+  }
+
+  async function handleSaveBusinessMetrics(clientId: string, clientCode: string) {
+    setSavingBusinessMetrics(clientCode);
+    try {
+      const metrics = businessMetricsEditing[clientCode] || {};
+      await fetch('/api/clients', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: clientId,
+          businessMetrics: metrics,
+        }),
+      });
+      showNotification('success', 'Business metrics saved');
+      fetchClients();
+    } catch (error) {
+      showNotification('error', 'Failed to save business metrics');
+    } finally {
+      setSavingBusinessMetrics(null);
+    }
+  }
+
+  function updateBusinessMetric(clientCode: string, field: keyof NonNullable<Client['businessMetrics']>, value: string) {
+    setBusinessMetricsEditing(prev => ({
+      ...prev,
+      [clientCode]: {
+        ...prev[clientCode],
+        [field]: value
+      }
+    }));
   }
 
   function addDomainField(isEdit: boolean) {
@@ -1109,6 +1149,220 @@ export default function ClientsPage() {
                             </div>
                           )}
                         </div>
+
+                        {/* Business Metrics Section */}
+                        <div className="bg-white rounded-lg border p-4 mt-4">
+                          <div className="flex items-center justify-between mb-3">
+                            <h4 className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                              <span>📊</span> Business Metrics
+                            </h4>
+                            <button
+                              onClick={() => handleSaveBusinessMetrics(client.id, client.code)}
+                              disabled={savingBusinessMetrics === client.code}
+                              className={`px-3 py-1 text-sm rounded ${savingBusinessMetrics === client.code
+                                ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                                : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                                }`}
+                            >
+                              {savingBusinessMetrics === client.code ? 'Saving...' : 'Save Metrics'}
+                            </button>
+                          </div>
+                          <p className="text-xs text-gray-500 mb-4">
+                            Conversion funnel metrics used for ROI calculations. Values are saved per client.
+                          </p>
+                          <table className="w-full text-sm border-collapse">
+                            <thead>
+                              <tr className="bg-gray-50">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-600 border">Variable</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-600 border w-32">Value</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td className="px-3 py-2 border text-gray-700">
+                                  <span className="font-medium">CTR (Top 1-5)</span>
+                                  <div className="text-xs text-gray-500">Higher CTR for top positions</div>
+                                </td>
+                                <td className="px-3 py-2 border">
+                                  <input
+                                    type="text"
+                                    value={businessMetricsEditing[client.code]?.ctrTop5 || ''}
+                                    onChange={(e) => updateBusinessMetric(client.code, 'ctrTop5', e.target.value)}
+                                    placeholder="e.g., 25%"
+                                    className="w-full px-2 py-1 border rounded text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="px-3 py-2 border text-gray-700">
+                                  <span className="font-medium">CTR (Top 1-10)</span>
+                                  <div className="text-xs text-gray-500">% of searches Meera captures if ranking Top 10</div>
+                                </td>
+                                <td className="px-3 py-2 border">
+                                  <input
+                                    type="text"
+                                    value={businessMetricsEditing[client.code]?.ctrTop10 || ''}
+                                    onChange={(e) => updateBusinessMetric(client.code, 'ctrTop10', e.target.value)}
+                                    placeholder="e.g., 15%"
+                                    className="w-full px-2 py-1 border rounded text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="px-3 py-2 border text-gray-700">
+                                  <span className="font-medium">Visit → RFQ</span>
+                                  <div className="text-xs text-gray-500">% visitors submitting RFQ</div>
+                                </td>
+                                <td className="px-3 py-2 border">
+                                  <input
+                                    type="text"
+                                    value={businessMetricsEditing[client.code]?.visitToRfq || ''}
+                                    onChange={(e) => updateBusinessMetric(client.code, 'visitToRfq', e.target.value)}
+                                    placeholder="e.g., 2%"
+                                    className="w-full px-2 py-1 border rounded text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="px-3 py-2 border text-gray-700">
+                                  <span className="font-medium">RFQ → Order Win</span>
+                                  <div className="text-xs text-gray-500">% RFQs converting to orders</div>
+                                </td>
+                                <td className="px-3 py-2 border">
+                                  <input
+                                    type="text"
+                                    value={businessMetricsEditing[client.code]?.rfqToOrder || ''}
+                                    onChange={(e) => updateBusinessMetric(client.code, 'rfqToOrder', e.target.value)}
+                                    placeholder="e.g., 2%"
+                                    className="w-full px-2 py-1 border rounded text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="px-3 py-2 border text-gray-700">
+                                  <span className="font-medium">Average Machinery Ticket Size</span>
+                                  <div className="text-xs text-gray-500">Average order value per order</div>
+                                </td>
+                                <td className="px-3 py-2 border">
+                                  <input
+                                    type="text"
+                                    value={businessMetricsEditing[client.code]?.avgTicketSize || ''}
+                                    onChange={(e) => updateBusinessMetric(client.code, 'avgTicketSize', e.target.value)}
+                                    placeholder="e.g., ₹25,00,000"
+                                    className="w-full px-2 py-1 border rounded text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                  />
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                        {/* Keyword Dictionary Section */}
+                        {aiProfiles[client.code]?.ai_kw_builder_term_dictionary && (
+                          <div className="bg-white rounded-lg border p-4 mt-4">
+                            <div className="flex items-center justify-between mb-3">
+                              <h4 className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                                <span>📚</span> Keyword Dictionary
+                              </h4>
+                              <span className="text-xs text-gray-400">
+                                Last updated: {aiProfiles[client.code]?.ai_kw_builder_term_dictionary?.updatedAt
+                                  ? new Date(aiProfiles[client.code].ai_kw_builder_term_dictionary!.updatedAt).toLocaleString()
+                                  : 'N/A'}
+                              </span>
+                            </div>
+                            <p className="text-xs text-gray-500 mb-4">
+                              Include/Exclude terms saved via "Save Dictionary" button from Product Relevance Filter.
+                            </p>
+
+                            {/* Include Terms */}
+                            <div className="mb-4">
+                              <div className="text-xs font-medium text-green-700 mb-2 flex items-center gap-2">
+                                <span className="bg-green-100 text-green-800 px-2 py-0.5 rounded">Include</span>
+                                <span className="text-gray-400">
+                                  ({(aiProfiles[client.code]?.ai_kw_builder_term_dictionary?.terms || []).filter(t => t.bucket === 'include').length} terms)
+                                </span>
+                              </div>
+                              <div className="flex flex-wrap gap-1 max-h-48 overflow-y-auto bg-green-50/50 p-2 rounded border border-green-100">
+                                {(aiProfiles[client.code]?.ai_kw_builder_term_dictionary?.terms || [])
+                                  .filter(t => t.bucket === 'include')
+                                  .map((t, i) => (
+                                    <span key={i} className="px-2 py-0.5 bg-green-100 text-green-800 text-[10px] rounded">
+                                      {t.term}
+                                    </span>
+                                  ))}
+                                {(aiProfiles[client.code]?.ai_kw_builder_term_dictionary?.terms || []).filter(t => t.bucket === 'include').length === 0 && (
+                                  <span className="text-xs text-gray-400 italic">No include terms saved</span>
+                                )}
+                              </div>
+                            </div>
+
+                            {/* Exclude Terms */}
+                            <div>
+                              <div className="text-xs font-medium text-red-700 mb-2 flex items-center gap-2">
+                                <span className="bg-red-100 text-red-800 px-2 py-0.5 rounded">Exclude</span>
+                                <span className="text-gray-400">
+                                  ({(aiProfiles[client.code]?.ai_kw_builder_term_dictionary?.terms || []).filter(t => t.bucket === 'exclude').length} terms)
+                                </span>
+                              </div>
+                              <div className="flex flex-wrap gap-1 max-h-48 overflow-y-auto bg-red-50/50 p-2 rounded border border-red-100">
+                                {(aiProfiles[client.code]?.ai_kw_builder_term_dictionary?.terms || [])
+                                  .filter(t => t.bucket === 'exclude')
+                                  .map((t, i) => (
+                                    <span key={i} className="px-2 py-0.5 bg-red-100 text-red-800 text-[10px] rounded">
+                                      {t.term}
+                                    </span>
+                                  ))}
+                                {(aiProfiles[client.code]?.ai_kw_builder_term_dictionary?.terms || []).filter(t => t.bucket === 'exclude').length === 0 && (
+                                  <span className="text-xs text-gray-400 italic">No exclude terms saved</span>
+                                )}
+                              </div>
+                            </div>
+
+                            {/* Brand Terms */}
+                            <div className="mt-4">
+                              <div className="text-xs font-medium text-purple-700 mb-2 flex items-center gap-2">
+                                <span className="bg-purple-100 text-purple-800 px-2 py-0.5 rounded">Brand</span>
+                                <span className="text-gray-400">
+                                  ({(aiProfiles[client.code]?.ai_kw_builder_term_dictionary?.terms || []).filter(t => t.bucket === 'brand').length} terms)
+                                </span>
+                              </div>
+                              <div className="flex flex-wrap gap-1 max-h-48 overflow-y-auto bg-purple-50/50 p-2 rounded border border-purple-100">
+                                {(aiProfiles[client.code]?.ai_kw_builder_term_dictionary?.terms || [])
+                                  .filter(t => t.bucket === 'brand')
+                                  .map((t, i) => (
+                                    <span key={i} className="px-2 py-0.5 bg-purple-100 text-purple-800 text-[10px] rounded">
+                                      {t.term}
+                                    </span>
+                                  ))}
+                                {(aiProfiles[client.code]?.ai_kw_builder_term_dictionary?.terms || []).filter(t => t.bucket === 'brand').length === 0 && (
+                                  <span className="text-xs text-gray-400 italic">No brand terms saved</span>
+                                )}
+                              </div>
+                            </div>
+
+                            {/* Review Terms */}
+                            <div className="mt-4">
+                              <div className="text-xs font-medium text-amber-700 mb-2 flex items-center gap-2">
+                                <span className="bg-amber-100 text-amber-800 px-2 py-0.5 rounded">Review</span>
+                                <span className="text-gray-400">
+                                  ({(aiProfiles[client.code]?.ai_kw_builder_term_dictionary?.terms || []).filter(t => t.bucket === 'review').length} terms)
+                                </span>
+                              </div>
+                              <div className="flex flex-wrap gap-1 max-h-48 overflow-y-auto bg-amber-50/50 p-2 rounded border border-amber-100">
+                                {(aiProfiles[client.code]?.ai_kw_builder_term_dictionary?.terms || [])
+                                  .filter(t => t.bucket === 'review')
+                                  .map((t, i) => (
+                                    <span key={i} className="px-2 py-0.5 bg-amber-100 text-amber-800 text-[10px] rounded">
+                                      {t.term}
+                                    </span>
+                                  ))}
+                                {(aiProfiles[client.code]?.ai_kw_builder_term_dictionary?.terms || []).filter(t => t.bucket === 'review').length === 0 && (
+                                  <span className="text-xs text-gray-400 italic">No review terms saved</span>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        )}
                       </td>
                     </tr>
                   )}

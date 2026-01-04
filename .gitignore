@@ -40,4 +40,9 @@ data/api_logs/
 data/*.json
 !data/client_positions.json
 !data/curated_keywords.json
+!data/export_page_registry.json
+!data/export_column_registry.json
+!data/dataforseo_glossary.json
+!data/page_intent_summaries.json
+!data/page_intent_pages.json
 # Allow basics but ignore generated logs
