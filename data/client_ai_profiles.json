@@ -24483,7 +24483,1829 @@
       "irrelevantDefinition": "Domains unrelated to academic test prep or chemistry education (e.g., government PWD jobs, industrial chemistry, finance/crypto, entertainment, general recruitment, or non-academic services)."
     },
     "generatedAt": "2025-12-07T04:29:35.550Z",
-    "updatedAt": "2025-12-07T04:29:35.550Z"
+    "updatedAt": "2026-01-04T06:27:20.428Z",
+    "ai_kw_builder_term_dictionary": {
+      "version": 1,
+      "updatedAt": "2026-01-04T06:27:20.393Z",
+      "domain": "RahulNandan.com",
+      "industryKey": "general",
+      "terms": [
+        {
+          "term": "jee",
+          "freq": 547,
+          "ngramType": "unigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee main",
+            "jee mains",
+            "mains jee"
+          ]
+        },
+        {
+          "term": "test",
+          "freq": 445,
+          "ngramType": "unigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "mock test for neet",
+            "neet mock test",
+            "allen test series for neet 2025"
+          ]
+        },
+        {
+          "term": "for",
+          "freq": 426,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "for",
+            "mock test for neet",
+            "mock tests for neet"
+          ]
+        },
+        {
+          "term": "neet",
+          "freq": 392,
+          "ngramType": "unigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "neet result 2025",
+            "neet 2025 syllabus",
+            "neet syllabus"
+          ]
+        },
+        {
+          "term": "class",
+          "freq": 331,
+          "ngramType": "unigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "redox reaction class 11",
+            "redox reactions class 11",
+            "mole concept 11th class"
+          ]
+        },
+        {
+          "term": "and",
+          "freq": 256,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "and cristiano ronaldo",
+            "and elon musk",
+            "human health and disease ncert pdf"
+          ]
+        },
+        {
+          "term": "chemistry",
+          "freq": 245,
+          "ngramType": "unigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "chemistry table of elements",
+            "11th class chemistry",
+            "chemistry class 11"
+          ]
+        },
+        {
+          "term": "exam",
+          "freq": 238,
+          "ngramType": "unigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "neet exam",
+            "csir net life science exam analysis",
+            "gate exam online coaching"
+          ]
+        },
+        {
+          "term": "online",
+          "freq": 237,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "ace online test series",
+            "sahara refund online login",
+            "barc online test"
+          ]
+        },
+        {
+          "term": "result",
+          "freq": 216,
+          "ngramType": "unigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "result india",
+            "neet result 2025",
+            "neet result"
+          ]
+        },
+        {
+          "term": "mains",
+          "freq": 178,
+          "ngramType": "unigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee mains",
+            "mains jee",
+            "jee mains 2025"
+          ]
+        },
+        {
+          "term": "jee mains",
+          "freq": 158,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee mains",
+            "jee mains 2025",
+            "jee mains result 2025"
+          ]
+        },
+        {
+          "term": "the",
+          "freq": 154,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "the",
+            "calculate the age",
+            "mother of the day"
+          ]
+        },
+        {
+          "term": "how",
+          "freq": 117,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "how does chemical coordination take place in animals",
+            "how many q are there in neet",
+            "how many q in neet"
+          ]
+        },
+        {
+          "term": "jee main",
+          "freq": 112,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee main",
+            "jee main 2025",
+            "jee main result 2025"
+          ]
+        },
+        {
+          "term": "free",
+          "freq": 100,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "world for free",
+            "free job alerts",
+            "neet syllabus 2025 pdf free download"
+          ]
+        },
+        {
+          "term": "what",
+          "freq": 96,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "what was the nature of air in the beginning",
+            "what about neet",
+            "what is a plasmolysis"
+          ]
+        },
+        {
+          "term": "jee advanced",
+          "freq": 68,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee advanced",
+            "jee advanced 2026",
+            "jee advanced pyqs"
+          ]
+        },
+        {
+          "term": "are",
+          "freq": 49,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "are",
+            "how many q are there in neet",
+            "reflex action are controlled by"
+          ]
+        },
+        {
+          "term": "class 10",
+          "freq": 42,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "cbse class 10 result",
+            "cbse class 10 results delhi",
+            "class 10"
+          ]
+        },
+        {
+          "term": "into",
+          "freq": 38,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "dollar into indian rupees",
+            "usd into rupees",
+            "1 dollars into rupees"
+          ]
+        },
+        {
+          "term": "ugc net",
+          "freq": 35,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "ugc net",
+            "results ugc net",
+            "ugc net examination admit card"
+          ]
+        },
+        {
+          "term": "best",
+          "freq": 34,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "best book for inorganic chemistry for jee",
+            "inorganic chemistry best book",
+            "best colleges of mbbs in india"
+          ]
+        },
+        {
+          "term": "with",
+          "freq": 32,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "login with uan",
+            "net with jrf",
+            "neet questions with solutions"
+          ]
+        },
+        {
+          "term": "which",
+          "freq": 29,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "which of the following is not a tissue",
+            "which of the following is not a domain",
+            "delhi which state"
+          ]
+        },
+        {
+          "term": "jee adv",
+          "freq": 27,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee adv",
+            "jee adv mock test",
+            "jee adv 2025"
+          ]
+        },
+        {
+          "term": "jee test",
+          "freq": 19,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee test series free",
+            "jee test series",
+            "jee test"
+          ]
+        },
+        {
+          "term": "cuet",
+          "freq": 17,
+          "ngramType": "unigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "cuet",
+            "cuet exam date 2025",
+            "cuet exam dates 2025"
+          ]
+        },
+        {
+          "term": "mains jee",
+          "freq": 17,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "mains jee",
+            "mains jee result",
+            "mains jee admit card"
+          ]
+        },
+        {
+          "term": "class 10th",
+          "freq": 16,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "class 10th",
+            "class 10th ka paper",
+            "cbse class 10th results"
+          ]
+        },
+        {
+          "term": "about",
+          "freq": 14,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "what about neet",
+            "which of the following statements about a catalyst is true",
+            "select the true statements about hydrocarbons"
+          ]
+        },
+        {
+          "term": "from",
+          "freq": 13,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "identify the correct statement from the following",
+            "akshardham from delhi",
+            "work from home online part time"
+          ]
+        },
+        {
+          "term": "jee main",
+          "freq": 13,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee main"
+          ]
+        },
+        {
+          "term": "liters",
+          "freq": 12,
+          "ngramType": "unigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "liters",
+            "how many liters are in a milliliter",
+            "how many liters in a ml"
+          ]
+        },
+        {
+          "term": "advanced jee",
+          "freq": 12,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "advanced jee",
+            "advanced jee result",
+            "advanced jee results"
+          ]
+        },
+        {
+          "term": "neetprep",
+          "freq": 11,
+          "ngramType": "unigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "neetprep",
+            "neetprep test series",
+            "neetprep mcq"
+          ]
+        },
+        {
+          "term": "jee mains",
+          "freq": 11,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee mains"
+          ]
+        },
+        {
+          "term": "all",
+          "freq": 10,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "all india medical science",
+            "all india medical counselling 2025",
+            "all india counselling neet ug 2025"
+          ]
+        },
+        {
+          "term": "new",
+          "freq": 10,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "new delhi",
+            "akshardham temple in new delhi",
+            "red fort in new delhi"
+          ]
+        },
+        {
+          "term": "mains jee",
+          "freq": 10,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "mains jee"
+          ]
+        },
+        {
+          "term": "that",
+          "freq": 9,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "that",
+            "chemistry words that start with j",
+            "numbers that are prime"
+          ]
+        },
+        {
+          "term": "advance jee",
+          "freq": 9,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "advance jee",
+            "advance jee result"
+          ]
+        },
+        {
+          "term": "neet",
+          "freq": 9,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "neet"
+          ]
+        },
+        {
+          "term": "not",
+          "freq": 8,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "which of the following is not a tissue",
+            "which of the following is not a domain",
+            "which of the following is not a union territory"
+          ]
+        },
+        {
+          "term": "test neet",
+          "freq": 8,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "mock test neet",
+            "mock test neet 2025",
+            "online test neet"
+          ]
+        },
+        {
+          "term": "solutions ncert",
+          "freq": 8,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "solutions ncert",
+            "solutions ncert solutions"
+          ]
+        },
+        {
+          "term": "advanced jee",
+          "freq": 8,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "advanced jee"
+          ]
+        },
+        {
+          "term": "between",
+          "freq": 7,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "differentiation between",
+            "difference between jee main and jee advance",
+            "difference between jee main and jee advanced"
+          ]
+        },
+        {
+          "term": "why",
+          "freq": 7,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "why cannot each metal react to its own salt",
+            "the cell membrane is called selectively permeable why",
+            "why cell membrane is called selectively permeable membrane"
+          ]
+        },
+        {
+          "term": "private",
+          "freq": 7,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "private tutor",
+            "private teacher job",
+            "private teacher jobs"
+          ]
+        },
+        {
+          "term": "ncert solution",
+          "freq": 7,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "ncert solution",
+            "12th class math ncert solution",
+            "ncert solution class 9 mathematics"
+          ]
+        },
+        {
+          "term": "advance jee",
+          "freq": 7,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "advance jee"
+          ]
+        },
+        {
+          "term": "jee adv",
+          "freq": 7,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee adv"
+          ]
+        },
+        {
+          "term": "jee mains exam result",
+          "freq": 7,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee mains exam result"
+          ]
+        },
+        {
+          "term": "does",
+          "freq": 6,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "how does chemical coordination take place in animals",
+            "what information does the electronic configuration of an atom provide",
+            "does"
+          ]
+        },
+        {
+          "term": "net ugc",
+          "freq": 6,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "net ugc",
+            "csir net ugc"
+          ]
+        },
+        {
+          "term": "cuet",
+          "freq": 6,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "cuet"
+          ]
+        },
+        {
+          "term": "neet result 2025",
+          "freq": 6,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "neet result 2025"
+          ]
+        },
+        {
+          "term": "neet mock test",
+          "freq": 6,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "neet mock test"
+          ]
+        },
+        {
+          "term": "jee advanced",
+          "freq": 6,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee advanced"
+          ]
+        },
+        {
+          "term": "mains jee result",
+          "freq": 6,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "mains jee result"
+          ]
+        },
+        {
+          "term": "result for jee mains",
+          "freq": 6,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "result for jee mains"
+          ]
+        },
+        {
+          "term": "result jee main",
+          "freq": 6,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "result jee main"
+          ]
+        },
+        {
+          "term": "result of jee mains",
+          "freq": 6,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "result of jee mains"
+          ]
+        },
+        {
+          "term": "results jee mains",
+          "freq": 6,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "results jee mains"
+          ]
+        },
+        {
+          "term": "jee test",
+          "freq": 6,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee test"
+          ]
+        },
+        {
+          "term": "good",
+          "freq": 5,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "good service tax",
+            "good luck greetings for exams",
+            "bangalore good schools"
+          ]
+        },
+        {
+          "term": "apeamcet",
+          "freq": 5,
+          "ngramType": "unigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "apeamcet"
+          ]
+        },
+        {
+          "term": "who",
+          "freq": 5,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "who",
+            "who world health organisation",
+            "world health organisation who"
+          ]
+        },
+        {
+          "term": "alternating current",
+          "freq": 5,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "alternating current"
+          ]
+        },
+        {
+          "term": "jee tests",
+          "freq": 5,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee tests"
+          ]
+        },
+        {
+          "term": "liters",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "liters"
+          ]
+        },
+        {
+          "term": "mock test for neet",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "mock test for neet"
+          ]
+        },
+        {
+          "term": "mock tests for neet",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "mock tests for neet"
+          ]
+        },
+        {
+          "term": "books for ncert",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "books for ncert"
+          ]
+        },
+        {
+          "term": "common admission test",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "common admission test"
+          ]
+        },
+        {
+          "term": "ugc net",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "ugc net"
+          ]
+        },
+        {
+          "term": "jee main 2025",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee main 2025"
+          ]
+        },
+        {
+          "term": "jee mains 2025",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee mains 2025"
+          ]
+        },
+        {
+          "term": "alternating current",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "alternating current"
+          ]
+        },
+        {
+          "term": "jeemain result 2025",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jeemain result 2025"
+          ]
+        },
+        {
+          "term": "jee main result",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee main result"
+          ]
+        },
+        {
+          "term": "jee main results",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee main results"
+          ]
+        },
+        {
+          "term": "jee mains result",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee mains result"
+          ]
+        },
+        {
+          "term": "result: jee mains",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "result: jee mains"
+          ]
+        },
+        {
+          "term": "results jee main",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "results jee main"
+          ]
+        },
+        {
+          "term": "apeamcet",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "apeamcet"
+          ]
+        },
+        {
+          "term": "table of trigo",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "table of trigo"
+          ]
+        },
+        {
+          "term": "jee advanced 2025",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee advanced 2025"
+          ]
+        },
+        {
+          "term": "ncert solution",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "ncert solution"
+          ]
+        },
+        {
+          "term": "solution for ncert",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "solution for ncert"
+          ]
+        },
+        {
+          "term": "solutions ncert",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "solutions ncert"
+          ]
+        },
+        {
+          "term": "test neet",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "test neet"
+          ]
+        },
+        {
+          "term": "jee tests",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee tests"
+          ]
+        },
+        {
+          "term": "high",
+          "freq": 4,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "supreme high court of india",
+            "allahabad high court",
+            "p h high court"
+          ]
+        },
+        {
+          "term": "more",
+          "freq": 4,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "why are alkylamines more basic than arylamines",
+            "how many more days for christmas",
+            "how many more days to christmas"
+          ]
+        },
+        {
+          "term": "neetprep",
+          "freq": 4,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "neetprep"
+          ]
+        },
+        {
+          "term": "net ugc",
+          "freq": 4,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "net ugc"
+          ]
+        },
+        {
+          "term": "ugc-net",
+          "freq": 4,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "ugc-net"
+          ]
+        },
+        {
+          "term": "cbse 10th result 2025",
+          "freq": 4,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "cbse 10th result 2025"
+          ]
+        },
+        {
+          "term": "jee mains result 2025",
+          "freq": 4,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee mains result 2025"
+          ]
+        },
+        {
+          "term": "class 10",
+          "freq": 4,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "class 10"
+          ]
+        },
+        {
+          "term": "class 10th",
+          "freq": 4,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "class 10th"
+          ]
+        },
+        {
+          "term": "class-10",
+          "freq": 4,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "class-10"
+          ]
+        },
+        {
+          "term": "jee main exam result",
+          "freq": 4,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee main exam result"
+          ]
+        },
+        {
+          "term": "jee main exam results",
+          "freq": 4,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee main exam results"
+          ]
+        },
+        {
+          "term": "result jee mains",
+          "freq": 4,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "result jee mains"
+          ]
+        },
+        {
+          "term": "limited",
+          "freq": 3,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "national securities depository limited",
+            "satvik store private limited"
+          ]
+        },
+        {
+          "term": "has",
+          "freq": 3,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "karthik has penned a book titled",
+            "tartaric acid has a specific rotation of 12.0",
+            "which of the following hormones has intracellular receptors"
+          ]
+        },
+        {
+          "term": "when",
+          "freq": 2,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "when is neet 2025",
+            "when cbse result declared 2025 class 10"
+          ]
+        },
+        {
+          "term": "was",
+          "freq": 2,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "what was the nature of air in the beginning",
+            "explain how socialist society was established in russia"
+          ]
+        },
+        {
+          "term": "easy",
+          "freq": 2,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "made easy rank predictor",
+            "made easy test series"
+          ]
+        },
+        {
+          "term": "company",
+          "freq": 2,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "sasken company",
+            "rrb dance company"
+          ]
+        },
+        {
+          "term": "most",
+          "freq": 2,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "most",
+            "australia most populated city"
+          ]
+        },
+        {
+          "term": "you",
+          "freq": 2,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "thank you sirs",
+            "how do you balance a redox reaction"
+          ]
+        },
+        {
+          "term": "the",
+          "freq": 2,
+          "ngramType": "trigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "the"
+          ]
+        },
+        {
+          "term": "jee",
+          "freq": 2,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "jee"
+          ]
+        },
+        {
+          "term": "which",
+          "freq": 2,
+          "ngramType": "trigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "which"
+          ]
+        },
+        {
+          "term": "top",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "top schools of bangalore"
+          ]
+        },
+        {
+          "term": "may",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "book may show"
+          ]
+        },
+        {
+          "term": "ltd",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "rajasthan rajya vidyut utpadan nigam ltd"
+          ]
+        },
+        {
+          "term": "fast",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "satta king fast"
+          ]
+        },
+        {
+          "term": "can",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "can j chemistry"
+          ]
+        },
+        {
+          "term": "will",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "identify whether the compound will be aromatic nonaromatic or antiaromatic"
+          ]
+        },
+        {
+          "term": "have",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "thiols have structures similar to alcohols except that they contain"
+          ]
+        },
+        {
+          "term": "they",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "thiols have structures similar to alcohols except that they contain"
+          ]
+        },
+        {
+          "term": "just",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "h two o just add water"
+          ]
+        },
+        {
+          "term": "got",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "pyp got"
+          ]
+        },
+        {
+          "term": "inc",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "cm to inc"
+          ]
+        },
+        {
+          "term": "this",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "how many weeks in this year"
+          ]
+        },
+        {
+          "term": "did",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "how did hitler rise to power class 9"
+          ]
+        },
+        {
+          "term": "very",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "the last lesson very short question answers"
+          ]
+        },
+        {
+          "term": "below",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "identify the equivalent expression for each of the expressions below"
+          ]
+        },
+        {
+          "term": "for",
+          "freq": 1,
+          "ngramType": "trigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "for"
+          ]
+        },
+        {
+          "term": "are",
+          "freq": 1,
+          "ngramType": "trigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "are"
+          ]
+        },
+        {
+          "term": "who",
+          "freq": 1,
+          "ngramType": "trigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "who"
+          ]
+        },
+        {
+          "term": "most",
+          "freq": 1,
+          "ngramType": "trigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "most"
+          ]
+        },
+        {
+          "term": "test",
+          "freq": 1,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "test"
+          ]
+        },
+        {
+          "term": "that",
+          "freq": 1,
+          "ngramType": "trigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "that"
+          ]
+        },
+        {
+          "term": "class",
+          "freq": 1,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "class"
+          ]
+        },
+        {
+          "term": "does",
+          "freq": 1,
+          "ngramType": "trigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "does"
+          ]
+        },
+        {
+          "term": "chemistry",
+          "freq": 1,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "chemistry"
+          ]
+        }
+      ]
+    }
   },
   {
     "id": "ai-profile-03-1766631593625",
@@ -24582,7 +26404,7 @@
       "irrelevantDefinition": "Domains focused on textile manufacturing or unrelated job industries."
     },
     "generatedAt": "2025-12-25T02:59:53.625Z",
-    "updatedAt": "2025-12-27T01:39:47.139Z",
+    "updatedAt": "2026-01-04T06:21:28.542Z",
     "meta": {
       "clientName": "MEERA-CCP",
       "generatedAt": "2025-12-25T02:59:53.625Z",
@@ -30285,6 +32107,938 @@
           "OTHER"
         ]
       }
+    },
+    "ai_kw_builder_term_dictionary": {
+      "version": 1,
+      "updatedAt": "2026-01-04T06:21:28.523Z",
+      "domain": "https://www.cosmofilms.com",
+      "industryKey": "general",
+      "terms": [
+        {
+          "term": "what",
+          "freq": 161,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "what is a packaging",
+            "what is flex manufacturing",
+            "what is poly"
+          ]
+        },
+        {
+          "term": "for",
+          "freq": 123,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "best sites for downloading movies",
+            "films for business",
+            "list of websites for downloading movies"
+          ]
+        },
+        {
+          "term": "ltd",
+          "freq": 50,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "polyplex corporation ltd share price",
+            "polyplex corporation ltd share",
+            "tic pvt ltd"
+          ]
+        },
+        {
+          "term": "polypropylene film",
+          "freq": 49,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "biaxially oriented polypropylene film",
+            "polypropylene film",
+            "cast polypropylene film"
+          ]
+        },
+        {
+          "term": "inc",
+          "freq": 44,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "company films inc",
+            "impression solutions inc",
+            "profol americas inc"
+          ]
+        },
+        {
+          "term": "cpp films",
+          "freq": 41,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "cpp films"
+          ]
+        },
+        {
+          "term": "cpp films",
+          "freq": 41,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "cpp films"
+          ]
+        },
+        {
+          "term": "the",
+          "freq": 38,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "stretch the film",
+            "the paper movie",
+            "vacancy the movie"
+          ]
+        },
+        {
+          "term": "company",
+          "freq": 33,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "company movie",
+            "uflex company products",
+            "company movies"
+          ]
+        },
+        {
+          "term": "limited",
+          "freq": 33,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "uttarakhand power corporation limited",
+            "tic private limited",
+            "lohia corp limited"
+          ]
+        },
+        {
+          "term": "pvt",
+          "freq": 32,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "tic pvt ltd",
+            "pashupati polytex pvt ltd",
+            "pashupati laminators pvt ltd"
+          ]
+        },
+        {
+          "term": "poly films",
+          "freq": 32,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "dupack poly films",
+            "asia poly films industries",
+            "paragon poly films pvt ltd"
+          ]
+        },
+        {
+          "term": "and",
+          "freq": 30,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "pet and polyester",
+            "pouches and bags",
+            "food packaging and shelf life"
+          ]
+        },
+        {
+          "term": "how",
+          "freq": 25,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "1951 to 2024 how many years",
+            "how to write on ohp sheet",
+            "film how high"
+          ]
+        },
+        {
+          "term": "packaging films",
+          "freq": 21,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "packaging films",
+            "food packaging films"
+          ]
+        },
+        {
+          "term": "private",
+          "freq": 20,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "tic private limited",
+            "pashupati polytex private limited",
+            "pashupati laminators private limited"
+          ]
+        },
+        {
+          "term": "cpp film",
+          "freq": 18,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "cpp film"
+          ]
+        },
+        {
+          "term": "cpp film",
+          "freq": 18,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "cpp film"
+          ]
+        },
+        {
+          "term": "with",
+          "freq": 17,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "websites with movies",
+            "film with b",
+            "gold coin with angel on it"
+          ]
+        },
+        {
+          "term": "does",
+          "freq": 17,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "what does bopp stand for",
+            "how does lamination work",
+            "what does petg stand for"
+          ]
+        },
+        {
+          "term": "film cpp",
+          "freq": 17,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "film cpp"
+          ]
+        },
+        {
+          "term": "film cpp",
+          "freq": 17,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "film cpp"
+          ]
+        },
+        {
+          "term": "high",
+          "freq": 16,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "high pressure processing",
+            "high cast",
+            "film how high"
+          ]
+        },
+        {
+          "term": "you",
+          "freq": 16,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "how do you make silage",
+            "can you eat gum wrappers",
+            "gum that you can eat the wrapper"
+          ]
+        },
+        {
+          "term": "packaging films",
+          "freq": 16,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "packaging films"
+          ]
+        },
+        {
+          "term": "polypropylene film",
+          "freq": 14,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "polypropylene film"
+          ]
+        },
+        {
+          "term": "corp",
+          "freq": 11,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "polyplex corp share price",
+            "lohia corp limited",
+            "zauba corp wiki"
+          ]
+        },
+        {
+          "term": "laminated films",
+          "freq": 11,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "laminated films",
+            "laminated films & packaging",
+            "laminated films and packaging"
+          ]
+        },
+        {
+          "term": "cast polypropylene films",
+          "freq": 10,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "cast polypropylene films"
+          ]
+        },
+        {
+          "term": "why",
+          "freq": 9,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "why aluminium is used for wrapping of food items",
+            "why was korea split",
+            "why company split stock"
+          ]
+        },
+        {
+          "term": "low",
+          "freq": 8,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "low density polyethylene film",
+            "low density polyethylene sheet",
+            "low density polyethylene sheets"
+          ]
+        },
+        {
+          "term": "from",
+          "freq": 8,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "food items that we get from plants",
+            "bagasse from sugarcane",
+            "packaging from china"
+          ]
+        },
+        {
+          "term": "cpp material",
+          "freq": 8,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "cpp material"
+          ]
+        },
+        {
+          "term": "cast polypropylene film",
+          "freq": 8,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "cast polypropylene film"
+          ]
+        },
+        {
+          "term": "cpp material",
+          "freq": 8,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "cpp material"
+          ]
+        },
+        {
+          "term": "about",
+          "freq": 7,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "films about business",
+            "movies about business",
+            "films about america"
+          ]
+        },
+        {
+          "term": "pp films",
+          "freq": 7,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "pp films"
+          ]
+        },
+        {
+          "term": "cpp plastic",
+          "freq": 7,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "cpp plastic"
+          ]
+        },
+        {
+          "term": "laminated films",
+          "freq": 7,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "laminated films"
+          ]
+        },
+        {
+          "term": "pp films",
+          "freq": 7,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "pp films"
+          ]
+        },
+        {
+          "term": "cpp plastic",
+          "freq": 7,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "cpp plastic"
+          ]
+        },
+        {
+          "term": "best",
+          "freq": 6,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "best site to download films",
+            "best sites for downloading movies",
+            "best lines in movies"
+          ]
+        },
+        {
+          "term": "are",
+          "freq": 6,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "what are acrylic fibers",
+            "where are achilles tires manufactured",
+            "what are pvc sheets used for"
+          ]
+        },
+        {
+          "term": "can",
+          "freq": 6,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "can you eat gum wrappers",
+            "gum that you can eat the wrapper",
+            "gum you can eat the wrapper"
+          ]
+        },
+        {
+          "term": "metallized film",
+          "freq": 5,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "metallized film",
+            "metallized film market"
+          ]
+        },
+        {
+          "term": "film for packaging",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "film for packaging"
+          ]
+        },
+        {
+          "term": "poly films",
+          "freq": 5,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "poly films"
+          ]
+        },
+        {
+          "term": "get",
+          "freq": 4,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "food items that we get from plants",
+            "how to get rid of odor in plastic",
+            "why aluminum foil doesn't get hot"
+          ]
+        },
+        {
+          "term": "between",
+          "freq": 4,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "difference between tin foil and aluminum foil",
+            "what's the difference between tin foil and aluminum foil",
+            "difference between pet and petg"
+          ]
+        },
+        {
+          "term": "snack packaging",
+          "freq": 4,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "snack packaging"
+          ]
+        },
+        {
+          "term": "mat film",
+          "freq": 4,
+          "ngramType": "bigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "mat film"
+          ]
+        },
+        {
+          "term": "snack packaging",
+          "freq": 4,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "snack packaging"
+          ]
+        },
+        {
+          "term": "mat film",
+          "freq": 4,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "mat film"
+          ]
+        },
+        {
+          "term": "metallized film",
+          "freq": 4,
+          "ngramType": "trigram",
+          "source": "user",
+          "bucket": "include",
+          "confidence": 1,
+          "locked": true,
+          "examples": [
+            "metallized film"
+          ]
+        },
+        {
+          "term": "which",
+          "freq": 3,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "86 which country",
+            "which side aluminium foil to use",
+            "which side of aluminum foil to use"
+          ]
+        },
+        {
+          "term": "that",
+          "freq": 3,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "food items that we get from plants",
+            "gum that you can eat the wrapper",
+            "gum that you could eat the wrapper"
+          ]
+        },
+        {
+          "term": "good",
+          "freq": 3,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "is bubble wrap good insulation",
+            "is bubble foil insulation any good",
+            "polypropylene material is good or bad"
+          ]
+        },
+        {
+          "term": "free",
+          "freq": 3,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "is polypropylene bpa free",
+            "is pp bpa free",
+            "pfas free certification"
+          ]
+        },
+        {
+          "term": "top",
+          "freq": 2,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "india top film",
+            "indian top films"
+          ]
+        },
+        {
+          "term": "new",
+          "freq": 2,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "new film of india",
+            "films new indian"
+          ]
+        },
+        {
+          "term": "when",
+          "freq": 2,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "when does q2 end 2025",
+            "when is end of q2"
+          ]
+        },
+        {
+          "term": "was",
+          "freq": 2,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "why was korea split",
+            "was tin foil ever made of tin"
+          ]
+        },
+        {
+          "term": "who",
+          "freq": 2,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "who owns ti",
+            "who invented the aluminum foil"
+          ]
+        },
+        {
+          "term": "where",
+          "freq": 2,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "where are achilles tires manufactured",
+            "where is aluminum foil made"
+          ]
+        },
+        {
+          "term": "llp",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "pashupati ecotex llp"
+          ]
+        },
+        {
+          "term": "could",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "gum that you could eat the wrapper"
+          ]
+        },
+        {
+          "term": "any",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "is bubble foil insulation any good"
+          ]
+        },
+        {
+          "term": "through",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "how to stop uv rays through windows"
+          ]
+        },
+        {
+          "term": "have",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "why does aluminum foil have two different sides"
+          ]
+        },
+        {
+          "term": "they",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "do they still make tin foil"
+          ]
+        },
+        {
+          "term": "over",
+          "freq": 1,
+          "ngramType": "unigram",
+          "source": "ai",
+          "bucket": "exclude",
+          "confidence": 0.9,
+          "locked": false,
+          "examples": [
+            "plastic bag over smoke detector"
+          ]
+        }
+      ]
     }
   }
 ]

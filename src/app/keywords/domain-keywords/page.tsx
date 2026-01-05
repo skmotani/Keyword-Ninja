@@ -539,6 +539,44 @@ export default function DomainKeywordsPage() {
     return Array.from(domains).sort();
   }, [records]);
 
+  // FIT Status counts for filter display (based on records before fitFilter is applied)
+  const fitStatusCounts = useMemo(() => {
+    const counts: Record<string, number> = {
+      'ALL': 0,
+      'BRAND_KW': 0,
+      'CORE_MATCH': 0,
+      'NO_MATCH': 0,
+      'BLANK': 0
+    };
+    // Use records filtered by all filters EXCEPT fitFilter
+    let baseRecords = records;
+    if (domainFilter.length > 0) baseRecords = baseRecords.filter(r => domainFilter.includes(r.domain));
+    if (locationFilter !== 'all') baseRecords = baseRecords.filter(r => r.locationCode === locationFilter);
+    if (keywordFilter) baseRecords = baseRecords.filter(r => r.keyword.toLowerCase().includes(keywordFilter.toLowerCase()));
+    if (positionMaxFilter) {
+      const max = parseInt(positionMaxFilter);
+      if (!isNaN(max)) baseRecords = baseRecords.filter(r => (r.position ?? 999) <= max);
+    }
+    if (volumeMinFilter) {
+      const min = parseInt(volumeMinFilter);
+      if (!isNaN(min)) baseRecords = baseRecords.filter(r => (r.searchVolume ?? 0) >= min);
+    }
+    if (tableCompetitionFilter.length > 0) {
+      baseRecords = baseRecords.filter(r => {
+        const compType = domainToCompetitionType[r.domain.toLowerCase()] || 'Not Assigned';
+        return tableCompetitionFilter.includes(compType);
+      });
+    }
+
+    counts['ALL'] = baseRecords.length;
+    baseRecords.forEach(r => {
+      const tag = tags[normalizeKeyword(r.keyword)];
+      const status = tag?.fitStatus || 'BLANK';
+      counts[status] = (counts[status] || 0) + 1;
+    });
+    return counts;
+  }, [records, domainFilter, locationFilter, keywordFilter, positionMaxFilter, volumeMinFilter, tableCompetitionFilter, domainToCompetitionType, tags]);
+
   const handleTagAllKeywords = async () => {
     if (!selectedClientCode) return;
     try {
@@ -1251,33 +1289,36 @@ export default function DomainKeywordsPage() {
             )}
           </div>
 
-          <div className="min-w-[120px]">
+          {/* Fit Status - Pill Buttons with Counts */}
+          <div>
             <label className="block text-xs font-medium text-gray-500 mb-1">Fit Status</label>
-            <select
-              value={fitFilter}
-              onChange={e => setFitFilter(e.target.value)}
-              className="w-full border rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              <option value="all">All Fits</option>
-              {['BRAND_KW', 'CORE_MATCH', 'NO_MATCH'].map(f => (
-                <option key={f} value={f}>{f.replace('_', ' ')}</option>
-              ))}
-            </select>
+            <div className="flex flex-wrap gap-1">
+              {[
+                { value: 'all', label: 'All', color: 'border-gray-300 bg-gray-50 text-gray-600' },
+                { value: 'BRAND_KW', label: 'Brand', color: 'border-purple-400 bg-purple-50 text-purple-700' },
+                { value: 'CORE_MATCH', label: 'Core', color: 'border-green-400 bg-green-50 text-green-700' },
+                { value: 'NO_MATCH', label: 'No Match', color: 'border-red-400 bg-red-50 text-red-700' },
+                { value: 'BLANK', label: 'Blank', color: 'border-gray-300 bg-gray-100 text-gray-500' }
+              ].map(f => {
+                const count = f.value === 'all' ? fitStatusCounts['ALL'] : fitStatusCounts[f.value] || 0;
+                const isSelected = fitFilter === f.value;
+                return (
+                  <button
+                    key={f.value}
+                    onClick={() => setFitFilter(f.value)}
+                    className={`text-[10px] px-2 py-1 rounded border transition-all ${isSelected
+                      ? `${f.color} ring-1 ring-offset-1 ring-indigo-400 font-bold`
+                      : 'border-gray-200 bg-white text-gray-500 hover:border-gray-400'
+                      }`}
+                  >
+                    {f.label} ({count})
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          <div className="min-w-[120px]">
-            <label className="block text-xs font-medium text-gray-500 mb-1">Product Line</label>
-            <select
-              value={productFilter}
-              onChange={e => setProductFilter(e.target.value)}
-              className="w-full border rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              <option value="all">All Products</option>
-              {['TWISTING', 'WINDING', 'HEAT_SETTING', 'BRAND_KW', 'MULTIPLE', 'NONE', 'BLANK'].map(p => (
-                <option key={p} value={p}>{p.replace('_', ' ')}</option>
-              ))}
-            </select>
-          </div>
+          {/* Product Line filter removed */}
 
           <div className="min-w-[120px]">
             <label className="block text-xs font-medium text-gray-500 mb-1">Location</label>
