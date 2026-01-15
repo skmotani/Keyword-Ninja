@@ -6,17 +6,17 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
+# Copy prisma schema (needed for postinstall prisma generate)
+COPY prisma ./prisma/
+
+# Install dependencies (postinstall runs prisma generate)
 RUN npm ci
 
-# Copy all source files
+# Copy all remaining source files
 COPY . .
 
 # Copy data folder to backup location (before volume mounts over it)
 RUN mkdir -p /app/data-init && cp -r /app/data/* /app/data-init/ 2>/dev/null || echo "No data to backup"
-
-# Generate Prisma client
-RUN npx prisma generate
 
 # Build Next.js
 RUN npm run build
