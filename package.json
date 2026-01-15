@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",
-    "@prisma/client": "^7.2.0",
+    "@prisma/client": "^5.22.0",
     "@types/pdfkit": "^0.17.4",
     "@types/xml2js": "^0.4.14",
     "bcryptjs": "^3.0.3",
@@ -19,7 +19,7 @@
     "next-auth": "^4.24.13",
     "openai": "^6.10.0",
     "pdfkit": "^0.17.2",
-    "prisma": "^7.2.0",
+    "prisma": "^5.22.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "uuid": "^9.0.1",

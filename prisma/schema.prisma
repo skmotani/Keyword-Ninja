@@ -1,5 +1,5 @@
 // Prisma Schema for Keyword-Ninja
-// Database: PostgreSQL (Railway) or SQLite (local)
+// Database: PostgreSQL (Railway)
 
 generator client {
   provider = "prisma-client-js"
