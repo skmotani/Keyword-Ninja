@@ -27,6 +27,11 @@ model User {
 
   accounts Account[]
   sessions Session[]
+  
+  // CMS Relations
+  createdPages   CmsPage[]        @relation("CmsPageCreator")
+  reviewedPages  CmsPage[]        @relation("CmsPageReviewer")
+  pageVersions   CmsPageVersion[] @relation("CmsVersionCreator")
 }
 
 model Account {
@@ -62,4 +67,319 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+// ============================================
+// CLIENT MASTER (Unified - replaces JSON file)
+// ============================================
+
+model Client {
+  id          String   @id @default(cuid())
+  code        String   @unique  // e.g., "01", "02" - used as foreign key everywhere
+  name        String
+  mainDomain  String?
+  domains     Json     @default("[]") // Array of domain strings
+  notes       String?  @db.Text
+  industry    String?
+  isActive    Boolean  @default(true)
+  
+  // Business Metrics (conversion funnel)
+  businessMetrics Json? // {ctrTop5, ctrTop10, visitToRfq, rfqToOrder, avgTicketSize}
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // CMS Relations
+  cmsConfig     CmsClientConfig?
+  cmsTopics     CmsTopic[]
+  cmsPages      CmsPage[]
+  cmsTemplates  CmsClientTemplate[]
+  cmsAssets     CmsAsset[]
+  cmsClusters   CmsCluster[]
+  cmsSitemap    CmsSitemap?
+}
+
+// ============================================
+// CMS MODELS - Content Management System
+// ============================================
+
+// --- CLIENT CMS CONFIG ---
+
+model CmsClientConfig {
+  id                String  @id @default(cuid())
+  clientCode        String  @unique
+  
+  // CMS Slug for /feed/{slug}/
+  slug              String  @unique
+  logo              String?
+  
+  // Cloudflare Settings
+  cfApiToken        String?  // Encrypted
+  cfZoneId          String?
+  cfAccountId       String?
+  
+  // SEO Settings
+  defaultOgImage    String?
+  robotsTxt         String?  @db.Text // Custom robots.txt content
+  gaTrackingId      String?
+  gscPropertyUrl    String?
+  
+  // Publishing Settings
+  autoPublish       Boolean @default(false)
+  requireReview     Boolean @default(true)
+  
+  // API Keys for Content
+  openaiApiKey      String?  // Encrypted
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  client            Client @relation(fields: [clientCode], references: [code], onDelete: Cascade)
+}
+
+// --- TOPIC & CLUSTER MANAGEMENT ---
+
+model CmsCluster {
+  id          String   @id @default(cuid())
+  clientCode  String
+  name        String
+  description String?  @db.Text
+  createdAt   DateTime @default(now())
+  
+  client      Client   @relation(fields: [clientCode], references: [code], onDelete: Cascade)
+  topics      CmsTopic[]
+  
+  @@unique([clientCode, name])
+  @@index([clientCode])
+}
+
+model CmsTopic {
+  id              String   @id @default(cuid())
+  clientCode      String
+  clusterId       String?
+  
+  // Topic Data
+  name            String
+  slug            String
+  primaryKeyword  String
+  keywords        Json     // Array of related keywords with volumes
+  searchVolume    Int      @default(0)
+  intentType      String?  // informational, transactional, navigational, commercial
+  intentScore     Float?
+  
+  // Status
+  status          String   @default("pending") // pending, in_progress, completed, skipped
+  priority        Int      @default(0)
+  
+  // Metadata
+  sourceData      Json?    // Original data from Intent Analysis
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  // Relations
+  client          Client     @relation(fields: [clientCode], references: [code], onDelete: Cascade)
+  cluster         CmsCluster? @relation(fields: [clusterId], references: [id])
+  page            CmsPage?
+  
+  @@unique([clientCode, slug])
+  @@index([clientCode, status])
+}
+
+// --- PAGE MANAGEMENT ---
+
+model CmsPage {
+  id              String   @id @default(cuid())
+  clientCode      String
+  topicId         String?  @unique
+  templateId      String
+  
+  // Page Content
+  title           String
+  slug            String
+  metaDescription String?  @db.Text
+  metaKeywords    String?
+  canonicalUrl    String?
+  
+  // Content Sections (JSON for flexibility)
+  content         Json     // {hero: {...}, body: {...}, faq: [...], etc.}
+  
+  // SEO Data
+  structuredData  Json?    // JSON-LD schema
+  ogTitle         String?
+  ogDescription   String?  @db.Text
+  ogImage         String?
+  
+  // Publishing Status
+  status          String   @default("draft") // draft, review, scheduled, published, archived
+  publishedAt     DateTime?
+  scheduledAt     DateTime?
+  archivedAt      DateTime?
+  
+  // Internal Linking
+  internalLinks   Json?    // Array of {text, url, anchor}
+  
+  // Analytics
+  views           Int      @default(0)
+  
+  // Metadata
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  createdById     String?
+  reviewedById    String?
+  
+  // Relations
+  client          Client          @relation(fields: [clientCode], references: [code], onDelete: Cascade)
+  topic           CmsTopic?       @relation(fields: [topicId], references: [id])
+  template        CmsTemplate     @relation(fields: [templateId], references: [id])
+  versions        CmsPageVersion[]
+  assets          CmsPageAsset[]
+  createdBy       User?           @relation("CmsPageCreator", fields: [createdById], references: [id])
+  reviewedBy      User?           @relation("CmsPageReviewer", fields: [reviewedById], references: [id])
+  
+  @@unique([clientCode, slug])
+  @@index([clientCode, status])
+  @@index([status, scheduledAt])
+}
+
+model CmsPageVersion {
+  id          String   @id @default(cuid())
+  pageId      String
+  version     Int
+  
+  // Snapshot
+  title       String
+  content     Json
+  
+  // Metadata
+  changeNote  String?
+  createdAt   DateTime @default(now())
+  createdById String?
+  
+  // Relations
+  page        CmsPage  @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  createdBy   User?    @relation("CmsVersionCreator", fields: [createdById], references: [id])
+  
+  @@unique([pageId, version])
+}
+
+// --- TEMPLATE SYSTEM ---
+
+model CmsTemplate {
+  id          String   @id @default(cuid())
+  
+  // Template Info
+  name        String
+  slug        String   @unique
+  description String?  @db.Text
+  type        String   // blog, ecommerce, landing, comparison, glossary
+  thumbnail   String?
+  
+  // Template Structure
+  sections    Json     // Array of section definitions
+  styles      Json?    // CSS variables, theme settings
+  
+  // Status
+  isActive    Boolean  @default(true)
+  isSystem    Boolean  @default(false) // System templates can't be deleted
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  pages       CmsPage[]
+  clients     CmsClientTemplate[]
+}
+
+model CmsClientTemplate {
+  id          String   @id @default(cuid())
+  clientCode  String
+  templateId  String
+  
+  // Client-specific overrides
+  customStyles Json?
+  isDefault    Boolean @default(false)
+  
+  client      Client      @relation(fields: [clientCode], references: [code], onDelete: Cascade)
+  template    CmsTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  
+  @@unique([clientCode, templateId])
+}
+
+// --- ASSET MANAGEMENT ---
+
+model CmsAsset {
+  id          String   @id @default(cuid())
+  clientCode  String
+  
+  // Asset Info
+  name        String
+  filename    String
+  mimeType    String
+  size        Int
+  url         String   // Can be local path or R2 URL
+  
+  // Source
+  source      String   @default("upload") // upload, ai_generated, stock, client_website
+  sourceUrl   String?  // Original URL if scraped
+  
+  // Metadata
+  alt         String?
+  caption     String?
+  
+  createdAt   DateTime @default(now())
+  
+  // Relations
+  client      Client       @relation(fields: [clientCode], references: [code], onDelete: Cascade)
+  pages       CmsPageAsset[]
+}
+
+model CmsPageAsset {
+  id        String @id @default(cuid())
+  pageId    String
+  assetId   String
+  
+  // Usage context
+  section   String?  // Which section uses this asset
+  order     Int      @default(0)
+  
+  page      CmsPage  @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  asset     CmsAsset @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  
+  @@unique([pageId, assetId])
+}
+
+// --- PUBLISHING & JOBS ---
+
+model CmsPublishJob {
+  id          String   @id @default(cuid())
+  clientCode  String
+  pageId      String?
+  
+  // Job Info
+  type        String   // single_page, batch, sitemap, indexnow
+  status      String   @default("pending") // pending, running, completed, failed
+  
+  // Results
+  result      Json?
+  error       String?  @db.Text
+  
+  // Timing
+  createdAt   DateTime @default(now())
+  startedAt   DateTime?
+  completedAt DateTime?
+  
+  @@index([clientCode])
+  @@index([status])
+}
+
+model CmsSitemap {
+  id          String   @id @default(cuid())
+  clientCode  String   @unique
+  
+  // Sitemap content (regenerated on publish)
+  content     String   @db.Text
+  lastBuilt   DateTime @default(now())
+  pageCount   Int      @default(0)
+  
+  client      Client   @relation(fields: [clientCode], references: [code], onDelete: Cascade)
 }

@@ -90,6 +90,11 @@ const aiTestItems = [
   { href: '/ai-test/gradio', label: 'Gradio Test' },
 ];
 
+const cmsItems = [
+  { href: '/cms', label: '📊 Dashboard' },
+  { href: '/cms/templates', label: '📄 Templates' },
+];
+
 export default function Navbar() {
   const pathname = usePathname();
   const { data: session } = useSession();
@@ -103,6 +108,7 @@ export default function Navbar() {
   const [adminOpen, setAdminOpen] = useState(false);
   const [aiTestOpen, setAiTestOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [cmsOpen, setCmsOpen] = useState(false);
 
   const masterRef = useRef<HTMLDivElement>(null);
   const reportRef = useRef<HTMLDivElement>(null);
@@ -113,6 +119,7 @@ export default function Navbar() {
   const adminRef = useRef<HTMLDivElement>(null);
   const aiTestRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
+  const cmsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -143,6 +150,9 @@ export default function Navbar() {
       if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
         setUserMenuOpen(false);
       }
+      if (cmsRef.current && !cmsRef.current.contains(event.target as Node)) {
+        setCmsOpen(false);
+      }
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -156,6 +166,7 @@ export default function Navbar() {
   const isGapContentActive = gapContentItems.some(item => pathname === item.href) || pathname.startsWith('/gap-content');
   const isAdminActive = adminItems.some(item => pathname === item.href);
   const isAiTestActive = aiTestItems.some(item => pathname === item.href) || pathname.startsWith('/ai-test');
+  const isCmsActive = cmsItems.some(item => pathname === item.href) || pathname.startsWith('/cms');
 
   const DropdownArrow = ({ isOpen }: { isOpen: boolean }) => (
     <svg
@@ -459,6 +470,46 @@ export default function Navbar() {
                       onClick={() => setGapContentOpen(false)}
                       className={`block px-4 py-2 text-sm transition-colors ${pathname === item.href
                         ? 'bg-indigo-50 text-indigo-700'
+                        : 'text-gray-700 hover:bg-gray-100'
+                        }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="relative" ref={cmsRef}>
+              <button
+                onClick={() => {
+                  setCmsOpen(!cmsOpen);
+                  setMasterOpen(false);
+                  setReportOpen(false);
+                  setSeoDataOpen(false);
+                  setCuratedOpen(false);
+                  setHubOpen(false);
+                  setGapContentOpen(false);
+                  setAdminOpen(false);
+                }}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${isCmsActive
+                  ? 'bg-green-100 text-green-700'
+                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                  }`}
+              >
+                📝 CMS
+                <DropdownArrow isOpen={cmsOpen} />
+              </button>
+
+              {cmsOpen && (
+                <div className="absolute left-0 mt-1 w-48 bg-white rounded-md shadow-lg border z-50">
+                  {cmsItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setCmsOpen(false)}
+                      className={`block px-4 py-2 text-sm transition-colors ${pathname === item.href
+                        ? 'bg-green-50 text-green-700'
                         : 'text-gray-700 hover:bg-gray-100'
                         }`}
                     >
