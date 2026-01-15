@@ -5,6 +5,21 @@
 
 ---
 
+## 🟢 Deployment Status
+
+| Component | Status | Details |
+|-----------|--------|---------|
+| **Railway App** | ✅ Live | https://keyword-ninja-production.up.railway.app |
+| **PostgreSQL** | ✅ Running | User auth, sessions, accounts |
+| **Volume** | ✅ Mounted | `/app/data` - JSON files persist |
+| **Data Init** | ✅ Working | Auto-copies data on first deploy |
+| **Google OAuth** | ✅ Working | Sign in with Google enabled |
+
+**Last Successful Deploy:** January 15, 2026
+
+---
+
+
 ## Table of Contents
 
 1. [Overview](#overview)
