@@ -13,7 +13,7 @@ RUN npm ci
 COPY . .
 
 # Copy data folder to backup location (before volume mounts over it)
-RUN mkdir -p /app/data-init && cp -r /app/data/* /app/data-init/ || true
+RUN mkdir -p /app/data-init && cp -r /app/data/* /app/data-init/ 2>/dev/null || echo "No data to backup"
 
 # Generate Prisma client
 RUN npx prisma generate
@@ -21,11 +21,8 @@ RUN npx prisma generate
 # Build Next.js
 RUN npm run build
 
-# Make start script executable
-RUN chmod +x /app/scripts/start.sh
-
 # Expose port
-EXPOSE 5000
+EXPOSE 8080
 
-# Use custom start script
-CMD ["/bin/sh", "/app/scripts/start.sh"]
+# Start command: init data, push schema, start app
+CMD ["sh", "-c", "node scripts/init-data.js && npx prisma db push --accept-data-loss && next start -p ${PORT:-8080} -H 0.0.0.0"]
