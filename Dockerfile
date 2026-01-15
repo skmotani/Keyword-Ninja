@@ -27,5 +27,5 @@ RUN npm run build
 # Expose port
 EXPOSE 8080
 
-# Start command: init data, push schema, start app
-CMD ["sh", "-c", "node scripts/init-data.js && npx prisma db push --accept-data-loss && next start -p ${PORT:-8080} -H 0.0.0.0"]
+# Start command: init data, push schema, start app (using npx for next)
+CMD ["sh", "-c", "node scripts/init-data.js && npx prisma db push --accept-data-loss && npx next start -p ${PORT:-8080} -H 0.0.0.0"]
