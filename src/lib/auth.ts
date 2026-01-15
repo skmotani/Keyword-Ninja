@@ -49,54 +49,59 @@ export const authOptions: NextAuthOptions = {
         async signIn({ user }) {
             if (!user.email) return false;
 
-            // Check if user exists
-            const existingUser = await prisma.user.findUnique({
-                where: { email: user.email },
-            });
+            try {
+                // Check if user exists
+                const existingUser = await prisma.user.findUnique({
+                    where: { email: user.email },
+                });
 
-            // Super admin always allowed
-            if (user.email === SUPER_ADMIN_EMAIL) {
-                if (!existingUser) {
-                    // Auto-create super admin
-                    await prisma.user.create({
-                        data: {
-                            email: user.email,
-                            name: user.name || "Super Admin",
-                            image: user.image,
-                            role: "superadmin",
-                            isActive: true,
-                        },
-                    });
-                } else if (existingUser.role !== "superadmin") {
-                    // Ensure super admin role
-                    await prisma.user.update({
-                        where: { email: user.email },
-                        data: { role: "superadmin", isActive: true },
-                    });
-                }
-                return true;
-            }
-
-            // Existing user - allow if active
-            if (existingUser) {
-                if (existingUser.isActive) {
+                // Super admin always allowed
+                if (user.email === SUPER_ADMIN_EMAIL) {
+                    if (!existingUser) {
+                        // Auto-create super admin
+                        await prisma.user.create({
+                            data: {
+                                email: user.email,
+                                name: user.name || "Super Admin",
+                                image: user.image,
+                                role: "superadmin",
+                                isActive: true,
+                            },
+                        });
+                    } else if (existingUser.role !== "superadmin") {
+                        // Ensure super admin role
+                        await prisma.user.update({
+                            where: { email: user.email },
+                            data: { role: "superadmin", isActive: true },
+                        });
+                    }
                     return true;
                 }
-                // Inactive user - deny access
-                return "/login?error=inactive";
-            }
 
-            // New user - allow by default (create as active user)
-            await prisma.user.create({
-                data: {
-                    email: user.email,
-                    name: user.name,
-                    image: user.image,
-                    role: "user",
-                    isActive: true,
-                },
-            });
-            return true;
+                // Existing user - allow if active
+                if (existingUser) {
+                    if (existingUser.isActive) {
+                        return true;
+                    }
+                    // Inactive user - deny access
+                    return "/login?error=inactive";
+                }
+
+                // New user - allow by default (create as active user)
+                await prisma.user.create({
+                    data: {
+                        email: user.email,
+                        name: user.name,
+                        image: user.image,
+                        role: "user",
+                        isActive: true,
+                    },
+                });
+                return true;
+            } catch (error) {
+                console.error("Auth signIn error:", error);
+                return "/login?error=database";
+            }
         },
         async jwt({ token, user }) {
             if (user?.email) {
