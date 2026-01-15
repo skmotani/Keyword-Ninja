@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 5000 -H 0.0.0.0",
-    "build": "next build",
-    "start": "next start -p 5000 -H 0.0.0.0"
+    "build": "prisma generate && next build",
+    "start": "next start -p 5000 -H 0.0.0.0",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",
