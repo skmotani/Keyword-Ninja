@@ -37,16 +37,12 @@ data/serp_raw/
 data/jobs/
 data/serp_results/
 data/api_logs/
-data/*.json
-!data/client_positions.json
-!data/curated_keywords.json
-!data/export_page_registry.json
-!data/export_column_registry.json
-!data/dataforseo_glossary.json
-!data/page_intent_summaries.json
-!data/page_intent_pages.json
-# Allow basics but ignore generated logs
+# Keep domain_logs and api_logs ignored (generated at runtime)
 data/domain_logs/
+data/api_logs/
+data/serp_raw/
+data/jobs/
+
 
 # AI Models (too large, 2.5GB+)
 models/

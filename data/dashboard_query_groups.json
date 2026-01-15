@@ -1,0 +1,42 @@
+[
+  {
+    "id": "GRP-001",
+    "name": "Digital Footprint",
+    "description": "Queries analyzing your business digital presence",
+    "order": 1,
+    "createdAt": "2026-01-03T03:36:42.283Z",
+    "updatedAt": "2026-01-03T03:36:42.283Z"
+  },
+  {
+    "id": "GRP-002",
+    "name": "Keyword Analysis",
+    "description": "Keyword volume and position analysis queries",
+    "order": 2,
+    "createdAt": "2026-01-03T03:36:42.283Z",
+    "updatedAt": "2026-01-03T03:36:42.283Z"
+  },
+  {
+    "id": "GRP-003",
+    "name": "Know Your Turf",
+    "description": "Client keyword rankings and market presence analysis",
+    "order": 3,
+    "createdAt": "2026-01-03T03:36:42.283Z",
+    "updatedAt": "2026-01-03T03:36:42.283Z"
+  },
+  {
+    "id": "GRP-004",
+    "name": "Competitive Intelligence",
+    "description": "Competitor analysis and opportunity identification",
+    "order": 4,
+    "createdAt": "2026-01-03T03:36:42.283Z",
+    "updatedAt": "2026-01-03T03:36:42.283Z"
+  },
+  {
+    "id": "GRP-005",
+    "name": "Market Size",
+    "description": "Traffic share and market opportunity analysis",
+    "order": 5,
+    "createdAt": "2026-01-03T03:36:42.283Z",
+    "updatedAt": "2026-01-03T03:36:42.283Z"
+  }
+]

@@ -1,0 +1,571 @@
+[
+  {
+    "path": "/keywords/domain-overview",
+    "userDescription": "",
+    "updatedAt": "2025-12-24T13:26:28.453Z"
+  },
+  {
+    "path": "/keywords/serp-results",
+    "userDescription": "Data is coming from Keyword API Data http://localhost:5000/keywords/api-data",
+    "updatedAt": "2025-12-28T23:59:17.719Z",
+    "comments": [
+      {
+        "id": "db038a09-913d-4033-bc1b-28f6b82b3dfd",
+        "text": "we must also setup a competion analysis on the basis of number of pages vs number ofclient pages along with the intent analysis to know how much content is online. \nalso we can track the pace at which this content is created, how often are we creating the new content. ",
+        "status": "pending",
+        "createdAt": "2025-12-28T23:59:17.383Z",
+        "updatedAt": "2025-12-28T23:59:17.383Z"
+      }
+    ]
+  },
+  {
+    "path": "/keywords/api-data",
+    "userDescription": "1. Organic Traffic ETV (Estimated Traffic Value)\n\nMeaning\nOrganic Traffic ETV represents the monetary value of a website’s organic search traffic, expressed as an estimated monthly cost if the same traffic were acquired via paid search (Google Ads).\n\nBest practice UI labels\n\nOrganic Traffic ETV → “Estimated monthly value of organic traffic (USD)”\nOrganic Keywords → “Number of keywords ranking in Google Top 100”\n\nClient explanation\n“Your traffic is coming from keywords people search when they are ready to buy, not just learn.”",
+    "updatedAt": "2025-12-24T13:27:35.360Z"
+  },
+  {
+    "path": "/report/competitors",
+    "userDescription": "when the serp result generates top 10 pages as per keywords then we also find from them our true competitor by alssify them using AI",
+    "updatedAt": "2025-12-24T15:25:56.599Z",
+    "comments": [
+      {
+        "id": "c6ec5e83-f37f-4f12-b2c0-ee70509d3a67",
+        "text": "While Classyfy the domain also add the country the company belong for better categorization",
+        "createdAt": "2025-12-24T15:25:56.587Z",
+        "updatedAt": "2025-12-24T15:25:56.587Z"
+      },
+      {
+        "id": "e0167b91-8d13-421d-aece-f02baf40b6f4",
+        "text": "Put this page inside SERP Result so that , it look ina sequence",
+        "createdAt": "2025-12-24T15:25:32.148Z",
+        "updatedAt": "2025-12-24T15:25:32.148Z"
+      }
+    ]
+  },
+  {
+    "path": "/",
+    "userDescription": "",
+    "comments": [
+      {
+        "id": "c2c0a614-572d-4bc0-a74c-bf7a25d3f136",
+        "text": "The Purpose of Each ComponentIt is important to know what each \"organ\" does inside your project's new AI brain. Library The \"Organ\" Purpose in your SEO Project \n\ntransformers The Nerves This is the main bridge to Hugging Face. it allows your code to download, load, and run the AI models (the brains).\n\ntorch (PyTorch) The Muscle This is the mathematical engine. It uses your computer's power (CPU or GPU) to do the heavy calculations required for AI. \n\ngradio The FaceIt creates the web dashboard so you can physically see and test the intent analysis without writing HTML/CSS code. \n\npandas The Memory Essential for SEO. It lets you upload .csv or .xlsx files with thousands of keywords and process them in bulk.\n\nscikit-learn The Auditor This helps calculate the \"Accuracy Score\" and handles the math for \"Mismatches\" if you decide to train the model further.",
+        "status": "pending",
+        "createdAt": "2026-01-05T03:38:09.882Z",
+        "updatedAt": "2026-01-05T03:38:09.882Z"
+      },
+      {
+        "id": "428bd4f7-c48a-48cb-a856-cdebb130a66b",
+        "text": "In modern SEO, search engines like Google are moving away from just matching \"keywords\" and toward understanding \"Entities\" (people, places, things, and concepts). Wikidata is a primary source for this evolution.",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:27:55.811Z",
+        "updatedAt": "2025-12-31T02:27:55.811Z"
+      },
+      {
+        "id": "a329166c-8fde-4703-bda3-793bc20ffb99",
+        "text": "https://www.wikidata.org/wiki/Wikidata:Main_Page\n\nhttps://gemini.google.com/share/63bf5fafad12",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:27:52.258Z",
+        "updatedAt": "2025-12-31T02:34:39.635Z"
+      },
+      {
+        "id": "155a7afb-12ee-4725-9263-5bed19e00818",
+        "text": "Executive Summary: Strategic Search Dominance & AI Integration (FY 2026)\nPrepared for: [Client Name]\n\nObjective: To secure market leadership across the Search & AI Ecosystem and capture $[X]M in untapped intent-driven revenue.\n\n1. The Strategic Challenge\nWhile [Client Name] maintains a baseline presence, our gap analysis reveals a \"Visibility Leak\" in high-intent conversion clusters. Currently, 65% of your target audience’s journey is being captured by [Competitor A] and [Competitor B] through AI-optimized citations and authoritative long-form content. In the current 2026 landscape, being \"indexed\" is no longer enough; you must be \"Preferred\" by LLMs and search agents.\n\n2. Our Three-Pillar Approach\nPillar I: Entity-First Optimization (The Foundation) We will move your brand from a collection of pages to a Verified Entity. By restructuring your site’s data architecture, we ensure that AI agents (Gemini, ChatGPT, Perplexity) cite [Client Name] as the primary source of truth for your industry.\n\nPillar II: Experience-Led Content (E-E-A-T) AI-generated content has saturated the market. We will differentiate your brand by leveraging your internal subject matter experts to create \"Human-First\" original research and first-party data. This is the only content Google’s 2026 algorithms are currently prioritizing for top-tier rankings.\n\nPillar III: Omnichannel Search Presence Search is no longer confined to a box. We will optimize your brand presence across Vertical Search (Social, Video, and Marketplaces) to ensure a 360-degree \"Share of Voice\" wherever your customers are asking questions.\n\n3. Forecasted Business Impact\nOur goal is not just traffic; it is sustainable, low-CPA growth. By the end of Q3, our roadmap targets:\n\n[X]% Increase in \"Direct-to-Answer\" AI Citations.\n\n[X]% Growth in Organic Qualified Leads (SQLs) by targeting high-value intent clusters.\n\n[X]% Reduction in Blended Customer Acquisition Cost (CAC) by decreasing reliance on paid search.\n\n4. Why Now?\nThe \"AI-Snapshot\" features are currently re-shuffling market leaders. The next 6 months represent a window of opportunity to claim \"Authority Status\" before the cost of entry doubles. We are not just optimizing for a search engine; we are future-proofing your brand's digital existence.\n\nKey Communication Tip: Notice there is no mention of \"Meta Tags,\" \"H1s,\" or \"Backlinks\" in this summary. Those are discussed in the technical appendices. The top experts keep the main proposal focused on money, risk, and market share.\n\nWould you like me to create a \"Competitive Gap Analysis\" table to include in this proposal to show the client exactly where they are losing money?\n\nhttps://gemini.google.com/share/c6332af9576c",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:24:43.893Z",
+        "updatedAt": "2025-12-31T02:24:43.893Z"
+      },
+      {
+        "id": "52d6b743-b6f4-4093-a74b-2e2b93814691",
+        "text": "Content Type: What type of content are you planning to publish? (e.g., blog posts, whitepapers, case studies, research reports, expert interviews) -tag each blog post as per above\n",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:21:46.264Z",
+        "updatedAt": "2025-12-31T02:21:46.264Z"
+      },
+      {
+        "id": "403855ad-3d6d-4e21-9643-0f1fc8599a3b",
+        "text": "How to Implement an E-E-A-T Strategy:\nShow, Don't Just Tell: Provide case studies, testimonials, and original insights.\nBe Transparent: Have clear author bios with credentials and contact info.\nCite Sources: Link to authoritative, high-E-E-A-T sources.\nSecure Your Site: Use HTTPS and have clear privacy/cookie policies.\nBuild Reputation: Earn links from respected sites and engage with your community.\nFocus on YMYL: Pay extra attention to E-E-A-T for topics affecting health, finance, or safety.",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:20:36.348Z",
+        "updatedAt": "2025-12-31T02:20:36.348Z"
+      },
+      {
+        "id": "ffb2ffbe-56b2-424e-8be4-0bce80bed0f7",
+        "text": "Experts present case studies not just as ranking improvements, but as \"Trust Building\" exercises. They emphasize how they've secured mentions on third-party sites, podcast appearances, and expert interviews to validate the brand's authority.",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:19:59.020Z",
+        "updatedAt": "2025-12-31T02:19:59.020Z"
+      },
+      {
+        "id": "a1f030c5-ba06-47a3-a7a2-33c255b4e84a",
+        "text": "EEAT as Social Proof\nBuilding verifiable expertise and trustworthiness through third-party validation",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:19:21.789Z",
+        "updatedAt": "2025-12-31T02:19:21.789Z"
+      },
+      {
+        "id": "e7cade81-dd65-425a-9dca-e13fece0d2eb",
+        "text": "Branded Search Association\nManufacturing word-of-mouth to increase branded search volume - product search with brand name increase the authenticity of the brand",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:18:19.586Z",
+        "updatedAt": "2025-12-31T02:18:19.586Z"
+      },
+      {
+        "id": "f9c2d1e8-452a-41d7-935e-2a8b6678a39c",
+        "text": "AEO (Answer Engine Optimization)\nOptimizing for AI Overviews and LLM-based search engines",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:17:24.543Z",
+        "updatedAt": "2025-12-31T02:17:24.543Z"
+      },
+      {
+        "id": "11681f01-7a07-4aab-bf94-e515f63c9cd2",
+        "text": "The Pitch: \"We aren't just making you rank; we are ensuring your brand is the verified source that AI agents use to answer customer questions",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:17:06.144Z",
+        "updatedAt": "2025-12-31T02:17:06.144Z"
+      },
+      {
+        "id": "29424d00-db56-4848-b188-18377861b888",
+        "text": "SERP API\nGoogle Organic SERP API\nGoogle AI Mode SERP API\nGoogle Maps SERP API\nGoogle Local Finder SERP API\nGoogle News SERP API\nGoogle Events SERP API\nGoogle Images SERP API\nGoogle Search by Image SERP API\nGoogle Jobs SERP API\nGoogle Autocomplete SERP API\nGoogle Ads Search SERP API\nGoogle Finance SERP API\nBing Organic SERP API\nYouTube SERP API\nYahoo SERP API\nBaidu Organic SERP API\nNaver Organic SERP API\nSeznam Organic SERP API\nAI Optimization API\nBacklinks API\nContent Analysis API\nContent Generation API\nDataForSEO Labs API\nKeywords Data API\nOnPage API\nMerchant API\nApp Data API\nBusiness Data API\nReviews API\nSocial Media API\nDomain Analytics API",
+        "status": "pending",
+        "createdAt": "2025-12-28T12:25:58.601Z",
+        "updatedAt": "2025-12-28T12:25:58.601Z"
+      },
+      {
+        "id": "a15999a3-9cf7-414f-92ee-25878ba62fe7",
+        "text": "Change the coment type with tick mark option so that once done we can mark a gree tick",
+        "createdAt": "2025-12-24T15:22:36.776Z",
+        "updatedAt": "2025-12-24T15:22:36.776Z"
+      },
+      {
+        "id": "2c57656f-6a70-4416-a1a0-e64a6ab93def",
+        "text": "Fix the Top Menu , so that it dont hinde while scrolling down",
+        "createdAt": "2025-12-24T15:21:54.314Z",
+        "updatedAt": "2025-12-24T15:21:54.314Z"
+      }
+    ],
+    "updatedAt": "2026-01-05T03:38:10.223Z"
+  },
+  {
+    "path": "/competitors",
+    "updatedAt": "2026-01-01T22:34:40.380Z",
+    "comments": [
+      {
+        "id": "c573d77b-f613-4e3a-b77e-9846aeece789",
+        "text": "self , Clent data to be also added from unique domain page while adding to competiotion master",
+        "status": "pending",
+        "createdAt": "2026-01-01T22:34:40.044Z",
+        "updatedAt": "2026-01-01T22:34:40.044Z"
+      },
+      {
+        "id": "11e658bc-5684-4242-9533-a275bac03c12",
+        "text": "make competition filter multiselect",
+        "status": "pending",
+        "createdAt": "2026-01-01T22:32:58.060Z",
+        "updatedAt": "2026-01-01T22:32:58.060Z"
+      },
+      {
+        "id": "0dde8d01-595a-4fdf-a3a7-9fd9476da6a8",
+        "text": "make the font of the dta table smaller so that all the cols. are visible",
+        "createdAt": "2025-12-24T15:24:00.528Z",
+        "updatedAt": "2025-12-24T15:24:00.528Z"
+      }
+    ]
+  },
+  {
+    "path": "/keywords/domain-pages",
+    "updatedAt": "2025-12-24T17:00:16.232Z",
+    "comments": [
+      {
+        "id": "ff2d58b3-902a-442c-9bd4-89aa3dae7ed8",
+        "text": "https://chatgpt.com/share/694c1c02-cbf8-8010-9804-04ef64e33e21 - learn proper competitive classification",
+        "createdAt": "2025-12-24T17:00:15.910Z",
+        "updatedAt": "2025-12-24T17:00:15.910Z"
+      },
+      {
+        "id": "88ccd011-aed9-4056-910e-56449c53f148",
+        "text": "Also Show the count of all the filter with inside values seperately to know ow mny blog a company has written etc",
+        "createdAt": "2025-12-24T15:54:40.264Z",
+        "updatedAt": "2025-12-24T15:54:40.264Z"
+      },
+      {
+        "id": "3194f72f-f02c-4c23-8df4-c1fef5f4910a",
+        "text": "WE should also add a button to show combind report where etv (traffic) and KW showuld be shown",
+        "createdAt": "2025-12-24T15:38:59.946Z",
+        "updatedAt": "2025-12-24T15:38:59.946Z"
+      },
+      {
+        "id": "3803c13f-2f14-4bd5-bd2f-0c7b084f85a3",
+        "text": "change col name Traffic to ETV (USD / month)",
+        "createdAt": "2025-12-24T15:37:04.994Z",
+        "updatedAt": "2025-12-24T15:43:09.227Z"
+      },
+      {
+        "id": "e99e7601-f47e-4a19-966e-41bee72807e4",
+        "text": "add tool tip on every command button",
+        "createdAt": "2025-12-24T15:32:18.265Z",
+        "updatedAt": "2025-12-24T15:32:18.265Z"
+      }
+    ]
+  },
+  {
+    "path": "/keywords/domain-keywords",
+    "updatedAt": "2026-01-09T02:35:42.997Z",
+    "userDescription": "Keyword ETV = Search Volume × CTR(position) × CPC",
+    "comments": [
+      {
+        "id": "b8ed835a-fb0a-4539-b8dd-59e22701f511",
+        "text": "KW List\nConvert to Top Clusters\nINtent PAges\n\nNever classify intent per keyword\nClassify intent per CLUSTER\nINternal Funnel\nRFQ\n",
+        "status": "pending",
+        "createdAt": "2026-01-09T02:32:15.704Z",
+        "updatedAt": "2026-01-09T02:35:42.664Z"
+      },
+      {
+        "id": "404d62b8-fa2e-4b0d-adee-0505beda2295",
+        "text": "Keyword Intent Modifier Framework\n🟢 Transactional / Commercial (High Purchase Intent)\nUser is ready to buy, enquire, or request a quote.\n\nCore Modifiers\n\nbuy\n\nprice\n\ncost\n\nrate\n\nquotation / quote\n\nfor sale\n\norder\n\npurchase\n\ndeal / offer\n\nsupplier\n\nmanufacturer\n\nexporter\n\ndistributor\n\nvendor\n\nwholesaler\n\nAction-Oriented\n\nnear me\n\nonline\n\nbulk\n\nwholesale\n\nfactory price\n\nMOQ\n\nRFQ\n\ninquiry / enquiry\n\nbest price\n\nExamples\n\ntwisting machine price\n\npp yarn twisting machine supplier\n\nindustrial winding machine quotation\n\n🟡 Commercial Investigation (Comparison / Evaluation)\nUser is shortlisting vendors or products.\n\nComparison Modifiers\n\nbest\n\ntop\n\nleading\n\nvs / versus\n\ncomparison\n\nalternative\n\nreview\n\nrating\n\nspecification / specs\n\nfeatures\n\nTrust & Validation\n\ncompany profile\n\ncatalog\n\nbrochure\n\ndatasheet\n\ncase study\n\nclient list\n\nExamples\n\nbest yarn twisting machine\n\ntwisting machine vs winding machine\n\nindustrial yarn machine specifications\n\n🔵 Informational (Educational / Research Intent)\nUser wants to learn or understand.\n\nQuestion-Based\n\nwhat is\n\nhow\n\nwhy\n\nwhen\n\nwhere\n\nmeaning\n\ndefinition\n\nguide\n\ntutorial\n\nLearning Modifiers\n\nworking principle\n\nprocess\n\ntypes\n\nuses\n\napplication\n\nadvantages\n\ndisadvantages\n\nbenefits\n\nformula\n\ndiagram\n\npdf\n\nppt\n\nExamples\n\nwhat is yarn twisting\n\nhow twisting machine works\n\ntypes of industrial yarn machines\n\n🟣 Navigational (Brand / Entity Focused)\nUser already knows the brand or website.\n\nBrand Modifiers\n\nbrand name\n\ncompany name\n\nofficial website\n\nlogin\n\ncontact\n\naddress\n\nphone number\n\nemail\n\ncustomer care\n\nservice center\n\nExamples\n\nMeera Industries twisting machine\n\nSaurer yarn machine catalog\n\nMeera Industries contact number\n\n⚪ Local / Geo-Specific Intent\nUser wants location-specific options.\n\nGeo Modifiers\n\nnear me\n\nin India\n\nin Surat\n\nGujarat\n\nUSA\n\nEurope\n\nAsia\n\nexporter from India\n\nsupplier in [city/country]\n\nExamples\n\ntwisting machine manufacturer in India\n\nyarn winding machine supplier in Surat\n\n🟠 Post-Purchase / Support Intent\nExisting users or buyers.\n\nSupport Modifiers\n\nservice\n\nmaintenance\n\nrepair\n\nspare parts\n\ntroubleshooting\n\nmanual\n\ninstallation\n\nwarranty\n\nAMC\n\nreplacement\n\nExamples\n\ntwisting machine spare parts\n\nyarn machine maintenance guide\n\n🧠 Negative / Noise Modifiers (Exclude from Commercial Buckets)\nUseful for filtering out non-business traffic.\n\njob / vacancy\n\nsalary\n\nresume\n\ninterview\n\nppt for students\n\nfree download\n\npdf notes\n\nimages\n\nwallpaper\n\ndefinition only\n\nwikipedia",
+        "status": "pending",
+        "createdAt": "2026-01-09T02:18:30.259Z",
+        "updatedAt": "2026-01-09T02:18:30.259Z"
+      },
+      {
+        "id": "1c0f36bd-5edb-4235-8aa4-4c407d668144",
+        "text": "how to make intent classification",
+        "status": "pending",
+        "createdAt": "2026-01-09T02:07:43.556Z",
+        "updatedAt": "2026-01-09T02:07:43.556Z"
+      },
+      {
+        "id": "cd61be0d-c0a5-4533-a0af-122cd2c93149",
+        "text": "how to make cluster of keyword\n",
+        "status": "pending",
+        "createdAt": "2026-01-09T02:07:31.613Z",
+        "updatedAt": "2026-01-09T02:07:31.613Z"
+      },
+      {
+        "id": "5108241f-cbcd-4057-8360-aba00b0c4aeb",
+        "text": "Layer#2 - we will implement televent and intent tagging automaotion later, for now we will use cloaude ai import export\n",
+        "status": "pending",
+        "createdAt": "2025-12-29T13:31:18.795Z",
+        "updatedAt": "2025-12-29T13:31:18.795Z"
+      },
+      {
+        "id": "8e0a8893-6053-4372-a0c9-913381e4de8f",
+        "text": "suppose the indstry key woprds that we have genereted through serp results do not have good intenet commerical , trnsactonal, education kw , and if we develop them , will it give us an advantage.\nYes — developing missing commercial, transactional, and educational keywords even if they do not currently exist in SERP can give you a competitive advantage. In fact, this is a classic B2B SEO advantage strategy called:\n\n“Category Creation through Intent Expansion.”\n\nIf the current industry keyword set is mostly informational/low-intent or technical (which is common in machinery, textile, and B2B industrial sectors), building high-intent pages around missing commercial terms can position you as the authority before demand catches up, and before competitors even realize those keywords matter.\n\nrefer to full discussin here https://chatgpt.com/s/t_6951de73ed9481918eefdf2ef3e97e0c\n",
+        "status": "pending",
+        "createdAt": "2025-12-29T01:45:35.938Z",
+        "updatedAt": "2025-12-29T01:51:06.904Z"
+      },
+      {
+        "id": "3c4ee8d5-0668-4403-9e6f-18d555b2bf38",
+        "text": "on this page we should calculate the total search volumne across the key word to know industry search traffic volume\n\nalso we can calculate the etv frpm the given cpc, vol, and rank matrics",
+        "status": "pending",
+        "createdAt": "2025-12-29T01:41:06.390Z",
+        "updatedAt": "2025-12-29T01:41:06.390Z"
+      },
+      {
+        "id": "06d63a7b-3350-4e68-9d66-6168937a7924",
+        "text": "STEP 4 — PRIORITY SCORING\n\nDon’t treat all keywords equally.\nScore them using 3 factors:\n\nPriority=Search Volume+Intent Weight+Competitor Rank AdvantagePriority = Search\\ Volume + Intent\\ Weight + Competitor\\ Rank\\ AdvantagePriority=Search Volume+Intent Weight+Competitor Rank Advantage\n\nIf a competitor ranks in top 10 → urgent\nIf a keyword has price intent → urgent\nIf search volume is high but no buyer intent → low",
+        "status": "pending",
+        "createdAt": "2025-12-28T23:42:38.966Z",
+        "updatedAt": "2025-12-28T23:42:38.966Z"
+      },
+      {
+        "id": "20ff1c38-e5fd-4386-aeec-8dd322a7dd38",
+        "text": "STEP 3 — INTENT TAGGING (NOW IT MAKES SENSE)\n\nNow assign the buyer intent — but only to relevant clusters.\n\nIntent\tWhy You Tag It\nTransactional\tImmediate RFQs\nCommercial\tPrice-based buyers\nEvaluation\tSteal competitor enquiries\nConsideration\tBuild category hubs\nAwareness (Optional)\tLong-term SEO\n\nThis is where the RFQ funnel design begins.",
+        "status": "pending",
+        "createdAt": "2025-12-28T23:42:04.043Z",
+        "updatedAt": "2025-12-28T23:42:04.043Z"
+      },
+      {
+        "id": "15af9c37-cbb1-4d95-9e89-adb11a2904f3",
+        "text": "After the relevence filter make cluster by product group\n\nSTEP 2 — CLUSTER BY PRODUCT GROUP\n\nGroup the remaining keywords by machine/application family.\n\nExample textile-equipment clusters:\n\nMachine / Category\tCluster\nTFO / TFO Machine\tTFO Cluster\nWinder Machine\tWinder Cluster\nRope Making Machine / Cabling\tCabling & Rope Cluster\nHeat Setting / Stenter / Hot Air\tHeat Treatment Cluster\nTwisting / Texturising\tTwisting Line Cluster\n\nOUTPUT: You now know which product lines have market demand & competitor advantage.",
+        "status": "pending",
+        "createdAt": "2025-12-28T23:41:45.987Z",
+        "updatedAt": "2025-12-28T23:41:45.987Z"
+      },
+      {
+        "id": "acf1f31e-3650-4ac5-945c-662586da03df",
+        "text": "Replace the name of the AI KW Builder to  PRODUCT RELEVANCE FILTER \nSTEP 1 — PRODUCT RELEVANCE FILTER (MOST IMPORTANT)\nFirst, remove irrelevant keywords.\nGoal: Keep only the queries connected to your machines / categories / buyers.\nThis prevents noise from other competitor product lines.\n\nFilter by:\n\nMachine family (TFO / Winder / Heat Setting / Cabling / Texturising)\n\nApplication (Yarn, Fabric, Rope, Twisting, Warping, Stentering)\n\nBuyer environments (mills, PP yarn, PES, POY/FDY, garment units)\n\nCountry relevance (India / export)\n\nOUTPUT: Clean dataset of only your market.",
+        "status": "pending",
+        "createdAt": "2025-12-28T23:40:33.193Z",
+        "updatedAt": "2025-12-28T23:40:33.193Z"
+      },
+      {
+        "id": "6b662df3-8ae0-4408-8b3f-8d3b5b10ae3b",
+        "text": "Classify the client pages in the intent bucket like below\nCommercial\tprice / cost / quotation / catalog / download\nTransactional\tdealer / supplier / near me / buy / distributor\nEvaluation\tvs / review / compare / alternative / best\nAwareness\thow to / problems with / troubleshooting\nConsideration\tprocess / system / technology / types\n\nthis is importnt to know the gaps between me vs others to prepare the content strategy\n\nadd priority to each intent to take action",
+        "status": "pending",
+        "createdAt": "2025-12-28T23:39:19.685Z",
+        "updatedAt": "2025-12-28T23:39:19.685Z"
+      },
+      {
+        "id": "98a421e3-7442-48a4-9e85-158e528f7449",
+        "text": "Your RFQ loss is not due to low traffic — it is due to missing commercial, transactional, and evaluation pages for the exact keywords where buyers are ready to contact someone.",
+        "status": "pending",
+        "createdAt": "2025-12-28T23:28:03.232Z",
+        "updatedAt": "2025-12-28T23:28:03.232Z"
+      },
+      {
+        "id": "92d234a5-a7e8-42f4-8313-61742d721691",
+        "text": "very important discussion on intent classification, gap evaluaton and how t increase the RFQ instantly\nhttps://chatgpt.com/s/t_6951b9a05f988191851c04fc4fd00c37",
+        "status": "pending",
+        "createdAt": "2025-12-28T23:14:44.107Z",
+        "updatedAt": "2025-12-28T23:14:44.107Z"
+      },
+      {
+        "id": "8be0540c-777b-4358-8252-b205895e730e",
+        "text": "lock the heder table header when we go down",
+        "createdAt": "2025-12-24T18:30:33.064Z",
+        "updatedAt": "2025-12-30T03:43:39.807Z",
+        "status": "completed"
+      },
+      {
+        "id": "0a1065dc-ff03-4456-a07e-66840d397d00",
+        "text": "make option to add the selected keyword to keyword master or some where elase to know about the customer key word, intent, etv, top pages to make a strategy for content and website",
+        "createdAt": "2025-12-24T16:23:28.854Z",
+        "updatedAt": "2025-12-24T16:23:28.854Z"
+      },
+      {
+        "id": "c5ede729-f15d-449a-8f86-9540efb62468",
+        "text": "calculate etv value from the coloumn avaialble",
+        "createdAt": "2025-12-24T16:22:30.710Z",
+        "updatedAt": "2025-12-24T16:22:30.710Z"
+      },
+      {
+        "id": "4394c923-6909-44f5-ac4a-d3c700edfe64",
+        "text": "add intent classificatin of each keyword to know ",
+        "createdAt": "2025-12-24T16:22:18.386Z",
+        "updatedAt": "2025-12-24T16:22:18.386Z"
+      },
+      {
+        "id": "0d9df98a-d77b-4e92-b251-29a862b4e489",
+        "text": "tag each keyword if that matches the client product or not",
+        "createdAt": "2025-12-24T16:21:53.849Z",
+        "updatedAt": "2025-12-24T16:21:53.849Z"
+      }
+    ]
+  },
+  {
+    "path": "/curated/client-serp",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T03:35:43.332Z"
+  },
+  {
+    "path": "/curated/client-rank",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T03:35:49.414Z"
+  },
+  {
+    "path": "/report/cluster-intelligence-1",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T03:35:56.047Z"
+  },
+  {
+    "path": "/settings/api-credentials",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T03:35:56.054Z"
+  },
+  {
+    "path": "/report/cluster-intelligence",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T03:35:56.054Z"
+  },
+  {
+    "path": "/keywords/manual",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T03:35:56.055Z"
+  },
+  {
+    "path": "/curated/links",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T03:35:56.055Z"
+  },
+  {
+    "path": "/curated/keywords",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T03:35:56.055Z"
+  },
+  {
+    "path": "/curated/client-position",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T03:35:56.055Z"
+  },
+  {
+    "path": "/clients",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T03:35:56.055Z"
+  },
+  {
+    "path": "undefined",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T03:39:26.401Z"
+  },
+  {
+    "path": "/admin/comments",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.094Z"
+  },
+  {
+    "path": "/admin/site-master",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.107Z"
+  },
+  {
+    "path": "/compare/cabler-vs-two-for-one-twister",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.107Z"
+  },
+  {
+    "path": "/compare/tfo-machine-price-vs-output",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.107Z"
+  },
+  {
+    "path": "/compare/tfo-vs-ring-twister",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.108Z"
+  },
+  {
+    "path": "/guides/twisting-defects-and-solutions",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.109Z"
+  },
+  {
+    "path": "/guides/what-is-a-tfo-machine",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.109Z"
+  },
+  {
+    "path": "/guides/yarn-ballooning-solution",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.109Z"
+  },
+  {
+    "path": "/guides/yarn-twist-calculation",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.109Z"
+  },
+  {
+    "path": "/twisting-machines/applications/carpet-yarn",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.110Z"
+  },
+  {
+    "path": "/twisting-machines/applications/embroidery-thread",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.110Z"
+  },
+  {
+    "path": "/twisting-machines/applications/industrial-yarn",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.110Z"
+  },
+  {
+    "path": "/twisting-machines/applications/medical-suture",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.111Z"
+  },
+  {
+    "path": "/twisting-machines/applications/monofilament",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.111Z"
+  },
+  {
+    "path": "/twisting-machines/applications/rope-cordage",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.111Z"
+  },
+  {
+    "path": "/twisting-machines",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.111Z"
+  },
+  {
+    "path": "/twisting-machines/ring-twisters",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.111Z"
+  },
+  {
+    "path": "/twisting-machines/spun-yarn-twisters",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.111Z"
+  },
+  {
+    "path": "/twisting-machines/tfo-twisters",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T04:17:43.111Z"
+  },
+  {
+    "path": "/master/domain-credibility-age",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-27T10:00:04.388Z"
+  },
+  {
+    "path": "/report/client-data-export",
+    "userDescription": "",
+    "comments": [
+      {
+        "id": "b0dc0bc5-d7c4-4429-8f9d-470416cb221a",
+        "text": "in client master also export the Client Ai profile",
+        "status": "pending",
+        "createdAt": "2026-01-02T00:48:31.623Z",
+        "updatedAt": "2026-01-02T00:48:31.623Z"
+      },
+      {
+        "id": "7cd0115a-b0c9-4c54-ad15-b9ecc47bfd46",
+        "text": "Afraid of losing business to the competitor\nAfraid of losing the turf\nAfraid of losing market share\nAfraid of absence from an opportunity\n",
+        "status": "pending",
+        "createdAt": "2025-12-31T02:39:24.590Z",
+        "updatedAt": "2025-12-31T02:39:24.590Z"
+      }
+    ],
+    "updatedAt": "2026-01-02T00:48:31.649Z"
+  },
+  {
+    "path": "/keywords/page-intent-analysis",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2025-12-31T03:47:55.041Z"
+  },
+  {
+    "path": "/report/dashboard",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2026-01-02T04:16:05.958Z"
+  },
+  {
+    "path": "/ai-test/gradio",
+    "userDescription": "",
+    "comments": [],
+    "updatedAt": "2026-01-05T04:52:56.641Z"
+  }
+]
