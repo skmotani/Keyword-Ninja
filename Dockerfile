@@ -1,6 +1,9 @@
 # Use Node.js official image
 FROM node:22-alpine
 
+# Install OpenSSL (required by Prisma)
+RUN apk add --no-cache openssl
+
 WORKDIR /app
 
 # Copy package files
