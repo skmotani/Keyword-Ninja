@@ -1,0 +1,70 @@
+You are an expert TypeScript/JavaScript developer working inside a Replit project.
+
+coloumn to be added to the unique domain / competitor list page that is generated from the serp results
+
+Context:
+I have a dataset representing SERP results. Each SERP row is an object with at least these conceptual fields (names may differ, so infer from my code when you see it):
+- domain: the domain name that ranked for this keyword
+- searchVolume: the monthly search volume of that keyword (number; may be 0 or null)
+- position: the SERP position/rank for that domain on that keyword (1, 2, 3, …)
+
+Goal:
+I want to compute a “Domain Importance Score” for each unique domain, based on the SERP data. Then I want to expose this as a new computed field that I can render in my table UI (for example as a new column) WITHOUT breaking my existing structure.
+
+Do NOT assume any specific column labels or UI libraries; instead:
+- Work with my existing data array and table/component structure.
+- Add the calculation logic in a clean, modular way (utility function or hook).
+- Then show how to pass/use this score in the UI.
+
+Algorithm for Domain Importance Score (IMPORTANT — follow this logic):
+
+1. Treat each SERP row as one contribution to a domain’s strength.
+
+2. For each row, compute a base score using:
+   baseScoreForRow = searchVolume × rankWeight
+
+   where:
+   - If searchVolume is missing or invalid, treat it as 0.
+   - rankWeight = 1 / (position + 1)
+   - If position is missing or invalid, treat rankWeight as 0.
+
+3. Group all rows by domain:
+   - domainBaseScore = sum of baseScoreForRow over all rows belonging to this domain.
+   - appearanceCount = how many rows belong to that domain.
+
+4. Convert appearanceCount into a soft multiplier:
+   appearanceWeight = 1 + (appearanceCount / 10)
+
+5. Final Domain Importance Score:
+   domainImportanceScore = domainBaseScore × appearanceWeight
+
+Implementation requirements:
+
+- Implement a pure function, something like:
+    computeDomainImportanceScores(rows: RowType[]): Record<string, number>
+  that takes the full SERP dataset and returns a mapping:
+    { [domainName]: domainImportanceScore }
+
+- Make sure it:
+  - Handles missing or malformed values safely.
+  - Ignores rows with no valid domain.
+  - Uses numbers consistently (no NaN).
+
+- In the React (or frontend) layer:
+  - Use this function to enrich the data, e.g. by:
+    - Creating a derived array of domain-level objects (one per domain), OR
+    - Attaching a `domainImportanceScore` property when rendering domains.
+  - The exact shape should follow my existing data model – DO NOT invent completely new structures if you can fit into what exists.
+
+- Use idiomatic, clean code:
+  - If this is React, use useMemo for derived data that depends on the SERP array.
+  - No mutation of the original data array; return new objects.
+  - Prefer clear variable names: domainBaseScore, appearanceCount, appearanceWeight, domainImportanceScore.
+
+- Add inline comments explaining:
+  - Why we use searchVolume × rankWeight.
+  - Why rankWeight = 1 / (position + 1).
+  - Why we multiply by appearanceWeight and how it affects domains that appear many times.
+
+Deliverables:
+1. The utility function that computes the Domain Importance Scores.

@@ -1,0 +1,35 @@
+{
+  "keyword": "Two For One Twister For Filament yarn",
+  "location": "IN",
+  "task": {
+    "id": "12260459-1256-0121-0000-339015ba652d",
+    "status_code": 40000,
+    "status_message": "You can set only one task at a time.",
+    "time": "0 sec.",
+    "cost": 0,
+    "result_count": 0,
+    "path": [
+      "v3",
+      "serp",
+      "google",
+      "organic",
+      "live",
+      "regular"
+    ],
+    "data": {
+      "api": "serp",
+      "function": "live",
+      "se": "google",
+      "se_type": "organic",
+      "async": "true",
+      "keyword": "Two For One Twister For Filament yarn",
+      "location_code": 2356,
+      "language_code": "en",
+      "device": "desktop",
+      "os": "windows",
+      "depth": 200,
+      "api_postback_url": "https://dfs-lsd-3.iotechnologies.gdn:97/api/postback"
+    },
+    "result": null
+  }
+}

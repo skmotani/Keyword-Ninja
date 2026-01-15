@@ -1,0 +1,220 @@
+You are an SEO, data-modeling, and classification expert.
+
+I already have an AI-generated **Client Master** JSON profile for this client.
+It is currently used by existing code and pages, so:
+
+⚠️ CRITICAL CONSTRAINTS
+
+- Do NOT delete or rename any existing top-level fields.
+- Do NOT change the meaning of any existing keys.
+- You are allowed to:
+  - append new fields,
+  - add new nested objects,
+  - or fill in currently empty/null values.
+- Your output must be a **superset** of the existing `clientMaster`, not a replacement.
+- Do NOT hard-code any final classification labels (like "PRODUCT SERVICE", etc.).
+  You must only provide **patterns, keyword lists, and descriptive rules** that my program
+  will use later for domain, URL, and keyword classification.
+
+========================================
+INPUT YOU WILL RECEIVE
+========================================
+
+You will receive a JSON object called `clientMaster`, which is the CURRENT profile
+for this client, plus some plain-text context such as:
+
+- business_overview
+- primary_domains
+- other_domains
+- products_services
+- industries_segments
+- customer_types
+- example_keywords
+
+Some of this information may already be inside `clientMaster`, some may be new.
+
+Your job is to:
+
+1. Carefully READ the existing `clientMaster`.
+2. Preserve all existing fields and values.
+3. Extend it with additional, classification-focused sections and fields described below.
+
+========================================
+YOUR OUTPUT
+========================================
+
+Return ONLY a single JSON object, also called `clientMaster`, that:
+
+- Contains everything that was in the input `clientMaster` (unchanged).
+- Additionally contains or completes the following sections, adding them if missing:
+
+1) clientMaster.meta
+2) clientMaster.coreIdentity
+3) clientMaster.domains
+4) clientMaster.urlClassificationSupport
+5) clientMaster.keywordClassificationSupport
+6) clientMaster.businessRelevanceSupport
+
+If any of these sections already exist, MERGE and ENRICH them instead of replacing
+them blindly.
+
+Below is the required structure and purpose of each section.
+
+----------------------------------------
+1) meta
+----------------------------------------
+
+If `meta` already exists, keep its fields and add missing ones.
+
+Fields to ensure:
+
+- "clientName": string
+- "generatedAt": ISO datetime as string (approximate is fine, e.g. "2025-12-08T00:00:00Z")
+- "industryTag": short snake_case tag for the main industry
+  (e.g. "textile_machinery_oem", "online_education", "saas_crm")
+- "summary": 2–3 sentence human-readable explanation of what this client does and for whom.
+
+----------------------------------------
+2) coreIdentity
+----------------------------------------
+
+If `coreIdentity` exists, extend it. Otherwise create it.
+
+Fields to ensure:
+
+- "businessModel": short description of how the client makes money
+  (e.g. "B2B OEM textile machinery manufacturer and exporter").
+- "primaryOfferTypes": array of main offer types
+  (e.g. ["machines", "equipment", "online_courses", "software_saas", "consulting_services"]).
+- "productLines": array of strings describing major product families.
+- "services": array of strings (if applicable).
+- "industriesServed": array of strings describing industries / applications.
+- "customerSegments": array of strings describing the types of customers.
+
+These fields are for context and future UI. Do not remove existing identity fields.
+
+----------------------------------------
+3) domains
+----------------------------------------
+
+If `domains` exists, extend it. Otherwise create it.
+
+Purpose: help the system decide whether a DOMAIN is relevant or irrelevant.
+
+Fields to ensure:
+
+- "primaryDomains": array of canonical domains for this client.
+- "secondaryDomains": array of other official domains (country domains, microsites, etc.).
+- "expectedTlds": array of TLDs that are common and acceptable (e.g. [".com", ".in", ".de"]).
+- "positiveDomainHints": array of lower-case words/phrases that, if appearing in a domain,
+  suggest it belongs to this industry or niche.
+- "negativeDomainHints": array of lower-case words/phrases that usually mean the domain
+  is NOT relevant to this client’s business (e.g. "movie", "music", "game", "crypto",
+  "ai_productivity", "fashion_blog" etc., adapted to this client).
+
+Later, my code will use these to classify competitor domains. You are NOT classifying
+domains now; you are only providing hints/patterns.
+
+----------------------------------------
+4) urlClassificationSupport
+----------------------------------------
+
+If `urlClassificationSupport` exists, extend it. Otherwise create it.
+
+Purpose: provide per-client URL path PATTERNS that my program can use to infer URL type
+(product, category, blog, support, legal, account, etc.) WITHOUT hard-coding
+per-client logic inside the code.
+
+Each field has:
+
+- "description": human explanation
+- "examples": array of simple lower-case strings used as slug/path fragments
+
+Fields to ensure:
+
+- "productSlugPatterns"
+- "categorySlugPatterns"
+- "blogSlugPatterns"
+- "resourceSlugPatterns"
+- "supportSlugPatterns"
+- "legalSlugPatterns"
+- "accountSlugPatterns"
+- "careersSlugPatterns"
+- "aboutCompanySlugPatterns"
+- "marketingLandingPatterns"
+
+For example, for a textile machinery OEM, "productSlugPatterns.examples" might include:
+["twister", "winder", "heat-setting", "tfo", "cabler", "filament-yarn", "spun-yarn"]
+
+These are NOT final labels; they are clues my later code will use to assign Page Types.
+
+----------------------------------------
+5) keywordClassificationSupport
+----------------------------------------
+
+If `keywordClassificationSupport` exists, extend it. Otherwise create it.
+
+Purpose: provide per-client PHRASES and TOPICS that help classify keyword intent.
+
+Fields to ensure:
+
+- "brandKeywords": {
+    "description": "...",
+    "examples": [ ... brand and near-brand phrases ... ]
+  }
+
+- "transactionalPhrases": {
+    "description": "...",
+    "examples": [ ... phrases that indicate buying/quote/price intent ... ]
+  }
+
+- "commercialResearchPhrases": {
+    "description": "...",
+    "examples": [ ... phrases that indicate comparison/review intent ... ]
+  }
+
+- "informationalPhrases": {
+    "description": "...",
+    "examples": [ ... phrases that indicate educational intent ... ]
+  }
+
+- "directoryPhrases": {
+    "description": "...",
+    "examples": [ ... phrases like 'manufacturers in', 'suppliers in', 'list of', 'directory' ... ]
+  }
+
+- "irrelevantKeywordTopics": {
+    "description": "...",
+    "examples": [ ... themes that share words but are the wrong context for this client ... ]
+  }
+
+These will be used later to classify keywords per client. You are NOT classifying
+sample keywords here; you are building reusable pattern lists.
+
+----------------------------------------
+6) businessRelevanceSupport
+----------------------------------------
+
+If `businessRelevanceSupport` exists, extend it. Otherwise create it.
+
+Purpose: describe how to think about "relevance" for domains/URLs/keywords.
+
+Fields to ensure:
+
+- "directCompetitorDefinition": short paragraph on what a direct competitor looks like.
+- "potentialCustomerDefinition": short paragraph on what a likely customer looks like.
+- "marketplaceDefinition": short paragraph on which marketplaces/channels are relevant.
+- "irrelevantDefinition": short paragraph giving examples of obviously irrelevant content,
+  even if some words appear similar.
+
+These descriptions will help humans and may feed into future AI prompts.
+
+========================================
+GENERAL RULES
+========================================
+
+- Do NOT remove or rename any existing keys in clientMaster.
+- When adding arrays, provide concrete examples (no "..." placeholders).
+- Use lower-case strings for pattern examples where possible.
+- Do NOT output any comments or explanations outside of the JSON.
+- Your final answer must be ONLY the updated clientMaster JSON object.

@@ -1,0 +1,356 @@
+Here’s a ready-to-paste **Replit AI prompt** that tells it *exactly* what to do **only for cluster tagging** (no priority score yet), using the new logic we discussed.
+
+---
+
+**REPLIT PROMPT (copy–paste this into Replit AI):**
+
+I have a “Domain Top Pages” dataset (one row per competitor page) and a “Cluster Intelligence” page in my app.
+
+I want you to **completely replace the existing cluster logic** with a new, URL-driven, client-independent clustering system, and surface it on the Cluster Intelligence page.
+
+Focus ONLY on **cluster tagging + cluster ETV calculation + UI explanation popups** in this task.
+Do NOT implement the priority index here.
+
+---
+
+## 1. Current data context
+
+Assume each “domain top page” row has at least:
+
+* `domain` (string)
+* `location` (string)
+* `pageUrl` (string)
+* `estTrafficEtv` or `Est. Traffic (ETV)` (number)
+* `keywordsCount` or `Keywords Count` (number of ranking keywords)
+* `pageType` (enum: PRODUCT_SERVICE, BLOG_ARTICLE_NEWS, CATEGORY_COLLECTION, COMPANY_ABOUT, SUPPORT_CONTACT, CAREERS_HR, ACCOUNT_AUTH, LEGAL_POLICY, RESOURCE_GUIDE_DOC, OTHER_MISC, etc.)
+* `pageIntent` (enum: INFORMATIONAL, COMMERCIAL_RESEARCH, TRANSACTIONAL, SUPPORT, IRRELEVANT_SEO)
+* other SEO fields (SEO Action, Method, Confidence, etc.)
+
+There is already a **Cluster Intelligence** page showing some view over clusters, but the **existing cluster rules can be removed/replaced**.
+
+---
+
+## 2. New data fields for cluster tagging
+
+Extend the “domain top pages” model with:
+
+```ts
+cluster: string | null;        // the cluster identifier, always lowercase, kebab-case if possible
+clusterSource: "RULE" | "AI" | null;  // how the cluster was assigned
+clusterExplanation: Json | null;      // explanation of how/why this cluster was chosen
+```
+
+Notes:
+
+* `cluster` is **required logically** – after this pipeline runs, every row should have a non-null `cluster`.
+* `clusterSource` tells if the cluster was derived purely by rules or with AI fallback.
+* `clusterExplanation` will feed the UI popup.
+
+---
+
+## 3. URL-first, client-independent cluster tagging rules
+
+Implement a **URL-first clustering engine** that does NOT depend on the client’s product list and NOT on the homepage content.
+
+Create a backend module, e.g. `clusterTagging.ts`, that exports a function:
+
+```ts
+type DomainTopPageRow = {
+  domain: string;
+  pageUrl: string;
+  pageType: string;
+  estTrafficEtv?: number | null;
+  keywordsCount?: number | null;
+  // existing fields...
+};
+
+type ClusterTagResult = {
+  cluster: string;
+  clusterSource: "RULE" | "AI";
+  clusterExplanation: {
+    source: "RULE" | "AI";
+    rulesApplied?: string[];  // for RULE
+    reasoning: string;       // human-readable explanation
+    urlPath: string;
+    pathSegments: string[];
+    genericSegmentsRemoved: string[];
+    selectedSegment?: string;
+    aiPromptSnippet?: string;
+    aiResponseSnippet?: string;
+  };
+};
+
+export function tagPageCluster(row: DomainTopPageRow): Promise<ClusterTagResult>;
+```
+
+### 3.1 Path extraction and segmentation (RULE logic)
+
+For each `pageUrl`:
+
+1. Strip protocol, domain, query and hash:
+
+   * `https://www.dttwister.com/twisting-machine/automatic-two-for-one-twister?ref=abc#top`
+   * → `/twisting-machine/automatic-two-for-one-twister`
+
+2. Split the path on `/`:
+
+   * `["", "twisting-machine", "automatic-two-for-one-twister"]`
+
+3. Define a list of **generic segments** that should be ignored:
+
+```ts
+const GENERIC_SEGMENTS = [
+  "",
+  "en", "de", "fr", "in", "us", "uk",
+  "products", "product", "services", "service",
+  "solutions", "solution", "catalog", "catalogue",
+  "blog", "news", "article", "articles", "insights",
+  "category", "categories", "archive", "archives",
+  "info", "page", "pages", "home", "index"
+];
+```
+
+4. Filter out all `GENERIC_SEGMENTS` from the path segments.
+
+Store both original and filtered segments in `clusterExplanation`.
+
+### 3.2 Special-case routing for home/utility pages
+
+Before choosing a cluster from segments:
+
+* Detect **homepages**:
+
+  * If path is exactly `/` or empty:
+
+    * `cluster = "__home__"`
+    * `clusterSource = "RULE"`
+    * `clusterExplanation.reasoning = "Clustered as __home__ because URL path is empty/root (homepage)."`
+
+* Detect typical **brand/corporate** pages:
+
+  * If `pageType = "COMPANY_ABOUT"` AND there is no other specific segment:
+
+    * `cluster = "__brand_corporate__"`
+
+* Detect **utility pages**:
+
+  * If `pageType` ∈ (`ACCOUNT_AUTH`, `CAREERS_HR`, `LEGAL_POLICY`, `SUPPORT_CONTACT`)
+    → `cluster = "__utility__"`
+
+These rules ensure:
+
+* High-ETV home/brand/utility pages still get a cluster,
+* But they are clearly marked as non-product clusters.
+
+### 3.3 General cluster creation from URL segments (RULE logic)
+
+If the page is not caught by the special-case rules above:
+
+* After removing generic segments, you should have `filteredSegments`.
+
+Implement logic:
+
+1. If `filteredSegments` is non-empty:
+
+   * Take the **first non-generic, non-numeric segment** as the candidate cluster segment.
+   * If that segment starts with `what-is-`, `how-to-`, `types-of-`, trim those prefixes for the **cluster name** but still record the original segment in explanation.
+   * Normalize to **lowercase** and **kebab-case** (replace spaces or underscores with dashes).
+
+   Example:
+
+   * `/twisting-machine/automatic-two-for-one-twister` → `cluster = "twisting-machine"`
+   * `/machines/rope-making-machines/automatic-line` → filter out `machines` if deemed generic for that domain (OK to leave it initially), then `cluster = "rope-making-machines"`
+
+2. Set:
+
+```ts
+clusterSource = "RULE";
+clusterExplanation.source = "RULE";
+clusterExplanation.rulesApplied = ["PATH_SEGMENT_CLUSTERING"];
+clusterExplanation.reasoning = "Cluster derived from the first meaningful URL path segment after removing generic segments.";
+clusterExplanation.selectedSegment = "<selected segment>";
+```
+
+This gives a **dynamic, client-independent cluster name** coming from URL structure.
+
+### 3.4 When RULE logic is NOT enough → automatic AI fallback
+
+If after applying:
+
+* special-case rules, AND
+* URL segment rules
+
+we still **cannot find a suitable cluster** (e.g., only numeric or meaningless segments):
+
+Then:
+
+* Call the existing ChatGPT API integration (do not hardcode keys; use env var).
+* Build a prompt like:
+
+**System message:**
+
+> You are a clustering helper. Given a page URL (and optionally title/keywords), your job is to generate a short, URL-like cluster key that represents the main topic of the page.
+> The cluster key must be:
+>
+> * in lower-case
+> * words separated by hyphens (kebab-case)
+> * based on meaningful nouns from the URL path or page title (e.g. `yarn-winder`, `two-for-one-twister`, `rope-making-machines`).
+>   Do not use brand names, company names, dates, or generic terms like "products" or "services".
+>   Return ONLY a JSON object with a single field `"cluster"`.
+
+**User message example:**
+
+```json
+{
+  "url": "https://example.com/1469.html",
+  "pageTitle": "Automatic Two-for-One Twister for Industrial Yarns",
+  "topKeyword": "two for one twister"
+}
+```
+
+AI must return:
+
+```json
+{ "cluster": "two-for-one-twister" }
+```
+
+Implementation details:
+
+* Store:
+
+  * `cluster` from AI
+  * `clusterSource = "AI"`
+  * `clusterExplanation.source = "AI"`
+  * `clusterExplanation.aiPromptSnippet` = brief summary of what was sent
+  * `clusterExplanation.aiResponseSnippet` = brief summary of model output
+  * `clusterExplanation.reasoning` = “Cluster generated using AI from page title/URL/keyword as a URL-like topic key.”
+
+* This AI fallback should be **automatic** (no user confirmation).
+
+* Use it ONLY when rules cannot assign a meaningful cluster.
+
+---
+
+## 4. Cluster ETV aggregation (for Cluster Intelligence page)
+
+On the **Cluster Intelligence page**, use the `cluster` field to aggregate:
+
+For each unique `cluster`:
+
+* `clusterName` = cluster string (e.g. `twisting-machine`, `rope-making-machines`, `__home__`, `__utility__`, etc.)
+* `clusterEtv` = sum of `estTrafficEtv` across all pages with this cluster
+* `clusterPageCount` = number of pages in this cluster
+* `clusterAiTaggedCount` = number of pages where `clusterSource = "AI"`
+* `clusterRuleTaggedCount` = number of pages where `clusterSource = "RULE"`
+
+This is **not** the full priority index yet; just cluster-level stats.
+
+---
+
+## 5. Frontend changes on Cluster Intelligence page
+
+On the Cluster Intelligence page:
+
+### 5.1 Show cluster list
+
+For each cluster row, show columns like:
+
+* Cluster Name
+* Total ETV (clusterEtv)
+* Page Count (clusterPageCount)
+* AI-tagged pages count (clusterAiTaggedCount)
+* Rule-tagged pages count (clusterRuleTaggedCount)
+
+If `clusterSource` is mixed (RULE+AI) across pages, you can still aggregate counts.
+
+### 5.2 Small AI mark for clusters with AI-tagged pages
+
+If `clusterAiTaggedCount > 0`, show a small AI indicator next to the cluster name, e.g.:
+
+* `twisting-machine (AI)`
+* or an icon with tooltip: “Some pages in this cluster were tagged using AI fallback.”
+
+### 5.3 Popup with full explanation, calculation & rules
+
+When the user clicks on:
+
+* the cluster name, OR
+* a small “info” icon next to the cluster name,
+
+open a modal/popover that explains:
+
+1. **What clustering is** (generic description)
+2. **How this cluster was formed**
+3. **What rules were applied**
+4. **How ETV was aggregated**
+
+Use the following text as the basis for the popup content (please embed it as static explanatory copy, plus dynamic per-cluster details):
+
+**Popup Title:**
+
+> Cluster Tagging & ETV – How this Cluster Was Calculated
+
+**Static Explanation (use in the popup):**
+
+> **What is a Cluster?**
+> A cluster is a group of competitor pages that share a common topic, based mainly on their URL path. Cluster names are derived from meaningful URL segments (for example: `twisting-machine`, `yarn-winder`, `rope-making-machines`).
+>
+> **How Cluster Names are Created (Rule-Based):**
+>
+> 1. We strip the domain and query from each URL and split the path into segments.
+> 2. We remove generic segments like `products`, `services`, `blog`, `category`, `page`, etc.
+> 3. For most pages, the first remaining meaningful segment becomes the cluster name (e.g. `/twisting-machine/automatic-two-for-one-twister` → `twisting-machine`).
+> 4. Special cases like homepages, company/about pages, and login/support/legal/careers pages are grouped into clusters such as `__home__`, `__brand_corporate__`, and `__utility__`.
+>
+> **When AI is Used:**
+> If the URL path does not contain a clear topic segment (for example, numeric IDs or very short/ambiguous paths), we automatically call the AI classifier.
+> The AI looks at the URL and page title (and optionally a keyword) and generates a short, URL-like cluster key in kebab-case based on the main topic (for example, `two-for-one-twister`).
+> These pages are marked as AI-tagged so you can see how many clusters rely on AI.
+>
+> **What is Cluster ETV?**
+> Cluster ETV is the sum of the Estimated Traffic Value (ETV) for all pages that belong to this cluster. It shows how much total traffic value exists for this topic across all competitors.
+>
+> **Why this matters:**
+> Cluster tagging allows you to see which topics (clusters) have the highest combined traffic and the most pages in the market, so you can prioritize which themes to target with your own content and product pages.
+
+**Dynamic details (per-cluster):**
+
+For the selected cluster, also show:
+
+* `Cluster Name`
+* `Total Cluster ETV`
+* `Number of Pages`
+* `AI-tagged Pages`, `Rule-tagged Pages`
+* A sample of 3–5 URLs belonging to this cluster
+* A JSON-ish view of the `clusterExplanation` for one or two sample pages, including:
+
+  * original path
+  * filtered segments
+  * selected segment
+  * whether AI was used.
+
+---
+
+## 6. Replace existing cluster rules and add a “Retag Clusters” action
+
+* Remove/ignore any previous cluster tagging logic and use only this new `tagPageCluster` module.
+* Add a backend route or an admin button (e.g., on the Cluster Intelligence page) called:
+
+  * **“Rebuild Clusters”** or **“Retag All Pages”**
+* When triggered, it should:
+
+  * Fetch all domain top page rows,
+  * Run `tagPageCluster` for each,
+  * Save `cluster`, `clusterSource`, and `clusterExplanation`,
+  * Recompute `clusterEtv` and aggregate stats for the Cluster Intelligence page.
+
+This ensures the new rules are applied to the entire dataset and stay in sync.
+
+---
+
+Implement all of the above so that:
+
+* Every page row ends up with a `cluster`.
+* Clusters are **derived from URLs**, **client-independent**, and **dynamic**.
+* AI fallback is automatic when rules fail, and clearly marked.
+* The Cluster Intelligence page displays cluster names, aggregated ETV, and a popup explaining cluster tagging logic and calculations.

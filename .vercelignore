@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build artifacts  
+.next/
+tsconfig.tsbuildinfo
+
+# IDE and editor
+.cursor/
+.vscode/
+*.swp
+
+# Git
+.git/
+
+# Development files
+*.log
+.replit
+replit.md
+ai_brain_env/
+attached_assets/
+filelist.txt
+test_store.js
+
+# Data files (too large for Vercel, will be bundled separately if needed)
+# Uncomment if you want to exclude data folder
+# data/

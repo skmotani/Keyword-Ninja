@@ -1,0 +1,2095 @@
+{
+  "industryKey": "general",
+  "version": 1,
+  "updatedAt": "2026-01-03T17:53:02.021Z",
+  "terms": [
+    {
+      "term": "machine",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 9,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "yarn",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 9,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "textile",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 9,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "machines",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 9,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "twisting",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 9,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "cotton",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 9,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "rope",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 9,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winding",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 9,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "machinery",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 9,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "thread",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "twister",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "ring",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winder",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "manufacturing",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 6,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "sewing",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "doubling",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "dyneema",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "surat",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 4,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "tfo",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "twist",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "embroidery",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "carpet",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "doubler",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "fibers",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "meera",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 6,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "yarns",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 5,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "polyester",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "monofilament",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 4,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "covering",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T07:11:43.030Z"
+    },
+    {
+      "term": "weavetech",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 6,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "limited",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 2,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "industrial",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 2,
+      "globalConfidence": 1,
+      "lastSeenAt": "2025-12-27T08:17:00.951Z"
+    },
+    {
+      "term": "www",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 7,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "www swastik",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 7,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winding",
+      "ngramType": "trigram",
+      "bucket": "include",
+      "supportCount": 8,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "www swastik",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 7,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "loom",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "spinning",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "weaving",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 8,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "fabric",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 8,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "knitting",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "gauge",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "dyeing",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "jet",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "air",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "looms",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "jacquard",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "shuttle",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "frame",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "printing",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "lohia",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "film",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "rapier",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "wool",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "carding",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "water",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "engineering",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "extrusion",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "lohia",
+      "ngramType": "trigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "dyeing",
+      "ngramType": "trigram",
+      "bucket": "exclude",
+      "supportCount": 7,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "making",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 6,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "warp",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 6,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "manufacturers",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 6,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "fiber",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 6,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "cone",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 6,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "doubler",
+      "ngramType": "trigram",
+      "bucket": "include",
+      "supportCount": 6,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winder",
+      "ngramType": "trigram",
+      "bucket": "include",
+      "supportCount": 6,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "dyneema",
+      "ngramType": "trigram",
+      "bucket": "include",
+      "supportCount": 6,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "warping",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 5,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "power",
+      "ngramType": "unigram",
+      "bucket": "exclude",
+      "supportCount": 5,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "manufacturer",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 5,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "price",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 5,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "industries",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 5,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "india",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 5,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winder machine",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winders",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "saurer",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winder machine manufacturer",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "thread winder",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "thread winder machine",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "superba",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "meera industries",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "rima",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "vandewielesavio",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "weavetech engineers",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "bobbin winder",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "yarn winder",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winder machine price",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "kristeel",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "reshmi",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "rima machines",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "vandewielesavio india",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "rope winder",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winder machine",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "aalidhra",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "bhagat",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "vandewiele",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "alidhra weavetech",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "weavetech group",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "kristeel shinwa",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "saurer textile",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winders",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "alidhra weavetech group",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "weavetech engineers limited",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "weavetech engineers ltd",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "superba",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "warping",
+      "ngramType": "trigram",
+      "bucket": "exclude",
+      "supportCount": 5,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "rope winder machine",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "industrial yarn winder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "rewinder",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "meera corporation",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "meera glass",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "meera laser",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "aalidhra textile",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "bhagat group",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "vandewiele savio",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "reshmi industries",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "superba knitting",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "cone winders",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "meera industries",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "meera industries ltd",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "meera industries limited",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "meera corporation",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "meera glass industries",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "aalidhra textile engineers ltd",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "rima machines private limited",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "rima machines pvt ltd",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "kristeel shinwa industries ltd",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "vandewiele-savio india private limited",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "vandewiele-savio india pvt ltd",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "vandewiele-savio",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "vandewiele savio india private limited photos",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "yarn cone winders",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "national",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "autowinder",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "imagine",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "international",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "fibrxl",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "fadis",
+      "ngramType": "unigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "meera enterprises",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "meera exports",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "aalidhra pharmachem",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "bhagat fabrics",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "motor rewinder",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "reshmi video",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "the bhagat",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "rima manufacturing",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "rima tech",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "source winder",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "yarn winders",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "filament winder",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "saurer inc",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "saurer truck",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "saurer trucks",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "machine saurer",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "saurer machine",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "saurer machinery",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "superba operator",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "a superba",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "bobbin winders",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winders for",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "enterprise winder",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winder enterprise",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "wes winder",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "hank winder",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winder yarn",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "national textile",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "imagine machine",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "international fibers",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "tube winders",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winders meaning",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "a winder",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "is winder",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winder definition",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winder application",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "spool winder",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "core winder",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "thread winders",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winder equipment",
+      "ngramType": "bigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "meera",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "meera enterprises",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "meera industries share",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "meera laser solutions",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "meera exports",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "meera laser solutions pvt ltd",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "aalidhra pharmachem pvt ltd",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "bhagat fabrics",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "bhagat group",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "motor rewinder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "saurer textile solutions",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "saurer textile solutions private limited",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "saurer textile solutions pvt ltd",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "bobbin winder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "bobbin winder machine",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "rewinder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "reshmi industries",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "reshmi video",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "reshmi industries pvt ltd",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "the bhagat group",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "rima manufacturing company",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "rima tech products",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "kristeel",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "kristeel shinwa",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "yarn winder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "manual yarn winder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "vision source winder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "best yarn winders",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "filament winder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "saurer",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "saurer inc",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "saurer truck",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "saurer trucks",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "machine saurer",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "saurer machine",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "saurer machinery",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "superba knitting machine",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "superba knitting machines",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "superba operator",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "what is a superba",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "vandewiele",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "bobbin winders for sewing machines",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "weavetech",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "enterprise winder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winder enterprise",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "wes winder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "yarn hank winder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "bobbin winder yarn",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "antique rope winder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "national textile",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "autowinder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "imagine machine",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "international fibers",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "fibrxl",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "fadis",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "reshmi",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "tube winders",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winders meaning",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "what is a winder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "what is winder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "bobbin winder definition",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "definition of bobbin winder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winder application",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "thread spool winder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "core winder",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "thread winders",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "winder equipment",
+      "ngramType": "trigram",
+      "bucket": "brand",
+      "supportCount": 5,
+      "globalConfidence": 0.95,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "coating",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 4,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "jute",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 4,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "textiles",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 3,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "aramid",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 2,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "textured",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 2,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "ropes",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 2,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "twisted",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 2,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "fishing",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 2,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "filament",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 2,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "silk",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 2,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "heating",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 2,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "multifilament",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "tfo",
+      "ngramType": "trigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "veejay",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    },
+    {
+      "term": "vijayalakshmi",
+      "ngramType": "unigram",
+      "bucket": "include",
+      "supportCount": 1,
+      "globalConfidence": 1,
+      "lastSeenAt": "2026-01-03T17:53:02.021Z"
+    }
+  ]
+}

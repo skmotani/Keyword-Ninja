@@ -1,0 +1,1176 @@
+import { NextResponse } from 'next/server';
+import { promises as fs } from 'fs';
+import path from 'path';
+import { getQueryById } from '@/lib/storage/dashboardQueryStore';
+import {
+    DashboardQueryResult,
+    KeywordBalloonData,
+    DomainInfo,
+    DataSourceLink,
+    ClientRankingsData,
+    KeywordsAbsenceData,
+    CompetitorGlobalData,
+    MarketSizeData,
+    ETVComparisonData,
+    KeywordOpportunityMatrixData,
+    BrandPowerData,
+    RankBucket,
+    VolumeBucket,
+    OpportunityType,
+    PriorityLevel
+} from '@/types/dashboardTypes';
+import { Client, KeywordApiDataRecord, ClientAIProfile, DomainKeywordRecord, Competitor } from '@/types';
+import { readClientSerpData } from '@/lib/clientSerpStore';
+import { getKeywordApiDataByClientAndLocations } from '@/lib/keywordApiStore';
+import { readTags, normalizeKeyword } from '@/lib/keywordTagsStore';
+
+const DATA_DIR = path.join(process.cwd(), 'data');
+
+// Location code mappings
+const LOCATION_CODES: Record<string, number> = {
+    india: 2356,
+    global: 2840,
+};
+
+// Location code strings used in domain_keywords.json
+const INDIA_LOCATION_CODES = ['IN', '2356'];
+const GLOBAL_LOCATION_CODES = ['GL', '2840'];
+
+const LOCATION_CODE_TO_NAME: Record<string, string> = {
+    'IN': 'India',
+    '2356': 'India',
+    'GL': 'Global',
+    '2840': 'Global',
+};
+
+// CTR model based on position
+// Using midpoint values from user's CTR table
+function getCTR(position: number): number {
+    if (position <= 0 || position > 100) return 0;
+    if (position === 1) return 0.30;  // 28-35% → ~30%
+    if (position === 2) return 0.175; // 15-20% → 17.5%
+    if (position === 3) return 0.12;  // 10-14% → 12%
+    if (position === 4) return 0.08;  // 7-9% → 8%
+    if (position === 5) return 0.06;  // 5-7% → 6%
+    if (position === 6) return 0.04;  // 3.5-4.5% → 4%
+    if (position === 7) return 0.03;  // 2.5-3.5% → 3%
+    if (position === 8) return 0.02;  // 1.8-2.5% → 2%
+    if (position === 9) return 0.015; // 1.2-1.8% → 1.5%
+    if (position === 10) return 0.01; // 0.8-1.2% → 1%
+    if (position <= 15) return 0.005; // 0.4-0.7% → 0.5%
+    if (position <= 20) return 0.003; // 0.2-0.4% → 0.3%
+    if (position <= 30) return 0.001; // 0.05-0.15% → 0.1%
+    if (position <= 50) return 0.0003; // 0.01-0.05% → 0.03%
+    return 0; // 51-100: ~0%
+}
+
+// Helper: Read clients data
+async function readClients(): Promise<Client[]> {
+    try {
+        const filePath = path.join(DATA_DIR, 'clients.json');
+        const data = await fs.readFile(filePath, 'utf-8');
+        return JSON.parse(data) as Client[];
+    } catch {
+        return [];
+    }
+}
+
+// Helper: Read AI profiles
+async function readAiProfiles(): Promise<ClientAIProfile[]> {
+    try {
+        const filePath = path.join(DATA_DIR, 'client_ai_profiles.json');
+        const data = await fs.readFile(filePath, 'utf-8');
+        return JSON.parse(data) as ClientAIProfile[];
+    } catch {
+        return [];
+    }
+}
+
+// Helper: Read keyword API data
+async function readKeywordApiData(): Promise<KeywordApiDataRecord[]> {
+    try {
+        const filePath = path.join(DATA_DIR, 'keyword_api_data.json');
+        const data = await fs.readFile(filePath, 'utf-8');
+        return JSON.parse(data) as KeywordApiDataRecord[];
+    } catch {
+        return [];
+    }
+}
+
+// Helper: Read domain keywords
+async function readDomainKeywords(): Promise<DomainKeywordRecord[]> {
+    try {
+        const filePath = path.join(DATA_DIR, 'domain_keywords.json');
+        const data = await fs.readFile(filePath, 'utf-8');
+        return JSON.parse(data) as DomainKeywordRecord[];
+    } catch {
+        return [];
+    }
+}
+
+// Helper: Read competitors
+async function readCompetitors(): Promise<Competitor[]> {
+    try {
+        const filePath = path.join(DATA_DIR, 'competitors.json');
+        const data = await fs.readFile(filePath, 'utf-8');
+        return JSON.parse(data) as Competitor[];
+    } catch {
+        return [];
+    }
+}
+
+// Domain Overview record from domain_overview.json
+interface DomainOverviewRecord {
+    id: string;
+    clientCode: string;
+    domain: string;
+    locationCode: string;
+    organicTrafficETV: number | null;
+    organicKeywordsCount: number | null;
+}
+
+// Helper: Read domain overview
+async function readDomainOverview(): Promise<DomainOverviewRecord[]> {
+    try {
+        const filePath = path.join(DATA_DIR, 'domain_overview.json');
+        const data = await fs.readFile(filePath, 'utf-8');
+        return JSON.parse(data) as DomainOverviewRecord[];
+    } catch {
+        return [];
+    }
+}
+
+// Client Position record from client_positions.json
+interface ClientPositionRecord {
+    id: string;
+    clientCode: string;
+    keywordOrTheme: string;
+    currentPosition: string;  // '-' means not ranked / absent
+    source: string;
+    asOfDate: string;
+}
+
+// Helper: Read client positions (for client-rank page data)
+async function readClientPositions(): Promise<ClientPositionRecord[]> {
+    try {
+        const filePath = path.join(DATA_DIR, 'client_positions.json');
+        const data = await fs.readFile(filePath, 'utf-8');
+        return JSON.parse(data) as ClientPositionRecord[];
+    } catch {
+        return [];
+    }
+}
+
+// Execute domain-info query - includes AI Profile data
+async function executeDomainInfoQuery(clientCode: string): Promise<DomainInfo> {
+    const clients = await readClients();
+    const client = clients.find(c => c.code === clientCode);
+
+    if (!client) {
+        throw new Error(`Client not found: ${clientCode}`);
+    }
+
+    const profiles = await readAiProfiles();
+    const aiProfile = profiles.find(p => p.clientCode === clientCode);
+
+    return {
+        clientName: client.name,
+        clientCode: client.code,
+        mainDomain: client.mainDomain,
+        allDomains: client.domains || [client.mainDomain],
+        status: 'Critical',
+        businessModel: aiProfile?.businessModel,
+        shortSummary: aiProfile?.shortSummary,
+        industryType: aiProfile?.industryType,
+        productLines: aiProfile?.productLines,
+        targetCustomerSegments: aiProfile?.targetCustomerSegments,
+        targetGeographies: aiProfile?.targetGeographies,
+        coreTopics: aiProfile?.coreTopics,
+    };
+}
+
+// Execute keyword-volume query
+async function executeKeywordVolumeQuery(
+    clientCode: string,
+    config: { location?: string; limit?: number }
+): Promise<KeywordBalloonData[]> {
+    const allKeywords = await readKeywordApiData();
+    const limit = config.limit || 10;
+
+    let clientKeywords = allKeywords.filter(k => k.clientCode === clientCode);
+
+    if (config.location === 'india') {
+        clientKeywords = clientKeywords.filter(k => k.locationCode === LOCATION_CODES.india);
+    } else if (config.location === 'global') {
+        clientKeywords = clientKeywords.filter(k => k.locationCode === LOCATION_CODES.global);
+    }
+
+    clientKeywords.sort((a, b) => (b.searchVolume || 0) - (a.searchVolume || 0));
+    const topKeywords = clientKeywords.slice(0, limit);
+
+    return topKeywords.map(k => ({
+        keyword: k.keywordText,
+        volume: k.searchVolume || 0,
+        position: null,
+        location: k.locationCode === LOCATION_CODES.india ? 'india' : 'global',
+    }));
+}
+
+// Helper: Normalize domain for matching (removes www., https://, http://)
+function normalizeDomain(domain: string): string {
+    return domain
+        .toLowerCase()
+        .replace(/^https?:\/\//, '')
+        .replace(/^www\./, '')
+        .replace(/\/$/, '');
+}
+
+// Q005: Execute client-rankings query
+// Data source: domain_keywords.json
+// Top 3: position 1-3, Top 10: position 4-10 (separate buckets)
+async function executeClientRankingsQuery(clientCode: string): Promise<ClientRankingsData> {
+    const domainKeywords = await readDomainKeywords();
+    const clients = await readClients();
+    const client = clients.find(c => c.code === clientCode);
+
+    if (!client) {
+        throw new Error(`Client not found: ${clientCode}`);
+    }
+
+    // Build normalized set of client's own domains
+    const rawDomains = [client.mainDomain, ...(client.domains || [])];
+    const normalizedClientDomains = new Set(rawDomains.map(d => normalizeDomain(d)));
+
+    // Filter to client's OWN domains only (not competitors)
+    // Uses normalized matching to handle www.domain.com vs domain.com
+    const clientKws = domainKeywords.filter(k =>
+        k.clientCode === clientCode &&
+        normalizedClientDomains.has(normalizeDomain(k.domain)) &&
+        k.position !== null &&
+        k.position >= 1 &&
+        k.position <= 10
+    );
+
+    // Count unique keywords by location and position bucket
+    const indiaTop3 = new Set<string>();  // pos 1-3
+    const globalTop3 = new Set<string>(); // pos 1-3
+    const indiaTop10 = new Set<string>(); // pos 4-10
+    const globalTop10 = new Set<string>(); // pos 4-10
+
+    // Collect all qualifying keywords for sorting
+    const allQualifyingKeywords: {
+        domain: string;
+        location: string;
+        keyword: string;
+        position: number;
+        volume: number;
+        rankingBucket: 'Top 3' | 'Top 10';
+    }[] = [];
+
+    for (const kw of clientKws) {
+        const pos = kw.position!;
+        const normalizedKw = kw.keyword.toLowerCase();
+        const isIndia = INDIA_LOCATION_CODES.includes(kw.locationCode);
+        const locationName = LOCATION_CODE_TO_NAME[kw.locationCode] || kw.locationCode;
+
+        // Top 3 bucket: position 1-3
+        if (pos >= 1 && pos <= 3) {
+            if (isIndia) indiaTop3.add(normalizedKw);
+            else globalTop3.add(normalizedKw);
+
+            allQualifyingKeywords.push({
+                domain: kw.domain,
+                location: locationName,
+                keyword: kw.keyword,
+                position: pos,
+                volume: kw.searchVolume || 0,
+                rankingBucket: 'Top 3',
+            });
+        }
+        // Top 10 bucket: position 4-10 only
+        else if (pos >= 4 && pos <= 10) {
+            if (isIndia) indiaTop10.add(normalizedKw);
+            else globalTop10.add(normalizedKw);
+
+            allQualifyingKeywords.push({
+                domain: kw.domain,
+                location: locationName,
+                keyword: kw.keyword,
+                position: pos,
+                volume: kw.searchVolume || 0,
+                rankingBucket: 'Top 10',
+            });
+        }
+    }
+
+    // Separate by location for balanced representation
+    const indiaKeywords = allQualifyingKeywords.filter(k => k.location === 'India');
+    const globalKeywords = allQualifyingKeywords.filter(k => k.location === 'Global');
+
+    // Sort each by volume descending
+    indiaKeywords.sort((a, b) => b.volume - a.volume);
+    globalKeywords.sort((a, b) => b.volume - a.volume);
+
+    // Take top 5 from each location for balanced representation
+    const top5India = indiaKeywords.slice(0, 5);
+    const top5Global = globalKeywords.slice(0, 5);
+    const balancedTop10 = [...top5India, ...top5Global].sort((a, b) => b.volume - a.volume);
+
+    return {
+        summary: {
+            uniqueTop3India: indiaTop3.size,
+            uniqueTop3Global: globalTop3.size,
+            uniqueTop10India: indiaTop10.size,
+            uniqueTop10Global: globalTop10.size,
+        },
+        sampleKeywords: balancedTop10,
+    };
+}
+
+// Q006: Execute keywords-absence query
+// Data source: clientSerpStore (same as /curated/client-rank page)
+// Filter: rank > 10 OR rank is null (not ranked)
+// Output: Top 10 keywords sorted by volume DESC
+async function executeKeywordsAbsenceQuery(
+    clientCode: string,
+    config: { limit?: number }
+): Promise<KeywordsAbsenceData> {
+    // Get client domains for rank calculation
+    const clients = await readClients();
+    const client = clients.find(c => c.code === clientCode);
+    if (!client) {
+        return { keywords: [] };
+    }
+
+    const rawClientDomains = client.domains || (client.mainDomain ? [client.mainDomain] : []);
+    const normalizeDomainLocal = (url: string): string => {
+        if (!url) return '';
+        let domain = url.trim().replace(/^https?:\/\//i, '').replace(/^www\./i, '');
+        domain = domain.split('/')[0].split(':')[0];
+        return domain.toLowerCase();
+    };
+    const clientDomainsNorm = rawClientDomains.map((d: string) => normalizeDomainLocal(d));
+
+    // Get SERP data and keyword API data
+    const [serpData, apiData] = await Promise.all([
+        readClientSerpData(clientCode),
+        getKeywordApiDataByClientAndLocations(clientCode, [2356, 2840])
+    ]);
+
+    const keywords = serpData.keywords || [];
+
+    // Create metadata lookup: key = locationCode_keywordLower
+    const metaMap = new Map<string, { searchVolume: number | null }>();
+    for (const rec of apiData) {
+        const key = `${rec.locationCode}_${rec.keywordText.trim().toLowerCase()}`;
+        metaMap.set(key, { searchVolume: rec.searchVolume });
+    }
+
+    // Process keywords and find those where rank > 10 or not ranked
+    const results: KeywordsAbsenceData['keywords'] = [];
+
+    for (const k of keywords) {
+        const kLower = k.keyword.trim().toLowerCase();
+
+        // Check India location
+        if (k.serp?.IN) {
+            const inResults = k.serp.IN.results || [];
+            let rank: number | null = null;
+
+            // Find client's rank in SERP
+            for (const item of inResults) {
+                const norm = normalizeDomainLocal(item.domain || item.url);
+                if (clientDomainsNorm.some((cd: string) => norm === cd || norm.endsWith('.' + cd))) {
+                    if (rank === null || item.rank_group < rank) {
+                        rank = item.rank_group;
+                    }
+                }
+            }
+
+            // Include if rank > 10 or not ranked
+            if (rank === null || rank > 10) {
+                const meta = metaMap.get(`2356_${kLower}`);
+                results.push({
+                    keyword: k.keyword,
+                    volume: meta?.searchVolume || 0,
+                    clientRank: rank === null ? '>100' : String(rank),
+                    location: 'IN',
+                });
+            }
+        }
+
+        // Check Global location
+        if (k.serp?.GL) {
+            const glResults = k.serp.GL.results || [];
+            let rank: number | null = null;
+
+            // Find client's rank in SERP
+            for (const item of glResults) {
+                const norm = normalizeDomainLocal(item.domain || item.url);
+                if (clientDomainsNorm.some((cd: string) => norm === cd || norm.endsWith('.' + cd))) {
+                    if (rank === null || item.rank_group < rank) {
+                        rank = item.rank_group;
+                    }
+                }
+            }
+
+            // Include if rank > 10 or not ranked
+            if (rank === null || rank > 10) {
+                const meta = metaMap.get(`2840_${kLower}`);
+                results.push({
+                    keyword: k.keyword,
+                    volume: meta?.searchVolume || 0,
+                    clientRank: rank === null ? '>100' : String(rank),
+                    location: 'GL',
+                });
+            }
+        }
+    }
+
+    // Sort by volume descending and take top N
+    results.sort((a, b) => b.volume - a.volume);
+    const limit = config.limit || 10;
+
+    return {
+        keywords: results.slice(0, limit),
+    };
+}
+// Q007: Execute Client Vs Competitor Strength query
+// Data source: competitors.json (same as /competitors page)
+// Output: Client domains (Self) + Top 5 Main Competitors by score
+async function executeCompetitorGlobalQuery(
+    clientCode: string,
+    config: { limit?: number }
+): Promise<CompetitorGlobalData> {
+    const competitors = await readCompetitors();
+
+    const result: CompetitorGlobalData['competitors'] = [];
+
+    // Add client domains (competitionType = "Self") with their actual score
+    const selfEntries = competitors.filter(
+        c => c.clientCode === clientCode &&
+            c.competitionType === 'Self' &&
+            c.isActive
+    );
+    // Sort Self entries by score descending
+    selfEntries.sort((a, b) => (b.importanceScore || 0) - (a.importanceScore || 0));
+
+    for (const entry of selfEntries) {
+        result.push({
+            name: entry.name,
+            domain: entry.domain,
+            score: Math.round(entry.importanceScore || 0),  // Integer only
+            isClient: true,
+        });
+    }
+
+    // Filter to Main Competitors only
+    const mainCompetitors = competitors.filter(
+        c => c.clientCode === clientCode &&
+            c.competitionType === 'Main Competitor' &&
+            c.isActive
+    );
+
+    // Sort by importance score descending
+    mainCompetitors.sort((a, b) => (b.importanceScore || 0) - (a.importanceScore || 0));
+
+    // Take top N competitors and add to result
+    const limit = config.limit || 5;
+    for (const comp of mainCompetitors.slice(0, limit)) {
+        result.push({
+            name: comp.name,
+            domain: comp.domain,
+            score: Math.round(comp.importanceScore || 0),  // Integer only
+            isClient: false,
+        });
+    }
+
+    return { competitors: result };
+}
+// Q008: Execute market-size query
+// Data source: domain_keywords.json
+// Formula with CTR Model:
+// A) totalMarketVolume = sum of unique keyword search volumes
+// B) clientVolume = sum of unique keyword volumes for client domains
+// C) clientTraffic = sum of (volume × CTR(position)) for client domains
+// D) clientTrafficPercent = clientTraffic / totalMarketVolume * 100
+// E) competitors = each competitor's volume and traffic using CTR
+async function executeMarketSizeQuery(
+    clientCode: string,
+    config: { limit?: number }
+): Promise<MarketSizeData> {
+    const domainKeywords = await readDomainKeywords();
+    const competitors = await readCompetitors();
+
+    // Get client domains (from competitors where type = "Self")
+    const selfEntries = competitors.filter(
+        c => c.clientCode === clientCode && c.competitionType === 'Self'
+    );
+    const clientDomains = new Set(selfEntries.map(c => c.domain.toLowerCase()));
+
+    // Get main competitors
+    const mainCompetitors = competitors.filter(
+        c => c.clientCode === clientCode &&
+            c.competitionType === 'Main Competitor' &&
+            c.isActive
+    );
+
+    // Step A: Calculate total unique keyword search volume
+    const allKeywords = domainKeywords.filter(k => k.clientCode === clientCode);
+    const uniqueKeywordVolumes = new Map<string, number>();
+
+    for (const kw of allKeywords) {
+        const key = kw.keyword.toLowerCase().trim();
+        const existing = uniqueKeywordVolumes.get(key) || 0;
+        if ((kw.searchVolume || 0) > existing) {
+            uniqueKeywordVolumes.set(key, kw.searchVolume || 0);
+        }
+    }
+
+    const totalMarketVolume = Array.from(uniqueKeywordVolumes.values()).reduce((sum, v) => sum + v, 0);
+
+    // Step B & C: Calculate client volume and traffic using CTR model
+    // For each unique keyword, find client's best position and calculate traffic
+    const clientKeywordData = new Map<string, { volume: number; position: number | null }>();
+
+    for (const kw of allKeywords) {
+        if (clientDomains.has(kw.domain.toLowerCase())) {
+            const key = kw.keyword.toLowerCase().trim();
+            const existing = clientKeywordData.get(key);
+            if (!existing) {
+                clientKeywordData.set(key, {
+                    volume: kw.searchVolume || 0,
+                    position: kw.position
+                });
+            } else {
+                // Keep highest volume
+                if ((kw.searchVolume || 0) > existing.volume) {
+                    existing.volume = kw.searchVolume || 0;
+                }
+                // Keep best (lowest) position
+                if (kw.position !== null && (existing.position === null || kw.position < existing.position)) {
+                    existing.position = kw.position;
+                }
+            }
+        }
+    }
+
+    let clientVolume = 0;
+    let clientTraffic = 0;
+    for (const data of Array.from(clientKeywordData.values())) {
+        clientVolume += data.volume;
+        if (data.position !== null && data.position > 0) {
+            clientTraffic += Math.round(data.volume * getCTR(data.position));
+        }
+    }
+
+    // Step D: Calculate client traffic percent
+    const clientTrafficPercent = totalMarketVolume > 0
+        ? parseFloat(((clientTraffic / totalMarketVolume) * 100).toFixed(2))
+        : 0;
+
+    // Step E: Calculate each competitor's volume and traffic
+    const competitorResults: MarketSizeData['competitors'] = [];
+
+    for (const comp of mainCompetitors.slice(0, config.limit || 5)) {
+        const compDomain = comp.domain.toLowerCase();
+        const compKeywordData = new Map<string, { volume: number; position: number | null }>();
+
+        for (const kw of allKeywords) {
+            if (kw.domain.toLowerCase() === compDomain) {
+                const key = kw.keyword.toLowerCase().trim();
+                const existing = compKeywordData.get(key);
+                if (!existing) {
+                    compKeywordData.set(key, {
+                        volume: kw.searchVolume || 0,
+                        position: kw.position
+                    });
+                } else {
+                    if ((kw.searchVolume || 0) > existing.volume) {
+                        existing.volume = kw.searchVolume || 0;
+                    }
+                    if (kw.position !== null && (existing.position === null || kw.position < existing.position)) {
+                        existing.position = kw.position;
+                    }
+                }
+            }
+        }
+
+        let compVolume = 0;
+        let compTraffic = 0;
+        for (const data of Array.from(compKeywordData.values())) {
+            compVolume += data.volume;
+            if (data.position !== null && data.position > 0) {
+                compTraffic += Math.round(data.volume * getCTR(data.position));
+            }
+        }
+
+        const compTrafficPercent = totalMarketVolume > 0
+            ? parseFloat(((compTraffic / totalMarketVolume) * 100).toFixed(2))
+            : 0;
+
+        competitorResults.push({
+            domain: comp.domain,
+            volume: compVolume,
+            traffic: compTraffic,
+            trafficPercent: compTrafficPercent,
+        });
+    }
+
+    // Sort competitors by traffic descending
+    competitorResults.sort((a, b) => b.traffic - a.traffic);
+
+    return {
+        totalMarketVolume,
+        clientVolume,
+        clientTraffic,
+        clientTrafficPercent,
+        competitors: competitorResults,
+    };
+}
+
+// Q009: Execute ETV Comparison query
+// Data source: competitors.json + domain_overview.json
+// Compares ETV between Self and Main Competitor domains
+async function executeETVComparisonQuery(
+    clientCode: string,
+    config: { limit?: number }
+): Promise<ETVComparisonData> {
+    const competitors = await readCompetitors();
+    const domainOverview = await readDomainOverview();
+
+    // Filter to Self and Main Competitor only for this client
+    const relevantCompetitors = competitors.filter(
+        c => c.clientCode === clientCode &&
+            (c.competitionType === 'Self' || c.competitionType === 'Main Competitor') &&
+            c.isActive
+    );
+
+    // Build domain lookup from domain_overview
+    const overviewByDomain = new Map<string, { india: DomainOverviewRecord | null; global: DomainOverviewRecord | null }>();
+
+    for (const ov of domainOverview.filter(o => o.clientCode === clientCode)) {
+        const normalizedDomain = normalizeDomain(ov.domain);
+        if (!overviewByDomain.has(normalizedDomain)) {
+            overviewByDomain.set(normalizedDomain, { india: null, global: null });
+        }
+        const entry = overviewByDomain.get(normalizedDomain)!;
+        if (ov.locationCode === 'IN') {
+            entry.india = ov;
+        } else if (ov.locationCode === 'GL') {
+            entry.global = ov;
+        }
+    }
+
+    // Build result entries, deduplicating by normalized domain
+    const entries: ETVComparisonData['entries'] = [];
+    const seenDomains = new Set<string>();
+
+    for (const comp of relevantCompetitors) {
+        const normalizedDomain = normalizeDomain(comp.domain);
+
+        // Skip duplicate domains
+        if (seenDomains.has(normalizedDomain)) continue;
+        seenDomains.add(normalizedDomain);
+
+        const overview = overviewByDomain.get(normalizedDomain);
+
+        const etvIndia = overview?.india?.organicTrafficETV || 0;
+        const etvGlobal = overview?.global?.organicTrafficETV || 0;
+        const keywordsIndia = overview?.india?.organicKeywordsCount || 0;
+        const keywordsGlobal = overview?.global?.organicKeywordsCount || 0;
+
+        entries.push({
+            domain: comp.domain,
+            name: comp.name,
+            type: comp.competitionType as 'Self' | 'Main Competitor',
+            etvIndia: Math.round(etvIndia * 100) / 100,
+            etvGlobal: Math.round(etvGlobal * 100) / 100,
+            etvTotal: Math.round((etvIndia + etvGlobal) * 100) / 100,
+            keywordsIndia: keywordsIndia,
+            keywordsGlobal: keywordsGlobal,
+        });
+    }
+
+    // Sort by ETV Total descending, Self entries first
+    entries.sort((a, b) => {
+        if (a.type === 'Self' && b.type !== 'Self') return -1;
+        if (a.type !== 'Self' && b.type === 'Self') return 1;
+        return b.etvTotal - a.etvTotal;
+    });
+
+    // Apply limit
+    const limit = config.limit || 10;
+
+    return { entries: entries.slice(0, limit) };
+}
+
+// Q010: Execute Keyword Opportunity Matrix query
+// Data source: domain_keywords.json + competitors.json + AI Profile term dictionary
+// Includes keywords from Self + Main Competitor domains
+// Filter: Only keywords containing terms with bucket = 'include' from AI Keyword Builder
+// Rank Buckets: Top (1-10), Medium (11-30), Low (>30)
+// Volume Buckets: High (Top 30% >= P30), Low (Bottom 70% < P30)
+async function executeKeywordOpportunityMatrixQuery(
+    clientCode: string,
+    config: { limit?: number }
+): Promise<KeywordOpportunityMatrixData> {
+    const domainKeywords = await readDomainKeywords();
+    const competitors = await readCompetitors();
+    const aiProfiles = await readAiProfiles();
+
+    // Get AI profile and term dictionary
+    const profile = aiProfiles.find(p => p.clientCode === clientCode);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const termDictionary = (profile as any)?.ai_kw_builder_term_dictionary as { terms?: Array<{ term: string; bucket?: string }> } | undefined;
+    const terms = termDictionary?.terms || [];
+
+    // Build sets of terms by bucket for lookup
+    const includeTerms = new Set(
+        terms.filter(t => t.bucket === 'include').map(t => t.term.toLowerCase().trim())
+    );
+    const brandTerms = new Set(
+        terms.filter(t => t.bucket === 'brand').map(t => t.term.toLowerCase().trim())
+    );
+
+    // Get ALL relevant domains: Self + Main Competitors
+    const relevantCompetitors = competitors.filter(
+        c => c.clientCode === clientCode &&
+            (c.competitionType === 'Self' || c.competitionType === 'Main Competitor') &&
+            c.isActive
+    );
+
+    // ALSO add brandNames from Competitor Master to brandTerms
+    for (const comp of relevantCompetitors) {
+        const compBrandNames = comp.brandNames || [];
+        for (const bn of compBrandNames) {
+            if (bn && bn.trim()) {
+                brandTerms.add(bn.toLowerCase().trim());
+            }
+        }
+    }
+
+    // Helper to check if keyword contains any term from a bucket
+    const keywordMatchesBucket = (keyword: string, bucketTerms: Set<string>): boolean => {
+        const kwLower = keyword.toLowerCase().trim();
+        const termsArray = Array.from(bucketTerms);
+        for (const term of termsArray) {
+            // Check if keyword contains the term as a word/phrase
+            if (kwLower.includes(term)) return true;
+        }
+        return false;
+    };
+
+    if (relevantCompetitors.length === 0 || includeTerms.size === 0) {
+        return {
+            summary: {
+                coreAssets: 0, doingNothing: 0, lowHangingFruit: 0,
+                secondPriority: 0, longTermOpportunity: 0, canIgnore: 0, total: 0
+            },
+            p30Threshold: 0,
+            volumeRange: { min: 0, max: 0 },
+            keywords: []
+        };
+    }
+
+    // Build normalized set of ALL domains (Self + Main Competitors)
+    const allDomains = new Set(
+        relevantCompetitors.map(c => normalizeDomain(c.domain))
+    );
+
+    // Filter to keywords from ALL relevant domains with position data
+    // AND only keywords that contain at least one 'include' bucket term
+    // AND NOT containing any 'brand' bucket term
+    const allKws = domainKeywords.filter(k => {
+        if (k.clientCode !== clientCode) return false;
+        if (!allDomains.has(normalizeDomain(k.domain))) return false;
+        if (k.position === null || k.position <= 0) return false;
+
+        // Check if keyword matches include bucket and not brand bucket
+        const matchesInclude = keywordMatchesBucket(k.keyword, includeTerms);
+        const matchesBrand = keywordMatchesBucket(k.keyword, brandTerms);
+
+        return matchesInclude && !matchesBrand;
+    });
+
+    // Calculate P30 threshold for volume bucket (top 30%)
+    const volumes = allKws
+        .map(k => k.searchVolume || 0)
+        .filter(v => v > 0)
+        .sort((a, b) => b - a); // Sort descending for top percentile
+
+    const p30Index = Math.floor(volumes.length * 0.30);
+    const p30Threshold = volumes[p30Index] || 0;
+    const volumeMax = volumes[0] || 0;
+    const volumeMin = volumes[volumes.length - 1] || 0;
+
+    // Helper functions with new definitions
+    const getRankBucket = (position: number): RankBucket => {
+        if (position <= 10) return 'Top';
+        if (position <= 30) return 'Medium';
+        return 'Low';
+    };
+
+    const getOpportunityType = (rank: RankBucket, volume: VolumeBucket): OpportunityType => {
+        if (rank === 'Top' && volume === 'High') return 'Core Assets';
+        if (rank === 'Top' && volume === 'Low') return 'Doing Nothing';
+        if (rank === 'Medium' && volume === 'High') return 'Low-Hanging Fruit';
+        if (rank === 'Medium' && volume === 'Low') return 'Second Priority';
+        if (rank === 'Low' && volume === 'High') return 'Long-Term Opportunity';
+        return 'Can Ignore';
+    };
+
+    const getPriorityLevel = (type: OpportunityType): PriorityLevel => {
+        const priorities: Record<OpportunityType, PriorityLevel> = {
+            'Core Assets': 'Critical',
+            'Doing Nothing': 'Low',
+            'Low-Hanging Fruit': 'Very High',
+            'Second Priority': 'Medium',
+            'Long-Term Opportunity': 'Medium-High',
+            'Can Ignore': 'None'
+        };
+        return priorities[type];
+    };
+
+    const getDescription = (type: OpportunityType): string => {
+        const descriptions: Record<OpportunityType, string> = {
+            'Core Assets': 'Maintain, watchful - don\'t lose position',
+            'Doing Nothing': 'Stable, no action needed',
+            'Low-Hanging Fruit': 'Priority opportunity!',
+            'Second Priority': 'Opportunity of 2nd priority',
+            'Long-Term Opportunity': 'Tough but worth pursuing',
+            'Can Ignore': 'Deprioritize'
+        };
+        return descriptions[type];
+    };
+
+    // Build domain type lookup (Self vs Competitor)
+    const domainTypeMap = new Map<string, string>();
+    for (const comp of relevantCompetitors) {
+        domainTypeMap.set(normalizeDomain(comp.domain), comp.competitionType || 'Unknown');
+    }
+
+    // Classify all keywords
+    const classifiedKeywords: KeywordOpportunityMatrixData['keywords'] = [];
+    const summary = {
+        coreAssets: 0,
+        doingNothing: 0,
+        lowHangingFruit: 0,
+        secondPriority: 0,
+        longTermOpportunity: 0,
+        canIgnore: 0,
+        total: 0
+    };
+
+    for (const kw of allKws) {
+        const position = kw.position!;
+        const volume = kw.searchVolume || 0;
+        const rankBucket = getRankBucket(position);
+        const volumeBucket: VolumeBucket = volume >= p30Threshold ? 'High' : 'Low';
+        const opportunityType = getOpportunityType(rankBucket, volumeBucket);
+        const priorityLevel = getPriorityLevel(opportunityType);
+        const locationName = LOCATION_CODE_TO_NAME[kw.locationCode] || kw.locationCode;
+        const domainType = domainTypeMap.get(normalizeDomain(kw.domain)) || 'Unknown';
+
+        // Update summary counts
+        summary.total++;
+        switch (opportunityType) {
+            case 'Core Assets': summary.coreAssets++; break;
+            case 'Doing Nothing': summary.doingNothing++; break;
+            case 'Low-Hanging Fruit': summary.lowHangingFruit++; break;
+            case 'Second Priority': summary.secondPriority++; break;
+            case 'Long-Term Opportunity': summary.longTermOpportunity++; break;
+            case 'Can Ignore': summary.canIgnore++; break;
+        }
+
+        classifiedKeywords.push({
+            keyword: kw.keyword,
+            domain: kw.domain,
+            domainType, // 'Self' or 'Main Competitor'
+            location: locationName,
+            position,
+            volume,
+            rankBucket,
+            volumeBucket,
+            opportunityType,
+            priorityLevel,
+            description: getDescription(opportunityType)
+        });
+    }
+
+    // Sort by volume descending within each bucket
+    classifiedKeywords.sort((a, b) => b.volume - a.volume);
+
+    // Limit results per bucket
+    const limit = config.limit || 50;
+
+    return {
+        summary,
+        p30Threshold,
+        volumeRange: { min: volumeMin, max: volumeMax },
+        keywords: classifiedKeywords.slice(0, limit * 6) // Allow more keywords
+    };
+}
+
+// Q011: Execute Brand Power Report query
+// Data source: domain_keywords.json + competitors.json + AI Profile term dictionary
+// Groups brand keywords by domain to show brand power comparison
+async function executeBrandKeywordsMatrixQuery(
+    clientCode: string,
+    config: { limit?: number }
+): Promise<BrandPowerData> {
+    const domainKeywords = await readDomainKeywords();
+    const competitors = await readCompetitors();
+    const aiProfiles = await readAiProfiles();
+
+    // Get AI profile and term dictionary
+    const profile = aiProfiles.find(p => p.clientCode === clientCode);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const termDictionary = (profile as any)?.ai_kw_builder_term_dictionary as { terms?: Array<{ term: string; bucket?: string }> } | undefined;
+    const terms = termDictionary?.terms || [];
+
+    // Build set of brand terms from AI term dictionary
+    const brandTerms = new Set(
+        terms.filter(t => t.bucket === 'brand').map(t => t.term.toLowerCase().trim())
+    );
+
+    // Get ALL relevant domains: Self + Main Competitors
+    const relevantCompetitors = competitors.filter(
+        c => c.clientCode === clientCode &&
+            (c.competitionType === 'Self' || c.competitionType === 'Main Competitor') &&
+            c.isActive
+    );
+
+    // ALSO add brandNames from Competitor Master to brandTerms
+    for (const comp of relevantCompetitors) {
+        const compBrandNames = comp.brandNames || [];
+        for (const bn of compBrandNames) {
+            if (bn && bn.trim()) {
+                brandTerms.add(bn.toLowerCase().trim());
+            }
+        }
+    }
+
+    // Helper to check if keyword contains any brand term
+    const keywordMatchesBrand = (keyword: string): boolean => {
+        const kwLower = keyword.toLowerCase().trim();
+        const termsArray = Array.from(brandTerms);
+        for (const term of termsArray) {
+            if (kwLower.includes(term)) return true;
+        }
+        return false;
+    };
+
+    if (relevantCompetitors.length === 0 || brandTerms.size === 0) {
+        return {
+            summary: {
+                totalDomains: 0,
+                totalBrandKeywords: 0,
+                totalBrandVolume: 0
+            },
+            domains: []
+        };
+    }
+
+    // Build domain info lookup (domain -> { type, brandName })
+    const domainInfoMap = new Map<string, { type: 'Self' | 'Main Competitor'; brandName: string }>();
+    for (const comp of relevantCompetitors) {
+        const normalizedDomain = normalizeDomain(comp.domain);
+        // Get brand name from competitor's brandNames array or derive from name/domain
+        const brandName = comp.brandNames?.[0] || comp.name || comp.domain.replace(/\.(com|in|co\.in|org|net)$/i, '');
+        domainInfoMap.set(normalizedDomain, {
+            type: comp.competitionType as 'Self' | 'Main Competitor',
+            brandName
+        });
+    }
+
+    // Build normalized set of ALL domains
+    const allDomains = new Set(
+        relevantCompetitors.map(c => normalizeDomain(c.domain))
+    );
+
+    // Filter for BRAND keywords and group by domain
+    const domainBrandData = new Map<string, {
+        keywords: Array<{ keyword: string; location: string; position: number; volume: number }>;
+        totalVolume: number;
+    }>();
+
+    for (const kw of domainKeywords) {
+        if (kw.clientCode !== clientCode) continue;
+
+        const normalizedDomain = normalizeDomain(kw.domain);
+        if (!allDomains.has(normalizedDomain)) continue;
+        if (kw.position === null || kw.position <= 0) continue;
+        if (!keywordMatchesBrand(kw.keyword)) continue;
+
+        const locationName = LOCATION_CODE_TO_NAME[kw.locationCode] || kw.locationCode;
+        const volume = kw.searchVolume || 0;
+
+        if (!domainBrandData.has(normalizedDomain)) {
+            domainBrandData.set(normalizedDomain, { keywords: [], totalVolume: 0 });
+        }
+
+        const domainData = domainBrandData.get(normalizedDomain)!;
+        domainData.keywords.push({
+            keyword: kw.keyword,
+            location: locationName,
+            position: kw.position,
+            volume
+        });
+        domainData.totalVolume += volume;
+    }
+
+    // Build result array
+    const domainResults: BrandPowerData['domains'] = [];
+    let totalBrandKeywords = 0;
+    let totalBrandVolume = 0;
+
+    for (const [normalizedDomain, data] of Array.from(domainBrandData.entries())) {
+        const info = domainInfoMap.get(normalizedDomain);
+        if (!info) continue;
+
+        // Sort keywords by volume desc
+        data.keywords.sort((a, b) => b.volume - a.volume);
+
+        // Find original domain case from competitors
+        const originalDomain = relevantCompetitors.find(
+            c => normalizeDomain(c.domain) === normalizedDomain
+        )?.domain || normalizedDomain;
+
+        domainResults.push({
+            domain: originalDomain,
+            domainType: info.type,
+            brandName: info.brandName,
+            brandKeywordCount: data.keywords.length,
+            totalBrandVolume: data.totalVolume,
+            keywords: data.keywords.slice(0, config.limit || 50) // Limit keywords per domain
+        });
+
+        totalBrandKeywords += data.keywords.length;
+        totalBrandVolume += data.totalVolume;
+    }
+
+    // Sort domains by total brand volume (Self first, then by volume)
+    domainResults.sort((a, b) => {
+        if (a.domainType !== b.domainType) {
+            return a.domainType === 'Self' ? -1 : 1;
+        }
+        return b.totalBrandVolume - a.totalBrandVolume;
+    });
+
+    return {
+        summary: {
+            totalDomains: domainResults.length,
+            totalBrandKeywords,
+            totalBrandVolume
+        },
+        domains: domainResults
+    };
+}
+
+
+// Get source link for data verification
+function getSourceLink(queryType: string): DataSourceLink {
+    switch (queryType) {
+        case 'domain-info':
+            return { label: 'Client Master + AI Client Profile', href: '/clients' };
+        case 'keyword-volume':
+            return { label: 'Keyword API Data', href: '/keywords/api-data' };
+        case 'client-rankings':
+            return { label: 'Domain Keywords', href: '/keywords/domain-keywords' };
+        case 'keywords-absence':
+            return { label: 'Client Rank', href: '/curated/client-rank' };
+        case 'competitor-global':
+            return { label: 'Competitors + Client Rank', href: '/curated/client-rank' };
+        case 'market-size':
+            return { label: 'Domain Keywords (CTR Model)', href: '/keywords/domain-keywords' };
+        case 'etv-comparison':
+            return { label: 'Competitors + Domain Overview', href: '/keywords/domain-overview' };
+        case 'keyword-opportunity-matrix':
+            return { label: 'Domain Keywords (Opportunity Matrix)', href: '/keywords/domain-keywords' };
+        case 'brand-keywords-matrix':
+            return { label: 'Brand Keywords (P25 Matrix)', href: '/keywords/domain-keywords' };
+        default:
+            return { label: 'Unknown Source', href: '/' };
+    }
+}
+
+// POST /api/reports/dashboard/execute - Execute a query for a client
+export async function POST(request: Request) {
+    try {
+        const body = await request.json();
+        const { clientCode, queryId } = body;
+
+        if (!clientCode || !queryId) {
+            return NextResponse.json(
+                { success: false, error: 'clientCode and queryId are required' },
+                { status: 400 }
+            );
+        }
+
+        const query = await getQueryById(queryId);
+        if (!query) {
+            return NextResponse.json(
+                { success: false, error: `Query not found: ${queryId}` },
+                { status: 404 }
+            );
+        }
+
+        let data: unknown;
+
+        switch (query.queryType) {
+            case 'domain-info':
+                data = await executeDomainInfoQuery(clientCode);
+                break;
+            case 'keyword-volume':
+                data = await executeKeywordVolumeQuery(clientCode, query.config);
+                break;
+            case 'client-rankings':
+                data = await executeClientRankingsQuery(clientCode);
+                break;
+            case 'keywords-absence':
+                data = await executeKeywordsAbsenceQuery(clientCode, query.config);
+                break;
+            case 'competitor-global':
+                data = await executeCompetitorGlobalQuery(clientCode, query.config);
+                break;
+            case 'market-size':
+                data = await executeMarketSizeQuery(clientCode, query.config);
+                break;
+            case 'etv-comparison':
+                data = await executeETVComparisonQuery(clientCode, query.config);
+                break;
+            case 'keyword-opportunity-matrix':
+                data = await executeKeywordOpportunityMatrixQuery(clientCode, query.config);
+                break;
+            case 'brand-keywords-matrix':
+                data = await executeBrandKeywordsMatrixQuery(clientCode, query.config);
+                break;
+            default:
+                data = { message: 'Custom query type - no execution logic defined' };
+        }
+
+        const result: DashboardQueryResult = {
+            queryId: query.id,
+            clientCode,
+            title: query.title,
+            status: query.status,
+            queryType: query.queryType,
+            tooltip: query.tooltip,
+            data,
+            executedAt: new Date().toISOString(),
+            sourceLink: getSourceLink(query.queryType),
+        };
+
+        return NextResponse.json({ success: true, result });
+    } catch (error) {
+        console.error('Failed to execute query:', error);
+        return NextResponse.json(
+            {
+                success: false,
+                error: error instanceof Error ? error.message : 'Failed to execute query'
+            },
+            { status: 500 }
+        );
+    }
+}

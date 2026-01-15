@@ -1,0 +1,40 @@
+{
+  "name": "seo-keyword-intelligence",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 5000 -H 0.0.0.0",
+    "build": "next build",
+    "start": "next start -p 5000 -H 0.0.0.0"
+  },
+  "dependencies": {
+    "@auth/prisma-adapter": "^2.11.1",
+    "@prisma/adapter-better-sqlite3": "^7.2.0",
+    "@prisma/client": "^7.2.0",
+    "@types/pdfkit": "^0.17.4",
+    "@types/xml2js": "^0.4.14",
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^12.6.0",
+    "exceljs": "^4.4.0",
+    "next": "^14.2.35",
+    "next-auth": "^4.24.13",
+    "openai": "^6.10.0",
+    "pdfkit": "^0.17.2",
+    "prisma": "^7.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "uuid": "^9.0.1",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^20.14.10",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/uuid": "^9.0.8",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.3"
+  }
+}

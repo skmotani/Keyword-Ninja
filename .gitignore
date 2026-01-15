@@ -1,0 +1,68 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Testing
+coverage
+
+# Next.js
+.next/
+out/
+
+# Production
+build
+
+# Misc
+.DS_Store
+*.pem
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
+.env*.local
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Data
+data/serp_raw/
+data/jobs/
+data/serp_results/
+data/api_logs/
+data/*.json
+!data/client_positions.json
+!data/curated_keywords.json
+!data/export_page_registry.json
+!data/export_column_registry.json
+!data/dataforseo_glossary.json
+!data/page_intent_summaries.json
+!data/page_intent_pages.json
+# Allow basics but ignore generated logs
+data/domain_logs/
+
+# AI Models (too large, 2.5GB+)
+models/
+
+# Python virtual environment (1GB+)
+ai_brain_env/
+
+# Prisma SQLite database (local data, not in git)
+prisma/dev.db
+prisma/dev.db-journal
+dev.db
+dev.db-journal
+
+# Environment files
+.env
+.env.local
+.env.production
+
+/src/generated/prisma

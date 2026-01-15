@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "clientCode": "01",
+    "selectedDomain": "www.meeraind.com",
+    "locations": {
+      "IN": {
+        "success": true,
+        "metricsCount": 48,
+        "serpTasksCount": 48,
+        "serpKeywordsWithOrganicCount": 48,
+        "serpKeywordsEmptyCount": 0,
+        "serpKeywordsErroredCount": 0,
+        "error": null
+      },
+      "GL": {
+        "success": true,
+        "metricsCount": 48,
+        "serpTasksCount": 48,
+        "serpKeywordsWithOrganicCount": 48,
+        "serpKeywordsEmptyCount": 0,
+        "serpKeywordsErroredCount": 0,
+        "error": null
+      }
+    },
+    "totalUpserted": 96,
+    "logFile": "",
+    "durationMs": 2437179
+  },
+  "logs": [
+    "[03:32:22] Fetching curated and existing keywords for client: 01",
+    "[03:32:22] Identified 48 keywords to process.",
+    "[03:32:22] >>> Processing Location: IN",
+    "[03:32:22] [Metrics] Fetching for 48 keywords (IN)...",
+    "[03:32:26] [Metrics] Processed 48 metrics.",
+    "[03:32:26] [SERP] Fetching for 48 keywords (IN)...",
+    "[03:52:22] [SERP] Received 48 results.",
+    "[03:52:22] >>> Processing Location: GL",
+    "[03:52:22] [Metrics] Fetching for 48 keywords (GL)...",
+    "[03:52:26] [Metrics] Processed 48 metrics.",
+    "[03:52:26] [SERP] Fetching for 48 keywords (GL)...",
+    "[04:12:59] [SERP] Received 48 results.",
+    "[04:12:59] Upserting 96 records..."
+  ]
+}
