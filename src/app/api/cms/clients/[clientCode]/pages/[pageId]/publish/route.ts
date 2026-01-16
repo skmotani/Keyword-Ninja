@@ -2,7 +2,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { submitSingleUrl, generateIndexNowKey } from '@/lib/cms/cloudflare';
+import { submitSingleUrl, generateIndexNowKey } from '@/lib/cms/seo/indexnow';
 
 interface Params {
     params: { clientCode: string; pageId: string };
