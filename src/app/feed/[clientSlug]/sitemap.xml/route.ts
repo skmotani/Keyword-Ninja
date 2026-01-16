@@ -38,10 +38,17 @@ export async function GET(request: NextRequest, { params }: Params) {
 
         const baseUrl = `https://${cmsConfig.client.mainDomain}`;
 
-        const urls = cmsConfig.client.cmsPages.map((page) => ({
+        type SitemapUrl = {
+            loc: string;
+            lastmod: string;
+            changefreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+            priority: number;
+        };
+
+        const urls: SitemapUrl[] = cmsConfig.client.cmsPages.map((page) => ({
             loc: `${baseUrl}/feed/${clientSlug}/${page.slug}`,
             lastmod: page.updatedAt.toISOString().split('T')[0],
-            changefreq: 'weekly' as const,
+            changefreq: 'weekly',
             priority: 0.8,
         }));
 
@@ -49,7 +56,7 @@ export async function GET(request: NextRequest, { params }: Params) {
         urls.unshift({
             loc: `${baseUrl}/feed/${clientSlug}`,
             lastmod: new Date().toISOString().split('T')[0],
-            changefreq: 'daily' as const,
+            changefreq: 'daily',
             priority: 1.0,
         });
 
