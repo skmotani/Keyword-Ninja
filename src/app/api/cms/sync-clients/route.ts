@@ -2,6 +2,7 @@
 
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { Prisma } from '@prisma/client';
 import { getClients } from '@/lib/db';
 
 export async function POST() {
@@ -40,7 +41,9 @@ export async function POST() {
                             industry: client.industry || null,
                             notes: client.notes || null,
                             isActive: client.isActive !== false,
-                            businessMetrics: client.businessMetrics || null,
+                            businessMetrics: client.businessMetrics
+                                ? (client.businessMetrics as Prisma.InputJsonValue)
+                                : Prisma.DbNull,
                         },
                     });
                     results.updated++;
@@ -55,7 +58,9 @@ export async function POST() {
                             industry: client.industry || null,
                             notes: client.notes || null,
                             isActive: client.isActive !== false,
-                            businessMetrics: client.businessMetrics || null,
+                            businessMetrics: client.businessMetrics
+                                ? (client.businessMetrics as Prisma.InputJsonValue)
+                                : Prisma.DbNull,
                         },
                     });
                     results.synced++;
