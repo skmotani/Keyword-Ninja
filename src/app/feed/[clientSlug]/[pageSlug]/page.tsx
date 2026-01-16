@@ -54,32 +54,38 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 // Static params for build (optional - for static generation)
+// During Docker build, DATABASE_URL may not be available, so we return empty array
 export async function generateStaticParams() {
-    const configs = await prisma.cmsClientConfig.findMany({
-        include: {
-            client: {
-                include: {
-                    cmsPages: {
-                        where: { status: 'published' },
-                        select: { slug: true },
+    try {
+        const configs = await prisma.cmsClientConfig.findMany({
+            include: {
+                client: {
+                    include: {
+                        cmsPages: {
+                            where: { status: 'published' },
+                            select: { slug: true },
+                        },
                     },
                 },
             },
-        },
-    });
+        });
 
-    const paths: Array<{ clientSlug: string; pageSlug: string }> = [];
+        const paths: Array<{ clientSlug: string; pageSlug: string }> = [];
 
-    for (const config of configs) {
-        for (const page of config.client.cmsPages) {
-            paths.push({
-                clientSlug: config.slug,
-                pageSlug: page.slug,
-            });
+        for (const config of configs) {
+            for (const page of config.client.cmsPages) {
+                paths.push({
+                    clientSlug: config.slug,
+                    pageSlug: page.slug,
+                });
+            }
         }
-    }
 
-    return paths;
+        return paths;
+    } catch {
+        // Database not available during build - return empty array for dynamic rendering
+        return [];
+    }
 }
 
 export default async function FeedPage({ params }: PageProps) {
