@@ -13,7 +13,7 @@ COPY package*.json ./
 COPY prisma ./prisma/
 
 # Install dependencies (postinstall runs prisma generate)
-RUN npm ci
+RUN npm install --legacy-peer-deps
 
 # Copy all remaining source files
 COPY . .
