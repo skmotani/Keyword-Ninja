@@ -98,7 +98,7 @@ export async function GET() {
         const jsonCodes = new Set(jsonClients.map((c: { code: string }) => c.code));
         const prismaCodes = new Set(prismaClients.map((c) => c.code));
 
-        const missingInPrisma = [...jsonCodes].filter((c) => !prismaCodes.has(c));
+        const missingInPrisma = Array.from(jsonCodes).filter((c) => !prismaCodes.has(c));
 
         return NextResponse.json({
             jsonCount: jsonClients.length,
