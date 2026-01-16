@@ -2,6 +2,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { Prisma } from '@prisma/client';
 import { submitSingleUrl, generateIndexNowKey } from '@/lib/cms/seo/indexnow';
 
 interface Params {
@@ -114,11 +115,11 @@ export async function POST(request: NextRequest, { params }: Params) {
                 pageId,
                 type: action === 'publish' ? 'single_page' : action,
                 status: 'completed',
-                result: {
+                result: JSON.parse(JSON.stringify({
                     action,
                     newStatus,
                     indexNow: indexNowResult,
-                },
+                })) as Prisma.InputJsonValue,
                 completedAt: new Date(),
             },
         });
