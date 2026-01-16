@@ -40,6 +40,7 @@ export default function ClientSettingsPage() {
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+    const [activeTab, setActiveTab] = useState<'cms' | 'seo' | 'publishing' | 'integrations'>('cms');
 
     useEffect(() => {
         fetchClientInfo();
@@ -47,16 +48,50 @@ export default function ClientSettingsPage() {
 
     async function fetchClientInfo() {
         try {
-            const res = await fetch('/api/clients');
-            const clients = await res.json();
-            const found = clients.find((c: ClientInfo) => c.code === clientCode);
-            if (found) {
-                setClient(found);
-                // Initialize slug from client code if not set
-                setConfig(prev => ({
-                    ...prev,
-                    slug: prev.slug || found.code.toLowerCase().replace(/\s+/g, '-'),
-                }));
+            // Try CMS API first for full config
+            const cmsRes = await fetch(`/api/cms/clients/${clientCode}`);
+            if (cmsRes.ok) {
+                const data = await cmsRes.json();
+                setClient({
+                    code: data.code,
+                    name: data.name,
+                    mainDomain: data.mainDomain || '',
+                    domains: data.domains || [],
+                });
+                // Load CMS config if exists
+                if (data.cmsConfig) {
+                    setConfig({
+                        slug: data.cmsConfig.slug || data.code,
+                        logo: data.cmsConfig.logo || '',
+                        cfApiToken: data.cmsConfig.cfApiToken || '',
+                        cfZoneId: data.cmsConfig.cfZoneId || '',
+                        cfAccountId: data.cmsConfig.cfAccountId || '',
+                        defaultOgImage: data.cmsConfig.defaultOgImage || '',
+                        robotsTxt: data.cmsConfig.robotsTxt || '',
+                        gaTrackingId: data.cmsConfig.gaTrackingId || '',
+                        gscPropertyUrl: data.cmsConfig.gscPropertyUrl || '',
+                        autoPublish: data.cmsConfig.autoPublish || false,
+                        requireReview: data.cmsConfig.requireReview ?? true,
+                        openaiApiKey: data.cmsConfig.openaiApiKey || '',
+                    });
+                } else {
+                    setConfig(prev => ({
+                        ...prev,
+                        slug: data.code.toLowerCase().replace(/\s+/g, '-'),
+                    }));
+                }
+            } else {
+                // Fallback to basic clients API
+                const res = await fetch('/api/clients');
+                const clients = await res.json();
+                const found = clients.find((c: ClientInfo) => c.code === clientCode);
+                if (found) {
+                    setClient(found);
+                    setConfig(prev => ({
+                        ...prev,
+                        slug: prev.slug || found.code.toLowerCase().replace(/\s+/g, '-'),
+                    }));
+                }
             }
         } catch (error) {
             console.error('Failed to fetch client info:', error);
@@ -68,9 +103,32 @@ export default function ClientSettingsPage() {
     async function handleSave() {
         setSaving(true);
         try {
-            // This will save to CmsClientConfig once DB is available
-            // For now, just show success
-            setNotification({ type: 'success', message: 'Settings saved (DB pending)' });
+            const res = await fetch(`/api/cms/clients/${clientCode}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    cmsConfig: {
+                        slug: config.slug,
+                        logo: config.logo,
+                        cfApiToken: config.cfApiToken,
+                        cfZoneId: config.cfZoneId,
+                        cfAccountId: config.cfAccountId,
+                        defaultOgImage: config.defaultOgImage,
+                        robotsTxt: config.robotsTxt,
+                        gaTrackingId: config.gaTrackingId,
+                        gscPropertyUrl: config.gscPropertyUrl,
+                        autoPublish: config.autoPublish,
+                        requireReview: config.requireReview,
+                        openaiApiKey: config.openaiApiKey,
+                    },
+                }),
+            });
+
+            if (!res.ok) {
+                throw new Error('Failed to save settings');
+            }
+
+            setNotification({ type: 'success', message: 'Settings saved successfully' });
             setTimeout(() => setNotification(null), 3000);
         } catch (error) {
             setNotification({ type: 'error', message: 'Failed to save settings' });
@@ -105,12 +163,52 @@ export default function ClientSettingsPage() {
 
             {notification && (
                 <div className={`mb-4 p-3 rounded-lg text-sm ${notification.type === 'success'
-                        ? 'bg-green-50 text-green-800 border border-green-200'
-                        : 'bg-red-50 text-red-800 border border-red-200'
+                    ? 'bg-green-50 text-green-800 border border-green-200'
+                    : 'bg-red-50 text-red-800 border border-red-200'
                     }`}>
                     {notification.message}
                 </div>
             )}
+
+            {/* Tab Navigation */}
+            <div className="flex border-b mb-6">
+                <button
+                    onClick={() => setActiveTab('cms')}
+                    className={`px-4 py-3 text-sm font-medium transition-colors ${activeTab === 'cms'
+                        ? 'border-b-2 border-indigo-600 text-indigo-600'
+                        : 'text-gray-600 hover:text-gray-800'
+                        }`}
+                >
+                    📄 CMS Settings
+                </button>
+                <button
+                    onClick={() => setActiveTab('seo')}
+                    className={`px-4 py-3 text-sm font-medium transition-colors ${activeTab === 'seo'
+                        ? 'border-b-2 border-indigo-600 text-indigo-600'
+                        : 'text-gray-600 hover:text-gray-800'
+                        }`}
+                >
+                    🔍 SEO Settings
+                </button>
+                <button
+                    onClick={() => setActiveTab('publishing')}
+                    className={`px-4 py-3 text-sm font-medium transition-colors ${activeTab === 'publishing'
+                        ? 'border-b-2 border-indigo-600 text-indigo-600'
+                        : 'text-gray-600 hover:text-gray-800'
+                        }`}
+                >
+                    🚀 Publishing
+                </button>
+                <button
+                    onClick={() => setActiveTab('integrations')}
+                    className={`px-4 py-3 text-sm font-medium transition-colors ${activeTab === 'integrations'
+                        ? 'border-b-2 border-indigo-600 text-indigo-600'
+                        : 'text-gray-600 hover:text-gray-800'
+                        }`}
+                >
+                    ⚡ Integrations
+                </button>
+            </div>
 
             <div className="space-y-6">
                 {/* CMS Slug */}

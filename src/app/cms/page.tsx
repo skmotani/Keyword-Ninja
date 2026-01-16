@@ -37,15 +37,20 @@ export default function CmsDashboardPage() {
 
     async function fetchClients() {
         try {
-            const res = await fetch('/api/clients');
+            const res = await fetch('/api/cms/clients');
             const data = await res.json();
-            // For now, just map client data - CMS stats will come from CMS tables later
-            const clientSummaries: ClientSummary[] = data.map((c: { code: string; name: string }) => ({
+            // Map client data with real CMS stats
+            const clientSummaries: ClientSummary[] = data.map((c: {
+                code: string;
+                name: string;
+                pageCount?: number;
+                topicCount?: number;
+            }) => ({
                 code: c.code,
                 name: c.name,
-                pagesCount: 0,
-                topicsCount: 0,
-                publishedCount: 0,
+                pagesCount: c.pageCount || 0,
+                topicsCount: c.topicCount || 0,
+                publishedCount: 0, // Will be fetched from API later
                 draftCount: 0,
             }));
             setClients(clientSummaries);
@@ -180,19 +185,25 @@ export default function CmsDashboardPage() {
                     </div>
                 </Link>
 
-                <div className="bg-gray-50 rounded-lg border border-dashed border-gray-300 p-6 opacity-60">
-                    <div className="text-lg font-semibold text-gray-500 mb-2">🤖 AI Content Engine</div>
-                    <div className="text-sm text-gray-500">
-                        Coming in Phase 3 - Generate content with AI prompts.
+                <Link
+                    href="/cms/templates"
+                    className="bg-white rounded-lg shadow-sm border p-6 hover:shadow-md transition-shadow"
+                >
+                    <div className="text-lg font-semibold text-gray-900 mb-2">🤖 AI Content Engine</div>
+                    <div className="text-sm text-gray-600">
+                        Generate full page content with AI. Create hero, body, FAQs, and meta data.
                     </div>
-                </div>
+                </Link>
 
-                <div className="bg-gray-50 rounded-lg border border-dashed border-gray-300 p-6 opacity-60">
-                    <div className="text-lg font-semibold text-gray-500 mb-2">☁️ Cloudflare Setup</div>
-                    <div className="text-sm text-gray-500">
-                        Coming in Phase 6 - Configure DNS and deployment.
+                <Link
+                    href="/cms/templates"
+                    className="bg-white rounded-lg shadow-sm border p-6 hover:shadow-md transition-shadow"
+                >
+                    <div className="text-lg font-semibold text-gray-900 mb-2">☁️ Cloudflare Setup</div>
+                    <div className="text-sm text-gray-600">
+                        Configure DNS, manage cache, and deploy to client domains.
                     </div>
-                </div>
+                </Link>
             </div>
         </div>
     );

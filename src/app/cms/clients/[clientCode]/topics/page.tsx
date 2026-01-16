@@ -62,10 +62,13 @@ export default function ClientTopicsPage() {
 
     async function fetchTopics() {
         try {
-            // This will be replaced with actual CMS API once database is set up
-            setTopics([]);
+            const res = await fetch(`/api/cms/clients/${clientCode}/topics`);
+            if (!res.ok) throw new Error('Failed to fetch topics');
+            const data = await res.json();
+            setTopics(data.topics || []);
         } catch (error) {
             console.error('Failed to fetch topics:', error);
+            setTopics([]);
         } finally {
             setLoading(false);
         }
@@ -114,10 +117,10 @@ export default function ClientTopicsPage() {
                             Each topic represents a content opportunity based on keyword clusters and search intent.
                         </div>
                         <Link
-                            href={`/keywords/intent-classification`}
+                            href={`/keywords/cluster-intent-studio`}
                             className="inline-block mt-2 text-sm text-purple-600 hover:text-purple-800 underline"
                         >
-                            Go to Intent Classification →
+                            Go to Cluster & Intent Studio →
                         </Link>
                     </div>
                 </div>
@@ -131,14 +134,20 @@ export default function ClientTopicsPage() {
                             key={status}
                             onClick={() => setStatusFilter(status)}
                             className={`px-3 py-1.5 text-sm rounded-full transition-colors ${statusFilter === status
-                                    ? 'bg-purple-600 text-white'
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                ? 'bg-purple-600 text-white'
+                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                 }`}
                         >
                             {status.replace('_', ' ').charAt(0).toUpperCase() + status.replace('_', ' ').slice(1)} ({count})
                         </button>
                     ))}
                 </div>
+                <Link
+                    href={`/keywords/cluster-intent-studio?client=${clientCode}`}
+                    className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 text-sm"
+                >
+                    + Import Topics
+                </Link>
             </div>
 
             {/* Topics Table */}
@@ -151,10 +160,10 @@ export default function ClientTopicsPage() {
                             Run Intent Analysis on client keywords to generate topics for content creation.
                         </div>
                         <Link
-                            href={`/keywords/intent-classification`}
+                            href={`/keywords/cluster-intent-studio?client=${clientCode}`}
                             className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 text-sm inline-block"
                         >
-                            Go to Intent Analysis
+                            Go to Cluster & Intent Studio
                         </Link>
                     </div>
                 ) : (

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
 
@@ -41,6 +41,7 @@ const systemTemplates: Template[] = [
 
 export default function TemplatesPage() {
     const [templates] = React.useState<Template[]>(systemTemplates);
+    const [previewTemplate, setPreviewTemplate] = useState<Template | null>(null);
 
     return (
         <div>
@@ -114,7 +115,7 @@ export default function TemplatesPage() {
                             <div className="flex gap-2">
                                 <button
                                     className="flex-1 text-sm text-indigo-600 hover:text-indigo-800 py-2 border border-indigo-200 rounded hover:bg-indigo-50 transition-colors"
-                                    onClick={() => alert('Preview coming in Phase 2')}
+                                    onClick={() => setPreviewTemplate(template)}
                                 >
                                     Preview
                                 </button>
@@ -208,6 +209,60 @@ export default function TemplatesPage() {
                     </div>
                 </div>
             </div>
+
+            {/* Preview Modal */}
+            {previewTemplate && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[80vh] overflow-hidden">
+                        <div className="flex items-center justify-between p-4 border-b">
+                            <h2 className="text-lg font-semibold">{previewTemplate.name} Preview</h2>
+                            <button
+                                onClick={() => setPreviewTemplate(null)}
+                                className="text-gray-500 hover:text-gray-700 text-2xl"
+                            >
+                                ×
+                            </button>
+                        </div>
+                        <div className="p-6 overflow-y-auto max-h-[60vh]">
+                            <div className="text-6xl text-center mb-4">
+                                {previewTemplate.type === 'blog' ? '📝' : '🛒'}
+                            </div>
+                            <h3 className="font-medium text-center mb-2">{previewTemplate.name}</h3>
+                            <p className="text-sm text-gray-600 text-center mb-6">{previewTemplate.description}</p>
+
+                            <h4 className="font-medium mb-3">Template Sections:</h4>
+                            <ul className="space-y-2 text-sm">
+                                {previewTemplate.type === 'blog' ? (
+                                    <>
+                                        <li className="flex items-center gap-2"><span className="w-2 h-2 bg-indigo-500 rounded-full"></span> Hero Section</li>
+                                        <li className="flex items-center gap-2"><span className="w-2 h-2 bg-indigo-500 rounded-full"></span> Table of Contents</li>
+                                        <li className="flex items-center gap-2"><span className="w-2 h-2 bg-indigo-500 rounded-full"></span> Main Body Content</li>
+                                        <li className="flex items-center gap-2"><span className="w-2 h-2 bg-indigo-500 rounded-full"></span> FAQ Section</li>
+                                        <li className="flex items-center gap-2"><span className="w-2 h-2 bg-indigo-500 rounded-full"></span> Author Bio</li>
+                                        <li className="flex items-center gap-2"><span className="w-2 h-2 bg-indigo-500 rounded-full"></span> Related Posts</li>
+                                    </>
+                                ) : (
+                                    <>
+                                        <li className="flex items-center gap-2"><span className="w-2 h-2 bg-green-500 rounded-full"></span> Category Hero</li>
+                                        <li className="flex items-center gap-2"><span className="w-2 h-2 bg-green-500 rounded-full"></span> Product Filters</li>
+                                        <li className="flex items-center gap-2"><span className="w-2 h-2 bg-green-500 rounded-full"></span> Product Grid</li>
+                                        <li className="flex items-center gap-2"><span className="w-2 h-2 bg-green-500 rounded-full"></span> Category Description</li>
+                                        <li className="flex items-center gap-2"><span className="w-2 h-2 bg-green-500 rounded-full"></span> Customer Reviews</li>
+                                    </>
+                                )}
+                            </ul>
+                        </div>
+                        <div className="p-4 border-t flex justify-end">
+                            <button
+                                onClick={() => setPreviewTemplate(null)}
+                                className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700"
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

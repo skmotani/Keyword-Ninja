@@ -56,11 +56,13 @@ export default function ClientPagesPage() {
 
     async function fetchPages() {
         try {
-            // This will be replaced with actual CMS API once database is set up
-            // For now, return empty array
-            setPages([]);
+            const res = await fetch(`/api/cms/clients/${clientCode}/pages`);
+            if (!res.ok) throw new Error('Failed to fetch pages');
+            const data = await res.json();
+            setPages(data.pages || []);
         } catch (error) {
             console.error('Failed to fetch pages:', error);
+            setPages([]);
         } finally {
             setLoading(false);
         }
@@ -107,8 +109,8 @@ export default function ClientPagesPage() {
                             key={status}
                             onClick={() => setStatusFilter(status)}
                             className={`px-3 py-1.5 text-sm rounded-full transition-colors ${statusFilter === status
-                                    ? 'bg-indigo-600 text-white'
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                ? 'bg-indigo-600 text-white'
+                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                 }`}
                         >
                             {status.charAt(0).toUpperCase() + status.slice(1)} ({count})
@@ -167,7 +169,7 @@ export default function ClientPagesPage() {
                                 <tr key={page.id} className="hover:bg-gray-50">
                                     <td className="px-6 py-4">
                                         <Link
-                                            href={`/cms/clients/${clientCode}/pages/${page.id}`}
+                                            href={`/cms/clients/${clientCode}/pages/${page.id}/edit`}
                                             className="font-medium text-gray-900 hover:text-indigo-600"
                                         >
                                             {page.title}
@@ -185,14 +187,14 @@ export default function ClientPagesPage() {
                                         </span>
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-500">
-                                        {page.views.toLocaleString()}
+                                        {(page.views ?? 0).toLocaleString()}
                                     </td>
                                     <td className="px-6 py-4 text-sm text-gray-500">
                                         {new Date(page.updatedAt).toLocaleDateString()}
                                     </td>
                                     <td className="px-6 py-4 text-sm space-x-2">
                                         <Link
-                                            href={`/cms/clients/${clientCode}/pages/${page.id}`}
+                                            href={`/cms/clients/${clientCode}/pages/${page.id}/edit`}
                                             className="text-indigo-600 hover:text-indigo-800"
                                         >
                                             Edit
