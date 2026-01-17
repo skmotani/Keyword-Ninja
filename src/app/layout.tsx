@@ -9,8 +9,8 @@ import { Providers } from './providers';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'SEO Keyword Intelligence Platform',
-  description: 'Manage clients, competitors, and keywords for SEO research',
+  title: 'Motani | Get Found. Grow Faster. Generate Revenue.',
+  description: 'AI-Powered SEO that puts your business where the money is. Data analytics and automation to dominate SERP, Social, YouTube, and LLM Search.',
 };
 
 export default function RootLayout({

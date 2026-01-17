@@ -214,7 +214,7 @@ export default function Sidebar() {
             <div className="flex items-center justify-between px-4 h-16 border-b border-slate-700">
                 {!collapsed && (
                     <Link href="/" className="text-lg font-bold text-white hover:text-indigo-400 transition-colors">
-                        SEO Intelligence
+                        Motani
                     </Link>
                 )}
                 <button
@@ -239,8 +239,8 @@ export default function Sidebar() {
                 <Link
                     href="/"
                     className={`flex items-center px-3 py-2 mb-2 rounded-lg transition-colors ${pathname === '/'
-                            ? 'bg-indigo-600 text-white'
-                            : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                        ? 'bg-indigo-600 text-white'
+                        : 'text-slate-300 hover:bg-slate-800 hover:text-white'
                         }`}
                 >
                     <span className={`text-lg ${collapsed ? '' : 'mr-3'}`}>🏠</span>
@@ -258,8 +258,8 @@ export default function Sidebar() {
                             <button
                                 onClick={() => toggleSection(section.id)}
                                 className={`w-full flex items-center justify-between px-3 py-2 rounded-lg transition-colors ${hasActiveItem
-                                        ? 'bg-slate-700 text-white'
-                                        : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                                    ? 'bg-slate-700 text-white'
+                                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
                                     }`}
                                 title={collapsed ? section.label : undefined}
                             >
@@ -278,8 +278,8 @@ export default function Sidebar() {
                                             key={item.href}
                                             href={item.href}
                                             className={`block px-3 py-1.5 text-sm rounded-md transition-colors ${isItemActive(item.href)
-                                                    ? 'bg-indigo-600 text-white'
-                                                    : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                                                ? 'bg-indigo-600 text-white'
+                                                : 'text-slate-400 hover:bg-slate-800 hover:text-white'
                                                 }`}
                                         >
                                             {item.label}
@@ -296,8 +296,8 @@ export default function Sidebar() {
                     <button
                         onClick={() => toggleSection('hub')}
                         className={`w-full flex items-center justify-between px-3 py-2 rounded-lg transition-colors ${pathname.startsWith('/twisting') || pathname.startsWith('/compare') || pathname.startsWith('/guides')
-                                ? 'bg-slate-700 text-white'
-                                : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                            ? 'bg-slate-700 text-white'
+                            : 'text-slate-300 hover:bg-slate-800 hover:text-white'
                             }`}
                         title={collapsed ? hubSection.label : undefined}
                     >
@@ -326,8 +326,8 @@ export default function Sidebar() {
                                                     key={item.href}
                                                     href={item.href}
                                                     className={`block px-3 py-1 text-xs rounded-md transition-colors ${isItemActive(item.href)
-                                                            ? 'bg-indigo-600 text-white'
-                                                            : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                                                        ? 'bg-indigo-600 text-white'
+                                                        : 'text-slate-400 hover:bg-slate-800 hover:text-white'
                                                         }`}
                                                 >
                                                     {item.label}
@@ -348,8 +348,8 @@ export default function Sidebar() {
                 <button
                     onClick={toggleDevMode}
                     className={`w-full flex items-center px-3 py-2 rounded-lg transition-colors ${isDevMode
-                            ? 'bg-amber-500/20 text-amber-400'
-                            : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                        ? 'bg-amber-500/20 text-amber-400'
+                        : 'text-slate-400 hover:bg-slate-800 hover:text-white'
                         }`}
                     title={isDevMode ? 'Dev Mode ON' : 'Dev Mode OFF'}
                 >
@@ -364,8 +364,8 @@ export default function Sidebar() {
                 <Link
                     href="/settings/api-credentials"
                     className={`flex items-center px-3 py-2 rounded-lg transition-colors ${pathname === '/settings/api-credentials'
-                            ? 'bg-indigo-600 text-white'
-                            : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                        ? 'bg-indigo-600 text-white'
+                        : 'text-slate-400 hover:bg-slate-800 hover:text-white'
                         }`}
                     title="Settings"
                 >
