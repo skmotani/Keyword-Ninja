@@ -1401,6 +1401,9 @@ export default function DashboardPage() {
     const [customTitles, setCustomTitles] = useState<Record<string, string>>({});
     const [pageTitles, setPageTitles] = useState<Record<string, string>>({});
     const [pageContents, setPageContents] = useState<Record<string, string>>({});
+    const [categoryNames, setCategoryNames] = useState<Record<string, string>>({});
+    const [editingCategory, setEditingCategory] = useState<string | null>(null);
+    const [editCategoryValue, setEditCategoryValue] = useState<string>('');
 
     // Load global customizations from API (once on mount)
     const loadCustomizations = useCallback(async () => {
@@ -1411,6 +1414,7 @@ export default function DashboardPage() {
                 setCustomTitles(data.titles || {});
                 setPageTitles(data.pageTitles || {});
                 setPageContents(data.pageContents || {});
+                setCategoryNames(data.categoryNames || {});
             }
         } catch (error) {
             console.error('Failed to load customizations:', error);
@@ -1451,6 +1455,26 @@ export default function DashboardPage() {
         setPageContents(prev => ({ ...prev, [queryId]: pageContent }));
         saveQueryCustomization(queryId, customTitles[queryId], pageTitles[queryId], pageContent);
     }, [saveQueryCustomization, customTitles, pageTitles]);
+
+    // Handler for editing category names
+    const handleCategoryNameSave = useCallback(async (groupId: string, newName: string) => {
+        if (!newName.trim()) return;
+        setCategoryNames(prev => ({ ...prev, [groupId]: newName.trim() }));
+        setEditingCategory(null);
+        try {
+            await fetch('/api/reports/dashboard/customizations', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type: 'category',
+                    groupId,
+                    customName: newName.trim(),
+                }),
+            });
+        } catch (error) {
+            console.error('Failed to save category name:', error);
+        }
+    }, []);
 
     // Fetch clients and global customizations on mount
     useEffect(() => {
@@ -1823,9 +1847,47 @@ export default function DashboardPage() {
                 <div className="space-y-6">
                     {Object.entries(queriesByGroup).map(([groupName, groupQueries]) => (
                         <div key={groupName}>
-                            <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                            <h2
+                                className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2 group cursor-pointer"
+                                onClick={() => {
+                                    const group = queryGroups.find(g => g.name === groupName);
+                                    if (group) {
+                                        setEditingCategory(group.id);
+                                        setEditCategoryValue(categoryNames[group.id] || groupName);
+                                    }
+                                }}
+                            >
                                 <span className="w-1 h-5 bg-indigo-500 rounded-full"></span>
-                                {groupName}
+                                {editingCategory === queryGroups.find(g => g.name === groupName)?.id ? (
+                                    <input
+                                        type="text"
+                                        value={editCategoryValue}
+                                        onChange={(e) => setEditCategoryValue(e.target.value)}
+                                        onBlur={() => {
+                                            const group = queryGroups.find(g => g.name === groupName);
+                                            if (group) handleCategoryNameSave(group.id, editCategoryValue);
+                                        }}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter') {
+                                                const group = queryGroups.find(g => g.name === groupName);
+                                                if (group) handleCategoryNameSave(group.id, editCategoryValue);
+                                            }
+                                            if (e.key === 'Escape') {
+                                                setEditingCategory(null);
+                                            }
+                                        }}
+                                        className="border border-indigo-300 rounded px-2 py-0.5 text-lg font-semibold focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                                        autoFocus
+                                        onClick={(e) => e.stopPropagation()}
+                                    />
+                                ) : (
+                                    <>
+                                        {categoryNames[queryGroups.find(g => g.name === groupName)?.id || ''] || groupName}
+                                        <svg className="w-3 h-3 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                        </svg>
+                                    </>
+                                )}
                             </h2>
                             <div className="space-y-3">
                                 {groupQueries.map(query => (
