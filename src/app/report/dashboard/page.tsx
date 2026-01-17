@@ -1124,6 +1124,8 @@ function QueryCard({
     pageContent,
     onPageTitleChange,
     onPageContentChange,
+    cardNumber,
+    onDelete,
 }: {
     query: DashboardQueryDefinition;
     result: DashboardQueryResult | null;
@@ -1136,6 +1138,8 @@ function QueryCard({
     pageContent?: string;
     onPageTitleChange?: (queryId: string, pageTitle: string) => void;
     onPageContentChange?: (queryId: string, pageContent: string) => void;
+    cardNumber?: number;
+    onDelete?: (queryId: string) => void;
 }) {
     const statusStyle = statusColors[query.status];
     const [showInfoModal, setShowInfoModal] = React.useState(false);
@@ -1192,13 +1196,20 @@ function QueryCard({
                 title={displayTitle}
                 description={query.tooltip || query.description}
             />
-            <div className={`bg-white rounded-lg border shadow-sm overflow-hidden transition-all ${isExpanded ? 'ring-2 ring-indigo-200' : ''}`}>
+            <div className={`bg-white rounded-lg border shadow-sm overflow-hidden transition-all ${isExpanded ? 'ring-2 ring-indigo-200' : ''} relative`}>
+                {/* Serial Number Badge on Right Side */}
+                {cardNumber !== undefined && (
+                    <div className="absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-indigo-100 to-transparent flex items-center justify-center z-10 pointer-events-none">
+                        <span className="text-2xl font-bold text-indigo-400">{cardNumber}</span>
+                    </div>
+                )}
                 {/* Header */}
                 <div
-                    className="flex items-center justify-between px-4 py-3 bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors"
+                    className="flex items-center justify-between px-4 py-3 bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors pr-14"
                     onClick={(e) => {
                         // Don't toggle when clicking on editable fields
                         if ((e.target as HTMLElement).closest('.editable-field')) return;
+                        if ((e.target as HTMLElement).closest('.delete-btn')) return;
                         onToggle();
                     }}
                 >
@@ -1252,6 +1263,24 @@ function QueryCard({
                                 >
                                     <svg className="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </button>
+                            )}
+                            {/* Delete Button */}
+                            {onDelete && (
+                                <button
+                                    type="button"
+                                    className="delete-btn p-1 rounded-full hover:bg-red-100 transition-colors ml-2"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        if (confirm('Delete this card?')) {
+                                            onDelete(query.id);
+                                        }
+                                    }}
+                                    title="Delete card"
+                                >
+                                    <svg className="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                     </svg>
                                 </button>
                             )}
@@ -1727,6 +1756,80 @@ export default function DashboardPage() {
         setExpandedQueries(new Set());
     }
 
+    // Create a new empty card
+    async function createCard() {
+        const defaultGroup = queryGroups[0];
+        if (!defaultGroup) {
+            showNotification('error', 'No query groups available');
+            return;
+        }
+
+        // Generate a unique ID for the new card
+        const existingIds = queries.map(q => {
+            const match = q.id.match(/^MANUAL_(\d+)$/);
+            return match ? parseInt(match[1]) : 0;
+        });
+        const nextNum = Math.max(0, ...existingIds) + 1;
+        const newId = `MANUAL_${String(nextNum).padStart(3, '0')}`;
+
+        const newQuery: DashboardQueryDefinition = {
+            id: newId,
+            title: 'New Card (click to edit)',
+            description: 'Click to add content',
+            status: 'Info' as QueryStatus,
+            queryType: 'manual',
+            groupId: defaultGroup.id,
+            tooltip: 'This is a manually created card. You can edit the title and add queries later.',
+        };
+
+        setQueries(prev => [...prev, newQuery]);
+        showNotification('success', `Created card ${newId}`);
+
+        // Save to API
+        try {
+            await fetch('/api/reports/dashboard/customizations', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type: 'createCard',
+                    card: newQuery,
+                }),
+            });
+        } catch (error) {
+            console.error('Failed to save new card:', error);
+        }
+    }
+
+    // Delete a card
+    async function deleteCard(queryId: string) {
+        setQueries(prev => prev.filter(q => q.id !== queryId));
+        setQueryResults(prev => {
+            const next = { ...prev };
+            delete next[queryId];
+            return next;
+        });
+        setExpandedQueries(prev => {
+            const next = new Set(prev);
+            next.delete(queryId);
+            return next;
+        });
+        showNotification('success', `Deleted card ${queryId}`);
+
+        // Save to API
+        try {
+            await fetch('/api/reports/dashboard/customizations', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type: 'deleteCard',
+                    queryId,
+                }),
+            });
+        } catch (error) {
+            console.error('Failed to delete card:', error);
+        }
+    }
+
     async function handleExportPdf() {
         if (!selectedClientCode) {
             showNotification('error', 'Please select a client');
@@ -1846,6 +1949,15 @@ export default function DashboardPage() {
 
                     {/* Action Buttons */}
                     <div className="flex gap-2 ml-auto">
+                        <button
+                            onClick={createCard}
+                            className="px-3 py-2 text-sm text-green-600 hover:bg-green-50 rounded-lg transition-colors font-medium flex items-center gap-1"
+                        >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                            </svg>
+                            Add Card
+                        </button>
                         <button
                             onClick={expandAll}
                             className="px-3 py-2 text-sm text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
@@ -2018,23 +2130,38 @@ export default function DashboardPage() {
                                     strategy={verticalListSortingStrategy}
                                 >
                                     <div className="space-y-3">
-                                        {groupQueries.map(query => (
-                                            <SortableQueryCard key={query.id} id={query.id}>
-                                                <QueryCard
-                                                    query={query}
-                                                    result={queryResults[query.id] || null}
-                                                    isExpanded={expandedQueries.has(query.id)}
-                                                    isLoading={loadingQueries.has(query.id)}
-                                                    onToggle={() => toggleQuery(query.id)}
-                                                    customTitle={customTitles[query.id]}
-                                                    onTitleChange={handleTitleChange}
-                                                    pageTitle={pageTitles[query.id]}
-                                                    pageContent={pageContents[query.id]}
-                                                    onPageTitleChange={handlePageTitleChange}
-                                                    onPageContentChange={handlePageContentChange}
-                                                />
-                                            </SortableQueryCard>
-                                        ))}
+                                        {groupQueries.map((query, queryIndex) => {
+                                            // Calculate global card number (1, 2, 3, ...)
+                                            // Find the position across all groups
+                                            let globalIndex = 0;
+                                            for (const [gn, gq] of Object.entries(queriesByGroup)) {
+                                                if (gn === groupName) {
+                                                    globalIndex += queryIndex + 1;
+                                                    break;
+                                                }
+                                                globalIndex += gq.length;
+                                            }
+
+                                            return (
+                                                <SortableQueryCard key={query.id} id={query.id}>
+                                                    <QueryCard
+                                                        query={query}
+                                                        result={queryResults[query.id] || null}
+                                                        isExpanded={expandedQueries.has(query.id)}
+                                                        isLoading={loadingQueries.has(query.id)}
+                                                        onToggle={() => toggleQuery(query.id)}
+                                                        customTitle={customTitles[query.id]}
+                                                        onTitleChange={handleTitleChange}
+                                                        pageTitle={pageTitles[query.id]}
+                                                        pageContent={pageContents[query.id]}
+                                                        onPageTitleChange={handlePageTitleChange}
+                                                        onPageContentChange={handlePageContentChange}
+                                                        cardNumber={globalIndex}
+                                                        onDelete={deleteCard}
+                                                    />
+                                                </SortableQueryCard>
+                                            );
+                                        })}
                                     </div>
                                 </SortableContext>
                             </div>
