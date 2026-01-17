@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/Navbar';
+import Sidebar from '@/components/Sidebar';
 import { DevModeProvider } from '@/contexts/DevModeContext';
 import { AutoDevOverlay } from '@/components/AutoDevOverlay';
 import { Providers } from './providers';
@@ -23,10 +23,14 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <DevModeProvider>
-            <Navbar />
-            <main className="max-w-6xl mx-auto px-4 py-8">
-              {children}
-            </main>
+            <div className="flex min-h-screen bg-gray-50">
+              <Sidebar />
+              <main className="flex-1 ml-64 transition-all duration-300">
+                <div className="max-w-7xl mx-auto px-6 py-8">
+                  {children}
+                </div>
+              </main>
+            </div>
             <AutoDevOverlay />
           </DevModeProvider>
         </Providers>
