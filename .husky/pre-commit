@@ -1,0 +1,10 @@
+# Pre-commit hook - runs TypeScript check
+echo "🔍 Running TypeScript check before commit..."
+npx tsc --noEmit
+
+if [ $? -ne 0 ]; then
+  echo "❌ TypeScript errors found! Fix them before committing."
+  exit 1
+fi
+
+echo "✅ TypeScript check passed!"
