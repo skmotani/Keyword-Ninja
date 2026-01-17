@@ -92,13 +92,13 @@ export default function DigitalFootprintPage() {
     const getStatusBadge = (status: string) => {
         switch (status) {
             case 'present':
-                return <span className="px-2 py-1 bg-green-100 text-green-800 border border-green-300 rounded-full text-xs font-semibold">✓ PASS</span>;
+                return <span className="px-2 py-1 bg-green-100 text-green-800 border border-green-300 rounded text-xs font-bold">✓ PASS</span>;
             case 'partial':
-                return <span className="px-2 py-1 bg-yellow-100 text-yellow-800 border border-yellow-300 rounded-full text-xs font-semibold">⚠ PARTIAL</span>;
+                return <span className="px-2 py-1 bg-yellow-100 text-yellow-800 border border-yellow-300 rounded text-xs font-bold">⚠ PARTIAL</span>;
             case 'absent':
-                return <span className="px-2 py-1 bg-red-100 text-red-800 border border-red-300 rounded-full text-xs font-semibold">✗ FAIL</span>;
+                return <span className="px-2 py-1 bg-red-100 text-red-800 border border-red-300 rounded text-xs font-bold">✗ FAIL</span>;
             default:
-                return <span className="px-2 py-1 bg-gray-100 text-gray-600 border border-gray-300 rounded-full text-xs font-semibold">? UNKNOWN</span>;
+                return <span className="px-2 py-1 bg-gray-100 text-gray-600 border border-gray-300 rounded text-xs font-bold">? UNKNOWN</span>;
         }
     };
 
@@ -110,7 +110,7 @@ export default function DigitalFootprintPage() {
             openai: 'bg-amber-50 text-amber-700 border-amber-200',
         };
         return (
-            <span className={`px-2 py-0.5 text-xs border rounded ${colors[source] || 'bg-gray-50 text-gray-600 border-gray-200'}`}>
+            <span className={`px-2 py-0.5 text-xs border rounded font-medium ${colors[source] || 'bg-gray-50 text-gray-600 border-gray-200'}`}>
                 {source.toUpperCase()}
             </span>
         );
@@ -159,6 +159,16 @@ export default function DigitalFootprintPage() {
         if (percentage >= 60) return { grade: 'C', color: 'text-yellow-600', bg: 'bg-yellow-100' };
         if (percentage >= 40) return { grade: 'D', color: 'text-orange-600', bg: 'bg-orange-100' };
         return { grade: 'F', color: 'text-red-600', bg: 'bg-red-100' };
+    };
+
+    // Extract domain from URL for display
+    const extractDomain = (url: string) => {
+        try {
+            const u = new URL(url);
+            return u.hostname.replace('www.', '');
+        } catch {
+            return url.slice(0, 30);
+        }
     };
 
     return (
@@ -296,7 +306,7 @@ export default function DigitalFootprintPage() {
                                             return (
                                                 <div key={category} className="border-b last:border-b-0">
                                                     {/* Category Header */}
-                                                    <div className="px-6 py-3 bg-gray-50 flex items-center gap-2 border-b">
+                                                    <div className="px-4 py-3 bg-gray-50 flex items-center gap-2 border-b">
                                                         <span className="text-xl">{catInfo.icon}</span>
                                                         <span className="font-semibold text-gray-700">{catInfo.name}</span>
                                                         <span className="text-sm text-gray-500">({surfaces.length} checks)</span>
@@ -305,38 +315,68 @@ export default function DigitalFootprintPage() {
                                                     {/* Professional Table */}
                                                     <div className="overflow-x-auto">
                                                         <table className="w-full text-sm">
-                                                            <thead className="bg-gray-50 text-gray-600">
+                                                            <thead className="bg-slate-100 text-slate-700">
                                                                 <tr>
-                                                                    <th className="px-4 py-2 text-left font-medium">#</th>
-                                                                    <th className="px-4 py-2 text-left font-medium">Surface</th>
-                                                                    <th className="px-4 py-2 text-left font-medium">Source</th>
-                                                                    <th className="px-4 py-2 text-left font-medium">Method</th>
-                                                                    <th className="px-4 py-2 text-center font-medium">Result</th>
-                                                                    <th className="px-4 py-2 text-right font-medium">Points</th>
+                                                                    <th className="px-3 py-2 text-left font-semibold w-10">#</th>
+                                                                    <th className="px-3 py-2 text-left font-semibold">Surface</th>
+                                                                    <th className="px-3 py-2 text-left font-semibold">Source</th>
+                                                                    <th className="px-3 py-2 text-left font-semibold">Method</th>
+                                                                    <th className="px-3 py-2 text-left font-semibold">Evidence Link</th>
+                                                                    <th className="px-3 py-2 text-center font-semibold w-24">Result</th>
+                                                                    <th className="px-3 py-2 text-right font-semibold w-20">Points</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody className="divide-y divide-gray-100">
                                                                 {surfaces.map((surface) => (
                                                                     <tr key={surface.key} className="hover:bg-gray-50">
-                                                                        <td className="px-4 py-3 text-gray-500 font-mono">
+                                                                        <td className="px-3 py-3 text-gray-500 font-mono text-xs">
                                                                             {surface.index}
                                                                         </td>
-                                                                        <td className="px-4 py-3">
+                                                                        <td className="px-3 py-3">
                                                                             <div className="font-medium text-gray-900">{surface.label}</div>
                                                                             {surface.relevance === 'high' && (
-                                                                                <span className="text-xs text-red-500 font-medium">HIGH PRIORITY</span>
+                                                                                <span className="text-xs text-red-500 font-medium">⚡ HIGH PRIORITY</span>
                                                                             )}
                                                                         </td>
-                                                                        <td className="px-4 py-3">
+                                                                        <td className="px-3 py-3">
                                                                             {getSourceBadge(surface.source)}
                                                                         </td>
-                                                                        <td className="px-4 py-3 text-gray-600 text-xs max-w-xs truncate" title={surface.method}>
-                                                                            {surface.method}
+                                                                        <td className="px-3 py-3 text-gray-600 text-xs max-w-[180px]">
+                                                                            <span title={surface.method} className="block truncate">
+                                                                                {surface.method}
+                                                                            </span>
                                                                         </td>
-                                                                        <td className="px-4 py-3 text-center">
+                                                                        <td className="px-3 py-3 max-w-[200px]">
+                                                                            {surface.evidence && surface.evidence.length > 0 ? (
+                                                                                <div className="space-y-1">
+                                                                                    {surface.evidence.slice(0, 2).map((ev, i) => (
+                                                                                        <a
+                                                                                            key={i}
+                                                                                            href={ev.url}
+                                                                                            target="_blank"
+                                                                                            rel="noopener noreferrer"
+                                                                                            className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 hover:underline"
+                                                                                            title={ev.url}
+                                                                                        >
+                                                                                            {ev.isOfficial && <span className="text-green-600">✓</span>}
+                                                                                            <span className="truncate">{ev.url ? extractDomain(ev.url) : ev.title}</span>
+                                                                                            <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                                                                            </svg>
+                                                                                        </a>
+                                                                                    ))}
+                                                                                    {surface.evidence.length > 2 && (
+                                                                                        <span className="text-xs text-gray-400">+{surface.evidence.length - 2} more</span>
+                                                                                    )}
+                                                                                </div>
+                                                                            ) : (
+                                                                                <span className="text-xs text-gray-400 italic">No evidence found</span>
+                                                                            )}
+                                                                        </td>
+                                                                        <td className="px-3 py-3 text-center">
                                                                             {getStatusBadge(surface.status)}
                                                                         </td>
-                                                                        <td className="px-4 py-3 text-right">
+                                                                        <td className="px-3 py-3 text-right font-mono">
                                                                             <span className={`font-bold ${surface.status === 'present' ? 'text-green-600' : surface.status === 'partial' ? 'text-yellow-600' : 'text-gray-400'}`}>
                                                                                 {surface.pointsAwarded.toFixed(1)}
                                                                             </span>
@@ -350,6 +390,21 @@ export default function DigitalFootprintPage() {
                                                 </div>
                                             );
                                         })}
+
+                                        {/* Summary Row */}
+                                        <div className="px-4 py-4 bg-slate-50 border-t">
+                                            <div className="flex justify-between items-center">
+                                                <div className="text-sm text-gray-600">
+                                                    <span className="font-medium">{domain.surfaces.filter(s => s.status === 'present').length}</span> passed,{' '}
+                                                    <span className="font-medium text-yellow-600">{domain.surfaces.filter(s => s.status === 'partial').length}</span> partial,{' '}
+                                                    <span className="font-medium text-red-600">{domain.surfaces.filter(s => s.status === 'absent').length}</span> failed,{' '}
+                                                    <span className="font-medium text-gray-500">{domain.surfaces.filter(s => s.status === 'unknown').length}</span> unknown
+                                                </div>
+                                                <div className="text-lg font-bold">
+                                                    Total: <span className={grade.color}>{domain.score.percentage}%</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 )}
                             </div>
