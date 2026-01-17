@@ -41,6 +41,12 @@ export interface DashboardQueryDefinition {
         limit?: number;
         [key: string]: unknown;
     };
+    // Data source information - displayed on query card
+    sourceInfo?: {
+        tables: string[];   // e.g. ["clients.json", "domain_keywords.json"]
+        page?: string;      // Page name where data can be viewed
+        pageUrl?: string;   // URL path to the source page
+    };
     isActive: boolean;
     createdAt: string;
     updatedAt: string;

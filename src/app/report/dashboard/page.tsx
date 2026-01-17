@@ -1217,23 +1217,35 @@ function QueryCard({
                                 </p>
                             )}
                         </div>
-                        {/* Data Source in tiny font */}
-                        {result?.sourceLink && (
+                        {/* Data Source Info - always visible from query definition */}
+                        {query.sourceInfo && (
                             <div className="ml-14 mt-1">
-                                <span className="text-[10px] text-gray-400 flex items-center gap-1">
-                                    <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                <span className="text-[10px] text-gray-400 flex items-center gap-1 flex-wrap">
+                                    <svg className="w-2.5 h-2.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
                                     </svg>
-                                    Data from:{' '}
-                                    <Link
-                                        href={result.sourceLink.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-indigo-500 hover:underline"
-                                        onClick={(e) => e.stopPropagation()}
-                                    >
-                                        {result.sourceLink.label} ↗
-                                    </Link>
+                                    <span className="font-medium">Tables:</span>
+                                    <span className="text-gray-500">{query.sourceInfo.tables.join(', ')}</span>
+                                    {query.sourceInfo.page && (
+                                        <>
+                                            <span className="text-gray-300 mx-1">|</span>
+                                            <svg className="w-2.5 h-2.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                            </svg>
+                                            <span className="font-medium">Page:</span>
+                                            {query.sourceInfo.pageUrl ? (
+                                                <Link
+                                                    href={query.sourceInfo.pageUrl}
+                                                    className="text-indigo-500 hover:underline"
+                                                    onClick={(e) => e.stopPropagation()}
+                                                >
+                                                    {query.sourceInfo.page} ↗
+                                                </Link>
+                                            ) : (
+                                                <span className="text-gray-500">{query.sourceInfo.page}</span>
+                                            )}
+                                        </>
+                                    )}
                                 </span>
                             </div>
                         )}

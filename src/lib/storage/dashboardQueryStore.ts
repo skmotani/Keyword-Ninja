@@ -240,6 +240,11 @@ export async function initializeSeedData(): Promise<{ groupsCreated: number; que
                 status: 'Critical',
                 queryType: 'domain-info',
                 config: {},
+                sourceInfo: {
+                    tables: ['clients.json', 'client_ai_profiles.json'],
+                    page: 'Clients Page',
+                    pageUrl: '/master/clients'
+                },
                 isActive: true,
                 createdAt: new Date().toISOString(),
                 updatedAt: new Date().toISOString(),
@@ -256,6 +261,11 @@ export async function initializeSeedData(): Promise<{ groupsCreated: number; que
                 config: {
                     location: 'india',
                     limit: 10,
+                },
+                sourceInfo: {
+                    tables: ['keyword_api_data.json'],
+                    page: 'Keyword API Data',
+                    pageUrl: '/client/keyword-api-data'
                 },
                 isActive: true,
                 createdAt: new Date().toISOString(),
@@ -274,6 +284,11 @@ export async function initializeSeedData(): Promise<{ groupsCreated: number; que
                     location: 'global',
                     limit: 10,
                 },
+                sourceInfo: {
+                    tables: ['keyword_api_data.json'],
+                    page: 'Keyword API Data',
+                    pageUrl: '/client/keyword-api-data'
+                },
                 isActive: true,
                 createdAt: new Date().toISOString(),
                 updatedAt: new Date().toISOString(),
@@ -291,6 +306,11 @@ export async function initializeSeedData(): Promise<{ groupsCreated: number; que
                     location: 'both',
                     limit: 20,
                 },
+                sourceInfo: {
+                    tables: ['keyword_api_data.json'],
+                    page: 'Keyword API Data',
+                    pageUrl: '/client/keyword-api-data'
+                },
                 isActive: true,
                 createdAt: new Date().toISOString(),
                 updatedAt: new Date().toISOString(),
@@ -305,6 +325,11 @@ export async function initializeSeedData(): Promise<{ groupsCreated: number; que
                 status: 'Info',
                 queryType: 'client-rankings',
                 config: {},
+                sourceInfo: {
+                    tables: ['domain_keywords.json'],
+                    page: 'Domain Keywords',
+                    pageUrl: '/client/domain-keywords'
+                },
                 isActive: true,
                 createdAt: new Date().toISOString(),
                 updatedAt: new Date().toISOString(),
@@ -320,6 +345,11 @@ export async function initializeSeedData(): Promise<{ groupsCreated: number; que
                 queryType: 'keywords-absence',
                 config: {
                     limit: 10,
+                },
+                sourceInfo: {
+                    tables: ['client_positions.json', 'keyword_api_data.json'],
+                    page: 'Client Positions',
+                    pageUrl: '/client/positions'
                 },
                 isActive: true,
                 createdAt: new Date().toISOString(),
@@ -337,6 +367,11 @@ export async function initializeSeedData(): Promise<{ groupsCreated: number; que
                 config: {
                     limit: 5,
                 },
+                sourceInfo: {
+                    tables: ['clients.json', 'competitors.json'],
+                    page: 'Competitors',
+                    pageUrl: '/report/competitors'
+                },
                 isActive: true,
                 createdAt: new Date().toISOString(),
                 updatedAt: new Date().toISOString(),
@@ -352,6 +387,11 @@ export async function initializeSeedData(): Promise<{ groupsCreated: number; que
                 queryType: 'market-size',
                 config: {
                     limit: 5,
+                },
+                sourceInfo: {
+                    tables: ['domain_keywords.json'],
+                    page: 'Domain Keywords',
+                    pageUrl: '/client/domain-keywords'
                 },
                 isActive: true,
                 createdAt: new Date().toISOString(),
@@ -369,6 +409,11 @@ export async function initializeSeedData(): Promise<{ groupsCreated: number; que
                 config: {
                     limit: 10,
                 },
+                sourceInfo: {
+                    tables: ['competitors.json', 'domain_overview.json'],
+                    page: 'Domain Overview',
+                    pageUrl: '/client/domain-overview'
+                },
                 isActive: true,
                 createdAt: new Date().toISOString(),
                 updatedAt: new Date().toISOString(),
@@ -385,6 +430,11 @@ export async function initializeSeedData(): Promise<{ groupsCreated: number; que
                 config: {
                     limit: 50,
                 },
+                sourceInfo: {
+                    tables: ['domain_keywords.json'],
+                    page: 'Domain Keywords',
+                    pageUrl: '/client/domain-keywords'
+                },
                 isActive: true,
                 createdAt: new Date().toISOString(),
                 updatedAt: new Date().toISOString(),
@@ -400,6 +450,11 @@ export async function initializeSeedData(): Promise<{ groupsCreated: number; que
                 queryType: 'brand-keywords-matrix',
                 config: {
                     limit: 50,
+                },
+                sourceInfo: {
+                    tables: ['domain_keywords.json', 'ai_term_dictionary.json'],
+                    page: 'AI Keyword Builder',
+                    pageUrl: '/client/domain-keywords'
                 },
                 isActive: true,
                 createdAt: new Date().toISOString(),
