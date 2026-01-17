@@ -28,6 +28,7 @@ interface ImportSurface {
 
 // POST - Import surfaces from JSON
 export async function POST(request: NextRequest) {
+    console.log('Starting import...'); // Force deploy
     try {
         const body = await request.json();
 
