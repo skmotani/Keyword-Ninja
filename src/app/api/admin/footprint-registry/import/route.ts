@@ -101,6 +101,8 @@ export async function POST(request: NextRequest) {
                 where: { surfaceKey: s.surfaceKey },
             });
 
+            // Prepare data object, using Prisma.DbNull for null JSON fields
+            // We use 'as any' for JSON fields to avoid strict type checks against InputJsonValue
             const data = {
                 label: s.label,
                 category: s.category,
@@ -109,18 +111,18 @@ export async function POST(request: NextRequest) {
                 defaultRelevanceWeight: s.defaultRelevanceWeight ?? 1.0,
                 sourceType: s.sourceType,
                 searchEngine: s.searchEngine || null,
-                queryTemplates: s.queryTemplates || [],
+                queryTemplates: (s.queryTemplates || []) as any,
                 maxQueries: s.maxQueries ?? 2,
                 confirmationArtifact: s.confirmationArtifact,
-                presenceRules: s.presenceRules || null,
-                officialnessRules: s.officialnessRules || null,
+                presenceRules: s.presenceRules ? (s.presenceRules as any) : undefined, // undefined to skip update if missing
+                officialnessRules: s.officialnessRules ? (s.officialnessRules as any) : undefined,
                 officialnessRequired: s.officialnessRequired ?? true,
-                evidenceFields: s.evidenceFields || null,
-                tooltipTemplates: s.tooltipTemplates || null,
+                evidenceFields: s.evidenceFields ? (s.evidenceFields as any) : undefined,
+                tooltipTemplates: s.tooltipTemplates ? (s.tooltipTemplates as any) : undefined,
                 enabled: s.enabled ?? true,
                 notes: s.notes || null,
-                industryOverrides: s.industryOverrides || null,
-                geoOverrides: s.geoOverrides || null,
+                industryOverrides: s.industryOverrides ? (s.industryOverrides as any) : undefined,
+                geoOverrides: s.geoOverrides ? (s.geoOverrides as any) : undefined,
             };
 
             if (existing) {
@@ -134,6 +136,13 @@ export async function POST(request: NextRequest) {
                     data: {
                         surfaceKey: s.surfaceKey,
                         ...data,
+                        // For creation, ensure JSON fields are null if undefined in data
+                        presenceRules: data.presenceRules ?? undefined,
+                        officialnessRules: data.officialnessRules ?? undefined,
+                        evidenceFields: data.evidenceFields ?? undefined,
+                        tooltipTemplates: data.tooltipTemplates ?? undefined,
+                        industryOverrides: data.industryOverrides ?? undefined,
+                        geoOverrides: data.geoOverrides ?? undefined,
                     },
                 });
                 created++;
