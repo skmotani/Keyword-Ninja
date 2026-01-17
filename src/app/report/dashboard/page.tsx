@@ -1333,18 +1333,53 @@ export default function DashboardPage() {
     const [exporting, setExporting] = useState(false);
     const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
-    // Custom editable titles and descriptions (session-only)
+    // Custom editable titles and descriptions (persistent)
     const [customTitles, setCustomTitles] = useState<Record<string, string>>({});
     const [customDescriptions, setCustomDescriptions] = useState<Record<string, string>>({});
+
+    // Load customizations from API
+    const loadCustomizations = useCallback(async (clientCode: string) => {
+        try {
+            const res = await fetch(`/api/reports/dashboard/customizations?clientCode=${clientCode}`);
+            const data = await res.json();
+            if (data.success) {
+                setCustomTitles(data.titles || {});
+                setCustomDescriptions(data.descriptions || {});
+            }
+        } catch (error) {
+            console.error('Failed to load customizations:', error);
+        }
+    }, []);
+
+    // Save customization to API
+    const saveCustomization = useCallback(async (queryId: string, customTitle?: string, customDescription?: string) => {
+        if (!selectedClientCode) return;
+        try {
+            await fetch('/api/reports/dashboard/customizations', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    clientCode: selectedClientCode,
+                    queryId,
+                    customTitle,
+                    customDescription,
+                }),
+            });
+        } catch (error) {
+            console.error('Failed to save customization:', error);
+        }
+    }, [selectedClientCode]);
 
     // Handlers for editing titles and descriptions
     const handleTitleChange = useCallback((queryId: string, title: string) => {
         setCustomTitles(prev => ({ ...prev, [queryId]: title }));
-    }, []);
+        saveCustomization(queryId, title, customDescriptions[queryId]);
+    }, [saveCustomization, customDescriptions]);
 
     const handleDescriptionChange = useCallback((queryId: string, description: string) => {
         setCustomDescriptions(prev => ({ ...prev, [queryId]: description }));
-    }, []);
+        saveCustomization(queryId, customTitles[queryId], description);
+    }, [saveCustomization, customTitles]);
 
     // Fetch clients on mount
     useEffect(() => {
@@ -1352,14 +1387,15 @@ export default function DashboardPage() {
         fetchQueryGroups();
     }, []);
 
-    // Fetch queries when client changes
+    // Fetch queries and customizations when client changes
     useEffect(() => {
         if (selectedClientCode) {
             fetchQueries();
+            loadCustomizations(selectedClientCode);
             setQueryResults({});
             setExpandedQueries(new Set());
         }
-    }, [selectedClientCode, selectedGroupId]);
+    }, [selectedClientCode, selectedGroupId, loadCustomizations]);
 
     async function fetchClients() {
         try {
