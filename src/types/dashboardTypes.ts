@@ -24,7 +24,8 @@ export type QueryType =
     | 'etv-comparison'
     | 'keyword-opportunity-matrix'
     | 'brand-keywords-matrix'
-    | 'custom';
+    | 'custom'
+    | 'manual';
 
 // Query definition - static template for a query
 export interface DashboardQueryDefinition {
