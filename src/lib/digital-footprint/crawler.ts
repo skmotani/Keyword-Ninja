@@ -60,7 +60,7 @@ export function parseDomainsInput(input: string, maxDomains: number = 5): string
         .filter(Boolean);
 
     const normalized = raw.map(normalizeDomain);
-    const unique = [...new Set(normalized)];
+    const unique = Array.from(new Set(normalized));
 
     return unique.slice(0, maxDomains);
 }
@@ -103,7 +103,7 @@ export async function crawlWebsite(domain: string): Promise<CrawlResult> {
         }
 
         // Extract JSON-LD schemas
-        const schemaMatches = html.matchAll(/<script\s+type=["\']application\/ld\+json["\']\s*>([^<]+)<\/script>/gi);
+        const schemaMatches = Array.from(html.matchAll(/<script\s+type=["']application\/ld\+json["']\s*>([^<]+)<\/script>/gi));
         data.schemaBlocks = [];
         for (const match of schemaMatches) {
             try {
