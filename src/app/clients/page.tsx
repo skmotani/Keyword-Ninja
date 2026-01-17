@@ -62,6 +62,9 @@ export default function ClientsPage() {
   const [recentlyRefreshedClientCode, setRecentlyRefreshedClientCode] = useState<string | null>(null);
   const [businessMetricsEditing, setBusinessMetricsEditing] = useState<Record<string, Client['businessMetrics']>>({});
   const [savingBusinessMetrics, setSavingBusinessMetrics] = useState<string | null>(null);
+  const [uploadingPhoto, setUploadingPhoto] = useState<string | null>(null);
+  const [deletingPhoto, setDeletingPhoto] = useState<string | null>(null);
+  const photoInputRef = React.useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState({
     code: '',
@@ -1255,6 +1258,106 @@ export default function ClientsPage() {
                               </tr>
                             </tbody>
                           </table>
+                        </div>
+
+                        {/* Brand Photos Section */}
+                        <div className="bg-white rounded-lg border p-4 mt-4">
+                          <div className="flex items-center justify-between mb-3">
+                            <h4 className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                              <span>🖼️</span> Brand Photos
+                              <span className="text-xs text-gray-400 font-normal">({(client.brandPhotos || []).length}/5)</span>
+                            </h4>
+                            {(client.brandPhotos || []).length < 5 && (
+                              <label className="px-3 py-1 text-sm rounded bg-indigo-600 text-white hover:bg-indigo-700 cursor-pointer flex items-center gap-1">
+                                {uploadingPhoto === client.id ? (
+                                  <><span className="animate-spin">⏳</span> Uploading...</>
+                                ) : (
+                                  <>+ Upload Photo</>
+                                )}
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  className="hidden"
+                                  disabled={uploadingPhoto === client.id}
+                                  onChange={async (e) => {
+                                    const file = e.target.files?.[0];
+                                    if (!file) return;
+
+                                    setUploadingPhoto(client.id);
+                                    try {
+                                      const formData = new FormData();
+                                      formData.append('photo', file);
+
+                                      const res = await fetch(`/api/clients/${client.id}/photos`, {
+                                        method: 'POST',
+                                        body: formData,
+                                      });
+
+                                      const result = await res.json();
+                                      if (result.success) {
+                                        showNotification('success', 'Photo uploaded successfully');
+                                        fetchClients();
+                                      } else {
+                                        showNotification('error', result.error || 'Failed to upload photo');
+                                      }
+                                    } catch {
+                                      showNotification('error', 'Failed to upload photo');
+                                    } finally {
+                                      setUploadingPhoto(null);
+                                      e.target.value = '';
+                                    }
+                                  }}
+                                />
+                              </label>
+                            )}
+                          </div>
+                          <p className="text-xs text-gray-500 mb-4">
+                            Upload brand logos, product images, or company photos (max 5 images).
+                          </p>
+                          <div className="flex flex-wrap gap-3">
+                            {(client.brandPhotos || []).map((photo, photoIndex) => (
+                              <div key={photoIndex} className="relative group">
+                                <img
+                                  src={photo}
+                                  alt={`Brand photo ${photoIndex + 1}`}
+                                  className="w-24 h-24 object-cover rounded-lg border shadow-sm"
+                                />
+                                <button
+                                  onClick={async () => {
+                                    if (!confirm('Delete this photo?')) return;
+                                    setDeletingPhoto(photo);
+                                    try {
+                                      const res = await fetch(
+                                        `/api/clients/${client.id}/photos?photo=${encodeURIComponent(photo)}`,
+                                        { method: 'DELETE' }
+                                      );
+                                      const result = await res.json();
+                                      if (result.success) {
+                                        showNotification('success', 'Photo deleted');
+                                        fetchClients();
+                                      } else {
+                                        showNotification('error', result.error || 'Failed to delete photo');
+                                      }
+                                    } catch {
+                                      showNotification('error', 'Failed to delete photo');
+                                    } finally {
+                                      setDeletingPhoto(null);
+                                    }
+                                  }}
+                                  disabled={deletingPhoto === photo}
+                                  className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600 shadow"
+                                  title="Delete photo"
+                                >
+                                  ×
+                                </button>
+                              </div>
+                            ))}
+                            {(client.brandPhotos || []).length === 0 && (
+                              <div className="text-xs text-gray-400 italic py-4">
+                                No brand photos uploaded yet. Click "Upload Photo" to add images.
+                              </div>
+                            )}
+                          </div>
                         </div>
 
                         {/* Keyword Dictionary Section */}

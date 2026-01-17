@@ -11,6 +11,8 @@ export interface Client {
   notes?: string;
   isActive: boolean;
   industry?: string;
+  // Brand photos - up to 5 images
+  brandPhotos?: string[];
   // Business metrics for conversion funnel calculations
   businessMetrics?: {
     ctrTop5?: string;        // CTR (Top 1-5) - Higher CTR for top positions
