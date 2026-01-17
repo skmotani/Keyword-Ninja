@@ -1320,7 +1320,7 @@ export default function ClientsPage() {
                                 <img
                                   src={photo}
                                   alt={`Brand photo ${photoIndex + 1}`}
-                                  className="w-24 h-24 object-cover rounded-lg border shadow-sm"
+                                  className="w-24 h-24 object-contain rounded-lg border shadow-sm bg-white p-1"
                                 />
                                 <button
                                   onClick={async () => {

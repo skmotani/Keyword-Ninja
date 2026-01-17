@@ -17,7 +17,10 @@
       "visitToRfq": "2%",
       "rfqToOrder": "2%",
       "avgTicketSize": "2500000"
-    }
+    },
+    "brandPhotos": [
+      "/api/clients/b28ce55e-5598-4d2f-9f96-58c5f6e86de1/photos/photo_1768621083320.png"
+    ]
   },
   {
     "id": "ff1e7b43-006c-4aa8-8781-86fe6ec34f17",

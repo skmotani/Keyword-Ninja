@@ -25,6 +25,8 @@ interface Client {
     code: string;
     name: string;
     isActive: boolean;
+    domains?: string[];
+    brandPhotos?: string[];
 }
 
 const pageHelp = {
@@ -1641,6 +1643,58 @@ export default function DashboardPage() {
                     </div>
                 )}
             </div>
+
+            {/* Client Logo/Brand Header */}
+            {selectedClient && (
+                <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl border border-indigo-100 p-6 mb-6 flex items-center gap-6">
+                    {/* Client Logo */}
+                    {selectedClient.brandPhotos && selectedClient.brandPhotos.length > 0 ? (
+                        <div className="flex-shrink-0">
+                            <img
+                                src={selectedClient.brandPhotos[0]}
+                                alt={`${selectedClient.name} logo`}
+                                className="w-20 h-20 object-contain rounded-lg border border-indigo-200 bg-white p-2 shadow-sm"
+                            />
+                        </div>
+                    ) : (
+                        <div className="flex-shrink-0 w-20 h-20 bg-indigo-100 rounded-lg border border-indigo-200 flex items-center justify-center">
+                            <span className="text-3xl font-bold text-indigo-400">
+                                {selectedClient.name.charAt(0).toUpperCase()}
+                            </span>
+                        </div>
+                    )}
+                    {/* Client Info */}
+                    <div className="flex-1">
+                        <h2 className="text-2xl font-bold text-gray-900">{selectedClient.name}</h2>
+                        <p className="text-sm text-gray-500 mt-1">
+                            Client Code: <span className="font-mono bg-gray-100 px-1.5 py-0.5 rounded text-indigo-600">{selectedClient.code}</span>
+                        </p>
+                        {selectedClient.domains && selectedClient.domains.length > 0 && (
+                            <div className="flex flex-wrap gap-2 mt-2">
+                                {selectedClient.domains.slice(0, 3).map((domain: string, i: number) => (
+                                    <span key={i} className="text-xs bg-white border border-gray-200 px-2 py-1 rounded text-gray-600">
+                                        🌐 {domain}
+                                    </span>
+                                ))}
+                                {selectedClient.domains.length > 3 && (
+                                    <span className="text-xs text-gray-400">+{selectedClient.domains.length - 3} more</span>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                    {/* Quick Stats */}
+                    <div className="flex gap-4 text-center">
+                        <div className="bg-white rounded-lg px-4 py-2 border shadow-sm">
+                            <div className="text-2xl font-bold text-indigo-600">{queries.length}</div>
+                            <div className="text-xs text-gray-500">Queries</div>
+                        </div>
+                        <div className="bg-white rounded-lg px-4 py-2 border shadow-sm">
+                            <div className="text-2xl font-bold text-green-600">{expandedQueries.size}</div>
+                            <div className="text-xs text-gray-500">Expanded</div>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Query Cards */}
             {loading ? (
