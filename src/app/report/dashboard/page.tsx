@@ -1772,14 +1772,20 @@ export default function DashboardPage() {
         const nextNum = Math.max(0, ...existingIds) + 1;
         const newId = `MANUAL_${String(nextNum).padStart(3, '0')}`;
 
+        const now = new Date().toISOString();
         const newQuery: DashboardQueryDefinition = {
             id: newId,
+            queryNumber: String(nextNum),
             title: 'New Card (click to edit)',
             description: 'Click to add content',
             status: 'Info' as QueryStatus,
             queryType: 'manual',
             groupId: defaultGroup.id,
             tooltip: 'This is a manually created card. You can edit the title and add queries later.',
+            config: {},
+            isActive: true,
+            createdAt: now,
+            updatedAt: now,
         };
 
         setQueries(prev => [...prev, newQuery]);
