@@ -1,11 +1,17 @@
 {
-  "customizations": [
+  "queries": [
     {
       "queryId": "Q001",
-      "clientCode": "01",
       "customTitle": "About Client",
-      "updatedAt": "2026-01-17T05:39:57.225Z",
-      "customDescription": "Title : We Know Your Business |"
+      "pageContent": "Title : We Know Your Business |"
     }
-  ]
+  ],
+  "categories": [
+    {
+      "groupId": "GRP-001",
+      "customName": "Digital Fosotprint",
+      "updatedAt": "2026-01-17T07:02:33.881Z"
+    }
+  ],
+  "queryOrder": {}
 }

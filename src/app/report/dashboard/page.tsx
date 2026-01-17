@@ -19,6 +19,22 @@ import {
     BrandPowerData
 } from '@/types/dashboardTypes';
 import Link from 'next/link';
+import {
+    DndContext,
+    DragEndEvent,
+    DragOverlay,
+    DragStartEvent,
+    PointerSensor,
+    useSensor,
+    useSensors,
+    closestCenter,
+} from '@dnd-kit/core';
+import {
+    SortableContext,
+    useSortable,
+    verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
 interface Client {
     id: string;
@@ -1053,6 +1069,48 @@ function BrandPowerCard({ data }: { data: BrandPowerData }) {
     );
 }
 
+// Sortable Query Card Wrapper for drag-and-drop
+function SortableQueryCard({
+    id,
+    children,
+}: {
+    id: string;
+    children: React.ReactNode;
+}) {
+    const {
+        attributes,
+        listeners,
+        setNodeRef,
+        transform,
+        transition,
+        isDragging,
+    } = useSortable({ id });
+
+    const style = {
+        transform: CSS.Transform.toString(transform),
+        transition,
+        opacity: isDragging ? 0.5 : 1,
+    };
+
+    return (
+        <div ref={setNodeRef} style={style} className="relative group/drag">
+            <div
+                {...attributes}
+                {...listeners}
+                className="absolute left-0 top-0 bottom-0 w-6 flex items-center justify-center cursor-grab active:cursor-grabbing opacity-0 group-hover/drag:opacity-100 transition-opacity z-10 hover:bg-gray-100 rounded-l-lg"
+                title="Drag to reorder"
+            >
+                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8h16M4 16h16" />
+                </svg>
+            </div>
+            <div className="pl-2">
+                {children}
+            </div>
+        </div>
+    );
+}
+
 // Query Card Component with Editable Title and Description
 function QueryCard({
     query,
@@ -1404,6 +1462,16 @@ export default function DashboardPage() {
     const [categoryNames, setCategoryNames] = useState<Record<string, string>>({});
     const [editingCategory, setEditingCategory] = useState<string | null>(null);
     const [editCategoryValue, setEditCategoryValue] = useState<string>('');
+    const [activeId, setActiveId] = useState<string | null>(null);
+
+    // Drag-and-drop sensors
+    const sensors = useSensors(
+        useSensor(PointerSensor, {
+            activationConstraint: {
+                distance: 8,
+            },
+        })
+    );
 
     // Load global customizations from API (once on mount)
     const loadCustomizations = useCallback(async () => {
@@ -1475,6 +1543,56 @@ export default function DashboardPage() {
             console.error('Failed to save category name:', error);
         }
     }, []);
+
+    // Drag and drop handlers
+    const handleDragStart = useCallback((event: DragStartEvent) => {
+        setActiveId(event.active.id as string);
+    }, []);
+
+    const handleDragEnd = useCallback((event: DragEndEvent) => {
+        const { active, over } = event;
+        setActiveId(null);
+
+        if (!over || active.id === over.id) return;
+
+        // Find the query being dragged and the target position
+        const activeQuery = queries.find(q => q.id === active.id);
+        const overQuery = queries.find(q => q.id === over.id);
+
+        if (!activeQuery || !overQuery) return;
+
+        // Reorder queries
+        const oldIndex = queries.findIndex(q => q.id === active.id);
+        const newIndex = queries.findIndex(q => q.id === over.id);
+
+        const newQueries = [...queries];
+        newQueries.splice(oldIndex, 1);
+        newQueries.splice(newIndex, 0, activeQuery);
+        setQueries(newQueries);
+
+        // If moving to a different group, update the query's groupId
+        if (activeQuery.groupId !== overQuery.groupId) {
+            const updatedQuery = { ...activeQuery, groupId: overQuery.groupId };
+            const updatedQueries = newQueries.map(q =>
+                q.id === activeQuery.id ? updatedQuery : q
+            );
+            setQueries(updatedQueries);
+        }
+
+        // Save the new order to API
+        const queryOrder: Record<string, string[]> = {};
+        queryGroups.forEach(group => {
+            queryOrder[group.id] = newQueries
+                .filter(q => q.groupId === group.id)
+                .map(q => q.id);
+        });
+
+        fetch('/api/reports/dashboard/customizations', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ type: 'order', queryOrder }),
+        }).catch(err => console.error('Failed to save query order:', err));
+    }, [queries, queryGroups]);
 
     // Fetch clients and global customizations on mount
     useEffect(() => {
@@ -1844,72 +1962,93 @@ export default function DashboardPage() {
                     <p className="text-sm text-gray-400 mt-2">Select a client to view their dashboard</p>
                 </div>
             ) : (
-                <div className="space-y-6">
-                    {Object.entries(queriesByGroup).map(([groupName, groupQueries]) => (
-                        <div key={groupName}>
-                            <h2
-                                className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2 group cursor-pointer"
-                                onClick={() => {
-                                    const group = queryGroups.find(g => g.name === groupName);
-                                    if (group) {
-                                        setEditingCategory(group.id);
-                                        setEditCategoryValue(categoryNames[group.id] || groupName);
-                                    }
-                                }}
-                            >
-                                <span className="w-1 h-5 bg-indigo-500 rounded-full"></span>
-                                {editingCategory === queryGroups.find(g => g.name === groupName)?.id ? (
-                                    <input
-                                        type="text"
-                                        value={editCategoryValue}
-                                        onChange={(e) => setEditCategoryValue(e.target.value)}
-                                        onBlur={() => {
-                                            const group = queryGroups.find(g => g.name === groupName);
-                                            if (group) handleCategoryNameSave(group.id, editCategoryValue);
-                                        }}
-                                        onKeyDown={(e) => {
-                                            if (e.key === 'Enter') {
+                <DndContext
+                    sensors={sensors}
+                    collisionDetection={closestCenter}
+                    onDragStart={handleDragStart}
+                    onDragEnd={handleDragEnd}
+                >
+                    <div className="space-y-6">
+                        {Object.entries(queriesByGroup).map(([groupName, groupQueries]) => (
+                            <div key={groupName}>
+                                <h2
+                                    className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2 group cursor-pointer"
+                                    onClick={() => {
+                                        const group = queryGroups.find(g => g.name === groupName);
+                                        if (group) {
+                                            setEditingCategory(group.id);
+                                            setEditCategoryValue(categoryNames[group.id] || groupName);
+                                        }
+                                    }}
+                                >
+                                    <span className="w-1 h-5 bg-indigo-500 rounded-full"></span>
+                                    {editingCategory === queryGroups.find(g => g.name === groupName)?.id ? (
+                                        <input
+                                            type="text"
+                                            value={editCategoryValue}
+                                            onChange={(e) => setEditCategoryValue(e.target.value)}
+                                            onBlur={() => {
                                                 const group = queryGroups.find(g => g.name === groupName);
                                                 if (group) handleCategoryNameSave(group.id, editCategoryValue);
-                                            }
-                                            if (e.key === 'Escape') {
-                                                setEditingCategory(null);
-                                            }
-                                        }}
-                                        className="border border-indigo-300 rounded px-2 py-0.5 text-lg font-semibold focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-                                        autoFocus
-                                        onClick={(e) => e.stopPropagation()}
-                                    />
-                                ) : (
-                                    <>
-                                        {categoryNames[queryGroups.find(g => g.name === groupName)?.id || ''] || groupName}
-                                        <svg className="w-3 h-3 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                        </svg>
-                                    </>
-                                )}
-                            </h2>
-                            <div className="space-y-3">
-                                {groupQueries.map(query => (
-                                    <QueryCard
-                                        key={query.id}
-                                        query={query}
-                                        result={queryResults[query.id] || null}
-                                        isExpanded={expandedQueries.has(query.id)}
-                                        isLoading={loadingQueries.has(query.id)}
-                                        onToggle={() => toggleQuery(query.id)}
-                                        customTitle={customTitles[query.id]}
-                                        onTitleChange={handleTitleChange}
-                                        pageTitle={pageTitles[query.id]}
-                                        pageContent={pageContents[query.id]}
-                                        onPageTitleChange={handlePageTitleChange}
-                                        onPageContentChange={handlePageContentChange}
-                                    />
-                                ))}
+                                            }}
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter') {
+                                                    const group = queryGroups.find(g => g.name === groupName);
+                                                    if (group) handleCategoryNameSave(group.id, editCategoryValue);
+                                                }
+                                                if (e.key === 'Escape') {
+                                                    setEditingCategory(null);
+                                                }
+                                            }}
+                                            className="border border-indigo-300 rounded px-2 py-0.5 text-lg font-semibold focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                                            autoFocus
+                                            onClick={(e) => e.stopPropagation()}
+                                        />
+                                    ) : (
+                                        <>
+                                            {categoryNames[queryGroups.find(g => g.name === groupName)?.id || ''] || groupName}
+                                            <svg className="w-3 h-3 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                            </svg>
+                                        </>
+                                    )}
+                                </h2>
+                                <SortableContext
+                                    items={groupQueries.map(q => q.id)}
+                                    strategy={verticalListSortingStrategy}
+                                >
+                                    <div className="space-y-3">
+                                        {groupQueries.map(query => (
+                                            <SortableQueryCard key={query.id} id={query.id}>
+                                                <QueryCard
+                                                    query={query}
+                                                    result={queryResults[query.id] || null}
+                                                    isExpanded={expandedQueries.has(query.id)}
+                                                    isLoading={loadingQueries.has(query.id)}
+                                                    onToggle={() => toggleQuery(query.id)}
+                                                    customTitle={customTitles[query.id]}
+                                                    onTitleChange={handleTitleChange}
+                                                    pageTitle={pageTitles[query.id]}
+                                                    pageContent={pageContents[query.id]}
+                                                    onPageTitleChange={handlePageTitleChange}
+                                                    onPageContentChange={handlePageContentChange}
+                                                />
+                                            </SortableQueryCard>
+                                        ))}
+                                    </div>
+                                </SortableContext>
                             </div>
-                        </div>
-                    ))}
-                </div>
+                        ))}
+                    </div>
+                    <DragOverlay>
+                        {activeId ? (
+                            <div className="bg-white rounded-lg border-2 border-indigo-400 shadow-lg p-4 opacity-90">
+                                <span className="font-mono text-indigo-600">{activeId}</span>
+                                <span className="ml-2 text-gray-600">Dragging...</span>
+                            </div>
+                        ) : null}
+                    </DragOverlay>
+                </DndContext>
             )}
 
             {/* Info Footer */}
