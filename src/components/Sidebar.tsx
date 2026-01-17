@@ -15,6 +15,7 @@ const menuSections = [
         color: 'blue',
         items: [
             { href: '/digital-footprint', label: 'Know Your Footprint' },
+            { href: '/admin/footprint-registry', label: 'Footprint Registry' },
         ],
     },
     {
