@@ -1095,15 +1095,17 @@ function QueryCard({
     const displayDescription = customDescription || query.description;
 
     const handleTitleSave = () => {
-        if (onTitleChange && editTitle !== query.title) {
-            onTitleChange(query.id, editTitle);
+        const trimmedTitle = editTitle.trim();
+        if (onTitleChange && trimmedTitle) {
+            onTitleChange(query.id, trimmedTitle);
         }
         setIsEditingTitle(false);
     };
 
     const handleDescriptionSave = () => {
-        if (onDescriptionChange && editDescription !== query.description) {
-            onDescriptionChange(query.id, editDescription);
+        const trimmedDescription = editDescription.trim();
+        if (onDescriptionChange) {
+            onDescriptionChange(query.id, trimmedDescription || query.description);
         }
         setIsEditingDescription(false);
     };
