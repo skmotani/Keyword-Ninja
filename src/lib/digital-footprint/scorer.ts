@@ -154,7 +154,7 @@ export function getTopRecommendations(score: FootprintScore, limit: number = 5):
         if (!surface) return `Fix ${opp.label}`;
 
         return opp.status === 'absent'
-            ? surface.tooltips.actionAbsent
+            ? (surface.tooltips.actionAbsent || `Add ${opp.label}`)
             : `Improve ${opp.label}: Currently partial presence`;
-    });
+    }).filter((s): s is string => typeof s === 'string');
 }
