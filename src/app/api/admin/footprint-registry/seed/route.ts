@@ -371,28 +371,32 @@ export async function POST() {
 
         // Insert defaults
         const created = await prisma.footprintSurfaceRegistry.createMany({
-            data: DEFAULT_SURFACES.map(s => ({
-                surfaceKey: s.surfaceKey,
-                label: s.label,
-                category: s.category,
-                importanceTier: s.importanceTier,
-                basePoints: s.basePoints,
-                defaultRelevanceWeight: 1.0,
-                sourceType: s.sourceType,
-                searchEngine: s.searchEngine || null,
-                queryTemplates: s.queryTemplates || [],
-                maxQueries: s.maxQueries || 2,
-                confirmationArtifact: s.confirmationArtifact,
-                presenceRules: s.presenceRules || null,
-                officialnessRules: s.officialnessRules || null,
-                officialnessRequired: s.officialnessRequired ?? true,
-                evidenceFields: s.evidenceFields || null,
-                tooltipTemplates: s.tooltipTemplates || null,
-                enabled: s.enabled ?? true,
-                notes: s.notes || null,
-                industryOverrides: s.industryOverrides || null,
-                geoOverrides: s.geoOverrides || null,
-            })),
+            data: DEFAULT_SURFACES.map(s => {
+                // Explicitly cast the source object to any to access optional properties safely
+                const src = s as any;
+                return {
+                    surfaceKey: src.surfaceKey,
+                    label: src.label,
+                    category: src.category,
+                    importanceTier: src.importanceTier,
+                    basePoints: src.basePoints,
+                    defaultRelevanceWeight: 1.0,
+                    sourceType: src.sourceType,
+                    searchEngine: src.searchEngine || null,
+                    queryTemplates: (src.queryTemplates || []) as any,
+                    maxQueries: src.maxQueries || 2,
+                    confirmationArtifact: src.confirmationArtifact,
+                    presenceRules: src.presenceRules ? (src.presenceRules as any) : undefined,
+                    officialnessRules: src.officialnessRules ? (src.officialnessRules as any) : undefined,
+                    officialnessRequired: src.officialnessRequired ?? true,
+                    evidenceFields: src.evidenceFields ? (src.evidenceFields as any) : undefined,
+                    tooltipTemplates: src.tooltipTemplates ? (src.tooltipTemplates as any) : undefined,
+                    enabled: src.enabled ?? true,
+                    notes: src.notes || null,
+                    industryOverrides: src.industryOverrides ? (src.industryOverrides as any) : undefined,
+                    geoOverrides: src.geoOverrides ? (src.geoOverrides as any) : undefined,
+                };
+            }),
         });
 
         return NextResponse.json({
