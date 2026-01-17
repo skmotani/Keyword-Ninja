@@ -1051,22 +1051,60 @@ function BrandPowerCard({ data }: { data: BrandPowerData }) {
     );
 }
 
-// Query Card Component
+// Query Card Component with Editable Title and Description
 function QueryCard({
     query,
     result,
     isExpanded,
     isLoading,
     onToggle,
+    customTitle,
+    customDescription,
+    onTitleChange,
+    onDescriptionChange,
 }: {
     query: DashboardQueryDefinition;
     result: DashboardQueryResult | null;
     isExpanded: boolean;
     isLoading: boolean;
     onToggle: () => void;
+    customTitle?: string;
+    customDescription?: string;
+    onTitleChange?: (queryId: string, title: string) => void;
+    onDescriptionChange?: (queryId: string, description: string) => void;
 }) {
     const statusStyle = statusColors[query.status];
     const [showInfoModal, setShowInfoModal] = React.useState(false);
+    const [isEditingTitle, setIsEditingTitle] = React.useState(false);
+    const [isEditingDescription, setIsEditingDescription] = React.useState(false);
+    const [editTitle, setEditTitle] = React.useState(customTitle || query.title);
+    const [editDescription, setEditDescription] = React.useState(customDescription || query.description);
+
+    // Update local state when props change
+    React.useEffect(() => {
+        setEditTitle(customTitle || query.title);
+    }, [customTitle, query.title]);
+
+    React.useEffect(() => {
+        setEditDescription(customDescription || query.description);
+    }, [customDescription, query.description]);
+
+    const displayTitle = customTitle || query.title;
+    const displayDescription = customDescription || query.description;
+
+    const handleTitleSave = () => {
+        if (onTitleChange && editTitle !== query.title) {
+            onTitleChange(query.id, editTitle);
+        }
+        setIsEditingTitle(false);
+    };
+
+    const handleDescriptionSave = () => {
+        if (onDescriptionChange && editDescription !== query.description) {
+            onDescriptionChange(query.id, editDescription);
+        }
+        setIsEditingDescription(false);
+    };
 
     return (
         <>
@@ -1074,37 +1112,133 @@ function QueryCard({
                 isOpen={showInfoModal}
                 onClose={() => setShowInfoModal(false)}
                 queryId={query.id}
-                title={query.title}
-                description={query.tooltip || query.description}
+                title={displayTitle}
+                description={query.tooltip || displayDescription}
             />
             <div className={`bg-white rounded-lg border shadow-sm overflow-hidden transition-all ${isExpanded ? 'ring-2 ring-indigo-200' : ''}`}>
                 {/* Header */}
                 <div
                     className="flex items-center justify-between px-4 py-3 bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors"
-                    onClick={onToggle}
+                    onClick={(e) => {
+                        // Don't toggle when clicking on editable fields
+                        if ((e.target as HTMLElement).closest('.editable-field')) return;
+                        onToggle();
+                    }}
                 >
-                    <div className="flex items-center gap-3">
-                        <span className="text-xs font-mono bg-gray-200 text-gray-600 px-2 py-0.5 rounded">
-                            {query.id}
-                        </span>
-                        <h3 className="font-semibold text-gray-900">{query.title}</h3>
-                        {query.tooltip && (
-                            <button
-                                type="button"
-                                className="p-1 rounded-full hover:bg-indigo-100 transition-colors"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    setShowInfoModal(true);
-                                }}
-                                title="Click for details"
-                            >
-                                <svg className="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </button>
+                    <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-1">
+                            <span className="text-xs font-mono bg-gray-200 text-gray-600 px-2 py-0.5 rounded">
+                                {query.id}
+                            </span>
+                            {/* Editable Title */}
+                            {isEditingTitle ? (
+                                <input
+                                    type="text"
+                                    value={editTitle}
+                                    onChange={(e) => setEditTitle(e.target.value)}
+                                    onBlur={handleTitleSave}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter') handleTitleSave();
+                                        if (e.key === 'Escape') {
+                                            setEditTitle(customTitle || query.title);
+                                            setIsEditingTitle(false);
+                                        }
+                                    }}
+                                    className="editable-field font-semibold text-gray-900 border border-indigo-300 rounded px-2 py-0.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                                    autoFocus
+                                    onClick={(e) => e.stopPropagation()}
+                                />
+                            ) : (
+                                <h3
+                                    className="editable-field font-semibold text-gray-900 cursor-text hover:bg-indigo-50 px-2 py-0.5 rounded transition-colors group flex items-center gap-1"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setIsEditingTitle(true);
+                                    }}
+                                    title="Click to edit title"
+                                >
+                                    {displayTitle}
+                                    <svg className="w-3 h-3 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                    </svg>
+                                </h3>
+                            )}
+                            {query.tooltip && (
+                                <button
+                                    type="button"
+                                    className="p-1 rounded-full hover:bg-indigo-100 transition-colors"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setShowInfoModal(true);
+                                    }}
+                                    title="Click for details"
+                                >
+                                    <svg className="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </button>
+                            )}
+                        </div>
+                        {/* Editable Description */}
+                        <div className="ml-14">
+                            {isEditingDescription ? (
+                                <textarea
+                                    value={editDescription}
+                                    onChange={(e) => setEditDescription(e.target.value)}
+                                    onBlur={handleDescriptionSave}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' && !e.shiftKey) {
+                                            e.preventDefault();
+                                            handleDescriptionSave();
+                                        }
+                                        if (e.key === 'Escape') {
+                                            setEditDescription(customDescription || query.description);
+                                            setIsEditingDescription(false);
+                                        }
+                                    }}
+                                    className="editable-field w-full text-xs text-gray-600 border border-indigo-300 rounded px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:outline-none resize-none"
+                                    rows={2}
+                                    autoFocus
+                                    onClick={(e) => e.stopPropagation()}
+                                />
+                            ) : (
+                                <p
+                                    className="editable-field text-xs text-gray-600 cursor-text hover:bg-indigo-50 px-2 py-0.5 rounded transition-colors group inline-flex items-center gap-1"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setIsEditingDescription(true);
+                                    }}
+                                    title="Click to edit description"
+                                >
+                                    {displayDescription}
+                                    <svg className="w-2.5 h-2.5 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                    </svg>
+                                </p>
+                            )}
+                        </div>
+                        {/* Data Source in tiny font */}
+                        {result?.sourceLink && (
+                            <div className="ml-14 mt-1">
+                                <span className="text-[10px] text-gray-400 flex items-center gap-1">
+                                    <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                    Data from:{' '}
+                                    <Link
+                                        href={result.sourceLink.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-indigo-500 hover:underline"
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
+                                        {result.sourceLink.label} ↗
+                                    </Link>
+                                </span>
+                            </div>
                         )}
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 ml-4">
                         <span className={`px-2 py-1 rounded text-xs font-semibold ${statusStyle.bg} ${statusStyle.text}`}>
                             {query.status}
                         </span>
@@ -1182,6 +1316,19 @@ export default function DashboardPage() {
     const [loading, setLoading] = useState(false);
     const [exporting, setExporting] = useState(false);
     const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+
+    // Custom editable titles and descriptions (session-only)
+    const [customTitles, setCustomTitles] = useState<Record<string, string>>({});
+    const [customDescriptions, setCustomDescriptions] = useState<Record<string, string>>({});
+
+    // Handlers for editing titles and descriptions
+    const handleTitleChange = useCallback((queryId: string, title: string) => {
+        setCustomTitles(prev => ({ ...prev, [queryId]: title }));
+    }, []);
+
+    const handleDescriptionChange = useCallback((queryId: string, description: string) => {
+        setCustomDescriptions(prev => ({ ...prev, [queryId]: description }));
+    }, []);
 
     // Fetch clients on mount
     useEffect(() => {
@@ -1514,6 +1661,10 @@ export default function DashboardPage() {
                                         isExpanded={expandedQueries.has(query.id)}
                                         isLoading={loadingQueries.has(query.id)}
                                         onToggle={() => toggleQuery(query.id)}
+                                        customTitle={customTitles[query.id]}
+                                        customDescription={customDescriptions[query.id]}
+                                        onTitleChange={handleTitleChange}
+                                        onDescriptionChange={handleDescriptionChange}
                                     />
                                 ))}
                             </div>
