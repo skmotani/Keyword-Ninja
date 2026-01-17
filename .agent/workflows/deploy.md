@@ -4,25 +4,35 @@ description: How to deploy to Railway with pre-flight checks
 
 # Deploy to Railway
 
-Before pushing to main (which triggers Railway deployment), always run these checks:
+All checks run automatically now! Just commit and push.
 
-## Pre-Deploy Checklist
+## Automatic Safeguards (Already Active)
 
-// turbo
-1. Run TypeScript check to catch build errors locally:
-```bash
-npx tsc --noEmit
-```
+### 1. Pre-commit Hook
+✅ TypeScript check runs before every commit
+✅ Blocks commit if errors found
 
-// turbo
-2. If TypeScript passes, commit and push:
+### 2. Pre-push Hook  
+✅ TypeScript check runs before every push
+✅ Blocks push if errors found
+
+### 3. Data Sync on Deploy
+✅ `dashboard_queries.json` synced on every deploy
+✅ `dashboard_query_groups.json` synced on every deploy
+
+## To Deploy
+
+// turbo-all
 ```bash
 git add .
-git commit -m "your message"
+git commit -m "your changes"
 git push
 ```
 
-## Notes
-- Railway builds use stricter TypeScript settings than local dev
-- Common issues: missing type properties, iterator/Set spread, optional chaining
-- Always run `npx tsc --noEmit` before pushing to avoid wasted build time
+Railway auto-deploys from main branch.
+
+## If You See Errors
+
+1. **Build failed on Railway**: The pre-commit hook should have caught this. Run `npx tsc --noEmit` locally to check.
+
+2. **Data not syncing**: Add the file to `ALWAYS_SYNC_FILES` in `scripts/init-data.js`

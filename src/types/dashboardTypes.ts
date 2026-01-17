@@ -24,6 +24,7 @@ export type QueryType =
     | 'etv-comparison'
     | 'keyword-opportunity-matrix'
     | 'brand-keywords-matrix'
+    | 'top20-include-buy'
     | 'custom'
     | 'manual';
 
@@ -212,6 +213,23 @@ export interface BrandPowerData {
     }[];
 }
 
+// MANUAL_001: Top 20 Include|Buy Keywords with combined IN+GL volume and Self positions
+export interface Top20IncludeBuyData {
+    keywords: {
+        rank: number;
+        keyword: string;
+        bucket: string;           // 'Include | Buy'
+        totalVolume: number;      // Combined IN + GL volume
+        volumeIN: number;         // India volume
+        volumeGL: number;         // Global volume
+        selfPosIN: number | null; // Client domain position in India
+        selfPosGL: number | null; // Client domain position in Global
+    }[];
+    summary: {
+        totalIncludeBuyKeywords: number;
+        selfDomainsCount: number;
+    };
+}
 
 // Source link for data verification
 export interface DataSourceLink {

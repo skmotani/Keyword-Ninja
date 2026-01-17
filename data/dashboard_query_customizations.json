@@ -1,9 +1,15 @@
 {
+  "_WARNING": "⛔ DO NOT EDIT LOCALLY - This file is stored in Railway Volume. Edits here will NOT sync to production. Use the Dashboard UI on Railway to modify.",
   "queries": [
     {
       "queryId": "Q001",
       "customTitle": "About Client",
       "pageContent": "Title : We Know Your Business |"
+    },
+    {
+      "queryId": "MANUAL_001",
+      "customTitle": "First Title Page",
+      "updatedAt": "2026-01-17T16:13:42.308Z"
     }
   ],
   "categories": [
@@ -19,8 +25,8 @@
       "Q001"
     ],
     "GRP-002": [
-      "Q003",
       "Q002",
+      "Q003",
       "Q004",
       "Q010",
       "Q011"

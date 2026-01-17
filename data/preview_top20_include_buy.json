@@ -1,0 +1,182 @@
+[
+  {
+    "term": "cross winding",
+    "bucket": "Include | Buy",
+    "totalVolume": 5400,
+    "volumeIN": 5400,
+    "volumeGL": 0,
+    "posIN": "-",
+    "posGL": "-"
+  },
+  {
+    "term": "twisting machine",
+    "bucket": "Include | Buy",
+    "totalVolume": 1300,
+    "volumeIN": 1300,
+    "volumeGL": 0,
+    "posIN": 8,
+    "posGL": "-"
+  },
+  {
+    "term": "making rope machine",
+    "bucket": "Include | Buy",
+    "totalVolume": 1110,
+    "volumeIN": 390,
+    "volumeGL": 720,
+    "posIN": "-",
+    "posGL": "-"
+  },
+  {
+    "term": "rope making machine",
+    "bucket": "Include | Buy",
+    "totalVolume": 1110,
+    "volumeIN": 390,
+    "volumeGL": 720,
+    "posIN": "-",
+    "posGL": "-"
+  },
+  {
+    "term": "rope machine",
+    "bucket": "Include | Buy",
+    "totalVolume": 910,
+    "volumeIN": 320,
+    "volumeGL": 590,
+    "posIN": "-",
+    "posGL": "-"
+  },
+  {
+    "term": "cone to cone winding machine",
+    "bucket": "Include | Buy",
+    "totalVolume": 860,
+    "volumeIN": 720,
+    "volumeGL": 140,
+    "posIN": 31,
+    "posGL": "-"
+  },
+  {
+    "term": "yarn twister",
+    "bucket": "Include | Buy",
+    "totalVolume": 850,
+    "volumeIN": 260,
+    "volumeGL": 590,
+    "posIN": 2,
+    "posGL": 11
+  },
+  {
+    "term": "yarn winding machine",
+    "bucket": "Include | Buy",
+    "totalVolume": 800,
+    "volumeIN": 480,
+    "volumeGL": 320,
+    "posIN": 13,
+    "posGL": "-"
+  },
+  {
+    "term": "tfo full form",
+    "bucket": "Include | Buy",
+    "totalVolume": 720,
+    "volumeIN": 720,
+    "volumeGL": 0,
+    "posIN": "-",
+    "posGL": "-"
+  },
+  {
+    "term": "cone winding machine",
+    "bucket": "Include | Buy",
+    "totalVolume": 720,
+    "volumeIN": 720,
+    "volumeGL": 0,
+    "posIN": "-",
+    "posGL": "-"
+  },
+  {
+    "term": "textile machine supplier",
+    "bucket": "Include | Buy",
+    "totalVolume": 680,
+    "volumeIN": 590,
+    "volumeGL": 90,
+    "posIN": 10,
+    "posGL": "-"
+  },
+  {
+    "term": "doubler machine",
+    "bucket": "Include | Buy",
+    "totalVolume": 640,
+    "volumeIN": 590,
+    "volumeGL": 50,
+    "posIN": "-",
+    "posGL": "-"
+  },
+  {
+    "term": "doubling machine",
+    "bucket": "Include | Buy",
+    "totalVolume": 640,
+    "volumeIN": 590,
+    "volumeGL": 50,
+    "posIN": "-",
+    "posGL": "-"
+  },
+  {
+    "term": "machine yarn",
+    "bucket": "Include | Buy",
+    "totalVolume": 580,
+    "volumeIN": 260,
+    "volumeGL": 320,
+    "posIN": 71,
+    "posGL": "-"
+  },
+  {
+    "term": "yarn machine",
+    "bucket": "Include | Buy",
+    "totalVolume": 580,
+    "volumeIN": 260,
+    "volumeGL": 320,
+    "posIN": "-",
+    "posGL": "-"
+  },
+  {
+    "term": "ring twister",
+    "bucket": "Include | Buy",
+    "totalVolume": 480,
+    "volumeIN": 480,
+    "volumeGL": 0,
+    "posIN": 2,
+    "posGL": "-"
+  },
+  {
+    "term": "cotton yarn twisting machine",
+    "bucket": "Include | Buy",
+    "totalVolume": 420,
+    "volumeIN": 390,
+    "volumeGL": 30,
+    "posIN": 3,
+    "posGL": 3
+  },
+  {
+    "term": "yarn spinning machines",
+    "bucket": "Include | Buy",
+    "totalVolume": 390,
+    "volumeIN": 0,
+    "volumeGL": 390,
+    "posIN": "-",
+    "posGL": "-"
+  },
+  {
+    "term": "cotton yarn spinning machine",
+    "bucket": "Include | Buy",
+    "totalVolume": 340,
+    "volumeIN": 320,
+    "volumeGL": 20,
+    "posIN": "-",
+    "posGL": "-"
+  },
+  {
+    "term": "machine rope",
+    "bucket": "Include | Buy",
+    "totalVolume": 320,
+    "volumeIN": 320,
+    "volumeGL": 0,
+    "posIN": "-",
+    "posGL": "-"
+  }
+]

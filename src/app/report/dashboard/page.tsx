@@ -16,7 +16,8 @@ import {
     MarketSizeData,
     ETVComparisonData,
     KeywordOpportunityMatrixData,
-    BrandPowerData
+    BrandPowerData,
+    Top20IncludeBuyData
 } from '@/types/dashboardTypes';
 import Link from 'next/link';
 import {
@@ -1069,6 +1070,76 @@ function BrandPowerCard({ data }: { data: BrandPowerData }) {
     );
 }
 
+// MANUAL_001: Top 20 Include|Buy Keywords Card
+function Top20IncludeBuyCard({ data }: { data: Top20IncludeBuyData }) {
+    return (
+        <div className="space-y-4">
+            {/* Summary */}
+            <div className="flex items-center gap-4 text-sm text-gray-500">
+                <span>
+                    Total Include|Buy Keywords: <strong className="text-gray-900">{data.summary.totalIncludeBuyKeywords}</strong>
+                </span>
+                <span>|</span>
+                <span>
+                    Self Domains: <strong className="text-gray-900">{data.summary.selfDomainsCount}</strong>
+                </span>
+            </div>
+
+            {/* Keywords Table */}
+            <div className="overflow-x-auto border rounded-lg">
+                <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                        <tr>
+                            <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+                            <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Keyword</th>
+                            <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">In+Gl Vol</th>
+                            <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Vol IN</th>
+                            <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Vol GL</th>
+                            <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Self Pos IN</th>
+                            <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Self Pos GL</th>
+                        </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                        {data.keywords.map((kw) => (
+                            <tr key={kw.rank} className="hover:bg-gray-50">
+                                <td className="px-3 py-2 text-sm text-gray-500">{kw.rank}</td>
+                                <td className="px-3 py-2 text-sm font-medium text-gray-900">{kw.keyword}</td>
+                                <td className="px-3 py-2 text-sm text-right text-gray-900 font-semibold">
+                                    {kw.totalVolume.toLocaleString()}
+                                </td>
+                                <td className="px-3 py-2 text-sm text-right text-gray-600">
+                                    {kw.volumeIN > 0 ? kw.volumeIN.toLocaleString() : '-'}
+                                </td>
+                                <td className="px-3 py-2 text-sm text-right text-gray-600">
+                                    {kw.volumeGL > 0 ? kw.volumeGL.toLocaleString() : '-'}
+                                </td>
+                                <td className="px-3 py-2 text-sm text-right">
+                                    {kw.selfPosIN !== null ? (
+                                        <span className={kw.selfPosIN <= 10 ? 'text-green-600 font-medium' : 'text-gray-600'}>
+                                            {kw.selfPosIN}
+                                        </span>
+                                    ) : (
+                                        <span className="text-gray-400">-</span>
+                                    )}
+                                </td>
+                                <td className="px-3 py-2 text-sm text-right">
+                                    {kw.selfPosGL !== null ? (
+                                        <span className={kw.selfPosGL <= 10 ? 'text-green-600 font-medium' : 'text-gray-600'}>
+                                            {kw.selfPosGL}
+                                        </span>
+                                    ) : (
+                                        <span className="text-gray-400">-</span>
+                                    )}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 // Sortable Query Card Wrapper for drag-and-drop
 function SortableQueryCard({
     id,
@@ -1246,6 +1317,7 @@ function QueryCard({
                                     title="Click to edit title"
                                 >
                                     {displayTitle}
+                                    <span title="Saved to Railway Volume (Not Git Pushed)" className="cursor-help text-sm">☁️</span>
                                     <svg className="w-3 h-3 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                     </svg>
@@ -1323,6 +1395,7 @@ function QueryCard({
                                         <span className={pageTitle ? 'text-gray-700' : 'text-gray-300 italic'}>
                                             {pageTitle || 'Click to add page title...'}
                                         </span>
+                                        <span title="Saved to Railway Volume (Not Git Pushed)" className="cursor-help text-[10px]">☁️</span>
                                         <svg className="w-2.5 h-2.5 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                         </svg>
@@ -1365,6 +1438,7 @@ function QueryCard({
                                         <span className={pageContent ? 'text-gray-600' : 'text-gray-300 italic'}>
                                             {pageContent || 'Click to add content description...'}
                                         </span>
+                                        <span title="Saved to Railway Volume (Not Git Pushed)" className="cursor-help text-[10px]">☁️</span>
                                         <svg className="w-2.5 h-2.5 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                         </svg>
@@ -1452,6 +1526,8 @@ function QueryCard({
                                     <KeywordOpportunityMatrixCard data={result.data as KeywordOpportunityMatrixData} />
                                 ) : result.queryType === 'brand-keywords-matrix' ? (
                                     <BrandPowerCard data={result.data as BrandPowerData} />
+                                ) : result.queryType === 'top20-include-buy' ? (
+                                    <Top20IncludeBuyCard data={result.data as Top20IncludeBuyData} />
                                 ) : (
                                     <pre className="text-sm bg-gray-50 p-3 rounded overflow-auto">
                                         {JSON.stringify(result.data, null, 2)}
