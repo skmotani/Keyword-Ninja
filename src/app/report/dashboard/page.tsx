@@ -1061,9 +1061,11 @@ function QueryCard({
     isLoading,
     onToggle,
     customTitle,
-    customDescription,
     onTitleChange,
-    onDescriptionChange,
+    pageTitle,
+    pageContent,
+    onPageTitleChange,
+    onPageContentChange,
 }: {
     query: DashboardQueryDefinition;
     result: DashboardQueryResult | null;
@@ -1071,16 +1073,20 @@ function QueryCard({
     isLoading: boolean;
     onToggle: () => void;
     customTitle?: string;
-    customDescription?: string;
     onTitleChange?: (queryId: string, title: string) => void;
-    onDescriptionChange?: (queryId: string, description: string) => void;
+    pageTitle?: string;
+    pageContent?: string;
+    onPageTitleChange?: (queryId: string, pageTitle: string) => void;
+    onPageContentChange?: (queryId: string, pageContent: string) => void;
 }) {
     const statusStyle = statusColors[query.status];
     const [showInfoModal, setShowInfoModal] = React.useState(false);
     const [isEditingTitle, setIsEditingTitle] = React.useState(false);
-    const [isEditingDescription, setIsEditingDescription] = React.useState(false);
+    const [isEditingPageTitle, setIsEditingPageTitle] = React.useState(false);
+    const [isEditingPageContent, setIsEditingPageContent] = React.useState(false);
     const [editTitle, setEditTitle] = React.useState(customTitle || query.title);
-    const [editDescription, setEditDescription] = React.useState(customDescription || query.description);
+    const [editPageTitle, setEditPageTitle] = React.useState(pageTitle || '');
+    const [editPageContent, setEditPageContent] = React.useState(pageContent || '');
 
     // Update local state when props change
     React.useEffect(() => {
@@ -1088,11 +1094,14 @@ function QueryCard({
     }, [customTitle, query.title]);
 
     React.useEffect(() => {
-        setEditDescription(customDescription || query.description);
-    }, [customDescription, query.description]);
+        setEditPageTitle(pageTitle || '');
+    }, [pageTitle]);
+
+    React.useEffect(() => {
+        setEditPageContent(pageContent || '');
+    }, [pageContent]);
 
     const displayTitle = customTitle || query.title;
-    const displayDescription = customDescription || query.description;
 
     const handleTitleSave = () => {
         const trimmedTitle = editTitle.trim();
@@ -1102,12 +1111,18 @@ function QueryCard({
         setIsEditingTitle(false);
     };
 
-    const handleDescriptionSave = () => {
-        const trimmedDescription = editDescription.trim();
-        if (onDescriptionChange) {
-            onDescriptionChange(query.id, trimmedDescription || query.description);
+    const handlePageTitleSave = () => {
+        if (onPageTitleChange) {
+            onPageTitleChange(query.id, editPageTitle.trim());
         }
-        setIsEditingDescription(false);
+        setIsEditingPageTitle(false);
+    };
+
+    const handlePageContentSave = () => {
+        if (onPageContentChange) {
+            onPageContentChange(query.id, editPageContent.trim());
+        }
+        setIsEditingPageContent(false);
     };
 
     return (
@@ -1117,7 +1132,7 @@ function QueryCard({
                 onClose={() => setShowInfoModal(false)}
                 queryId={query.id}
                 title={displayTitle}
-                description={query.tooltip || displayDescription}
+                description={query.tooltip || query.description}
             />
             <div className={`bg-white rounded-lg border shadow-sm overflow-hidden transition-all ${isExpanded ? 'ring-2 ring-indigo-200' : ''}`}>
                 {/* Header */}
@@ -1183,43 +1198,92 @@ function QueryCard({
                                 </button>
                             )}
                         </div>
-                        {/* Editable Description */}
-                        <div className="ml-14">
-                            {isEditingDescription ? (
-                                <textarea
-                                    value={editDescription}
-                                    onChange={(e) => setEditDescription(e.target.value)}
-                                    onBlur={handleDescriptionSave}
-                                    onKeyDown={(e) => {
-                                        if (e.key === 'Enter' && !e.shiftKey) {
-                                            e.preventDefault();
-                                            handleDescriptionSave();
-                                        }
-                                        if (e.key === 'Escape') {
-                                            setEditDescription(customDescription || query.description);
-                                            setIsEditingDescription(false);
-                                        }
-                                    }}
-                                    className="editable-field w-full text-xs text-gray-600 border border-indigo-300 rounded px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:outline-none resize-none"
-                                    rows={2}
-                                    autoFocus
-                                    onClick={(e) => e.stopPropagation()}
-                                />
-                            ) : (
-                                <p
-                                    className="editable-field text-xs text-gray-600 cursor-text hover:bg-indigo-50 px-2 py-0.5 rounded transition-colors group inline-flex items-center gap-1"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        setIsEditingDescription(true);
-                                    }}
-                                    title="Click to edit description"
-                                >
-                                    {displayDescription}
-                                    <svg className="w-2.5 h-2.5 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                    </svg>
-                                </p>
-                            )}
+                        {/* Editable Page Title & Content */}
+                        <div className="ml-14 mt-2 space-y-2">
+                            {/* Page Title Field */}
+                            <div>
+                                {isEditingPageTitle ? (
+                                    <input
+                                        type="text"
+                                        value={editPageTitle}
+                                        onChange={(e) => setEditPageTitle(e.target.value)}
+                                        onBlur={handlePageTitleSave}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter') {
+                                                e.preventDefault();
+                                                handlePageTitleSave();
+                                            }
+                                            if (e.key === 'Escape') {
+                                                setEditPageTitle(pageTitle || '');
+                                                setIsEditingPageTitle(false);
+                                            }
+                                        }}
+                                        className="editable-field w-full text-xs border border-indigo-300 rounded px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                                        placeholder="Page title for reports..."
+                                        autoFocus
+                                        onClick={(e) => e.stopPropagation()}
+                                    />
+                                ) : (
+                                    <div
+                                        className="editable-field text-xs cursor-text hover:bg-indigo-50 px-2 py-1 rounded transition-colors group flex items-center gap-2"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setIsEditingPageTitle(true);
+                                        }}
+                                        title="Click to edit page title"
+                                    >
+                                        <span className="text-gray-400 font-medium">Title:</span>
+                                        <span className={pageTitle ? 'text-gray-700' : 'text-gray-300 italic'}>
+                                            {pageTitle || 'Click to add page title...'}
+                                        </span>
+                                        <svg className="w-2.5 h-2.5 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                        </svg>
+                                    </div>
+                                )}
+                            </div>
+                            {/* Page Content Field */}
+                            <div>
+                                {isEditingPageContent ? (
+                                    <textarea
+                                        value={editPageContent}
+                                        onChange={(e) => setEditPageContent(e.target.value)}
+                                        onBlur={handlePageContentSave}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter' && !e.shiftKey) {
+                                                e.preventDefault();
+                                                handlePageContentSave();
+                                            }
+                                            if (e.key === 'Escape') {
+                                                setEditPageContent(pageContent || '');
+                                                setIsEditingPageContent(false);
+                                            }
+                                        }}
+                                        className="editable-field w-full text-xs border border-indigo-300 rounded px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:outline-none resize-none"
+                                        rows={2}
+                                        placeholder="Content description for this section..."
+                                        autoFocus
+                                        onClick={(e) => e.stopPropagation()}
+                                    />
+                                ) : (
+                                    <div
+                                        className="editable-field text-xs cursor-text hover:bg-indigo-50 px-2 py-1 rounded transition-colors group flex items-start gap-2"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setIsEditingPageContent(true);
+                                        }}
+                                        title="Click to edit content description"
+                                    >
+                                        <span className="text-gray-400 font-medium">Content:</span>
+                                        <span className={pageContent ? 'text-gray-600' : 'text-gray-300 italic'}>
+                                            {pageContent || 'Click to add content description...'}
+                                        </span>
+                                        <svg className="w-2.5 h-2.5 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                        </svg>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                         {/* Data Source Info - always visible from query definition */}
                         {query.sourceInfo && (
@@ -1333,69 +1397,76 @@ export default function DashboardPage() {
     const [exporting, setExporting] = useState(false);
     const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
-    // Custom editable titles and descriptions (persistent)
+    // Custom editable titles, pageTitles, pageContents (GLOBAL - same for all clients)
     const [customTitles, setCustomTitles] = useState<Record<string, string>>({});
-    const [customDescriptions, setCustomDescriptions] = useState<Record<string, string>>({});
+    const [pageTitles, setPageTitles] = useState<Record<string, string>>({});
+    const [pageContents, setPageContents] = useState<Record<string, string>>({});
 
-    // Load customizations from API
-    const loadCustomizations = useCallback(async (clientCode: string) => {
+    // Load global customizations from API (once on mount)
+    const loadCustomizations = useCallback(async () => {
         try {
-            const res = await fetch(`/api/reports/dashboard/customizations?clientCode=${clientCode}`);
+            const res = await fetch('/api/reports/dashboard/customizations');
             const data = await res.json();
             if (data.success) {
                 setCustomTitles(data.titles || {});
-                setCustomDescriptions(data.descriptions || {});
+                setPageTitles(data.pageTitles || {});
+                setPageContents(data.pageContents || {});
             }
         } catch (error) {
             console.error('Failed to load customizations:', error);
         }
     }, []);
 
-    // Save customization to API
-    const saveCustomization = useCallback(async (queryId: string, customTitle?: string, customDescription?: string) => {
-        if (!selectedClientCode) return;
+    // Save customization to API (global)
+    const saveQueryCustomization = useCallback(async (queryId: string, customTitle?: string, pageTitle?: string, pageContent?: string) => {
         try {
             await fetch('/api/reports/dashboard/customizations', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    clientCode: selectedClientCode,
+                    type: 'query',
                     queryId,
                     customTitle,
-                    customDescription,
+                    pageTitle,
+                    pageContent,
                 }),
             });
         } catch (error) {
             console.error('Failed to save customization:', error);
         }
-    }, [selectedClientCode]);
+    }, []);
 
-    // Handlers for editing titles and descriptions
+    // Handlers for editing
     const handleTitleChange = useCallback((queryId: string, title: string) => {
         setCustomTitles(prev => ({ ...prev, [queryId]: title }));
-        saveCustomization(queryId, title, customDescriptions[queryId]);
-    }, [saveCustomization, customDescriptions]);
+        saveQueryCustomization(queryId, title, pageTitles[queryId], pageContents[queryId]);
+    }, [saveQueryCustomization, pageTitles, pageContents]);
 
-    const handleDescriptionChange = useCallback((queryId: string, description: string) => {
-        setCustomDescriptions(prev => ({ ...prev, [queryId]: description }));
-        saveCustomization(queryId, customTitles[queryId], description);
-    }, [saveCustomization, customTitles]);
+    const handlePageTitleChange = useCallback((queryId: string, pageTitle: string) => {
+        setPageTitles(prev => ({ ...prev, [queryId]: pageTitle }));
+        saveQueryCustomization(queryId, customTitles[queryId], pageTitle, pageContents[queryId]);
+    }, [saveQueryCustomization, customTitles, pageContents]);
 
-    // Fetch clients on mount
+    const handlePageContentChange = useCallback((queryId: string, pageContent: string) => {
+        setPageContents(prev => ({ ...prev, [queryId]: pageContent }));
+        saveQueryCustomization(queryId, customTitles[queryId], pageTitles[queryId], pageContent);
+    }, [saveQueryCustomization, customTitles, pageTitles]);
+
+    // Fetch clients and global customizations on mount
     useEffect(() => {
         fetchClients();
         fetchQueryGroups();
-    }, []);
+        loadCustomizations();
+    }, [loadCustomizations]);
 
-    // Fetch queries and customizations when client changes
+    // Fetch queries when client changes
     useEffect(() => {
         if (selectedClientCode) {
             fetchQueries();
-            loadCustomizations(selectedClientCode);
             setQueryResults({});
             setExpandedQueries(new Set());
         }
-    }, [selectedClientCode, selectedGroupId, loadCustomizations]);
+    }, [selectedClientCode, selectedGroupId]);
 
     async function fetchClients() {
         try {
@@ -1766,9 +1837,11 @@ export default function DashboardPage() {
                                         isLoading={loadingQueries.has(query.id)}
                                         onToggle={() => toggleQuery(query.id)}
                                         customTitle={customTitles[query.id]}
-                                        customDescription={customDescriptions[query.id]}
                                         onTitleChange={handleTitleChange}
-                                        onDescriptionChange={handleDescriptionChange}
+                                        pageTitle={pageTitles[query.id]}
+                                        pageContent={pageContents[query.id]}
+                                        onPageTitleChange={handlePageTitleChange}
+                                        onPageContentChange={handlePageContentChange}
                                     />
                                 ))}
                             </div>
