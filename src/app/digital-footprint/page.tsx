@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface SurfaceResult {
     index: number;
@@ -42,12 +42,28 @@ interface DomainResult {
 interface ScanResult {
     id: string;
     status: string;
+    createdAt: string;
     domains: DomainResult[];
 }
 
+interface HistoryItem {
+    id: string;
+    createdAt: string;
+    status: string;
+    totalDomains: number;
+    finishedDomains: number;
+    domains: Array<{
+        domain: string;
+        brandName: string;
+        score: number;
+    }>;
+}
+
 type FilterType = 'all' | 'gaps' | 'critical' | 'unknown';
+type TabType = 'scan' | 'history';
 
 export default function DigitalFootprintPage() {
+    const [activeTab, setActiveTab] = useState<TabType>('scan');
     const [domains, setDomains] = useState('');
     const [hints, setHints] = useState('');
     const [loading, setLoading] = useState(false);
@@ -56,12 +72,59 @@ export default function DigitalFootprintPage() {
     const [filter, setFilter] = useState<FilterType>('all');
     const [expandedDomain, setExpandedDomain] = useState<string | null>(null);
 
+    // History state
+    const [history, setHistory] = useState<HistoryItem[]>([]);
+    const [historyLoading, setHistoryLoading] = useState(false);
+    const [selectedHistoryId, setSelectedHistoryId] = useState<string | null>(null);
+
+    // Load history when tab changes
+    useEffect(() => {
+        if (activeTab === 'history') {
+            loadHistory();
+        }
+    }, [activeTab]);
+
+    const loadHistory = async () => {
+        setHistoryLoading(true);
+        try {
+            const res = await fetch('/api/digital-footprint/history');
+            if (res.ok) {
+                const data = await res.json();
+                setHistory(data);
+            }
+        } catch (err) {
+            console.error('Failed to load history:', err);
+        } finally {
+            setHistoryLoading(false);
+        }
+    };
+
+    const loadHistoryScan = async (scanId: string) => {
+        setLoading(true);
+        try {
+            const res = await fetch(`/api/digital-footprint/${scanId}`);
+            if (res.ok) {
+                const data = await res.json();
+                setResult(data);
+                setSelectedHistoryId(scanId);
+                if (data.domains?.length > 0) {
+                    setExpandedDomain(data.domains[0].id);
+                }
+            }
+        } catch (err) {
+            console.error('Failed to load scan:', err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const runScan = async () => {
         if (!domains.trim()) return;
 
         setLoading(true);
         setError(null);
         setResult(null);
+        setSelectedHistoryId(null);
 
         try {
             const res = await fetch('/api/digital-footprint/scan', {
@@ -87,6 +150,17 @@ export default function DigitalFootprintPage() {
         } finally {
             setLoading(false);
         }
+    };
+
+    const formatDate = (dateStr: string) => {
+        const date = new Date(dateStr);
+        return date.toLocaleDateString('en-IN', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+        });
     };
 
     const getStatusBadge = (status: string) => {
@@ -161,7 +235,6 @@ export default function DigitalFootprintPage() {
         return { grade: 'F', color: 'text-red-600', bg: 'bg-red-100' };
     };
 
-    // Extract domain from URL for display
     const extractDomain = (url: string) => {
         try {
             const u = new URL(url);
@@ -172,62 +245,187 @@ export default function DigitalFootprintPage() {
     };
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-6">
             {/* Header */}
             <div>
                 <h1 className="text-3xl font-bold text-gray-900">🌐 Know Your Digital Footprint</h1>
                 <p className="text-gray-600 mt-1">Presence audit across the internet — not rankings, just existence verification</p>
             </div>
 
-            {/* Input Section */}
-            <div className="bg-white rounded-xl shadow-sm border p-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Domains to Scan <span className="text-red-500">*</span>
-                        </label>
-                        <textarea
-                            value={domains}
-                            onChange={(e) => setDomains(e.target.value)}
-                            placeholder="motani.com&#10;competitor1.com&#10;competitor2.com"
-                            className="w-full h-32 px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        />
-                        <p className="text-xs text-gray-500 mt-1">One domain per line. Max 5 domains.</p>
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Hints (Optional)
-                        </label>
-                        <textarea
-                            value={hints}
-                            onChange={(e) => setHints(e.target.value)}
-                            placeholder="Brand name, city, industry keywords..."
-                            className="w-full h-32 px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        />
-                        <p className="text-xs text-gray-500 mt-1">Helps improve entity matching.</p>
-                    </div>
-                </div>
-
-                <div className="mt-6 flex gap-4">
-                    <button
-                        onClick={runScan}
-                        disabled={loading || !domains.trim()}
-                        className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-                    >
-                        {loading ? (
-                            <>
-                                <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                                </svg>
-                                Scanning...
-                            </>
-                        ) : (
-                            '🔍 Run Scan'
-                        )}
-                    </button>
-                </div>
+            {/* Tab Navigation */}
+            <div className="flex gap-1 bg-gray-100 p-1 rounded-lg w-fit">
+                <button
+                    onClick={() => setActiveTab('scan')}
+                    className={`px-6 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'scan'
+                            ? 'bg-white text-blue-600 shadow-sm'
+                            : 'text-gray-600 hover:text-gray-900'
+                        }`}
+                >
+                    🔍 New Scan
+                </button>
+                <button
+                    onClick={() => setActiveTab('history')}
+                    className={`px-6 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'history'
+                            ? 'bg-white text-blue-600 shadow-sm'
+                            : 'text-gray-600 hover:text-gray-900'
+                        }`}
+                >
+                    📜 History
+                </button>
             </div>
+
+            {/* SCAN TAB */}
+            {activeTab === 'scan' && (
+                <>
+                    {/* Input Section */}
+                    <div className="bg-white rounded-xl shadow-sm border p-6">
+                        <div className="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Domains to Scan <span className="text-red-500">*</span>
+                                </label>
+                                <textarea
+                                    value={domains}
+                                    onChange={(e) => setDomains(e.target.value)}
+                                    placeholder="motani.com&#10;competitor1.com&#10;competitor2.com"
+                                    className="w-full h-32 px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                />
+                                <p className="text-xs text-gray-500 mt-1">One domain per line. Max 5 domains.</p>
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Hints (Optional)
+                                </label>
+                                <textarea
+                                    value={hints}
+                                    onChange={(e) => setHints(e.target.value)}
+                                    placeholder="Brand name, city, industry keywords..."
+                                    className="w-full h-32 px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                />
+                                <p className="text-xs text-gray-500 mt-1">Helps improve entity matching.</p>
+                            </div>
+                        </div>
+
+                        <div className="mt-6 flex gap-4">
+                            <button
+                                onClick={runScan}
+                                disabled={loading || !domains.trim()}
+                                className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                            >
+                                {loading ? (
+                                    <>
+                                        <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                                        </svg>
+                                        Scanning...
+                                    </>
+                                ) : (
+                                    '🔍 Run Scan'
+                                )}
+                            </button>
+                        </div>
+                    </div>
+                </>
+            )}
+
+            {/* HISTORY TAB */}
+            {activeTab === 'history' && (
+                <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
+                    <div className="px-6 py-4 border-b bg-gray-50">
+                        <h2 className="font-semibold text-gray-800">📜 Scan History</h2>
+                        <p className="text-sm text-gray-500">All your previous scans are saved. Click to view details.</p>
+                    </div>
+
+                    {historyLoading ? (
+                        <div className="p-8 text-center text-gray-500">
+                            <svg className="animate-spin h-8 w-8 mx-auto mb-2" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                            </svg>
+                            Loading history...
+                        </div>
+                    ) : history.length === 0 ? (
+                        <div className="p-8 text-center text-gray-500">
+                            <p className="text-lg">No scans yet</p>
+                            <p className="text-sm mt-1">Run your first scan to see it here.</p>
+                        </div>
+                    ) : (
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-sm">
+                                <thead className="bg-slate-100 text-slate-700">
+                                    <tr>
+                                        <th className="px-4 py-3 text-left font-semibold">#</th>
+                                        <th className="px-4 py-3 text-left font-semibold">Timestamp</th>
+                                        <th className="px-4 py-3 text-left font-semibold">Domains</th>
+                                        <th className="px-4 py-3 text-left font-semibold">Scores</th>
+                                        <th className="px-4 py-3 text-center font-semibold">Status</th>
+                                        <th className="px-4 py-3 text-center font-semibold">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-100">
+                                    {history.map((item, idx) => (
+                                        <tr
+                                            key={item.id}
+                                            className={`hover:bg-gray-50 ${selectedHistoryId === item.id ? 'bg-blue-50' : ''}`}
+                                        >
+                                            <td className="px-4 py-3 text-gray-500 font-mono">{idx + 1}</td>
+                                            <td className="px-4 py-3">
+                                                <div className="font-medium text-gray-900">{formatDate(item.createdAt)}</div>
+                                            </td>
+                                            <td className="px-4 py-3">
+                                                <div className="space-y-1">
+                                                    {item.domains.map((d, i) => (
+                                                        <div key={i} className="flex items-center gap-2">
+                                                            <span className="text-gray-700">{d.domain}</span>
+                                                            {d.brandName && (
+                                                                <span className="text-xs text-gray-400">({d.brandName})</span>
+                                                            )}
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </td>
+                                            <td className="px-4 py-3">
+                                                <div className="space-y-1">
+                                                    {item.domains.map((d, i) => {
+                                                        const grade = getGrade(d.score);
+                                                        return (
+                                                            <div key={i} className="flex items-center gap-2">
+                                                                <span className={`font-bold ${grade.color}`}>{d.score}%</span>
+                                                                <span className={`text-xs px-1.5 py-0.5 rounded ${grade.bg} ${grade.color}`}>
+                                                                    {grade.grade}
+                                                                </span>
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </td>
+                                            <td className="px-4 py-3 text-center">
+                                                <span className={`px-2 py-1 rounded text-xs font-medium ${item.status === 'completed'
+                                                        ? 'bg-green-100 text-green-700'
+                                                        : item.status === 'running'
+                                                            ? 'bg-yellow-100 text-yellow-700'
+                                                            : 'bg-gray-100 text-gray-600'
+                                                    }`}>
+                                                    {item.status.toUpperCase()}
+                                                </span>
+                                            </td>
+                                            <td className="px-4 py-3 text-center">
+                                                <button
+                                                    onClick={() => loadHistoryScan(item.id)}
+                                                    className="px-3 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700"
+                                                >
+                                                    View Details
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                </div>
+            )}
 
             {/* Error */}
             {error && (
@@ -236,9 +434,27 @@ export default function DigitalFootprintPage() {
                 </div>
             )}
 
-            {/* Results */}
+            {/* Results (shown for both new scan and history detail) */}
             {result && result.domains && (
                 <div className="space-y-6">
+                    {/* Scan Info Header */}
+                    {result.createdAt && (
+                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center justify-between">
+                            <div>
+                                <span className="text-blue-800 font-medium">📅 Scan from: </span>
+                                <span className="text-blue-700">{formatDate(result.createdAt)}</span>
+                            </div>
+                            {selectedHistoryId && (
+                                <button
+                                    onClick={() => { setResult(null); setSelectedHistoryId(null); }}
+                                    className="text-sm text-blue-600 hover:underline"
+                                >
+                                    ← Back to History
+                                </button>
+                            )}
+                        </div>
+                    )}
+
                     {/* Filter Tabs */}
                     <div className="flex gap-2 bg-gray-100 p-1 rounded-lg w-fit">
                         {(['all', 'gaps', 'critical', 'unknown'] as FilterType[]).map((f) => (
