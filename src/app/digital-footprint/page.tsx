@@ -257,8 +257,8 @@ export default function DigitalFootprintPage() {
                 <button
                     onClick={() => setActiveTab('scan')}
                     className={`px-6 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'scan'
-                            ? 'bg-white text-blue-600 shadow-sm'
-                            : 'text-gray-600 hover:text-gray-900'
+                        ? 'bg-white text-blue-600 shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
                         }`}
                 >
                     🔍 New Scan
@@ -266,8 +266,8 @@ export default function DigitalFootprintPage() {
                 <button
                     onClick={() => setActiveTab('history')}
                     className={`px-6 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'history'
-                            ? 'bg-white text-blue-600 shadow-sm'
-                            : 'text-gray-600 hover:text-gray-900'
+                        ? 'bg-white text-blue-600 shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
                         }`}
                 >
                     📜 History
@@ -402,10 +402,10 @@ export default function DigitalFootprintPage() {
                                             </td>
                                             <td className="px-4 py-3 text-center">
                                                 <span className={`px-2 py-1 rounded text-xs font-medium ${item.status === 'completed'
-                                                        ? 'bg-green-100 text-green-700'
-                                                        : item.status === 'running'
-                                                            ? 'bg-yellow-100 text-yellow-700'
-                                                            : 'bg-gray-100 text-gray-600'
+                                                    ? 'bg-green-100 text-green-700'
+                                                    : item.status === 'running'
+                                                        ? 'bg-yellow-100 text-yellow-700'
+                                                        : 'bg-gray-100 text-gray-600'
                                                     }`}>
                                                     {item.status.toUpperCase()}
                                                 </span>
@@ -562,10 +562,10 @@ export default function DigitalFootprintPage() {
                                                                                 {surface.method}
                                                                             </span>
                                                                         </td>
-                                                                        <td className="px-3 py-3 max-w-[200px]">
+                                                                        <td className="px-3 py-3 max-w-[300px]">
                                                                             {surface.evidence && surface.evidence.length > 0 ? (
                                                                                 <div className="space-y-1">
-                                                                                    {surface.evidence.slice(0, 2).map((ev, i) => (
+                                                                                    {surface.evidence.map((ev, i) => (
                                                                                         <a
                                                                                             key={i}
                                                                                             href={ev.url}
@@ -575,15 +575,12 @@ export default function DigitalFootprintPage() {
                                                                                             title={ev.url}
                                                                                         >
                                                                                             {ev.isOfficial && <span className="text-green-600">✓</span>}
-                                                                                            <span className="truncate">{ev.url ? extractDomain(ev.url) : ev.title}</span>
+                                                                                            <span className="truncate max-w-[200px]">{ev.url || ev.title}</span>
                                                                                             <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                                                                             </svg>
                                                                                         </a>
                                                                                     ))}
-                                                                                    {surface.evidence.length > 2 && (
-                                                                                        <span className="text-xs text-gray-400">+{surface.evidence.length - 2} more</span>
-                                                                                    )}
                                                                                 </div>
                                                                             ) : (
                                                                                 <span className="text-xs text-gray-400 italic">No evidence found</span>
