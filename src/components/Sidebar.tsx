@@ -9,6 +9,15 @@ import { useDevMode } from '@/contexts/DevModeContext';
 // Menu item definitions
 const menuSections = [
     {
+        id: 'footprint',
+        label: 'Digital Presence',
+        icon: '🌐',
+        color: 'blue',
+        items: [
+            { href: '/digital-footprint', label: 'Know Your Footprint' },
+        ],
+    },
+    {
         id: 'master',
         label: 'Master Data',
         icon: '🗂️',

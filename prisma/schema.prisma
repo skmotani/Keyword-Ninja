@@ -383,3 +383,74 @@ model CmsSitemap {
   
   client      Client   @relation(fields: [clientCode], references: [code], onDelete: Cascade)
 }
+
+// ============================================
+// DIGITAL FOOTPRINT - Presence Audit
+// ============================================
+
+model FootprintScan {
+  id              String   @id @default(cuid())
+  createdAt       DateTime @default(now())
+  domainsRaw      String   @db.Text
+  hintsRaw        String?  @db.Text
+  settingsJson    Json?
+  totalDomains    Int
+  finishedDomains Int      @default(0)
+  status          String   @default("pending") // pending, running, completed, failed
+  
+  domainScans     DomainScan[]
+  
+  @@index([status])
+}
+
+model DomainScan {
+  id                String   @id @default(cuid())
+  scanId            String
+  domainRaw         String
+  domainNormalized  String
+  crawlStatus       String?  // success, failed, skipped
+  finalUrl          String?
+  httpStatus        Int?
+  crawlDataJson     Json?    // Extracted entity data from crawl
+  profileJson       Json?    // OpenAI profile output
+  businessType      String?
+  industry          String?
+  geoScope          String?  // local, national, global
+  brandName         String?
+  brandVariants     Json?    // Array of brand name variants
+  scoreTotal        Float    @default(0)
+  scoreMax          Float    @default(100)
+  createdAt         DateTime @default(now())
+  
+  scan              FootprintScan  @relation(fields: [scanId], references: [id], onDelete: Cascade)
+  surfaceResults    SurfaceResult[]
+  
+  @@index([scanId])
+  @@index([domainNormalized])
+}
+
+model SurfaceResult {
+  id              String   @id @default(cuid())
+  domainScanId    String
+  category        String   // owned, search, social, trust, authority
+  surfaceKey      String   // WEBSITE, LINKEDIN, YOUTUBE, etc.
+  label           String   // Human-readable name
+  status          String   // present, partial, absent, unknown
+  confidence      Float?
+  weight          Float    @default(1)
+  relevance       String?  // high, medium, low
+  pointsAwarded   Float    @default(0)
+  pointsMax       Float
+  tooltipWhy      String?  @db.Text
+  tooltipHow      String?  @db.Text
+  tooltipAction   String?  @db.Text
+  evidenceJson    Json?    // Array of evidence items
+  queriesUsedJson Json?    // Queries used for this surface
+  createdAt       DateTime @default(now())
+  
+  domainScan      DomainScan @relation(fields: [domainScanId], references: [id], onDelete: Cascade)
+  
+  @@index([domainScanId])
+  @@index([surfaceKey])
+}
+
