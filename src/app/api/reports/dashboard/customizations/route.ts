@@ -59,6 +59,14 @@ export async function GET() {
     try {
         const data = await readCustomizations();
 
+        // SELF-HEALING: Inject MANUAL_001 if missing from order (Fix for Railway Volume drift)
+        if (data.queryOrder['GRP-001'] && !data.queryOrder['GRP-001'].includes('MANUAL_001')) {
+            // Check if GRP-001 exists, if so add MANUAL_001 to the top
+            data.queryOrder['GRP-001'].unshift('MANUAL_001');
+            // Persist the fix to the volume
+            await writeCustomizations(data);
+        }
+
         // Convert to lookup objects
         const titles: Record<string, string> = {};
         const pageTitles: Record<string, string> = {};

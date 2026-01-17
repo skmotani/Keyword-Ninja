@@ -487,6 +487,32 @@ export async function initializeSeedData(): Promise<{ groupsCreated: number; que
             await writeQueries(existingQueries);
             queriesCreated++;
         }
+
+        // MANUAL_001 - Top 20 Include|Buy Keywords
+        if (!existingIds.has('MANUAL_001')) {
+            const manual001: DashboardQueryDefinition = {
+                id: 'MANUAL_001',
+                queryNumber: '1.2',
+                groupId: 'GRP-001',
+                title: 'Top 20 Include|Buy Keywords',
+                description: 'Shows top 20 keywords from Include|Buy bucket by combined IN+GL volume with Self domain ranking positions',
+                tooltip: 'TABLE: client_ai_profiles.json (term dictionary) + domain_keywords.json + clients.json\nFILTER: bucket = \'include\' (Include|Buy)\nVOLUME: Combined India + Global volumes\nPOSITION: Client Self domains only (not competitors)\nSORT: totalVolume DESC\nLIMIT: 20',
+                status: 'Info',
+                queryType: 'top20-include-buy',
+                config: { limit: 20 },
+                sourceInfo: {
+                    tables: ['client_ai_profiles.json', 'domain_keywords.json', 'clients.json'],
+                    page: 'AI Keyword Builder',
+                    pageUrl: '/keywords/domain-keywords'
+                },
+                isActive: true,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
+            };
+            existingQueries.push(manual001);
+            await writeQueries(existingQueries);
+            queriesCreated++;
+        }
     }
 
     return { groupsCreated, queriesCreated };
