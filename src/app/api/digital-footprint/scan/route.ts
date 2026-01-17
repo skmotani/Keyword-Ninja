@@ -98,6 +98,8 @@ export async function POST(request: NextRequest) {
                             relevance: surfaceScore?.relevance,
                             pointsAwarded: surfaceScore?.pointsAwarded || 0,
                             pointsMax: surfaceScore?.pointsMax || 0,
+                            source: ev.source,
+                            method: ev.method,
                             tooltipWhy: surface?.tooltips.why,
                             tooltipHow: surface?.tooltips.how,
                             tooltipAction: ev.status === 'present'

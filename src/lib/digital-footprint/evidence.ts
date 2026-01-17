@@ -17,6 +17,8 @@ export interface SurfaceEvidence {
     confidence: number;
     evidence: EvidenceItem[];
     queriesUsed: string[];
+    source: 'direct' | 'dataforseo' | 'openai' | 'crawl';
+    method: string;
     error?: string;
 }
 
@@ -24,6 +26,25 @@ interface DataForSEOResult {
     title: string;
     url: string;
     description?: string;
+}
+
+// Get DataForSEO credentials from existing helper
+async function getCredentials(): Promise<{ login: string; password: string } | null> {
+    try {
+        // Use existing credentials helper that reads from data/api_credentials.json
+        const { getDataForSEOCredentials } = await import('@/lib/dataforseo/core/credentials');
+        const creds = await getDataForSEOCredentials();
+
+        if (creds) {
+            return {
+                login: creds.username,
+                password: creds.password,
+            };
+        }
+    } catch (error) {
+        console.error('[Evidence] Failed to get DataForSEO credentials:', error);
+    }
+    return null;
 }
 
 // Build queries for a surface based on business profile
@@ -37,33 +58,73 @@ export function buildQueriesForSurface(
 
     for (const template of surface.queryTemplates) {
         let query = template
-            .replace('{brand}', brand)
-            .replace('{domain}', domain)
-            .replace('{industry}', profile.industry || '')
-            .replace('{city}', ''); // Would need from profile
-
-        // Replace brand variants for some queries
-        if (template.includes('{brand}') && profile.brandVariants.length > 0) {
-            // Add a variant query too
-            const variant = profile.brandVariants[0];
-            if (variant !== brand) {
-                const variantQuery = template
-                    .replace('{brand}', variant)
-                    .replace('{domain}', domain);
-                queries.push(variantQuery);
-            }
-        }
+            .replace(/\{brand\}/g, brand)
+            .replace(/\{domain\}/g, domain)
+            .replace(/\{industry\}/g, profile.industry || '');
 
         if (query.trim()) {
             queries.push(query);
         }
     }
 
-    // Limit to 3 queries per surface
-    return queries.slice(0, 3);
+    // Limit to 2 queries per surface
+    return queries.slice(0, 2);
 }
 
-// Collect evidence for a single surface using DataForSEO
+// Execute search queries using DataForSEO
+async function executeSearchQueries(queries: string[]): Promise<{ results: DataForSEOResult[]; success: boolean }> {
+    const creds = await getCredentials();
+
+    if (!creds) {
+        console.log('[Evidence] No DataForSEO credentials found');
+        return { results: [], success: false };
+    }
+
+    const results: DataForSEOResult[] = [];
+
+    for (const query of queries) {
+        try {
+            console.log(`[Evidence] Searching: ${query}`);
+
+            const response = await fetch('https://api.dataforseo.com/v3/serp/google/organic/live/advanced', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Basic ' + Buffer.from(`${creds.login}:${creds.password}`).toString('base64'),
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify([{
+                    keyword: query,
+                    location_code: 2840, // USA
+                    language_code: 'en',
+                    depth: 10,
+                }]),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const items = data.tasks?.[0]?.result?.[0]?.items || [];
+
+                for (const item of items) {
+                    if (item.type === 'organic') {
+                        results.push({
+                            title: item.title || '',
+                            url: item.url || '',
+                            description: item.description,
+                        });
+                    }
+                }
+            } else {
+                console.error(`[Evidence] DataForSEO error: ${response.status}`);
+            }
+        } catch (error) {
+            console.error(`[Evidence] Search query failed: ${query}`, error);
+        }
+    }
+
+    return { results, success: true };
+}
+
+// Collect evidence for a single surface
 export async function collectEvidenceForSurface(
     surface: SurfaceDefinition,
     profile: BusinessProfile,
@@ -89,24 +150,40 @@ export async function collectEvidenceForSurface(
             confidence: 0,
             evidence: [],
             queriesUsed: [],
+            source: 'dataforseo',
+            method: 'No queries configured',
             error: 'No query templates for this surface',
         };
     }
 
     try {
-        // Call DataForSEO (or fallback to simulated results)
-        const results = await executeSearchQueries(queries);
+        const { results, success } = await executeSearchQueries(queries);
+
+        if (!success) {
+            return {
+                surfaceKey: surface.key,
+                status: 'unknown',
+                confidence: 0,
+                evidence: [],
+                queriesUsed: queries,
+                source: 'dataforseo',
+                method: 'SERP API (credentials missing)',
+                error: 'DataForSEO credentials not configured',
+            };
+        }
 
         // Classify results
         const evidence = classifyEvidence(results, profile, domain);
-        const status = determineStatus(evidence, profile.brandName);
+        const status = determineStatus(evidence, surface);
 
         return {
             surfaceKey: surface.key,
             status,
             confidence: calculateConfidence(evidence, status),
-            evidence: evidence.slice(0, 5),  // Top 5 evidence items
+            evidence: evidence.slice(0, 5),
             queriesUsed: queries,
+            source: 'dataforseo',
+            method: `SERP API (${queries.length} queries)`,
         };
     } catch (error) {
         return {
@@ -115,6 +192,8 @@ export async function collectEvidenceForSurface(
             confidence: 0,
             evidence: [],
             queriesUsed: queries,
+            source: 'dataforseo',
+            method: 'SERP API (error)',
             error: error instanceof Error ? error.message : 'Search failed',
         };
     }
@@ -129,6 +208,8 @@ function checkWebsitePresence(domain: string, crawlData?: CrawlData): SurfaceEvi
             confidence: 0.5,
             evidence: [],
             queriesUsed: [],
+            source: 'direct',
+            method: 'HTTP fetch (failed)',
             error: 'Could not crawl website',
         };
     }
@@ -140,12 +221,16 @@ function checkWebsitePresence(domain: string, crawlData?: CrawlData): SurfaceEvi
         isOfficial: true,
     }];
 
+    const hasSSL = crawlData.hasSSL;
+
     return {
         surfaceKey: 'WEBSITE',
-        status: crawlData.hasSSL ? 'present' : 'partial',
-        confidence: crawlData.hasSSL ? 0.95 : 0.7,
+        status: hasSSL ? 'present' : 'partial',
+        confidence: hasSSL ? 0.95 : 0.7,
         evidence,
         queriesUsed: [],
+        source: 'direct',
+        method: hasSSL ? 'HTTP fetch (SSL verified)' : 'HTTP fetch (no SSL)',
     };
 }
 
@@ -158,6 +243,8 @@ function checkSchemaPresence(crawlData?: CrawlData): SurfaceEvidence {
             confidence: 0.8,
             evidence: [],
             queriesUsed: [],
+            source: 'crawl',
+            method: 'HTML parsing (no schema found)',
         };
     }
 
@@ -179,62 +266,9 @@ function checkSchemaPresence(crawlData?: CrawlData): SurfaceEvidence {
         confidence: hasOrganization ? 0.9 : 0.6,
         evidence,
         queriesUsed: [],
+        source: 'crawl',
+        method: `HTML parsing (${schemas.length} schema blocks)`,
     };
-}
-
-// Execute search queries (mock for now - replace with DataForSEO)
-async function executeSearchQueries(queries: string[]): Promise<DataForSEOResult[]> {
-    // TODO: Replace with actual DataForSEO API call
-    // For now, return empty to indicate "could not verify"
-
-    const apiKey = process.env.DATAFORSEO_LOGIN;
-    const apiPassword = process.env.DATAFORSEO_PASSWORD;
-
-    if (!apiKey || !apiPassword) {
-        // Return empty results if no API configured
-        return [];
-    }
-
-    // Actual DataForSEO implementation would go here
-    // Using their SERP API endpoint
-    const results: DataForSEOResult[] = [];
-
-    for (const query of queries) {
-        try {
-            const response = await fetch('https://api.dataforseo.com/v3/serp/google/organic/live/advanced', {
-                method: 'POST',
-                headers: {
-                    'Authorization': 'Basic ' + Buffer.from(`${apiKey}:${apiPassword}`).toString('base64'),
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify([{
-                    keyword: query,
-                    location_code: 2840, // USA
-                    language_code: 'en',
-                    depth: 10,
-                }]),
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                const items = data.tasks?.[0]?.result?.[0]?.items || [];
-
-                for (const item of items) {
-                    if (item.type === 'organic') {
-                        results.push({
-                            title: item.title || '',
-                            url: item.url || '',
-                            description: item.description,
-                        });
-                    }
-                }
-            }
-        } catch (error) {
-            console.error(`Search query failed: ${query}`, error);
-        }
-    }
-
-    return results;
 }
 
 // Classify search results as evidence
@@ -267,14 +301,35 @@ function classifyEvidence(
 }
 
 // Determine presence status from evidence
-function determineStatus(evidence: EvidenceItem[], brandName: string): SurfaceStatus {
+function determineStatus(evidence: EvidenceItem[], surface: SurfaceDefinition): SurfaceStatus {
     if (evidence.length === 0) {
         return 'absent';
     }
 
     const officialCount = evidence.filter(e => e.isOfficial).length;
 
-    if (officialCount >= 2) {
+    // Check if any result is on the expected platform
+    const platformPatterns: Record<string, string[]> = {
+        LINKEDIN: ['linkedin.com'],
+        YOUTUBE: ['youtube.com', 'youtu.be'],
+        FACEBOOK: ['facebook.com', 'fb.com'],
+        INSTAGRAM: ['instagram.com'],
+        X_TWITTER: ['twitter.com', 'x.com'],
+        PINTEREST: ['pinterest.com'],
+        REDDIT: ['reddit.com'],
+        TRUSTPILOT: ['trustpilot.com'],
+    };
+
+    const patterns = platformPatterns[surface.key] || [];
+    const hasPlatformMatch = evidence.some(e =>
+        patterns.some(p => e.url.toLowerCase().includes(p))
+    );
+
+    if (hasPlatformMatch && officialCount >= 1) {
+        return 'present';
+    }
+
+    if (officialCount >= 2 || hasPlatformMatch) {
         return 'present';
     }
 
@@ -287,16 +342,15 @@ function determineStatus(evidence: EvidenceItem[], brandName: string): SurfaceSt
 
 // Calculate confidence score
 function calculateConfidence(evidence: EvidenceItem[], status: SurfaceStatus): number {
-    if (status === 'absent') return 0.7;  // Pretty sure it's not there
+    if (status === 'absent') return 0.7;
     if (status === 'unknown') return 0;
 
     const officialCount = evidence.filter(e => e.isOfficial).length;
-    const totalCount = evidence.length;
 
     if (officialCount >= 3) return 0.95;
     if (officialCount >= 2) return 0.85;
     if (officialCount === 1) return 0.6;
-    if (totalCount >= 2) return 0.5;
+    if (evidence.length >= 2) return 0.5;
 
     return 0.3;
 }
@@ -318,6 +372,11 @@ export async function collectAllEvidence(
             batch.map(surface => collectEvidenceForSurface(surface, profile, domain, crawlData))
         );
         results.push(...batchResults);
+
+        // Small delay between batches
+        if (i + batchSize < surfaces.length) {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
     }
 
     return results;

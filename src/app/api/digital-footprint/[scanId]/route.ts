@@ -51,7 +51,8 @@ export async function GET(
                     percentage: ds.scoreMax > 0 ? Math.round((ds.scoreTotal / ds.scoreMax) * 100) : 0,
                 },
                 crawlStatus: ds.crawlStatus,
-                surfaces: ds.surfaceResults.map(sr => ({
+                surfaces: ds.surfaceResults.map((sr, index) => ({
+                    index: index + 1,
                     key: sr.surfaceKey,
                     label: sr.label,
                     category: sr.category,
@@ -60,6 +61,8 @@ export async function GET(
                     pointsAwarded: sr.pointsAwarded,
                     pointsMax: sr.pointsMax,
                     confidence: sr.confidence,
+                    source: sr.source || 'unknown',
+                    method: sr.method || 'Not specified',
                     tooltips: {
                         why: sr.tooltipWhy,
                         how: sr.tooltipHow,

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 interface SurfaceResult {
+    index: number;
     key: string;
     label: string;
     category: string;
@@ -11,6 +12,8 @@ interface SurfaceResult {
     pointsAwarded: number;
     pointsMax: number;
     confidence: number;
+    source: string;
+    method: string;
     tooltips: {
         why?: string;
         how?: string;
@@ -86,32 +89,42 @@ export default function DigitalFootprintPage() {
         }
     };
 
-    const getStatusColor = (status: string) => {
+    const getStatusBadge = (status: string) => {
         switch (status) {
-            case 'present': return 'bg-green-100 text-green-800 border-green-200';
-            case 'partial': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-            case 'absent': return 'bg-red-100 text-red-800 border-red-200';
-            default: return 'bg-gray-100 text-gray-600 border-gray-200';
+            case 'present':
+                return <span className="px-2 py-1 bg-green-100 text-green-800 border border-green-300 rounded-full text-xs font-semibold">✓ PASS</span>;
+            case 'partial':
+                return <span className="px-2 py-1 bg-yellow-100 text-yellow-800 border border-yellow-300 rounded-full text-xs font-semibold">⚠ PARTIAL</span>;
+            case 'absent':
+                return <span className="px-2 py-1 bg-red-100 text-red-800 border border-red-300 rounded-full text-xs font-semibold">✗ FAIL</span>;
+            default:
+                return <span className="px-2 py-1 bg-gray-100 text-gray-600 border border-gray-300 rounded-full text-xs font-semibold">? UNKNOWN</span>;
         }
     };
 
-    const getRelevanceColor = (relevance: string) => {
-        switch (relevance) {
-            case 'high': return 'text-red-600 font-semibold';
-            case 'medium': return 'text-yellow-600';
-            default: return 'text-gray-400';
-        }
+    const getSourceBadge = (source: string) => {
+        const colors: Record<string, string> = {
+            direct: 'bg-blue-50 text-blue-700 border-blue-200',
+            dataforseo: 'bg-purple-50 text-purple-700 border-purple-200',
+            crawl: 'bg-green-50 text-green-700 border-green-200',
+            openai: 'bg-amber-50 text-amber-700 border-amber-200',
+        };
+        return (
+            <span className={`px-2 py-0.5 text-xs border rounded ${colors[source] || 'bg-gray-50 text-gray-600 border-gray-200'}`}>
+                {source.toUpperCase()}
+            </span>
+        );
     };
 
-    const getCategoryIcon = (category: string) => {
-        switch (category) {
-            case 'owned': return '🏠';
-            case 'search': return '🔍';
-            case 'social': return '📱';
-            case 'trust': return '⭐';
-            case 'authority': return '🏆';
-            default: return '📊';
-        }
+    const getCategoryLabel = (category: string) => {
+        const labels: Record<string, { icon: string; name: string }> = {
+            owned: { icon: '🏠', name: 'Owned Assets' },
+            search: { icon: '🔍', name: 'Search Presence' },
+            social: { icon: '📱', name: 'Social Media' },
+            trust: { icon: '⭐', name: 'Trust & Reviews' },
+            authority: { icon: '🏆', name: 'Authority' },
+        };
+        return labels[category] || { icon: '📊', name: category };
     };
 
     const filterSurfaces = (surfaces: SurfaceResult[]) => {
@@ -141,11 +154,11 @@ export default function DigitalFootprintPage() {
     };
 
     const getGrade = (percentage: number) => {
-        if (percentage >= 90) return { grade: 'A', color: 'text-green-600' };
-        if (percentage >= 75) return { grade: 'B', color: 'text-blue-600' };
-        if (percentage >= 60) return { grade: 'C', color: 'text-yellow-600' };
-        if (percentage >= 40) return { grade: 'D', color: 'text-orange-600' };
-        return { grade: 'F', color: 'text-red-600' };
+        if (percentage >= 90) return { grade: 'A', color: 'text-green-600', bg: 'bg-green-100' };
+        if (percentage >= 75) return { grade: 'B', color: 'text-blue-600', bg: 'bg-blue-100' };
+        if (percentage >= 60) return { grade: 'C', color: 'text-yellow-600', bg: 'bg-yellow-100' };
+        if (percentage >= 40) return { grade: 'D', color: 'text-orange-600', bg: 'bg-orange-100' };
+        return { grade: 'F', color: 'text-red-600', bg: 'bg-red-100' };
     };
 
     return (
@@ -153,7 +166,7 @@ export default function DigitalFootprintPage() {
             {/* Header */}
             <div>
                 <h1 className="text-3xl font-bold text-gray-900">🌐 Know Your Digital Footprint</h1>
-                <p className="text-gray-600 mt-1">Presence audit across the internet (not rankings)</p>
+                <p className="text-gray-600 mt-1">Presence audit across the internet — not rankings, just existence verification</p>
             </div>
 
             {/* Input Section */}
@@ -223,8 +236,8 @@ export default function DigitalFootprintPage() {
                                 key={f}
                                 onClick={() => setFilter(f)}
                                 className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${filter === f
-                                        ? 'bg-white text-blue-600 shadow-sm'
-                                        : 'text-gray-600 hover:text-gray-900'
+                                    ? 'bg-white text-blue-600 shadow-sm'
+                                    : 'text-gray-600 hover:text-gray-900'
                                     }`}
                             >
                                 {f === 'all' && 'All'}
@@ -236,117 +249,112 @@ export default function DigitalFootprintPage() {
                     </div>
 
                     {/* Domain Results */}
-                    {result.domains.map((domain) => (
-                        <div key={domain.id} className="bg-white rounded-xl shadow-sm border overflow-hidden">
-                            {/* Domain Header */}
-                            <div
-                                className="p-6 cursor-pointer hover:bg-gray-50 transition-colors"
-                                onClick={() => setExpandedDomain(expandedDomain === domain.id ? null : domain.id)}
-                            >
-                                <div className="flex items-start justify-between">
-                                    <div>
-                                        <h2 className="text-xl font-bold text-gray-900">{domain.domain}</h2>
-                                        <div className="flex flex-wrap gap-2 mt-2">
-                                            <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-sm">
-                                                {domain.profile.brandName}
-                                            </span>
-                                            <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-sm">
-                                                {domain.profile.businessType}
-                                            </span>
-                                            <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-sm">
-                                                {domain.profile.industry}
-                                            </span>
-                                            <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-sm capitalize">
-                                                {domain.profile.geoScope}
-                                            </span>
+                    {result.domains.map((domain) => {
+                        const grade = getGrade(domain.score.percentage);
+                        return (
+                            <div key={domain.id} className="bg-white rounded-xl shadow-sm border overflow-hidden">
+                                {/* Domain Header */}
+                                <div
+                                    className="p-6 cursor-pointer hover:bg-gray-50 transition-colors"
+                                    onClick={() => setExpandedDomain(expandedDomain === domain.id ? null : domain.id)}
+                                >
+                                    <div className="flex items-start justify-between">
+                                        <div>
+                                            <h2 className="text-xl font-bold text-gray-900">{domain.domain}</h2>
+                                            <div className="flex flex-wrap gap-2 mt-2">
+                                                <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-sm font-medium">
+                                                    {domain.profile.brandName}
+                                                </span>
+                                                <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-sm">
+                                                    {domain.profile.businessType}
+                                                </span>
+                                                <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-sm">
+                                                    {domain.profile.industry}
+                                                </span>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    {/* Score */}
-                                    <div className="text-center">
-                                        <div className={`text-4xl font-bold ${getGrade(domain.score.percentage).color}`}>
-                                            {domain.score.percentage}
-                                        </div>
-                                        <div className="text-sm text-gray-500">/ 100</div>
-                                        <div className={`text-2xl font-bold ${getGrade(domain.score.percentage).color}`}>
-                                            {getGrade(domain.score.percentage).grade}
+                                        {/* Score */}
+                                        <div className="text-center">
+                                            <div className={`w-20 h-20 rounded-full ${grade.bg} flex flex-col items-center justify-center`}>
+                                                <div className={`text-2xl font-bold ${grade.color}`}>
+                                                    {domain.score.percentage}%
+                                                </div>
+                                                <div className={`text-lg font-bold ${grade.color}`}>
+                                                    {grade.grade}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Expanded Content */}
-                            {expandedDomain === domain.id && (
-                                <div className="border-t">
-                                    {Object.entries(groupByCategory(filterSurfaces(domain.surfaces))).map(([category, surfaces]) => (
-                                        <div key={category} className="border-b last:border-b-0">
-                                            {/* Category Header */}
-                                            <div className="px-6 py-3 bg-gray-50 flex items-center gap-2">
-                                                <span className="text-xl">{getCategoryIcon(category)}</span>
-                                                <span className="font-semibold text-gray-700 capitalize">{category}</span>
-                                                <span className="text-sm text-gray-500">({surfaces.length})</span>
-                                            </div>
-
-                                            {/* Surface Rows */}
-                                            <div className="divide-y">
-                                                {surfaces.map((surface) => (
-                                                    <div key={surface.key} className="px-6 py-4 hover:bg-gray-50">
-                                                        <div className="flex items-center justify-between">
-                                                            <div className="flex-1">
-                                                                <div className="flex items-center gap-3">
-                                                                    <span className="font-medium text-gray-800">{surface.label}</span>
-                                                                    <span className={`px-2 py-0.5 rounded text-xs border ${getStatusColor(surface.status)}`}>
-                                                                        {surface.status.toUpperCase()}
-                                                                    </span>
-                                                                    <span className={`text-xs ${getRelevanceColor(surface.relevance)}`}>
-                                                                        {surface.relevance} relevance
-                                                                    </span>
-                                                                </div>
-
-                                                                {/* Tooltips */}
-                                                                {surface.tooltips.action && (
-                                                                    <p className="text-sm text-gray-500 mt-1">
-                                                                        💡 {surface.tooltips.action}
-                                                                    </p>
-                                                                )}
-
-                                                                {/* Evidence */}
-                                                                {surface.evidence && surface.evidence.length > 0 && (
-                                                                    <div className="mt-2 space-y-1">
-                                                                        {surface.evidence.slice(0, 2).map((ev, i) => (
-                                                                            <a
-                                                                                key={i}
-                                                                                href={ev.url}
-                                                                                target="_blank"
-                                                                                rel="noopener noreferrer"
-                                                                                className="block text-xs text-blue-600 hover:underline truncate"
-                                                                            >
-                                                                                {ev.isOfficial ? '✓ ' : ''}{ev.title || ev.url}
-                                                                            </a>
-                                                                        ))}
-                                                                    </div>
-                                                                )}
-                                                            </div>
-
-                                                            {/* Points */}
-                                                            <div className="text-right ml-4">
-                                                                <div className="text-lg font-bold text-gray-800">
-                                                                    {surface.pointsAwarded.toFixed(1)}
-                                                                </div>
-                                                                <div className="text-xs text-gray-400">
-                                                                    / {surface.pointsMax.toFixed(1)} pts
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                {/* Expanded Content - Professional Table */}
+                                {expandedDomain === domain.id && (
+                                    <div className="border-t">
+                                        {Object.entries(groupByCategory(filterSurfaces(domain.surfaces))).map(([category, surfaces]) => {
+                                            const catInfo = getCategoryLabel(category);
+                                            return (
+                                                <div key={category} className="border-b last:border-b-0">
+                                                    {/* Category Header */}
+                                                    <div className="px-6 py-3 bg-gray-50 flex items-center gap-2 border-b">
+                                                        <span className="text-xl">{catInfo.icon}</span>
+                                                        <span className="font-semibold text-gray-700">{catInfo.name}</span>
+                                                        <span className="text-sm text-gray-500">({surfaces.length} checks)</span>
                                                     </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    ))}
+
+                                                    {/* Professional Table */}
+                                                    <div className="overflow-x-auto">
+                                                        <table className="w-full text-sm">
+                                                            <thead className="bg-gray-50 text-gray-600">
+                                                                <tr>
+                                                                    <th className="px-4 py-2 text-left font-medium">#</th>
+                                                                    <th className="px-4 py-2 text-left font-medium">Surface</th>
+                                                                    <th className="px-4 py-2 text-left font-medium">Source</th>
+                                                                    <th className="px-4 py-2 text-left font-medium">Method</th>
+                                                                    <th className="px-4 py-2 text-center font-medium">Result</th>
+                                                                    <th className="px-4 py-2 text-right font-medium">Points</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody className="divide-y divide-gray-100">
+                                                                {surfaces.map((surface) => (
+                                                                    <tr key={surface.key} className="hover:bg-gray-50">
+                                                                        <td className="px-4 py-3 text-gray-500 font-mono">
+                                                                            {surface.index}
+                                                                        </td>
+                                                                        <td className="px-4 py-3">
+                                                                            <div className="font-medium text-gray-900">{surface.label}</div>
+                                                                            {surface.relevance === 'high' && (
+                                                                                <span className="text-xs text-red-500 font-medium">HIGH PRIORITY</span>
+                                                                            )}
+                                                                        </td>
+                                                                        <td className="px-4 py-3">
+                                                                            {getSourceBadge(surface.source)}
+                                                                        </td>
+                                                                        <td className="px-4 py-3 text-gray-600 text-xs max-w-xs truncate" title={surface.method}>
+                                                                            {surface.method}
+                                                                        </td>
+                                                                        <td className="px-4 py-3 text-center">
+                                                                            {getStatusBadge(surface.status)}
+                                                                        </td>
+                                                                        <td className="px-4 py-3 text-right">
+                                                                            <span className={`font-bold ${surface.status === 'present' ? 'text-green-600' : surface.status === 'partial' ? 'text-yellow-600' : 'text-gray-400'}`}>
+                                                                                {surface.pointsAwarded.toFixed(1)}
+                                                                            </span>
+                                                                            <span className="text-gray-400">/{surface.pointsMax.toFixed(1)}</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                ))}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
             )}
 
