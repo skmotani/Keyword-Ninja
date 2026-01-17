@@ -2,9 +2,16 @@
 
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { Prisma } from '@prisma/client';
 
 // Default surface registry entries
 const DEFAULT_SURFACES = [
+    // ... (lines 8-364 implied unchanged, not replacing them)
+    // We only need to replace the import section and the map function section.
+    // But replace_file_content needs contiguous block. The map function is at the end. Import is at the start.
+    // I can do in two chunks or use multi_replace.
+    // Let's use multi_replace since I need to add import AND change the map loop.
+
     // ============ OWNED ============
     {
         surfaceKey: 'WEBSITE',
@@ -383,18 +390,18 @@ export async function POST() {
                     defaultRelevanceWeight: 1.0,
                     sourceType: src.sourceType,
                     searchEngine: src.searchEngine || null,
-                    queryTemplates: (src.queryTemplates || []) as any,
+                    queryTemplates: (src.queryTemplates || []) as Prisma.InputJsonValue,
                     maxQueries: src.maxQueries || 2,
                     confirmationArtifact: src.confirmationArtifact,
-                    presenceRules: src.presenceRules ? (src.presenceRules as any) : undefined,
-                    officialnessRules: src.officialnessRules ? (src.officialnessRules as any) : undefined,
+                    presenceRules: src.presenceRules ? (src.presenceRules as Prisma.InputJsonValue) : Prisma.DbNull,
+                    officialnessRules: src.officialnessRules ? (src.officialnessRules as Prisma.InputJsonValue) : Prisma.DbNull,
                     officialnessRequired: src.officialnessRequired ?? true,
-                    evidenceFields: src.evidenceFields ? (src.evidenceFields as any) : undefined,
-                    tooltipTemplates: src.tooltipTemplates ? (src.tooltipTemplates as any) : undefined,
+                    evidenceFields: src.evidenceFields ? (src.evidenceFields as Prisma.InputJsonValue) : Prisma.DbNull,
+                    tooltipTemplates: src.tooltipTemplates ? (src.tooltipTemplates as Prisma.InputJsonValue) : Prisma.DbNull,
                     enabled: src.enabled ?? true,
                     notes: src.notes || null,
-                    industryOverrides: src.industryOverrides ? (src.industryOverrides as any) : undefined,
-                    geoOverrides: src.geoOverrides ? (src.geoOverrides as any) : undefined,
+                    industryOverrides: src.industryOverrides ? (src.industryOverrides as Prisma.InputJsonValue) : Prisma.DbNull,
+                    geoOverrides: src.geoOverrides ? (src.geoOverrides as Prisma.InputJsonValue) : Prisma.DbNull,
                 };
             }),
         });

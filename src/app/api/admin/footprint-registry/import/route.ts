@@ -1,7 +1,6 @@
-// Footprint Registry - Import API
-
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { Prisma } from '@prisma/client'; // Import Prisma namespace
 
 interface ImportSurface {
     surfaceKey: string;
@@ -28,7 +27,7 @@ interface ImportSurface {
 
 // POST - Import surfaces from JSON
 export async function POST(request: NextRequest) {
-    console.log('Starting import...'); // Force deploy
+    console.log('Starting import... with strict types');
     try {
         const body = await request.json();
 
@@ -103,7 +102,6 @@ export async function POST(request: NextRequest) {
             });
 
             // Prepare data object, using Prisma.DbNull for null JSON fields
-            // We use 'as any' for JSON fields to avoid strict type checks against InputJsonValue
             const data = {
                 label: s.label,
                 category: s.category,
@@ -112,18 +110,22 @@ export async function POST(request: NextRequest) {
                 defaultRelevanceWeight: s.defaultRelevanceWeight ?? 1.0,
                 sourceType: s.sourceType,
                 searchEngine: s.searchEngine || null,
-                queryTemplates: (s.queryTemplates || []) as any,
+                queryTemplates: (s.queryTemplates || []) as Prisma.InputJsonValue,
                 maxQueries: s.maxQueries ?? 2,
                 confirmationArtifact: s.confirmationArtifact,
-                presenceRules: s.presenceRules ? (s.presenceRules as any) : undefined, // undefined to skip update if missing
-                officialnessRules: s.officialnessRules ? (s.officialnessRules as any) : undefined,
+                // Use Prisma.DbNull if value is explicitly null/undefined in input and we want to clear it?
+                // Or just use 'undefined' to skip update if missing?
+                // Safest: check if truthy, else use DbNull if we want to reset, or undefined if strict update.
+                // Assuming import overwrites:
+                presenceRules: s.presenceRules ? (s.presenceRules as Prisma.InputJsonValue) : Prisma.DbNull,
+                officialnessRules: s.officialnessRules ? (s.officialnessRules as Prisma.InputJsonValue) : Prisma.DbNull,
                 officialnessRequired: s.officialnessRequired ?? true,
-                evidenceFields: s.evidenceFields ? (s.evidenceFields as any) : undefined,
-                tooltipTemplates: s.tooltipTemplates ? (s.tooltipTemplates as any) : undefined,
+                evidenceFields: s.evidenceFields ? (s.evidenceFields as Prisma.InputJsonValue) : Prisma.DbNull,
+                tooltipTemplates: s.tooltipTemplates ? (s.tooltipTemplates as Prisma.InputJsonValue) : Prisma.DbNull,
                 enabled: s.enabled ?? true,
                 notes: s.notes || null,
-                industryOverrides: s.industryOverrides ? (s.industryOverrides as any) : undefined,
-                geoOverrides: s.geoOverrides ? (s.geoOverrides as any) : undefined,
+                industryOverrides: s.industryOverrides ? (s.industryOverrides as Prisma.InputJsonValue) : Prisma.DbNull,
+                geoOverrides: s.geoOverrides ? (s.geoOverrides as Prisma.InputJsonValue) : Prisma.DbNull,
             };
 
             if (existing) {
@@ -137,13 +139,6 @@ export async function POST(request: NextRequest) {
                     data: {
                         surfaceKey: s.surfaceKey,
                         ...data,
-                        // For creation, ensure JSON fields are null if undefined in data
-                        presenceRules: data.presenceRules ?? undefined,
-                        officialnessRules: data.officialnessRules ?? undefined,
-                        evidenceFields: data.evidenceFields ?? undefined,
-                        tooltipTemplates: data.tooltipTemplates ?? undefined,
-                        industryOverrides: data.industryOverrides ?? undefined,
-                        geoOverrides: data.geoOverrides ?? undefined,
                     },
                 });
                 created++;
