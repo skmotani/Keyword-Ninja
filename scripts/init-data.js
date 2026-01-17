@@ -4,19 +4,48 @@ const path = require('path');
 const DATA_DIR = path.join(process.cwd(), 'data');
 const BACKUP_DIR = path.join(process.cwd(), 'data-init');
 
+// Files that should ALWAYS be synced from repo (code-defined configs)
+// These are not user-editable and should reflect the latest code
+const ALWAYS_SYNC_FILES = [
+    'dashboard_queries.json',
+    'dashboard_query_groups.json',
+];
+
 console.log('🔍 Checking data directory...');
 console.log('   DATA_DIR:', DATA_DIR);
 console.log('   BACKUP_DIR:', BACKUP_DIR);
 
 // Check if data directory is empty or missing critical files
-function needsInit() {
+function needsFullInit() {
     const testFile = path.join(DATA_DIR, 'clients.json');
     if (!fs.existsSync(testFile)) {
-        console.log('   clients.json not found - needs initialization');
+        console.log('   clients.json not found - needs full initialization');
         return true;
     }
     console.log('   clients.json exists - data already initialized');
     return false;
+}
+
+// Sync files that should always come from code (not user-editable)
+function syncCodeDefinedFiles() {
+    if (!fs.existsSync(BACKUP_DIR)) {
+        console.log('⚠️ No backup directory for sync');
+        return;
+    }
+
+    console.log('🔄 Syncing code-defined config files...');
+
+    ALWAYS_SYNC_FILES.forEach(file => {
+        const srcPath = path.join(BACKUP_DIR, file);
+        const destPath = path.join(DATA_DIR, file);
+
+        if (fs.existsSync(srcPath)) {
+            fs.copyFileSync(srcPath, destPath);
+            console.log(`   ✓ Synced: ${file}`);
+        } else {
+            console.log(`   ⚠ Not found in backup: ${file}`);
+        }
+    });
 }
 
 // Copy all files from backup to data
@@ -70,12 +99,14 @@ function copyDir(src, dest) {
 }
 
 // Main
-if (needsInit()) {
+if (needsFullInit()) {
     if (copyData()) {
         console.log('✅ Data initialized successfully!');
     } else {
         console.log('⚠️ Could not initialize data - backup not found');
     }
 } else {
-    console.log('📁 Data directory already has data - skipping initialization');
+    console.log('📁 Data directory already has data - syncing config files only');
+    syncCodeDefinedFiles();
 }
+
