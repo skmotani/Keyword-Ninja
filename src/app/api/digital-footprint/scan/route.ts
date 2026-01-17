@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { Prisma } from '@prisma/client';
 import {
     parseDomainsInput,
     crawlWebsite,
@@ -65,13 +66,13 @@ export async function POST(request: NextRequest) {
                         crawlStatus: crawlResult.success ? 'success' : 'failed',
                         finalUrl: crawlResult.finalUrl,
                         httpStatus: crawlResult.httpStatus,
-                        crawlDataJson: crawlResult.data || null,
-                        profileJson: profile,
+                        crawlDataJson: crawlResult.data ? (crawlResult.data as any) : Prisma.DbNull,
+                        profileJson: profile ? (profile as any) : Prisma.DbNull,
                         businessType: profile.businessType,
                         industry: profile.industry,
                         geoScope: profile.geoScope,
                         brandName: profile.brandName,
-                        brandVariants: profile.brandVariants,
+                        brandVariants: profile.brandVariants ? (profile.brandVariants as any) : Prisma.DbNull,
                     },
                 });
 
@@ -105,8 +106,8 @@ export async function POST(request: NextRequest) {
                             tooltipAction: ev.status === 'present'
                                 ? surface?.tooltips.actionPresent
                                 : surface?.tooltips.actionAbsent,
-                            evidenceJson: ev.evidence,
-                            queriesUsedJson: ev.queriesUsed,
+                            evidenceJson: ev.evidence ? (ev.evidence as any) : Prisma.DbNull,
+                            queriesUsedJson: ev.queriesUsed ? (ev.queriesUsed as any) : Prisma.DbNull,
                         },
                     });
                 }
