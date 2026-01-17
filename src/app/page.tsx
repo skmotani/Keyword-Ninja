@@ -22,7 +22,7 @@ export default function HomePage() {
             {/* Left Content */}
             <div>
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                <span className="text-red-600 text-6xl lg:text-7xl block mb-4">MOTANI</span>
+                <span className="text-blue-600 text-3xl lg:text-4xl block mb-2 tracking-wide">MOTANI</span>
                 Get <span className="text-blue-600">Found.</span><br />
                 Grow <span className="text-blue-600">Faster.</span><br />
                 Generate <span className="text-blue-600">Revenue.</span>
