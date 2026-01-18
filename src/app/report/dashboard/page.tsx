@@ -1291,34 +1291,60 @@ function QueryCard({
                             </span>
                             {/* Editable Title */}
                             {isEditingTitle ? (
-                                <input
-                                    type="text"
+                                <textarea
                                     value={editTitle}
-                                    onChange={(e) => setEditTitle(e.target.value)}
+                                    onChange={(e) => {
+                                        setEditTitle(e.target.value);
+                                        // Auto-resize
+                                        e.target.style.height = 'auto';
+                                        e.target.style.height = e.target.scrollHeight + 'px';
+                                    }}
                                     onBlur={handleTitleSave}
                                     onKeyDown={(e) => {
-                                        if (e.key === 'Enter') handleTitleSave();
+                                        if (e.key === 'Enter' && !e.shiftKey) {
+                                            e.preventDefault();
+                                            handleTitleSave();
+                                        }
                                         if (e.key === 'Escape') {
                                             setEditTitle(customTitle || query.title);
                                             setIsEditingTitle(false);
                                         }
                                     }}
-                                    className="editable-field font-semibold text-gray-900 border border-indigo-300 rounded px-2 py-0.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                                    className="editable-field font-semibold text-gray-900 border border-indigo-300 rounded px-2 py-0.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none resize-none overflow-hidden"
+                                    rows={1}
                                     autoFocus
+                                    ref={(el) => {
+                                        if (el) {
+                                            // Initial auto-resize
+                                            el.style.height = 'auto';
+                                            el.style.height = el.scrollHeight + 'px';
+                                        }
+                                    }}
                                     onClick={(e) => e.stopPropagation()}
                                 />
                             ) : (
                                 <h3
-                                    className="editable-field font-semibold text-gray-900 cursor-text hover:bg-indigo-50 px-2 py-0.5 rounded transition-colors group flex items-center gap-1"
+                                    className="editable-field font-semibold text-gray-900 cursor-text hover:bg-indigo-50 px-2 py-0.5 rounded transition-colors group flex items-center gap-1 relative overflow-hidden"
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         setIsEditingTitle(true);
                                     }}
                                     title="Click to edit title"
                                 >
-                                    {displayTitle}
-                                    <span title="Saved to Railway Volume (Not Git Pushed)" className="cursor-help text-sm">☁️</span>
-                                    <svg className="w-3 h-3 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div className="relative group/titleheader">
+                                        {/* Collapsed view */}
+                                        <div className="truncate max-w-[600px]">
+                                            {displayTitle}
+                                        </div>
+
+                                        {/* Hover Popup (Full Content) */}
+                                        <div className="absolute top-full left-0 z-20 hidden group-hover/titleheader:block bg-white border border-gray-200 shadow-lg rounded p-3 min-w-[300px] whitespace-pre-wrap text-gray-700 font-normal">
+                                            {displayTitle}
+                                        </div>
+                                    </div>
+
+                                    <span title="Saved to Railway Volume (Not Git Pushed)" className="cursor-help text-sm flex-shrink-0">☁️</span>
+                                    <svg className="w-3 h-3 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                     </svg>
                                 </h3>
@@ -1362,13 +1388,17 @@ function QueryCard({
                             {/* Page Title Field */}
                             <div>
                                 {isEditingPageTitle ? (
-                                    <input
-                                        type="text"
+                                    <textarea
                                         value={editPageTitle}
-                                        onChange={(e) => setEditPageTitle(e.target.value)}
+                                        onChange={(e) => {
+                                            setEditPageTitle(e.target.value);
+                                            // Auto-resize
+                                            e.target.style.height = 'auto';
+                                            e.target.style.height = e.target.scrollHeight + 'px';
+                                        }}
                                         onBlur={handlePageTitleSave}
                                         onKeyDown={(e) => {
-                                            if (e.key === 'Enter') {
+                                            if (e.key === 'Enter' && !e.shiftKey) {
                                                 e.preventDefault();
                                                 handlePageTitleSave();
                                             }
@@ -1377,26 +1407,45 @@ function QueryCard({
                                                 setIsEditingPageTitle(false);
                                             }
                                         }}
-                                        className="editable-field w-full text-xs border border-indigo-300 rounded px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                                        className="editable-field w-full text-xs border border-indigo-300 rounded px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:outline-none resize-none overflow-hidden"
+                                        rows={1}
                                         placeholder="Page title for reports..."
                                         autoFocus
+                                        ref={(el) => {
+                                            if (el) {
+                                                // Initial auto-resize
+                                                el.style.height = 'auto';
+                                                el.style.height = el.scrollHeight + 'px';
+                                            }
+                                        }}
                                         onClick={(e) => e.stopPropagation()}
                                     />
                                 ) : (
                                     <div
-                                        className="editable-field text-xs cursor-text hover:bg-indigo-50 px-2 py-1 rounded transition-colors group flex items-center gap-2"
+                                        className="editable-field text-xs cursor-text hover:bg-indigo-50 px-2 py-1 rounded transition-colors group flex items-start gap-2 relative overflow-hidden"
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             setIsEditingPageTitle(true);
                                         }}
                                         title="Click to edit page title"
                                     >
-                                        <span className="text-gray-400 font-medium">Title:</span>
-                                        <span className={pageTitle ? 'text-gray-700' : 'text-gray-300 italic'}>
-                                            {pageTitle || 'Click to add page title...'}
-                                        </span>
-                                        <span title="Saved to Railway Volume (Not Git Pushed)" className="cursor-help text-[10px]">☁️</span>
-                                        <svg className="w-2.5 h-2.5 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <span className="text-gray-400 font-medium flex-shrink-0">Title:</span>
+                                        <div className="flex-1 relative group/title">
+                                            {/* Collapsed view */}
+                                            <div className={`text-gray-700 ${pageTitle ? 'truncate' : 'italic text-gray-300'}`}>
+                                                {pageTitle || 'Click to add page title...'}
+                                            </div>
+
+                                            {/* Hover Popup (Full Content) - Only if content exists */}
+                                            {pageTitle && (
+                                                <div className="absolute top-0 left-0 z-20 hidden group-hover/title:block bg-white border border-gray-200 shadow-lg rounded p-3 min-w-[300px] max-w-[500px] whitespace-pre-wrap text-gray-700">
+                                                    {pageTitle}
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        <span title="Saved to Railway Volume (Not Git Pushed)" className="cursor-help text-[10px] flex-shrink-0">☁️</span>
+                                        <svg className="w-2.5 h-2.5 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                         </svg>
                                     </div>
@@ -1407,7 +1456,12 @@ function QueryCard({
                                 {isEditingPageContent ? (
                                     <textarea
                                         value={editPageContent}
-                                        onChange={(e) => setEditPageContent(e.target.value)}
+                                        onChange={(e) => {
+                                            setEditPageContent(e.target.value);
+                                            // Auto-resize
+                                            e.target.style.height = 'auto';
+                                            e.target.style.height = e.target.scrollHeight + 'px';
+                                        }}
                                         onBlur={handlePageContentSave}
                                         onKeyDown={(e) => {
                                             if (e.key === 'Enter' && !e.shiftKey) {
@@ -1419,26 +1473,43 @@ function QueryCard({
                                                 setIsEditingPageContent(false);
                                             }
                                         }}
-                                        className="editable-field w-full text-xs border border-indigo-300 rounded px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:outline-none resize-none"
-                                        rows={2}
+                                        className="editable-field w-full text-xs border border-indigo-300 rounded px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:outline-none resize-none overflow-hidden"
                                         placeholder="Content description for this section..."
                                         autoFocus
+                                        ref={(el) => {
+                                            if (el) {
+                                                // Initial auto-resize
+                                                el.style.height = 'auto';
+                                                el.style.height = el.scrollHeight + 'px';
+                                            }
+                                        }}
                                         onClick={(e) => e.stopPropagation()}
                                     />
                                 ) : (
                                     <div
-                                        className="editable-field text-xs cursor-text hover:bg-indigo-50 px-2 py-1 rounded transition-colors group flex items-start gap-2"
+                                        className="editable-field text-xs cursor-text hover:bg-indigo-50 px-2 py-1 rounded transition-colors group flex items-start gap-2 relative overflow-hidden"
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             setIsEditingPageContent(true);
                                         }}
                                         title="Click to edit content description"
                                     >
-                                        <span className="text-gray-400 font-medium">Content:</span>
-                                        <span className={pageContent ? 'text-gray-600' : 'text-gray-300 italic'}>
-                                            {pageContent || 'Click to add content description...'}
-                                        </span>
-                                        <span title="Saved to Railway Volume (Not Git Pushed)" className="cursor-help text-[10px]">☁️</span>
+                                        <span className="text-gray-400 font-medium flex-shrink-0">Content:</span>
+                                        <div className="flex-1 relative group/content">
+                                            {/* Collapsed view (One line) */}
+                                            <div className={`text-gray-600 ${pageContent ? 'truncate' : 'italic text-gray-300'}`}>
+                                                {pageContent || 'Click to add content description...'}
+                                            </div>
+
+                                            {/* Hover Popup (Full Content) - Only if content exists */}
+                                            {pageContent && (
+                                                <div className="absolute top-0 left-0 z-20 hidden group-hover/content:block bg-white border border-gray-200 shadow-lg rounded p-3 min-w-[300px] max-w-[500px] whitespace-pre-wrap text-gray-700">
+                                                    {pageContent}
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        <span title="Saved to Railway Volume (Not Git Pushed)" className="cursor-help text-[10px] flex-shrink-0">☁️</span>
                                         <svg className="w-2.5 h-2.5 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                         </svg>
