@@ -1312,21 +1312,21 @@ function QueryCard({
                                 />
                             ) : (
                                 <h3
-                                    className="editable-field font-semibold text-gray-900 cursor-text hover:bg-indigo-50 px-2 py-0.5 rounded transition-colors group flex items-center gap-1 relative overflow-hidden"
+                                    className="editable-field font-semibold text-gray-900 cursor-text hover:bg-indigo-50 px-2 py-0.5 rounded transition-colors group flex items-center gap-1 relative"
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         setIsEditingTitle(true);
                                     }}
                                     title="Click to edit title"
                                 >
-                                    <div className="relative group/titleheader">
+                                    <div className="relative group/titleheader flex-1 min-w-0">
                                         {/* Collapsed view */}
-                                        <div className="truncate max-w-[600px]">
+                                        <div className="truncate max-w-full">
                                             {displayTitle}
                                         </div>
 
                                         {/* Hover Popup (Full Content) */}
-                                        <div className="absolute top-full left-0 z-20 hidden group-hover/titleheader:block bg-white border border-gray-200 shadow-lg rounded p-3 min-w-[300px] whitespace-pre-wrap text-gray-700 font-normal">
+                                        <div className="absolute top-full left-0 z-50 hidden group-hover/titleheader:block bg-white border border-gray-200 shadow-xl rounded p-3 min-w-[300px] whitespace-pre-wrap text-gray-700 font-normal">
                                             {displayTitle}
                                         </div>
                                     </div>
@@ -1398,7 +1398,7 @@ function QueryCard({
                                     />
                                 ) : (
                                     <div
-                                        className="editable-field text-xs cursor-text hover:bg-indigo-50 px-2 py-1 rounded transition-colors group flex items-start gap-2 relative overflow-hidden"
+                                        className="editable-field text-xs cursor-text hover:bg-indigo-50 px-2 py-1 rounded transition-colors group flex items-start gap-2 relative"
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             setIsEditingPageTitle(true);
@@ -1406,7 +1406,7 @@ function QueryCard({
                                         title="Click to edit page title"
                                     >
                                         <span className="text-gray-400 font-medium flex-shrink-0">Query:</span>
-                                        <div className="flex-1 relative group/title">
+                                        <div className="flex-1 relative group/title min-w-0">
                                             {/* Collapsed view */}
                                             <div className={`text-gray-700 ${pageTitle ? 'truncate' : 'italic text-gray-300'}`}>
                                                 {pageTitle || 'Click to add page title...'}
@@ -1414,7 +1414,7 @@ function QueryCard({
 
                                             {/* Hover Popup (Full Content) - Only if content exists */}
                                             {pageTitle && (
-                                                <div className="absolute top-0 left-0 z-20 hidden group-hover/title:block bg-white border border-gray-200 shadow-lg rounded p-3 min-w-[300px] max-w-[500px] whitespace-pre-wrap text-gray-700">
+                                                <div className="absolute top-0 left-0 z-50 hidden group-hover/title:block bg-white border border-gray-200 shadow-xl rounded p-3 min-w-[300px] max-w-[500px] whitespace-pre-wrap text-gray-700">
                                                     {pageTitle}
                                                 </div>
                                             )}
@@ -1451,7 +1451,7 @@ function QueryCard({
                                     />
                                 ) : (
                                     <div
-                                        className="editable-field text-xs cursor-text hover:bg-indigo-50 px-2 py-1 rounded transition-colors group flex items-start gap-2 relative overflow-hidden"
+                                        className="editable-field text-xs cursor-text hover:bg-indigo-50 px-2 py-1 rounded transition-colors group flex items-start gap-2 relative"
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             setIsEditingPageContent(true);
@@ -1459,7 +1459,7 @@ function QueryCard({
                                         title="Click to edit content description"
                                     >
                                         <span className="text-gray-400 font-medium flex-shrink-0">SEO Advantage:</span>
-                                        <div className="flex-1 relative group/content">
+                                        <div className="flex-1 relative group/content min-w-0">
                                             {/* Collapsed view (One line) */}
                                             <div className={`text-gray-600 ${pageContent ? 'truncate' : 'italic text-gray-300'}`}>
                                                 {pageContent || 'Click to add content description...'}
@@ -1467,7 +1467,7 @@ function QueryCard({
 
                                             {/* Hover Popup (Full Content) - Only if content exists */}
                                             {pageContent && (
-                                                <div className="absolute top-0 left-0 z-20 hidden group-hover/content:block bg-white border border-gray-200 shadow-lg rounded p-3 min-w-[300px] max-w-[500px] whitespace-pre-wrap text-gray-700">
+                                                <div className="absolute top-0 left-0 z-50 hidden group-hover/content:block bg-white border border-gray-200 shadow-xl rounded p-3 min-w-[300px] max-w-[500px] whitespace-pre-wrap text-gray-700">
                                                     {pageContent}
                                                 </div>
                                             )}
