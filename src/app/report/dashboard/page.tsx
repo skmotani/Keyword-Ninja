@@ -1451,10 +1451,10 @@ function QueryCard({
                                         }}
                                         title="Click to edit content description"
                                     >
-                                        <span className="text-gray-400 font-medium flex-shrink-0">SEO Advantage:</span>
+                                        <span className="text-gray-400 font-medium flex-shrink-0">SEO:</span>
                                         <div className="flex-1 relative group/content min-w-0">
-                                            {/* Collapsed view (Multi-line wrap) */}
-                                            <div className={`text-gray-600 ${pageContent ? 'whitespace-pre-wrap break-words' : 'italic text-gray-300'}`}>
+                                            {/* Collapsed view (Wrapped but limited height by default, expands on hover) */}
+                                            <div className={`text-gray-600 transition-all duration-200 ease-in-out overflow-hidden ${pageContent ? 'whitespace-pre-wrap break-words max-h-[1.5em] group-hover/content:max-h-[500px]' : 'italic text-gray-300'}`}>
                                                 {pageContent || 'Click to add content description...'}
                                             </div>
                                         </div>
