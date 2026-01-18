@@ -260,7 +260,7 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
                     let confidence = 0;
 
                     if (isBrand) {
-                        bucket = 'brand';
+                        // bucket = 'brand'; // DISABLE AUTO-ASSIGNMENT ON LOAD
                         source = 'ai';
                         confidence = 0.95;
                     }
@@ -368,13 +368,10 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
                 // IMPORTANT: If current term was freshly detected as brand by AI,
                 // KEEP the brand assignment - don't overwrite with saved dictionary
                 // This ensures new brand keywords from Competitor Master are always detected
-                if (t.bucket === 'brand' && t.source === 'ai') {
-                    // Keep the fresh brand detection, but mark as not pending
-                    return {
-                        ...t,
-                        isPending: false
-                    };
-                }
+                // DISABLE AUTO-OVERRIDE of loaded terms by fresh AI detection
+                // if (t.bucket === 'brand' && t.source === 'ai') {
+                //    return { ...t, isPending: false };
+                // }
 
                 // For non-brand or user-assigned terms, use the saved dictionary values
                 return {
@@ -452,6 +449,50 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
             onDictionaryChange?.();
         } catch (e) {
             alert('Save failed');
+        }
+    };
+
+    // NEW: Manual Auto-Tag handler
+    const handleAutoTagBrands = () => {
+        // Use brand names from Competitor Master (or fallback)
+        const brandNamesToCheck = domainBrandNames.length > 0
+            ? domainBrandNames
+            : (() => {
+                const domainParts = domain.split('.')[0].toLowerCase();
+                const fallback = [domainParts];
+                if (domainParts.length > 4) {
+                    for (let len = 4; len < domainParts.length; len++) {
+                        fallback.push(domainParts.substring(0, len));
+                    }
+                }
+                return fallback;
+            })();
+
+        let taggedCount = 0;
+
+        setTerms(prev => prev.map(t => {
+            const normalizedTerm = t.term.toLowerCase();
+            const isBrand = brandNamesToCheck.some(b => normalizedTerm.includes(b) && b.length >= 3);
+
+            if (isBrand) {
+                taggedCount++;
+                return {
+                    ...t,
+                    bucket: 'brand',
+                    source: 'ai',
+                    confidence: 0.95,
+                    locked: false,
+                    isPending: true
+                };
+            }
+            return t;
+        }));
+
+        setHasUnsavedChanges(true);
+        if (taggedCount > 0) {
+            alert(`Auto-tagged ${taggedCount} brand keywords.`);
+        } else {
+            alert('No brand keywords found to tag.');
         }
     };
 
@@ -1799,6 +1840,16 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
                                                 <span className={`w-2 h-2 rounded-full ${COLORS[bucket].bg.replace('bg-', 'bg-')}`}></span>
                                                 {BUCKET_DISPLAY_NAMES[bucket]}
                                             </span>
+                                            {/* NEW: Auto-Tag Button for Brand Bucket */}
+                                            {bucket === 'brand' && (
+                                                <button
+                                                    onClick={handleAutoTagBrands}
+                                                    className="ml-2 text-[10px] bg-purple-50 text-purple-600 border border-purple-200 px-2 py-0.5 rounded hover:bg-purple-100 flex items-center gap-1 transition-colors"
+                                                    title="⚠️ Warning: This will overwrite manual changes! Automatically detects and tags brand keywords."
+                                                >
+                                                    <span>⚡ Auto-Tag</span>
+                                                </button>
+                                            )}
                                             <button
                                                 onClick={() => setActiveBucketTooltip(activeBucketTooltip === bucket ? null : bucket)}
                                                 className={`text-xs transition-colors ${activeBucketTooltip === bucket ? 'text-indigo-600' : 'text-gray-400 hover:text-indigo-600'}`}
