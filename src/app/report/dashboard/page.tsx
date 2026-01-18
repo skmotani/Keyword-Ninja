@@ -1293,12 +1293,7 @@ function QueryCard({
                             {isEditingTitle ? (
                                 <textarea
                                     value={editTitle}
-                                    onChange={(e) => {
-                                        setEditTitle(e.target.value);
-                                        // Auto-resize
-                                        e.target.style.height = 'auto';
-                                        e.target.style.height = e.target.scrollHeight + 'px';
-                                    }}
+                                    onChange={(e) => setEditTitle(e.target.value)}
                                     onBlur={handleTitleSave}
                                     onKeyDown={(e) => {
                                         if (e.key === 'Enter' && !e.shiftKey) {
@@ -1310,16 +1305,9 @@ function QueryCard({
                                             setIsEditingTitle(false);
                                         }
                                     }}
-                                    className="editable-field font-semibold text-gray-900 border border-indigo-300 rounded px-2 py-0.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none resize-none overflow-hidden"
+                                    className="editable-field font-semibold text-gray-900 border border-indigo-300 rounded px-2 py-0.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none resize-y"
                                     rows={1}
                                     autoFocus
-                                    ref={(el) => {
-                                        if (el) {
-                                            // Initial auto-resize
-                                            el.style.height = 'auto';
-                                            el.style.height = el.scrollHeight + 'px';
-                                        }
-                                    }}
                                     onClick={(e) => e.stopPropagation()}
                                 />
                             ) : (
@@ -1390,12 +1378,7 @@ function QueryCard({
                                 {isEditingPageTitle ? (
                                     <textarea
                                         value={editPageTitle}
-                                        onChange={(e) => {
-                                            setEditPageTitle(e.target.value);
-                                            // Auto-resize
-                                            e.target.style.height = 'auto';
-                                            e.target.style.height = e.target.scrollHeight + 'px';
-                                        }}
+                                        onChange={(e) => setEditPageTitle(e.target.value)}
                                         onBlur={handlePageTitleSave}
                                         onKeyDown={(e) => {
                                             if (e.key === 'Enter' && !e.shiftKey) {
@@ -1407,17 +1390,10 @@ function QueryCard({
                                                 setIsEditingPageTitle(false);
                                             }
                                         }}
-                                        className="editable-field w-full text-xs border border-indigo-300 rounded px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:outline-none resize-none overflow-hidden"
+                                        className="editable-field w-full text-xs border border-indigo-300 rounded px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:outline-none resize-y"
                                         rows={1}
                                         placeholder="Page title for reports..."
                                         autoFocus
-                                        ref={(el) => {
-                                            if (el) {
-                                                // Initial auto-resize
-                                                el.style.height = 'auto';
-                                                el.style.height = el.scrollHeight + 'px';
-                                            }
-                                        }}
                                         onClick={(e) => e.stopPropagation()}
                                     />
                                 ) : (
@@ -1456,12 +1432,7 @@ function QueryCard({
                                 {isEditingPageContent ? (
                                     <textarea
                                         value={editPageContent}
-                                        onChange={(e) => {
-                                            setEditPageContent(e.target.value);
-                                            // Auto-resize
-                                            e.target.style.height = 'auto';
-                                            e.target.style.height = e.target.scrollHeight + 'px';
-                                        }}
+                                        onChange={(e) => setEditPageContent(e.target.value)}
                                         onBlur={handlePageContentSave}
                                         onKeyDown={(e) => {
                                             if (e.key === 'Enter' && !e.shiftKey) {
@@ -1473,16 +1444,9 @@ function QueryCard({
                                                 setIsEditingPageContent(false);
                                             }
                                         }}
-                                        className="editable-field w-full text-xs border border-indigo-300 rounded px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:outline-none resize-none overflow-hidden"
+                                        className="editable-field w-full text-xs border border-indigo-300 rounded px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:outline-none resize-y"
                                         placeholder="Content description for this section..."
                                         autoFocus
-                                        ref={(el) => {
-                                            if (el) {
-                                                // Initial auto-resize
-                                                el.style.height = 'auto';
-                                                el.style.height = el.scrollHeight + 'px';
-                                            }
-                                        }}
                                         onClick={(e) => e.stopPropagation()}
                                     />
                                 ) : (
