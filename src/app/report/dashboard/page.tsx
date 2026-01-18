@@ -1407,8 +1407,8 @@ function QueryCard({
                                     >
                                         <span className="text-gray-400 font-medium flex-shrink-0">Query:</span>
                                         <div className="flex-1 relative group/title min-w-0">
-                                            {/* Collapsed view (Wrapped) */}
-                                            <div className={`text-gray-700 ${pageTitle ? 'whitespace-pre-wrap break-words' : 'italic text-gray-300'}`}>
+                                            {/* Collapsed view (Wrapped but limited height by default, expands on hover) */}
+                                            <div className={`text-gray-700 transition-all duration-200 ease-in-out overflow-hidden ${pageTitle ? 'whitespace-pre-wrap break-words max-h-[1.5em] group-hover/title:max-h-[500px]' : 'italic text-gray-300'}`}>
                                                 {pageTitle || 'Click to add page title...'}
                                             </div>
                                         </div>
