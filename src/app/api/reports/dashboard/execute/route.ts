@@ -936,6 +936,12 @@ async function executeBrandKeywordsMatrixQuery(
         terms.filter(t => t.bucket === 'brand').map(t => t.term.toLowerCase().trim())
     );
 
+    // Build exclude terms set
+    const excludeTerms = new Set(
+        terms.filter(t => t.bucket && (t.bucket.toLowerCase() === 'exclude' || t.bucket.toLowerCase().includes('noise')))
+            .map(t => t.term.toLowerCase().trim())
+    );
+
     // Get ALL relevant domains: Self + Main Competitors
     const relevantCompetitors = competitors.filter(
         c => c.clientCode === clientCode &&
@@ -957,6 +963,14 @@ async function executeBrandKeywordsMatrixQuery(
     const keywordMatchesBrand = (keyword: string): boolean => {
         const kwLower = keyword.toLowerCase().trim();
         const termsArray = Array.from(brandTerms);
+        const excludeArray = Array.from(excludeTerms);
+
+        // Check Exclusions First
+        for (const term of excludeArray) {
+            if (kwLower.includes(term)) return false;
+        }
+
+        // Check Brand match
         for (const term of termsArray) {
             if (kwLower.includes(term)) return true;
         }
