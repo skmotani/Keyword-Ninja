@@ -959,11 +959,22 @@ async function executeBrandKeywordsMatrixQuery(
         }
     }
 
+    // SANITIZE EXCLUDE TERMS:
+    // If a term is in both Brand and Exclude, Brand must win to prevent nuking valid brand keywords.
+    // Example: if "meera" is in exclude (mistake), it would hide "meera industries".
+    // We remove any exclude term that is also a brand term.
+    const sanitizedExcludeTerms = new Set<string>();
+    for (const term of Array.from(excludeTerms)) {
+        if (!brandTerms.has(term)) {
+            sanitizedExcludeTerms.add(term);
+        }
+    }
+
     // Helper to check if keyword contains any brand term
     const keywordMatchesBrand = (keyword: string): boolean => {
         const kwLower = keyword.toLowerCase().trim();
         const termsArray = Array.from(brandTerms);
-        const excludeArray = Array.from(excludeTerms);
+        const excludeArray = Array.from(sanitizedExcludeTerms);
 
         // Check Exclusions First
         for (const term of excludeArray) {
@@ -1005,6 +1016,16 @@ async function executeBrandKeywordsMatrixQuery(
         relevantCompetitors.map(c => normalizeDomain(c.domain))
     );
 
+    // Build Term Bucket Map for O(1) Lookup (Explicit User Overrides)
+    const termBucketMap = new Map<string, string>();
+    if (terms) {
+        for (const t of terms) {
+            if (t.term && t.bucket) {
+                termBucketMap.set(t.term.toLowerCase().trim(), t.bucket.toLowerCase());
+            }
+        }
+    }
+
     // Filter for BRAND keywords and group by domain
     const domainBrandData = new Map<string, {
         keywords: Array<{ keyword: string; location: string; position: number; volume: number }>;
@@ -1017,7 +1038,29 @@ async function executeBrandKeywordsMatrixQuery(
         const normalizedDomain = normalizeDomain(kw.domain);
         if (!allDomains.has(normalizedDomain)) continue;
         if (kw.position === null || kw.position <= 0) continue;
-        if (!keywordMatchesBrand(kw.keyword)) continue;
+
+        const kwLower = kw.keyword.toLowerCase().trim();
+        const explicitBucket = termBucketMap.get(kwLower);
+
+        // LOGIC: Dictionary > Heuristic
+        let isMatch = false;
+
+        if (explicitBucket) {
+            // If explicit bucket exists, ONLY 'brand' or 'brand | nav' is valid for this report
+            if (explicitBucket === 'brand' || explicitBucket.includes('brand')) {
+                isMatch = true;
+            } else {
+                // Explicitly 'exclude', 'include', 'review' -> SKIP
+                continue;
+            }
+        } else {
+            // Fallback to Heuristic for Unassigned/Competitor keywords
+            if (keywordMatchesBrand(kw.keyword)) {
+                isMatch = true;
+            }
+        }
+
+        if (!isMatch) continue;
 
         const locationName = LOCATION_CODE_TO_NAME[kw.locationCode] || kw.locationCode;
         const volume = kw.searchVolume || 0;
