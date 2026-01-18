@@ -1429,7 +1429,7 @@ function QueryCard({
                                         }}
                                         title="Click to edit page title"
                                     >
-                                        <span className="text-gray-400 font-medium flex-shrink-0">Title:</span>
+                                        <span className="text-gray-400 font-medium flex-shrink-0">Query:</span>
                                         <div className="flex-1 relative group/title">
                                             {/* Collapsed view */}
                                             <div className={`text-gray-700 ${pageTitle ? 'truncate' : 'italic text-gray-300'}`}>
@@ -1494,7 +1494,7 @@ function QueryCard({
                                         }}
                                         title="Click to edit content description"
                                     >
-                                        <span className="text-gray-400 font-medium flex-shrink-0">Content:</span>
+                                        <span className="text-gray-400 font-medium flex-shrink-0">SEO Advantage:</span>
                                         <div className="flex-1 relative group/content">
                                             {/* Collapsed view (One line) */}
                                             <div className={`text-gray-600 ${pageContent ? 'truncate' : 'italic text-gray-300'}`}>
