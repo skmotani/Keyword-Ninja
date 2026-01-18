@@ -1,15 +1,36 @@
 {
-  "_WARNING": "⛔ DO NOT EDIT LOCALLY - This file is stored in Railway Volume. Edits here will NOT sync to production. Use the Dashboard UI on Railway to modify.",
   "queries": [
     {
       "queryId": "Q001",
       "customTitle": "About Client",
-      "pageContent": "Title : We Know Your Business |"
+      "pageContent": "Title : We Know Your Business |",
+      "updatedAt": "2026-01-18T03:29:00.969Z"
     },
     {
       "queryId": "MANUAL_001",
       "customTitle": "First Title Page",
-      "updatedAt": "2026-01-17T16:13:42.308Z"
+      "updatedAt": "2026-01-18T03:54:19.355Z",
+      "pageTitle": "Money Magnets | Keyword with Transactional Intent ( include | Buy + Include | Learn ) With Client Postion",
+      "pageContent": "Pulls keywords from your AI Keyword Builder - Only keywords you've manually categorized into the \"Include | Buy\" bucket (purchase-intent keywords)\nCombines India + Global search volumes - For the same keyword appearing in both India (IN) and Global (GL) locations, it sums up both volumes to show true total demand. For example, \"rope making machine\" with 390 IN volume + 720 GL volume = 1,110 total demand\n\n\nShows YOUR position (Self domains only) - Instead of competitor positions, it shows where YOUR domains (meeraind.com, meera.ind.in) actually rank for each keyword. Keywords where you don't rank show \"-\"\nSorts by combined volume - The top 20 are ranked by total market demand (IN + GL)"
+    },
+    {
+      "queryId": "MANUAL_002",
+      "customTitle": "Top 20 Content Opportunity  KW with Client SERP POS",
+      "updatedAt": "2026-01-18T04:38:02.016Z",
+      "pageTitle": "Top 20 'Include | Learn' Keywords (Review Bucket) | Sorted by Total Volume (India + Global)",
+      "pageContent": "These are high-volume informational keywords where your brand can build authority. Since they are in the 'Include | Learn' bucket, the user intent is to learn or research, not necessarily to buy immediately. Ranking for these terms establishes your brand as a thought leader and captures potential customers early in their buying journey (Knowledge Hub strategy)."
+    },
+    {
+      "queryId": "Q003",
+      "updatedAt": "2026-01-18T03:12:35.093Z"
+    },
+    {
+      "queryId": "Q002",
+      "updatedAt": "2026-01-18T03:20:12.290Z"
+    },
+    {
+      "queryId": "Q010",
+      "updatedAt": "2026-01-18T03:29:13.172Z"
     }
   ],
   "categories": [
@@ -22,6 +43,7 @@
   "queryOrder": {
     "GRP-001": [
       "MANUAL_001",
+      "MANUAL_002",
       "Q001"
     ],
     "GRP-002": [

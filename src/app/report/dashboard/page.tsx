@@ -17,7 +17,8 @@ import {
     ETVComparisonData,
     KeywordOpportunityMatrixData,
     BrandPowerData,
-    Top20IncludeBuyData
+    Top20IncludeBuyData,
+    Top20IncludeLearnData
 } from '@/types/dashboardTypes';
 import Link from 'next/link';
 import {
@@ -1103,7 +1104,95 @@ function Top20IncludeBuyCard({ data }: { data: Top20IncludeBuyData }) {
                         {data.keywords.map((kw) => (
                             <tr key={kw.rank} className="hover:bg-gray-50">
                                 <td className="px-3 py-2 text-sm text-gray-500">{kw.rank}</td>
-                                <td className="px-3 py-2 text-sm font-medium text-gray-900">{kw.keyword}</td>
+                                <td className="px-3 py-2 text-sm font-medium text-gray-900">
+                                    <a
+                                        href={`https://www.google.com/search?q=${encodeURIComponent(kw.keyword)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:text-indigo-600 hover:underline"
+                                    >
+                                        {kw.keyword}
+                                    </a>
+                                </td>
+                                <td className="px-3 py-2 text-sm text-right text-gray-900 font-semibold">
+                                    {kw.totalVolume.toLocaleString()}
+                                </td>
+                                <td className="px-3 py-2 text-sm text-right text-gray-600">
+                                    {kw.volumeIN > 0 ? kw.volumeIN.toLocaleString() : '-'}
+                                </td>
+                                <td className="px-3 py-2 text-sm text-right text-gray-600">
+                                    {kw.volumeGL > 0 ? kw.volumeGL.toLocaleString() : '-'}
+                                </td>
+                                <td className="px-3 py-2 text-sm text-right">
+                                    {kw.selfPosIN !== null ? (
+                                        <span className={kw.selfPosIN <= 10 ? 'text-green-600 font-medium' : 'text-gray-600'}>
+                                            {kw.selfPosIN}
+                                        </span>
+                                    ) : (
+                                        <span className="text-gray-400">-</span>
+                                    )}
+                                </td>
+                                <td className="px-3 py-2 text-sm text-right">
+                                    {kw.selfPosGL !== null ? (
+                                        <span className={kw.selfPosGL <= 10 ? 'text-green-600 font-medium' : 'text-gray-600'}>
+                                            {kw.selfPosGL}
+                                        </span>
+                                    ) : (
+                                        <span className="text-gray-400">-</span>
+                                    )}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
+// MANUAL_002: Top 20 Include|Learn Keywords Card
+function Top20IncludeLearnCard({ data }: { data: Top20IncludeLearnData }) {
+    return (
+        <div className="space-y-4">
+            {/* Summary */}
+            <div className="flex items-center gap-4 text-sm text-gray-500">
+                <span>
+                    Total Include|Learn Keywords: <strong className="text-gray-900">{data.summary.totalIncludeLearnKeywords}</strong>
+                </span>
+                <span>|</span>
+                <span>
+                    Self Domains: <strong className="text-gray-900">{data.summary.selfDomainsCount}</strong>
+                </span>
+            </div>
+
+            {/* Keywords Table */}
+            <div className="overflow-x-auto border rounded-lg">
+                <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                        <tr>
+                            <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+                            <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Keyword</th>
+                            <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">In+Gl Vol</th>
+                            <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Vol IN</th>
+                            <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Vol GL</th>
+                            <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Self Pos IN</th>
+                            <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Self Pos GL</th>
+                        </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                        {data.keywords.map((kw) => (
+                            <tr key={kw.rank} className="hover:bg-gray-50">
+                                <td className="px-3 py-2 text-sm text-gray-500">{kw.rank}</td>
+                                <td className="px-3 py-2 text-sm font-medium text-gray-900">
+                                    <a
+                                        href={`https://www.google.com/search?q=${encodeURIComponent(kw.keyword)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:text-indigo-600 hover:underline"
+                                    >
+                                        {kw.keyword}
+                                    </a>
+                                </td>
                                 <td className="px-3 py-2 text-sm text-right text-gray-900 font-semibold">
                                     {kw.totalVolume.toLocaleString()}
                                 </td>
@@ -1549,6 +1638,8 @@ function QueryCard({
                                     <BrandPowerCard data={result.data as BrandPowerData} />
                                 ) : result.queryType === 'top20-include-buy' ? (
                                     <Top20IncludeBuyCard data={result.data as Top20IncludeBuyData} />
+                                ) : result.queryType === 'top20-include-learn' ? (
+                                    <Top20IncludeLearnCard data={result.data as Top20IncludeLearnData} />
                                 ) : (
                                     <pre className="text-sm bg-gray-50 p-3 rounded overflow-auto">
                                         {JSON.stringify(result.data, null, 2)}

@@ -15,6 +15,7 @@ import {
     KeywordOpportunityMatrixData,
     BrandPowerData,
     Top20IncludeBuyData,
+    Top20IncludeLearnData,
     RankBucket,
     VolumeBucket,
     OpportunityType,
@@ -1069,6 +1070,143 @@ async function executeBrandKeywordsMatrixQuery(
     };
 }
 
+// MANUAL_002: Execute Top 20 Include|Learn (Review) Keywords query
+// Data source: client_ai_profiles.json (term dictionary) + domain_keywords.json + clients.json
+// Filter: bucket = 'review' (Include|Learn)
+// Volume: Combined India + Global
+// Position: Client Self domains only
+async function executeTop20IncludeLearnQuery(
+    clientCode: string,
+    config: { limit?: number }
+): Promise<Top20IncludeLearnData> {
+    const aiProfiles = await readAiProfiles();
+    const domainKeywords = await readDomainKeywords();
+    const clients = await readClients();
+
+    // Get client's self domains
+    const clientData = clients.find(c => c.code === clientCode);
+    const normalizeDomainLocal = (d: string): string => {
+        if (!d) return '';
+        return d.replace(/^https?:\/\//, '').replace(/^www\./, '').toLowerCase().replace(/\/$/, '');
+    };
+    const selfDomains = new Set((clientData?.domains || []).map(normalizeDomainLocal));
+
+    // Get AI profile and term dictionary
+    const profile = aiProfiles.find(p => p.clientCode === clientCode);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const termDictionary = (profile as any)?.ai_kw_builder_term_dictionary as { terms?: Record<string, { name?: string; term?: string; bucket?: string }> } | undefined;
+    const terms = termDictionary?.terms || {};
+
+    // Filter for Include|Learn (review) bucket terms
+    const includeLearnTerms: string[] = [];
+    const termsList = Array.isArray(terms) ? terms : Object.values(terms);
+
+    for (const term of termsList) {
+        if (term.bucket === 'review') {
+            const termName = term.name || term.term;
+            if (termName) includeLearnTerms.push(termName.toLowerCase());
+        }
+    }
+
+    if (includeLearnTerms.length === 0) {
+        return {
+            keywords: [],
+            summary: {
+                totalIncludeLearnKeywords: 0,
+                selfDomainsCount: selfDomains.size
+            }
+        };
+    }
+
+    // Filter domain keywords for this client
+    const clientDomainKeywords = domainKeywords.filter(dk => dk.clientCode === clientCode);
+
+    // Create volume map: keyword -> combined IN + GL volume
+    const volumeMap = new Map<string, { volumeIN: number; volumeGL: number }>();
+    for (const dk of clientDomainKeywords) {
+        const kw = dk.keyword.toLowerCase();
+        const existing = volumeMap.get(kw);
+        if (!existing) {
+            volumeMap.set(kw, {
+                volumeIN: dk.locationCode === 'IN' || dk.locationCode === '2356' ? (dk.searchVolume || 0) : 0,
+                volumeGL: dk.locationCode === 'GL' || dk.locationCode === '2840' ? (dk.searchVolume || 0) : 0,
+            });
+        } else {
+            if ((dk.locationCode === 'IN' || dk.locationCode === '2356') && (dk.searchVolume || 0) > existing.volumeIN) {
+                existing.volumeIN = dk.searchVolume || 0;
+            }
+            if ((dk.locationCode === 'GL' || dk.locationCode === '2840') && (dk.searchVolume || 0) > existing.volumeGL) {
+                existing.volumeGL = dk.searchVolume || 0;
+            }
+        }
+    }
+
+    // Create position map from SELF domains only
+    const selfDomainKeywords = clientDomainKeywords.filter(dk => {
+        const normalizedDomain = normalizeDomainLocal(dk.domain);
+        return selfDomains.has(normalizedDomain);
+    });
+
+    const selfPositionMap = new Map<string, { positionIN: number | null; positionGL: number | null }>();
+    for (const dk of selfDomainKeywords) {
+        const kw = dk.keyword.toLowerCase();
+        const existing = selfPositionMap.get(kw);
+        if (!existing) {
+            selfPositionMap.set(kw, {
+                positionIN: dk.locationCode === 'IN' || dk.locationCode === '2356' ? dk.position : null,
+                positionGL: dk.locationCode === 'GL' || dk.locationCode === '2840' ? dk.position : null,
+            });
+        } else {
+            // Take best (lowest) position for each location
+            if ((dk.locationCode === 'IN' || dk.locationCode === '2356') && dk.position !== null && (existing.positionIN === null || dk.position < existing.positionIN)) {
+                existing.positionIN = dk.position;
+            }
+            if ((dk.locationCode === 'GL' || dk.locationCode === '2840') && dk.position !== null && (existing.positionGL === null || dk.position < existing.positionGL)) {
+                existing.positionGL = dk.position;
+            }
+        }
+    }
+
+    // Enrich terms with volume and position data
+    const enrichedTerms: Top20IncludeLearnData['keywords'] = [];
+
+    // Only process unique terms
+    const uniqueTerms = new Set(includeLearnTerms);
+
+    for (const termName of Array.from(uniqueTerms)) {
+        const volData = volumeMap.get(termName);
+        const posData = selfPositionMap.get(termName);
+        const totalVolume = (volData?.volumeIN || 0) + (volData?.volumeGL || 0);
+
+        enrichedTerms.push({
+            rank: 0, // Will be set after sorting
+            keyword: termName,
+            bucket: 'Include | Learn',
+            totalVolume,
+            volumeIN: volData?.volumeIN || 0,
+            volumeGL: volData?.volumeGL || 0,
+            selfPosIN: posData?.positionIN || null,
+            selfPosGL: posData?.positionGL || null,
+        });
+    }
+
+    // Sort by combined volume DESC
+    enrichedTerms.sort((a, b) => b.totalVolume - a.totalVolume);
+
+    // Apply limit and set ranks
+    const limit = config.limit || 20;
+    const topTerms = enrichedTerms.slice(0, limit);
+    topTerms.forEach((t, idx) => { t.rank = idx + 1; });
+
+    return {
+        keywords: topTerms,
+        summary: {
+            totalIncludeLearnKeywords: uniqueTerms.size,
+            selfDomainsCount: selfDomains.size
+        }
+    };
+}
+
 // MANUAL_001: Execute Top 20 Include|Buy Keywords query
 // Data source: client_ai_profiles.json (term dictionary) + domain_keywords.json + clients.json
 // Filter: bucket = 'include' (Include|Buy)
@@ -1223,6 +1361,8 @@ function getSourceLink(queryType: string): DataSourceLink {
             return { label: 'Brand Keywords (P25 Matrix)', href: '/keywords/domain-keywords' };
         case 'top20-include-buy':
             return { label: 'AI Keyword Builder (Include|Buy)', href: '/keywords/domain-keywords' };
+        case 'top20-include-learn':
+            return { label: 'AI Keyword Builder (Include|Learn)', href: '/keywords/domain-keywords' };
         default:
             return { label: 'Unknown Source', href: '/' };
     }
@@ -1281,6 +1421,9 @@ export async function POST(request: Request) {
                 break;
             case 'top20-include-buy':
                 data = await executeTop20IncludeBuyQuery(clientCode, query.config);
+                break;
+            case 'top20-include-learn':
+                data = await executeTop20IncludeLearnQuery(clientCode, query.config);
                 break;
             default:
                 data = { message: 'Custom query type - no execution logic defined' };

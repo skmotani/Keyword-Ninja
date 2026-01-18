@@ -25,6 +25,7 @@ export type QueryType =
     | 'keyword-opportunity-matrix'
     | 'brand-keywords-matrix'
     | 'top20-include-buy'
+    | 'top20-include-learn'
     | 'custom'
     | 'manual';
 
@@ -227,6 +228,24 @@ export interface Top20IncludeBuyData {
     }[];
     summary: {
         totalIncludeBuyKeywords: number;
+        selfDomainsCount: number;
+    };
+}
+
+// MANUAL_002: Top 20 Include|Learn Keywords
+export interface Top20IncludeLearnData {
+    keywords: {
+        rank: number;
+        keyword: string;
+        bucket: string;           // 'Include | Learn'
+        totalVolume: number;      // Combined IN + GL volume
+        volumeIN: number;         // India volume
+        volumeGL: number;         // Global volume
+        selfPosIN: number | null; // Client domain position in India
+        selfPosGL: number | null; // Client domain position in Global
+    }[];
+    summary: {
+        totalIncludeLearnKeywords: number;
         selfDomainsCount: number;
     };
 }
