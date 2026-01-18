@@ -1407,17 +1407,10 @@ function QueryCard({
                                     >
                                         <span className="text-gray-400 font-medium flex-shrink-0">Query:</span>
                                         <div className="flex-1 relative group/title min-w-0">
-                                            {/* Collapsed view */}
-                                            <div className={`text-gray-700 ${pageTitle ? 'truncate' : 'italic text-gray-300'}`}>
+                                            {/* Collapsed view (Wrapped) */}
+                                            <div className={`text-gray-700 ${pageTitle ? 'whitespace-pre-wrap break-words' : 'italic text-gray-300'}`}>
                                                 {pageTitle || 'Click to add page title...'}
                                             </div>
-
-                                            {/* Hover Popup (Full Content) - Only if content exists */}
-                                            {pageTitle && (
-                                                <div className="absolute top-0 left-0 z-50 hidden group-hover/title:block bg-white border border-gray-200 shadow-xl rounded p-3 min-w-[300px] max-w-[500px] whitespace-pre-wrap text-gray-700">
-                                                    {pageTitle}
-                                                </div>
-                                            )}
                                         </div>
 
                                         <span title="Saved to Railway Volume (Not Git Pushed)" className="cursor-help text-[10px] flex-shrink-0">☁️</span>
