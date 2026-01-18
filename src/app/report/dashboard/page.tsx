@@ -1464,13 +1464,6 @@ function QueryCard({
                                             <div className={`text-gray-600 ${pageContent ? 'whitespace-pre-wrap break-words' : 'italic text-gray-300'}`}>
                                                 {pageContent || 'Click to add content description...'}
                                             </div>
-
-                                            {/* Hover Popup (Full Content) - Only if content exists */}
-                                            {pageContent && (
-                                                <div className="absolute top-0 left-0 z-50 hidden group-hover/content:block bg-white border border-gray-200 shadow-xl rounded p-3 min-w-[300px] max-w-[500px] whitespace-pre-wrap text-gray-700">
-                                                    {pageContent}
-                                                </div>
-                                            )}
                                         </div>
 
                                         <span title="Saved to Railway Volume (Not Git Pushed)" className="cursor-help text-[10px] flex-shrink-0">☁️</span>
