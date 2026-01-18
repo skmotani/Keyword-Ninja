@@ -260,9 +260,9 @@
     "id": "MANUAL_001",
     "queryNumber": "1.2",
     "groupId": "GRP-001",
-    "title": "Top 20 Include|Buy Keywords",
-    "description": "Shows top 20 keywords from Include|Buy bucket by combined IN+GL volume with Self domain ranking positions",
-    "tooltip": "TABLE: client_ai_profiles.json (term dictionary) + domain_keywords.json + clients.json\nFILTER: bucket = 'include' (Include|Buy)\nVOLUME: Combined India + Global volumes\nPOSITION: Client Self domains only (not competitors)\nSORT: totalVolume DESC\nLIMIT: 20",
+    "title": "Top 20 'Buy Intent' Keywords (High Value)",
+    "description": "Focus on these 20 keywords first. They have high search volume and high purchase intent ('Buy' or 'Include'), but you might be missing out on traffic.",
+    "tooltip": "**Query Logic:**\n1. Take all keywords tagged as 'Include | Buy'.\n2. Add up search volume from India + Global.\n3. Show your current ranking position.\n\n**SEO Advantage:**\nThese are your 'Money Keywords'. Ranking higher here directly drives sales/leads because users searching these terms are ready to take action. Use this list to prioritize your content and backlinking efforts.",
     "status": "Info",
     "queryType": "top20-include-buy",
     "config": {
