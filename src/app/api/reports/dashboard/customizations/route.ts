@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { getActiveQueries } from '@/lib/storage/dashboardQueryStore';
 
 const DATA_FILE = path.join(process.cwd(), 'data', 'dashboard_query_customizations.json');
 
@@ -59,11 +60,30 @@ export async function GET() {
     try {
         const data = await readCustomizations();
 
-        // SELF-HEALING: Inject MANUAL_001 if missing from order (Fix for Railway Volume drift)
-        if (data.queryOrder['GRP-001'] && !data.queryOrder['GRP-001'].includes('MANUAL_001')) {
-            // Check if GRP-001 exists, if so add MANUAL_001 to the top
-            data.queryOrder['GRP-001'].unshift('MANUAL_001');
-            // Persist the fix to the volume
+        // GENERIC SELF-HEALING: Inject Orphan Queries (Fix for Railway Volume drift)
+        // This ensures new queries added via code appear on the dashboard even if customization file persists
+        const activeQueries = await getActiveQueries();
+        const placedQueryIds = new Set<string>();
+        Object.values(data.queryOrder).forEach(ids => ids.forEach(id => placedQueryIds.add(id)));
+
+        const orphans = activeQueries.filter(q => !placedQueryIds.has(q.id));
+        let updatesNeeded = false;
+
+        if (orphans.length > 0) {
+            // Sort orphans by queryNumber to maintain logical order when inserting
+            orphans.sort((a, b) => a.queryNumber.localeCompare(b.queryNumber));
+
+            for (const q of orphans) {
+                if (!data.queryOrder[q.groupId]) {
+                    data.queryOrder[q.groupId] = [];
+                }
+                // Add to TOP of the group so user notices the new query immediately
+                data.queryOrder[q.groupId].unshift(q.id);
+                updatesNeeded = true;
+            }
+        }
+
+        if (updatesNeeded) {
             await writeCustomizations(data);
         }
 
