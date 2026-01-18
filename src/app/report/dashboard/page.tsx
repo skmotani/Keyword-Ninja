@@ -1267,7 +1267,7 @@ function QueryCard({
                 title={displayTitle}
                 description={query.tooltip || query.description}
             />
-            <div className={`bg-white rounded-lg border shadow-sm overflow-hidden transition-all ${isExpanded ? 'ring-2 ring-indigo-200' : ''} relative`}>
+            <div className={`bg-white rounded-lg border shadow-sm transition-all ${isExpanded ? 'ring-2 ring-indigo-200' : ''} relative`}>
                 {/* Serial Number Badge on Right Side */}
                 {cardNumber !== undefined && (
                     <div className="absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-indigo-100 to-transparent flex items-center justify-center z-10 pointer-events-none">
@@ -1460,8 +1460,8 @@ function QueryCard({
                                     >
                                         <span className="text-gray-400 font-medium flex-shrink-0">SEO Advantage:</span>
                                         <div className="flex-1 relative group/content min-w-0">
-                                            {/* Collapsed view (One line) */}
-                                            <div className={`text-gray-600 ${pageContent ? 'truncate' : 'italic text-gray-300'}`}>
+                                            {/* Collapsed view (Multi-line wrap) */}
+                                            <div className={`text-gray-600 ${pageContent ? 'whitespace-pre-wrap break-words' : 'italic text-gray-300'}`}>
                                                 {pageContent || 'Click to add content description...'}
                                             </div>
 
