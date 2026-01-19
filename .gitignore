@@ -42,6 +42,8 @@ data/domain_logs/
 data/api_logs/
 data/serp_raw/
 data/jobs/
+# NEVER commit credentials - contains API keys
+data/api_credentials.json
 
 
 # AI Models (too large, 2.5GB+)
