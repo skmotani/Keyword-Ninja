@@ -999,15 +999,20 @@ async function executeBrandKeywordsMatrixQuery(
         };
     }
 
-    // Build domain info lookup (domain -> { type, brandName })
-    const domainInfoMap = new Map<string, { type: 'Self' | 'Main Competitor'; brandName: string }>();
+    // Build domain info lookup (domain -> { type, brandName, favicon })
+    const domainInfoMap = new Map<string, { type: 'Self' | 'Main Competitor'; brandName: string; favicon?: string | null }>();
     for (const comp of relevantCompetitors) {
         const normalizedDomain = normalizeDomain(comp.domain);
         // Get brand name from competitor's brandNames array or derive from name/domain
         const brandName = comp.brandNames?.[0] || comp.name || comp.domain.replace(/\.(com|in|co\.in|org|net)$/i, '');
+
+        // Get Favicon (first logo or null)
+        const favicon = comp.logos && comp.logos.length > 0 ? comp.logos[0] : null;
+
         domainInfoMap.set(normalizedDomain, {
             type: comp.competitionType as 'Self' | 'Main Competitor',
-            brandName
+            brandName,
+            favicon
         });
     }
 
@@ -1100,6 +1105,7 @@ async function executeBrandKeywordsMatrixQuery(
             domain: originalDomain,
             domainType: info.type,
             brandName: info.brandName,
+            favicon: info.favicon,
             brandKeywordCount: data.keywords.length,
             totalBrandVolume: data.totalVolume,
             keywords: data.keywords.slice(0, config.limit || 50) // Limit keywords per domain

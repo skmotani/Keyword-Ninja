@@ -976,6 +976,18 @@ function BrandPowerCard({ data }: { data: BrandPowerData }) {
                                             {isSelf ? 'Self' : 'Comp'}
                                         </span>
 
+                                        {/* Favicon */}
+                                        {domainData.favicon && (
+                                            <img
+                                                src={domainData.favicon}
+                                                alt={`${domainData.brandName} logo`}
+                                                className="w-5 h-5 object-contain bg-white rounded-sm border border-gray-100"
+                                                onError={(e) => {
+                                                    (e.target as HTMLImageElement).style.display = 'none';
+                                                }}
+                                            />
+                                        )}
+
                                         {/* Domain */}
                                         <span className="font-medium text-gray-900">
                                             {domainData.domain}

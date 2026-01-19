@@ -203,6 +203,7 @@ export interface BrandPowerData {
         domain: string;
         domainType: 'Self' | 'Main Competitor';
         brandName: string;
+        favicon?: string | null;
         brandKeywordCount: number;
         totalBrandVolume: number;
         keywords: {
