@@ -1,43 +1,90 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getActiveCredentialByService } from '@/lib/apiCredentialsStore';
+import OpenAI from 'openai';
+
+// Helper to actually validate OpenAI key
+async function validateOpenAI(apiKey: string): Promise<boolean> {
+    try {
+        const openai = new OpenAI({ apiKey, timeout: 5000 });
+        // Simple models list call - cheap and fast
+        await openai.models.list();
+        return true;
+    } catch (e: any) {
+        console.log('[API Status] OpenAI validation failed:', e?.message);
+        return false;
+    }
+}
+
+// Helper to validate DataForSEO credentials
+async function validateDataForSEO(login: string, password: string): Promise<boolean> {
+    try {
+        const auth = Buffer.from(`${login}:${password}`).toString('base64');
+        const res = await fetch('https://api.dataforseo.com/v3/appendix/user_data', {
+            method: 'GET',
+            headers: { 'Authorization': `Basic ${auth}` },
+            signal: AbortSignal.timeout(5000)
+        });
+        return res.ok;
+    } catch (e: any) {
+        console.log('[API Status] DataForSEO validation failed:', e?.message);
+        return false;
+    }
+}
+
+// Helper to validate Gemini key
+async function validateGemini(apiKey: string): Promise<boolean> {
+    try {
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1/models?key=${apiKey}`, {
+            method: 'GET',
+            signal: AbortSignal.timeout(5000)
+        });
+        return res.ok;
+    } catch (e: any) {
+        console.log('[API Status] Gemini validation failed:', e?.message);
+        return false;
+    }
+}
 
 export async function GET(request: NextRequest) {
     try {
-        // Check all API services
-        const services: Array<'OPENAI' | 'DATAFORSEO' | 'GEMINI'> = ['OPENAI', 'DATAFORSEO', 'GEMINI'];
         const results: Record<string, { configured: boolean; label: string }> = {};
 
-        for (const service of services) {
-            const credential = await getActiveCredentialByService(service);
+        // Check OpenAI
+        let openaiConfigured = false;
+        const openaiCred = await getActiveCredentialByService('OPENAI');
+        const openaiKey = (openaiCred?.apiKey && !openaiCred.apiKey.startsWith('****'))
+            ? openaiCred.apiKey
+            : process.env.OPENAI_API_KEY;
 
-            let configured = false;
-            if (credential) {
-                // Check if there's a valid key (not just masked)
-                if (credential.apiKey && !credential.apiKey.startsWith('****')) {
-                    configured = true;
-                } else if (credential.password && !credential.password.startsWith('****')) {
-                    configured = true; // For username/password auth like DataForSEO
-                }
-            }
-
-            // Also check environment variables as fallback
-            if (!configured) {
-                if (service === 'OPENAI' && process.env.OPENAI_API_KEY && !process.env.OPENAI_API_KEY.includes('your-')) {
-                    configured = true;
-                }
-                if (service === 'DATAFORSEO' && process.env.DATAFORSEO_LOGIN && !process.env.DATAFORSEO_LOGIN.includes('your-')) {
-                    configured = true;
-                }
-                if (service === 'GEMINI' && process.env.GEMINI_API_KEY && !process.env.GEMINI_API_KEY.includes('your-')) {
-                    configured = true;
-                }
-            }
-
-            results[service] = {
-                configured,
-                label: service === 'DATAFORSEO' ? 'DataForSEO' : service === 'OPENAI' ? 'OpenAI' : 'Gemini'
-            };
+        if (openaiKey && openaiKey.startsWith('sk-') && !openaiKey.includes('your-')) {
+            openaiConfigured = await validateOpenAI(openaiKey);
         }
+        results['OPENAI'] = { configured: openaiConfigured, label: 'OpenAI' };
+
+        // Check DataForSEO
+        let dataforseConfigured = false;
+        const dfsCred = await getActiveCredentialByService('DATAFORSEO');
+        const dfsLogin = dfsCred?.username || process.env.DATAFORSEO_LOGIN;
+        const dfsPassword = (dfsCred?.password && !dfsCred.password.startsWith('****'))
+            ? dfsCred.password
+            : process.env.DATAFORSEO_PASSWORD;
+
+        if (dfsLogin && dfsPassword && !dfsLogin.includes('your-') && !dfsPassword.includes('your-')) {
+            dataforseConfigured = await validateDataForSEO(dfsLogin, dfsPassword);
+        }
+        results['DATAFORSEO'] = { configured: dataforseConfigured, label: 'DataForSEO' };
+
+        // Check Gemini
+        let geminiConfigured = false;
+        const geminiCred = await getActiveCredentialByService('GEMINI');
+        const geminiKey = (geminiCred?.apiKey && !geminiCred.apiKey.startsWith('****'))
+            ? geminiCred.apiKey
+            : process.env.GEMINI_API_KEY;
+
+        if (geminiKey && !geminiKey.includes('your-')) {
+            geminiConfigured = await validateGemini(geminiKey);
+        }
+        results['GEMINI'] = { configured: geminiConfigured, label: 'Gemini' };
 
         return NextResponse.json({
             success: true,
