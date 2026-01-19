@@ -5,10 +5,12 @@ import { useState, useEffect, useRef } from 'react';
 interface ApiStatus {
     configured: boolean;
     label: string;
+    debug?: string;
 }
 
 export default function ApiStatusIndicator() {
     const [apis, setApis] = useState<Record<string, ApiStatus>>({});
+    const [lastChecked, setLastChecked] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -20,6 +22,9 @@ export default function ApiStatusIndicator() {
                 if (res.ok) {
                     const data = await res.json();
                     setApis(data.apis || {});
+                    if (data.lastChecked) {
+                        setLastChecked(new Date(data.lastChecked).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+                    }
                 }
             } catch (e) {
                 console.error('Failed to check API status', e);
@@ -51,8 +56,8 @@ export default function ApiStatusIndicator() {
 
     if (loading) {
         return (
-            <div className="flex items-center gap-1 px-2 py-1 text-xs text-gray-400">
-                <div className="w-2 h-2 rounded-full bg-gray-300 animate-pulse"></div>
+            <div className="flex items-center gap-1 px-2 py-1 text-xs text-slate-400">
+                <div className="w-2 h-2 rounded-full bg-slate-600 animate-pulse"></div>
                 <span className="hidden sm:inline">APIs</span>
             </div>
         );
@@ -80,12 +85,15 @@ export default function ApiStatusIndicator() {
 
             {isOpen && (
                 <div className="absolute left-0 bottom-full mb-1 w-64 bg-slate-800 border border-slate-700 rounded-lg shadow-lg z-50">
-                    <div className="p-2 border-b border-slate-700">
+                    <div className="p-2 border-b border-slate-700 flex justify-between items-center">
                         <span className="text-xs font-semibold text-slate-400">API Status</span>
+                        {lastChecked && (
+                            <span className="text-[10px] text-slate-500">Checked: {lastChecked}</span>
+                        )}
                     </div>
                     <div className="p-2 space-y-1">
                         {apiList.map(([key, status]) => (
-                            <div key={key} className="flex items-center justify-between py-1.5 px-2 rounded hover:bg-slate-700">
+                            <div key={key} className="flex items-center justify-between py-1.5 px-2 rounded hover:bg-slate-700" title={status.debug}>
                                 <span className="text-xs text-slate-300">{status.label}</span>
                                 <div className="flex items-center gap-1.5">
                                     <span className={`text-[10px] font-medium ${status.configured ? 'text-green-400' : 'text-red-400'}`}>
