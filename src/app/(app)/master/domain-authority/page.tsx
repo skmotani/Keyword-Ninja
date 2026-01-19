@@ -3,8 +3,8 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 
 // Types
-interface Client { id: string; code: string; name: string; domains?: string[]; isActive: boolean; }
-interface Competitor { id: string; clientCode: string; name: string; domain: string; isActive: boolean; competitionType?: string; competitorForProducts?: string[]; }
+interface Client { id: string; code: string; name: string; domains?: string[]; isActive: boolean; brandPhotos?: string[]; }
+interface Competitor { id: string; clientCode: string; name: string; domain: string; isActive: boolean; competitionType?: string; competitorForProducts?: string[]; logos?: string[]; }
 interface CredibilityRecord {
     id: string; clientCode: string; domain: string; domainType: 'client' | 'competitor';
     domainAgeYears: number | null; referringDomains: number | null; totalBacklinks: number | null;
@@ -20,6 +20,7 @@ interface DomainEntry {
     selected: boolean; storedData: CredibilityRecord | null;
     needsWhois: boolean; needsBacklinks: boolean; needsLabs: boolean; estimatedCost: number;
     competitionType?: string; competitorForProducts?: string[];
+    favicon?: string;
 }
 interface FetchPlan {
     totalDomains: number; domainsNeedingFetch: number; domainsComplete: number;
@@ -466,7 +467,7 @@ export default function DomainAuthorityPage() {
         if (!clientCode) { setDomains([]); return; }
         const seen = new Set<string>(), list: DomainEntry[] = [];
         const client = clients.find(c => c.code === clientCode);
-        const add = (raw: string, type: 'client' | 'competitor', label?: string, competitionType?: string, competitorForProducts?: string[]) => {
+        const add = (raw: string, type: 'client' | 'competitor', label?: string, competitionType?: string, competitorForProducts?: string[], favicon?: string) => {
             const c = clean(raw);
             if (!c || seen.has(c)) return;
             seen.add(c);
@@ -477,12 +478,12 @@ export default function DomainAuthorityPage() {
                 domain: raw.replace(/^https?:\/\//, '').replace(/\/$/, ''), cleanDomain: c, type, label, selected: true, storedData: stored,
                 needsWhois: nW, needsBacklinks: nB, needsLabs: nL,
                 estimatedCost: (nW ? 0.101 : 0) + (nB ? 0.020 : 0) + (nL ? 0.101 : 0),
-                competitionType, competitorForProducts,
+                competitionType, competitorForProducts, favicon
             });
         };
-        (client?.domains || []).forEach(d => add(d, 'client', client?.name));
+        (client?.domains || []).forEach(d => add(d, 'client', client?.name, undefined, undefined, client?.brandPhotos?.[0]));
         competitors.filter(c => c.clientCode === clientCode && c.isActive).forEach(c =>
-            add(c.domain, 'competitor', c.name, c.competitionType, c.competitorForProducts)
+            add(c.domain, 'competitor', c.name, c.competitionType, c.competitorForProducts, c.logos?.[0])
         );
         setDomains(list);
     }, [clientCode, clients, competitors, records]);
@@ -776,8 +777,15 @@ export default function DomainAuthorityPage() {
                                     <td className="px-3 py-2.5"><input type="checkbox" checked={e.selected} onChange={ev => handleSelect(e.cleanDomain, ev.target.checked)} className="w-4 h-4" /></td>
                                     <td className="px-2 py-2.5 text-gray-400 text-xs">{i + 1}</td>
                                     <td className="px-4 py-2.5">
-                                        <a href={`https://${e.cleanDomain}`} target="_blank" className="text-blue-600 hover:underline font-medium">{e.domain}</a>
-                                        <div className="text-[11px] text-gray-400 mt-0.5">{complete ? '✓ Complete' : `Need: ${[!hasWhois && 'Age', !hasBacklinks && 'BL', !hasLabs && 'KW'].filter(Boolean).join(', ')}`}</div>
+                                        <div className="flex items-center gap-2">
+                                            {e.favicon && (
+                                                <img src={e.favicon} alt="" className="w-4 h-4 object-contain" />
+                                            )}
+                                            <div>
+                                                <a href={`https://${e.cleanDomain}`} target="_blank" className="text-blue-600 hover:underline font-medium">{e.domain}</a>
+                                                <div className="text-[11px] text-gray-400 mt-0.5">{complete ? '✓ Complete' : `Need: ${[!hasWhois && 'Age', !hasBacklinks && 'BL', !hasLabs && 'KW'].filter(Boolean).join(', ')}`}</div>
+                                            </div>
+                                        </div>
                                     </td>
                                     <td className="px-3 py-2.5 text-center"><span className={`inline-block w-6 h-6 leading-6 text-center rounded text-xs font-medium ${e.type === 'client' ? 'bg-blue-200 text-blue-800' : 'bg-gray-200 text-gray-600'}`}>{e.type === 'client' ? 'C' : 'X'}</span></td>
                                     <td className="px-3 py-2.5 text-center text-[10px]">
@@ -785,9 +793,9 @@ export default function DomainAuthorityPage() {
                                             <span className="px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">Client</span>
                                         ) : e.competitionType ? (
                                             <span className={`px-1.5 py-0.5 rounded ${e.competitionType === 'Main Competitor' ? 'bg-red-100 text-red-700' :
-                                                    e.competitionType === 'Partial Competitor' ? 'bg-amber-100 text-amber-700' :
-                                                        e.competitionType === 'Not a Competitor' ? 'bg-gray-100 text-gray-600' :
-                                                            'bg-purple-100 text-purple-700'
+                                                e.competitionType === 'Partial Competitor' ? 'bg-amber-100 text-amber-700' :
+                                                    e.competitionType === 'Not a Competitor' ? 'bg-gray-100 text-gray-600' :
+                                                        'bg-purple-100 text-purple-700'
                                                 }`}>{e.competitionType}</span>
                                         ) : <span className="text-gray-300">-</span>}
                                     </td>
