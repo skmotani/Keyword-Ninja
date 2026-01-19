@@ -1,0 +1,749 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0441 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-b1d2c51e942f",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0319 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-b1d2c51e942f"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Cone Winder",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "Cone Winder",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=Cone%20Winder&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:59:20 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+cone+winder&hl=en&gl=IN&shoprs=GBIqC2NvbmUgd2luZGVyMgkIEhIFUHJpY2VgAQ&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKAF6BAgbECo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "New",
+                "url": "https://www.google.com/search?q=new+Cone+Winder&hl=en&gl=IN&shoprs=GAoqC2NvbmUgd2luZGVyMgcIChIDTmV3WM3wIGAB&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKAJ6BAgbECs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Used",
+                "url": "https://www.google.com/search?q=used+Cone+Winder&hl=en&gl=IN&shoprs=GAoqC2NvbmUgd2luZGVyMggIChIEVXNlZFjN8CBgAQ&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKAN6BAgbECw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=Cone+Winder+nearby&hl=en&gl=IN&shoprs=GAMqC2NvbmUgd2luZGVyMgwIAxIGTmVhcmJ5GAJYzfAgYAE&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKAR6BAgbEC0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+cone+winder&hl=en&gl=IN&shoprs=GBIqC2NvbmUgd2luZGVyMgoIEhIGT25saW5lYAE&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKAV6BAgbEC4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=cone+winder+for+sale&hl=en&gl=IN&shoprs=GBIqC2NvbmUgd2luZGVyMgwIEhIIRm9yIFNhbGVgAQ&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKAZ6BAgbEC8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+cone+winder&hl=en&gl=IN&shoprs=GBIqC2NvbmUgd2luZGVyMgsIEhIHUmV2aWV3c2AB&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKAd6BAgbEDA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Conveyors",
+                "url": "https://www.google.com/search?q=conveyors+cone+winder&hl=en&gl=IN&shoprs=GAkqC2NvbmUgd2luZGVyMg0ICRIJQ29udmV5b3JzYAE&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKAh6BAgbEDE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Electrical Motors",
+                "url": "https://www.google.com/search?q=electrical+motors+cone+winder&hl=en&gl=IN&shoprs=GAkqC2NvbmUgd2luZGVyMhUICRIRRWxlY3RyaWNhbCBNb3RvcnNgAQ&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKAl6BAgbEDI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+cone+winder&hl=en&gl=IN&shoprs=GBIqC2NvbmUgd2luZGVyMgcIEhIDQnV5YAE&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKAp6BAgbEDM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹1,50,000",
+                "url": "https://www.google.com/search?q=Cone+Winder+under+150000&hl=en&gl=IN&shoprs=Eg0SCxEAAAAgWXZBQhgBGAUqC2NvbmUgd2luZGVyMioIBRIRVW5kZXIg4oK5MSw1MCwwMDAYAiINEgsRAAAAIFl2QUIYASoCGAFYzfAgYAE&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKAt6BAgbEDQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "White",
+                "url": "https://www.google.com/search?q=white+cone+winder&hl=en&gl=IN&shoprs=GAEqC2NvbmUgd2luZGVyMhcIARIFV2hpdGU6DAjYjPUBEKGL9QEwC1jN8CBgAQ&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKAx6BAgbEDU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Black",
+                "url": "https://www.google.com/search?q=black+cone+winder&hl=en&gl=IN&shoprs=GAEqC2NvbmUgd2luZGVyMhcIARIFQmxhY2s6DAjYjPUBEOWK9QEwC1jN8CBgAQ&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKA16BAgbEDY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Man",
+                "url": "https://www.google.com/search?q=man+cone+winder&hl=en&gl=IN&shoprs=GBIqC2NvbmUgd2luZGVyMgcIEhIDTWFuYAE&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKA56BAgbEDc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Red",
+                "url": "https://www.google.com/search?q=red+cone+winder&hl=en&gl=IN&shoprs=GAEqC2NvbmUgd2luZGVyMhUIARIDUmVkOgwI2Iz1ARDnivUBMAtYzfAgYAE&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKA96BAgbEDg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Size",
+                "url": "https://www.google.com/search?q=size+cone+winder&hl=en&gl=IN&shoprs=GBIqC2NvbmUgd2luZGVyMggIEhIEU2l6ZWAB&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKBB6BAgbEDk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Blue",
+                "url": "https://www.google.com/search?q=blue+cone+winder&hl=en&gl=IN&shoprs=GAEqC2NvbmUgd2luZGVyMhYIARIEQmx1ZToMCNiM9QEQ5or1ATALWM3wIGAB&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKBF6BAgbEDo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Images",
+                "url": "https://www.google.com/search?q=images+cone+winder&hl=en&gl=IN&shoprs=GBIqC2NvbmUgd2luZGVyMgoIEhIGSW1hZ2VzYAE&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKBJ6BAgbEDs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Green",
+                "url": "https://www.google.com/search?q=green+cone+winder&hl=en&gl=IN&shoprs=GAEqC2NvbmUgd2luZGVyMhcIARIFR3JlZW46DAjYjPUBEOiK9QEwC1jN8CBgAQ&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKBN6BAgbEDw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tradeindia.com",
+                "url": "https://www.google.com/search?q=tradeindia.com+cone+winder&hl=en&gl=IN&shoprs=GAIqC2NvbmUgd2luZGVyMhIIAhIOVHJhZGVpbmRpYS5jb21YzfAgYAE&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKBR6BAgbED0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Alibaba.com",
+                "url": "https://www.google.com/search?q=alibaba.com+cone+winder&hl=en&gl=IN&shoprs=GAIqC2NvbmUgd2luZGVyMg8IAhILQWxpYmFiYS5jb21YzfAgYAE&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKBV6BAgbED4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Etsy",
+                "url": "https://www.google.com/search?q=etsy+cone+winder&hl=en&gl=IN&shoprs=GAIqC2NvbmUgd2luZGVyMggIAhIERXRzeVjN8CBgAQ&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKBZ6BAgbED8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "IndiaMART",
+                "url": "https://www.google.com/search?q=indiamart+cone+winder&hl=en&gl=IN&shoprs=GAIqC2NvbmUgd2luZGVyMg0IAhIJSW5kaWFNQVJUWM3wIGAB&sa=X&ved=2ahUKEwjQn4bMz9uRAxXsLbkGHUs0KYYQip4GKBd6BAgbEEA",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "popular_products",
+            "organic",
+            "video",
+            "images",
+            "related_searches"
+          ],
+          "se_results_count": 1160000,
+          "pages_count": 5,
+          "items_count": 47,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 2,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Yarn And Thread Cone Winding Machine",
+              "description": "Its main function is to efficiently transfer thread or yarn from larger packages (like big cones or hanks) onto smaller, more manageable spools or cones for use ... Read more",
+              "url": "https://dir.indiamart.com/impcat/cone-winding-machines.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Reeling Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 4,
+              "page": 1,
+              "domain": "www.angalammamachinery.co.in",
+              "title": "12 Spindle Cone Winding Machine",
+              "description": "Jumbo Cone Winder 5 To 10 Kg. Rs 1,00,000 / Piece. Jumbo Cone Winder 5 To 10 Kg. Automation Grade: Automatic; Machine Type: Automatic; I Deal In: New Only ... Read more",
+              "url": "https://www.angalammamachinery.co.in/winding-machine.html",
+              "breadcrumb": "https://www.angalammamachinery.co.in › winding-mac..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 6,
+              "page": 1,
+              "domain": "www.meeraind.com",
+              "title": "Cheese Cone Winder Machines at Best Prices",
+              "description": "23 hours ago — Browse our complete line of cheese cone winder machines. Engineered for textile manufacturing with individual motor drive technology.",
+              "url": "https://www.meeraind.com/feeds/category/cheese-cone-winder",
+              "breadcrumb": "https://www.meeraind.com › feeds › category › cheese-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "www.dreamingrobots.com",
+              "title": "EEW Cone Winder",
+              "description": "Description. The EEW Cone Winder automatically winds yarn evenly onto cones, with a guided drum that moves the yarn back and forth for consistent results. Read more",
+              "url": "https://www.dreamingrobots.com/product/eew-cone-winder/?srsltid=AfmBOooIlnNi3pzmPmMoaKLyrICJl9X3QdSiR4Ay2XS4Q0cJRJdF9Mv_",
+              "breadcrumb": "https://www.dreamingrobots.com › product › eew-cone..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "www.durgajacquard.com",
+              "title": "Cone Winder Machine Manufacturer, Exporter and Supplier",
+              "description": "Cone Winder Machine · For Re-conning purpose · 10\" Travers available in 8, 12, 18 and 24 Spindles · Suitable for shoddy, Acrylic & Cotton Yarn. Cone Winder ... Read more",
+              "url": "https://www.durgajacquard.com/cone-winder-machine-1502736.html",
+              "breadcrumb": "https://www.durgajacquard.com › cone-winder-machine-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.etsy.com",
+              "title": "CW-100Ex - Electric Wool/Yarn Cone Winder ...",
+              "description": "It will count when the cone spin one circle, it will help you to measure the weight, size of the yarn ball to ensure that all your yarn balls are the same size ...",
+              "url": "https://www.etsy.com/in-en/listing/1152902310/cw-100ex-electric-woolyarn-cone-winder",
+              "breadcrumb": "https://www.etsy.com › in-en › listing › cw-100ex-elect..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "www.amazon.com",
+              "title": "Yarn Cone Winder",
+              "description": "Results · Consfly Yarn Cone Winder 3500 RPM Yarn Tube Winder with Automatic Pause & Length Detection, Cone Winding Machine for Crocheting & Sewing. Add to cart. Read more",
+              "url": "https://www.amazon.com/yarn-cone-winder/s?k=yarn+cone+winder",
+              "breadcrumb": "https://www.amazon.com › yarn-cone-winder › k=yarn..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "woolery.com",
+              "title": "Bobbin Winders & Cone Winders | Bobbin Winding",
+              "description": "The Woolery is your trusted source for bobbin winders and cone winders! From yarn cones to electric winders, we have many options for you to choose from.",
+              "url": "https://woolery.com/collections/bobbin-cone-winders?srsltid=AfmBOopKEl1047Zut1-rsec8YqEz03i-VvqXV_hc-525QkYvhG4oGOgq",
+              "breadcrumb": "https://woolery.com › collections › bobbin-cone-winders"
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 13,
+              "page": 2,
+              "domain": "www.meera.ind.in",
+              "title": "Cone To Cone Winder Manufacturer from Surat",
+              "description": "Cone To Cone Winder · Machine Type: Automatic · Voltage: 220/380/440 - 50-60 Hz · Packaging Type: Modular · Usage/Application: Rewinding Assembly,Plying of ... Read more",
+              "url": "https://www.meera.ind.in/cone-to-cone-winder.html",
+              "breadcrumb": "https://www.meera.ind.in › cone-to-cone-winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "dir.indiamart.com",
+              "title": "Cone Winding Machines Manufacturers in India",
+              "description": "We are the leading manufacturer and supplier of Spinntex Cone Winder Machine. The cone winder encompasses an optical sensor to avoid single yarn winding. Read more",
+              "url": "https://dir.indiamart.com/impcat/cone-winding-machines.html?biz=10",
+              "breadcrumb": "https://dir.indiamart.com › ... › Cone Winding Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "www.csmlove.com",
+              "title": "Yarn Winders-Electric",
+              "description": "A cone winder (or bobbin winder - see the bottom of this page) offers consistent support and yarn tension from beginning to end. Thus a cone or bobbin is often ... Read more",
+              "url": "https://www.csmlove.com/yarnwinders-electric",
+              "breadcrumb": "https://www.csmlove.com › yarnwinders-electric"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.youtube.com",
+              "title": "Ball Winders v Cone Winders & Preparing Hand Knit Yarns ...",
+              "description": "In this video I wanted to talk about yarn winders and rewinding yarn for machine knitting.",
+              "url": "https://www.youtube.com/watch?v=xQHKZ02ZO14",
+              "breadcrumb": "3.5K+ views  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.justdial.com",
+              "title": "Top Cone Winder Manufacturers in Ludhiana near me",
+              "description": "Popular Cone Winder Manufacturers in Ludhiana · Amar Cone Winder & Flat Machine · Shree Amar Winder · Kalia Cone Winders · Punjab Textile Engg Works · A K ... Read more",
+              "url": "https://www.justdial.com/Ludhiana/Cone-Winder-Manufacturers/nct-10127499",
+              "breadcrumb": "https://www.justdial.com › ... › 7+ Listings"
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.ramella.com",
+              "title": "Cone winder for fiber mills and textile laboratories",
+              "description": "Our cone winders can be of two types: Fitted with a mobile thread guide, slower and ideal for thicker yarns. Fitted with a grooved roller, very fast and ... Read more",
+              "url": "https://www.ramella.com/cone_winder.php",
+              "breadcrumb": "https://www.ramella.com › cone_winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.accio.ai",
+              "title": "cone winder machine: High-Speed Yarn Winding Solutions",
+              "description": "8 Nov 2025 — Cone winding machines are used to transfer yarn from hanks or spools onto cone-shaped bobbins. This process prepares yarn for further use in ... Read more",
+              "url": "https://www.accio.ai/find-product/cone-winder-machine",
+              "breadcrumb": "https://www.accio.ai › find-product › cone-winder-machi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "joyceknitsandsews.com",
+              "title": "Speedy Cone Winder 2.0",
+              "description": "This cone holder design, with slide-on adapters and a universal cone retention knob, means that you can easily wind on three different styles of cones. Read more",
+              "url": "https://joyceknitsandsews.com/products/speedy-cone-winder-2-0",
+              "breadcrumb": "https://joyceknitsandsews.com › products › speedy-cone-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "csmsupplies.com",
+              "title": "Cone Winders & Cones",
+              "description": "This handy tool makes it simple to wind your yarn into the perfect cone for knitting on a circular knitting machine. Our cardboard cones are sturdy and ... Read more",
+              "url": "https://csmsupplies.com/product-category/cones/",
+              "breadcrumb": "https://csmsupplies.com › Store"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "www.tisseetfile.com",
+              "title": "EEW Cone Winder – Yarn Winder by Dreaming Robots",
+              "description": "Winds yarn evenly onto cones. Includes 10 cones, foot pedal, and tensioner. Smooth, quiet, and precise. Now available from Tisse et File.",
+              "url": "https://www.tisseetfile.com/en/products/eew-cone-winder-bobinoir-automatique-dreaming-robots?srsltid=AfmBOoq7vfK3FPWJqhJT99jWhwXpA-_yWwXpZ3W60pY9hcGpVYkApDo7",
+              "breadcrumb": "https://www.tisseetfile.com › products › eew-cone-winde..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 24,
+              "page": 3,
+              "domain": "www.tirupursewingmachine.com",
+              "title": "Buy Cone winding online at best price",
+              "description": "Buy Cone winding online at the best price in India on tirupursewingmachine. ... Cone winding. ₹7999. More in category. Image Fuching Machine. Fuching Machine. Read more",
+              "url": "https://www.tirupursewingmachine.com/product/29423205/Cone-winding",
+              "breadcrumb": "https://www.tirupursewingmachine.com › product › Co..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 25,
+              "page": 3,
+              "domain": "elyknits.com",
+              "title": "The EEW Cone Winder- Unboxing and Initial Thoughts",
+              "description": "26 Jan 2024 — The cone winder now retails at $259 and is in stock as of the time of writing. each block is ~1 inch for size reference. Read more",
+              "url": "https://elyknits.com/2024/01/26/the-eew-cone-winder-unboxing-and-initial-thoughts/",
+              "breadcrumb": "https://elyknits.com › 2024/01/26 › the-eew-cone-wind..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "www.creditocean.net",
+              "title": "The 5 Types of Cone Winding Machines Explained",
+              "description": "In the textile industry, cone winding machines (also known as yarn winders or spoolers) are vital for preparing yarn for weaving, knitting, or sewing. Read more",
+              "url": "https://www.creditocean.net/5-styles-of-cone-winding-machines",
+              "breadcrumb": "https://www.creditocean.net › 5-styles-of-cone-winding..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "www.wonkyweaver.com",
+              "title": "EEW Cone Winder - easily winds yarn to cones",
+              "description": "Uses an heavy duty textile winding drum to evenly wind yarn onto cones ; Soft start and stop; Foot pedal to quickly stop if there is a tangle; Magnets hold cone ... Read more",
+              "url": "https://www.wonkyweaver.com/product-page/eew-cone-winder",
+              "breadcrumb": "https://www.wonkyweaver.com › product-page › eew-c..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.meeraind.com",
+              "title": "Acrylic Yarn Cone Winder Machine for Factory Production",
+              "description": "1 day ago — Advanced 290mm yarn cone winder machines engineered for high-volume industrial textile production. Features individual motor drive technology, ... Read more",
+              "url": "https://www.meeraind.com/feeds/category/acrylic-yarn-cone-winder-factory",
+              "breadcrumb": "https://www.meeraind.com › feeds › category › acrylic-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.angalammamachinery.co.in",
+              "title": "Tube Winding Machine Manufacturer from Coimbatore",
+              "description": "Y Cone Winder (single Head Winding). Rs 53,000 / Piece. Y Cone Winder (single Head Winding). Usage/Application: Textiles; Automation Grade: Automatic; Warranty ... Read more",
+              "url": "https://www.angalammamachinery.co.in/cone-winding-machine.html",
+              "breadcrumb": "https://www.angalammamachinery.co.in › cone-windin..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.kickstarter.com",
+              "title": "EEW Cone Winder by Maurice Ribble",
+              "description": "3 Oct 2022 — The Electric Eel Wheel (EEW) Cone Winder is a tool to automatically wind yarn. It enables knitters, weavers, and other fiber artists to put ... Read more",
+              "url": "https://www.kickstarter.com/projects/dreamingrobots/eew-cone-winder",
+              "breadcrumb": "https://www.kickstarter.com › projects › dreamingrobots"
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.ebay.com",
+              "title": "Cone Winder",
+              "description": "Yarn Cone Winder Adjustable Cone Thread Winder With Timing & Stranding Function. Brand New. $259.99$379.99. or Best Offer. Free delivery. Read more",
+              "url": "https://www.ebay.com/shop/cone-winder?_nkw=cone+winder",
+              "breadcrumb": "https://www.ebay.com › shop › cone-winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "motocono.com",
+              "title": "Winding Machines for Textile Industries",
+              "description": "Motocono machines are designed to offer maximum reliability and precision, ensuring that each coil produced meets strict quality standards. Read more",
+              "url": "https://motocono.com/en/section/winding/",
+              "breadcrumb": "https://motocono.com › section › winding"
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "www.reddit.com",
+              "title": "Prototype cone winder my husband and I have been working ...",
+              "description": "Ours was built to be a mini version of a commercial high speed winder and over engineered for what most people need. Unless your winding several ...",
+              "url": "https://www.reddit.com/r/MachineKnitting/comments/lbpxkr/prototype_cone_winder_my_husband_and_i_have_been/",
+              "breadcrumb": "40+ comments  ·  4 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 35,
+              "page": 4,
+              "domain": "jupitercomtex.com",
+              "title": "Best Cone Winding Machine In Ahmedabad",
+              "description": "At Jupiter Comtex you will find small and automatic cone winding machines in Ahmedabad, browse various types of cone winding machines and their price.",
+              "url": "http://jupitercomtex.com/product/cone-winding/",
+              "breadcrumb": "http://jupitercomtex.com › Shop"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "www.printables.com",
+              "title": "Yarn cone winder v2 - manual or motorized by pandel",
+              "description": "Wind your yarn skeins to a cone for knitting. This winder comes in two main versions: manual and motorized, see description and STL folder structure for ... Read more",
+              "url": "https://www.printables.com/model/690302-yarn-cone-winder-v2-manual-or-motorized",
+              "breadcrumb": "https://www.printables.com › model › 690302-yarn-co..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "www.indiamart.com",
+              "title": "Kalia Cone Winder, Ludhiana",
+              "description": "Kalia Cone Winder provides you the best range of Cone Winding Machine & Twisting Machine in Ludhiana, Punjab. GST No. : 03DETPK9103L1Z4. GST Reg. date. Read more",
+              "url": "https://www.indiamart.com/kalia-cone-winder/?srsltid=AfmBOopVEsGlAv9ZZ-ZmhmfrE20-p2XImjCLsVSXiXJW-pUkKQV8o_jX",
+              "breadcrumb": "https://www.indiamart.com › kalia-cone-winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.conewinding.com",
+              "title": "Winding Machines & Yarn Twisting Machine by ...",
+              "description": "We specialize in designing and producing a wide range of high-performance Yarn Winding Machines, including Cone Winding. Read more",
+              "url": "https://www.conewinding.com/",
+              "breadcrumb": "https://www.conewinding.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "www.tradeindia.com",
+              "title": "Cone Winder Machine at Best Price in Faridabad, Haryana",
+              "description": "Power Supply, 220V ; Material, Steel ; Usage, Textile yarn cone winding ; Weight, 50-100kg ; Features, Compact yarn, CNC control, Easy operation, Automatic memory, ... Read more",
+              "url": "https://www.tradeindia.com/products/cone-winder-machine-c4136608.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › cone winding machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.etsy.com",
+              "title": "Buy Cone Winder Online In India",
+              "description": "Looking for cone winder online in India? Shop for the best cone winder from our collection of exclusive, customized & handmade products.",
+              "url": "https://www.etsy.com/in-en/market/cone_winder",
+              "breadcrumb": "https://www.etsy.com › in-en › market › cone_winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "www.weavetech.in",
+              "title": "Automatic Cone Winding Machine Manufacturer from Surat",
+              "description": "We are leading manufacturer & supplier of Thread Cone Winding Machine. We ensure to provide good quality products to our customers. know more. 2853105813297. Read more",
+              "url": "https://www.weavetech.in/cone-winding-machines.html",
+              "breadcrumb": "https://www.weavetech.in › cone-winding-machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.wsf-tex.com",
+              "title": "Custom Cone Winder for Sale",
+              "description": "As a winder supplier, we have kinds of cone winder machine such as precision winder, semi-automatic winder and automatic winding machine. Read more",
+              "url": "http://www.wsf-tex.com/products/cone-winding-machine/",
+              "breadcrumb": "http://www.wsf-tex.com › Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.aajjo.com",
+              "title": "Cone winder machines Price in Panipat, Haryana",
+              "description": "Suitable For : Cotton, Silk and Polyester Yarn. Contact Supplier. Mini Cone Winding Machine · Mini Cone Winding Machine. ₹ 50,000. Capacity : 20kg/hour. Read more",
+              "url": "https://www.aajjo.com/product/cone-winder-machines",
+              "breadcrumb": "https://www.aajjo.com › ... › Cone Winding Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 45,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "How to Wind Yarn Cones",
+              "description": "EEW Cone Winder Review: Must-Have for Machine Knitters & Fiber Artists! ... Ball Winders v Cone Winders & Preparing Hand Knit Yarns For ...",
+              "url": "https://www.youtube.com/watch?v=mkg2WASGxyo",
+              "breadcrumb": "25.1K+ views  ·  4 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 46,
+              "page": 5,
+              "domain": "www.reshmiindustries.co.in",
+              "title": "Reshmi Twin Spindle Cone Winder Y Cone Winding Mac...",
+              "description": "Reshmi Twin Spindle Cone Winder Y Cone Winding Machine for PP yarn, Nylon yar For Polyester and Cott.",
+              "url": "https://www.reshmiindustries.co.in/latest-update/reshmi-twin-spindle-cone-winder-y-cone-winding-mac/61",
+              "breadcrumb": "https://www.reshmiindustries.co.in › latest-update › resh..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "www.amazon.com",
+              "title": "DEHIWI Professional Adjustable Home Use Electric Yarn ...",
+              "description": "Amazon.com: DEHIWI Professional Adjustable Home Use Electric Yarn Cone Winder High Speed Electric Yarn Ball Winder Cotton Wool Winder Holder for Swift Yarn ...",
+              "url": "https://www.amazon.com/DEHIWI-Professional-Adjustable-Electric-Winder/dp/B0CHB74X8S",
+              "breadcrumb": "https://www.amazon.com › DEHIWI-Professional-Adju..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "www.fibre2fashion.com",
+              "title": "Buy Cone Winder from Manufacturers and Suppliers in India",
+              "description": "Cone Winder Suppliers in India - Explore from our comprehensive list of Manufacturers, sellers, suppliers for Cone Winder in India - Visit Fibre2Fashion for ...",
+              "url": "https://www.fibre2fashion.com/machines/india-cone-winder-suppliers-p966-c71",
+              "breadcrumb": "https://www.fibre2fashion.com › machines › india-cone-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.xhtstmc.com",
+              "title": "Hard Cone Coning Winder / Winding Machine",
+              "description": "Yarn cone winding machine is used to wind good yarn cone shape for knitting,warping, weaving, dyeing,bleaching,etc. It is suitable for cotton yarn,wool yarn, ... Read more",
+              "url": "https://www.xhtstmc.com/ts008m-high-speed-hard-winding-machine/hard-cone-coning-winder-winding-machine.html",
+              "breadcrumb": "https://www.xhtstmc.com › hard-cone-coning-winder-w..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.baggaenggworks.com",
+              "title": "Cone Winding Machines Manufacturer from Ludhiana",
+              "description": "CONE WINDING CAPACITY: UPTO 5 TO 6 KG PER CONE. 7. HEAVY COPPER MOTOR USED 8 ... CONE TO CONE WINDER WITH DOUBLE HEAD We At BAGGA ENGINEERING WORKS Are ... Read more",
+              "url": "https://www.baggaenggworks.com/yarn-winding-machine.html",
+              "breadcrumb": "https://www.baggaenggworks.com › yarn-winding-mach..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.csmlove.com",
+              "title": "Yarn Winders-Manual",
+              "description": "A cone winder (or bobbin winder - see the bottom of this page) offers consistent support and yarn tension from beginning to end. Thus a cone or bobbin is often ... Read more",
+              "url": "https://www.csmlove.com/yarnwinders-manual",
+              "breadcrumb": "https://www.csmlove.com › yarnwinders-manual"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "Use a cone winder",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=RYR950xGSus",
+              "breadcrumb": "5.8K+ views  ·  6 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "dir.indiamart.com",
+              "title": "Cone Winding Machines in Delhi, कोन वाइंडिंग मशीन, दिल्ली ...",
+              "description": "Cone Winder · Cone Winder. ₹ 9,900Kapoor Machine House - Wholesale Distributor Of Sewing Machine, Flat Computerized Embroidery Machine Bag Making Machine ... Read more",
+              "url": "https://dir.indiamart.com/delhi/cone-winding-machines.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Cone Winding Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.alibaba.com",
+              "title": "Cone Winding Machine(999+)",
+              "description": "Cone winders are small or portable and fit into a manufacturing unit or shop easily. They may have floor space requirements ranging between 6,500 mm2 and 20,000 ... Read more",
+              "url": "https://www.alibaba.com/showroom/cone-winding-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Winding Machines"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

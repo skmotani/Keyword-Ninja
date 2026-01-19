@@ -1,0 +1,796 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0464 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261812-1256-0066-0000-c46a8696b712",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0340 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261812-1256-0066-0000-c46a8696b712"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "textile doubling machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "eaa5f9c7-ae1e-439a-a892-06f5296f46e2"
+      },
+      "result": [
+        {
+          "keyword": "textile doubling machine",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=textile%20doubling%20machine&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 16:12:44 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+textile+doubling+machine&hl=en&gl=IN&shoprs=GBIqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIJCBISBVByaWNlYAE&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKAF6BAgdEEc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+textile+doubling+machine&hl=en&gl=IN&shoprs=GBIqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIKCBISBk9ubGluZWAB&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKAJ6BAgdEEg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "New",
+                "url": "https://www.google.com/search?q=new+textile+doubling+machine&hl=en&gl=IN&shoprs=GAoqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIHCAoSA05ld1j_0SBgAQ&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKAN6BAgdEEk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Used",
+                "url": "https://www.google.com/search?q=used+textile+doubling+machine&hl=en&gl=IN&shoprs=GAoqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIICAoSBFVzZWRY_9EgYAE&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKAR6BAgdEEo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+textile+doubling+machine&hl=en&gl=IN&shoprs=GBIqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIHCBISA0J1eWAB&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKAV6BAgdEEs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=textile+doubling+machine+for+sale&hl=en&gl=IN&shoprs=GBIqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIMCBISCEZvciBTYWxlYAE&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKAZ6BAgdEEw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=textile+doubling+machine+nearby&hl=en&gl=IN&shoprs=GAMqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIMCAMSBk5lYXJieRgCWP_RIGAB&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKAd6BAgdEE0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "On sale",
+                "url": "https://www.google.com/search?q=textile+doubling+machine+sale&hl=en&gl=IN&shoprs=EgRKAggBGAYqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTITCAYSB09uIHNhbGUYAiIESgIIAVj_0SBgAQ&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKAh6BAgdEE4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Free",
+                "url": "https://www.google.com/search?q=free+textile+doubling+machine&hl=en&gl=IN&shoprs=GBIqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIICBISBEZyZWVgAQ&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKAl6BAgdEE8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+textile+doubling+machine&hl=en&gl=IN&shoprs=GBIqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTILCBISB1Jldmlld3NgAQ&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKAp6BAgdEFA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Images",
+                "url": "https://www.google.com/search?q=images+textile+doubling+machine&hl=en&gl=IN&shoprs=GBIqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIKCBISBkltYWdlc2AB&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKAt6BAgdEFE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹35,000",
+                "url": "https://www.google.com/search?q=textile+doubling+machine+under+35000&hl=en&gl=IN&shoprs=Eg0SCxEAAAAgU0wgQhgBGAUqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIoCAUSD1VuZGVyIOKCuTM1LDAwMBgCIg0SCxEAAAAgU0wgQhgBKgIYAVj_0SBgAQ&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKAx6BAgdEFI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Usa",
+                "url": "https://www.google.com/search?q=usa+textile+doubling+machine&hl=en&gl=IN&shoprs=GBIqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIHCBISA1VzYWAB&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKA16BAgdEFM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Printers",
+                "url": "https://www.google.com/search?q=printers+textile+doubling+machine&hl=en&gl=IN&shoprs=GAkqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIMCAkSCFByaW50ZXJzYAE&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKA56BAgdEFQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Hand-held",
+                "url": "https://www.google.com/search?q=hand-held+textile+doubling+machine&hl=en&gl=IN&shoprs=GAEqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIZCAESCUhhbmQtaGVsZDoKCJG3OxCStzswA1j_0SBgAQ&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKA96BAgdEFU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Industrial",
+                "url": "https://www.google.com/search?q=industrial+textile+doubling+machine&hl=en&gl=IN&shoprs=GAEqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIaCAESCkluZHVzdHJpYWw6CgiUtzsQlbc7MANY_9EgYAE&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKBB6BAgdEFY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Sewing Machine Needles",
+                "url": "https://www.google.com/search?q=sewing+machine+needles+textile+doubling&hl=en&gl=IN&shoprs=GAkqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIaCAkSFlNld2luZyBNYWNoaW5lIE5lZWRsZXNgAQ&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKBF6BAgdEFc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Embossing Supplies",
+                "url": "https://www.google.com/search?q=embossing+supplies+textile+doubling+machine&hl=en&gl=IN&shoprs=GAkqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIWCAkSEkVtYm9zc2luZyBTdXBwbGllc2AB&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKBJ6BAgdEFg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Thread",
+                "url": "https://www.google.com/search?q=thread+textile+doubling+machine&hl=en&gl=IN&shoprs=GAkqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIKCAkSBlRocmVhZGAB&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKBN6BAgdEFk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tradeindia.com",
+                "url": "https://www.google.com/search?q=tradeindia.com+textile+doubling+machine&hl=en&gl=IN&shoprs=GAIqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTISCAISDlRyYWRlaW5kaWEuY29tWP_RIGAB&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKBR6BAgdEFo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Crafts & Hobbies",
+                "url": "https://www.google.com/search?q=crafts+%26+hobbies+textile+doubling+machine&hl=en&gl=IN&shoprs=GAkqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIUCAkSEENyYWZ0cyAmIEhvYmJpZXNgAQ&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKBV6BAgdEFs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "JUKI",
+                "url": "https://www.google.com/search?q=juki+textile+doubling+machine&hl=en&gl=IN&shoprs=GAEqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIUCAESBEpVS0k6CgiD8zwQs_Q-MAFY_9EgYAE&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKBZ6BAgdEFw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Inkjet",
+                "url": "https://www.google.com/search?q=inkjet+textile+doubling+machine&hl=en&gl=IN&shoprs=GAEqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIWCAESBklua2pldDoKCO3SOhDv0jowAlj_0SBgAQ&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKBd6BAgdEF0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Etsy",
+                "url": "https://www.google.com/search?q=etsy+textile+doubling+machine&hl=en&gl=IN&shoprs=GAIqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIICAISBEV0c3lY_9EgYAE&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKBh6BAgdEF4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Mini",
+                "url": "https://www.google.com/search?q=mini+textile+doubling+machine&hl=en&gl=IN&shoprs=GAEqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIUCAESBE1pbmk6CgjVhy0Q1octMANY_9EgYAE&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKBl6BAgdEF8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Printer",
+                "url": "https://www.google.com/search?q=printer+textile+doubling+machine&hl=en&gl=IN&shoprs=GAEqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIXCAESB1ByaW50ZXI6CgiezzoQ6tI6MAJY_9EgYAE&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKBp6BAgdEGA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Brother",
+                "url": "https://www.google.com/search?q=brother+textile+doubling+machine&hl=en&gl=IN&shoprs=GAEqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTIXCAESB0Jyb3RoZXI6CgiD8zwQquQ-MAFY_9EgYAE&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKBt6BAgdEGE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Amazon.in",
+                "url": "https://www.google.com/search?q=amazon.in+textile+doubling+machine&hl=en&gl=IN&shoprs=GAIqGHRleHRpbGUgZG91YmxpbmcgbWFjaGluZTINCAISCUFtYXpvbi5pblj_0SBgAQ&sa=X&ved=2ahUKEwjDmIDH0tuRAxURqVYBHUESMzgQip4GKBx6BAgdEGI",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "popular_products",
+            "organic",
+            "video",
+            "people_also_ask",
+            "images",
+            "related_searches"
+          ],
+          "se_results_count": 652000,
+          "pages_count": 5,
+          "items_count": 48,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 2,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Doubling Machines at Best Price in India",
+              "description": "We offer a wide range of Yarn Doubling Machine that ensure saving of precious energy and thus helps in cutting down production costs. Read more",
+              "url": "https://dir.indiamart.com/impcat/doubling-machines.html",
+              "breadcrumb": "https://dir.indiamart.com › impcat › doubling-machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 4,
+              "page": 1,
+              "domain": "jingtianchina.en.made-in-china.com",
+              "title": "2025 Twisting and doubling machine",
+              "description": "Cotton Yarn Doubling Textile Machine. US $ 9,999-19,999/setFOB. MOQ:1 set. Video. Ring Yarn Spinning Textile Twisting Machine. US $ 9,999-19,999/setFOB. Read more",
+              "url": "https://jingtianchina.en.made-in-china.com/product-group/VeDtdSnUHgYc/Twisting-And-Doubling-Machine-catalog-1.html",
+              "breadcrumb": "https://jingtianchina.en.made-in-china.com › Twisting-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "www.exportersindia.com",
+              "title": "Doubling Machine at Best Price from Manufacturers ...",
+              "description": "VMW MILD STEEL Polished Plain Ring Doubling Machine, Feature : Fine Finishing, Low Maintenance 3.50 Lakh - 10 Lakh / Piece Read more",
+              "url": "https://www.exportersindia.com/indian-suppliers/doubling-machines.htm",
+              "breadcrumb": "https://www.exportersindia.com › indian-suppliers › dou..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Doubling Machines in Surat, डब्लिंग मशीन, सूरत, Gujarat",
+              "description": "Top Doubling Machines Sellers near Surat. National Textile Engineering Industries. Address : 172 B, Road No. 6 G, New Estate, Surat-394210, Gujarat, ... Read more",
+              "url": "https://dir.indiamart.com/surat/doubling-machines.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Doubling Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "en.wikipedia.org",
+              "title": "Doubling (textiles)",
+              "description": "Doubling is a textile industry term synonymous with combining. It can be used for various processes during spinning. Read more",
+              "url": "https://en.wikipedia.org/wiki/Doubling_(textiles)",
+              "breadcrumb": "https://en.wikipedia.org › wiki › Doubling_(textiles)"
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "www.ssbtex.com",
+              "title": "Ring Doubling Machines & Yarn Twisting machines",
+              "description": "These doubling machines are used for cotton industrial yarn. The different features of our ring doubling machine available in model MM 510 / 610 612 are:. Read more",
+              "url": "https://www.ssbtex.com/ring-doubling-machines-yarn-twisting-machines.html",
+              "breadcrumb": "https://www.ssbtex.com › ring-doubling-machines-yarn..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "www.tradeindia.com",
+              "title": "Heavy Doubling Textile Machine at Best Price in Panipat",
+              "description": "Vikas engg. works - offering low price heavy doubling textile machine in jattal road, panipat with product details & company information.",
+              "url": "https://www.tradeindia.com/products/heavy-doubling-textile-machine-c1858590.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › doubling machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 12,
+              "page": 1,
+              "domain": "www.china-tongda.com",
+              "title": "Doubling Machine",
+              "description": "Doubling machine - The function of the yarn doubling machine is to combine two or more single yarns (cotton, wool, polyester chemical fiber and blended yarns) ... Read more",
+              "url": "https://www.china-tongda.com/doubling-machine-td688.html",
+              "breadcrumb": "https://www.china-tongda.com › doubling-machine-td6..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "www.justdial.com",
+              "title": "Top Doubling Machine Products in Tirupur",
+              "description": "TFO (Two-for-One) doubling machines are widely used in the textile industry for their efficiency and productivity. These machines twist and combine the yarns ... Read more",
+              "url": "https://www.justdial.com/jdmart/Tirupur/Doubling-Machine/jdm-1037776-ent-2-17678968",
+              "breadcrumb": "https://www.justdial.com › jdm-1037776-ent-2-17678968"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "www.alibaba.com",
+              "title": "High Efficiency Yarn Doubling Machines for Wholesale",
+              "description": "Discover yarn doubling machines with automatic winding & twist control for textile production. CE-certified, 1-year warranty, high-speed performance.",
+              "url": "https://www.alibaba.com/showroom/yarn-doubling-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Winding Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.wotol.com",
+              "title": "Used Doubling machines",
+              "description": "HS code 8445 - Machines for preparing textile fibres; spinning, doubling or twisting machines and other machinery for producing textile yarns; textile reeling ... Read more",
+              "url": "https://www.wotol.com/cat/doubling-machines/yarn-manufacturing-sythetic-cotton/textile-and-leather-machinery/1097",
+              "breadcrumb": "https://www.wotol.com › textile-and-leather-machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.textilesphere.com",
+              "title": "Yarn Doubling & Twisting | Objectives | Twist | Applications",
+              "description": "Yarn Doubling Process Textile Sphere ... Feed packages prepared at parallel winder i.e doubling machine with two or more single yarns are placed at creel. Read more",
+              "url": "https://www.textilesphere.com/2021/10/yarn-doubling-and-twisting.html",
+              "breadcrumb": "https://www.textilesphere.com › Home › Spinning"
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.textileschool.com",
+              "title": "Yarn Doubling - types, objectives, and application",
+              "description": "Doubling reduces unevenness of single yarns and the strength of the doubled yarn is correspondingly better than the single yarns.",
+              "url": "https://www.textileschool.com/421/types-of-doubling-uses-and-objectives/",
+              "breadcrumb": "https://www.textileschool.com › Fiber & Yarns › Yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.demasmachinery.com",
+              "title": "Doubling and Twice Double Folding - Rolling Machine",
+              "description": "This machine is suitable for woven, tulle, organza, embroidery, voile jazquard etc. · It is the double folded rolling machine · It is the double folding machine ( ... Read more",
+              "url": "https://www.demasmachinery.com/en/textile-machine/doubling-and-twice-double-folding-rolling-machine-t2011",
+              "breadcrumb": "https://www.demasmachinery.com › textile-machine › do..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.youtube.com",
+              "title": "FusionTwister | Two-for-one twisting machine | Saurer Group",
+              "description": "The machine can be equipped with up to 240 spindles and can handle then all the different applications also viscose acrylic Yarns Woods.",
+              "url": "https://www.youtube.com/watch?v=4mQSIVXlB84",
+              "breadcrumb": "8.2K+ views  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.aajjo.com",
+              "title": "Top Doubling Machine in Angul – Trusted Experts Near You",
+              "description": "Find the best Doubling Machine in Angul at unbeatable prices. Explore top brands, trusted dealers, detailed specifications, and choose the perfect Doubling ...",
+              "url": "https://www.aajjo.com/angul/apparel-textile-machinery/doubling-machine",
+              "breadcrumb": "https://www.aajjo.com › apparel-textile-machinery › do..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "www.kviconline.gov.in",
+              "title": "YARN TWISTING",
+              "description": "The method of twisting two or more single yarns is called doubling or folding or ply twisting. Such yarns are designated as doubled yarn, folded yarn or plied ... Read more",
+              "url": "https://www.kviconline.gov.in/pmegp/pmegpweb/docs/commonprojectprofile/YarnTwisting.pdf",
+              "breadcrumb": "https://www.kviconline.gov.in › pmegpweb › docs"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "www.indiamart.com",
+              "title": "Cotton Yarn Doubling Machines - Textile Heavy Ring ...",
+              "description": "Manufacturer of Cotton Yarn Doubling Machines - Textile Heavy Ring Doubler Machine, Semi Automatic Mop Yarn Twisting Machine, Cotton Yarn Ring Doubling ...",
+              "url": "https://www.indiamart.com/lakshminarayanindustries/cotton-yarn-doubling-machines.html?srsltid=AfmBOoo3YkViS_XbTKUwTC1k0AfCSkO8rYc1xtB3O8aCz0G5ke_SddQI",
+              "breadcrumb": "https://www.indiamart.com › ... › Products & Services"
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 25,
+              "page": 3,
+              "domain": "www.dttwister.com",
+              "title": "Poly Cotton Polyester Yarn Doubling and Twisting Machine",
+              "description": "Our products mainly apply to filament sewing thread, embroidery thread, knitting yarn and so on.And this product has been warmly welcomed by customers in the ... Read more",
+              "url": "https://www.dttwister.com/showroom/poly-cotton-polyester-yarn-doubling-and-twisting-machine.html",
+              "breadcrumb": "https://www.dttwister.com › showroom › poly-cotton-p..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "www.accio.com",
+              "title": "doubling machine: Boost Efficiency in Textile & Tire ...",
+              "description": "17 Dec 2025 — Discover top doubling machines for textile and tire industries. Find reliable suppliers, compare prices, and click to explore ...",
+              "url": "https://www.accio.com/t-v2/plp/doubling-machine",
+              "breadcrumb": "https://www.accio.com › plp › doubling-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "www.trimengineering.in",
+              "title": "Bobbins",
+              "description": "We manufacture bobbins for Fishnet Twine Industries, Tire Cord Industries, Spinning Industries, Doubler machine Bobbin, Jute Industries, Silk Industries, Rope ... Read more",
+              "url": "https://www.trimengineering.in/bobbins/",
+              "breadcrumb": "https://www.trimengineering.in › bobbins"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "nationaltexeng.com",
+              "title": "TFO Doubler Machine",
+              "description": "National TFO DOUBLER machine is the most Efficient choice, in terms of production cost, for produing 2ply – 3ply & multiply for yarn, Polyester , PP , Nylon , ... Read more",
+              "url": "https://nationaltexeng.com/tfo-doubler-machine/",
+              "breadcrumb": "https://nationaltexeng.com › tfo-doubler-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.justdial.com",
+              "title": "Top Doubling Machine Manufacturers in Erode near me",
+              "description": "Doubling machines play a pivotal role in the textile and yarn industry, enabling the efficient doubling of yarns to enhance their strength and quality. In Erode ... Read more",
+              "url": "https://www.justdial.com/Erode/Doubling-Machine-Manufacturers/nct-10171401",
+              "breadcrumb": "https://www.justdial.com › Erode › nct-10171401"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "Doubling and Twice Double Folding Rolling Machine",
+              "description": "Demas Textile Machinery Co. | Doubling and Twice Double Folding Rolling Machine This machine is suitable for woven, tulle, organza, ...",
+              "url": "https://www.youtube.com/watch?v=-vFEFcKJen4",
+              "breadcrumb": "4.5K+ views  ·  10 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.alconetex.com",
+              "title": "Spun/Cotton Yarn Twister Double Deck",
+              "description": "Spun TFO Doubler Machine is an essential textile machine designed for high-efficiency yarn twisting, catering to both spun and cotton fibers. With a double-deck ... Read more",
+              "url": "https://www.alconetex.com/spun-cotton-yarn-twister-double-deck.php",
+              "breadcrumb": "https://www.alconetex.com › spun-cotton-yarn-twister-d..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "www.cybex.in",
+              "title": "HS Code 84453090 | Harmonized System Code Other fibre ...",
+              "description": "8445 · HS Codes of Machines for preparing textile fibres; Spinning, doubling or twisting machines and other machinery for producing textile yarns; Textile ... Read more",
+              "url": "https://www.cybex.in/hs-codes/fibre-doubling-twisting-machines-hs-codes-84453090",
+              "breadcrumb": "https://www.cybex.in › hs-codes › fibre-doubling-twisti..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "www.aruntexeng.com",
+              "title": "Primary/Secondary Doubler Machine",
+              "description": "Up to 2 kg knotless take up package · High quality for fine deniers and high twist yarns · High productivity and efficiency · Low power consumption and maintenance. Read more",
+              "url": "https://www.aruntexeng.com/pri-sec-doubler.html",
+              "breadcrumb": "https://www.aruntexeng.com › pri-sec-doubler"
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 34,
+              "page": 3,
+              "domain": "fhfj.cn",
+              "title": "Differences Between Doubling Machines and Twisting Machines",
+              "description": "26 Mar 2025 — Doubling Machines: Widely used in clothing, home textiles, and industrial textiles, suitable for products requiring larger yarn diameters. Read more",
+              "url": "https://fhfj.cn/en/nd.jsp?fromColId=2&id=560",
+              "breadcrumb": "https://fhfj.cn › ..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "www.agteks.com",
+              "title": "Twisting Machine Technology",
+              "description": "Twisting Machines are machines that fold and twist more than one yarn and they are similar to doubling machines. Read more",
+              "url": "https://www.agteks.com/twisting-machine-technology/",
+              "breadcrumb": "https://www.agteks.com › twisting-machine-technology"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "www.rifatextile.com",
+              "title": "Textile Twisting Machine",
+              "description": "It is capable of combining 2 to 3 strands of cotton, hemp, wool, and certain blended yarns into a doubling bobbin. This makes it suitable for subsequent ... Read more",
+              "url": "https://www.rifatextile.com/textile-twisting-machine/",
+              "breadcrumb": "https://www.rifatextile.com › textile-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.tfotwister.com",
+              "title": "Double Deck TFO Twister Manufacturer from Surat",
+              "description": "Machine Type: Automatic · Power Consumption: 6-45 HP · Brand: JC Machine · Application: Textile · No. of Spindle: 16 to 260 · Spindle Dia: 110 mm · Spindle Pitch: 208 ... Read more",
+              "url": "https://www.tfotwister.com/tfo-twisting-machine.html",
+              "breadcrumb": "https://www.tfotwister.com › tfo-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "www.classicmachine.in",
+              "title": "Yarn Twister Machine Manufacturer from Surat",
+              "description": "Backed by years of industry experience, we are engaged in offering a premium quality range of TFO Doubling Machine. Price Range:100000-2500000 Rs./Piece. know ... Read more",
+              "url": "https://www.classicmachine.in/twisting-machines.html",
+              "breadcrumb": "https://www.classicmachine.in › twisting-machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.indiamart.com",
+              "title": "Heavy Doubling Machine Manufacturer from Ahmedabad",
+              "description": "Manufacturer of Doubling Machine - Heavy Doubling Machine, Ring Doubler Machine, Ring Doubling Machine and Textile Doubling Machine offered by Minarva Machinery",
+              "url": "https://www.indiamart.com/minarvamachinerymanufacturers/doubling-machine.html?srsltid=AfmBOoq1sLaiw9S-94tKgDl8IO19_-8vh1kvU2QNCseMuBCEFVFEzleQ",
+              "breadcrumb": "https://www.indiamart.com › ... › Products & Services"
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "www.exportersindia.com",
+              "title": "Textile Doubling Machine at Best Price in Coimbatore - ID",
+              "description": "Buy Textile Doubling Machine from New Tech Machine Tools Find Company contact details & address in Coimbatore, Tamil Nadu | ID: 1278552.",
+              "url": "https://www.exportersindia.com/product-detail/textile-doubling-machine-1278552.htm",
+              "breadcrumb": "https://www.exportersindia.com › ... › Doubling Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.indianyellowpages.com",
+              "title": "Doubling Machine Dealers, Suppliers & Manufacturer List",
+              "description": "Doubling Machine, Velvet Fabric, TEXTILES MACHINERY, Textile Machine. Get Price Contact ... Chandni Textiles Ltd. Worli, Mumbai. 17 yrs. Yarn Doubling Machine. Read more",
+              "url": "https://www.indianyellowpages.com/directory/doubling-machines.htm",
+              "breadcrumb": "https://www.indianyellowpages.com › directory › doubli..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.conewinding.com",
+              "title": "Two For One Twisting Machine For Cotton Yarn",
+              "description": "Jsktexmech Doubling Machine · Voltage: 240V · Frequency: 50 Hz · Automation Grade: Automatic · Material: MS · Country of Origin: Made in India · Brand: Jsktexmech. Read more",
+              "url": "https://www.conewinding.com/yarn-twisting-machine.html",
+              "breadcrumb": "https://www.conewinding.com › yarn-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "Objective of doubling/Yarn doubling process/Types of ...",
+              "description": "Two for one twister machine : Yarn doubling process: The process of grouping( combining) two or more individual yarns together and then ...",
+              "url": "https://www.youtube.com/watch?v=ptK1IPM3N5s",
+              "breadcrumb": "7.4K+ views  ·  4 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 45,
+              "page": 4,
+              "domain": "lntsufin.com",
+              "title": "Get Quote for Ring Doubling Machine at best prices.",
+              "description": "Buy online Ring Doubling Machine, Yarn Mfg. & Processing Machines in bulk from manufacturers | Request Quotations and get financing.",
+              "url": "https://lntsufin.com/catalog/textile-machinery-spares-accessories/yarn-manufacturing-processing-machines/ring-doubling-machine/",
+              "breadcrumb": "https://lntsufin.com › textile-machinery-spares-accessories"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "in.pinterest.com",
+              "title": "TD688 Doubling Machine",
+              "description": "TONGDA Group is a company to provide excellent textile solution with advanced technology including Yarn Spinning system, fabric Weaving ...",
+              "url": "https://in.pinterest.com/pin/td688-doubling-machine--881157483322692810/",
+              "breadcrumb": "2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "www.prtexpro.in",
+              "title": "Yarn Twisting Machine - SD E Series Spun Yarn TFO ...",
+              "description": "Filament yarn doubling machine. Rs 2,250 / Piece. Filament yarn doubling ... Textile Machine Spares · 1 Product · Cotton Yarn · 1 Product · View ... Read more",
+              "url": "https://www.prtexpro.in/yarn-twisting-machine.html",
+              "breadcrumb": "https://www.prtexpro.in › yarn-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.directindustry.com",
+              "title": "Automatic fabric doubling machine",
+              "description": "Find your automatic fabric doubling machine easily amongst the 5 products from the leading brands (Comatex Textile Machinery, Charming Star, .",
+              "url": "https://www.directindustry.com/industrial-manufacturer/automatic-fabric-doubling-machine-258436.html",
+              "breadcrumb": "https://www.directindustry.com › industrial-manufacturer"
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.anytester.com",
+              "title": "AT207A Yarn Doubling And Twisting Machine",
+              "description": "AT207A Doubling and Twisting Machine is a combination machine of winding ad twisting ... Textile & Garment Tester · Plastic Tester · Rubber Tester · Safety & ... Read more",
+              "url": "https://www.anytester.com/at207a-doubling-and-twisting-machine.html",
+              "breadcrumb": "https://www.anytester.com › at207a-doubling-and-twisti..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.rbsockmachine.com",
+              "title": "Yarn Doubling and Twisting Machine",
+              "description": "Looking for a yarn doubling and twisting machine? Shaoxing Rainbowe Machinery Co., Ltd. offers high-quality machines for all your yarn processing needs.",
+              "url": "https://www.rbsockmachine.com/yarn-doubling-and-twisting-machine/",
+              "breadcrumb": "https://www.rbsockmachine.com › Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "www.standertonmills.co.za",
+              "title": "Textile Manufacturing Doubling",
+              "description": "The spun yarn is wound onto a bobbin using a doubling winding machine, and two or more of these bobbins are placed on doubling frame (doubling winding machine). Read more",
+              "url": "https://www.standertonmills.co.za/doubling.html",
+              "breadcrumb": "https://www.standertonmills.co.za › doubling"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "yarn twisting and doubling machine",
+              "description": "doubling and twisting machine production video · short fiber twisting machine for sale · twisting machine for FEIHU textile machinery · filament twsiting machine ... Read more",
+              "url": "https://www.youtube.com/playlist?list=PLtthWZqHD2AsMik4LMplXX1foh7wiDB-Z",
+              "breadcrumb": "490+ followers"
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.aakashtextileengineers.com",
+              "title": "Textile Machines - Two For One Twister For Filament Yarn ...",
+              "description": "... doubling machine, Crepe Texturising Machines and AAKash Crepe Texturising Machines offered by Aakash Textile Engineers LLP, Surat, Gujarat.",
+              "url": "https://www.aakashtextileengineers.com/textile-machines.html",
+              "breadcrumb": "https://www.aakashtextileengineers.com › textile-machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "www.textileglossary.com",
+              "title": "What is Doubling Machine - Textile Glossary",
+              "description": "7 Jun 2024 — Doubling Machine definition with manufacturers. Free listing for companies ... In textile, hue refers to the purest form of a color ... Read more",
+              "url": "https://www.textileglossary.com/terms/doubling-machine.html",
+              "breadcrumb": "https://www.textileglossary.com › terms › doubling-mac..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 48,
+              "rank_absolute": 56,
+              "page": 5,
+              "domain": "www.tradeindia.com",
+              "title": "Doubling Machines at Best Price from Manufacturers ...",
+              "description": "Textile Processing Machinery; Doubling Machines. Popular Doubling Machines. Three Phase Semi Automatic Yarn Doubling Machine For Textiles Industries · White ... Read more",
+              "url": "https://www.tradeindia.com/manufacturers/doubling-machines.html",
+              "breadcrumb": "https://www.tradeindia.com › manufacturers › doubling..."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

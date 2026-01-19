@@ -1,0 +1,754 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0496 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261804-1256-0066-0000-d7c7d1931160",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0379 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261804-1256-0066-0000-d7c7d1931160"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Textile Twister",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "725afef0-7fd3-4a8d-b520-b6142fb5f5d4"
+      },
+      "result": [
+        {
+          "keyword": "Textile Twister",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2840,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=Textile%20Twister&hl=en&gl=US&ie=UTF-8&uule=w+CAIQIFISCQs2MuSEtepUEUK33kOSuTsc",
+          "datetime": "2025-12-26 16:05:30 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+textile+twister&hl=en&gl=US&shoprs=GBIqD3RleHRpbGUgdHdpc3RlcjILCBISB1Jldmlld3NgAQ&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKAF6BAgbEFE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "On sale",
+                "url": "https://www.google.com/search?q=Textile+Twister+sale&hl=en&gl=US&shoprs=EgRKAhgBGAYqD3RleHRpbGUgdHdpc3RlcjITCAYSB09uIHNhbGUYAiIESgIYAViX7CBgAQ&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKAJ6BAgbEFI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=Textile+Twister+nearby&hl=en&gl=US&shoprs=GAMqD3RleHRpbGUgdHdpc3RlcjIMCAMSBk5lYXJieRgCWJfsIGAB&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKAN6BAgbEFM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Yarn",
+                "url": "https://www.google.com/search?q=yarn+textile+twister&hl=en&gl=US&shoprs=GAkqD3RleHRpbGUgdHdpc3RlcjIICAkSBFlhcm5gAQ&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKAR6BAgbEFQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+textile+twister&hl=en&gl=US&shoprs=GBIqD3RleHRpbGUgdHdpc3RlcjIKCBISBk9ubGluZWAB&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKAV6BAgbEFU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Books",
+                "url": "https://www.google.com/search?q=books+textile+twister&hl=en&gl=US&shoprs=GAkqD3RleHRpbGUgdHdpc3RlcjIJCAkSBUJvb2tzYAE&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKAZ6BAgbEFY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=textile+twister+for+sale&hl=en&gl=US&shoprs=GBIqD3RleHRpbGUgdHdpc3RlcjIMCBISCEZvciBTYWxlYAE&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKAd6BAgbEFc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+textile+twister&hl=en&gl=US&shoprs=GBIqD3RleHRpbGUgdHdpc3RlcjIJCBISBVByaWNlYAE&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKAh6BAgbEFg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+textile+twister&hl=en&gl=US&shoprs=GBIqD3RleHRpbGUgdHdpc3RlcjIHCBISA0J1eWAB&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKAl6BAgbEFk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under $300",
+                "url": "https://www.google.com/search?q=Textile+Twister+under+$300&hl=en&gl=US&shoprs=Eg0SCxEAAAAAo-GxQRgBGAUqD3RleHRpbGUgdHdpc3RlcjIjCAUSClVuZGVyICQzMDAYAiINEgsRAAAAAKPhsUEYASoCGAFYl-wgYAE&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKAp6BAgbEFo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Quilt Patterns",
+                "url": "https://www.google.com/search?q=quilt+patterns+textile+twister&hl=en&gl=US&shoprs=GAkqD3RleHRpbGUgdHdpc3RlcjISCAkSDlF1aWx0IFBhdHRlcm5zYAE&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKAt6BAgbEFs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Quilt",
+                "url": "https://www.google.com/search?q=quilt+textile+twister&hl=en&gl=US&shoprs=GAEqD3RleHRpbGUgdHdpc3RlcjIVCAESBVF1aWx0OgoIjao8EI-qPDACWJfsIGAB&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKAx6BAgbEFw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "New",
+                "url": "https://www.google.com/search?q=new+Textile+Twister&hl=en&gl=US&shoprs=GAoqD3RleHRpbGUgdHdpc3RlcjIHCAoSA05ld1iX7CBgAQ&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKA16BAgbEF0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Used",
+                "url": "https://www.google.com/search?q=used+Textile+Twister&hl=en&gl=US&shoprs=GAoqD3RleHRpbGUgdHdpc3RlcjIICAoSBFVzZWRYl-wgYAE&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKA56BAgbEF4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Man",
+                "url": "https://www.google.com/search?q=man+textile+twister&hl=en&gl=US&shoprs=GBIqD3RleHRpbGUgdHdpc3RlcjIHCBISA01hbmAB&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKA96BAgbEF8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Free",
+                "url": "https://www.google.com/search?q=free+textile+twister&hl=en&gl=US&shoprs=GBIqD3RleHRpbGUgdHdpc3RlcjIICBISBEZyZWVgAQ&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKBB6BAgbEGA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Clothing",
+                "url": "https://www.google.com/search?q=clothing+textile+twister&hl=en&gl=US&shoprs=GBIqD3RleHRpbGUgdHdpc3RlcjIMCBISCENsb3RoaW5nYAE&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKBF6BAgbEGE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Store",
+                "url": "https://www.google.com/search?q=store+textile+twister&hl=en&gl=US&shoprs=GBIqD3RleHRpbGUgdHdpc3RlcjIJCBISBVN0b3JlYAE&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKBJ6BAgbEGI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Brand",
+                "url": "https://www.google.com/search?q=brand+textile+twister&hl=en&gl=US&shoprs=GBIqD3RleHRpbGUgdHdpc3RlcjIJCBISBUJyYW5kYAE&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKBN6BAgbEGM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Jersey",
+                "url": "https://www.google.com/search?q=jersey+textile+twister&hl=en&gl=US&shoprs=GBIqD3RleHRpbGUgdHdpc3RlcjIKCBISBkplcnNleWAB&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKBR6BAgbEGQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Clothes Making",
+                "url": "https://www.google.com/search?q=clothes+making+textile+twister&hl=en&gl=US&shoprs=GAEqD3RleHRpbGUgdHdpc3RlcjIgCAESDkNsb3RoZXMgTWFraW5nOgwIq_WwARCs9bABMABYl-wgYAE&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKBV6BAgbEGU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Woman",
+                "url": "https://www.google.com/search?q=woman+textile+twister&hl=en&gl=US&shoprs=GBIqD3RleHRpbGUgdHdpc3RlcjIJCBISBVdvbWFuYAE&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKBZ6BAgbEGY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Blue",
+                "url": "https://www.google.com/search?q=blue+textile+twister&hl=en&gl=US&shoprs=GAEqD3RleHRpbGUgdHdpc3RlcjIWCAESBEJsdWU6DAj15rECEPfmsQIwAFiX7CBgAQ&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKBd6BAgbEGc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Free shipping",
+                "url": "https://www.google.com/search?q=Textile+Twister+free+shipping&hl=en&gl=US&shoprs=EgRSAhABGBkqD3RleHRpbGUgdHdpc3RlcjIXCBkSDUZyZWUgc2hpcHBpbmciBFICEAFgAQ&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKBh6BAgbEGg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Upholstery",
+                "url": "https://www.google.com/search?q=upholstery+textile+twister&hl=en&gl=US&shoprs=GAEqD3RleHRpbGUgdHdpc3RlcjIcCAESClVwaG9sc3Rlcnk6DAir9bABEK71sAEwAFiX7CBgAQ&sa=X&ved=2ahUKEwizjMT30NuRAxWfklYBHY3FObsQip4GKBl6BAgbEGk",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "ai_overview",
+            "organic",
+            "people_also_ask",
+            "video",
+            "popular_products",
+            "images",
+            "related_searches"
+          ],
+          "se_results_count": 1880000,
+          "pages_count": 5,
+          "items_count": 46,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 2,
+              "page": 1,
+              "domain": "www.ebay.com",
+              "title": "Manual Twisting Machines Twisters/Yarn ... - eBay",
+              "description": "Manual Twisting Machines Twisters/Yarn Twist Measurement/Textile Equipment ; Origin. Mainland China ; Type. twister ; Est. delivery. Wed, Dec 10 - Mon, Dec 29. Read more",
+              "url": "https://www.ebay.com/itm/405951432998",
+              "breadcrumb": "https://www.ebay.com › ... › Knitting Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 3,
+              "page": 1,
+              "domain": "www.robco-eng.com",
+              "title": "Twisting machines of high quality and productivity",
+              "description": "Our Tornado twister can be used for heavy twine up to 220,000 denier and for light yarns down to 5,000 denier. Our T55, T66 and T77 are very suitable for ... Read more",
+              "url": "https://www.robco-eng.com/twisters/",
+              "breadcrumb": "https://www.robco-eng.com › twisters"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "www.polyspintex.com",
+              "title": "Twisting - PolySpinTex, Inc.",
+              "description": "The Two-for-One Twister with soft winding capability is a specialized textile machine designed for efficiently twisting high-stretch yarns like DTY... KC258D- ... Read more",
+              "url": "https://www.polyspintex.com/product-category/twisting/",
+              "breadcrumb": "https://www.polyspintex.com › product-category › twisting"
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "meeraind.com",
+              "title": "Spun Staple Yarn Twister: Two For One TFO Technology",
+              "description": "Two-For-One (TFO) spun twisting inserts two twists for every spindle revolution, letting you ply singles into balanced yarn at higher speed. Read more",
+              "url": "https://meeraind.com/product/spun-staple-yarn-twister",
+              "breadcrumb": "https://meeraind.com › product › spun-staple-yarn-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.agteks.com",
+              "title": "Twisting Machines",
+              "description": "You can perform your twisting and covering processes in the fastest way with your staple fiber yarns and, you can express your creativity at the same time. Read more",
+              "url": "https://www.agteks.com/twisting-machines/",
+              "breadcrumb": "https://www.agteks.com › twisting-machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "www.maharam.com",
+              "title": "Product | Textiles | Twister 002 Flurry",
+              "description": "Twister : 901909. Application: Systems, Upholstered Walls. Characteristics: Content: 100% Polyester: Finish: None: Backing: None: Width: 66\" (168cm): Bolt ... Read more",
+              "url": "https://www.maharam.com/maharam/products/twister/colors/002-flurry",
+              "breadcrumb": "https://www.maharam.com › products › twister › colors"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 12,
+              "page": 1,
+              "domain": "www.weavetech.com",
+              "title": "What is Two for one twister (TFO) ? - Weavetech",
+              "description": "The term TFO stands for Two-for-One, indicating that two turns are inserted for each turn of the twisting element. Read more",
+              "url": "https://www.weavetech.com/what-is-two-for-one-twister-tfo/",
+              "breadcrumb": "https://www.weavetech.com › what-is-two-for-one-twist..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 14,
+              "page": 1,
+              "domain": "www.akiropes.com",
+              "title": "Ply Yarn Twister Machine: A Complete Guide for Textile ...",
+              "description": "Nov 24, 2025 — A Ply Yarn Twister Machine is a specialized piece of equipment designed to twist multiple yarns together to form a stronger, thicker, and more ... Read more",
+              "url": "https://www.akiropes.com/blog/ply-yarn-twister-machine-a-complete-guide-for-textile-industries/",
+              "breadcrumb": "https://www.akiropes.com › blog › ply-yarn-twister-ma..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.rifatextile.com",
+              "title": "Specification of RFTS20D Short Fiber Twister",
+              "description": "RFTS20D short fiber twister is mainly suitable for twisting strand threads in cotton spinning, sewing thread, core spun yarn, wool spinning, blending, and ... Read more",
+              "url": "https://www.rifatextile.com/products/rfts20d-short-fiber-twist/",
+              "breadcrumb": "https://www.rifatextile.com › Twisting"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.akiropes.com",
+              "title": "Ply Yarn Twister Machine: A Complete Guide for Textile ...",
+              "description": "Nov 24, 2025 — A Ply Yarn Twister Machine is a specialized piece of equipment designed to twist multiple yarns together to form a stronger, thicker, and more ... Read more",
+              "url": "https://www.akiropes.com/blog/ply-yarn-twister-machine-a-complete-guide-for-textile-industries/",
+              "breadcrumb": "https://www.akiropes.com › blog › ply-yarn-twister-ma..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "jingtianchina.en.made-in-china.com",
+              "title": "2025 Twisting and doubling machine",
+              "description": null,
+              "url": "https://jingtianchina.en.made-in-china.com/product-group/VeDtdSnUHgYc/Twisting-And-Doubling-Machine-catalog-1.html",
+              "breadcrumb": "https://jingtianchina.en.made-in-china.com › Twisting-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.dttwister.com",
+              "title": "Exploring the Functions and Advances of Twisting Machines",
+              "description": "Nov 11, 2023 — Twisters, also called twisters, are designed to bring fiber bundles together and give them a twisted form. This process gives the twisted yarn ... Read more",
+              "url": "https://www.dttwister.com/info/innovative-twisting-exploring-the-functions-a-88663780.html",
+              "breadcrumb": "https://www.dttwister.com › Knowledges"
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.facebook.com",
+              "title": "TFO TWISTER FOR EMBROIDERY SWING THREAD ...",
+              "description": "TFO TWISTER FOR EMBROIDERY SWING THREAD DOUBLER MACHINE ( DOUBLING MACHINE - PRIMARY AND SECONDARY )",
+              "url": "https://www.facebook.com/sepsontexeng/videos/tfo-twister-for-embroidery-swing-thread-doubler-machine-doubling-machine-primary/809782864000994/",
+              "breadcrumb": "20+ reactions  ·  1 year ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "www.textilesphere.com",
+              "title": "Two for One Twister || Yarn Waxing",
+              "description": "The main objective of yarn waxing is to reduce kinetic friction especially for knitted fabrics, yarn waxing helps in reducing this friction. Read more",
+              "url": "https://www.textilesphere.com/2020/03/TFO-yarn-waxing.html",
+              "breadcrumb": "https://www.textilesphere.com › Home › Spinning"
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 24,
+              "page": 2,
+              "domain": "www.agteks.com",
+              "title": "Twisting Machine Technology",
+              "description": "Twisting Machines are machines that fold and twist more than one yarn and they are similar to doubling machines. Read more",
+              "url": "https://www.agteks.com/twisting-machine-technology/",
+              "breadcrumb": "https://www.agteks.com › twisting-machine-technology"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 25,
+              "page": 2,
+              "domain": "rifa-texmachine.com",
+              "title": "Twisting Machine for Short Fiber, RF321G",
+              "description": "The RF321G two for one twister for short fiber can be used to produce folded yarns by twisting of two or more single yarns.",
+              "url": "http://rifa-texmachine.com/2018/8-1-1-short-fiber-twisting-machine.html",
+              "breadcrumb": "http://rifa-texmachine.com › 8-1-1-short-fiber-twisting-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 27,
+              "page": 2,
+              "domain": "digital.sciencehistory.org",
+              "title": "Rayon doubler and twister",
+              "description": "Rayon doubler and twister used during the early stages of nylon production and research at the DuPont Experimental Station in Wilmington, Delaware. Read more",
+              "url": "https://digital.sciencehistory.org/works/tm70mv25x",
+              "breadcrumb": "https://digital.sciencehistory.org › works"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.alibaba.com",
+              "title": "Textile Cotton Yarn Twister Machine(671)",
+              "description": "Proven reliability and consistent performance · Precise control over twist per inch (TPI) · Suitable for both fine and coarse cotton yarns · High compatibility ... Read more",
+              "url": "https://www.alibaba.com/showroom/textile-cotton-yarn-twister-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Spinning Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "Spinning Processes- Yarn Twist",
+              "description": "All yarns contain twist to hold the fibers together. The frictional forces created by the twist are the means by which all yarns are held together.",
+              "url": "https://www.youtube.com/watch?v=cin_em_OgYk",
+              "breadcrumb": "7.9K+ views  ·  3 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "meeraind.com",
+              "title": "Ring Twister Machines for Technical Textile Applications",
+              "description": "MEERA's Ring Twisters are engineered for high-performance technical textile yarns such as aramids, UHMWPE, basalt fibre, glass fibre, and high-tenacity ... Read more",
+              "url": "https://meeraind.com/product/ring-twister",
+              "breadcrumb": "https://meeraind.com › product › ring-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 34,
+              "page": 3,
+              "domain": "www.britannica.com",
+              "title": "Twisting | Yarns, Fibers & Threads",
+              "description": "Twisting, in yarn and rope production, process that binds fibres or yarns together in a continuous strand, accomplished in spinning or playing operations. Read more",
+              "url": "https://www.britannica.com/technology/twisting",
+              "breadcrumb": "https://www.britannica.com › ... › Natural Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 35,
+              "page": 3,
+              "domain": "www.tfotwister.com",
+              "title": "TFO Twisting Machine",
+              "description": "Double Deck TFO Twister · Rs 15,00,000 / Piece. Machine Type: Automatic, Semi-Automatic; No. of Spindle: 280-28-504. Get Best Price. TFO Twisting Machine ... Read more",
+              "url": "https://www.tfotwister.com/",
+              "breadcrumb": "https://www.tfotwister.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 37,
+              "page": 3,
+              "domain": "www.rifatextile.com",
+              "title": "Direct Twister: Injecting Efficient Energy into the Textile ...",
+              "description": "The direct twisting machine can rotate and stretch fibers at high speed, making them more uniform and compact, improving the strength and wear resistance of ... Read more",
+              "url": "https://www.rifatextile.com/blog/direct-twister-injecting-efficient-energy-into-the-textile-industry.html",
+              "breadcrumb": "https://www.rifatextile.com › Company › News"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 38,
+              "page": 3,
+              "domain": "www.weavetech.com",
+              "title": "Filament Yarn TFO Twister Machine - Weavetech",
+              "description": "With customizable options and user-friendly controls, our filament yarn twisting machines cater to the specific needs of various textile applications. Read more",
+              "url": "https://www.weavetech.com/twisting-machines/filament-yarn-tfo-twister-machine/",
+              "breadcrumb": "https://www.weavetech.com › Twisting Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 39,
+              "page": 3,
+              "domain": "www.sciencedirect.com",
+              "title": "False Twister - an overview",
+              "description": "The false twister is a grooved insert that increases the roving twist in the unsupported length between the flyer top and delivery roller of the drafting ... Read more",
+              "url": "https://www.sciencedirect.com/topics/engineering/false-twister",
+              "breadcrumb": "https://www.sciencedirect.com › topics › engineering › f..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 40,
+              "page": 3,
+              "domain": "www.dttwister.com",
+              "title": "What is Two for one twister - Knowledge",
+              "description": "Sep 9, 2023 — A Two-for-One (TFO) Twister is a machine commonly used in the textile industry to twist two or more yarns together into a stronger and more durable thread. Read more",
+              "url": "https://www.dttwister.com/info/what-is-two-for-one-twister-86346163.html",
+              "breadcrumb": "https://www.dttwister.com › Knowledges"
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.amazon.com",
+              "title": "2pcs Textile Twister Winder Breakage Detection ...",
+              "description": "2pcs Textile Twister Winder Breakage Detection Photoelectric Yarn Detector Broken Yarn Self-Stop Induction Sensor Spinning Open Type. Read more",
+              "url": "https://www.amazon.com/Breakage-Detection-Photoelectric-Self-Stop-Induction/dp/B0DWKHCKFN",
+              "breadcrumb": "https://www.amazon.com › Breakage-Detection-Photoel..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "www.tandfonline.com",
+              "title": "Introduction to an Innovative Rotor Twister",
+              "description": "by JH Lin · 1998 · Cited by 17 — This paper introduces the working principles of a novel twisting device of the authors' own design, which is described as a super-high-speed rotor twister, and ... Read more",
+              "url": "https://www.tandfonline.com/doi/abs/10.1080/00405009808658615",
+              "breadcrumb": "https://www.tandfonline.com › ... › Volume 89, Issue 2"
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 45,
+              "page": 4,
+              "domain": "www.alibaba.com",
+              "title": "Twister Textile Machines - Efficient Yarn Twisting Solutions",
+              "description": null,
+              "url": "https://www.alibaba.com/showroom/twister-textile-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Spinning Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 46,
+              "page": 4,
+              "domain": "www.kimtextilemachine.com",
+              "title": "High Speed TFO Textile Twister Manufacturer from Surat",
+              "description": "Yarn TFO Twister · Material: Mild Steel · Machine Type: Automatic · Phase: Three · Voltage: 320V · Weight: 300-500 Kg · Warranty: 1 Year · Model Number: MD-02 ... Read more",
+              "url": "https://www.kimtextilemachine.com/tfo-twister.html",
+              "breadcrumb": "https://www.kimtextilemachine.com › tfo-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 47,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "Ring Twister 10 inch | Rope Making machine 1 mm to 3 mm ...",
+              "description": "#RingTwister #RopeMakingmachine #Primary Twister Ring Twister machines is also known as Ring Doubling Machine, Twister for Rope, ...",
+              "url": "https://www.youtube.com/watch?v=aE7rrb7Gh8A",
+              "breadcrumb": "6.3K+ views  ·  5 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 48,
+              "page": 4,
+              "domain": "www.scribd.com",
+              "title": "Yarn Twist | PDF",
+              "description": "Twist is the measure of the spiral turns given to yarn in order to hold the fibers or threads together. Twist is necessary to give a yarn coherence and ... Read more",
+              "url": "https://www.scribd.com/presentation/613234834/Yarn-Twist",
+              "breadcrumb": "https://www.scribd.com › presentation › Yarn-Twist"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 49,
+              "page": 4,
+              "domain": "www.aakashtexeng.in",
+              "title": "Two For One Twister - Aakash Textile Engineers LLP",
+              "description": "Equipped with advanced double twisting technology, our Two For One Twister ensures even and consistent results for every batch. Its heavy-duty GSM construction ... Read more",
+              "url": "https://www.aakashtexeng.in/two-for-one-twister-6842471.html",
+              "breadcrumb": "https://www.aakashtexeng.in › two-for-one-twister-684..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 50,
+              "page": 4,
+              "domain": "www.rieter.com",
+              "title": "Rieter – Leading Manufacturer of Systems for Short-Staple ...",
+              "description": "Rieter delivers machinery, automation and digital solutions that help spinning mills increase productivity and stay competitive – from fiber to yarn.",
+              "url": "https://www.rieter.com/",
+              "breadcrumb": "https://www.rieter.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 51,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "FusionTwister | Two-for-one twisting machine | Saurer Group",
+              "description": "The machine can be equipped with up to 240 spindles and can handle then all the different applications also viscose acrylic Yarns Woods.",
+              "url": "https://www.youtube.com/watch?v=4mQSIVXlB84",
+              "breadcrumb": "8.2K+ views  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 52,
+              "page": 4,
+              "domain": "www.mindgames.com",
+              "title": "Text Twist 2 online",
+              "description": "Play Text Twist 2 for free, rearrange the letters in this Text Twist game and make as many words as you can. Click on the letters to make words.",
+              "url": "https://www.mindgames.com/game/Text+Twist+2",
+              "breadcrumb": "https://www.mindgames.com › game › Text+Twist+2"
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.facebook.com",
+              "title": "Easy batik scrap quilt with the Li'l Twister tool",
+              "description": "This was made with the Li'l Twister Tool. Used all batik scraps except for background fabric. Very easy to do.....just a little time consuming. Read more",
+              "url": "https://www.facebook.com/groups/291023511046957/posts/313773125438662/",
+              "breadcrumb": "30+ comments  ·  11 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "en.wikipedia.org",
+              "title": "Polyester",
+              "description": "Recycled PET (rPET) is increasingly being used in textile production, reducing the environmental impact of polyester manufacturing. Polyethylene ... Read more",
+              "url": "https://en.wikipedia.org/wiki/Polyester",
+              "breadcrumb": "https://en.wikipedia.org › wiki › Polyester"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 56,
+              "page": 5,
+              "domain": "meeraind.com",
+              "title": "How Cabled Yarn Is Made by Twisting: A Step- ...",
+              "description": "Nov 11, 2025 — In high-speed operations such as industrial thread manufacturing or technical fabric weaving, unbalanced yarns can twist unevenly under tension. Read more",
+              "url": "https://meeraind.com/blog/cabled-yarn-made-twisting",
+              "breadcrumb": "https://meeraind.com › blog › cabled-yarn-made-twisting"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 57,
+              "page": 5,
+              "domain": "www.textilecoach.net",
+              "title": "Yarn Twist",
+              "description": "Aug 2, 2021 — Twist is defined as the spiral turns given to yarn to hold the fibers or yarns together. · There are two possibilities of twist directions, left ... Read more",
+              "url": "https://www.textilecoach.net/post/yarn-twist",
+              "breadcrumb": "https://www.textilecoach.net › post › yarn-twist"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 58,
+              "page": 5,
+              "domain": "www.rifatextile.com",
+              "title": "Textile Twisting Machine",
+              "description": "The RFTS20D short fiber twister is a versatile machine primarily designed for twisting strand threads in various fields such as cotton spinning, sewing thread ... Read more",
+              "url": "https://www.rifatextile.com/textile-twisting-machine/",
+              "breadcrumb": "https://www.rifatextile.com › textile-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 59,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "TWO FOR ONE TWISTER (T F O) || Study with Param ...",
+              "description": "... TWISTER (TFO) '' I hope you will like the ... TFO Textile Process | Complete process | Cheese Winding | Textile Process Explanation | Sanat.",
+              "url": "https://www.youtube.com/watch?v=-dpS3NVLPJ8",
+              "breadcrumb": "22.4K+ views  ·  4 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 60,
+              "page": 5,
+              "domain": "royalwesta.com",
+              "title": "Volkmann Twister - International Textile Machinery Corp",
+              "description": "Volkmann Twister. Quantity: 4, Year: 1968, Spindles: 120, Guage: 245 mm, Delivery 4'20, Area Needed(m): 18L*1.5W +2m Eachside, Average production: 500 Kg (Total ... Read more",
+              "url": "https://royalwesta.com/product/volkmann-twister/",
+              "breadcrumb": "https://royalwesta.com › Used Machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 61,
+              "page": 5,
+              "domain": "www.weavetech.com",
+              "title": "TFO Twister Machine Guide for Modern Textile Mills",
+              "description": "TFO means Two-for-One Twister, which, in a twist analogy, means that two turns of twist are inserted for each revolution of the spindle. This twisting, also ... Read more",
+              "url": "https://www.weavetech.com/tfo-twister-machine-guide-for-modern-textile-mills/",
+              "breadcrumb": "https://www.weavetech.com › tfo-twister-machine-guid..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 62,
+              "page": 5,
+              "domain": "nassajyar.com",
+              "title": "Introduction to the Two-for-One Twister (TFO) in the Textile ...",
+              "description": "Nov 5, 2025 — Introduction to the Two-for-One Twister (TFO) in the Textile Industry - نساج یار بازار تخصصی خرید و فروش ماشین آلات نساجی.",
+              "url": "http://nassajyar.com/0/news_textile_info4/1878/Introduction-to-the-Two-for-One-Twister-(TFO)-in-the-Textile-Industry/info.html",
+              "breadcrumb": "http://nassajyar.com › info"
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 63,
+              "page": 5,
+              "domain": "www.mymajors.com",
+              "title": "Yarn Twister Education Requirements and College Majors",
+              "description": "Yarn Twister Career. *A job as a Yarn Twister falls under the broader career category of Textile Winding, Twisting, and Drawing Out Machine Setters, ... Read more",
+              "url": "https://www.mymajors.com/career/yarn-twister/education/",
+              "breadcrumb": "https://www.mymajors.com › career › education"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

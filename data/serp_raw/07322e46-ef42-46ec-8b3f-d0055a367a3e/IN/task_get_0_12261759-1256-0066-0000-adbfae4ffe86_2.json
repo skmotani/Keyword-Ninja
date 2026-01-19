@@ -1,0 +1,624 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0396 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-adbfae4ffe86",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0312 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-adbfae4ffe86"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "doubling machine manufacturers in coimbatore",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "doubling machine manufacturers in coimbatore",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=doubling%20machine%20manufacturers%20in%20coimbatore&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:59:24 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[5]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Open now",
+                "url": "https://www.google.com/search?sca_esv=e5cbd14f40937cac&hl=en&gl=IN&q=doubling+machine+manufacturers+in+coimbatore+open+now&uds=AOm0WdE2fekQnsyfYEw8JPYozOKzaHAMx2ujrBjNyZt1Jhwqbj8mD-UiOXhcaAQ_ptAIapjZQwD2rAKKpbTEd1qslJO25nHYj6Uj1F007gyYswZ20NiLv_MS0JI0ywE4N1mQc3t3XskxH2LLcf980dfNRbHUJUO9lVDMP7AnFl03IA8OzVUxn9pjn5R6W2f97-DUvnJbI54QK9j3Ui5MRnQgRDqVz2Llpxr1fR7i9B1SzYHlesIJqI4&sa=X&ved=2ahUKEwjbnd_Mz9uRAxXi1jgGHXdnBV0QxKsJKAB6BAgYEAE&ictx=0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Top rated",
+                "url": "https://www.google.com/search?sca_esv=e5cbd14f40937cac&hl=en&gl=IN&q=top+rated+doubling+machine+manufacturers+in+coimbatore&uds=AOm0WdE2fekQnsyfYEw8JPYozOKz1GQZsE3dygP4nQ3realpzHu37uvddxLsqH9Xi4DdQ1ac09L-Ivb8b8JixqJUgeDLs3O1O45l5XMGZnvTdL_V3smxSX4ISXoo_Hm-tvn1qbtTqsftUIUl4qRWnu7fZAmo_-Q3TJDv6j8myfmeeIcxVW0RXxvsR9yDfeTDT-VYop9HjQj0K6GovqDKkVV3fFHU9Y8IWyBlKmCjRGIo6qDgHfNtKgc&sa=X&ved=2ahUKEwjbnd_Mz9uRAxXi1jgGHXdnBV0QxKsJKAF6BAgZEAE&ictx=0",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "ai_overview",
+            "organic",
+            "local_pack",
+            "related_searches",
+            "images"
+          ],
+          "se_results_count": 10500000,
+          "pages_count": 5,
+          "items_count": 49,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 1,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Doubling Machines in Coimbatore, Tamil Nadu",
+              "description": "Doubling Machines in Coimbatore ; Meera Industries Limited · GST. TrustSEAL · +918048978117 ; SSB Tex Engineering · GST. Verified Exporter · +918048964231 ; Balaji ... Read more",
+              "url": "https://dir.indiamart.com/coimbatore/doubling-machines.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Coimbatore"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 3,
+              "page": 1,
+              "domain": "www.justdial.com",
+              "title": "Top Doubling Machine Manufacturers in Coimbatore near me",
+              "description": "Popular Doubling Machine Manufacturers in Coimbatore · New Tech Machine Tools · Ssb Tex Engineering · Synergy Die Casting · Sri Volka Texvin · Krishna ... Read more",
+              "url": "https://www.justdial.com/Coimbatore/Doubling-Machine-Manufacturers/nct-10171401",
+              "breadcrumb": "https://www.justdial.com › ... › 2+ Listings"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "www.tradeindia.com",
+              "title": "Doubling Machines In Coimbatore Tamil Nadu At Best Price",
+              "description": "Get doubling machines in Coimbatore Tamil Nadu at best price. Find list of doubling machines manufacturers suppliers located in Coimbatore & near by cities.",
+              "url": "https://www.tradeindia.com/coimbatore/doubling-machines-city-228082.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › Doubling machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Doubling Machines Manufacturers in Coimbatore",
+              "description": "Doubling Machines - Manufacturer in Coimbatore ; Meera Industries Limited · TrustSEAL · +918048978117 ; SSB Tex Engineering · Verified Exporter · +918048964231 ... Read more",
+              "url": "https://dir.indiamart.com/coimbatore/doubling-machines.html?biz=10",
+              "breadcrumb": "https://dir.indiamart.com › ... › Coimbatore"
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.ssbtex.com",
+              "title": "Ring Doubling Machines & Yarn Twisting machines",
+              "description": "We manufacture quality Flocked Clearer Rollers for leading textile machinery manufacturers - LMW, KTTM, RIETER, ZINSER, TOYODA, MARZOLI, SUESSEN, CHERRY HARA. Read more",
+              "url": "https://www.ssbtex.com/ring-doubling-machines-yarn-twisting-machines.html",
+              "breadcrumb": "https://www.ssbtex.com › ring-doubling-machines-yarn..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "jmwindia.com",
+              "title": "Ring Doubler - Coimbatore",
+              "description": "JMW is a renowned manufacturer of Cotton Ring doublers, Heavy ring twisters, Jute Twine Twister and On-line ring winders. Read more",
+              "url": "https://jmwindia.com/ring-doubler.php",
+              "breadcrumb": "https://jmwindia.com › ring-doubler"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "www.exportersindia.com",
+              "title": "Doubling Machine Manufacturers, Suppliers In Coimbatore",
+              "description": "Explore More Products · Yarn Doubling Machine, Color : Green, Blue, Silver · Electric Doubling Machine, Voltage : 110V, 220V, 380V, 440V · Textile ... Read more",
+              "url": "https://www.exportersindia.com/coimbatore/doubling-machines.htm",
+              "breadcrumb": "https://www.exportersindia.com › ... › Doubling Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 12,
+              "page": 1,
+              "domain": "www.justdial.com",
+              "title": "Top Doubling Machine Dealers in Coimbatore near me",
+              "description": "Popular Doubling Machine Dealers in Coimbatore · Sri Ayyanar Textile Machine · Sasikumar Textiles · Btex Textile Machinery · Sepson Textile Machine · Shivam ... Read more",
+              "url": "https://www.justdial.com/Coimbatore/Doubling-Machine-Dealers/nct-11813991",
+              "breadcrumb": "https://www.justdial.com › Coimbatore › nct-11813991"
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 13,
+              "page": 1,
+              "domain": "www.indianyellowpages.com",
+              "title": "Doubling Machine Dealers, Suppliers & Manufacturer List",
+              "description": "Doubling Machine Dealers ; Hariom Yarn Machinery. Bhavnagar ; Mag solvics Pvt. Ltd. Behala, Kolkata ; New Tech Machine Tools. Thottipalayam, Coimbatore ; Kajaria ... Read more",
+              "url": "https://www.indianyellowpages.com/directory/doubling-machines.htm",
+              "breadcrumb": "https://www.indianyellowpages.com › directory › doubli..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 14,
+              "page": 1,
+              "domain": "www.anantenterprises.com",
+              "title": "Cracker Machine Double Drive Manufacturers in Coimbatore",
+              "description": "Tremendously popular in Coimbatore as the trustworthy Cracker Machines manufacturers and suppliers, Anant Enterprise has been delivering a broad assortment ... Read more",
+              "url": "https://www.anantenterprises.com/coimbatore/cracker-machine-double-drive.html",
+              "breadcrumb": "https://www.anantenterprises.com › coimbatore › cracker..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.dial4trade.com",
+              "title": "Spinntex Engineering Works, Coimbatore",
+              "description": "Manufacturer and Supplier of RING DOUBLING MACHINE, Ring Spinning Frames, Ring Doubling Machines offered by Spinntex Engineering Works from Coimbatore, ...",
+              "url": "https://www.dial4trade.com/spinntex-engineering-works/",
+              "breadcrumb": "https://www.dial4trade.com › spinntex-engineering-works"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "mohlermachineworks.co.in",
+              "title": "Mohler Machine Works, Manufacturers of Textile Machineries ...",
+              "description": "Mohler Machine Works Pvt. Ltd. S.F. NO. 28/1A, Palathurai Road, Seerapalayam, Madukkarai, Coimbatore - 641105,Tamil Nadu, INDIA. Mobile No.(off) : +91 ... Read more",
+              "url": "https://mohlermachineworks.co.in/",
+              "breadcrumb": "https://mohlermachineworks.co.in"
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.aajjo.com",
+              "title": "Top Doubling Machine in Coimbatore",
+              "description": "Additionally, Aajjo is a completely online platform that makes finding high-quality Doubling Machine in your Coimbatore easy for you. We use technology to help ... Read more",
+              "url": "https://www.aajjo.com/coimbatore/apparel-textile-machinery/doubling-machine",
+              "breadcrumb": "https://www.aajjo.com › apparel-textile-machinery › do..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.tradeindia.com",
+              "title": "Ring Doubling Machines at Best Price in Coimbatore, ...",
+              "description": "Company Details. Sri Shanthini Machine Works, Registered in 2007 at Coimbatore in Tamil Nadu, is a leading Exporter,Supplier of Textile Processing Machinery in ... Read more",
+              "url": "https://www.tradeindia.com/products/ring-doubling-machines-72107.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › doubling machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.ramtexginningautomation.com",
+              "title": "Double Ram Cotton Baling Press Machine Manufacturers",
+              "description": "Ram Tex have gained huge reputation in manufacturing and supplying cotton baling press machine. We are well known as double ram cotton baling press machine ... Read more",
+              "url": "http://www.ramtexginningautomation.com/double-ram-cotton-baling-press-machine-manufacturers-in-coimbatore-india.php",
+              "breadcrumb": "http://www.ramtexginningautomation.com › double-ra..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "dir.indiamart.com",
+              "title": "Ring Doubling Frame Machine in Coimbatore, Tamil Nadu",
+              "description": "Business listings of Ring Doubling Frame Machine manufacturers, suppliers and exporters in Coimbatore, Tamil Nadu along with their contact details & address ...",
+              "url": "https://dir.indiamart.com/coimbatore/ring-doubling-frame.html",
+              "breadcrumb": "https://dir.indiamart.com › coimbatore › ring-doubling-f..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "www.textileinfomedia.com",
+              "title": "Sri Shanthini Machine works - coimbatore, tamil nadu",
+              "description": "Contact Sri Shanthini Machine works in coimbatore, tamil nadu for Heavy Ring Doublers manufacturer ... Ring Doubling Machines exporter. we are Manufacturer ... Read more",
+              "url": "https://www.textileinfomedia.com/Sri-Shanthini-Machine-works",
+              "breadcrumb": "https://www.textileinfomedia.com › Sri-Shanthini-Machi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "velmachines.com",
+              "title": "Vel Machines- Best CNC Machine in Coimbatore| Quality ...",
+              "description": "We believe in rendering the best cnc machine with quality products and prompt supply which has given the company a vast recognition in the indus.",
+              "url": "https://velmachines.com/",
+              "breadcrumb": "https://velmachines.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 24,
+              "page": 2,
+              "domain": "www.ssbtex.com",
+              "title": "Textile Spinning Machinery - Spinntex Cone Winder ...",
+              "description": "... Coimbatore, Tamil Nadu ... We are the leading manufacturer and supplier of Spinntex Cone Winder Machine. Read more",
+              "url": "https://www.ssbtex.com/textile-spinning-machinery.html",
+              "breadcrumb": "https://www.ssbtex.com › textile-spinning-machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 25,
+              "page": 2,
+              "domain": "www.grotal.com",
+              "title": "Double Shute Manufacturers in Coimbatore",
+              "description": "Heading: Double Shute Manufacturers, City: Coimbatore, Results: Rikss Traders, Involvements: Flat Die Pellet Manufacturers Hammer Mill Feeder Manufacturers ...",
+              "url": "https://www.grotal.com/Coimbatore/Double-Shute-Manufacturers-C93/",
+              "breadcrumb": "https://www.grotal.com › Coimbatore › Double-Shute-M..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "jyoti.co.in",
+              "title": "Jyoti CNC Automation Limited | cnc machine, cnc lathe, vmc ...",
+              "description": "Jyoti CNC is the largest CNC machine tool manufacturing company of India and having a subsidiary \"Huron\" based at Strasbourg, France.",
+              "url": "https://jyoti.co.in/",
+              "breadcrumb": "https://jyoti.co.in"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.indianyellowpages.com",
+              "title": "Doubling Machine Dealers in Coimbatore",
+              "description": "Textile Doubling Machine. Get Price Quote. We are counted amongst the trusted Manufacturer, Exporter and Supplier of Textile Doubling Machine in Coimbatore, ...",
+              "url": "https://www.indianyellowpages.com/coimbatore/doubling-machines.htm",
+              "breadcrumb": "https://www.indianyellowpages.com › coimbatore › dou..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.lgb.co.in",
+              "title": "L.G.Balakrishnan & Bros Ltd: Home",
+              "description": "The core functions like R&D, Machine Building, Tool room, Heat treatment and ... Coimbatore - 641 006. Tel : +91 422 253 2325; E-mail : info@lgb.co.in. Read more",
+              "url": "https://www.lgb.co.in/",
+              "breadcrumb": "https://www.lgb.co.in"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.exportersindia.com",
+              "title": "Doubling Machine at Best Price from Manufacturers ...",
+              "description": "We are counted amongst the trusted Manufacturer, Exporter and Supplier of Textile ... NT. New Tech Machine Tools. Coimbatore, India. Call Now. Read more",
+              "url": "https://www.exportersindia.com/indian-suppliers/doubling-machines.htm",
+              "breadcrumb": "https://www.exportersindia.com › indian-suppliers › dou..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.acemicromatic.net",
+              "title": "India's Best CNC and Metal Cutting Machine Manufacturers in ...",
+              "description": "AceMicromatic is a leading and renowned CNC and metal cutting machines in India. With a strong presence in the manufacturing industry.",
+              "url": "https://www.acemicromatic.net/",
+              "breadcrumb": "https://www.acemicromatic.net"
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "dir.indiamart.com",
+              "title": "Ring Doubling Frame Machine in Coimbatore, Tamil Nadu",
+              "description": "Business listings of Ring Doubling Frame Machine manufacturers, suppliers and exporters in Coimbatore, Tamil Nadu along with their contact details & address ...",
+              "url": "https://dir.indiamart.com/coimbatore/ring-doubling-frame.html",
+              "breadcrumb": "https://dir.indiamart.com › coimbatore › ring-doubling-f..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "www.tradeindia.com",
+              "title": "Ring Doubling Machine In Coimbatore",
+              "description": "Ring Doubling Machine In Coimbatore ; Ring Doubling Machines · Ring Doubling Machines · Sri Shanthini Machine Works ; Double Cylinder Iron Worker Machine · Double ... Read more",
+              "url": "https://www.tradeindia.com/coimbatore/ring-doubling-machine-city-228082.html",
+              "breadcrumb": "https://www.tradeindia.com › coimbatore › ring-doubli..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 34,
+              "page": 3,
+              "domain": "anantenterprises.com",
+              "title": "Extruder Machine with Thread Die Head",
+              "description": "Looking for the best quality Extruder Machine in Coimbatore? Well, Anant Enterprise, the leading manufacturers and suppliers of Extruder Machine With Thread ... Read more",
+              "url": "https://anantenterprises.com/coimbatore/extruder-machine-with-thread-die-head.html",
+              "breadcrumb": "https://anantenterprises.com › coimbatore › extruder-mac..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 35,
+              "page": 3,
+              "domain": "www.textileinfomedia.com",
+              "title": "Wholesale Tfo machine in coimbatore",
+              "description": "Get best quality tfo machine from wholesaler companies coimbatore. Buy tfo ... By using this machine, doubling types of yarn production is possible. If ... Read more",
+              "url": "https://www.textileinfomedia.com/coimbatore/tfo-machine-wholesaler.htm",
+              "breadcrumb": "https://www.textileinfomedia.com › coimbatore › tfo-ma..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 36,
+              "page": 3,
+              "domain": "www.justdial.com",
+              "title": "Top Doubling Machine Products in Coimbatore",
+              "description": "Jd Mart's doubling machines are equipped with advanced features and cutting-edge technology, ensuring precise and efficient yarn doubling. They are engineered ... Read more",
+              "url": "https://www.justdial.com/jdmart/Coimbatore/Doubling-Machine/jdm-1037776-ent-2-17678968",
+              "breadcrumb": "https://www.justdial.com › jdm-1037776-ent-2-17678968"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.tkpapercups.com",
+              "title": "Manufacturer of Paper Cup Making Machine & Tea Cup ...",
+              "description": "Double Wall Paper Cup Making Machine · Rs 2,50,000 / Piece. Automation Grade: Automatic; Material Processed: Paper. Get Best Price. Paper Cup Making Machine ... Read more",
+              "url": "https://www.tkpapercups.com/",
+              "breadcrumb": "https://www.tkpapercups.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "dir.indiamart.com",
+              "title": "Doubling Machines at Best Price in India",
+              "description": "These doubling machines are used for cotton industrial yarn. SSB Tex Engineering. Coimbatore. GST. Verified Exporter. 14 yrs. Read more",
+              "url": "https://dir.indiamart.com/impcat/doubling-machines.html",
+              "breadcrumb": "https://dir.indiamart.com › impcat › doubling-machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.mmforgings.com",
+              "title": "MMFORGINGS LIMITED",
+              "description": "Manufacturing of Traction Motors, Alternators, Small motors. Product Categories. All; Passenger cars; Commercial vehicles; Agricultural; Off highway; High ... Read more",
+              "url": "https://www.mmforgings.com/",
+              "breadcrumb": "https://www.mmforgings.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "www.lmwglobal.com",
+              "title": "LMW Limited | Industrial Machinery Manufacturers",
+              "description": "LMW Limited is a leading manufacturer of industrial machinery like CNC machines, Textile Machinery, Foundry Castings & Aerospace Components.",
+              "url": "https://www.lmwglobal.com/",
+              "breadcrumb": "https://www.lmwglobal.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.aajjo.com",
+              "title": "Top Yarn Splitting Machine in Coimbatore",
+              "description": "Some of the most trusted & reputed ones are Vrinda International, Footmac, Priya Impex Consultants, Weavetech Engineers Limited, & National Coir. These Yarn ... Read more",
+              "url": "https://www.aajjo.com/coimbatore/apparel-textile-machinery/yarn-splitting-machine",
+              "breadcrumb": "https://www.aajjo.com › apparel-textile-machinery › ya..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.indianyellowpages.com",
+              "title": "Yarn Machine Dealers in Coimbatore",
+              "description": "Best Yarn Machine Dealers in Coimbatore. Find the list of best Yarn Printing Machine suppliers & Manufacturers in Coimbatore. Yellow Pages Directory of Yarn ...",
+              "url": "https://www.indianyellowpages.com/coimbatore/yarn-machine.htm",
+              "breadcrumb": "https://www.indianyellowpages.com › coimbatore › yarn..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "www.tradeindia.com",
+              "title": "Textile Doubling Machine at Best Price in Coimbatore ...",
+              "description": "NEW TECH MACHINE TOOLS, Established in 1993 at Coimbatore in Tamil Nadu, is a leading Manufacturer,Supplier of Textile Processing Machinery in India. NEW ... Read more",
+              "url": "https://www.tradeindia.com/products/textile-doubling-machine-993483.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › doubling machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 45,
+              "page": 4,
+              "domain": "www.kovaiclassicindustries.net",
+              "title": "Manufacturer of Chaff Cutter & Agricultural Shredder by Kovai ...",
+              "description": "Kovai Classic Industries - Manufacturer of Chaff Cutter, Agricultural Shredder & Agricultural Sprayer from Coimbatore, Tamil Nadu, India.",
+              "url": "https://www.kovaiclassicindustries.net/",
+              "breadcrumb": "https://www.kovaiclassicindustries.net"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 46,
+              "page": 4,
+              "domain": "www.dial4trade.com",
+              "title": "Sri Shanthini Machine Works, Coimbatore",
+              "description": "Manufacturer,Wholesale Supplier / Wholesaler Manufacturer of Heavy Ring Doublers, Heavy Duty Ring Twister, Ring Twisting Machine offered by Sri Shanthini ...",
+              "url": "https://www.dial4trade.com/sri-shanthini-machine-works/",
+              "breadcrumb": "https://www.dial4trade.com › sri-shanthini-machine-wo..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.zetwerk.com",
+              "title": "Zetwerk: Maximize Manufacturing",
+              "description": "Zetwerk offers high-quality production, globally competitive costs, and unparalleled lead times in every area of manufacturing.",
+              "url": "https://www.zetwerk.com/",
+              "breadcrumb": "https://www.zetwerk.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "mohlermachineworks.co.in",
+              "title": "Mohler Machine Works, Manufacturers of Textile Machineries ...",
+              "description": "Mohler Machine Works Pvt. Ltd. S.F. NO. 28/1A, Palathurai Road, Seerapalayam, Madukkarai, Coimbatore - 641105,Tamil Nadu, INDIA. Mobile No.(off) : +91 ... Read more",
+              "url": "https://mohlermachineworks.co.in/",
+              "breadcrumb": "https://mohlermachineworks.co.in"
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.bullrockfitness.com",
+              "title": "BullrocK Fitness | Strength Conditioning Equipment ...",
+              "description": "BullrocK Fitness is a Passionate Strength Conditioning Equipment Manufacturer. Expertise lies in Powerlifting Barbells, Olympic Weightlifting.",
+              "url": "https://www.bullrockfitness.com/",
+              "breadcrumb": "https://www.bullrockfitness.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "adorwelding.com",
+              "title": "Ador Welding: Top Welding Machine Manufacturers",
+              "description": "Explore top-quality welding machines from leading manufacturer in India. Trust Ador Welding for durability & performance. Get a quote today!",
+              "url": "https://adorwelding.com/",
+              "breadcrumb": "https://adorwelding.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.reshmiindustries.co.in",
+              "title": "RESHMI INDUSTRIES (INDIA) PVT LTD in Coimbatore",
+              "description": "Our Products · Tube Winding Machine - Automatic Thread Winding - PreciTube. · Cone Winding Machine for Sewing Thread Yarns · Random Re-Winder39 Series are the most ... Read more",
+              "url": "https://www.reshmiindustries.co.in/",
+              "breadcrumb": "https://www.reshmiindustries.co.in"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.bke.co.in",
+              "title": "Construction Equipment Manufacturers From Coimbatore",
+              "description": "Balakrishna Engineering is a prime concrete mixer machine manufacturer in Coimbatore. Our products are designed and manufactured by quality materials. Read More ... Read more",
+              "url": "https://www.bke.co.in/",
+              "breadcrumb": "https://www.bke.co.in"
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "www.ssengineeringwork.net",
+              "title": "S. S. Engineering Works - Coimbatore",
+              "description": "Manufacturer and Exporter of Plate Making Machines, Areca Leaf Plate Making Machines and Paper Plate Making Machine offered by SS Engineering Works, ...",
+              "url": "https://www.ssengineeringwork.net/",
+              "breadcrumb": "https://www.ssengineeringwork.net"
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 56,
+              "page": 5,
+              "domain": "www.maklanengineering.com",
+              "title": "Maklan Roll Forming Machine Manufacturers - Coimbatore",
+              "description": "8 Aug 2025 — We are one of the Leading Double Layer Roll Forming Machine Machine Manufacturers in Coimbatore.",
+              "url": "https://www.maklanengineering.com/latest-update/double-layer-roll-forming-machine-machine-manufacturers-in-coimbatore/9",
+              "breadcrumb": "https://www.maklanengineering.com › latest-update › d..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 48,
+              "rank_absolute": 57,
+              "page": 5,
+              "domain": "www.lk-ea.com",
+              "title": "Lauritz Knudsen Electrical & Automation",
+              "description": "At Elecrama 2025, Lauritz Knudsen Electrical & Automation is showcasing cutting-edge electrical and automation solutions for buildings, industries, ...",
+              "url": "https://www.lk-ea.com/",
+              "breadcrumb": "https://www.lk-ea.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 49,
+              "rank_absolute": 58,
+              "page": 5,
+              "domain": "www.veejaylakshmi.com",
+              "title": "Two-for-One Twister",
+              "description": "30 years of proven success in the manufacture of textile machinery ... Reduced machine width of 850 mm. Provision for normal / soft Package winding ... Read more",
+              "url": "http://www.veejaylakshmi.com/page/prod-tfo.html",
+              "breadcrumb": "http://www.veejaylakshmi.com › page › prod-tfo"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

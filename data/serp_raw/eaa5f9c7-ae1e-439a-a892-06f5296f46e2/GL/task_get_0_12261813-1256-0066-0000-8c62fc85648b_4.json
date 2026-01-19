@@ -1,0 +1,42 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.1701 sec.",
+  "cost": 0,
+  "tasks_count": 1,
+  "tasks_error": 1,
+  "tasks": [
+    {
+      "id": "12261813-1256-0066-0000-8c62fc85648b",
+      "status_code": 40602,
+      "status_message": "Task In Queue.",
+      "time": "0.1597 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261813-1256-0066-0000-8c62fc85648b"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "textile doubling machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "eaa5f9c7-ae1e-439a-a892-06f5296f46e2"
+      },
+      "result": null
+    }
+  ]
+}

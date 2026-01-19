@@ -1,0 +1,42 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0110 sec.",
+  "cost": 0,
+  "tasks_count": 1,
+  "tasks_error": 1,
+  "tasks": [
+    {
+      "id": "12261806-1256-0066-0000-28a5ade19449",
+      "status_code": 40602,
+      "status_message": "Task In Queue.",
+      "time": "0.0022 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261806-1256-0066-0000-28a5ade19449"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Cone To Cone Winder",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "30dddff8-5470-4eb4-b8f7-79716b65c22a"
+      },
+      "result": null
+    }
+  ]
+}

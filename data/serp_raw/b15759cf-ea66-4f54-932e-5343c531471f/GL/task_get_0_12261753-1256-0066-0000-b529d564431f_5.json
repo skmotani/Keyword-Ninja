@@ -1,0 +1,763 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0696 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261753-1256-0066-0000-b529d564431f",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0329 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261753-1256-0066-0000-b529d564431f"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Lycra Covering Machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "b15759cf-ea66-4f54-932e-5343c531471f"
+      },
+      "result": [
+        {
+          "keyword": "Lycra Covering Machine",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2840,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=Lycra%20Covering%20Machine&hl=en&gl=US&ie=UTF-8&uule=w+CAIQIFISCQs2MuSEtepUEUK33kOSuTsc",
+          "datetime": "2025-12-26 15:53:57 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=Lycra+Covering+Machine+nearby&hl=en&gl=US&shoprs=GAMqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyDAgDEgZOZWFyYnkYAliX7CBgAQ&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKAF6BAgdEDM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=lycra+covering+machine+for+sale&hl=en&gl=US&shoprs=GBIqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyDAgSEghGb3IgU2FsZWAB&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKAJ6BAgdEDQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "New",
+                "url": "https://www.google.com/search?q=new+Lycra+Covering+Machine&hl=en&gl=US&shoprs=GAoqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyBwgKEgNOZXdYl-wgYAE&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKAN6BAgdEDU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Used",
+                "url": "https://www.google.com/search?q=used+Lycra+Covering+Machine&hl=en&gl=US&shoprs=GAoqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyCAgKEgRVc2VkWJfsIGAB&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKAR6BAgdEDY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+lycra+covering+machine&hl=en&gl=US&shoprs=GBIqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyCwgSEgdSZXZpZXdzYAE&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKAV6BAgdEDc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+lycra+covering+machine&hl=en&gl=US&shoprs=GBIqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyBwgSEgNCdXlgAQ&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKAZ6BAgdEDg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under $5,000",
+                "url": "https://www.google.com/search?q=Lycra+Covering+Machine+under+$5,000&hl=en&gl=US&shoprs=Eg0SCxEAAAAAX6DyQRgBGAUqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyJQgFEgxVbmRlciAkNSwwMDAYAiINEgsRAAAAAF-g8kEYASoCGAFYl-wgYAE&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKAd6BAgdEDk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Printers",
+                "url": "https://www.google.com/search?q=printers+lycra+covering+machine&hl=en&gl=US&shoprs=GAkqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyDAgJEghQcmludGVyc2AB&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKAh6BAgdEDo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "White",
+                "url": "https://www.google.com/search?q=white+lycra+covering+machine&hl=en&gl=US&shoprs=GAEqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyFwgBEgVXaGl0ZToMCNiM9QEQoYv1ATALWJfsIGAB&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKAl6BAgdEDs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Shirt",
+                "url": "https://www.google.com/search?q=shirt+lycra+covering+machine&hl=en&gl=US&shoprs=GBIqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyCQgSEgVTaGlydGAB&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKAp6BAgdEDw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Blue",
+                "url": "https://www.google.com/search?q=blue+lycra+covering+machine&hl=en&gl=US&shoprs=GAEqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyFggBEgRCbHVlOgwI2Iz1ARDmivUBMAtYl-wgYAE&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKAt6BAgdED0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Sewing Machines",
+                "url": "https://www.google.com/search?q=sewing+machines+lycra+covering+machine&hl=en&gl=US&shoprs=GAkqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyEwgJEg9TZXdpbmcgTWFjaGluZXNgAQ&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKAx6BAgdED4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Diy",
+                "url": "https://www.google.com/search?q=diy+lycra+covering+machine&hl=en&gl=US&shoprs=GBIqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyBwgSEgNEaXlgAQ&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKA16BAgdED8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Red",
+                "url": "https://www.google.com/search?q=red+lycra+covering+machine&hl=en&gl=US&shoprs=GAEqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyFQgBEgNSZWQ6DAjYjPUBEOeK9QEwC1iX7CBgAQ&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKA56BAgdEEA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Industrial",
+                "url": "https://www.google.com/search?q=industrial+lycra+covering+machine&hl=en&gl=US&shoprs=GAEqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyGggBEgpJbmR1c3RyaWFsOgoIlLc7EJW3OzADWJfsIGAB&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKA96BAgdEEE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Clothes",
+                "url": "https://www.google.com/search?q=clothes+lycra+covering+machine&hl=en&gl=US&shoprs=GBIqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyCwgSEgdDbG90aGVzYAE&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKBB6BAgdEEI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Green",
+                "url": "https://www.google.com/search?q=green+lycra+covering+machine&hl=en&gl=US&shoprs=GAEqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyFwgBEgVHcmVlbjoMCNiM9QEQ6Ir1ATALWJfsIGAB&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKBF6BAgdEEM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Usa",
+                "url": "https://www.google.com/search?q=usa+lycra+covering+machine&hl=en&gl=US&shoprs=GBIqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyBwgSEgNVc2FgAQ&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKBJ6BAgdEEQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Clothing",
+                "url": "https://www.google.com/search?q=clothing+lycra+covering+machine&hl=en&gl=US&shoprs=GBIqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyDAgSEghDbG90aGluZ2AB&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKBN6BAgdEEU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Gray",
+                "url": "https://www.google.com/search?q=gray+lycra+covering+machine&hl=en&gl=US&shoprs=GAEqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyFggBEgRHcmF5OgwI2Iz1ARDqivUBMAtYl-wgYAE&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKBR6BAgdEEY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Man",
+                "url": "https://www.google.com/search?q=man+lycra+covering+machine&hl=en&gl=US&shoprs=GBIqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyBwgSEgNNYW5gAQ&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKBV6BAgdEEc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+lycra+covering+machine&hl=en&gl=US&shoprs=GBIqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyCggSEgZPbmxpbmVgAQ&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKBZ6BAgdEEg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Custom",
+                "url": "https://www.google.com/search?q=custom+lycra+covering+machine&hl=en&gl=US&shoprs=GBIqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyCggSEgZDdXN0b21gAQ&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKBd6BAgdEEk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+lycra+covering+machine&hl=en&gl=US&shoprs=GBIqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyCQgSEgVQcmljZWAB&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKBh6BAgdEEo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Small",
+                "url": "https://www.google.com/search?q=small+lycra+covering+machine&hl=en&gl=US&shoprs=GBIqFmx5Y3JhIGNvdmVyaW5nIG1hY2hpbmUyCQgSEgVTbWFsbGAB&sa=X&ved=2ahUKEwjzi-mwztuRAxVSIbkGHVr-HWAQip4GKBl6BAgdEEs",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "popular_products",
+            "video",
+            "organic",
+            "images",
+            "related_searches"
+          ],
+          "se_results_count": 3630000,
+          "pages_count": 5,
+          "items_count": 47,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 3,
+              "page": 1,
+              "domain": "meeraind.com",
+              "title": "Covering Machine for Spandex & Elastic Yarn Processing",
+              "description": "A double-deck covering machine delivers precise S/Z twist, consistent Lycra® elongation boosting productivity, reducing waste, and ensuring high-quality ... Read more",
+              "url": "https://meeraind.com/product/covering-machine",
+              "breadcrumb": "https://meeraind.com › product › covering-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 4,
+              "page": 1,
+              "domain": "www.alibaba.com",
+              "title": "Lycra Covering Machine(434)",
+              "description": "The primary function of a Lycra covering machine is to create strong, flexible, and durable seams that maintain the fabric's elasticity. Consider the following ... Read more",
+              "url": "https://www.alibaba.com/showroom/lycra-covering-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Knitting Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 5,
+              "page": 1,
+              "domain": "www.jgtextilemachine.com",
+              "title": "Lycra Covering Machine, Lycra Air Covering Machine",
+              "description": "Jul 14, 2022 — Air covering produces elastic yarn by combining textured yarn with elastane. Both threads are interlaced by running them through an intermingling jet. Read more",
+              "url": "https://www.jgtextilemachine.com/textile-machinery/lycra-covering-machine/index.html",
+              "breadcrumb": "https://www.jgtextilemachine.com › textile-machinery › l..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 6,
+              "page": 1,
+              "domain": "www.ssm.ch",
+              "title": "XENO-AC air covering machine - SSM",
+              "description": "XENO-AC machine mixes filament yarns with elastane, using adjustable settings and a smooth yarn path for consistent and stable results. The XENO-AC is a yarn ... Read more",
+              "url": "https://www.ssm.ch/products/yarn-processing-solutions/air-covering-machines",
+              "breadcrumb": "https://www.ssm.ch › ... › Yarn Processing Solutions"
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "www.jcmachine.com",
+              "title": "Lycra Warping for Narrow Fabric",
+              "description": "Electronically controlled Warping machine for Lycra, Spandex, Latex, Single or Double Covered Elastic Yarn; Different zones like Creel, Pre-tension Roller ... Read more",
+              "url": "https://www.jcmachine.com/lycra-rubber-warping/",
+              "breadcrumb": "https://www.jcmachine.com › lycra-rubber-warping"
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "piotex.in",
+              "title": "Elastic & Lycra Covering Machine | Piotex Textile Company",
+              "description": "JC Elastic and Lycra covering machine is specially designed for fine denier Lycra / Rubber thread covering. It is Easily convertible for single or double ... Read more",
+              "url": "https://piotex.in/elastic-lycra-covering-mc/",
+              "breadcrumb": "https://piotex.in › elastic-lycra-covering-mc"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.tfotwister.com",
+              "title": "Elastic Yarn Covering Machine Manufacturer from Surat",
+              "description": "Elastic Yarn Covering Machine specially designed for fine denier lycra, spandex, latex rubber yarn. This product easily convertible from single to double ... Read more",
+              "url": "https://www.tfotwister.com/covering-machine.html",
+              "breadcrumb": "https://www.tfotwister.com › covering-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "www.da-hu.com",
+              "title": "DAHU 20 heads covering yarn machine for single and ...",
+              "description": "The 20 heads covering machine is driven by electronic inverter, and it also equips with HMI for customer to modify parameter. Read more",
+              "url": "https://www.da-hu.com/en/product/DH-CR-20.html",
+              "breadcrumb": "https://www.da-hu.com › ... › Covering Yarn Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 13,
+              "page": 2,
+              "domain": "en.lanbopm.com",
+              "title": "LB-188B Spandex Yam Double Covering Machine",
+              "description": "Yarn Double Covering Machine is used to make the double covered yarn ( spandex/Lycra yarn covered with polyester yarn ornylon yarn). 48 spindles for each ... Read more",
+              "url": "https://en.lanbopm.com/product/LB-188B-Spandex-Yam-Double-Covering-Machine-32.html",
+              "breadcrumb": "https://en.lanbopm.com › product › LB-188B-Spandex-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "wanzhi.goldsupplier.com",
+              "title": "Yarn Covering Machine from China Manufacturers",
+              "description": "WZ205B Spandex/Lycra Yarn Covering Machine. US$ 15,800 - 21,800 /Set. 1 Set(MOQ). Jari ... Read more",
+              "url": "https://wanzhi.goldsupplier.com/235401-Yarn-Covering-Machine/",
+              "breadcrumb": "https://wanzhi.goldsupplier.com › 235401-Yarn-Coverin..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "nationaltexeng.com",
+              "title": "Elastic / Rubber Covering [Paper Tube Take Up]",
+              "description": "This machine can be geared up with spandex attachment which will enable and makes the machine flexible to run spandex/lycra yarn as well and elastic yarn as ... Read more",
+              "url": "https://nationaltexeng.com/paper-tube-take-up-2/",
+              "breadcrumb": "https://nationaltexeng.com › paper-tube-take-up-2"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "en.sxsfj.com",
+              "title": "CAJ500D Air Covering Yarn Machine - Shaoxing Sanfang",
+              "description": "CAJ500D Air Covering Yarn Machine The machine is used to make spandex covering through the Air jet intermingled,like polyester/Spandex,Nylon/Spandex.",
+              "url": "http://en.sxsfj.com/product/5.html",
+              "breadcrumb": "http://en.sxsfj.com › product"
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.kyangyhe.com",
+              "title": "Yarn Covering Machine Series | Factory-Direct Textile ...",
+              "description": "The yarn covering machine is commonly used in the production of elastic yarns, no matter single covered, double covered, core yarn can use elastic or non- ... Read more",
+              "url": "https://www.kyangyhe.com/en/category/CATE-covering-machine.html",
+              "breadcrumb": "https://www.kyangyhe.com › category › CATE-covering..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.meera.ind.in",
+              "title": "Double Lycra Covering Machine - Meera Industries Limited",
+              "description": "Double Lycra Covering Machine · Machine Type: Automatic · Model Name/Number: CM - 500 · Speed: 16000 RPM · Voltage: 220/380/440 V · Country of Origin: Made in ... Read more",
+              "url": "https://www.meera.ind.in/covering-machine.html",
+              "breadcrumb": "https://www.meera.ind.in › covering-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.youtube.com",
+              "title": "lycra covering machine",
+              "description": "Most popular wholesale low price LYCRA SCY 100D7575 for socks machine #yarn. Zhejiang Leinuo Textile Technology Co., Ltd. Read more",
+              "url": "https://www.youtube.com/playlist?list=PLyIWPz-qpfc8z9HlH0RYxkjWFHNB-fziO",
+              "breadcrumb": "760+ followers"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.errebitextilemachinery.it",
+              "title": "errebi s.r.l. - Covering Machines",
+              "description": "- Pre-draft shaft for Lycra with 1.3 fixed ratio; - Heavy duty rubber pressure rollers; - Possibility to switch from single to double covering easily, on the ... Read more",
+              "url": "https://www.errebitextilemachinery.it/covering.html",
+              "breadcrumb": "https://www.errebitextilemachinery.it › covering"
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.facebook.com",
+              "title": "Meera | High Speed Lycra Covering Machine Technology ...",
+              "description": "High Speed Lycra Covering Machine Technology : Double Covering Suitable Yarn : Polyester, PP, Nylon, Viscose, Elastic, Spandex, Elastane, Glass Yarn.",
+              "url": "https://www.facebook.com/MeeraIndustrieslimited/videos/meera-high-speed-lycra-covering-machine/264773404849453/",
+              "breadcrumb": "9 reactions  ·  5 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "www.chinatexnet.com",
+              "title": "high Production Lycra covering machine for spandex ...",
+              "description": "Specifications: TH-18 Air covering machine( Spandex covering machine), it's a high speed precision type air covering machine, the machine can do spandex ... Read more",
+              "url": "https://www.chinatexnet.com/ChinaSuppliers/215325/Products--high-Production-Lycra-covering-machine-for-spandex-covering---1047490.html",
+              "breadcrumb": "https://www.chinatexnet.com › ChinaSuppliers › Product..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 24,
+              "page": 3,
+              "domain": "www.chinatexnet.com",
+              "title": "high Production Lycra covering machine for spandex ...",
+              "description": "Specifications: TH-18 Air covering machine( Spandex covering machine), it's a high speed precision type air covering machine, the machine can do spandex ... Read more",
+              "url": "https://www.chinatexnet.com/ChinaSuppliers/215325/Products--high-Production-Lycra-covering-machine-for-spandex-covering---1047490.html",
+              "breadcrumb": "https://www.chinatexnet.com › ChinaSuppliers › Product..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 25,
+              "page": 3,
+              "domain": "www.jwellextrusions.com",
+              "title": "Spandex Machine",
+              "description": "JWELL Machinery provides high-end custom spandex machine. With 1000m/min of mechanical speed, bottom mounted type of spin pack, both automatic and ...",
+              "url": "https://www.jwellextrusions.com/products/spandex-machine/",
+              "breadcrumb": "https://www.jwellextrusions.com › products › spandex-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "KY-TCR20 yarn covering machine",
+              "description": "KY-TCR20 Yarn Covering Machine, regardless of the single covered or double covered is easy to operate. Suitable for elastic and non-elastic ...",
+              "url": "https://www.youtube.com/watch?v=lyCTEupP3BQ",
+              "breadcrumb": "3.8K+ views  ·  4 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "www.wotol.com",
+              "title": "Used Covering machines",
+              "description": "Used Covering machines ; 3. 2 Menegatto 1500 Covering · Year(s) : 2015 ; 8 · Ssm DP2 C, Air Jet Lycra Covering · Year(s) : 1999 ; 16. 2 Fadis Air covering · Year(s) : ... Read more",
+              "url": "https://www.wotol.com/cat/covering-machines/yarn-manufacturing-sythetic-cotton/textile-and-leather-machinery/1096",
+              "breadcrumb": "https://www.wotol.com › textile-and-leather-machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.saprumachines.com",
+              "title": "Double Lycra/Rubber Covering (Optional - Slitter/Beam/Roll)",
+              "description": "300% higher productivity compared to traditional flyer-based machines ; 33% space efficiency advantage over competitors; 26% reduction in power consumption ... Read more",
+              "url": "http://www.saprumachines.com/Double-lycra-Covering.html",
+              "breadcrumb": "http://www.saprumachines.com › Double-lycra-Covering"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "Lycra Air Covering Machine",
+              "description": "Lycra Air Covering Machine. Lycra Air Covering Machine. 6K views · 9 years ago ...more. Anang Desai. 723. Subscribe. 32. Share. Save.",
+              "url": "https://www.youtube.com/watch?v=casYxeg9mxc",
+              "breadcrumb": "6K+ views  ·  9 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.alibaba.com",
+              "title": "Lycra Yarn Covering Machine(365)",
+              "description": "Find high-quality lycra yarn covering machines for various applications. Perfect for knit socks, these machines offer durability and efficiency. Shop now!",
+              "url": "https://www.alibaba.com/showroom/lycra-yarn-covering-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Other Textile Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.jgtextilemachine.com",
+              "title": "Lycra Covering Machine - JINGGONG Textile Machine",
+              "description": "Air Jet Covering Machine is used to make air covered yarn, Spandex/Lycra, Polyester yarn, Nylon yarn, Polypropylene yarn air covering with air jet. It also can ... Read more",
+              "url": "https://www.jgtextilemachine.com/textile-machinery/tag/lycra-covering-machine/index.html",
+              "breadcrumb": "https://www.jgtextilemachine.com › tag › lycra-covering..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "www.reddit.com",
+              "title": "Looking for a good machine for sewing stretch lycra.",
+              "description": "I have some experience sewing, but never lycra, I'm looking for some advice on what kind of machine I should get, and what kind of attachments ( ... Read more",
+              "url": "https://www.reddit.com/r/sewing/comments/802rsd/looking_for_a_good_machine_for_sewing_stretch/",
+              "breadcrumb": "9 comments  ·  7 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 34,
+              "page": 4,
+              "domain": "www.indiamart.com",
+              "title": "Covering Machine - Meera Industries Limited",
+              "description": "Covering Twisting Machine for Lycra / Spandex / Rubber / Elastane ; Double Lycra Covering Machine ; Fully Automatic Lab Covering Twisting Machine for Small Lots ... Read more",
+              "url": "https://www.indiamart.com/meeraind/covering-machine.html?srsltid=AfmBOoq3pCXXQwW1i973bs8gAzgJqaTE_gUgERQLF6_Pz_suj73Xne49",
+              "breadcrumb": "https://www.indiamart.com › ... › Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 35,
+              "page": 4,
+              "domain": "en.lanbopm.com",
+              "title": "YARN COVERING MACHINE",
+              "description": "LB-102 AIR COVERING MACHINE. This machine is used to make air covered yarn, Spandex/Lycra, Polyester yarn, Nylon yarn ... Read more",
+              "url": "https://en.lanbopm.com/product/YARN-COVERING-MACHINE-5",
+              "breadcrumb": "https://en.lanbopm.com › product › YARN-COVERING-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "JC Rubber/Lycra Covering Machine",
+              "description": "Universal Rubber/ Lycra / Elastic Double Covering as well as Single Covering Machines are manufactured in india by M/s J C Machine, ...",
+              "url": "https://www.youtube.com/watch?v=9Rv5YVhF-S0",
+              "breadcrumb": "11.3K+ views  ·  12 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "www.lycra.com",
+              "title": "LYCRA® | Get to Know the World's Original Spandex Fiber",
+              "description": "Our recycled and renewable LYCRA® EcoMade fibers deliver the same performance as our standard materials with a lighter touch on the Earth. Read more",
+              "url": "https://www.lycra.com/en",
+              "breadcrumb": "https://www.lycra.com › ..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.alibaba.com",
+              "title": "Spandex Covering Machine(999+)",
+              "description": "Spandex covering machines are primarily used to produce elastic yarns for various industries, including textile, medical, and automotive. There are different ... Read more",
+              "url": "https://www.alibaba.com/showroom/spandex-covering-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Other Textile Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "www.lycra.com",
+              "title": "Customer spotlight: Wei Yi | The LYCRA Company",
+              "description": "(Wei Yi), a member of the LYCRA EXCHANGE ™ program*, was established nearly 16 years ago as a covered yarn producer with 20 sets of Japanese spinning machines. Read more",
+              "url": "https://www.lycra.com/en/business/news/customer-spotlight-wei-yi",
+              "breadcrumb": "https://www.lycra.com › business › news › customer-spot..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "JG668 XD HIGH SPEED AIR COVERING SPANDEX YARN ...",
+              "description": "This machine is used to make elastic or stretch yarns from DTY and spandex yarns. It is a high production and economic elastic yarn machine ...",
+              "url": "https://www.youtube.com/watch?v=svVNbzJnD2A",
+              "breadcrumb": "5K+ views  ·  9 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "www.jgtextilemachine.com",
+              "title": "Double Covering Machine, Elastic & Lycra Covering Machine",
+              "description": "Aug 8, 2022 — Double-covered yarns are created by wrapping two Fulgar polyamide strands around the LYCRA fibre, one in a clockwise direction and the other in an ... Read more",
+              "url": "https://www.jgtextilemachine.com/textile-machinery/double-covering-yarn-covering-machine/index.html",
+              "breadcrumb": "https://www.jgtextilemachine.com › textile-machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.fibre2fashion.com",
+              "title": "RadiciGroup, The LYCRA Company & Triumph advance ...",
+              "description": "Dec 17, 2025 — Radici InNova has developed a patented selective-dissolution recycling process that separates and recovers nylon and LYCRA fibre from mixed ... Read more",
+              "url": "https://www.fibre2fashion.com/news/sustainability-news/radicigroup-the-lycra-company-triumph-advance-circular-fashion-307196-newsdetails.htm",
+              "breadcrumb": "https://www.fibre2fashion.com › sustainability-news › ra..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.indiamart.com",
+              "title": "Lycra - Spandex Yarn Covering Machine",
+              "description": "Manufacturer of Lycra - Spandex Yarn Covering Machine - Lycra Yarn Covering Machine offered by Charlie Machines, Surat, Gujarat.",
+              "url": "https://www.indiamart.com/charlee-engineeringworks/lycra-spandex-yarn-covering-machine.html?srsltid=AfmBOorTDllpffarYPwiBhE0DetCXH5QM1X3KTXqttHodhaxzNy_V158",
+              "breadcrumb": "https://www.indiamart.com › ... › Products & Services"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 45,
+              "page": 5,
+              "domain": "www.facebook.com",
+              "title": "How to feed Lycra through a Tru Knit circular sock machine?",
+              "description": "so i would like to try to crochet some lil covers for them but im more of a knitter and im unsure what direction to take. i was thinking of just ... Read more",
+              "url": "https://www.facebook.com/groups/6968150386532436/posts/8425095374171256/",
+              "breadcrumb": "10+ comments  ·  1 year ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 46,
+              "page": 5,
+              "domain": "www.lycra.com",
+              "title": "LYCRA FitSense® Print Technology",
+              "description": "Touch device users, explore by touch or with swipe gestures. Open the search ... REDUCE FABRIC USAGE. Screen-printed technology means no extra layers or ... Read more",
+              "url": "https://www.lycra.com/en/business/search-technologies/lycra-fitsense-print-technology",
+              "breadcrumb": "https://www.lycra.com › business › search-technologies"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "KY-160 Rubber Covering Machine",
+              "description": "KY-160 Rubber Covering Machine can used for single coverd or double coverd apply on spandex as the core yarn, polyester, nylon, ...",
+              "url": "https://www.youtube.com/watch?v=b81Aiw1773s",
+              "breadcrumb": "3.7K+ views  ·  3 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "www.instructables.com",
+              "title": "How to Sew Spandex : 14 Steps (with Pictures)",
+              "description": "In this instructable, I'm going to show you how to construct a one-piece spandex superhero costume using a home sewing machine. Read more",
+              "url": "https://www.instructables.com/How-to-Sew-Spandex/",
+              "breadcrumb": "https://www.instructables.com › ... › Costumes & Cosplay"
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "ntptw.com.tw",
+              "title": "Machine introduction - NEW TOP POWER ENTERPRISE ...",
+              "description": "... of yarn covered products / Spandex yarn for production of yarn covered products / Air-covered yarn for denim / Professional yarn processing andsales.",
+              "url": "https://ntptw.com.tw/en/Machine/",
+              "breadcrumb": "https://ntptw.com.tw › ... › Machine introduction"
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "sewingmastery.com",
+              "title": "10 Tips to Successfully Sew on Lycra or Spandex Fabric",
+              "description": "Sep 17, 2020 — Thread. I am a fan of polyester thread when sewing on Lycra fabric. It is strong and colorfast. It also works well in sewing machines, sergers ... Read more",
+              "url": "https://sewingmastery.com/10-tips-to-successfully-sew-on-lycra-or-spandex-fabric/",
+              "breadcrumb": "https://sewingmastery.com › Tips"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.threadsmagazine.com",
+              "title": "Cotton/Lycra Knits: Comfort Meets Classic Design - Threads",
+              "description": "The serger gives a clean finish to the inside of the garment and builds in the stretch and recovery that knit seams require. If you use a regular sewing machine ... Read more",
+              "url": "https://www.threadsmagazine.com/project-guides/sewing-with-knits/cotton-lycra-knits-comfort-meets-classic-design",
+              "breadcrumb": "https://www.threadsmagazine.com › sewing-with-knits"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "cosplay.com",
+              "title": "Sewing machine suited for sewing lycra fabric",
+              "description": "To sew with lycra properly, you must use a special kind of needle called a stretch needle. A stretch needle is meant for high-resistance/high-elastic knits. Read more",
+              "url": "https://cosplay.com/archive/thread/9mmkxl/sewing-machine-suited-for-sewing-lycra-fabric",
+              "breadcrumb": "https://cosplay.com › archive › thread › sewing-machin..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "patents.google.com",
+              "title": "US20080092511A1 - Double covered lycra soft yarn",
+              "description": "In addition, due to the structural characteristics of the elastic thread feeding device of common sock knitting machines, it is difficult to design knitting ... Read more",
+              "url": "https://patents.google.com/patent/US20080092511A1/en",
+              "breadcrumb": "https://patents.google.com › patent"
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "sewbeautifulmag.blogspot.com",
+              "title": "Tips & Tricks for Sewing with Lycra Knit",
+              "description": "Jul 11, 2013 — Lycra fabrics will shrink. Swimwear fabrics should be hand washed or machine washed in the gentle cycle in cool temperatures and hung to dry. • ... Read more",
+              "url": "http://sewbeautifulmag.blogspot.com/2013/07/tips-tricks-for-sewing-with-lycra-knit.html",
+              "breadcrumb": "http://sewbeautifulmag.blogspot.com › 2013/07 › tips-t..."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

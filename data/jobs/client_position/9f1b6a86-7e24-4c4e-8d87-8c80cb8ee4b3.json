@@ -1,0 +1,43 @@
+{
+  "jobId": "9f1b6a86-7e24-4c4e-8d87-8c80cb8ee4b3",
+  "status": "CANCELLED",
+  "clientCode": "01",
+  "selectedDomain": "www.meeraind.com",
+  "createdAt": "2025-12-26T10:17:33.166Z",
+  "startedAt": "2025-12-26T10:17:33.172Z",
+  "updatedAt": "2025-12-26T11:26:07.599Z",
+  "finishedAt": null,
+  "stage": "METRICS_IN",
+  "totalKeywords": 48,
+  "metrics": {
+    "IN": {
+      "done": 0,
+      "total": 0,
+      "errors": 0
+    },
+    "GL": {
+      "done": 0,
+      "total": 0,
+      "errors": 0
+    }
+  },
+  "serp": {
+    "IN": {
+      "done": 0,
+      "total": 0,
+      "errors": 0,
+      "empty": 0
+    },
+    "GL": {
+      "done": 0,
+      "total": 0,
+      "errors": 0,
+      "empty": 0
+    }
+  },
+  "progressPercent": 5,
+  "etaSeconds": null,
+  "lastLogs": [],
+  "errors": [],
+  "heartbeat": 130
+}

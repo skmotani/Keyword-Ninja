@@ -1,0 +1,330 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0848 sec.",
+  "cost": 0.0264,
+  "tasks_count": 11,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261755-1256-0066-0000-e921dd8420bb",
+      "status_code": 20100,
+      "status_message": "Task Created.",
+      "time": "0.0000 sec.",
+      "cost": 0.0024,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Rope Twister",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "8d25f611-7551-49cd-afe2-75546accd744"
+      },
+      "result": null
+    },
+    {
+      "id": "12261755-1256-0066-0000-201b6d4cbc64",
+      "status_code": 20100,
+      "status_message": "Task Created.",
+      "time": "0.0000 sec.",
+      "cost": 0.0024,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Lycra Covering Machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "8d25f611-7551-49cd-afe2-75546accd744"
+      },
+      "result": null
+    },
+    {
+      "id": "12261755-1256-0066-0000-f597e5bee08f",
+      "status_code": 20100,
+      "status_message": "Task Created.",
+      "time": "0.0000 sec.",
+      "cost": 0.0024,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "TFO Twisting Machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "8d25f611-7551-49cd-afe2-75546accd744"
+      },
+      "result": null
+    },
+    {
+      "id": "12261755-1256-0066-0000-89724ab39f57",
+      "status_code": 20100,
+      "status_message": "Task Created.",
+      "time": "0.0000 sec.",
+      "cost": 0.0024,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Cone To Cone Winder",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "8d25f611-7551-49cd-afe2-75546accd744"
+      },
+      "result": null
+    },
+    {
+      "id": "12261755-1256-0066-0000-4766496641c0",
+      "status_code": 20100,
+      "status_message": "Task Created.",
+      "time": "0.0000 sec.",
+      "cost": 0.0024,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Textile Twister",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "8d25f611-7551-49cd-afe2-75546accd744"
+      },
+      "result": null
+    },
+    {
+      "id": "12261755-1256-0066-0000-b31aaebc7ed5",
+      "status_code": 20100,
+      "status_message": "Task Created.",
+      "time": "0.0000 sec.",
+      "cost": 0.0024,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Two For One Twisting Machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "8d25f611-7551-49cd-afe2-75546accd744"
+      },
+      "result": null
+    },
+    {
+      "id": "12261755-1256-0066-0000-694393171484",
+      "status_code": 20100,
+      "status_message": "Task Created.",
+      "time": "0.0000 sec.",
+      "cost": 0.0024,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "tfo machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "8d25f611-7551-49cd-afe2-75546accd744"
+      },
+      "result": null
+    },
+    {
+      "id": "12261755-1256-0066-0000-2a7cb89dc003",
+      "status_code": 20100,
+      "status_message": "Task Created.",
+      "time": "0.0000 sec.",
+      "cost": 0.0024,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Assembly winder",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "8d25f611-7551-49cd-afe2-75546accd744"
+      },
+      "result": null
+    },
+    {
+      "id": "12261755-1256-0066-0000-5c280c050ea5",
+      "status_code": 20100,
+      "status_message": "Task Created.",
+      "time": "0.0000 sec.",
+      "cost": 0.0024,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "covering machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "8d25f611-7551-49cd-afe2-75546accd744"
+      },
+      "result": null
+    },
+    {
+      "id": "12261755-1256-0066-0000-1a9ac111e4c4",
+      "status_code": 20100,
+      "status_message": "Task Created.",
+      "time": "0.0000 sec.",
+      "cost": 0.0024,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "jari covering machine surat",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "8d25f611-7551-49cd-afe2-75546accd744"
+      },
+      "result": null
+    },
+    {
+      "id": "12261755-1256-0066-0000-7aa0819a5c3f",
+      "status_code": 20100,
+      "status_message": "Task Created.",
+      "time": "0.0180 sec.",
+      "cost": 0.0024,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "textile doubling machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "8d25f611-7551-49cd-afe2-75546accd744"
+      },
+      "result": null
+    }
+  ]
+}

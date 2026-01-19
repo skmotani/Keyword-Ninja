@@ -1,0 +1,754 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0598 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-71e57643df38",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0522 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-71e57643df38"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "TFO Twisting Machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "TFO Twisting Machine",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=TFO%20Twisting%20Machine&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:59:20 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+tfo+twisting+machine&hl=en&gl=IN&shoprs=GBIqFHRmbyB0d2lzdGluZyBtYWNoaW5lMgkIEhIFUHJpY2VgAQ&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKAF6BAggEDU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+tfo+twisting+machine&hl=en&gl=IN&shoprs=GBIqFHRmbyB0d2lzdGluZyBtYWNoaW5lMgsIEhIHUmV2aWV3c2AB&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKAJ6BAggEDY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=tfo+twisting+machine+for+sale&hl=en&gl=IN&shoprs=GBIqFHRmbyB0d2lzdGluZyBtYWNoaW5lMgwIEhIIRm9yIFNhbGVgAQ&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKAN6BAggEDc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+tfo+twisting+machine&hl=en&gl=IN&shoprs=GBIqFHRmbyB0d2lzdGluZyBtYWNoaW5lMgoIEhIGT25saW5lYAE&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKAR6BAggEDg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+tfo+twisting+machine&hl=en&gl=IN&shoprs=GBIqFHRmbyB0d2lzdGluZyBtYWNoaW5lMgcIEhIDQnV5YAE&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKAV6BAggEDk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Rent",
+                "url": "https://www.google.com/search?q=rent+tfo+twisting+machine&hl=en&gl=IN&shoprs=GBIqFHRmbyB0d2lzdGluZyBtYWNoaW5lMggIEhIEUmVudGAB&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKAZ6BAggEDo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Welding & Soldering Tools",
+                "url": "https://www.google.com/search?q=welding+%26+soldering+tools+tfo+twisting+machine&hl=en&gl=IN&shoprs=GAkqFHRmbyB0d2lzdGluZyBtYWNoaW5lMh0ICRIZV2VsZGluZyAmIFNvbGRlcmluZyBUb29sc2AB&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKAd6BAggEDs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Usa",
+                "url": "https://www.google.com/search?q=usa+tfo+twisting+machine&hl=en&gl=IN&shoprs=GBIqFHRmbyB0d2lzdGluZyBtYWNoaW5lMgcIEhIDVXNhYAE&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKAh6BAggEDw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Size",
+                "url": "https://www.google.com/search?q=size+tfo+twisting+machine&hl=en&gl=IN&shoprs=GBIqFHRmbyB0d2lzdGluZyBtYWNoaW5lMggIEhIEU2l6ZWAB&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKAl6BAggED0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Conveyors",
+                "url": "https://www.google.com/search?q=conveyors+tfo+twisting+machine&hl=en&gl=IN&shoprs=GAkqFHRmbyB0d2lzdGluZyBtYWNoaW5lMg0ICRIJQ29udmV5b3JzYAE&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKAp6BAggED4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tools",
+                "url": "https://www.google.com/search?q=tools+tfo+twisting+machine&hl=en&gl=IN&shoprs=GAkqFHRmbyB0d2lzdGluZyBtYWNoaW5lMgkICRIFVG9vbHNgAQ&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKAt6BAggED8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Black",
+                "url": "https://www.google.com/search?q=black+tfo+twisting+machine&hl=en&gl=IN&shoprs=GAEqFHRmbyB0d2lzdGluZyBtYWNoaW5lMhcIARIFQmxhY2s6DAjYjPUBEOWK9QEwC2AB&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKAx6BAggEEA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹25,000",
+                "url": "https://www.google.com/search?q=TFO+Twisting+Machine+under+25000&hl=en&gl=IN&shoprs=Eg0SCxEAAADAdkgXQhgBGAUqFHRmbyB0d2lzdGluZyBtYWNoaW5lMigIBRIPVW5kZXIg4oK5MjUsMDAwGAIiDRILEQAAAMB2SBdCGAEqAhgBYAE&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKA16BAggEEE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Electrical Motors",
+                "url": "https://www.google.com/search?q=electrical+motors+tfo+twisting+machine&hl=en&gl=IN&shoprs=GAkqFHRmbyB0d2lzdGluZyBtYWNoaW5lMhUICRIRRWxlY3RyaWNhbCBNb3RvcnNgAQ&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKA56BAggEEI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Blue",
+                "url": "https://www.google.com/search?q=blue+tfo+twisting+machine&hl=en&gl=IN&shoprs=GAEqFHRmbyB0d2lzdGluZyBtYWNoaW5lMhYIARIEQmx1ZToMCNiM9QEQ5or1ATALYAE&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKA96BAggEEM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "White",
+                "url": "https://www.google.com/search?q=white+tfo+twisting+machine&hl=en&gl=IN&shoprs=GAEqFHRmbyB0d2lzdGluZyBtYWNoaW5lMhcIARIFV2hpdGU6DAjYjPUBEKGL9QEwC2AB&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKBB6BAggEEQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Green",
+                "url": "https://www.google.com/search?q=green+tfo+twisting+machine&hl=en&gl=IN&shoprs=GAEqFHRmbyB0d2lzdGluZyBtYWNoaW5lMhcIARIFR3JlZW46DAjYjPUBEOiK9QEwC2AB&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKBF6BAggEEU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tradeindia.com",
+                "url": "https://www.google.com/search?q=tradeindia.com+tfo+twisting+machine&hl=en&gl=IN&shoprs=GAIqFHRmbyB0d2lzdGluZyBtYWNoaW5lMhIIAhIOVHJhZGVpbmRpYS5jb21gAQ&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKBJ6BAggEEY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Alibaba.com",
+                "url": "https://www.google.com/search?q=alibaba.com+tfo+twisting+machine&hl=en&gl=IN&shoprs=GAIqFHRmbyB0d2lzdGluZyBtYWNoaW5lMg8IAhILQWxpYmFiYS5jb21gAQ&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKBN6BAggEEc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Made-in-China.com",
+                "url": "https://www.google.com/search?q=made-in-china.com+tfo+twisting+machine&hl=en&gl=IN&shoprs=GAIqFHRmbyB0d2lzdGluZyBtYWNoaW5lMhUIAhIRTWFkZS1pbi1DaGluYS5jb21gAQ&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKBR6BAggEEg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "IndiaMART",
+                "url": "https://www.google.com/search?q=indiamart+tfo+twisting+machine&hl=en&gl=IN&shoprs=GAIqFHRmbyB0d2lzdGluZyBtYWNoaW5lMg0IAhIJSW5kaWFNQVJUYAE&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKBV6BAggEEk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Dial4Trade",
+                "url": "https://www.google.com/search?q=dial4trade+tfo+twisting+machine&hl=en&gl=IN&shoprs=GAIqFHRmbyB0d2lzdGluZyBtYWNoaW5lMg4IAhIKRGlhbDRUcmFkZWAB&sa=X&ved=2ahUKEwi414rMz9uRAxVJH7kGHbwRAqsQip4GKBZ6BAggEEo",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "ai_overview",
+            "popular_products",
+            "organic",
+            "video",
+            "images",
+            "related_searches"
+          ],
+          "se_results_count": 124000,
+          "pages_count": 5,
+          "items_count": 48,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 3,
+              "page": 1,
+              "domain": "www.tfotwister.com",
+              "title": "Double Deck TFO Twister Manufacturer from Surat",
+              "description": "Cotton Yarn TFO Twister · Machine Type: Automatic · Power Consumption: 6-45 HP · Brand: JC Machine · Application: Textile · No. of Spindle: 16 to 260 · Spindle Dia: ... Read more",
+              "url": "https://www.tfotwister.com/tfo-twisting-machine.html",
+              "breadcrumb": "https://www.tfotwister.com › tfo-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 4,
+              "page": 1,
+              "domain": "www.rifatextile.com",
+              "title": "What Is a TFO Machine?",
+              "description": "A TFO (Two-for-One) machine is a device that, driven by a motor, uses friction and tension control to twist and stretch two or more yarns within a certain ... Read more",
+              "url": "https://www.rifatextile.com/what-is-a-tfo-machine.html",
+              "breadcrumb": "https://www.rifatextile.com › Company › News"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 5,
+              "page": 1,
+              "domain": "www.alconetex.com",
+              "title": "TFO Machine & Yarn Twisting Machine",
+              "description": "A TFO Machine is a special type of twisting machine designed to produce twisted yarn efficiently. It gets its name \"Two-for-One\" because it can twist two ... Read more",
+              "url": "https://www.alconetex.com/products.php",
+              "breadcrumb": "https://www.alconetex.com › products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 6,
+              "page": 1,
+              "domain": "www.weavetech.com",
+              "title": "Spun Yarn TFO Twister Machine - Weavetech",
+              "description": "Weavech provides you world largest range of Spun yarn twisters from wide range of twisting machine, tfo machine at best prices.",
+              "url": "https://www.weavetech.com/twisting-machines/spun-yarn-tfo-twister-machine/",
+              "breadcrumb": "https://www.weavetech.com › Twisting Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "saviospa.com",
+              "title": "Yarn twisting machines - Savio",
+              "description": "Savio offers yarn twisting machines that enhance the strength and twisting characteristics required to expand the performance of the end product. Read more",
+              "url": "https://saviospa.com/en/yarn-spinning/two-for-one-twisting-machines",
+              "breadcrumb": "https://saviospa.com › Home › Yarn spinning"
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Cotton TFO Machine at Best Price in India",
+              "description": "Single Deck Cotton Tfo Machine, For Yarn Twisting · Single Deck Cotton Tfo Machine, For Yarn Twisting. ₹ 3,850/Piece. Machine Type: Automatic. Usage/Application ... Read more",
+              "url": "https://dir.indiamart.com/impcat/cotton-tfo-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Spinning Machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "lntsufin.com",
+              "title": "TFO Yarn Twisting Machine",
+              "description": "Buy online TFO Yarn Twisting Machine, Yarn Mfg. & Processing Machines in bulk from manufacturers | Request Quotations and get financing.",
+              "url": "https://lntsufin.com/catalog/textile-machinery-spares-accessories/yarn-manufacturing-processing-machines/tfo-yarn-twisting-machine/",
+              "breadcrumb": "https://lntsufin.com › textile-machinery-spares-accessories"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "www.prtexpro.in",
+              "title": "PR Texpro Private Limited - Manufacturer of Yarn Twisting ...",
+              "description": "SD E Series Spun Yarn TFO Twister · Rs 3,751 / Piece. Operation Mode: Semi-Automatic; Usage/Application: Yarn Twisting. Get Best Price. Read more",
+              "url": "https://www.prtexpro.in/",
+              "breadcrumb": "https://www.prtexpro.in"
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "www.kristeel.com",
+              "title": "Top Textile Machinery Manufacturers and Suppliers in India",
+              "description": "Majority of FIBC Manufacturers in India have our KRISLON T.F.O. Twisting machines, which are suitable from Denier range 500 D to 5000 D are in operation. Read more",
+              "url": "https://www.kristeel.com/textile-machinery/?srsltid=AfmBOoqXyLZya0cyOmtn9ViqoYNliZrQAHZ254_VJ-AiXM_l-nBqqkrd",
+              "breadcrumb": "https://www.kristeel.com › textile-machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "www.kimtextilemachine.com",
+              "title": "High Speed TFO Textile Twister Manufacturer from Surat",
+              "description": "Power Consumption: 25 kW · Usage/Application: For Twisting Yarn · Machine Type: Automatic · Weight: 6600 kg · Spinning Method: Ring Spinning · Gauge: 450-550 mm. Read more",
+              "url": "https://www.kimtextilemachine.com/tfo-twister.html",
+              "breadcrumb": "https://www.kimtextilemachine.com › tfo-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.indiamart.com",
+              "title": "TFO Twisting Machine - Double Deck ...",
+              "description": "Manufacturer of TFO Twisting Machine - Double Deck TFO Twister, Filament Yarn TFO Twister, Blended Yarn TFO Twister and Cotton Yarn TFO Twister offered by ...",
+              "url": "https://www.indiamart.com/jc-texmach/tfo-twisting-machine.html",
+              "breadcrumb": "https://www.indiamart.com › ... › Products & Services"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.weavetech.com",
+              "title": "What Is a TFO Twister Machine? | Filament Yarn Twisting ...",
+              "description": "The TFO Twister Machine stands out as a productive textile device built to twist yarns—filament yarns. “TFO” means “Two-for-One,” pointing to the machine's ... Read more",
+              "url": "https://www.weavetech.com/tfo-twister-machine-filament-yarn-twisting/",
+              "breadcrumb": "https://www.weavetech.com › tfo-twister-machine-filam..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.tradeindia.com",
+              "title": "Metal 22.5Hp Tfo Yarn Twisting Machine",
+              "description": "Metal 22.5hp Tfo Yarn Twisting Machine · Price Trend: 500000.00 - 3000000.00 INR / Unit · Product Specifications · Company Details · Classic Machine · Related ... Read more",
+              "url": "https://www.tradeindia.com/products/22-5hp-tfo-yarn-twisting-machine-c7466390.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › yarn twisting machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.aalidhratexpro.in",
+              "title": "TFO Cotton Yarn Twister Machine",
+              "description": "TFO Cotton Yarn Twister Machine. 1100000 INR / Unit. share. TFO Cotton Yarn Twister Machine. Minimum Order Quantity : 1 Unit. Delivery Time : 45 Days. Material ... Read more",
+              "url": "https://www.aalidhratexpro.in/tfo-cotton-yarn-twister-machine-7535689.html",
+              "breadcrumb": "https://www.aalidhratexpro.in › tfo-cotton-yarn-twister-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.classicmachine.in",
+              "title": "Yarn Twister Machine Manufacturer from Surat",
+              "description": "Being a customer oriented organization, we are deeply engaged in offering a wide array of TFO Twisting Machine. Price Range:100000-2500000 Rs./Piece. know more. Read more",
+              "url": "https://www.classicmachine.in/twisting-machines.html",
+              "breadcrumb": "https://www.classicmachine.in › twisting-machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.facebook.com",
+              "title": "Twisting machine for jari Jari TFO machine | Sepson Textile ...",
+              "description": "Twisting machine for jari Jari TFO machine.",
+              "url": "https://www.facebook.com/sepsontexeng/videos/twisting-machine-for-jarijari-tfo-machine/2848913555401917/",
+              "breadcrumb": "30+ reactions  ·  3 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "www.fibre2fashion.com",
+              "title": "Study on Two-For-One Twisting (TFO)",
+              "description": "Twisting improves yarn strength, evenness, and durability by combining single yarns using TFO twisters. A study of 100 Indian mills showed enhanced ... Read more",
+              "url": "https://www.fibre2fashion.com/industry-article/1449/study-on-two-for-one-twisting",
+              "breadcrumb": "https://www.fibre2fashion.com › industry-article › study-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "www.tfotwister.com",
+              "title": "TFO Twisting Machine",
+              "description": "We are engaged in manufacturing, and exporting TFO Twisting Machine, Warping Machine, Winder Machine, Covering Machine which are widely applicable in the ... Read more",
+              "url": "https://www.tfotwister.com/",
+              "breadcrumb": "https://www.tfotwister.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 25,
+              "page": 3,
+              "domain": "www.alibaba.com",
+              "title": "TFO Twisting Machine",
+              "description": "Discover TFO twisting machines with ring spinning tech, 50-2500 T/m twist range & ISO9001 certification. Ideal for polyester, cotton, nylon yarn production.",
+              "url": "https://www.alibaba.com/showroom/tfo-twisting-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Spinning Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "www.justdial.com",
+              "title": "Top Tfo Twisting Machine Products in Kolhapur",
+              "description": "The primary components of a Tfo twisting machine include the twisting mechanism, control panel, and feeding system. The twisting mechanism is responsible for ... Read more",
+              "url": "https://www.justdial.com/jdmart/Kolhapur/Tfo-Twisting-Machine/jdm-1233636-ent-6-22918759",
+              "breadcrumb": "https://www.justdial.com › jdm-1233636-ent-6-22918759"
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "piotex.in",
+              "title": "Spun Yarn TFO Twister | Single & Double Deck ...",
+              "description": "Yarn TFO Twister Features: TFO Twisting machines are suitable for Pure Cotton, Spun Polyester, Blends & PVT Yarn with a 7wide range for TPI selection. Read more",
+              "url": "https://piotex.in/spun-yarn-tfo-twister/",
+              "breadcrumb": "https://piotex.in › spun-yarn-tfo-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.weavetech.com",
+              "title": "What is Two for one twister (TFO) ? - Weavetech",
+              "description": "The term TFO stands for Two-for-One, indicating that two turns are inserted for each turn of the twisting element. Read more",
+              "url": "https://www.weavetech.com/what-is-two-for-one-twister-tfo/",
+              "breadcrumb": "https://www.weavetech.com › what-is-two-for-one-twist..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.prtexpro.in",
+              "title": "Yarn Twisting Machine - SD E Series Spun Yarn TFO ...",
+              "description": "Spun Yarn Tfo Twister Machine produce balanced and quality embroidery thread. Individual yarn sensors and cutters provided to avoid any wastage or defective ... Read more",
+              "url": "https://www.prtexpro.in/yarn-twisting-machine.html",
+              "breadcrumb": "https://www.prtexpro.in › yarn-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.jcmachine.com",
+              "title": "TFO Twister",
+              "description": "Cotton / Spun Yarn · Compact TFO · Single Deck · Double Deck Advanced · Double Deck Standard · Double Deck ECO Spun TFO. Filament Yarn. Filament Yarn. High Take ... Read more",
+              "url": "https://www.jcmachine.com/tfo-twister/",
+              "breadcrumb": "https://www.jcmachine.com › tfo-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.indiamart.com",
+              "title": "Tfo Machine - Arun Textile Engineers Private Limited",
+              "description": "Synthetic Yarn Tfo Twister Machine ; Production Capacity: 300 m/min ; Capacity: 608 Spindle ; Usage/Application: Yarn Twisting ; Material: Mild Steel. Read more",
+              "url": "https://www.indiamart.com/aruntextileengineers/tfo-machine.html?srsltid=AfmBOorNShmVJ9_dm0TE_mdPmFGUVrTlwJ5If03yQ-16saLYy6TxDxPy",
+              "breadcrumb": "https://www.indiamart.com › ... › Our Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "www.facebook.com",
+              "title": "Meet the TFO Twisting Machine, a vital asset in the textile ...",
+              "description": "The TFO machine was retrofitted with Variable Frequency Drives (VFDs). This upgrade optimized performance, enabling precise speed control, smooth starts, and ...",
+              "url": "https://www.facebook.com/AnubhavTechnoSolutions/videos/meet-the-tfo-twisting-machine-a-vital-asset-in-the-textile-industry-for-producin/418883391132615/",
+              "breadcrumb": "5 reactions  ·  1 year ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "Cotton TFO Twister by Twinkle Industries, Surat",
+              "description": "... We are a reckoned manufacturer and supplier of Textile Machinery ... Cotton TFO Twister by Twinkle Industries, Surat.",
+              "url": "https://www.youtube.com/watch?v=vUcnXNrYw1w",
+              "breadcrumb": "23.2K+ views  ·  12 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 34,
+              "page": 3,
+              "domain": "www.textileinfomedia.com",
+              "title": "TFO machine Manufacturers, Supplier & Importers",
+              "description": "Find here TFO machine manufacturer, suppliers & retailers. Two for One twisting machine manufacturer & importer companies.",
+              "url": "https://www.textileinfomedia.com/tfo-machine.htm",
+              "breadcrumb": "https://www.textileinfomedia.com › textile machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "www.paramountlooms.com",
+              "title": "TFO Twister Machine in Gujarat",
+              "description": "Extremely Low Power & High Economical for processing fine deniers at high- twists. Instantly change between Roll & Takeup with optional Traverse Gear Box. Read more",
+              "url": "https://www.paramountlooms.com/portfolio/tfo-textile-machine/",
+              "breadcrumb": "https://www.paramountlooms.com › portfolio › tfo-text..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "meeraind.com",
+              "title": "Spun Staple Yarn Twister: Two For One TFO Technology",
+              "description": "Two-For-One (TFO) spun twisting inserts two twists for every spindle revolution, letting you ply singles into balanced yarn at higher speed. Read more",
+              "url": "https://meeraind.com/product/spun-staple-yarn-twister",
+              "breadcrumb": "https://meeraind.com › product › spun-staple-yarn-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "jxtwisting.com",
+              "title": "How does a TFO twisting machine work",
+              "description": "12 May 2024 — A TFO twisting machine works by feeding multiple yarn strands, applying tension, guiding the yarn, rotating spindles in opposite directions to create twist. Read more",
+              "url": "https://jxtwisting.com/?list_4/165.html",
+              "breadcrumb": "https://jxtwisting.com › list_4"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "arihanttextiletraders.com",
+              "title": "TFO machine manufacturer & exporters",
+              "description": "A Two-For-One Twister is responsible for twisting two or more yarns to fulfill the requisites and retrieve the desired fabric. Achieving knot-free elongated ... Read more",
+              "url": "https://arihanttextiletraders.com/TFO-machine.php",
+              "breadcrumb": "https://arihanttextiletraders.com › TFO-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.made-in-china.com",
+              "title": "Tfo Twisting Machine Suppliers",
+              "description": "SHENGZHOU MAPAI MACHINERY CO., LTD. Follow · Low Price Tfo Twisting Machine Parts Twister Spindle Tension Parts for Big Package Twist Machine. US$22,500.00 /Set. Read more",
+              "url": "https://www.made-in-china.com/manufacturers/tfo-twisting-machine.html",
+              "breadcrumb": "https://www.made-in-china.com › manufacturers › tfo-t..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "TFO Twister Machine By Shyam Engineering Works (S ...",
+              "description": "We are one of the renowned manufacturers and suppliers of an extensive range of Textile Industrial Equipment., TFo machinery, ...",
+              "url": "https://www.youtube.com/watch?v=Mu50tGxAl3o",
+              "breadcrumb": "8.7K+ views  ·  12 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.facebook.com",
+              "title": "We manufacture twisting machines like polyester tfo, crepe tfo ...",
+              "description": "We manufacture twisting machines like polyester tfo, crepe tfo, cotton tfo, servo cops winder, doubling tfo. We are currently exporting to Pakistan, Indonesia, ...",
+              "url": "https://www.facebook.com/AakashTextileEngineersLLP/videos/we-manufacture-twisting-machines-like-polyester-tfo-crepe-tfo-cotton-tfo-servo-c/379496556607890/",
+              "breadcrumb": "90+ reactions  ·  5 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "Saurer CompactTwister two-for-one twisting machine",
+              "description": "The CompactTwister from Saurer has been established in the market for over 25 years. The latest generation, the series 8, once again sets ...",
+              "url": "https://www.youtube.com/watch?v=n6G8bb76YDQ",
+              "breadcrumb": "32.1K+ views  ·  5 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "www.weavetech.com",
+              "title": "Filament Yarn TFO Twister Machine - Weavetech",
+              "description": "Our Twister Machines are built for superior performance, featuring advanced technology that ensures optimal yarn quality and productivity. With customizable ... Read more",
+              "url": "https://www.weavetech.com/twisting-machines/filament-yarn-tfo-twister-machine/",
+              "breadcrumb": "https://www.weavetech.com › Twisting Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 45,
+              "page": 4,
+              "domain": "www.justdial.com",
+              "title": "Top Tfo Twisting Machine Manufacturers in Hyderabad",
+              "description": "TFO, or \"Two-for-One,\" twisting machines are designed to twist two strands of yarn together, effectively doubling the yarn's strength and enhancing its texture. Read more",
+              "url": "https://www.justdial.com/Hyderabad/TFO-Twisting-Machine-Manufacturers/nct-11299686",
+              "breadcrumb": "https://www.justdial.com › Hyderabad › nct-11299686"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "www.muratec.net",
+              "title": "MURATEC,MURATA MACHINERY, LTD.",
+              "description": "MURATEC,MURATA MACHINERY, LTD. · Logistics & Automation · Clean FA · Machine Tools · Sheet Metal Machinery · Textile Machinery · Communication Equipment · Advanced ... Read more",
+              "url": "https://www.muratec.net/",
+              "breadcrumb": "https://www.muratec.net"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "www.aajjo.com",
+              "title": "MS TFO Machine, For Yarn Twisting Price in Surat, Gujarat",
+              "description": "Capacity : 1500 Set/ Month. Dimensions : 60 Inch. Frequency : 50 Hz. Model Name/Number : Super Excel Plus. Contact Supplier. Bullet Shuttle Loom Machine, ... Read more",
+              "url": "https://www.aajjo.com/product/ms-tfo-machine-for-yarn-twisting-in-surat-paramount-looms-private-limited",
+              "breadcrumb": "https://www.aajjo.com › ... › Multi Spindle Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.prtexpro.in",
+              "title": "Tfo Machine - Paper Tube 110 Mm Pot Filament Yarn ...",
+              "description": "TFO Twister Machine Single Cotton Yarn · Material: Mild Steel · Usage/Application: Yarn Twisting · Power Consumption: 6-45 HP · Machine Type: Semi-Automatic ... Read more",
+              "url": "https://www.prtexpro.in/tfo-machine.html",
+              "breadcrumb": "https://www.prtexpro.in › tfo-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "dir.indiamart.com",
+              "title": "Two For One Twisting Machine in Coimbatore, Tamil Nadu",
+              "description": "Veejay Lakshmi is the leading manufacturer of Two-for-One (TFO) Twisters in India. With the wide range of robust models, Veejay sold more than 5000 Twisters ... Read more",
+              "url": "https://dir.indiamart.com/coimbatore/two-for-one-twisting-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › coimbatore › two-for-one-twi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.laxmitexengg.in",
+              "title": "TFO Twister For Cotton & Spun Yarn - Laxmi Industries",
+              "description": "Fancy Yarn Machinery · Jari Covering Machine · S & Z Twisting Machine · Jacquard Machine · Embroidery Yarn / Thread Project · Home · About us · Sales & Services ... Read more",
+              "url": "https://www.laxmitexengg.in/twisting-solutions.html",
+              "breadcrumb": "https://www.laxmitexengg.in › twisting-solutions"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "www.jcmachine.com",
+              "title": "Advanced TFO Twister",
+              "description": "Light weight & contolled movement of flyer ensures easy unwinding of yarn from feed bobbin. Suitable for single & ply twisting. Technical Specifications : Silk ... Read more",
+              "url": "https://www.jcmachine.com/advanced-tfo-twister/",
+              "breadcrumb": "https://www.jcmachine.com › advanced-tfo-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.facebook.com",
+              "title": "For yarn twisting department ​ H8 D42 *​TFO Twisting ...",
+              "description": "For yarn twisting department H8 D42 *TFO Twisting Machine *Crepe Twisting machine *Fancy yarn twisting machine *Doubling and Twisting machine *Primary twisting ...",
+              "url": "https://www.facebook.com/jxosmtrade/videos/for-yarn-twisting-department-h8-d42tfo-twisting-machinecrepe-twisting-machinefan/372820435181916/",
+              "breadcrumb": "7 reactions  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.jxtwisting.com",
+              "title": "What is the purpose of a TFO twisting machine",
+              "description": "12 May 2024 — The main purpose of a TFO twisting machine is to increase the strength and stability of the yarn by adding twist to it. Twisting involves the ... Read more",
+              "url": "http://www.jxtwisting.com/?list_4/164.html",
+              "breadcrumb": "http://www.jxtwisting.com › list_4"
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "EMBROIDERY & SWING THREAD TFO / TFO TWISTER FOR ...",
+              "description": "Sepson Textile Machines is an ISO 9001:2015 Certified company who believes in “Commitment to Quality and Service”.",
+              "url": "https://www.youtube.com/watch?v=LBZ7ZpWdKdk",
+              "breadcrumb": "930+ views  ·  1 year ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 48,
+              "rank_absolute": 56,
+              "page": 5,
+              "domain": "www.alconetex.com",
+              "title": "Types of TFO Machines: Which One is Right for Your Yarn ...",
+              "description": "Discover the different types of TFO (Two-for-One) machines for cotton, polyester, silk, wool, and industrial yarns. Learn how to select the best TFO twister ...",
+              "url": "https://www.alconetex.com/types-of-tfo-machines-which-one-is-right-for-your-yarn-type.php",
+              "breadcrumb": "https://www.alconetex.com › types-of-tfo-machines-whic..."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

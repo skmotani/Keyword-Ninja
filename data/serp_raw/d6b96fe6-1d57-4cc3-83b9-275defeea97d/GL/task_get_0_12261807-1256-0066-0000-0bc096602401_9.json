@@ -1,0 +1,42 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0248 sec.",
+  "cost": 0,
+  "tasks_count": 1,
+  "tasks_error": 1,
+  "tasks": [
+    {
+      "id": "12261807-1256-0066-0000-0bc096602401",
+      "status_code": 40602,
+      "status_message": "Task In Queue.",
+      "time": "0.0060 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261807-1256-0066-0000-0bc096602401"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Textile Twister",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "d6b96fe6-1d57-4cc3-83b9-275defeea97d"
+      },
+      "result": null
+    }
+  ]
+}

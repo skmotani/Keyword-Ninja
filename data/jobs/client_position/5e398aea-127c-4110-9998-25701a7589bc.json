@@ -1,0 +1,44 @@
+{
+  "jobId": "5e398aea-127c-4110-9998-25701a7589bc",
+  "status": "COMPLETED",
+  "clientCode": "01",
+  "selectedDomain": "www.meeraind.com",
+  "createdAt": "2025-12-26T06:03:04.471Z",
+  "startedAt": "2025-12-26T06:03:04.475Z",
+  "updatedAt": "2025-12-26T06:11:29.817Z",
+  "finishedAt": "2025-12-26T06:11:29.815Z",
+  "stage": "FINALIZE",
+  "totalKeywords": 48,
+  "metrics": {
+    "IN": {
+      "done": 0,
+      "total": 0,
+      "errors": 0
+    },
+    "GL": {
+      "done": 0,
+      "total": 48,
+      "errors": 48
+    }
+  },
+  "serp": {
+    "IN": {
+      "done": 0,
+      "total": 0,
+      "errors": 0,
+      "empty": 0
+    },
+    "GL": {
+      "done": 0,
+      "total": 0,
+      "errors": 0,
+      "empty": 0
+    }
+  },
+  "progressPercent": 100,
+  "etaSeconds": null,
+  "lastLogs": [],
+  "errors": [
+    "Metrics GL Failed: fetch failed"
+  ]
+}

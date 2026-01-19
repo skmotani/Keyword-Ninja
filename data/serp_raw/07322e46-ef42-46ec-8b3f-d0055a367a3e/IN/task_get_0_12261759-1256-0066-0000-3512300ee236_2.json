@@ -1,0 +1,800 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0515 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-3512300ee236",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0350 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-3512300ee236"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Compound Twisting Machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "Compound Twisting Machine",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=Compound%20Twisting%20Machine&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:59:19 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+compound+twisting+machine&hl=en&gl=IN&shoprs=GBIqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyCQgSEgVQcmljZWAB&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKAF6BAgWEDc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "New",
+                "url": "https://www.google.com/search?q=new+Compound+Twisting+Machine&hl=en&gl=IN&shoprs=GAoqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyBwgKEgNOZXdYtKsgYAE&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKAJ6BAgWEDg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Used",
+                "url": "https://www.google.com/search?q=used+Compound+Twisting+Machine&hl=en&gl=IN&shoprs=GAoqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyCAgKEgRVc2VkWLSrIGAB&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKAN6BAgWEDk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=compound+twisting+machine+for+sale&hl=en&gl=IN&shoprs=GBIqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyDAgSEghGb3IgU2FsZWAB&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKAR6BAgWEDo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=Compound+Twisting+Machine+nearby&hl=en&gl=IN&shoprs=GAMqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyDAgDEgZOZWFyYnkYAli0qyBgAQ&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKAV6BAgWEDs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹15,000",
+                "url": "https://www.google.com/search?q=Compound+Twisting+Machine+under+15000&hl=en&gl=IN&shoprs=Eg0SCxEAAACAjvALQhgBGAUqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyKAgFEg9VbmRlciDigrkxNSwwMDAYAiINEgsRAAAAgI7wC0IYASoCGAFYtKsgYAE&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKAZ6BAgWEDw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Conveyors",
+                "url": "https://www.google.com/search?q=conveyors+compound+twisting+machine&hl=en&gl=IN&shoprs=GAkqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyDQgJEglDb252ZXlvcnNgAQ&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKAd6BAgWED0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+compound+twisting+machine&hl=en&gl=IN&shoprs=GBIqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyCggSEgZPbmxpbmVgAQ&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKAh6BAgWED4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Grinders",
+                "url": "https://www.google.com/search?q=grinders+compound+twisting+machine&hl=en&gl=IN&shoprs=GAkqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyDAgJEghHcmluZGVyc2AB&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKAl6BAgWED8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+compound+twisting+machine&hl=en&gl=IN&shoprs=GBIqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyBwgSEgNCdXlgAQ&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKAp6BAgWEEA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tradeindia.com",
+                "url": "https://www.google.com/search?q=tradeindia.com+compound+twisting+machine&hl=en&gl=IN&shoprs=GAIqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyEggCEg5UcmFkZWluZGlhLmNvbVi0qyBgAQ&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKAt6BAgWEEE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Electrical Motors",
+                "url": "https://www.google.com/search?q=electrical+motors+compound+twisting+machine&hl=en&gl=IN&shoprs=GAkqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyFQgJEhFFbGVjdHJpY2FsIE1vdG9yc2AB&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKAx6BAgWEEI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Usa",
+                "url": "https://www.google.com/search?q=usa+compound+twisting+machine&hl=en&gl=IN&shoprs=GBIqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyBwgSEgNVc2FgAQ&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKA16BAgWEEM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Small",
+                "url": "https://www.google.com/search?q=small+compound+twisting+machine&hl=en&gl=IN&shoprs=GBIqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyCQgSEgVTbWFsbGAB&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKA56BAgWEEQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Black",
+                "url": "https://www.google.com/search?q=black+compound+twisting+machine&hl=en&gl=IN&shoprs=GAEqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyFwgBEgVCbGFjazoMCNiM9QEQ5Yr1ATALWLSrIGAB&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKA96BAgWEEU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+compound+twisting+machine&hl=en&gl=IN&shoprs=GBIqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyCwgSEgdSZXZpZXdzYAE&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKBB6BAgWEEY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "White",
+                "url": "https://www.google.com/search?q=white+compound+twisting+machine&hl=en&gl=IN&shoprs=GAEqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyFwgBEgVXaGl0ZToMCNiM9QEQoYv1ATALWLSrIGAB&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKBF6BAgWEEc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Sewing Machines",
+                "url": "https://www.google.com/search?q=sewing+machines+compound+twisting+machine&hl=en&gl=IN&shoprs=GAkqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyEwgJEg9TZXdpbmcgTWFjaGluZXNgAQ&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKBJ6BAgWEEg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Power Tools",
+                "url": "https://www.google.com/search?q=power+tools+compound+twisting+machine&hl=en&gl=IN&shoprs=GAkqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyDwgJEgtQb3dlciBUb29sc2AB&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKBN6BAgWEEk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tools",
+                "url": "https://www.google.com/search?q=tools+compound+twisting+machine&hl=en&gl=IN&shoprs=GAkqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyCQgJEgVUb29sc2AB&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKBR6BAgWEEo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Green",
+                "url": "https://www.google.com/search?q=green+compound+twisting+machine&hl=en&gl=IN&shoprs=GAEqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyFwgBEgVHcmVlbjoMCNiM9QEQ6Ir1ATALWLSrIGAB&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKBV6BAgWEEs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Red",
+                "url": "https://www.google.com/search?q=red+compound+twisting+machine&hl=en&gl=IN&shoprs=GAEqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyFQgBEgNSZWQ6DAjYjPUBEOeK9QEwC1i0qyBgAQ&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKBZ6BAgWEEw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Grey",
+                "url": "https://www.google.com/search?q=grey+compound+twisting+machine&hl=en&gl=IN&shoprs=GAEqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyFggBEgRHcmV5OgwI2Iz1ARDqivUBMAtYtKsgYAE&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKBd6BAgWEE0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Alibaba.com",
+                "url": "https://www.google.com/search?q=alibaba.com+compound+twisting+machine&hl=en&gl=IN&shoprs=GAIqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyDwgCEgtBbGliYWJhLmNvbVi0qyBgAQ&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKBh6BAgWEE4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "amazon.in",
+                "url": "https://www.google.com/search?q=amazon.in+compound+twisting+machine&hl=en&gl=IN&shoprs=GAIqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyDQgCEglhbWF6b24uaW5YtKsgYAE&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKBl6BAgWEE8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Flipkart",
+                "url": "https://www.google.com/search?q=flipkart+compound+twisting+machine&hl=en&gl=IN&shoprs=GAIqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyDAgCEghGbGlwa2FydFi0qyBgAQ&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKBp6BAgWEFA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Ubuy",
+                "url": "https://www.google.com/search?q=ubuy+compound+twisting+machine&hl=en&gl=IN&shoprs=GAIqGWNvbXBvdW5kIHR3aXN0aW5nIG1hY2hpbmUyCAgCEgRVYnV5WLSrIGAB&sa=X&ved=2ahUKEwintY3Mz9uRAxUAhP0HHbZLH04Qip4GKBt6BAgWEFE",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "ai_overview",
+            "images",
+            "organic",
+            "people_also_ask",
+            "popular_products",
+            "related_searches"
+          ],
+          "se_results_count": 1080000,
+          "pages_count": 5,
+          "items_count": 49,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 3,
+              "page": 1,
+              "domain": "meeraind.com",
+              "title": "Compound Twister Machine for Multi Ply Yarn Processing",
+              "description": "Advanced compound twisting technology for multi ply yarn production. Ideal for industrial threads, ropes and heavy duty textile applications.",
+              "url": "https://meeraind.com/product/compound-twister",
+              "breadcrumb": "https://meeraind.com › product › compound-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 4,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Yarn Twisting Machine in Ahmedabad, यार्न ट्विस्टिंग मशीन ...",
+              "description": "Yarn Twisting Machine Popular Price in Ahmedabad: ₹ 2,93,000 Dec'25 · TFO Twisting Machine Spun Yarn · Yarn Twisting Machine · KMMC PLY YARN TWISTER MACHINE, 3 HP. Read more",
+              "url": "https://dir.indiamart.com/ahmedabad/yarn-twisting-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Ahmedabad"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 6,
+              "page": 1,
+              "domain": "jingtianchina.en.made-in-china.com",
+              "title": "2025 Twisting and doubling machine",
+              "description": "High Speed Compound Yarn Ring Twister Machine. US $ 8,000-9,500/PieceFOB. MOQ:1 Piece. Video. Jingtian China PP Yarn Nylon Textile Spinning Machine for Sale. US ... Read more",
+              "url": "https://jingtianchina.en.made-in-china.com/product-group/VeDtdSnUHgYc/Twisting-And-Doubling-Machine-catalog-1.html",
+              "breadcrumb": "https://jingtianchina.en.made-in-china.com › Twisting-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "www.weavetech.com",
+              "title": "Thread Twisting Machine in India - Weavetech",
+              "description": "Get thread twisting machine and ply cable twisters from wide range of twisting machine in India at best price only at Alidhra weavetech.",
+              "url": "https://www.weavetech.com/twisting-machines/thread-sz-doubler-ply-cable-compound-twisters/",
+              "breadcrumb": "https://www.weavetech.com › Twisting Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "www.polyspintex.com",
+              "title": "Twisting - PolySpinTex, Inc.",
+              "description": "The Large Package Two-for-One Twisting Machine is designed for efficiently twisting yarns at high and medium turns per meter (TPM). Read more",
+              "url": "https://www.polyspintex.com/product-category/twisting/",
+              "breadcrumb": "https://www.polyspintex.com › product-category › twisting"
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.tradeindia.com",
+              "title": "Compound Twisting Machine",
+              "description": "Spindle Numbers, 540. Spindle Speed, 6000R/Min. Spindle Distance, 180Mm. Winding Capacity, 750G. Twist Directions, Sz Or Zs. Read more",
+              "url": "https://www.tradeindia.com/products/compound-twisting-machine-43477.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › twisting machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "www.hzcyfj.com",
+              "title": "zr98b series compound twisting machine",
+              "description": "It is able to realize single-thread twisting and compound twisting in one process, and compared with old technology and equipment, it greatly saves devices, ... Read more",
+              "url": "https://www.hzcyfj.com/en/p1/show/id/70.html",
+              "breadcrumb": "https://www.hzcyfj.com › show"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 12,
+              "page": 1,
+              "domain": "www.dttwister.com",
+              "title": "China compound CNC Twister Manufacturers, Suppliers, ...",
+              "description": "We're one of the leading compound cnc twister manufacturers and suppliers in China, engaged in producing textile machinery. Welcome to buy high quality ...",
+              "url": "https://www.dttwister.com/twisting-machine/precision-cnc-twsiting-machine/compound-cnc-twister.html",
+              "breadcrumb": "https://www.dttwister.com › twisting-machine › compo..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 13,
+              "page": 1,
+              "domain": "meeraind.com",
+              "title": "Filament Yarn Twister Machine by Meera Industries",
+              "description": "Advanced filament yarn twisting technology for polyester, nylon and technical yarns. Reliable performance for textile manufacturing.",
+              "url": "https://meeraind.com/product/filament-yarn-twister",
+              "breadcrumb": "https://meeraind.com › product › filament-yarn-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "meeraind.com",
+              "title": "Filament Yarn Twister Machine by Meera Industries",
+              "description": "Advanced filament yarn twisting technology for polyester, nylon and technical yarns. Reliable performance for textile manufacturing.",
+              "url": "https://meeraind.com/product/filament-yarn-twister",
+              "breadcrumb": "https://meeraind.com › product › filament-yarn-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.tch.com.tw",
+              "title": "Thread Twisting Machine, Manufacturer",
+              "description": "The Electronic Twisting Machine is an advanced device for precise yarn twisting, utilizing electronic technology for automated, reliable, and high-quality ... Read more",
+              "url": "https://www.tch.com.tw/product/electronic-twisting-machine",
+              "breadcrumb": "https://www.tch.com.tw › Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.hailimachinery.com",
+              "title": "Compound Twisting Machine",
+              "description": "Compound Twisting Machine · 540 spindles(upper)/180 spindles(bottom) · Twisting range · 60~650 twist/meter. Read more",
+              "url": "https://www.hailimachinery.com/Compound-Twisting-Machine-pd44747601.html",
+              "breadcrumb": "https://www.hailimachinery.com › Compound-Twisting-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.weavetech.com",
+              "title": "Technical / Industrial Yarn Twisters | UT- Series - Weavetech",
+              "description": "Get Technical / Industrial Yarn Twisters of UT-Series suitable for Large Package Twisting upto 8 Kgs Knotless. Read all information here.",
+              "url": "https://www.weavetech.com/twisting-machines/filament-yarn-tfo-twister-machine/ut2-series/",
+              "breadcrumb": "https://www.weavetech.com › twisting-machines › ut2-s..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.alibaba.com",
+              "title": "Compound Twisting Machine(449)",
+              "description": "Find high-quality compound twisting machines for various yarn types. Perfect for both commercial and home use. Shop our reliable and efficient machines.",
+              "url": "https://www.alibaba.com/showroom/compound-twisting-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Spinning Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.chinatexnet.com",
+              "title": "KV2001 Digital control compound twisting machine",
+              "description": "New generation of compound twisting machine after KV98 series. It is possible to up-twist a single thread, assemble two or three threads and down-twist them in ... Read more",
+              "url": "https://www.chinatexnet.com/ChinaSuppliers/166/kv2001-digital-control-compound-twisting-machine-13998.html",
+              "breadcrumb": "https://www.chinatexnet.com › ChinaSuppliers › kv2001..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.uwplast.com",
+              "title": "ring twisting machine for yarn 2400r min",
+              "description": "High quality Compound Fibre Ring Twisting Machine For Yarn High Speed 2400r Min from China, China's leading nylon yarn winding machine Product, ...",
+              "url": "https://www.uwplast.com/sale-14092857-compound-fibre-ring-twisting-machine-for-yarn-high-speed-2400r-min.html",
+              "breadcrumb": "https://www.uwplast.com › sale-14092857-compound-fi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "charming-star.com.tw",
+              "title": "Twisting, Covering & Yarn Winding Machine",
+              "description": "Twisting Machine : The single or multi ply of yarn doubling together and Twisting Machine utilize the spindle rotary to reach the twisting degree. Read more",
+              "url": "https://charming-star.com.tw/products/twisting-covering-yarn-winding-machine/",
+              "breadcrumb": "https://charming-star.com.tw › products › twisting-cove..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "www.hzcyfj.com",
+              "title": "ZR98 SERIES COMPOUND twisting machine",
+              "description": "杭州长翼纺织机械有限公司 · ZR98A SERIES COMPOUND TWISTING MACHINE · ZR98B SERIES COMPOUND TWISTING MACHINE · ZR98C SERIES COMPOUND TWISTING MACHINE · ZR98 3 FOR 1 ... Read more",
+              "url": "https://www.hzcyfj.com/En/p1.html",
+              "breadcrumb": "https://www.hzcyfj.com › ..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 24,
+              "page": 2,
+              "domain": "www.wotol.com",
+              "title": "2 SAM JIN COMPOUND TWISTER TWISTING MACHINE",
+              "description": "120 spindles feeding cone 420mm tubes ring diameter 130 mm machines are running condition.",
+              "url": "https://www.wotol.com/product/2-others-sam-jin-compound-twister-twisting-machine/2390781",
+              "breadcrumb": "https://www.wotol.com › product › 2-others-sam-jin-co..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "www.dttwister.com",
+              "title": "One-step Twisting Machine With Adjustable Twist",
+              "description": "Using one-step twisting process of the upper fist twist, assembling, lower after twist is a big advantage of DT9808 CNC composite twisting machine which is ... Read more",
+              "url": "https://www.dttwister.com/twisting-machine/98-cnc-composite-twisting-machine/one-step-twisting-machine-with-adjustable.html",
+              "breadcrumb": "https://www.dttwister.com › twisting-machine › one-ste..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "dir.indiamart.com",
+              "title": "Two For One Twisting Machine in Thane, टू फॉर वन ...",
+              "description": "Two For One Twisting Machine Popular Price in Thane: ₹ 2,50,000 Dec'25 · 200M TFO Twisting Textile Machine, Production Capacity: 200 m/min · Twisting Job Work ( ... Read more",
+              "url": "https://dir.indiamart.com/thane/two-for-one-twisting-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Thane"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.prtexpro.in",
+              "title": "Yarn Twisting Machine - SD E Series Spun Yarn TFO ...",
+              "description": "TFO Yarn Twisting Machine. Rs 2,350 / Piece. TFO Yarn Twisting Machine · Operation Mode: Automatic; Usage/Application: Yarn Twisting; Power Consumption: 10HP ... Read more",
+              "url": "https://www.prtexpro.in/yarn-twisting-machine.html",
+              "breadcrumb": "https://www.prtexpro.in › yarn-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "globaltradeplaza.com",
+              "title": "Sgd2180 compound twisting machine",
+              "description": "Sanfang Machinery Co., Ltd is the genuine trader of product Sgd2180 compound twisting machine and sells it in bulk at affordable and cheapest wholesale price ... Read more",
+              "url": "https://globaltradeplaza.com/product/sgd2180-compound-twisting-machine",
+              "breadcrumb": "https://globaltradeplaza.com › Search Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.weavetech.com",
+              "title": "Twisting Machine | Spun Yarn Twister - S-Series - Weavetech",
+              "description": "Imparting Twists on fine to medium count Spun yarns. Technology Takeup Speed: Up to 50 mtrs/min (Mech) Spindle Speed: Up to 11000 RPM (Mech) Read more",
+              "url": "https://www.weavetech.com/twisting-machines/spun-yarn-tfo-twister-machine/s200-s-series/",
+              "breadcrumb": "https://www.weavetech.com › s200-s-series"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.meeraind.com",
+              "title": "BCF Twisting Machines for Industrial Yarn Processing",
+              "description": "24 hours ago — Our comprehensive range includes cabler twisters, ring twisters, compound twisters, filament twisters, and lab twisters designed for carpet yarn ... Read more",
+              "url": "https://www.meeraind.com/feeds/category/bcf-twisting-machines",
+              "breadcrumb": "https://www.meeraind.com › feeds › category › bcf-twi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "www.hailimachinery.com",
+              "title": "Compound Twisting Machine",
+              "description": "Compound Twisting Machine. Yangzhou Haili Precision Machinery Co.,Ltd. is a leading China Compound Twisting Machine manufacturer, supplier and exporter. Read more",
+              "url": "https://www.hailimachinery.com/products/Compound-Twisting-Machine.html",
+              "breadcrumb": "https://www.hailimachinery.com › products › Compound..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "unitedwin.en.made-in-china.com",
+              "title": "2025 Yarn Twisting Machine",
+              "description": "Cotton Yarn Doubling Twisting Machine Tfo Twister Machine. MOQ:1 Set. Video · High Speed Compound Yarn Ring Twisting Machine Fibre Twisting Machine. MOQ:1 Set. Read more",
+              "url": "https://unitedwin.en.made-in-china.com/product-group/cboavfVuZzWB/Yarn-Twisting-Machine-catalog-1.html",
+              "breadcrumb": "https://unitedwin.en.made-in-china.com › product-group"
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 34,
+              "page": 3,
+              "domain": "www.chinatexnet.com",
+              "title": "SGD2180 Compound twisting machine",
+              "description": "We,China SGD2180 Compound twisting machine Supplier, offer SGD2180 Compound twisting machine with competitive price to global textile industry users.",
+              "url": "https://www.chinatexnet.com/ChinaSuppliers/6370/sgd2180-compound-twisting-machine-26552.html",
+              "breadcrumb": "https://www.chinatexnet.com › ChinaSuppliers › sgd218..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 35,
+              "page": 3,
+              "domain": "www.avanca.com",
+              "title": "How to Use Factory Supply Stranding Machine / Yarn ...",
+              "description": "Videos about How to Use Factory Supply Stranding Machine / Yarn Twisting Machine, Stranding machine manufacturers & suppliers on Video Channel of Cheap ...",
+              "url": "https://www.avanca.com/bbebaUshop/video-channel/zzhonest_tGUYygcrvChx_High-Efficiency-Yarn-Winding-Machine-Yarn-Twisting-Machine.html",
+              "breadcrumb": "https://www.avanca.com › bbebaUshop › video-channel"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "www.alibaba.com",
+              "title": "Compound A Twisting Machines - High Efficiency & Quality",
+              "description": "Compound Twisting Machine. Combines multiple fibers or threads into a single, stronger strand through controlled twisting. · Yarn Twisting Machine. Specialized ... Read more",
+              "url": "https://www.alibaba.com/showroom/compound-a-twisting-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Spinning Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.hzcyfj.com",
+              "title": "ZR9802A type compound twisting machine",
+              "description": "The new machine takes the firm anti-quaking cast iron as frame, Adapted to the design of high-speed spindle and steel reels. Upper spindles are driven through ... Read more",
+              "url": "https://www.hzcyfj.com/En/p1/show/id/64.html",
+              "breadcrumb": "https://www.hzcyfj.com › show"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "en.wikipedia.org",
+              "title": "Hygroscopy",
+              "description": "Hygroscopy is the phenomenon of attracting and holding water molecules via either absorption or adsorption from the surrounding environment Read more",
+              "url": "https://en.wikipedia.org/wiki/Hygroscopy",
+              "breadcrumb": "https://en.wikipedia.org › wiki › Hygroscopy"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.dttwister.com",
+              "title": "CNC Compound Twisting Machine For Producing 50D ...",
+              "description": "DT9808 CNC composite twisting machine owns Japan Mitsubishi frequency conversion control, pulling capstan roller, imported high speed steel containing oil, CNC ... Read more",
+              "url": "https://www.dttwister.com/twisting-machine/98-cnc-composite-twisting-machine/cnc-compound-twisting-machine-for-producing.html",
+              "breadcrumb": "https://www.dttwister.com › twisting-machine › cnc-co..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "raobolle.goldsupplier.com",
+              "title": "Compound Yarn Twisting Machine from China Manufacturers",
+              "description": "Explore Compound Yarn Twisting Machine products at Tengzhou Junchi Textile Co., Ltd., reliable China manufacturer. Contact us for more details!",
+              "url": "https://raobolle.goldsupplier.com/2173485-Compound-Yarn-Twisting-Machine/",
+              "breadcrumb": "https://raobolle.goldsupplier.com › 2173485-Compound..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.meeraind.com",
+              "title": "Industrial Twisting Machines for Yarn and Fiber Production",
+              "description": "22 hours ago — Compound Twister. One-Step Mono Twisting Technology; 40% energy reduction; 50% reduction in production time. Inquire Now ... Read more",
+              "url": "https://www.meeraind.com/feeds/category/twisting-machine",
+              "breadcrumb": "https://www.meeraind.com › category › twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.weavetech.com",
+              "title": "What Is a TFO Twister Machine? | Filament Yarn Twisting ...",
+              "description": "The TFO Twister Machine stands out as a productive textile device built to twist yarns—filament yarns. “TFO” means “Two-for-One,” pointing to the machine's ... Read more",
+              "url": "https://www.weavetech.com/tfo-twister-machine-filament-yarn-twisting/",
+              "breadcrumb": "https://www.weavetech.com › tfo-twister-machine-filam..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "www.tfotwister.com",
+              "title": "Double Deck TFO Twister Manufacturer from Surat",
+              "description": "Machine Type: Automatic, Semi-Automatic ; No. of Spindle: 280-28-504; Spindle Pitch: 200 mm; No. of Spindle Per Section: 28; Spindle Speed: 12000 RPM ... Read more",
+              "url": "https://www.tfotwister.com/tfo-twisting-machine.html",
+              "breadcrumb": "https://www.tfotwister.com › tfo-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 45,
+              "page": 4,
+              "domain": "www.rifatextile.com",
+              "title": "Textile Twisting Machine",
+              "description": "This innovative machine uses a one-time merging method with a single processing step, significantly reducing the number of stages compared to traditional ... Read more",
+              "url": "https://www.rifatextile.com/textile-twisting-machine/",
+              "breadcrumb": "https://www.rifatextile.com › textile-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 46,
+              "page": 4,
+              "domain": "www.alibaba.com",
+              "title": "Yarn Twisting Machine - 3000 RPM, Ring Spinning",
+              "description": "Discover high-speed yarn twisting machines with PLC control & spindle speeds up to 14000r/min. Ideal for cotton, wool, polyester.",
+              "url": "https://www.alibaba.com/showroom/yarn-twisting-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Spinning Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "www.chinatexnet.com",
+              "title": "China kv2005-computer-control-digit-compound-yarn ...",
+              "description": "New generation of compound twisting machine after KV98 series. It is possible to up-twist a single thread, assemble two or three threads and down-twist them in ... Read more",
+              "url": "https://www.chinatexnet.com/ChinaSuppliers/166/Products-Catalog.html",
+              "breadcrumb": "https://www.chinatexnet.com › Products-Catalog"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "uwplast.sell.everychina.com",
+              "title": "yarn twisting machine manufacturers",
+              "description": "Polypropylene Yarn Twisting Machine Thread Twine Twister High Speed Compound Yarn ASRT-280 Descripition: The machine can twist different size of PP, .... Read more",
+              "url": "https://uwplast.sell.everychina.com/sell-yarn-twisting-machine.html",
+              "breadcrumb": "https://uwplast.sell.everychina.com › ... › Products Catalog"
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.justdial.com",
+              "title": "Filament Yarn Twisting Machine",
+              "description": "Find 7 Filament Yarn Twisting Machine, Filament Yarn TFO Twister Machine,Filament Yarn TFO Twister Machinery products from verified sellers.",
+              "url": "https://www.justdial.com/india/Filament-Yarn-Twisting-Machine",
+              "breadcrumb": "https://www.justdial.com › india › Filament-Yarn-Twistin..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.avient.com",
+              "title": "Avient",
+              "description": "Global manufacturer of advanced composites, specialty polymers, color and additive systems, and thermoplastic and polymer compounds that enhance performance ...",
+              "url": "https://www.avient.com/",
+              "breadcrumb": "https://www.avient.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "www.dttwister.com",
+              "title": "China Twisting Machine Manufacturers, Suppliers, Factory",
+              "description": "Dengte Textile Machine is a twisting machine factory with 14 years'experience in twisting machine manufacturing. It mainly produces one-step twisting machine. Read more",
+              "url": "https://www.dttwister.com/twisting-machine/",
+              "breadcrumb": "https://www.dttwister.com › Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "fj.dttextilemachinery.com",
+              "title": "50D-1000D पिल्स सिलाई धागा निर्माण के लिए सीएनसी यौगिक ...",
+              "description": "CNC Compound Twisting Machine For Producing 50D-1000D Plys Sewing Thread. Read more",
+              "url": "https://fj.dttextilemachinery.com/twisting-machine/98-cnc-composite-twisting-machine/cnc-compound-twisting-machine-for-producing.html",
+              "breadcrumb": "https://fj.dttextilemachinery.com › ..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.alconetex.com",
+              "title": "TFO Machine & Yarn Twisting Machine",
+              "description": "TFO Machine & Yarn Twisting Machine is equipment that is employed in the textile sector that spins yarns with the necessary twist that are expected to be ...",
+              "url": "https://www.alconetex.com/products.php",
+              "breadcrumb": "https://www.alconetex.com › products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "meeraind.com",
+              "title": "Spun Staple Yarn Twister: Two For One TFO Technology",
+              "description": "Ring Twisting Machines · Spun/ Staple Yarn Twister · TPRS Twisters · Cone to Cone ... Compound Twister · Covering Machine. Industries Served. Carpet and Rugs ... Read more",
+              "url": "https://meeraind.com/product/spun-staple-yarn-twister",
+              "breadcrumb": "https://meeraind.com › product › spun-staple-yarn-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 48,
+              "rank_absolute": 56,
+              "page": 5,
+              "domain": "www.chinanetmachine.com",
+              "title": "Compound Twisting Machine",
+              "description": "As one of the most professional compound twisting machine manufacturers and suppliers in China, we're featured by customized products made in China.",
+              "url": "https://www.chinanetmachine.com/twisting-machine/compound-twisting-machine.html",
+              "breadcrumb": "https://www.chinanetmachine.com › twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 49,
+              "rank_absolute": 57,
+              "page": 5,
+              "domain": "www.textiledaddy.com",
+              "title": "Twisters Machine",
+              "description": "TFO Yarn Twisting Machine. Spinning. Used. RPR Twisting Machine With ... Weavetech's TR- SERIES - COMPOUND Twister for 2 or 3 Ply Thread Mfg. (up to ... Read more",
+              "url": "https://www.textiledaddy.com/buy?cat=spinning--8&subcat=twisters-machine-3",
+              "breadcrumb": "https://www.textiledaddy.com › buy › subcat=twisters-..."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

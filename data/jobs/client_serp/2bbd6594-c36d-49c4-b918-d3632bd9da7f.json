@@ -1,0 +1,34 @@
+{
+  "jobId": "2bbd6594-c36d-49c4-b918-d3632bd9da7f",
+  "clientCode": "O2",
+  "selectedDomain": "RahulNandan.com",
+  "keywords": [
+    "Chemistry test series for JEE",
+    "Chemistry test series for NEET",
+    "JEE chemistry mock tests",
+    "NEET chemistry mock tests",
+    "Online chemistry test series",
+    "Chapter wise chemistry test series",
+    "Physical chemistry test series",
+    "Organic chemistry test series",
+    "Chemistry full syllabus mock test",
+    "Best chemistry test series for JEE and NEET"
+  ],
+  "status": "COMPLETED",
+  "stage": "DONE",
+  "progress": {
+    "IN": {
+      "done": 10,
+      "total": 10,
+      "current": "Chunk 1 completed"
+    },
+    "GL": {
+      "done": 10,
+      "total": 10,
+      "current": "Chunk 1 completed"
+    }
+  },
+  "errors": [],
+  "startedAt": "2025-12-27T01:17:58.130Z",
+  "updatedAt": "2025-12-27T01:19:19.080Z"
+}

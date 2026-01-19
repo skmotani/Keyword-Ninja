@@ -1173,9 +1173,14 @@ export default function CompetitorReportPage() {
                   />
                 </th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[3%]">#</th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[17%]">
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[15%]">
                   <Tooltip text="Competitor domain from SERP results">
                     <span className="cursor-help border-b border-dashed border-gray-400">Domain</span>
+                  </Tooltip>
+                </th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[12%]">
+                  <Tooltip text="Brand Name derived from domain structure or common substring">
+                    <span className="cursor-help border-b border-dashed border-gray-400">Brand Name</span>
                   </Tooltip>
                 </th>
                 <th
@@ -1188,12 +1193,12 @@ export default function CompetitorReportPage() {
                     </span>
                   </Tooltip>
                 </th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[14%]">
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[12%]">
                   <Tooltip text="How this domain behaves in the ecosystem">
                     <span className="cursor-help border-b border-dashed border-gray-400">Domain Type</span>
                   </Tooltip>
                 </th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[12%]">
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[11%]">
                   <Tooltip text="Typical intent of pages where this domain appears">
                     <span className="cursor-help border-b border-dashed border-gray-400">Page Intent</span>
                   </Tooltip>
@@ -1208,7 +1213,7 @@ export default function CompetitorReportPage() {
                     </span>
                   </Tooltip>
                 </th>
-                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[16%]">
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider py-2 px-2 w-[20%]">
                   <Tooltip text="Final business relevance classification for this domain">
                     <span className="cursor-help border-b border-dashed border-gray-400">Business Relevance</span>
                   </Tooltip>
@@ -1219,13 +1224,13 @@ export default function CompetitorReportPage() {
             <tbody className="divide-y divide-gray-200">
               {loading ? (
                 <tr>
-                  <td colSpan={9} className="text-center py-8 text-gray-500 text-sm">
+                  <td colSpan={10} className="text-center py-8 text-gray-500 text-sm">
                     Loading...
                   </td>
                 </tr>
               ) : filteredAndSortedList.length === 0 ? (
                 <tr>
-                  <td colSpan={9} className="text-center py-8 text-gray-500 text-sm">
+                  <td colSpan={10} className="text-center py-8 text-gray-500 text-sm">
                     {competitorList.length === 0
                       ? 'No domains found. Fetch SERP data first from the SERP Results page.'
                       : 'No records match your filters.'}
@@ -1252,6 +1257,9 @@ export default function CompetitorReportPage() {
                       >
                         {entry.domain}
                       </a>
+                    </td>
+                    <td className="text-xs text-gray-600 py-1.5 px-2">
+                      {entry.label}
                     </td>
                     <td className="text-xs text-gray-800 py-1.5 px-2 text-right">
                       <button

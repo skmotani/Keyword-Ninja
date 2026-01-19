@@ -1,0 +1,756 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0408 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261804-1256-0066-0000-7798b8fc6d53",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0278 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261804-1256-0066-0000-7798b8fc6d53"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Two For One Twisting Machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "725afef0-7fd3-4a8d-b520-b6142fb5f5d4"
+      },
+      "result": [
+        {
+          "keyword": "Two For One Twisting Machine",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2840,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=Two%20For%20One%20Twisting%20Machine&hl=en&gl=US&ie=UTF-8&uule=w+CAIQIFISCQs2MuSEtepUEUK33kOSuTsc",
+          "datetime": "2025-12-26 16:04:21 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=two+for+one+twisting+machine+sale&hl=en&gl=US&shoprs=GBIqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyDAgSEghGb3IgU2FsZWAB&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKAF6BAgmEDQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=Two+For+One+Twisting+Machine+nearby&hl=en&gl=US&shoprs=GAMqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyDAgDEgZOZWFyYnkYAlj_0SBgAQ&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKAJ6BAgmEDU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "New",
+                "url": "https://www.google.com/search?q=new+Two+For+One+Twisting+Machine&hl=en&gl=US&shoprs=GAoqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyBwgKEgNOZXdY_9EgYAE&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKAN6BAgmEDY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Used",
+                "url": "https://www.google.com/search?q=used+Two+For+One+Twisting+Machine&hl=en&gl=US&shoprs=GAoqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyCAgKEgRVc2VkWP_RIGAB&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKAR6BAgmEDc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GBIqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyCQgSEgVQcmljZWAB&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKAV6BAgmEDg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "On sale",
+                "url": "https://www.google.com/search?q=Two+For+One+Twisting+Machine+sale&hl=en&gl=US&shoprs=EgRKAhgBGAYqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyEwgGEgdPbiBzYWxlGAIiBEoCGAFY_9EgYAE&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKAZ6BAgmEDk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GBIqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyCwgSEgdSZXZpZXdzYAE&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKAd6BAgmEDo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under $200",
+                "url": "https://www.google.com/search?q=Two+For+One+Twisting+Machine+under+$200&hl=en&gl=US&shoprs=Eg0SCxEAAAAAhNenQRgBGAUqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyIwgFEgpVbmRlciAkMjAwGAIiDRILEQAAAACE16dBGAEqAhgBWP_RIGAB&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKAh6BAgmEDs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Man",
+                "url": "https://www.google.com/search?q=man+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GBIqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyBwgSEgNNYW5gAQ&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKAl6BAgmEDw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GBIqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyBwgSEgNCdXlgAQ&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKAp6BAgmED0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Weightlifting Machines & Racks",
+                "url": "https://www.google.com/search?q=weightlifting+machines+%26+racks+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GAkqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyIggJEh5XZWlnaHRsaWZ0aW5nIE1hY2hpbmVzICYgUmFja3NgAQ&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKAt6BAgmED4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GBIqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyCggSEgZPbmxpbmVgAQ&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKAx6BAgmED8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Woman",
+                "url": "https://www.google.com/search?q=woman+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GBIqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyCQgSEgVXb21hbmAB&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKA16BAgmEEA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Paper Cutters & Trimmers",
+                "url": "https://www.google.com/search?q=paper+cutters+%26+trimmers+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GAkqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyHAgJEhhQYXBlciBDdXR0ZXJzICYgVHJpbW1lcnNgAQ&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKA56BAgmEEE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Girl",
+                "url": "https://www.google.com/search?q=girl+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GBIqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyCAgSEgRHaXJsYAE&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKA96BAgmEEI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Boy",
+                "url": "https://www.google.com/search?q=boy+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GBIqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyBwgSEgNCb3lgAQ&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKBB6BAgmEEM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "TENS Units & Muscle Stimulators",
+                "url": "https://www.google.com/search?q=tens+units+%26+muscle+stimulators+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GAkqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyIwgJEh9URU5TIFVuaXRzICYgTXVzY2xlIFN0aW11bGF0b3JzYAE&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKBF6BAgmEEQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Rent",
+                "url": "https://www.google.com/search?q=rent+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GBIqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyCAgSEgRSZW50YAE&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKBJ6BAgmEEU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Free",
+                "url": "https://www.google.com/search?q=free+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GBIqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyCAgSEgRGcmVlYAE&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKBN6BAgmEEY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Adult",
+                "url": "https://www.google.com/search?q=adult+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GBIqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyCQgSEgVBZHVsdGAB&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKBR6BAgmEEc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Small",
+                "url": "https://www.google.com/search?q=small+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GBIqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyCQgSEgVTbWFsbGAB&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKBV6BAgmEEg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Diy",
+                "url": "https://www.google.com/search?q=diy+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GBIqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyBwgSEgNEaXlgAQ&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKBZ6BAgmEEk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Little",
+                "url": "https://www.google.com/search?q=little+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GBIqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyCggSEgZMaXR0bGVgAQ&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKBd6BAgmEEo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Plastic",
+                "url": "https://www.google.com/search?q=plastic+two+for+one+twisting+machine&hl=en&gl=US&shoprs=GAEqHHR3byBmb3Igb25lIHR3aXN0aW5nIG1hY2hpbmUyFwgBEgdQbGFzdGljOgoIudFwEL7RcDAAWP_RIGAB&sa=X&ved=2ahUKEwjrj9fc0NuRAxUEdUEAHa4-G58Qip4GKBh6BAgmEEs",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "organic",
+            "video",
+            "popular_products",
+            "related_searches",
+            "images"
+          ],
+          "se_results_count": 21000000,
+          "pages_count": 5,
+          "items_count": 47,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 1,
+              "page": 1,
+              "domain": "www.weavetech.com",
+              "title": "What is Two for one twister (TFO) ? - Weavetech",
+              "description": "The term TFO stands for Two-for-One, indicating that two turns are inserted for each turn of the twisting element. Read more",
+              "url": "https://www.weavetech.com/what-is-two-for-one-twister-tfo/",
+              "breadcrumb": "https://www.weavetech.com › what-is-two-for-one-twist..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 2,
+              "page": 1,
+              "domain": "fibrxl.com",
+              "title": "Two-for-one twisting",
+              "description": "This twisting machine is particularly suitable for the production of twisted industrial fibers rip cords and tire cords, as well as for plying pretwisted yarns. Read more",
+              "url": "https://fibrxl.com/fibrxl-performance/processing/two-for-one-twisting-2/",
+              "breadcrumb": "https://fibrxl.com › FibrXL Performance › Processing"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 4,
+              "page": 1,
+              "domain": "saurer.com",
+              "title": "Two-for-one twisting machine CompactTwister",
+              "description": "Two-for-one twisting machine · Delivery speeds up to 120 m/min. · Amount of twist can be set at any level · Flanged-bobbin form, traverse and traverse variation ... Read more",
+              "url": "https://saurer.com/en/products/machines/twisting-and-cabling/staple/compacttwister",
+              "breadcrumb": "https://saurer.com › twisting-and-cabling › staple › com..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 5,
+              "page": 1,
+              "domain": "vandewiele.com",
+              "title": "Two-for-one twisting",
+              "description": "Our two-for-one twisting machines are designed with high-quality materials and precision engineering to provide you with a seamless and exceptional performance. Read more",
+              "url": "https://vandewiele.com/textile-solutions/yarn-spinning/two-for-one-twisting",
+              "breadcrumb": "https://vandewiele.com › ... › Yarn spinning"
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 6,
+              "page": 1,
+              "domain": "www.cisscomachinery.com",
+              "title": "TZ628 High Speed Industrial Yarn Two-For-One Twisting ...",
+              "description": "TZ326 Two-for-one twisting machine for chemical fiber · Spindle gauge. 500-700mm · Quantity of spindles. 96-152 spindles (8 spindles/section) · Max. spindle speed. Read more",
+              "url": "https://www.cisscomachinery.com/productinfo/1356191.html",
+              "breadcrumb": "https://www.cisscomachinery.com › productinfo"
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "www.agteks.com",
+              "title": "Twisting Machine Technology",
+              "description": "DirecTwist machines have been developed by designing the flexibility of ring twisting machines due to external feeding and the efficiency of the “two for one” ... Read more",
+              "url": "https://www.agteks.com/twisting-machine-technology/",
+              "breadcrumb": "https://www.agteks.com › twisting-machine-technology"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "www.textilesphere.com",
+              "title": "Two for One Twister || Yarn Waxing",
+              "description": "As the name suggest, during T.F.O there are two turns inserted for one turn of twisting element. In Olden days, two yarns were transferred initially on to ... Read more",
+              "url": "https://www.textilesphere.com/2020/03/TFO-yarn-waxing.html",
+              "breadcrumb": "https://www.textilesphere.com › Home › Spinning"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.sutexmach.com",
+              "title": "TFO (two for one) twister machine DM-07 - Sutexmach",
+              "description": "The DM-07 twisting machine is used to process cotton, wool and blended yarns. By realizing twice-rotation of the spindle, the twisting efficiency is doubled ...",
+              "url": "https://www.sutexmach.com/products/tfo-two-for-one-twister-machine-dm-07/",
+              "breadcrumb": "https://www.sutexmach.com › 产品管理"
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "www.alibaba.com",
+              "title": "Two For One Twisting Machine(999+)",
+              "description": "Enhance your textile production with our two for one twisting machines. Durable, high-speed, and customizable for various yarn types. Shop now for quality!",
+              "url": "https://www.alibaba.com/showroom/two-for-one-twisting-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Spinning Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "www.aakashtexeng.in",
+              "title": "Two For One Twister - Aakash Textile Engineers LLP",
+              "description": "A: The Two For One Twister enhances efficiency by enabling double twisting in a single pass, reducing production time and ensuring consistent yarn strength and ... Read more",
+              "url": "https://www.aakashtexeng.in/two-for-one-twister-6842471.html",
+              "breadcrumb": "https://www.aakashtexeng.in › two-for-one-twister-684..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "www.rifatextile.com",
+              "title": "What Is a TFO Machine?",
+              "description": "A TFO (Two-for-One) machine is a device that, driven by a motor, uses friction and tension control to twist and stretch two or more yarns within a certain ... Read more",
+              "url": "https://www.rifatextile.com/what-is-a-tfo-machine.html",
+              "breadcrumb": "https://www.rifatextile.com › Company › News"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.dttwister.com",
+              "title": "What is Two for one twister - Knowledge",
+              "description": "Sep 9, 2023 — A Two-for-One (TFO) Twister is a machine commonly used in the textile industry to twist two or more yarns together into a stronger and more durable thread. Read more",
+              "url": "https://www.dttwister.com/info/what-is-two-for-one-twister-86346163.html",
+              "breadcrumb": "https://www.dttwister.com › Knowledges"
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.textilesphere.com",
+              "title": "Two for One Twister || Yarn Waxing",
+              "description": "As the name suggest, during T.F.O there are two turns inserted for one turn of twisting element. In Olden days, two yarns were transferred initially on to ... Read more",
+              "url": "https://www.textilesphere.com/2020/03/TFO-yarn-waxing.html",
+              "breadcrumb": "https://www.textilesphere.com › Home › Spinning"
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "saviospa.com",
+              "title": "Yarn twisting machines - Savio",
+              "description": "Two-for-one twisting machines ... Savio offers yarn twisting machines that enhance the strength and twisting characteristics required to expand the performance of ... Read more",
+              "url": "https://saviospa.com/en/yarn-spinning/two-for-one-twisting-machines",
+              "breadcrumb": "https://saviospa.com › Home › Yarn spinning"
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "meeraind.com",
+              "title": "Spun Staple Yarn Twister: Two For One TFO Technology",
+              "description": "Two-For-One (TFO) spun twisting inserts two twists for every spindle revolution, letting you ply singles into balanced yarn at higher speed. Read more",
+              "url": "https://meeraind.com/product/spun-staple-yarn-twister",
+              "breadcrumb": "https://meeraind.com › product › spun-staple-yarn-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.robco-eng.com",
+              "title": "Twisting machines of high quality and productivity",
+              "description": "Robco T55. Two-for-one heavy-duty twisting machine · max. Ø480 x 330 mm ; Robco T66. Two-for-one heavy-duty twisting machine · max. Ø680 x 500 mm ; Robco T77. Two- ... Read more",
+              "url": "https://www.robco-eng.com/twisters/",
+              "breadcrumb": "https://www.robco-eng.com › twisters"
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "www.polyspintex.com",
+              "title": "Twisting - PolySpinTex, Inc.",
+              "description": "The Large Package Two-for-One Twisting Machine is designed for efficiently twisting yarns at high and medium turns per meter (TPM). Read more",
+              "url": "https://www.polyspintex.com/product-category/twisting/",
+              "breadcrumb": "https://www.polyspintex.com › product-category › twisting"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "www.alconetex.com",
+              "title": "TFO Machine & Yarn Twisting Machine",
+              "description": "Alcone Tex Engineering provides the latest model TFO (two-for-one) twister, producing high accuracy in twisting, doubling, covering, and rewinding the yarns. Read more",
+              "url": "https://www.alconetex.com/products.php",
+              "breadcrumb": "https://www.alconetex.com › products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "www.taizhengmachine.com",
+              "title": "The Different Types of Twisting Machines",
+              "description": "Mar 30, 2023 — The Different Types of Twisting Machines · Single Twister · Two-for-One Twister · Ring Twister · Friction Spinning Machine · Air-Jet Spinning Machine. Read more",
+              "url": "https://www.taizhengmachine.com/the-different-types-of-twisting-machines.html",
+              "breadcrumb": "https://www.taizhengmachine.com › the-different-types-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.wotol.com",
+              "title": "Used Twisting / Two For One (TFO)",
+              "description": "Compact yarn twisting machine. It have 8 Savio TFO spindles. Can work as duo pot. Very rare machine. Ideal for small and family knitting and waving productions. Read more",
+              "url": "https://www.wotol.com/cat/twisting-two-for-one-tfo/yarn-manufacturing-sythetic-cotton/textile-and-leather-machinery/410",
+              "breadcrumb": "https://www.wotol.com › textile-and-leather-machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "mm.made-in-china.com",
+              "title": "Tfo Twisting Machine",
+              "description": "High Speed Tfo Two-for-One Winding Twister Big Package Textile Twisting Machine for Chemical Fiber and Filament Polyester Yarn. US $ 8,000-9,500 / Piece FOB. 1 ... Read more",
+              "url": "https://mm.made-in-china.com/hot-china-products/Tfo_Twisting_Machine.html",
+              "breadcrumb": "https://mm.made-in-china.com › hot-china-products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "TWO FOR ONE TWISTER (T F O) || Study with Param ...",
+              "description": "Two For One Twisters for spun yarn. The TFO twisting machines comprises a superior quality gear change system for all types of settings.",
+              "url": "https://www.youtube.com/watch?v=-dpS3NVLPJ8",
+              "breadcrumb": "22.4K+ views  ·  4 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "saurer.com",
+              "title": "Two-for-one twisting machinePrimeTwister",
+              "description": "Your advantages: Up to 30% higher productivity due to delivery speeds up to 110m/min; Operating costs reduced thanks to low energy, space and maintenance ... Read more",
+              "url": "https://saurer.com/en/products/machines/twisting-and-cabling/staple/primetwister",
+              "breadcrumb": "https://saurer.com › machines › staple › primetwister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "www.reddit.com",
+              "title": "What is the machine called that lets you ply two yarns ...",
+              "description": "You can use a spinning wheel (or drop spindle) to ply already-plied yarn into a thicker cabled yarn, but this requires you to re-spin each of the original ... Read more",
+              "url": "https://www.reddit.com/r/knitting/comments/102g1f9/what_is_the_machine_called_that_lets_you_ply_two/",
+              "breadcrumb": "10+ comments  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "Saurer FusionTwister two-for-one twisting machine",
+              "description": "The FusionTwister from Saurer has been developed based on thorough market research, taking into account our customers' requests and specific ...",
+              "url": "https://www.youtube.com/watch?v=PARQ5mJWWcg",
+              "breadcrumb": "26.2K+ views  ·  5 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 34,
+              "page": 3,
+              "domain": "www.weavetech.com",
+              "title": "TFO Twister Machine Guide for Modern Textile Mills",
+              "description": "How Does a TFO Twister Machine Work? · Taking up two yarns (or a single yarn spiralled around a spindle) · Passing them through a companion system, rotating them ... Read more",
+              "url": "https://www.weavetech.com/tfo-twister-machine-guide-for-modern-textile-mills/",
+              "breadcrumb": "https://www.weavetech.com › tfo-twister-machine-guid..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 35,
+              "page": 3,
+              "domain": "www.rifatextile.com",
+              "title": "Textile Twisting Machine",
+              "description": "The TI11 electric spindle two-for-one twister machine is a state-of-the-art piece of equipment in which the spindle is directly driven by the motor, ... Read more",
+              "url": "https://www.rifatextile.com/textile-twisting-machine/",
+              "breadcrumb": "https://www.rifatextile.com › textile-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "en.wikipedia.org",
+              "title": "Bop It",
+              "description": "Bop It, stylized as bop it! since 2008, is a line of audio game toys. By following a series of commands issued through voice recordings produced by a speaker ... Read more",
+              "url": "https://en.wikipedia.org/wiki/Bop_It",
+              "breadcrumb": "https://en.wikipedia.org › wiki › Bop_It"
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.confi.in",
+              "title": "TFO Two for One twisting machine",
+              "description": "Tfo Machine · Usage/Application: Yarn Twisting · Material: Mild Steel · Machine Type: Semi-Automatic · I Deal In: New Only · Country of Origin: Made in India. Read more",
+              "url": "https://www.confi.in/tfo-two-for-one-twisting-machine.html",
+              "breadcrumb": "https://www.confi.in › tfo-two-for-one-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "All Filament Yarn Twister | TFO Twister Machine | Two For One ...",
+              "description": "High low TPM (100-4000 ) · High Speed RPM · Heave Buildup Quality · Power Saver Machine · Spindle Port 60-70-80-90mm Port ...",
+              "url": "https://www.youtube.com/watch?v=Y14b7gZh-pg",
+              "breadcrumb": "7K+ views  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "meeraind.com",
+              "title": "Latest Developments in Two for One Twisters for Textiles",
+              "description": "Sep 17, 2025 — TFO Twisters use a special twisting method with two twists at once. · These machines produce stronger and more even yarns from many types of ... Read more",
+              "url": "https://meeraind.com/blog/developments-tfo-textiles",
+              "breadcrumb": "https://meeraind.com › blog › developments-tfo-textiles"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "www.dttwister.com",
+              "title": "Two for One Yarn Twisting Machine",
+              "description": "Single spindle and automatic stop system, solving both lack of stocks and oil pollution. Fixed-length and stop function can accurately measure wincing length. Read more",
+              "url": "https://www.dttwister.com/twisting-machine/one-step-twisting-machine/two-for-one-yarn-twisting-machine.html",
+              "breadcrumb": "https://www.dttwister.com › twisting-machine › two-for..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "issuu.com",
+              "title": "What is Two for one twister (TFO) by Weave Tech",
+              "description": "Jun 21, 2023 — A Two-for-One Twister (TFO) is a type of machine used in the textile industry to twist two or more yarns together to create a stronger and more durable yarn. Read more",
+              "url": "https://issuu.com/weavetech/docs/what_is_two_for_one_twister_tfo_-_weavetech",
+              "breadcrumb": "https://issuu.com › weavetech › docs › what_is_two_for..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.alibaba.com",
+              "title": "Used Two For One Twisting Machine(354)",
+              "description": "Discover used two for one twisting machines for 2 strands twist applications. Find reliable solutions with high spindle speed, CE-certified safety, ...",
+              "url": "https://www.alibaba.com/showroom/used-two-for-one-twisting-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Spinning Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "saurer.com",
+              "title": "Two-for-one twisting machine FusionTwister",
+              "description": "The four spindle types cover the yarn count range from Ne 6/2 to Ne 160/2. The twisting range extends from 123 to 2800 T/m. Cross-wound delivery package 6\", ... Read more",
+              "url": "https://saurer.com/en/products/machines/twisting-and-cabling/staple/fusiontwister",
+              "breadcrumb": "https://saurer.com › twisting-and-cabling › staple › fusi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 45,
+              "page": 4,
+              "domain": "www.sutexmach.com",
+              "title": "Do You Know About the Two-for-One Twister Machine?",
+              "description": "Jan 1, 2025 — The Two-for-One Twister machine is a type of twisting machine designed primarily for the textile industry. As the name suggests, it is capable ... Read more",
+              "url": "https://www.sutexmach.com/do-you-know-about-the-two-for-one-twister-machine/",
+              "breadcrumb": "https://www.sutexmach.com › Industry News"
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 46,
+              "page": 4,
+              "domain": "jxtwisting.com",
+              "title": "How does a TFO twisting machine work",
+              "description": "May 12, 2024 — The machine consists of two twisting zones, one for each yarn strand. Each twisting zone consists of a pair of rotating spindles or bobbins. Read more",
+              "url": "https://jxtwisting.com/?list_4/165.html",
+              "breadcrumb": "https://jxtwisting.com › list_4"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "www.linkedin.com",
+              "title": "What is Two For One Twisting Machines? Uses, How It ...",
+              "description": "Two For One Twisting Machines are industrial devices that simultaneously twist two yarns, wires, or fibers into a single, cohesive strand. Read more",
+              "url": "https://www.linkedin.com/pulse/what-two-one-twisting-machines-uses-how-works-top-companies-k0bjf",
+              "breadcrumb": "2 months ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.made-in-china.com",
+              "title": "Two-for-one Twisting Machine Price",
+              "description": "Two-for-one Twisting Machine Price - Select 2025 high quality Two-for-one Twisting Machine Price products in best price from certified Chinese Twisting ...",
+              "url": "https://www.made-in-china.com/products-search/hot-china-products/Two-for-one_Twisting_Machine_Price.html",
+              "breadcrumb": "https://www.made-in-china.com › hot-china-products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "ruisea.en.ec21.com",
+              "title": "HY363 Twisting Machine(Two-for-one Twister)",
+              "description": "HY363 Twisting Machine(Two-for-one Twister)(id:4879444), View quality twisting machineyarn twisting machine details from Shaoxing Huayu Textile Machinery ...",
+              "url": "https://ruisea.en.ec21.com/HY363_Twisting_Machine(Two-for-one_Twister)--4860464_4879444.html",
+              "breadcrumb": "https://ruisea.en.ec21.com › HY363_Twisting_Machine(..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.aalidhratexpro.in",
+              "title": "Two For One Yarn Twister Machine",
+              "description": "Two For One Yarn Twister Machine. 1120000 INR / Unit. share. Two For One Yarn Twister Machine. Minimum Order Quantity : 1 Unit. Delivery Time : 45 Days. Read more",
+              "url": "https://www.aalidhratexpro.in/two-for-one-yarn-twister-machine-7535686.html",
+              "breadcrumb": "https://www.aalidhratexpro.in › two-for-one-yarn-twiste..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "nassajyar.com",
+              "title": "Introduction to the Two-for-One Twister (TFO) in the Textile ...",
+              "description": "Nov 5, 2025 — The Two-for-One Twister (TFO) is a high-efficiency yarn twisting machine engineered for industrial textile applications. It operates on the ... Read more",
+              "url": "http://nassajyar.com/0/news_textile_info4/1878/Introduction-to-the-Two-for-One-Twister-(TFO)-in-the-Textile-Industry/info.html",
+              "breadcrumb": "http://nassajyar.com › info"
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.fibre2fashion.com",
+              "title": "Study on Two-For-One Twisting (TFO)",
+              "description": "The main objective of ply twisting is to improve the evenness, strength and elongation, lusture, smoothness and abrasion resistance at yarn stage and to obtain ... Read more",
+              "url": "https://www.fibre2fashion.com/industry-article/1449/study-on-two-for-one-twisting",
+              "breadcrumb": "https://www.fibre2fashion.com › industry-article › study-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.goerie.com",
+              "title": "Faith, family remain priorities for Amish in non-traditional jobs",
+              "description": "Dec 18, 2025 — Within a week, the young teacher had two more orders — and 24 lead ropes to be made. ... machines that twist yarns into single-color and ... Read more",
+              "url": "https://www.goerie.com/story/news/local/2025/12/18/amish-agriculture-pennsylvania-ohio-jobs-labor/85957292007/",
+              "breadcrumb": "https://www.goerie.com › news › local › 2025/12/18"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "en.wikipedia.org",
+              "title": "MG 3 machine gun",
+              "description": "Manufactured by Rheinmetall for the Bundeswehr, designed and derived from the World War II era MG 42 that fired the 7.92×57mm Mauser round. Rheinmetall MG 3. MG ... Read more",
+              "url": "https://en.wikipedia.org/wiki/MG_3_machine_gun",
+              "breadcrumb": "https://en.wikipedia.org › wiki › MG_3_machine_gun"
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 56,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "How the Two-For-One Twisting Machine Works\"",
+              "description": "Welcome to YARN TECH INSIGHTS! In this video, we dive into the TFO (Two-For-One) twisting process and explore how the TFO machine operates ...",
+              "url": "https://www.youtube.com/shorts/pgPU9bNEboY",
+              "breadcrumb": "1.2K+ views  ·  1 year ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 57,
+              "page": 5,
+              "domain": "dir.indiamart.com",
+              "title": "Two For One Twisting Machine",
+              "description": "Two For One Twisting Machine For Cotton Yarn ... ₹ 4,550Alcone Tex Engineering Pvt. Ltd. is a leading manufacturer and solution provider of advanced textile ... Read more",
+              "url": "https://dir.indiamart.com/impcat/two-for-one-twisting-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Spinning Machinery"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,795 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0400 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-32a43434fd14",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0292 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-32a43434fd14"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "air covering yarn machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "air covering yarn machine",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=air%20covering%20yarn%20machine&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:59:21 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GBIqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyCQgSEgVQcmljZWAB&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKAF6BAgiED4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=air+covering+yarn+machine+nearby&hl=en&gl=IN&shoprs=GAMqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyDAgDEgZOZWFyYnkYAljH7CBgAQ&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKAJ6BAgiED8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GBIqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyCggSEgZPbmxpbmVgAQ&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKAN6BAgiEEA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "New",
+                "url": "https://www.google.com/search?q=new+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GAoqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyBwgKEgNOZXdYx-wgYAE&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKAR6BAgiEEE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Used",
+                "url": "https://www.google.com/search?q=used+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GAoqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyCAgKEgRVc2VkWMfsIGAB&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKAV6BAgiEEI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GBIqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyBwgSEgNCdXlgAQ&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKAZ6BAgiEEM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=air+covering+yarn+machine+for+sale&hl=en&gl=IN&shoprs=GBIqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyDAgSEghGb3IgU2FsZWAB&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKAd6BAgiEEQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹6,00,000",
+                "url": "https://www.google.com/search?q=air+covering+yarn+machine+under+600000&hl=en&gl=IN&shoprs=Eg0SCxEAAAAgWXZhQhgBGAUqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyKggFEhFVbmRlciDigrk2LDAwLDAwMBgCIg0SCxEAAAAgWXZhQhgBKgIYAVjH7CBgAQ&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKAh6BAgiEEU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "On sale",
+                "url": "https://www.google.com/search?q=air+covering+yarn+machine+sale&hl=en&gl=IN&shoprs=EgRKAggBGAYqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyEwgGEgdPbiBzYWxlGAIiBEoCCAFYx-wgYAE&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKAl6BAgiEEY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "White",
+                "url": "https://www.google.com/search?q=white+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GAEqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyFwgBEgVXaGl0ZToMCNiM9QEQoYv1ATALWMfsIGAB&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKAp6BAgiEEc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Black",
+                "url": "https://www.google.com/search?q=black+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GAEqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyFwgBEgVCbGFjazoMCNiM9QEQ5Yr1ATALWMfsIGAB&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKAt6BAgiEEg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Usa",
+                "url": "https://www.google.com/search?q=usa+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GBIqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyBwgSEgNVc2FgAQ&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKAx6BAgiEEk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Knitting Looms",
+                "url": "https://www.google.com/search?q=knitting+looms+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GAkqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyEggJEg5Lbml0dGluZyBMb29tc2AB&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKA16BAgiEEo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Blue",
+                "url": "https://www.google.com/search?q=blue+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GAEqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyFggBEgRCbHVlOgwI2Iz1ARDmivUBMAtYx-wgYAE&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKA56BAgiEEs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GBIqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyCwgSEgdSZXZpZXdzYAE&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKA96BAgiEEw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Usha",
+                "url": "https://www.google.com/search?q=usha+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GAEqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyFAgBEgRVc2hhOgoIg_M8EMzmUjABWMfsIGAB&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKBB6BAgiEE0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "JUKI",
+                "url": "https://www.google.com/search?q=juki+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GAEqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyFAgBEgRKVUtJOgoIg_M8ELP0PjABWMfsIGAB&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKBF6BAgiEE4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Sewing Machines",
+                "url": "https://www.google.com/search?q=sewing+machines+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GAkqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyEwgJEg9TZXdpbmcgTWFjaGluZXNgAQ&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKBJ6BAgiEE8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Industrial",
+                "url": "https://www.google.com/search?q=industrial+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GAEqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyGggBEgpJbmR1c3RyaWFsOgoIlLc7EJW3OzADWMfsIGAB&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKBN6BAgiEFA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tradeindia.com",
+                "url": "https://www.google.com/search?q=tradeindia.com+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GAIqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyEggCEg5UcmFkZWluZGlhLmNvbVjH7CBgAQ&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKBR6BAgiEFE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Brand",
+                "url": "https://www.google.com/search?q=brand+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GBIqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyCQgSEgVCcmFuZGAB&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKBV6BAgiEFI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Janome",
+                "url": "https://www.google.com/search?q=janome+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GAEqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyFggBEgZKYW5vbWU6CgiD8zwQkO4-MAFYx-wgYAE&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKBZ6BAgiEFM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "LG",
+                "url": "https://www.google.com/search?q=lg+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GAEqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyEggBEgJMRzoKCIPzPBDe5D0wAVjH7CBgAQ&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKBd6BAgiEFQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Brown",
+                "url": "https://www.google.com/search?q=brown+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GAEqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyFwgBEgVCcm93bjoMCNiM9QEQ64r1ATALWMfsIGAB&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKBh6BAgiEFU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Mini",
+                "url": "https://www.google.com/search?q=mini+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GAEqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyFAgBEgRNaW5pOgoI1YctENaHLTADWMfsIGAB&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKBl6BAgiEFY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Size",
+                "url": "https://www.google.com/search?q=size+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GBIqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyCAgSEgRTaXplYAE&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKBp6BAgiEFc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Grey",
+                "url": "https://www.google.com/search?q=grey+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GAEqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyFggBEgRHcmV5OgwI2Iz1ARDqivUBMAtYx-wgYAE&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKBt6BAgiEFg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Brother",
+                "url": "https://www.google.com/search?q=brother+air+covering+yarn+machine&hl=en&gl=IN&shoprs=GAEqGWFpciBjb3ZlcmluZyB5YXJuIG1hY2hpbmUyFwgBEgdCcm90aGVyOgoIg_M8EKrkPjABWMfsIGAB&sa=X&ved=2ahUKEwjZkoDMz9uRAxWzIrkGHfTsOikQip4GKBx6BAgiEFk",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "organic",
+            "video",
+            "images",
+            "popular_products",
+            "related_searches"
+          ],
+          "se_results_count": 2200000,
+          "pages_count": 5,
+          "items_count": 48,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 1,
+              "page": 1,
+              "domain": "www.ssm.ch",
+              "title": "XENO-AC air covering machine - SSM",
+              "description": "Elevate yarn finishing with SSM air covering machines, engineered for precision and efficiency to meet the demands of modern textile manufacturing.",
+              "url": "https://www.ssm.ch/products/yarn-processing-solutions/air-covering-machines",
+              "breadcrumb": "https://www.ssm.ch › ... › Yarn Processing Solutions"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 5,
+              "page": 1,
+              "domain": "www.indiamart.com",
+              "title": "Lycra Air Covering Machine ACM-11F",
+              "description": "Lycra Air Covering Machine ACM-11F ; Lycra Thread Covering Machine. ₹ 2,350 ; Jari Covering Machine. ₹ 5,60,000/Unit ; Elastic Yarn Covering Machine. ₹ 18,00,000. Read more",
+              "url": "https://www.indiamart.com/proddetail/lycra-air-covering-machine-acm-11f-9030327533.html?srsltid=AfmBOormPc5HFH372W8iC0eQsesOPrNbPjRE7Fula7kkB6IBdKhouPBd",
+              "breadcrumb": "https://www.indiamart.com › ... › Yarn Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 6,
+              "page": 1,
+              "domain": "www.fadis.it",
+              "title": "Premium air covering range - Fadis Textile Machine",
+              "description": "It is a “multi-function” machine, which can respond to 7 different production processes and guarantees high performances with speeds reaching up to 1.750 m/min. Read more",
+              "url": "https://www.fadis.it/premium-technology/premium-air-covering-range/",
+              "breadcrumb": "https://www.fadis.it › premium-technology › premium-ai..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "www.jgtextilemachine.com",
+              "title": "Spandex Covered Yarn Machine - Jinggong Textile ...",
+              "description": "HKV141A spandex covered yarn machine is suitable for producing fine denier covered products (covering between nylon or polyester and spandex).",
+              "url": "https://www.jgtextilemachine.com/spandex-covered-yarn-machine_product13.html",
+              "breadcrumb": "https://www.jgtextilemachine.com › spandex-covered-ya..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "www.weavetech.com",
+              "title": "Covering Machine in Textiles - Weavetech",
+              "description": "Air Covering Machine (Intermingling Method): Employs compressed air jets to twist the core and covering yarns together without mechanical twisting. It's ... Read more",
+              "url": "https://www.weavetech.com/what-is-a-covering-machine-complete-guide-for-textile-manufacturers/",
+              "breadcrumb": "https://www.weavetech.com › what-is-a-covering-machi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.rieter.com",
+              "title": "SSM Yarn Processing Machines",
+              "description": "Air covering. Strive for excellence with the best possible air covering machine on the market. Single drive technology, maximum flexibility, full package change ... Read more",
+              "url": "https://www.rieter.com/products/systems/winding-machines/yarn-processing",
+              "breadcrumb": "https://www.rieter.com › Products › Systems › Winding"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "www.kyangyhe.com",
+              "title": "Yarn Covering Machine Series | Factory-Direct Textile ...",
+              "description": "The yarn covering machine is commonly used in the production of elastic yarns, no matter single covered, double covered, core yarn can use elastic or non- ... Read more",
+              "url": "https://www.kyangyhe.com/en/category/CATE-covering-machine.html",
+              "breadcrumb": "https://www.kyangyhe.com › category › CATE-covering..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "en.sxsfj.com",
+              "title": "CAJ500B Air Covering Yarn Machine - Shaoxing Sanfang",
+              "description": "The machine use brushless DC motor,each spindle run separately with energy saving. Machine has slow soft starting function, it allow the workers to connect ... Read more",
+              "url": "http://en.sxsfj.com/product/4.html",
+              "breadcrumb": "http://en.sxsfj.com › product"
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 13,
+              "page": 2,
+              "domain": "www.aiki-japan.com",
+              "title": "AIKI RIOTECH CORPORATION / PRODUCTS / Air ...",
+              "description": "The air covering machine has the following functions: it feeds continuous fibers such as polyurethane yarn, generally known as spandex, nylon and polyester, ... Read more",
+              "url": "https://www.aiki-japan.com/products/acm_index.html",
+              "breadcrumb": "https://www.aiki-japan.com › products › acm_index"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "www.tradeindia.com",
+              "title": "Air Covering Yarn Machine - 48 Spindles, <420 M/min Speed",
+              "description": "Air Covering Machine, The machine use Brushless DC Motor, each spindle run separately with energy saving; The workers can not the break yarns more conveniently ... Read more",
+              "url": "https://www.tradeindia.com/products/air-covering-yarn-machine-2723426.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › yarn machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "en.imaginsz.com",
+              "title": "AC Air Covering Winding Machine_IMAGIN Machinery Co ...",
+              "description": "AC series air wrapping machine can carry out good network wrapping and winding treatment for general industrial silk and spandex silk. Keyword: Precision ... Read more",
+              "url": "https://en.imaginsz.com/product/59.html",
+              "breadcrumb": "https://en.imaginsz.com › product"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.saludstyle.com",
+              "title": "The Difference Between Air Covered Yarn and Mechanical ...",
+              "description": "4 Jan 2024 — Air covered yarn utilizes compressed air to wrap the covering material around a core yarn in a helical pattern. The air jet applies the covering ... Read more",
+              "url": "https://www.saludstyle.com/news/the-difference-between-air-covered-yarn-and-mechanical-covered-yarn/",
+              "breadcrumb": "https://www.saludstyle.com › News › Textile Knowledge"
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.exportersindia.com",
+              "title": "Air Covering Yarn Machine",
+              "description": "Find companies Supplying Air Covering Yarn Machine in India. Get Air Covering Yarn Machine at best price from Air Covering Yarn Machine Retailers ...",
+              "url": "https://www.exportersindia.com/indian-suppliers/air-covering-yarn-machine.htm",
+              "breadcrumb": "https://www.exportersindia.com › indian-suppliers › air-c..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "solution-textile.com",
+              "title": "Air Covering Machine - Textile Machinery",
+              "description": "This air covering machine is designed to operate with separate control per spindle, making it suitable for air covering operations for terylene, nylon, ...",
+              "url": "http://solution-textile.com/3-1-air-covering-machine.html",
+              "breadcrumb": "http://solution-textile.com › 3-1-air-covering-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.alibaba.com",
+              "title": "High Speed Automatic Air Covering Spandex Yarn Machine",
+              "description": "High Speed Automatic Air Covering Spandex Yarn Machine for Textile. Origin: CN, ZHE. Warranty: 1 Year. Video inspection. Computer controller. 4 Spindles.",
+              "url": "https://www.alibaba.com/product-detail/High-Speed-Automatic-Air-Covering-Spandex_1600465437995.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Other Textile Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.wanlitex.com",
+              "title": "China Covering Machine Manufacturers, Suppliers, Factory",
+              "description": "Air Covered Yarn Machine is mainly used to produce high-quality core yarn or composite yarn, and improve the quality and stability of the products through ... Read more",
+              "url": "https://www.wanlitex.com/spinning-machine/covering-machine/",
+              "breadcrumb": "https://www.wanlitex.com › Products › Spinning Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.jgtextilemachine.com",
+              "title": "Air Covering Machine - JINGGONG Textile Machine",
+              "description": "Air Jet Covering Machine is used to make air covered yarn, Spandex/Lycra, Polyester yarn, Nylon yarn, Polypropylene yarn air covering with air jet. It also ... Read more",
+              "url": "https://www.jgtextilemachine.com/textile-machinery/tag/air-covering-machine/index.html",
+              "breadcrumb": "https://www.jgtextilemachine.com › tag › air-covering-m..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "www.derunnylon.com",
+              "title": "Winding system of one-step air covering integrated machine",
+              "description": "15 Aug 2023 — It involves simultaneously stretching the external filament and the spandex filament through a specific nozzle and subjecting them to high- ... Read more",
+              "url": "https://www.derunnylon.com/blog/Winding-system-of-one-step-air-covering-integrated-machine/",
+              "breadcrumb": "https://www.derunnylon.com › blog › Winding-system-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 24,
+              "page": 3,
+              "domain": "www.hemaks.com.tr",
+              "title": "AIR COVERING MACHINE",
+              "description": "HMX 140 AIR COVERING MACHINE. - Air Covering Machine Length: 2500 mm for one section (5 positions)es 6\", 7\", 8\" 3000 mm for one section (5 positions)es 10\". Read more",
+              "url": "https://www.hemaks.com.tr/aircoveringmachine.html",
+              "breadcrumb": "https://www.hemaks.com.tr › aircoveringmachine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 25,
+              "page": 3,
+              "domain": "www.rieter.com",
+              "title": "Covering Yarn: Faster Elastic Yarn Production with Air ...",
+              "description": "7 Sept 2020 — Air covering produces elastic yarn by combining textured yarn with elastane. Both threads are interlaced by running them through an ... Read more",
+              "url": "https://www.rieter.com/company/news-and-success-stories/details/high-efficiency-of-elastic-yarn-production",
+              "breadcrumb": "https://www.rieter.com › ... › Details"
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "nfmachinery.en.made-in-china.com",
+              "title": "Covering Yarn Machine (KT163-A)",
+              "description": "KT163-A Covering yarn machine is used for the single and double covering production of covered yarn with spandex as the core yarn and cotton yarn terylene ... Read more",
+              "url": "https://nfmachinery.en.made-in-china.com/product/AMinDXpYJHVk/China-Covering-Yarn-Machine-KT163-A-.html",
+              "breadcrumb": "https://nfmachinery.en.made-in-china.com › product"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "royalwesta.com",
+              "title": "SSM Air Covering Machine DP2-C/S",
+              "description": "Quantity: 1. Year: 2001. DICIGONE preciflex 5 spindles. Designated for Staple yarns, staple yarns with elastane. Digicone step precision winding Read more",
+              "url": "https://royalwesta.com/product/ssm-air-covering-machine-dp2-c-s/",
+              "breadcrumb": "https://royalwesta.com › Used Machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "SSM XENO-AC TWIN",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=qnea-ebn6l0",
+              "breadcrumb": "1.9K+ views  ·  5 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.facebook.com",
+              "title": "used air covering machine wf10 40 spindle machine. 2 sets ...",
+              "description": "used air covering machine wf10 40 spindle machine. 2 sets available. 2012 year machine prodcue spandex air covered yarn location: China ...",
+              "url": "https://www.facebook.com/kasonmachinery/videos/used-air-covering-machinewf1040-spindle-machine2-sets-available2012-yearmachine-/693592428026783/",
+              "breadcrumb": "1 reaction  ·  4 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.chinatexnet.com",
+              "title": "High speed spandex yarn air covering machine for making ...",
+              "description": "TH-18 Spandex Air covering machine ( Spandex covering machine), it's a high speed precision type air covering machine, the machine can do spandex covering, also ... Read more",
+              "url": "https://www.chinatexnet.com/ChinaSuppliers/215325/High-speed-spandex-yarn-air-covering-machine-for-making-Lycra-air-jet-covering--1047485.html",
+              "breadcrumb": "https://www.chinatexnet.com › ChinaSuppliers › High-sp..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.alibaba.com",
+              "title": "Air Covering Machine - High Efficiency Yarn Spindle Speed",
+              "description": "Discover air covering machines with CE certification and high-speed performance up to 1100m/min for spandex yarn production.",
+              "url": "https://www.alibaba.com/showroom/air-covering-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Other Textile Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "www.exportersindia.com",
+              "title": "Air Covering Yarn Machine at Best Price in Surat - ID",
+              "description": "Air Covering Yarn Machine ; Pressure4 Kg / cm2 ; Supply TypeManufacturer, Exporter, Supplier, Retailer ; Preferred Buyer Location All over the world. Read more",
+              "url": "https://www.exportersindia.com/product-detail/air-covering-yarn-machine-3477357.htm",
+              "breadcrumb": "https://www.exportersindia.com › product-detail › air-co..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "en.sxsfj.com",
+              "title": "Air Covering Yarn Machine-Product Center-Shaoxing Sanfang ...",
+              "description": "Air Covering Yarn Machine, Mixing lntermingled Machine, Computerized Spooler Machine, Jumbo Cone Winder Machine, Cone Rewinding Machine, Metallic Yarn Covering ... Read more",
+              "url": "http://en.sxsfj.com/product/8/",
+              "breadcrumb": "http://en.sxsfj.com › product"
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 35,
+              "page": 4,
+              "domain": "www.jgtextilemachine.com",
+              "title": "Air Covering & Air Covering Machine",
+              "description": "9 Sept 2022 — HKV204 Air Jet Spandex Yarn Covering Machine is a new type of coating equipment with a high degree of mechatronics. The whole machine is ... Read more",
+              "url": "https://www.jgtextilemachine.com/textile-machinery/air-covering-machine/",
+              "breadcrumb": "https://www.jgtextilemachine.com › textile-machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "www.weavetech.com",
+              "title": "Covering Winder | Covering Machine - Weavetech",
+              "description": "Discover the ACW-S Series covering winders by Weavetech. Precision-engineered for efficient yarn winding, these machines offer reliability and high ...",
+              "url": "https://www.weavetech.com/winding-machines/winders/acw-s-series/",
+              "breadcrumb": "https://www.weavetech.com › ... › Winders"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "www.innovationintextiles.com",
+              "title": "SSM launches eight new products in India at ITME 2016",
+              "description": "21 Dec 2016 — Besides the showed applications, SSM can provide solutions for false twist texturing, air covering, draw winding, yarn singeing and conventional ... Read more",
+              "url": "https://www.innovationintextiles.com/industrial/ssm-launches-eight-new-products-in-india-at-itme-2016/",
+              "breadcrumb": "https://www.innovationintextiles.com › industrial › ssm-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "Air covered yarn machine",
+              "description": "The air-covered yarn machine wraps the air fiber on the surface of the yarn through high-speed air flow to form a film. This covering can ...",
+              "url": "https://www.youtube.com/watch?v=pNZtCBdk6IY",
+              "breadcrumb": "260+ views  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "ntptw.com.tw",
+              "title": "Machine introduction - NEW TOP POWER ENTERPRISE ...",
+              "description": "We import new model and high speed covering machines, seeking for special type of yarns, provide and accept wide range of order packaging & specification. Read more",
+              "url": "https://ntptw.com.tw/en/Machine/",
+              "breadcrumb": "https://ntptw.com.tw › ... › Machine introduction"
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.ssm.ch",
+              "title": "SSM: Yarn Processing & Winding Machines for Textile ...",
+              "description": "SSM offers advanced yarn processing and winding machines—from assembly winding to dye packages and sewing thread finishing ... Air Covering Machines · Air ... Read more",
+              "url": "https://www.ssm.ch/",
+              "breadcrumb": "https://www.ssm.ch"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "www.rieter.com",
+              "title": "Advantageous Air-Covering Process for Spinning ...",
+              "description": "22 May 2022 — The main advantage of the indirect method with the air covering machine is that the core yarn is centered better during processing on the ring spinning machine. Read more",
+              "url": "https://www.rieter.com/company/news-and-success-stories/details/advantageous-air-covering-process-for-spinning-corespun-yarns-with-a-dual-core",
+              "breadcrumb": "https://www.rieter.com › ... › Details"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "meeraind.com",
+              "title": "Covering Machine for Spandex & Elastic Yarn Processing",
+              "description": "Double cover elastic, spandex and technical yarns like glass fiber at high speeds. Precision covering for all technical textile applications.",
+              "url": "https://meeraind.com/product/covering-machine",
+              "breadcrumb": "https://meeraind.com › product › covering-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.justdial.com",
+              "title": "Mx Jari Covering Machine in India",
+              "description": "Find Best Price, Quotations, Address, Contact Number, Reviews and Ratings of Verified Mx Jari Covering Machine Dealers, Manufacturers & Suppliers in India.",
+              "url": "https://www.justdial.com/india/Mx-Jari-Covering-Machine",
+              "breadcrumb": "https://www.justdial.com › ... › Mx Jari Covering Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "www.tfotwister.com",
+              "title": "Elastic Yarn Covering Machine Manufacturer from Surat",
+              "description": "Elastic Yarn Covering Machine · Machine Type: Automatic · Power Consumption: 6-36HP · Spindle Speed: 16000 RPM (Optional) · Model Name/Number: JC-51ED · No. of ... Read more",
+              "url": "https://www.tfotwister.com/covering-machine.html",
+              "breadcrumb": "https://www.tfotwister.com › covering-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 46,
+              "page": 5,
+              "domain": "rbsockmachine.en.made-in-china.com",
+              "title": "Textile Popular Air Covering Spandex Yarn Machine ...",
+              "description": "Automatic Air Covering Spandex Yarn Machine. 1. The machine use brushless DC motor, each spindle run separately with energy saving. Read more",
+              "url": "https://rbsockmachine.en.made-in-china.com/product/hQAUzRGYUacm/China-Textile-Popular-Air-Covering-Spandex-Yarn-Machine-Polyester-Yarn-Cover-Machine.html",
+              "breadcrumb": "https://rbsockmachine.en.made-in-china.com › product"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "www.fadis.it",
+              "title": "Matrix technology - Fadis Textile Machine",
+              "description": "AIR COVERING WINDING RANGE · AIR TEXTURING WINDING RANGE · SPOOLING WINDING ... Universal winder for staple yarn and textured filament yarns with the ... Read more",
+              "url": "https://www.fadis.it/matrix-technology/",
+              "breadcrumb": "https://www.fadis.it › matrix-technology"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "wanzhi.goldsupplier.com",
+              "title": "Yarn Covering Machine from China Manufacturers",
+              "description": "Explore Yarn Covering Machine products at Xinchang Wanzhi Machinery Co., Ltd., reliable China manufacturer. Contact us for more details!",
+              "url": "https://wanzhi.goldsupplier.com/235401-Yarn-Covering-Machine/",
+              "breadcrumb": "https://wanzhi.goldsupplier.com › 235401-Yarn-Coverin..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.alconetex.com",
+              "title": "Yarn and Jari Covering Machine Manufacturers in India",
+              "description": "Our machines are textile machinery specifically designed for covering yarn or thread with metallic or non-metallic material and are typically used in the ... Read more",
+              "url": "https://www.alconetex.com/yarn-and-jari-covering-machine.php",
+              "breadcrumb": "https://www.alconetex.com › yarn-and-jari-covering-mac..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.bhargeshengg.com",
+              "title": "Bhargesh Engineering",
+              "description": "Lycra Air Covering Machine · Lycra Air Covering & Intermingling Machine · Jari Coning Machine · Rapier Conversion of Conventional Loom. Follow Us. Copyright ...",
+              "url": "https://www.bhargeshengg.com/video.html",
+              "breadcrumb": "https://www.bhargeshengg.com · 30 May 2024"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.alibaba.com",
+              "title": "Air Covered Yarn Machine(441)",
+              "description": "Air Covered Spandex Yarn Machine for Hot Sale. $7,000-15,500. Min. order: 1 set. supplier information icon CN. Find similar icon. KC215B Air Covering ... Read more",
+              "url": "https://www.alibaba.com/countrysearch/CN/air-covered-yarn-machine.html",
+              "breadcrumb": "https://www.alibaba.com › countrysearch › air-covered-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "en.lanbopm.com",
+              "title": "lb-102 air covering machine",
+              "description": "This machine is used to make air covered yarn, Spandex/Lycra, Polyester yarn, Nylon yarn, Polypropylene yarn air covering with air jet. Read more",
+              "url": "https://en.lanbopm.com/product/LB-102-AIR-COVERING-MACHINE-15.html",
+              "breadcrumb": "https://en.lanbopm.com › product › LB-102-AIR-COVE..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.jgtextilemachine.com",
+              "title": "What is yarn covering machine? - JINGGONG Textile ...",
+              "description": "29 Jun 2022 — ... yarn, synthetic fiber, polyamide, polyester, real silk and metallic yarns as the covering yarns. The air yarn covering machine has the ... Read more",
+              "url": "https://www.jgtextilemachine.com/textile-machinery/what-is-yarn-covering-machine/index.html",
+              "breadcrumb": "https://www.jgtextilemachine.com › textile-machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.resale.info",
+              "title": "▷ yarn used machine for sale",
+              "description": "NUMBER 2 MACHINES COVERING YARN. 256 SPINDELS IN DOUBLE COVERING ... Covering yarn air jet. Location: Land-it. request quote. NUMBER 40 POSITIONS ... Read more",
+              "url": "https://www.resale.info/en/yarn/",
+              "breadcrumb": "https://www.resale.info › yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 48,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "www.etwinternational.com",
+              "title": "Metallic Yarn Covering Machine | Textile Machinery",
+              "description": "The metallic yarn covering machine is exclusively used in both single covering and double covering of metallic yarns and special yarns in various ...",
+              "url": "https://www.etwinternational.com/3-3-metallic-yarn-covering-machine-148396.html",
+              "breadcrumb": "https://www.etwinternational.com › 3-3-metallic-yarn-co..."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

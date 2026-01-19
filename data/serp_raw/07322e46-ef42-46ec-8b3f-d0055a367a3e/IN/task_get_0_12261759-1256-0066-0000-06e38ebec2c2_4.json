@@ -1,0 +1,767 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0401 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-06e38ebec2c2",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0306 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-06e38ebec2c2"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "jari covering machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "jari covering machine",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=jari%20covering%20machine&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:59:34 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+jari+covering+machine&hl=en&gl=IN&shoprs=GBIqFWphcmkgY292ZXJpbmcgbWFjaGluZTIJCBISBVByaWNlYAE&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKAF6BAgiEEI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=jari+covering+machine+nearby&hl=en&gl=IN&shoprs=GAMqFWphcmkgY292ZXJpbmcgbWFjaGluZTIMCAMSBk5lYXJieRgCWP_RIGAB&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKAJ6BAgiEEM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+jari+covering+machine&hl=en&gl=IN&shoprs=GBIqFWphcmkgY292ZXJpbmcgbWFjaGluZTIKCBISBk9ubGluZWAB&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKAN6BAgiEEQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+jari+covering+machine&hl=en&gl=IN&shoprs=GBIqFWphcmkgY292ZXJpbmcgbWFjaGluZTILCBISB1Jldmlld3NgAQ&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKAR6BAgiEEU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+jari+covering+machine&hl=en&gl=IN&shoprs=GBIqFWphcmkgY292ZXJpbmcgbWFjaGluZTIHCBISA0J1eWAB&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKAV6BAgiEEY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Fabric",
+                "url": "https://www.google.com/search?q=fabric+jari+covering+machine&hl=en&gl=IN&shoprs=GAkqFWphcmkgY292ZXJpbmcgbWFjaGluZTIKCAkSBkZhYnJpY2AB&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKAZ6BAgiEEc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "New",
+                "url": "https://www.google.com/search?q=new+jari+covering+machine&hl=en&gl=IN&shoprs=GAoqFWphcmkgY292ZXJpbmcgbWFjaGluZTIHCAoSA05ld1j_0SBgAQ&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKAd6BAgiEEg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Used",
+                "url": "https://www.google.com/search?q=used+jari+covering+machine&hl=en&gl=IN&shoprs=GAoqFWphcmkgY292ZXJpbmcgbWFjaGluZTIICAoSBFVzZWRY_9EgYAE&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKAh6BAgiEEk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=jari+covering+machine+for+sale&hl=en&gl=IN&shoprs=GBIqFWphcmkgY292ZXJpbmcgbWFjaGluZTIMCBISCEZvciBTYWxlYAE&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKAl6BAgiEEo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹35,000",
+                "url": "https://www.google.com/search?q=jari+covering+machine+under+35000&hl=en&gl=IN&shoprs=Eg0SCxEAAAAgU0wgQhgBGAUqFWphcmkgY292ZXJpbmcgbWFjaGluZTIoCAUSD1VuZGVyIOKCuTM1LDAwMBgCIg0SCxEAAAAgU0wgQhgBKgIYAVj_0SBgAQ&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKAp6BAgiEEs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "On sale",
+                "url": "https://www.google.com/search?q=jari+covering+machine+sale&hl=en&gl=IN&shoprs=EgRKAggBGAYqFWphcmkgY292ZXJpbmcgbWFjaGluZTITCAYSB09uIHNhbGUYAiIESgIIAVj_0SBgAQ&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKAt6BAgiEEw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Black",
+                "url": "https://www.google.com/search?q=black+jari+covering+machine&hl=en&gl=IN&shoprs=GAEqFWphcmkgY292ZXJpbmcgbWFjaGluZTIXCAESBUJsYWNrOgwI2Iz1ARDlivUBMAtY_9EgYAE&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKAx6BAgiEE0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Welding & Soldering Tools",
+                "url": "https://www.google.com/search?q=welding+%26+soldering+tools+jari+covering+machine&hl=en&gl=IN&shoprs=GAkqFWphcmkgY292ZXJpbmcgbWFjaGluZTIdCAkSGVdlbGRpbmcgJiBTb2xkZXJpbmcgVG9vbHNgAQ&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKA16BAgiEE4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "White",
+                "url": "https://www.google.com/search?q=white+jari+covering+machine&hl=en&gl=IN&shoprs=GAEqFWphcmkgY292ZXJpbmcgbWFjaGluZTIXCAESBVdoaXRlOgwI2Iz1ARChi_UBMAtY_9EgYAE&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKA56BAgiEE8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Images",
+                "url": "https://www.google.com/search?q=images+jari+covering+machine&hl=en&gl=IN&shoprs=GBIqFWphcmkgY292ZXJpbmcgbWFjaGluZTIKCBISBkltYWdlc2AB&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKA96BAgiEFA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Blue",
+                "url": "https://www.google.com/search?q=blue+jari+covering+machine&hl=en&gl=IN&shoprs=GAEqFWphcmkgY292ZXJpbmcgbWFjaGluZTIWCAESBEJsdWU6DAjYjPUBEOaK9QEwC1j_0SBgAQ&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKBB6BAgiEFE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Green",
+                "url": "https://www.google.com/search?q=green+jari+covering+machine&hl=en&gl=IN&shoprs=GAEqFWphcmkgY292ZXJpbmcgbWFjaGluZTIXCAESBUdyZWVuOgwI2Iz1ARDoivUBMAtY_9EgYAE&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKBF6BAgiEFI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Conveyors",
+                "url": "https://www.google.com/search?q=conveyors+jari+covering+machine&hl=en&gl=IN&shoprs=GAkqFWphcmkgY292ZXJpbmcgbWFjaGluZTINCAkSCUNvbnZleW9yc2AB&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKBJ6BAgiEFM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Usha",
+                "url": "https://www.google.com/search?q=usha+jari+covering+machine&hl=en&gl=IN&shoprs=GAEqFWphcmkgY292ZXJpbmcgbWFjaGluZTIUCAESBFVzaGE6CgiD8zwQzOZSMAFY_9EgYAE&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKBN6BAgiEFQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Washing Machines",
+                "url": "https://www.google.com/search?q=washing+machines+jari+covering+machine&hl=en&gl=IN&shoprs=GAkqFWphcmkgY292ZXJpbmcgbWFjaGluZTIUCAkSEFdhc2hpbmcgTWFjaGluZXNgAQ&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKBR6BAgiEFU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "JUKI",
+                "url": "https://www.google.com/search?q=juki+jari+covering+machine&hl=en&gl=IN&shoprs=GAEqFWphcmkgY292ZXJpbmcgbWFjaGluZTIUCAESBEpVS0k6CgiD8zwQs_Q-MAFY_9EgYAE&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKBV6BAgiEFY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Industrial",
+                "url": "https://www.google.com/search?q=industrial+jari+covering+machine&hl=en&gl=IN&shoprs=GAEqFWphcmkgY292ZXJpbmcgbWFjaGluZTIaCAESCkluZHVzdHJpYWw6CgiUtzsQlbc7MANY_9EgYAE&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKBZ6BAgiEFc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Pink",
+                "url": "https://www.google.com/search?q=pink+jari+covering+machine&hl=en&gl=IN&shoprs=GAEqFWphcmkgY292ZXJpbmcgbWFjaGluZTIWCAESBFBpbms6DAjYjPUBEOmK9QEwC1j_0SBgAQ&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKBd6BAgiEFg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Havells",
+                "url": "https://www.google.com/search?q=havells+jari+covering+machine&hl=en&gl=IN&shoprs=GAEqFWphcmkgY292ZXJpbmcgbWFjaGluZTIXCAESB0hhdmVsbHM6CgiD8zwQ6KRpMAFY_9EgYAE&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKBh6BAgiEFk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tradeindia.com",
+                "url": "https://www.google.com/search?q=tradeindia.com+jari+covering+machine&hl=en&gl=IN&shoprs=GAIqFWphcmkgY292ZXJpbmcgbWFjaGluZTISCAISDlRyYWRlaW5kaWEuY29tWP_RIGAB&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKBl6BAgiEFo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Mini",
+                "url": "https://www.google.com/search?q=mini+jari+covering+machine&hl=en&gl=IN&shoprs=GAEqFWphcmkgY292ZXJpbmcgbWFjaGluZTIUCAESBE1pbmk6CgjVhy0Q1octMANY_9EgYAE&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKBp6BAgiEFs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Overlock Machine",
+                "url": "https://www.google.com/search?q=overlock+machine+jari+covering&hl=en&gl=IN&shoprs=GAEqFWphcmkgY292ZXJpbmcgbWFjaGluZTIgCAESEE92ZXJsb2NrIE1hY2hpbmU6CgjgszoQ4bM6MANY_9EgYAE&sa=X&ved=2ahUKEwiE37rMz9uRAxWZrJUCHcAIHlUQip4GKBt6BAgiEFw",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "organic",
+            "popular_products",
+            "images",
+            "video",
+            "carousel",
+            "related_searches"
+          ],
+          "se_results_count": 9420000,
+          "pages_count": 5,
+          "items_count": 46,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 1,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Jari Covering Machine",
+              "description": "Jari Covering Kasab Machine ... ₹ 1,250/PieceAlcone Tex Engineering Pvt. Ltd. is a leading manufacturer and solution provider of advanced textile machinery, ... Read more",
+              "url": "https://dir.indiamart.com/impcat/jari-covering-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Auxiliary Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 3,
+              "page": 1,
+              "domain": "www.tradeindia.com",
+              "title": "Jari Covering Machine at Best Price from Manufacturers, ...",
+              "description": "2 Hp 60 Mpm and Three Phase Mild Steel Industrial Jari Covering Machine, Price: 119000 INR/Piece, MOQ - 1 Piece/Pieces, Color - Blue, Product Type - Textile ... Read more",
+              "url": "https://www.tradeindia.com/manufacturers/jari-covering-machine.html",
+              "breadcrumb": "https://www.tradeindia.com › manufacturers › jari-cove..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 6,
+              "page": 1,
+              "domain": "www.aruntexeng.com",
+              "title": "Jari Covering Machine",
+              "description": "Discover high-performance jari covering machines designed for superior yarn covering precision. Arun Textile Engineers offers efficient and durable ...",
+              "url": "https://www.aruntexeng.com/jari-covering-machine.html",
+              "breadcrumb": "https://www.aruntexeng.com › jari-covering-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "www.alconetex.com",
+              "title": "How Jari Covering Machines Transform the Textile Industry",
+              "description": "A Jari Covering Machine is a high-end textile machine, which covers a fine metallic or ornamental thread (otherwise called \"Jari\") onto a primary yarn. It is ... Read more",
+              "url": "https://www.alconetex.com/how-jari-covering-machines-revolutionize-the-textile-industry.php",
+              "breadcrumb": "https://www.alconetex.com › how-jari-covering-machine..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Jari Covering Machine in Surat (जरी कवरिंग मशीन, सूरत)",
+              "description": "6 Sept 2025 — Jari Covering Kasab Machine ... ₹ 1,250/PieceAlcone Tex Engineering Pvt. Ltd. is a leading manufacturer and solution provider of advanced textile ... Read more",
+              "url": "https://dir.indiamart.com/surat/jari-covering-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Jari Covering Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.justdial.com",
+              "title": "Top Jari Covering Machine Products in Varanasi",
+              "description": "The Jari Covering Machine is a significant innovation in the textile industry that has revolutionized the process of covering yarn with metal or plastic. This ... Read more",
+              "url": "https://www.justdial.com/jdmart/Varanasi/Jari-Covering-Machine/jdm-1315443-ent-2-17722838",
+              "breadcrumb": "https://www.justdial.com › jdm-1315443-ent-2-17722838"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "www.saprumachines.com",
+              "title": "ST Jari Covering Machine with Pressure Roll",
+              "description": "Our flyerless machines are meticulously engineered to deliver exceptional productivity, while preserving the exquisite shine and luster of the final product. Read more",
+              "url": "http://www.saprumachines.com/ST-Jari-Covering-Machine.html",
+              "breadcrumb": "http://www.saprumachines.com › ST-Jari-Covering-Mac..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 13,
+              "page": 2,
+              "domain": "www.saprumachines.com",
+              "title": "ST Jari Covering Machine with Pressure Roll",
+              "description": "Our flyerless machines are meticulously engineered to deliver exceptional productivity, while preserving the exquisite shine and luster of the final product. Read more",
+              "url": "http://www.saprumachines.com/ST-Jari-Covering-Machine.html",
+              "breadcrumb": "http://www.saprumachines.com › ST-Jari-Covering-Mac..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "nationaltexeng.com",
+              "title": "Jari Covering [Roll Take Up]",
+              "description": "Superior shining jari production without flaws, twist variation and shade variation. High speed spindle machine designed to make the conversion cost economical. Read more",
+              "url": "https://nationaltexeng.com/roll-take-up-3/",
+              "breadcrumb": "https://nationaltexeng.com › roll-take-up-3"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "www.exportersindia.com",
+              "title": "Jari Covering Machine at Best Price from Manufacturers, ...",
+              "description": "Grade : Automatic,Semi Automatic,Fully Automatic,Manual. Power Source : Electric,Hydraulic,Mechanical. Features : Easy To Operate,Less Power ... Read more",
+              "url": "https://www.exportersindia.com/indian-suppliers/jari-covering-machine.htm",
+              "breadcrumb": "https://www.exportersindia.com › ... › Auxiliary Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.alconetex.com",
+              "title": "Yarn and Jari Covering Machine Manufacturers in India",
+              "description": "Jari covering machines vary in size and complexity, with automated features and advanced technologies for efficient production and customization options to meet ... Read more",
+              "url": "https://www.alconetex.com/yarn-and-jari-covering-machine.php",
+              "breadcrumb": "https://www.alconetex.com › yarn-and-jari-covering-mac..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.indiamart.com",
+              "title": "Jari Covering Machine Holo Trader - Retailer from Surat",
+              "description": "Crimping Machine (1) · crimping taspa machine · crimping taspa machine. ₹ 14,500/Piece. Call Now+918047646848. WhatsApp · View All Categories. About Us. Read more",
+              "url": "https://www.indiamart.com/shyamatextileengineers/jari-covering-machine.html?srsltid=AfmBOoq1zvijNKtI0AdXt2spTUiu3BWwYG50XwFjn2xh2kclTuHydppu",
+              "breadcrumb": "https://www.indiamart.com › ... › Our Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "5.imimg.com",
+              "title": "Jari Covering Machine",
+              "description": "If looking or planning for jari covering machine, national brand jari covering machines is most reliable option for you because of rich industry experience not ... Read more",
+              "url": "https://5.imimg.com/data5/SELLER/Doc/2023/5/307211523/QZ/QH/CK/7652298/jari-covering-machine.pdf",
+              "breadcrumb": "https://5.imimg.com › data5 › SELLER › Doc › ja..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.weavetech.in",
+              "title": "MX / MH Metallic Jari Hollow Covering Machine",
+              "description": "Manufacturer of Jari Covering Machine - MX / MH Metallic Jari Hollow Covering Machine, ST / Kasab Jari Hollow Covering Machine offered by Weavetech ...",
+              "url": "https://www.weavetech.in/jari-covering-machine.html",
+              "breadcrumb": "https://www.weavetech.in › jari-covering-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.tradeindia.com",
+              "title": "Jari Covering Machine In Surat - Prices Manufacturers & ...",
+              "description": "The range of offered jari covering machine products in Surat is impressive with a total of 155 products currently available. Where can I find jari covering ... Read more",
+              "url": "https://www.tradeindia.com/surat/jari-covering-machine-city-220891.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › Jari covering machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.aajjo.com",
+              "title": "Jari Covering Machine, 6 HP Manufacturer & Seller in Surat",
+              "description": "Looking for the latest Jari Covering Machine, 6 HP price in Surat? NATIONAL TEXTILE ENGINEERING INDUSTRIES, one of Surat's best Jari Covering Machine, 6 HP ...",
+              "url": "https://www.aajjo.com/product/jari-covering-machine-6-hp-in-surat-national-textile-engineering-industries",
+              "breadcrumb": "https://www.aajjo.com › ... › Jari Covering Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 23,
+              "page": 3,
+              "domain": "www.shivamengg.com",
+              "title": "Jari Covering Machine",
+              "description": "Wide range of thread covering by Jari or other plastic yarns can be done on this machine. Contineous covering process without significant yarn breakages ... Read more",
+              "url": "http://www.shivamengg.com/jari-covering-machine.html",
+              "breadcrumb": "http://www.shivamengg.com › jari-covering-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 24,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "Jari Coning Machine",
+              "description": "America Copied Germany's Jerry Can — But Missed The One Genius Detail that Made All the Difference. Echoes of War · 487K views ; thread winding ...",
+              "url": "https://www.youtube.com/watch?v=Jlcre3YSyEs",
+              "breadcrumb": "23.8K+ views  ·  9 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 25,
+              "page": 3,
+              "domain": "www.alibaba.com",
+              "title": "Jari Covering Machines - High Efficiency & Precision",
+              "description": "The jari covering machine are used to manufacture and wrap the zari threads around the pattu silk threads for weft and warp threads, utilized in the production ... Read more",
+              "url": "https://www.alibaba.com/showroom/jari-covering-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Other Textile Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "www.saprumachines.com",
+              "title": "sapru machines pvt ltd, machines, manufacturer of textile ...",
+              "description": "ST Jari Covering Machine with Pressure Roll · ST Jari Covering 3 Deck · MX / S&Z Double Covering · Single Lycra Covering · Double Lycra/Rubber Covering ( ... Read more",
+              "url": "http://www.saprumachines.com/",
+              "breadcrumb": "http://www.saprumachines.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "www.rauyalindustries.com",
+              "title": "Products | Manufacturer from Surat",
+              "description": "Products · Textile Machinery Part · Twisting Machine Spare Parts · Textile Spindle · Jari Covering Machine · Ceramic Thread Guide · Cork Sheet · Hollow Spindle. Read more",
+              "url": "https://www.rauyalindustries.com/products.html",
+              "breadcrumb": "https://www.rauyalindustries.com › products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.exportersindia.com",
+              "title": "Jari Covering Machine Manufacturers, Suppliers In Surat",
+              "description": "Count Range : 50 to 250. Brand Name : ALCONE. Power Consumption : Minimum 3hp maximum 7.5hp. Supply Type : Manufacturer. Read more",
+              "url": "https://www.exportersindia.com/surat/jari-covering-machine.htm",
+              "breadcrumb": "https://www.exportersindia.com › surat › jari-covering-m..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.justdial.com",
+              "title": "Top Jari Covering Machine Manufacturers in Udhna, Surat ...",
+              "description": "Popular Jari Covering Machine Manufacturers in Udhna, Surat · Akb Textiles Engineers · Krishna Textile Engineers · Altra Tex Pro · Shivam Engineering · Rima ... Read more",
+              "url": "https://www.justdial.com/Surat/Jari-Covering-Machine-Manufacturers-in-Udhna/nct-11513309",
+              "breadcrumb": "https://www.justdial.com › ... › 33+ Listings"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.instagram.com",
+              "title": "See how Jari fabric is made on jacquard power loom machine ...",
+              "description": "The charkha, a simple yet powerful spinning wheel, is more than a tool for making yarn; it's an enduring symbol of India's freedom struggle ...",
+              "url": "https://www.instagram.com/reel/DDKMaWANzkE/?hl=en",
+              "breadcrumb": "1K+ likes  ·  1 year ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.mdpi.com",
+              "title": "The Interplay Between Combustion and Component ...",
+              "description": "by A Kakoee · 2026 — The results show that RCCI operation introduces pronounced component temperature variations across the load range, creating challenges for thermal management ... Read more",
+              "url": "https://www.mdpi.com/1996-1073/19/1/83",
+              "breadcrumb": "https://www.mdpi.com › ..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "JINGGONG: Yarn Covering Machine, Air Jet Covering ...",
+              "description": "JINGGONG: Yarn Covering Machine, Air Jet Covering Machine, Double-Covering Yarn Covering Machine. 28K views · 3 years ago #textilemachine ...",
+              "url": "https://www.youtube.com/watch?v=_yyPiw4EgWA",
+              "breadcrumb": "28.2K+ views  ·  3 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 34,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "JINGGONG: Yarn Covering Machine, Air Jet Covering ...",
+              "description": "JINGGONG: Yarn Covering Machine, Air Jet Covering Machine, Double-Covering Yarn Covering Machine. 28K views · 3 years ago #textilemachine ...",
+              "url": "https://www.youtube.com/watch?v=_yyPiw4EgWA",
+              "breadcrumb": "28.2K+ views  ·  3 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 35,
+              "page": 4,
+              "domain": "www.indiamart.com",
+              "title": "Single Deck Jari Covering Machine from Surat",
+              "description": "We are an unparalleled name engaged in providing high quality assortment of Jari Yarn Covering Machine. Features : Less maintenance High functionality Rigid ... Read more",
+              "url": "https://www.indiamart.com/anjaniindustries-surat/jari-covering-machine.html?srsltid=AfmBOorhS0_HmjNF5bE4jES-AZV3b3jDrwWBotRIXNSlnoBPo7gj6kWA",
+              "breadcrumb": "https://www.indiamart.com › ... › Our Product Range"
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "medium.com",
+              "title": "Sheerpower, Part 2: Why Business Programming ...",
+              "description": "Programming today broadly splits into two worlds: System code, which controls machines; Business code, which models human rules, processes, and ... Read more",
+              "url": "https://medium.com/@yashbatra11111/sheerpower-part-2-why-business-programming-languages-matter-and-why-general-purpose-ones-fall-3f7b50d980f3",
+              "breadcrumb": "70+ likes  ·  1 day ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "www.tradeindia.com",
+              "title": "Garment Machinery Automatic Jari Covering Machines",
+              "description": "Automatic Jari Covering Machines are available for sale with following description. Product Detail: Fully automatic. Low maintenance. Lesser noise in operation Read more",
+              "url": "https://www.tradeindia.com/products/automatic-jari-covering-machines-5700019.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › jari covering machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "jari warp machine || power looms || Krishna s view",
+              "description": "power looms warp jari machines jari gadis jari warp machine available place cubanpet,Bangalore, Karnataka eroad, Tamil Nadu #krishnasview ...",
+              "url": "https://www.youtube.com/watch?v=dm_AD8viitA",
+              "breadcrumb": "22.1K+ views  ·  4 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "en.wikipedia.org",
+              "title": "Les Binks",
+              "description": "James Leslie Binks (8 August 1951 – 15 March 2025) was a Northern Irish heavy metal drummer. He is best-known for being the drummer for Judas Priest, ... Read more",
+              "url": "https://en.wikipedia.org/wiki/Les_Binks",
+              "breadcrumb": "https://en.wikipedia.org › wiki › Les_Binks"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.exportersindia.com",
+              "title": "Jari Covering Machine at Best Price in Surat - ID: 3475230",
+              "description": "Buy Jari Covering Machine from Alidhra Textile Engineering Ltd. Find Company contact details & address in Surat, Gujarat | ID: 3475230.",
+              "url": "https://www.exportersindia.com/product-detail/jari-covering-machine-3475230.htm",
+              "breadcrumb": "https://www.exportersindia.com › product-detail › jari-co..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "MICRO SLITTER ‼️JARI MACHINE IN SURAT BSP KOREA ...",
+              "description": "MICRO SLITTER ‼️ JARI MACHINE IN SURAT BSP KOREA JARI LINE INDUSTRIES#event #happyfathersday #status. Go Down Deh · Spice (ft. Shaggy ...",
+              "url": "https://www.youtube.com/shorts/bEx2ztM5cOo",
+              "breadcrumb": "3.6K+ views  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.facebook.com",
+              "title": "Re Winding Machine for double end flange roll Jari firka ...",
+              "description": "Re Winding Machine for double end flange roll Jari firka Winding Machine. ... Twisting machine for jari Jari TFO machine. Mar 30, 2022 · 905 views.",
+              "url": "https://www.facebook.com/sepsontexeng/videos/re-winding-machine-for-double-end-flange-rolljari-firka-winding-machine/3107580859458045/",
+              "breadcrumb": "10+ reactions  ·  3 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "JARI WINDING MACHINE BY SEPSON TEXTILE MACHINES",
+              "description": "JARI WINDING MACHINE BY SEPSON TEXTILE MACHINES, SURAT. JARI WINDING MACHINE BY SEPSON TEXTILE MACHINES. 961 views · 3 years ago SURAT",
+              "url": "https://www.youtube.com/watch?v=IxynnfoSz7Q",
+              "breadcrumb": "960+ views  ·  3 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 45,
+              "page": 5,
+              "domain": "www.tiktok.com",
+              "title": "Potato Haulm Cutter Innovations for 2026",
+              "description": "recommend- cover. M.A Rauf & Sons Okara. 166 · recommend- cover ... Potato Harvesting 2026 Digger Machine booking Jari hai #fyp #marauf # ...",
+              "url": "https://www.tiktok.com/@maraufzaraiindustryokara/video/7585509658597608712",
+              "breadcrumb": "1.6K+ views  ·  1 week ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 46,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "Zari Machine. Zari Machine Video How does such a long ...",
+              "description": "This content isn't available. जरी मशीन. जरी मशीन वीडियो कैसे चलता है इतना लंबा मशीन और कैसे चलाते हैं एक कारीगर. jari ... Read more",
+              "url": "https://www.youtube.com/watch?v=VNOhzjB8_HI",
+              "breadcrumb": "35.6K+ views  ·  4 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "wlockett.medium.com",
+              "title": "Peter Thiel Just Revealed How Utterly Screwed The Entire AI ...",
+              "description": "This report has loomed large over the AI industry, as, depending on the data involved, it could bolster or crush the AI bubble. But, even if ... Read more",
+              "url": "https://wlockett.medium.com/peter-thiel-just-revealed-how-utterly-screwed-the-entire-ai-industry-is-df7a6e4d5d60",
+              "breadcrumb": "10.4K+ likes  ·  1 month ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "www.justdial.com",
+              "title": "Jari Covering Machine in Surat at ₹ 20000",
+              "description": "Jari Covering Machine · Material Cotton, Silk, Polyester, Nylon, Viscose · Product Capacity 1000 meters · Grade 2. 150 Gauge · Availability In Stock. Customers ... Read more",
+              "url": "https://www.justdial.com/jdmart/Surat/Jari-Covering-Machine/pid-2019826319/0261PX261-X261-110402182342-Q7S2",
+              "breadcrumb": "https://www.justdial.com › Surat › pid-2019826319"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.indiamart.com",
+              "title": "Jari Covering Machine - Aarti Engineering Works",
+              "description": "Manufacturer of Jari Covering Machine - Jari Thread Covering Machine offered by Aarti Engineering Works, Surat, Gujarat.",
+              "url": "https://www.indiamart.com/aarti-engg-works/jari-covering-machine.html?srsltid=AfmBOop5r4qWwY41Ad-uY7t469QcRyZtotb6UHV6IuJSJuv5VrRNvfI5",
+              "breadcrumb": "https://www.indiamart.com › ... › Products & Services"
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.tiktok.com",
+              "title": "Kajaste x Malm Aurora is not just a tattoo machine; it is the ...",
+              "description": "... cover -up.. Please don't. Have some class and respect others enough ... meriaiheinen tatuointi Jari, tatuointi meriteemalla, Jari Saario ...",
+              "url": "https://www.tiktok.com/@kajastemachines/video/7312594891681369376",
+              "breadcrumb": "1K+ views  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "जरी माल का इस्तेमाल कैसे होता है & How To Make Jari Treads ...",
+              "description": "How To Make Jari Treads For Embroidery Design In Surat Textile. #JariTreadsCompny #ZariTreads #EmbroideryNewDesign #febrication ...",
+              "url": "https://www.youtube.com/watch?v=pNObkTuVlvA",
+              "breadcrumb": "950+ views  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "www.tiktok.com",
+              "title": "Rathoa haryam bridge Mangla dam #trinding_video ...",
+              "description": "... machine bridge update, infrastructure development in Pakistan ... Islam garh side gentry fiting ka kam jari #RathohaHaryamBridge #GantryMachine # ... Read more",
+              "url": "https://www.tiktok.com/@shakeelvlog686/video/7586188096971099414",
+              "breadcrumb": "3.4K+ views  ·  5 days ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.indiamart.com",
+              "title": "Single Deck Jari Covering Machines from Surat",
+              "description": "This range is appreciated in the market for its features like easy maintenance, high mechanical strength, dimensional accuracy and longer functional life. Post ... Read more",
+              "url": "https://www.indiamart.com/twinkle-industries/jari-covering-machines.html?srsltid=AfmBOopLZBw4GEt0JDOnrbOTqwJ8h3MqKrNhFBJS2n2ibaZEkYVJx2uD",
+              "breadcrumb": "https://www.indiamart.com › ... › Our Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.justdial.com",
+              "title": "Top Sapru Jari Covering Machine Products in Bangalore",
+              "description": "Find 41 Sapru Jari Covering Machine products from verified sellers in Bangalore. Get Phone Numbers, Address, Reviews, Photos, Maps, FAQs for top Sapru Jari ...",
+              "url": "https://www.justdial.com/jdmart/Bangalore/Sapru-Jari-Covering-Machine/jdm-1315443-ent-4-27237489",
+              "breadcrumb": "https://www.justdial.com › jdm-1315443-ent-4-27237489"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

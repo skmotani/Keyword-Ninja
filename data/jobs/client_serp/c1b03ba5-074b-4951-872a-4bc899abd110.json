@@ -1,0 +1,43 @@
+{
+  "jobId": "c1b03ba5-074b-4951-872a-4bc899abd110",
+  "clientCode": "01",
+  "selectedDomain": "www.meeraind.com",
+  "keywords": [
+    "Cone To Cone Winder",
+    "Textile Twister",
+    "heat setting machine price",
+    "tfo machine",
+    "Cone Winder",
+    "TFO",
+    "pp fibrillated yarn",
+    "Doubling Machines",
+    "yarn twisting and doubling machine",
+    "Assembly winder",
+    "jari covering machine surat",
+    "Heavy Ring Twister",
+    "heat setting machine",
+    "Rope Twister",
+    "textile doubling machine",
+    "Lycra Covering Machine",
+    "Two For One Twisting Machine",
+    "TFO Twisting Machine",
+    "covering machine",
+    "Bobbin Winder"
+  ],
+  "status": "RUNNING",
+  "stage": "SERP_IN",
+  "progress": {
+    "IN": {
+      "done": 10,
+      "total": 20,
+      "current": "Processing... (10/20)"
+    },
+    "GL": {
+      "done": 0,
+      "total": 20
+    }
+  },
+  "errors": [],
+  "startedAt": "2025-12-26T15:51:20.290Z",
+  "updatedAt": "2025-12-26T15:51:45.380Z"
+}

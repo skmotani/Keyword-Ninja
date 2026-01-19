@@ -1,0 +1,1403 @@
+{
+  "version": "0.1.20251224",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0 sec.",
+  "cost": 0,
+  "tasks_count": 48,
+  "tasks_error": 48,
+  "tasks": [
+    {
+      "id": "12261333-1256-0066-0000-a619f5d05f01",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Winder",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-4650397293f1",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Two For One Twister For Filament yarn",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-f6ee70a0eeed",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "TPRS",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-aeb6ad3750cc",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Rope Twister",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-dc09d21df18f",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "TFO",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-61b412102e2b",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Bobbin Winder",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-813e6e2d246c",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Embroidery Thread Machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-2f11404da593",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Twisting Machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-7a777e019dc2",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "carpet yarn",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-459daab7dac6",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "tfo machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-52ae84f6392d",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Cone Winder",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-1d9d465300db",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Doubling Machines",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-33aee1e8e067",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Yarn Twisting Machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-f60e37e89b00",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "covering machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-a7b0e837a962",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "heat setting machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-7146acaaf815",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "jari covering machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-a0cce695b632",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "pp fibrillated yarn",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-26b4105c4b07",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Pirn Winder",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-16b080c3a73a",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "TFO Twisting Machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-c6e4de22bff0",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "ring doubling machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-37c5d381b9df",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "textile doubling machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-fd149a277c54",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Assembly winder",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-8f5d8761fbfc",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Two For One Twisting Machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-32ddfb5fa417",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Ring Twister Machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-e4cedf0f5296",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Ring Twisting Machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-8538ec9d55c7",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "yarn twisting and doubling machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-dca5fc4f5f20",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Cops Winder",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-38175fd2bc3c",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "yarn heat setting machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-de0deeab78ad",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Textile Twister",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-d11a7e2af4d6",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Heavy Ring Twister",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-42149447a4a6",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Ring Doubler",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-6f48c9561ca2",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Precision Winder",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-099df341f631",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Cone To Cone Winder",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-21e972f214ef",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Filament Yarn Machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-8ab2634800dc",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Cotton TFO Machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-fd68fa7a71bc",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Twine Twister",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-3dad24083e09",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Compact Twister",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-d893734bb74c",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Lycra Covering Machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-6fde5bbfa4d9",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "air covering yarn machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-a147921cd95c",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "jari covering machine surat",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-8d835c28bb6b",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "doubling machine price in india",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-3792cc16abce",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "tfo doubling machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-c56320346b6c",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "doubling machine manufacturers in coimbatore",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-d8423f506375",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "doubling machine process",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-f7569324db95",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "yarn doubling machine manufacturers",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-63ba33e78a5f",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "heat setting machine price",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-50c08ae8dc64",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "tubular heat setting machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    },
+    {
+      "id": "12261333-1256-0066-0000-89a4704fc8f7",
+      "status_code": 40200,
+      "status_message": "Payment Required.",
+      "time": "0 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_post"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_post",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Compound Twisting Machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "590d0bd1-9939-4543-bd5d-d19b5130b1c7"
+      },
+      "result": null
+    }
+  ]
+}

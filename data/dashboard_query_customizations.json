@@ -16,7 +16,7 @@
     {
       "queryId": "MANUAL_002",
       "customTitle": "Top 20 Content Opportunity  KW with Client SERP POS",
-      "updatedAt": "2026-01-18T04:38:02.016Z",
+      "updatedAt": "2026-01-18T04:51:15.577Z",
       "pageTitle": "Top 20 'Include | Learn' Keywords (Review Bucket) | Sorted by Total Volume (India + Global)",
       "pageContent": "These are high-volume informational keywords where your brand can build authority. Since they are in the 'Include | Learn' bucket, the user intent is to learn or research, not necessarily to buy immediately. Ranking for these terms establishes your brand as a thought leader and captures potential customers early in their buying journey (Knowledge Hub strategy)."
     },
@@ -31,6 +31,13 @@
     {
       "queryId": "Q010",
       "updatedAt": "2026-01-18T03:29:13.172Z"
+    },
+    {
+      "queryId": "Q011",
+      "customTitle": "Brand Power Analysis - Self vs Competitors",
+      "pageTitle": "Brand Authority & Market Presence Analysis",
+      "pageContent": "**Query Logic:**\nThis report analyzes how often people search for your brand name versus your competitors. We look for keywords containing your specific brand terms (e.g., \"Meera\", \"Meera Industries\") and compare the total search volume.\n\n**SEO Advantage (Why this matters):**\n1. **Brand Health Check:** A high brand search volume means people know and trust your name. It's the ultimate measure of \"off-page\" SEO and real-world reputation.\n2. **Navigation Intent:** Users searching your name WANT to find you. Ensure you rank #1 for these terms to capture 100% of this high-intent traffic.\n3. **Competitor Benchmarking:** See if competitors are growing their brand awareness faster than you.",
+      "updatedAt": "2026-01-18T06:25:22.824Z"
     }
   ],
   "categories": [

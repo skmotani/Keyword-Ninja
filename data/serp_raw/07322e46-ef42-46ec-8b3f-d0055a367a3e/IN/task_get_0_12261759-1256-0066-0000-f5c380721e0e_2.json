@@ -1,0 +1,768 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0537 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-f5c380721e0e",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0443 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-f5c380721e0e"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Bobbin Winder",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "Bobbin Winder",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=Bobbin%20Winder&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:59:20 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+bobbin+winder&hl=en&gl=IN&shoprs=GBIqDWJvYmJpbiB3aW5kZXIyCQgSEgVQcmljZWAB&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKAF6BAgWEDA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+bobbin+winder&hl=en&gl=IN&shoprs=GBIqDWJvYmJpbiB3aW5kZXIyCggSEgZPbmxpbmVgAQ&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKAJ6BAgWEDE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=Bobbin+Winder+nearby&hl=en&gl=IN&shoprs=GAMqDWJvYmJpbiB3aW5kZXIyDAgDEgZOZWFyYnkYAlis7CBgAQ&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKAN6BAgWEDI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "JUKI",
+                "url": "https://www.google.com/search?q=juki+bobbin+winder&hl=en&gl=IN&shoprs=GAEqDWJvYmJpbiB3aW5kZXIyFAgBEgRKVUtJOgoIg_M8ELP0PjABWKzsIGAB&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKAR6BAgWEDM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+bobbin+winder&hl=en&gl=IN&shoprs=GBIqDWJvYmJpbiB3aW5kZXIyBwgSEgNCdXlgAQ&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKAV6BAgWEDQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Brother",
+                "url": "https://www.google.com/search?q=brother+bobbin+winder&hl=en&gl=IN&shoprs=GAEqDWJvYmJpbiB3aW5kZXIyFwgBEgdCcm90aGVyOgoIg_M8EKrkPjABWKzsIGAB&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKAZ6BAgWEDU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹25,000",
+                "url": "https://www.google.com/search?q=Bobbin+Winder+under+25000&hl=en&gl=IN&shoprs=Eg0SCxEAAADAdkgXQhgBGAUqDWJvYmJpbiB3aW5kZXIyKAgFEg9VbmRlciDigrkyNSwwMDAYAiINEgsRAAAAwHZIF0IYASoCGAFYrOwgYAE&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKAd6BAgWEDY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+bobbin+winder&hl=en&gl=IN&shoprs=GBIqDWJvYmJpbiB3aW5kZXIyCwgSEgdSZXZpZXdzYAE&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKAh6BAgWEDc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=bobbin+winder+for+sale&hl=en&gl=IN&shoprs=GBIqDWJvYmJpbiB3aW5kZXIyDAgSEghGb3IgU2FsZWAB&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKAl6BAgWEDg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Black",
+                "url": "https://www.google.com/search?q=black+bobbin+winder&hl=en&gl=IN&shoprs=GAEqDWJvYmJpbiB3aW5kZXIyFwgBEgVCbGFjazoMCNiM9QEQ5Yr1ATALWKzsIGAB&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKAp6BAgWEDk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Size",
+                "url": "https://www.google.com/search?q=size+bobbin+winder&hl=en&gl=IN&shoprs=GBIqDWJvYmJpbiB3aW5kZXIyCAgSEgRTaXplYAE&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKAt6BAgWEDo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "White",
+                "url": "https://www.google.com/search?q=white+bobbin+winder&hl=en&gl=IN&shoprs=GAEqDWJvYmJpbiB3aW5kZXIyFwgBEgVXaGl0ZToMCNiM9QEQoYv1ATALWKzsIGAB&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKAx6BAgWEDs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Usa",
+                "url": "https://www.google.com/search?q=usa+bobbin+winder&hl=en&gl=IN&shoprs=GBIqDWJvYmJpbiB3aW5kZXIyBwgSEgNVc2FgAQ&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKA16BAgWEDw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Blue",
+                "url": "https://www.google.com/search?q=blue+bobbin+winder&hl=en&gl=IN&shoprs=GAEqDWJvYmJpbiB3aW5kZXIyFggBEgRCbHVlOgwI2Iz1ARDmivUBMAtYrOwgYAE&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKA56BAgWED0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Images",
+                "url": "https://www.google.com/search?q=images+bobbin+winder&hl=en&gl=IN&shoprs=GBIqDWJvYmJpbiB3aW5kZXIyCggSEgZJbWFnZXNgAQ&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKA96BAgWED4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Digital",
+                "url": "https://www.google.com/search?q=digital+bobbin+winder&hl=en&gl=IN&shoprs=GBIqDWJvYmJpbiB3aW5kZXIyCwgSEgdEaWdpdGFsYAE&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKBB6BAgWED8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Red",
+                "url": "https://www.google.com/search?q=red+bobbin+winder&hl=en&gl=IN&shoprs=GAEqDWJvYmJpbiB3aW5kZXIyFQgBEgNSZWQ6DAjYjPUBEOeK9QEwC1is7CBgAQ&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKBF6BAgWEEA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Green",
+                "url": "https://www.google.com/search?q=green+bobbin+winder&hl=en&gl=IN&shoprs=GAEqDWJvYmJpbiB3aW5kZXIyFwgBEgVHcmVlbjoMCNiM9QEQ6Ir1ATALWKzsIGAB&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKBJ6BAgWEEE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tradeindia.com",
+                "url": "https://www.google.com/search?q=tradeindia.com+bobbin+winder&hl=en&gl=IN&shoprs=GAIqDWJvYmJpbiB3aW5kZXIyEggCEg5UcmFkZWluZGlhLmNvbVis7CBgAQ&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKBN6BAgWEEI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Free delivery",
+                "url": "https://www.google.com/search?q=Bobbin+Winder+free+delivery&hl=en&gl=IN&shoprs=EgRSAhABGBkqDWJvYmJpbiB3aW5kZXIyFwgZEg1GcmVlIGRlbGl2ZXJ5IgRSAhABYAE&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKBR6BAgWEEM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Amazon.in",
+                "url": "https://www.google.com/search?q=amazon.in+bobbin+winder&hl=en&gl=IN&shoprs=GAIqDWJvYmJpbiB3aW5kZXIyDQgCEglBbWF6b24uaW5YrOwgYAE&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKBV6BAgWEEQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Etsy",
+                "url": "https://www.google.com/search?q=etsy+bobbin+winder&hl=en&gl=IN&shoprs=GAIqDWJvYmJpbiB3aW5kZXIyCAgCEgRFdHN5WKzsIGAB&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKBZ6BAgWEEU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Flipkart",
+                "url": "https://www.google.com/search?q=flipkart+bobbin+winder&hl=en&gl=IN&shoprs=GAIqDWJvYmJpbiB3aW5kZXIyDAgCEghGbGlwa2FydFis7CBgAQ&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKBd6BAgWEEY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "desertcart.in",
+                "url": "https://www.google.com/search?q=desertcart.in+bobbin+winder&hl=en&gl=IN&shoprs=GAIqDWJvYmJpbiB3aW5kZXIyEQgCEg1kZXNlcnRjYXJ0LmluWKzsIGAB&sa=X&ved=2ahUKEwiU9YzMz9uRAxXOO7kGHTA5IVoQip4GKBh6BAgWEEc",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "popular_products",
+            "people_also_ask",
+            "images",
+            "carousel",
+            "organic",
+            "related_searches"
+          ],
+          "se_results_count": 1350000,
+          "pages_count": 5,
+          "items_count": 48,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 5,
+              "page": 1,
+              "domain": "www.amazon.in",
+              "title": "Bobbin Winder",
+              "description": "Sewing Tool Bobbin Winder 3-in-1 Screwdriver, Bobbin & Tube Filler | Pack of 2 (Yellow) | Universal Fit for All Sewing Machines – Home & Industrial Use ... Read more",
+              "url": "https://www.amazon.in/bobbin-winder/s?k=bobbin+winder",
+              "breadcrumb": "https://www.amazon.in › bobbin-winder › k=bobbin+w..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 6,
+              "page": 1,
+              "domain": "www.stitchspares.com",
+              "title": "Bobbin Winder Machine",
+              "description": "Bobbin Winder Machine · Product SKU: RK02523 · Category: ACCESSORIES, Best Selling Products, Newest Products. Secure. Available: In Stock. Rs. 1,850.00. Incl ... Read more",
+              "url": "https://www.stitchspares.com/products/bobbin-winder-machine?srsltid=AfmBOopxhh-StbfCkW8ptBgScdnPycXMtQjtCL3C5Xki4q0qKJCLh7Ba",
+              "breadcrumb": "https://www.stitchspares.com › products › bobbin-winder..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "www.flipkart.com",
+              "title": "Best Quality Household Sewing Machine Bobbin Winder ...",
+              "description": "Bobbin winders can be either manual or electric, offering convenience for quickly filling bobbins., It ensures the thread is wound evenly and smoothly onto the ... Read more",
+              "url": "https://www.flipkart.com/best-quality-household-sewing-machine-bobbin-winder-base-no/p/itm76265949b0c78",
+              "breadcrumb": "https://www.flipkart.com › best-quality-household-sewi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Bobbin Winding Machine",
+              "description": "Automatic 50-60 Hz Bobbin Winding Machine, For Industrial, 1 Hp · 2500 Quilt Bobin Winder Machine, Capacity: 10 kg/h, Model Name/Number: ZS-3 · APPL Bobbin ... Read more",
+              "url": "https://dir.indiamart.com/impcat/bobbin-winding-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Reeling Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.youtube.com",
+              "title": "Do you Need a Bobbin Winder?",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=chOJi8M_GWk",
+              "breadcrumb": "6.4K+ views  ·  1 year ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "www.akiropes.com",
+              "title": "Bobbin Winder Machine Manufacturer and Exporter - Akiropes",
+              "description": "A bobbin winder works by taking thread or yarn from a spool or a cone and winding it onto a bobbin or a spool. The machine consists of a set of rollers and ... Read more",
+              "url": "https://www.akiropes.com/bobbin-winder.php",
+              "breadcrumb": "https://www.akiropes.com › bobbin-winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "www.singer.com",
+              "title": "SINGER® Portable Bobbin Winder",
+              "description": "The one-touch auto winding is paired with an auto shut off that stops when the bobbin is full. Portable and powered by cord, or battery. Read more",
+              "url": "https://www.singer.com/products/singer-portable-bobbin-winder?srsltid=AfmBOop3zFbOqcnrPca0NSbBv_MhnjWouRIDBOEo2blBfRGkBNKtfAxX",
+              "breadcrumb": "https://www.singer.com › ... › Sewing Kits & Aids"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 12,
+              "page": 1,
+              "domain": "www.youtube.com",
+              "title": "Bobbin Winders",
+              "description": "Let's talk about little portable bobin winders they are lightweight they are fast but when are we going to want to use them well that will depend a lot.",
+              "url": "https://www.youtube.com/watch?v=32xcfJgqntM",
+              "breadcrumb": "16.7K+ views  ·  1 year ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "www.reddit.com",
+              "title": "Looking to treat myself to a bobbin winder. Is there one that ...",
+              "description": "I have one. It's one of those cheap, plastic pink ones. Couldn't have been more than $20. It's a Singer. Works fine. I almost always wind a bobbin or two when ... Read more",
+              "url": "https://www.reddit.com/r/sewing/comments/m82xfm/looking_to_treat_myself_to_a_bobbin_winder_is/",
+              "breadcrumb": "9 comments  ·  4 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "spinoffmagazine.com",
+              "title": "What No One Told Me about Bobbin Winders",
+              "description": "29 Jun 2022 — Kate Larson always rewinds her bobbins to ply for big projects, and she shared some of her best bobbin-winder advice for choosing and setting up winding ... Read more",
+              "url": "https://spinoffmagazine.com/what-no-one-told-me-about-bobbin-winders/",
+              "breadcrumb": "https://spinoffmagazine.com › what-no-one-told-me-abo..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.instagram.com",
+              "title": "FashionTronics Episode 1 - “Bobbin Winder” Are you tired of ...",
+              "description": "Today we are showing you this bobbin winder which is a very handy gadget for winding your bobbins without the hassle of unthreading your sewing ...",
+              "url": "https://www.instagram.com/reel/DEt5qeuMKTn/",
+              "breadcrumb": "15K+ likes  ·  11 months ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.youtube.com",
+              "title": "How To Use A Single-Ended Bobbin Winder",
+              "description": "Instructor Sienna Bosch shows you how to use the Schacht Single-Ended Bobbin Winder ! Our hand bobbin winders are available in single end and ...",
+              "url": "https://www.youtube.com/watch?v=pLSotEJk-dQ",
+              "breadcrumb": "1.7K+ views  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.youtube.com",
+              "title": "How To Use The Bobbin Winder On An Industrial Sewing ...",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=PlyQtuj8KlA",
+              "breadcrumb": "70.6K+ views  ·  11 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.tradeindia.com",
+              "title": "Bobbin Winder at 33040.00 INR in Ahmedabad, Gujarat",
+              "description": "Green Bobbin Winder, Price: 33040.00 INR / Piece (28000.00 INR + 18% GST), Get Latest Price, MRP: 34000.00 INR / Unit, Weight : 120.00 Kilogram. Read more",
+              "url": "https://www.tradeindia.com/products/bobbin-winder-c4257067.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › bobbin winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.justdial.com",
+              "title": "Bobbin Winding Machine - Efficient, Reliable and Advanced",
+              "description": "Introduction to Bobbin Winding Machine. A bobbin winding machine is a device used in the textile industry to wind thread onto bobbins. Read more",
+              "url": "https://www.justdial.com/india/Bobbin-Winding-Machine",
+              "breadcrumb": "https://www.justdial.com › india › Bobbin-Winding-Mac..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.youtube.com",
+              "title": "How to Use the HQ Bobbin Winder",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=s-tODImzBhU",
+              "breadcrumb": "92.4K+ views  ·  10 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "www.exportersindia.com",
+              "title": "Bobbin Winding Machine",
+              "description": "Electric SS & Alloys Automatic Bobbin Winder, Voltage : 220 V · Electric SS & Alloys Automatic Bobbin Winder, Voltage : 220 V. 9.33 Lakh / piece. Read more",
+              "url": "https://www.exportersindia.com/indian-suppliers/bobbin-winding-machine.htm",
+              "breadcrumb": "https://www.exportersindia.com › ... › Reeling Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "dir.indiamart.com",
+              "title": "Bobbin Winding Machine Wholesalers & Distributors in India",
+              "description": "Made of durable, flexible rubber, it helps ensure smooth and consistent winding of your bobbins. It prevents slipping, allowing the winder to grip the bobbin ... Read more",
+              "url": "https://dir.indiamart.com/impcat/bobbin-winding-machine.html?biz=30",
+              "breadcrumb": "https://dir.indiamart.com › ... › Bobbin Winding Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 25,
+              "page": 3,
+              "domain": "www.ushasew.com",
+              "title": "Products - Usha Sew",
+              "description": "Auto tripping, spring loaded bobbin winder for uniform bobbin winding, perfect stitch formation, lever stitch regulator for easy forward and reverse stitch ... Read more",
+              "url": "https://www.ushasew.com/products/",
+              "breadcrumb": "https://www.ushasew.com › products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "www.alibaba.com",
+              "title": "Automatic Bobbin Winder India - Efficient & Durable",
+              "description": "Advanced bobbin winders feature digital control panels that allow precise programming of winding parameters such as turn count, tension level, and stop timing. Read more",
+              "url": "https://www.alibaba.com/showroom/bobbin-winder-india.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Winding Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "Singer Portable Bobbin Winder",
+              "description": "Save time and stay organized with the SINGER Portable Bobbin Winder. The one-touch auto winding is paired with an auto shut off that stops ...",
+              "url": "https://www.youtube.com/watch?v=xAh3LeXT-9U",
+              "breadcrumb": "50.8K+ views  ·  5 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.vishnutraders.org",
+              "title": "Buy Bobbin winder 90-2 online at best price",
+              "description": "VISHNU TRADERS. store logo VISHNU TRADERS. HomeShop About Us. item. Add to Cart Buy Now. Bobbin winder 90-2. ₹170000. Product Description. Winder 90-2 ... Read more",
+              "url": "https://www.vishnutraders.org/product/31317012/Bobbin-winder-90-2",
+              "breadcrumb": "https://www.vishnutraders.org › product › Bobbin-winde..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "vidyasewingmachine.com",
+              "title": "Vidya Sewing Machines",
+              "description": "Auto Winder. Auto tripping spring loaded bobbin winder for uniform winding of bobbin that helps in perfect stitch formation. Thread Cutter in Presser Bar. Read more",
+              "url": "https://vidyasewingmachine.com/",
+              "breadcrumb": "https://vidyasewingmachine.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "What is a Bobbin Winder Stopper? And how NOT to Adjust it",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=SCRvcX3gnCI",
+              "breadcrumb": "24.2K+ views  ·  3 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.amazon.in",
+              "title": "Pack Of 2 Bobbin Winder for All Types of Industrial Sewing ...",
+              "description": "Organizes and prepares thread for sewing projects. Device for winding thread onto bobbins. Product description. Brand new and high quality. Bobbin Winder all ... Read more",
+              "url": "https://www.amazon.in/Bobbin-Winder-Industrial-Sewing-Machines/dp/B0CTMMNXCQ",
+              "breadcrumb": "https://www.amazon.in › Bobbin-Winder-Industrial-Se..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "www.facebook.com",
+              "title": "Bobbin Winder Setup & Bobbin Winding Tricks ...",
+              "description": "Bobbin Winder Setup & Bobbin Winding Tricks ✓ #SewingCommunity #sewingtipsandtricks #sewingmachine #tailoring · More videos you may like · Reels.",
+              "url": "https://www.facebook.com/100071493923906/videos/bobbin-winder-setup-bobbin-winding-tricks-sewingcommunity-sewingtipsandtricks-se/848590017789369/",
+              "breadcrumb": "70+ reactions  ·  6 days ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "www.instagram.com",
+              "title": "Bobin health #sewingtips #bobin",
+              "description": "If your sewing machine bobbin winder isn't working… Don't worry! Watch this BEFORE you wind your bobbin again #bobbin ... Read more",
+              "url": "https://www.instagram.com/p/DSpT-hfGAvY/",
+              "breadcrumb": "90+ likes  ·  2 days ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 34,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "Bobbin Winder - PR1055X",
+              "description": "Bobbin Winder - PR1055X. 1K views · 1 year ago ...more. MY SEWING ROOM dot CA. 11.1K. Subscribe. 19. Share. Save. Report. Comments.",
+              "url": "https://www.youtube.com/watch?v=tmgM8rvzKUo",
+              "breadcrumb": "1K+ views  ·  1 year ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "www.etsy.com",
+              "title": "Buy Bobbin Winder Online in India",
+              "description": "The bobbin winder is 8″ X 12″ with a built-in thread stand for large and/or small spools. The unit is powered with a standard plug. The new features of the ... Read more",
+              "url": "https://www.etsy.com/in-en/listing/555151483/bobbin-winder",
+              "breadcrumb": "https://www.etsy.com › in-en › listing › bobbin-winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "www.tradeindia.com",
+              "title": "Bobbin Winder Manufacturers, Suppliers, Dealers & Prices",
+              "description": "Automatic Bobbin Winder - Capacity: 10 Kg/Hr ... FeaturesSturdy construction, Easy to use, Light in weight, Quality Checked. Surface FinishColor Coated. Capacity ... Read more",
+              "url": "https://www.tradeindia.com/manufacturers/bobbin-winder.html",
+              "breadcrumb": "https://www.tradeindia.com › manufacturers › bobbin-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.justdial.com",
+              "title": "Sewing Bobbin Winder - Efficient, Durable, and Reliable",
+              "description": "Sewing bobbin winders are vital for the efficient operation of sewing machines. These devices ensure that bobbins are wound correctly and uniformly, which is ... Read more",
+              "url": "https://www.justdial.com/india/Sewing-Bobbin-Winder",
+              "breadcrumb": "https://www.justdial.com › india › Sewing-Bobbin-Winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "www.shreejiplastomechexport.com",
+              "title": "Bobbin Winder Machine",
+              "description": "Discover the exceptional quality of our Bobbin Winder Machine, designed to deliver superb performance for various industries including textile and fishing ... Read more",
+              "url": "https://www.shreejiplastomechexport.com/bobbin-winder-machine.html",
+              "breadcrumb": "https://www.shreejiplastomechexport.com › bobbin-wind..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "Unlock the Magic of the Simplicity Sidewinder Bobbin Winder",
+              "description": "Learn to Sew – How to use the Simplicity Sidewinder. Minerva · 1K views ; PERFECT Gift for a Quilter or Sewist - Review of the Simplicity/Singer ...",
+              "url": "https://www.youtube.com/watch?v=HcGrEPJwN44",
+              "breadcrumb": "2.6K+ views  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "www.instagram.com",
+              "title": "Bobin problem fix 100% || sewing tips and tricks ...",
+              "description": "Fixing a sewing machine's bobbin problem can be a game-changer for any sewer. In this video, we will delve into the causes of a bobbin issue ...",
+              "url": "https://www.instagram.com/reel/DSgvJGDkVbU/",
+              "breadcrumb": "370+ likes  ·  5 days ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.ubuy.co.in",
+              "title": "Automatic Bobbin Winder for Sewing Machine Electric India",
+              "description": "Effortlessly winds bobbins without manual intervention, saving time and reducing the chance of user error for a smoother sewing experience. Read more",
+              "url": "https://www.ubuy.co.in/product/H8MXCUU-automatic-bobbin-winder-for-sewing-machine-electric-bobbin-winding-with-spool-thread-stand-for-brother-babylock-singer-janome-automatic-thread-sewing?srsltid=AfmBOooAFrQV1WGa7c814OA5uUSAhlKAyXEYQQkaa3sg6vzEIqQBj6HX",
+              "breadcrumb": "https://www.ubuy.co.in › ... › Bobbins"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.wikihow.com",
+              "title": "How to Wind a Bobbin (with Video)",
+              "description": "The bobbin winder is a cylindrical metal piece that looks similar to the spool pin and is about the size of the hole in the center of your bobbin. Next to the ... Read more",
+              "url": "https://www.wikihow.com/Wind-a-Bobbin",
+              "breadcrumb": "https://www.wikihow.com › ... › Sewing Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "en.wikipedia.org",
+              "title": "Bobbin",
+              "description": "A bobbin or spool is a spindle or cylinder, with or without flanges, on which yarn, thread, wire, tape or film is wound. Read more",
+              "url": "https://en.wikipedia.org/wiki/Bobbin",
+              "breadcrumb": "https://en.wikipedia.org › wiki › Bobbin"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 45,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "How to use Plastic Tailoring Machine Bobbin Winder ...",
+              "description": "Learn पोर्टेबल बोबिन वाइंडर || मशीन में बोबिन भरना || How to fill bobbin thread. If you want to buy Plastic Tailoring Machine Bobbin Winder, please click ...",
+              "url": "https://www.youtube.com/watch?v=kLKninO65YQ",
+              "breadcrumb": "8.1K+ views  ·  3 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "hookedonsewing.com",
+              "title": "How to Wind a Bobbin",
+              "description": "25 Feb 2022 — Tip#1: Always Wind Clockwise. When you wind the thread on the bobbin, always wind the thread clockwise around the bobbin. Read more",
+              "url": "https://hookedonsewing.com/how-to-wind-a-bobbin/",
+              "breadcrumb": "https://hookedonsewing.com › Blog"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "dir.indiamart.com",
+              "title": "Bobbin Winding Machine in Delhi (बॉबीन वाइंडिंग मशीन, दिल्ली)",
+              "description": "Capacity: 6 head to 20 head. Usage/Application: BOBBIN WINDING MACHINE. Power Consumption: 220V. Model Name/Number: APPL/BW-1 ... Read more",
+              "url": "https://dir.indiamart.com/delhi/bobbin-winding-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Bobbin Winding Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "Bobbin Winder Instructional",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=7euqT7j5rVU",
+              "breadcrumb": "330+ views  ·  1 year ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.justdial.com",
+              "title": "Top Bobbin Winder Products from Verified Sellers",
+              "description": "Find 137 Bobbin Winder, Bobbin Winding Machine,Weft Bobbin Machine products from verified sellers. Get Phone Numbers, Address, Reviews, Photos, Maps, ...",
+              "url": "https://www.justdial.com/india/Bobbin-Winder",
+              "breadcrumb": "https://www.justdial.com › Home › Bobbin Winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.sewingpartsonline.com",
+              "title": "Sewing Parts Online",
+              "description": "Bobbin Winder Tire, Multi Brand #15287-A. Regular price: $2.49. Regular price: $3.99; Sale price: $2.49; Percent Saved ... Read more",
+              "url": "https://www.sewingpartsonline.com/",
+              "breadcrumb": "https://www.sewingpartsonline.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "Sewing Tips: Use a Bobbin Winder #shorts",
+              "description": "Make sure you have enough bobbins ready for your project before you start sewing! Use the Portable Bobbin Winder to quickly and easily wind ...",
+              "url": "https://www.youtube.com/shorts/SIWUsSKn_4A",
+              "breadcrumb": "22.4K+ views  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "ismacs.net",
+              "title": "Singer Sewing Machine Model 327 Manual",
+              "description": "When bobbin is full, stop machine. Lift bobbin winder away from hand wheel and remove bobbin. Tighten stop motion screw. Page 9. 8. THREADING THE BOBBIN CASE. Read more",
+              "url": "https://ismacs.net/singer_sewing_machine_company/manuals/singer-model-327-sewing-machine-manual.pdf",
+              "breadcrumb": "https://ismacs.net › manuals › singer-model-327-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "exileshmagazine.com",
+              "title": "Thread Spool Savers, Bobbin Holders & Clamps",
+              "description": "6 hours ago — ... bobbin clamps that keep bobbin threads from unwinding. ... FALESOUL Automatic Bobbin Winder - USB-C Portable Winding Machine With Auto Stop. Read more",
+              "url": "https://exileshmagazine.com/Sewing-Notions-Kit-Thread-Spool-Savers-Bobbin-Holders-Clamps-748275",
+              "breadcrumb": "https://exileshmagazine.com › Bobbins"
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "Understanding the Benefits of Bobbin Winders",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=XitS-ABKU0s",
+              "breadcrumb": "25.3K+ views  ·  8 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 48,
+              "rank_absolute": 56,
+              "page": 5,
+              "domain": "dir.indiamart.com",
+              "title": "Bobbin Winding Machine in Bengaluru, Karnataka",
+              "description": "45,000Computerized Automatic Bobbin Winder Save money and cost for : Multi head embroidery factories, Quilting embroidery factories.Fastest winding speed in ... Read more",
+              "url": "https://dir.indiamart.com/bengaluru/bobbin-winding-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Bengaluru"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

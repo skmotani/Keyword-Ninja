@@ -1,0 +1,797 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0560 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-4ba6845d7ba1",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0457 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-4ba6845d7ba1"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Embroidery Thread Machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "Embroidery Thread Machine",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=Embroidery%20Thread%20Machine&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:59:32 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+embroidery+thread+machine&hl=en&gl=IN&shoprs=GBIqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyCQgSEgVQcmljZWAB&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKAF6BAgeEDw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=Embroidery+Thread+Machine+nearby&hl=en&gl=IN&shoprs=GAMqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyDAgDEgZOZWFyYnkYAlj_0SBgAQ&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKAJ6BAgeED0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "New",
+                "url": "https://www.google.com/search?q=new+Embroidery+Thread+Machine&hl=en&gl=IN&shoprs=GAoqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyBwgKEgNOZXdY_9EgYAE&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKAN6BAgeED4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Used",
+                "url": "https://www.google.com/search?q=used+Embroidery+Thread+Machine&hl=en&gl=IN&shoprs=GAoqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyCAgKEgRVc2VkWP_RIGAB&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKAR6BAgeED8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Computerised",
+                "url": "https://www.google.com/search?q=computerised+embroidery+thread+machine&hl=en&gl=IN&shoprs=GAEqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyHAgBEgxDb21wdXRlcmlzZWQ6CgiSuDsQk7g7MANY_9EgYAE&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKAV6BAgeEEA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Brother",
+                "url": "https://www.google.com/search?q=brother+embroidery+thread+machine&hl=en&gl=IN&shoprs=GAEqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyFwgBEgdCcm90aGVyOgoIg_M8EKrkPjABWP_RIGAB&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKAZ6BAgeEEE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Hand-held",
+                "url": "https://www.google.com/search?q=hand-held+embroidery+thread+machine&hl=en&gl=IN&shoprs=GAEqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyGQgBEglIYW5kLWhlbGQ6CgiRtzsQkrc7MANY_9EgYAE&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKAd6BAgeEEI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "JUKI",
+                "url": "https://www.google.com/search?q=juki+embroidery+thread+machine&hl=en&gl=IN&shoprs=GAEqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyFAgBEgRKVUtJOgoIg_M8ELP0PjABWP_RIGAB&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKAh6BAgeEEM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Janome",
+                "url": "https://www.google.com/search?q=janome+embroidery+thread+machine&hl=en&gl=IN&shoprs=GAEqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyFggBEgZKYW5vbWU6CgiD8zwQkO4-MAFY_9EgYAE&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKAl6BAgeEEQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹50,000",
+                "url": "https://www.google.com/search?q=Embroidery+Thread+Machine+under+50000&hl=en&gl=IN&shoprs=Eg0SCxEAAADAdkgnQhgBGAUqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyKAgFEg9VbmRlciDigrk1MCwwMDAYAiINEgsRAAAAwHZIJ0IYASoCGAFY_9EgYAE&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKAp6BAgeEEU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+embroidery+thread+machine&hl=en&gl=IN&shoprs=GBIqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyCggSEgZPbmxpbmVgAQ&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKAt6BAgeEEY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Usha",
+                "url": "https://www.google.com/search?q=usha+embroidery+thread+machine&hl=en&gl=IN&shoprs=GAEqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyFAgBEgRVc2hhOgoIg_M8EMzmUjABWP_RIGAB&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKAx6BAgeEEc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=embroidery+thread+machine+for+sale&hl=en&gl=IN&shoprs=GBIqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyDAgSEghGb3IgU2FsZWAB&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKA16BAgeEEg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+embroidery+thread+machine&hl=en&gl=IN&shoprs=GBIqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyBwgSEgNCdXlgAQ&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKA56BAgeEEk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "On sale",
+                "url": "https://www.google.com/search?q=Embroidery+Thread+Machine+sale&hl=en&gl=IN&shoprs=EgRKAggBGAYqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyEwgGEgdPbiBzYWxlGAIiBEoCCAFY_9EgYAE&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKA96BAgeEEo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Industrial",
+                "url": "https://www.google.com/search?q=industrial+embroidery+thread+machine&hl=en&gl=IN&shoprs=GAEqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyGggBEgpJbmR1c3RyaWFsOgoIlLc7EJW3OzADWP_RIGAB&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKBB6BAgeEEs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+embroidery+thread+machine&hl=en&gl=IN&shoprs=GBIqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyCwgSEgdSZXZpZXdzYAE&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKBF6BAgeEEw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Size",
+                "url": "https://www.google.com/search?q=size+embroidery+thread+machine&hl=en&gl=IN&shoprs=GBIqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyCAgSEgRTaXplYAE&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKBJ6BAgeEE0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Usa",
+                "url": "https://www.google.com/search?q=usa+embroidery+thread+machine&hl=en&gl=IN&shoprs=GBIqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyBwgSEgNVc2FgAQ&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKBN6BAgeEE4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Images",
+                "url": "https://www.google.com/search?q=images+embroidery+thread+machine&hl=en&gl=IN&shoprs=GBIqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyCggSEgZJbWFnZXNgAQ&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKBR6BAgeEE8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tradeindia.com",
+                "url": "https://www.google.com/search?q=tradeindia.com+embroidery+thread+machine&hl=en&gl=IN&shoprs=GAIqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyEggCEg5UcmFkZWluZGlhLmNvbVj_0SBgAQ&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKBV6BAgeEFA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Free",
+                "url": "https://www.google.com/search?q=free+embroidery+thread+machine&hl=en&gl=IN&shoprs=GBIqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyCAgSEgRGcmVlYAE&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKBZ6BAgeEFE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Leather",
+                "url": "https://www.google.com/search?q=embroidery+thread+machine+for+leather&hl=en&gl=IN&shoprs=GAEqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyHQgBEgtGb3IgTGVhdGhlchgCOgoIl7c7EJi3OzADWP_RIGAB&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKBd6BAgeEFI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tajima",
+                "url": "https://www.google.com/search?q=tajima+embroidery+thread+machine&hl=en&gl=IN&shoprs=GAEqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyFggBEgZUYWppbWE6CgiD8zwQ7d1PMAFY_9EgYAE&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKBh6BAgeEFM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Etsy",
+                "url": "https://www.google.com/search?q=etsy+embroidery+thread+machine&hl=en&gl=IN&shoprs=GAIqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyCAgCEgRFdHN5WP_RIGAB&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKBl6BAgeEFQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Overlock Machine",
+                "url": "https://www.google.com/search?q=overlock+machine+embroidery+thread&hl=en&gl=IN&shoprs=GAEqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyIAgBEhBPdmVybG9jayBNYWNoaW5lOgoI4LM6EOGzOjADWP_RIGAB&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKBp6BAgeEFU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Mini",
+                "url": "https://www.google.com/search?q=mini+embroidery+thread+machine&hl=en&gl=IN&shoprs=GAEqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyFAgBEgRNaW5pOgoI1YctENaHLTADWP_RIGAB&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKBt6BAgeEFY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Free delivery",
+                "url": "https://www.google.com/search?q=Embroidery+Thread+Machine+free+delivery&hl=en&gl=IN&shoprs=EgRSAhABGBkqGWVtYnJvaWRlcnkgdGhyZWFkIG1hY2hpbmUyFwgZEg1GcmVlIGRlbGl2ZXJ5IgRSAhABYAE&sa=X&ved=2ahUKEwj8kJDOz9uRAxXJA7kGHSQ3OGQQip4GKBx6BAgeEFc",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "popular_products",
+            "people_also_ask",
+            "organic",
+            "local_pack",
+            "video",
+            "images",
+            "related_searches"
+          ],
+          "se_results_count": 17500000,
+          "pages_count": 5,
+          "items_count": 48,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 3,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Industrial Embroidery Machine Latest Price, Manufacturers ...",
+              "description": null,
+              "url": "https://dir.indiamart.com/impcat/embroidery-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › impcat › embroidery-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "meeraind.com",
+              "title": "Embroidery Thread Twister - Meera Industries",
+              "description": "Specialized twisting machinery for embroidery thread production. Precision twist control for decorative and industrial embroidery applications.",
+              "url": "https://meeraind.com/product/embroidery-thread-twister",
+              "breadcrumb": "https://meeraind.com › product › embroidery-thread-tw..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "www.amazon.in",
+              "title": "Over ₹200 - Embroidery Machine Thread / ...",
+              "description": "Jasol Polyester Silk Embroidery Threads Assorted 20 Pcs 20 Colors 900M Approx Suitable for Embroidery Machines Tassel Luster Jewelry Making Projects Warping ... Read more",
+              "url": "https://www.amazon.in/Embroidery-Machine-Thread-Over-%E2%82%B9200/s?rh=n%3A51397075031%2Cp_36%3A20000-",
+              "breadcrumb": "https://www.amazon.in › Embroidery-Machine-Thread-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "www.brother.in",
+              "title": "Brother Embroidery Machines for Professional and Home ...",
+              "description": "Create professional high quality embroideries, with over a 100 pre-loaded designs, using the state of the art Brother Embroidery Sewing Machine. Read more",
+              "url": "https://www.brother.in/en/sewing-machines/all-sewing-machines?fr=embroidery",
+              "breadcrumb": "https://www.brother.in › all-sewing-machines › fr=embro..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 12,
+              "page": 1,
+              "domain": "www.youtube.com",
+              "title": "A Beginner's Guide to Thread for Embroidery Machines",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=Z2_NTKDxJuc",
+              "breadcrumb": "27.3K+ views  ·  4 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 13,
+              "page": 1,
+              "domain": "embroiderylegacy.com",
+              "title": "Machine Embroidery Thread Types & When to ...",
+              "description": "Learn about the various machine embroidery thread types and their uses. Get tips on choosing the perfect thread for your specific embroidery needs.",
+              "url": "https://embroiderylegacy.com/embroidery-threads/",
+              "breadcrumb": "https://embroiderylegacy.com › ... › Embroidery Basics"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 14,
+              "page": 1,
+              "domain": "threadsindia.com",
+              "title": "Embroidery - Threads (India) Private Limited",
+              "description": "Reflective Sewing Embroidery Thread. Hi-tech thread with excellent durability and enhanced reflectivity visibility when illuminated by a light source. Read more",
+              "url": "https://threadsindia.com/product-category/embroidery/",
+              "breadcrumb": "https://threadsindia.com › Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 15,
+              "page": 1,
+              "domain": "kavithaenterprises.in",
+              "title": "Computer Machine Embroidery Thread by R Rock ...",
+              "description": "High-quality polyester embroidery thread designed for computer machine embroidery. Large 3000-meter spool (65 grams) provides extensive stitching length, ...",
+              "url": "https://kavithaenterprises.in/products/computer-machine-embroidery-thread-by-r-rock-3000-meters-65g-spool-59",
+              "breadcrumb": "https://kavithaenterprises.in › products › computer-machi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.youtube.com",
+              "title": "Anchor thread machine embroidery design / Embroidery ...",
+              "description": "Anchor thread machine embroidery design / Embroidery machine / Border design Embroidery dresses design: ...",
+              "url": "https://www.youtube.com/watch?v=lQQ58_Lt0oY",
+              "breadcrumb": "7.6K+ views  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.mh-chine.com",
+              "title": "Can Embroidery Thread Be Used For Regular Sewing? ...",
+              "description": "Machine embroidery thread is a specialized type of thread designed specifically for use in high-speed embroidery machines. Unlike regular sewing thread, which ... Read more",
+              "url": "https://www.mh-chine.com/blog/products/can-embroidery-thread-be-used-for-regular-sewing",
+              "breadcrumb": "https://www.mh-chine.com › Blog › Products & Solutions"
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.ushasew.com",
+              "title": "Products - Usha Sew",
+              "description": "With multiple features including computerized patterns and the convenience of a push button, as well as hands free operation, automatic thread cutter, ... Read more",
+              "url": "https://www.ushasew.com/products/",
+              "breadcrumb": "https://www.ushasew.com › products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "blog.ricoma.com",
+              "title": "Everything to Know About Machine Embroidery Thread",
+              "description": "13 Jun 2024 — Machine embroidery thread is made to withstand the high-speed stitching of embroidery machines. It's smoother and more robust than regular sewing thread. Read more",
+              "url": "https://blog.ricoma.com/2024/06/13/machine-embroidery-thread/",
+              "breadcrumb": "https://blog.ricoma.com › 2024/06/13 › machine-embr..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.sivasakthithreads.com",
+              "title": "Trilobal Polyester Embroidery Threads",
+              "description": "Machine Embroidery Thread · Material: Silk, Polyester · Ply: 2 ply, 3 ply · Pattern: Dyed · Pack size: 10 pieces · Yarn Type: Filament · Pack type: Reel. Read more",
+              "url": "https://www.sivasakthithreads.com/embroidery-thread.html",
+              "breadcrumb": "https://www.sivasakthithreads.com › embroidery-thread"
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "www.threadart.com",
+              "title": "Premium Machine Embroidery Thread Collection",
+              "description": "Our machine embroidery thread is 40-weight, the industry standard for both home and commercial embroidery machines. Designed for high-speed operation, our ... Read more",
+              "url": "https://www.threadart.com/collections/machine-embroidery-thread?srsltid=AfmBOopzteILKiWOa-waU6m5F1hBZFZeseIl3cvt_CNxA2VmK35fwpbg",
+              "breadcrumb": "https://www.threadart.com › collections › machine-embr..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "dir.indiamart.com",
+              "title": "Machine Embroidery Thread at Best Price in India",
+              "description": "100/PieceROSRAY Viscose Rayon Embroidery Threads are crafted from 100% premium rayon filament yarn, offering a smooth, lustrous finish and luxurious feel. Read more",
+              "url": "https://dir.indiamart.com/impcat/machine-embroidery-thread.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Embroidery Threads"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 24,
+              "page": 2,
+              "domain": "www.madeirausa.com",
+              "title": "Madeira USA - High Quality Machine Embroidery Thread and ...",
+              "description": "Madeira USA is the high quality machine embroidery thread and embroidery supplies market leader. Turn to Madeira for embroidery thread, embroidery backing, ...",
+              "url": "https://www.madeirausa.com/",
+              "breadcrumb": "https://www.madeirausa.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 25,
+              "page": 2,
+              "domain": "www.dmc.com",
+              "title": "Machine Embroidery Thread",
+              "description": "DMC Machine Embroidery Thread is 100% cotton and has been highly mercerized to give a silky-smooth texture and gentle shine. Available in a variety of ... Read more",
+              "url": "https://www.dmc.com/US/en/products/other-embroidery-thread/machine-embroidery-thread",
+              "breadcrumb": "https://www.dmc.com › products › machine-embroidery-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 26,
+              "page": 2,
+              "domain": "allstitch.com",
+              "title": "Machine Embroidery Thread",
+              "description": "This standard weight Madeira Rayon‚ Variegated Multi-Color embroidery thread is ideal for most designs. Made from 100% viscose rayon, it is perfect. Read more",
+              "url": "https://allstitch.com/collections/machine-embroidery-thread?srsltid=AfmBOoqSvIzWBnsmMK4EG1N16xrBVNh1_dzg5z9ofMlow76Eria4TdFo",
+              "breadcrumb": "https://allstitch.com › collections › machine-embroidery-t..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.madeira.co.uk",
+              "title": "Madeira Machine Embroidery Threads",
+              "description": "Machine embroidery threads in rayon viscose, polyester, metallic, matt effect, wool mix, fire resistant, reflective, conductive and sustainable threads.",
+              "url": "https://www.madeira.co.uk/embroidery-threads/",
+              "breadcrumb": "https://www.madeira.co.uk › embroidery-threads"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.reddit.com",
+              "title": "what thread to use in machine embroidery, I need a basic ...",
+              "description": "You want polyester embroidery thread 40wt for the top and be sure to get Embroidery Bobbin Thread for the bobbin, or prewound embroidery bobbins specifically ... Read more",
+              "url": "https://www.reddit.com/r/Machine_Embroidery/comments/113oq7e/what_thread_to_use_in_machine_embroidery_i_need_a/",
+              "breadcrumb": "20+ comments  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "consumer.guetermann.com",
+              "title": "Embroidery threads",
+              "description": "Our machine embroidery threads are available in viscose or polyester, as metallic embroidery threads or effect threads. Beautifully glossy colour nuances ensure ... Read more",
+              "url": "https://consumer.guetermann.com/en/embroidery-threads/",
+              "breadcrumb": "https://consumer.guetermann.com › embroidery-threads"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.bernina.com",
+              "title": "Threads for machine embroidery",
+              "description": "Choosing the right embroidery thread is crucial for a good embroidery result. Here you will find an overview of different types of thread for machine ...",
+              "url": "https://www.bernina.com/en-IN/Learn-Create-IN/Embroidery-Tips-Tricks/Choosing-the-right-thread",
+              "breadcrumb": "https://www.bernina.com › Choosing-the-right-thread"
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "sulky.com",
+              "title": "Machine Embroidery Thread",
+              "description": "Shop Sulky Machine Embroidery high quality thread & embroidery supplies. Enjoy FREE shipping, projects & designs at sulky.com.",
+              "url": "https://sulky.com/thread/machine-embroidery/?srsltid=AfmBOorLbBXkJKznNL05QHcw0yc8Bw5uUVKyRHYprFei0Nztn3Ecl-vV",
+              "breadcrumb": "https://sulky.com › thread › machine-embroidery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "urbanthreads.com",
+              "title": "Urban Threads | Uncommon Machine Embroidery Designs",
+              "description": "Artist-crafted machine embroidery designs with unique flair. Downloads available in all machine file formats. Express your creativity!",
+              "url": "https://urbanthreads.com/?srsltid=AfmBOordrHqhwYQeuRmCyPvQ_Ig927DMeIiUvtFULJISjx_RswOsPDZt",
+              "breadcrumb": "https://urbanthreads.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 34,
+              "page": 3,
+              "domain": "www.rrrembrosolution.in",
+              "title": "Embroidery Machines And Sewing Machine",
+              "description": "RRR Embro Solution | Embroidery Machines And Sewing Machine - Manufacturer of Sewing Machine, Single Head Embroidery Machine and Cotton Bobbin Thread from",
+              "url": "https://www.rrrembrosolution.in/embroidery-machines-and-sewing-machine.html",
+              "breadcrumb": "https://www.rrrembrosolution.in › embroidery-machines-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 35,
+              "page": 3,
+              "domain": "absolutedigitizing.com",
+              "title": "Top 10 Machine Embroidery Thread Brands for Amazing ...",
+              "description": "28 Sept 2024 — Top 10 Machine Embroidery Thread Brands for Amazing Designs · 1. Madeira: The All-Time Favorite · 2. Floriani: For Precision and Shine · 3. Read more",
+              "url": "https://absolutedigitizing.com/top-10-machine-embroidery-thread-brands-for-amazing-designs/",
+              "breadcrumb": "https://absolutedigitizing.com › top-10-machine-embroi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 36,
+              "page": 3,
+              "domain": "www.raysil.co.in",
+              "title": "Thread Embroidery Designs In India",
+              "description": "Raysil creates embroidery threads that inspire artists to liberate their acumen, art, and aesthetics on a piece of fabric and garment. Read more",
+              "url": "https://www.raysil.co.in/applications/embroidery",
+              "breadcrumb": "https://www.raysil.co.in › applications › embroidery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 37,
+              "page": 3,
+              "domain": "embroiderymaterial.com",
+              "title": "Embroidery Threads at Wholesale Prices",
+              "description": "Latest collection of embroidery threads/cords online at wholesale prices. Buy cotton thread, satin cord, nylon thread, sewing thread, knitting yarn, ...",
+              "url": "https://embroiderymaterial.com/collections/embroidery-threads-cord",
+              "breadcrumb": "https://embroiderymaterial.com › collections › embroid..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "Beginners! Threading the Bai Mirror Embroidery Machine",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=R3adeAMRRBo",
+              "breadcrumb": "1.5K+ views  ·  6 months ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "threadsketchinginaction.com",
+              "title": "How to Choose the Best Machine Embroidery Thread",
+              "description": "Unlock the secrets of machine embroidery thread. Learn about thread weight, types, brands, and discover the best choices for your next embroidery project. Read more",
+              "url": "https://threadsketchinginaction.com/how-to-choose-the-best-machine-embroidery-thread/",
+              "breadcrumb": "https://threadsketchinginaction.com › News"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "www.brother-usa.com",
+              "title": "Sewing Accessories and Embroidery Thread",
+              "description": "Discover exclusive embroidery designs just for your Brother machine. Downloadable embroidery designs are available for purchase, exclusively for Brother ... Read more",
+              "url": "https://www.brother-usa.com/supplies/sewing-embroidery?srsltid=AfmBOoqOP7Bc2y4WEbYcwr3gVwcfGLKfgqifrm2yLfHHh_69vi-eASi7",
+              "breadcrumb": "https://www.brother-usa.com › supplies › sewing-embr..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.tradeindia.com",
+              "title": "Machine Embroidery Threads at Best Price from ...",
+              "description": "Find Machine Embroidery Threads manufacturers, suppliers, dealers & latest prices from top companies in India. Buy from a wide range of Machine Embroidery ...",
+              "url": "https://www.tradeindia.com/manufacturers/machine-embroidery-threads.html",
+              "breadcrumb": "https://www.tradeindia.com › Threads"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "royalembroiderythreads.com",
+              "title": "Royal Embroidery Threads Pvt. Ltd. | Viscose Rayon ...",
+              "description": "Trilobal Polyester Embroidery Yarns are ideally suited for embroidery on high-speed machine and offer luster and increased productivity due to low breakages. Read more",
+              "url": "https://royalembroiderythreads.com/",
+              "breadcrumb": "https://royalembroiderythreads.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "www.amazon.com",
+              "title": "Best Embroidery Machine Thread",
+              "description": "Discover the best Embroidery Machine Thread in Best Sellers. Find the top 100 most popular items in Amazon Arts, Crafts & Sewing Best Sellers.",
+              "url": "https://www.amazon.com/Best-Sellers-Embroidery-Machine-Thread/zgbs/arts-crafts/8090728011",
+              "breadcrumb": "https://www.amazon.com › zgbs › arts-crafts"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 45,
+              "page": 4,
+              "domain": "www.sewessential.co.uk",
+              "title": "Machine Embroidery Thread",
+              "description": "A good quality machine embroidery thread which will ensure great results every time. Rayon has a beautiful sheen, gives good coverage and will withstand ... Read more",
+              "url": "https://www.sewessential.co.uk/haberdashery/threads/machine-embroidery-thread",
+              "breadcrumb": "https://www.sewessential.co.uk › Haberdashery › Threads"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 46,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "What machine embroidery threads do I use ...",
+              "description": "I use a mix of madira isacord candle and floriani threads but that's not all. I also have an extra stash of sim threads in case I don't have a specific color",
+              "url": "https://www.youtube.com/shorts/7j97n6KM-Cg",
+              "breadcrumb": "11.8K+ views  ·  1 year ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 47,
+              "page": 4,
+              "domain": "oesd.com",
+              "title": "Machine Embroidery Thread | Isacord Yenmet Bobbin",
+              "description": "Buy Isacord embroidery thread in 1000m and 5000m spools, plus thread sets and thread kits. Also shop our selection of other machine embroidery thread, ...",
+              "url": "https://oesd.com/supplies/embroidery-thread/",
+              "breadcrumb": "https://oesd.com › Supplies"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 48,
+              "page": 4,
+              "domain": "www.threadshop.in",
+              "title": "Buy Online Anchor Embroidery thread |Floss | Best price",
+              "description": "Anchor Stranded Cotton is a superior 6 strand extra-long staple 100% Egyptian cotton embroidery thread. Ideal for a wide range of embroidery techniques. Read more",
+              "url": "https://www.threadshop.in/categories/anchor-embroidery-thread/1818778000000229060?srsltid=AfmBOorVeqCgZAe_xbpeB81d-VD9QqJxt_z1SCzceG9LRbg9Zb9Tfsso",
+              "breadcrumb": "https://www.threadshop.in › Thread › Anchor"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.jcmachine.com",
+              "title": "Embroidery / Sewing Thread",
+              "description": "Machine Features : · Fabricated plate structure gives better alignment, smoother running, improves aesthetic values. · Uniform yarn tension and directly ... Read more",
+              "url": "https://www.jcmachine.com/emb-sewing-thread/",
+              "breadcrumb": "https://www.jcmachine.com › emb-sewing-thread"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.macroagencies.in",
+              "title": "Schiffli Embroidery Machines Trader",
+              "description": "Thick Thread Embroidery Machine · 24,00,000 / Unit · Thick Thread Embroidery Machine. Number Of Needles: 1; Machine Type: Automatic; Types Of Embroidery Machine ... Read more",
+              "url": "https://www.macroagencies.in/embroidery-machines.html",
+              "breadcrumb": "https://www.macroagencies.in › embroidery-machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "www.instagram.com",
+              "title": "Simple Sewing Machine Embroidery design With Simple ...",
+              "description": "In this step-by-step guide, @stitchingdiary09 shares their expertise in creating a stunning cutwork embroidery design using a simple thread ...",
+              "url": "https://www.instagram.com/reel/DSsatbdExaN/",
+              "breadcrumb": "5 likes  ·  22 hours ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "Silk thread machine embroidery anchor thread making ...",
+              "description": "Silk thread machine embroidery anchor thread making / embroidery for beginners # embroidery #flowers #sewing #zigzag # machine #design ...",
+              "url": "https://www.youtube.com/watch?v=AmyMspWUGoU",
+              "breadcrumb": "2.4K+ views  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.embird.net",
+              "title": "Embird Embroidery Software",
+              "description": "Cutting-edge embroidery software, designed for universal compatibility across all embroidery machine brands. ... Embroidery Threads Thread Catalogs ... Read more",
+              "url": "https://www.embird.net/index.htm",
+              "breadcrumb": "https://www.embird.net"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "bazar91.com",
+              "title": "Bazar91: India's Largest Sewing & Embroidery Machine ...",
+              "description": "Bazar91 is India's largest online store for sewing and embroidery machines. Shop Brother Usha Singer Jack Ricoma with easy EMI, expert support, and fast ...",
+              "url": "https://bazar91.com/?srsltid=AfmBOor6kpgdETU0oztisNOHG84cvK7e5vMVVQ52f8WZvFOPgsjPdpjf",
+              "breadcrumb": "https://bazar91.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 56,
+              "page": 5,
+              "domain": "www.fevad.com",
+              "title": "Brother PE545 Embroidery Machine, Wireless LAN ... - Fevad",
+              "description": "2 days ago — Brand: BrotherColor: WhiteFeatures: WIRELESS LAN ENABLED: Transmit embroidery files from your PC to your embroidery machine via the free ...",
+              "url": "https://www.fevad.com/products/brother-pe545-embroidery-machine-wireless-lan-connected-135/200380148/",
+              "breadcrumb": "https://www.fevad.com › products › brother-pe545-em..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 57,
+              "page": 5,
+              "domain": "emblibrary.com",
+              "title": "Embroidery Library | Designs, Projects & Inspiration",
+              "description": "Thousands of machine embroidery designs for every project, season, and skill level. Find inspiration and stitch something beautiful today.",
+              "url": "https://emblibrary.com/?srsltid=AfmBOooRdNYctgX8T3up1D-VkKZE8kqpxGAhMVZXvKtmqpQAaK85ieRa",
+              "breadcrumb": "https://emblibrary.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 58,
+              "page": 5,
+              "domain": "www.brother.in",
+              "title": "Automatic Needle Threader Sewing Machines",
+              "description": "Embroidery thread is slightly thicker than standard stitching threads. Whether you use nylon, rayon, cotton, polyester, or silk threads, our machines ... Read more",
+              "url": "https://www.brother.in/en/sewing-machines/all-sewing-machines?fr=automatic_needle_threader",
+              "breadcrumb": "https://www.brother.in › sewing-machines › all-sewing-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 48,
+              "rank_absolute": 59,
+              "page": 5,
+              "domain": "shopwonderfil.com.au",
+              "title": "Embroidery Threads",
+              "description": "WonderFil offers embroidery floss, pearl cotton, and machine-compatible options, all designed for strength, colorfastness, and versatility. Use these threads ... Read more",
+              "url": "https://shopwonderfil.com.au/embroidery-threads/",
+              "breadcrumb": "https://shopwonderfil.com.au › embroidery-threads"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

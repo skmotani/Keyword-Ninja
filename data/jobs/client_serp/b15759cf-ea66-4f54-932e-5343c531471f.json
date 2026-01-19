@@ -1,0 +1,36 @@
+{
+  "jobId": "b15759cf-ea66-4f54-932e-5343c531471f",
+  "clientCode": "01",
+  "selectedDomain": "www.meeraind.com",
+  "keywords": [
+    "Rope Twister",
+    "Lycra Covering Machine",
+    "TFO Twisting Machine",
+    "Cone To Cone Winder",
+    "Textile Twister",
+    "Two For One Twisting Machine",
+    "tfo machine",
+    "Assembly winder",
+    "covering machine",
+    "jari covering machine surat",
+    "textile doubling machine"
+  ],
+  "status": "COMPLETED",
+  "stage": "DONE",
+  "progress": {
+    "IN": {
+      "done": 11,
+      "total": 11,
+      "current": "Chunk 1 completed"
+    },
+    "GL": {
+      "done": 2,
+      "total": 11,
+      "current": "Chunk 1 completed"
+    }
+  },
+  "errors": [],
+  "startedAt": "2025-12-26T15:52:48.368Z",
+  "updatedAt": "2025-12-26T15:57:23.337Z",
+  "completedAt": "2025-12-26T15:57:23.337Z"
+}

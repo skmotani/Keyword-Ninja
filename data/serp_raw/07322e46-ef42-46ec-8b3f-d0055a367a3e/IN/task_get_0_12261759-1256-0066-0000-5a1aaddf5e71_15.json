@@ -1,0 +1,739 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.3479 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-5a1aaddf5e71",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.3354 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-5a1aaddf5e71"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Compact Twister",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "Compact Twister",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=Compact%20Twister&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 16:00:23 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+compact+twister&hl=en&gl=IN&shoprs=GBIqD2NvbXBhY3QgdHdpc3RlcjIJCBISBVByaWNlYAE&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKAF6BAgaECo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+compact+twister&hl=en&gl=IN&shoprs=GBIqD2NvbXBhY3QgdHdpc3RlcjIKCBISBk9ubGluZWAB&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKAJ6BAgaECs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+compact+twister&hl=en&gl=IN&shoprs=GBIqD2NvbXBhY3QgdHdpc3RlcjILCBISB1Jldmlld3NgAQ&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKAN6BAgaECw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Black",
+                "url": "https://www.google.com/search?q=black+compact+twister&hl=en&gl=IN&shoprs=GAEqD2NvbXBhY3QgdHdpc3RlcjIXCAESBUJsYWNrOgwI2Iz1ARDlivUBMAtgAQ&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKAR6BAgaEC0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Boy",
+                "url": "https://www.google.com/search?q=boy+compact+twister&hl=en&gl=IN&shoprs=GBIqD2NvbXBhY3QgdHdpc3RlcjIHCBISA0JveWAB&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKAV6BAgaEC4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Red",
+                "url": "https://www.google.com/search?q=red+compact+twister&hl=en&gl=IN&shoprs=GAEqD2NvbXBhY3QgdHdpc3RlcjIVCAESA1JlZDoMCNiM9QEQ54r1ATALYAE&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKAZ6BAgaEC8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹2,500",
+                "url": "https://www.google.com/search?q=Compact+Twister+under+2500&hl=en&gl=IN&shoprs=Eg0SCxEAAAAgX6DiQRgBGAUqD2NvbXBhY3QgdHdpc3RlcjInCAUSDlVuZGVyIOKCuTIsNTAwGAIiDRILEQAAACBfoOJBGAEqAhgBYAE&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKAd6BAgaEDA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Girl",
+                "url": "https://www.google.com/search?q=girl+compact+twister&hl=en&gl=IN&shoprs=GBIqD2NvbXBhY3QgdHdpc3RlcjIICBISBEdpcmxgAQ&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKAh6BAgaEDE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Electrical Motors",
+                "url": "https://www.google.com/search?q=electrical+motors+compact+twister&hl=en&gl=IN&shoprs=GAkqD2NvbXBhY3QgdHdpc3RlcjIVCAkSEUVsZWN0cmljYWwgTW90b3JzYAE&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKAl6BAgaEDI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "White",
+                "url": "https://www.google.com/search?q=white+compact+twister&hl=en&gl=IN&shoprs=GAEqD2NvbXBhY3QgdHdpc3RlcjIXCAESBVdoaXRlOgwI2Iz1ARChi_UBMAtgAQ&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKAp6BAgaEDM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Blue",
+                "url": "https://www.google.com/search?q=blue+compact+twister&hl=en&gl=IN&shoprs=GAEqD2NvbXBhY3QgdHdpc3RlcjIWCAESBEJsdWU6DAjYjPUBEOaK9QEwC2AB&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKAt6BAgaEDQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Adult",
+                "url": "https://www.google.com/search?q=adult+compact+twister&hl=en&gl=IN&shoprs=GBIqD2NvbXBhY3QgdHdpc3RlcjIJCBISBUFkdWx0YAE&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKAx6BAgaEDU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+compact+twister&hl=en&gl=IN&shoprs=GBIqD2NvbXBhY3QgdHdpc3RlcjIHCBISA0J1eWAB&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKA16BAgaEDY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=compact+twister+for+sale&hl=en&gl=IN&shoprs=GBIqD2NvbXBhY3QgdHdpc3RlcjIMCBISCEZvciBTYWxlYAE&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKA56BAgaEDc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Size",
+                "url": "https://www.google.com/search?q=size+compact+twister&hl=en&gl=IN&shoprs=GBIqD2NvbXBhY3QgdHdpc3RlcjIICBISBFNpemVgAQ&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKA96BAgaEDg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Male",
+                "url": "https://www.google.com/search?q=male+compact+twister&hl=en&gl=IN&shoprs=GBIqD2NvbXBhY3QgdHdpc3RlcjIICBISBE1hbGVgAQ&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKBB6BAgaEDk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Man",
+                "url": "https://www.google.com/search?q=man+compact+twister&hl=en&gl=IN&shoprs=GBIqD2NvbXBhY3QgdHdpc3RlcjIHCBISA01hbmAB&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKBF6BAgaEDo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Grey",
+                "url": "https://www.google.com/search?q=grey+compact+twister&hl=en&gl=IN&shoprs=GAEqD2NvbXBhY3QgdHdpc3RlcjIWCAESBEdyZXk6DAjYjPUBEOqK9QEwC2AB&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKBJ6BAgaEDs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Signal",
+                "url": "https://www.google.com/search?q=signal+compact+twister&hl=en&gl=IN&shoprs=GAEqD2NvbXBhY3QgdHdpc3RlcjIWCAESBlNpZ25hbDoKCIPzPBCAgT8wAWAB&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKBN6BAgaEDw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Flipkart",
+                "url": "https://www.google.com/search?q=flipkart+compact+twister&hl=en&gl=IN&shoprs=GAIqD2NvbXBhY3QgdHdpc3RlcjIMCAISCEZsaXBrYXJ0YAE&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKBR6BAgaED0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Amazon.in",
+                "url": "https://www.google.com/search?q=amazon.in+compact+twister&hl=en&gl=IN&shoprs=GAIqD2NvbXBhY3QgdHdpc3RlcjINCAISCUFtYXpvbi5pbmAB&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKBV6BAgaED4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Shopsy By Flipkart",
+                "url": "https://www.google.com/search?q=shopsy+by+flipkart+compact+twister&hl=en&gl=IN&shoprs=GAIqD2NvbXBhY3QgdHdpc3RlcjIWCAISElNob3BzeSBCeSBGbGlwa2FydGAB&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKBZ6BAgaED8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "desertcart.in",
+                "url": "https://www.google.com/search?q=desertcart.in+compact+twister&hl=en&gl=IN&shoprs=GAIqD2NvbXBhY3QgdHdpc3RlcjIRCAISDWRlc2VydGNhcnQuaW5gAQ&sa=X&ved=2ahUKEwjOx8voz9uRAxUrH7kGHcwfL1QQip4GKBd6BAgaEEA",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "organic",
+            "images",
+            "people_also_ask",
+            "popular_products",
+            "video",
+            "related_searches"
+          ],
+          "se_results_count": 3670000,
+          "pages_count": 5,
+          "items_count": 46,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 1,
+              "page": 1,
+              "domain": "saurer.com",
+              "title": "Two-for-one twisting machine CompactTwister",
+              "description": "The CompactTwister offers high efficiency combined with excellent quality of the cross-wound delivery packages produced. Read more",
+              "url": "https://saurer.com/en/products/machines/twisting-and-cabling/staple/compacttwister",
+              "breadcrumb": "https://saurer.com › twisting-and-cabling › staple › com..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 5,
+              "page": 1,
+              "domain": "www.indiamart.com",
+              "title": "Compact Twister",
+              "description": "The CompactTwister has been established in the market for over 25 years. The latest generation, the series 8, once again sets new standards for the quality of ... Read more",
+              "url": "https://www.indiamart.com/proddetail/compact-twister-23365448397.html?srsltid=AfmBOoq9lJBx5f7qcBh3Mzvnb0OeoCw3JTNZYACM8TyTVe2hw9mFwng6",
+              "breadcrumb": "https://www.indiamart.com › ... › Textile Twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "www.directindustry.com",
+              "title": "Automatic twisting machine - CompactTwister - Saurer",
+              "description": "The CompactTwister offers high efficiency combined with excellent quality of the cross-wound delivery packages produced. Read more",
+              "url": "https://www.directindustry.com/prod/saurer/product-236879-2387810.html",
+              "breadcrumb": "https://www.directindustry.com › prod › saurer › produ..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "www.alconetex.com",
+              "title": "Filament Yarn Twister Compact TFO Manufacturers in India",
+              "description": "We are a Filament Yarn Twister Compact TFO Machines Manufacturers and Exporters in Gujarat, India. It specializes in efficiently twisting filament yarns with ... Read more",
+              "url": "https://www.alconetex.com/filament-yarn-twister-compact-tfo.php",
+              "breadcrumb": "https://www.alconetex.com › filament-yarn-twister-comp..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.tradeindia.com",
+              "title": "Green Spun Tfo Machine ( Compact Twister )",
+              "description": "Product Specifications ; Material, Metal ; Voltage, 380-440 Volt (v) ; Weight, 2000 Kilograms (kg) ; Color, Green ; Warranty, 1 Year. Read more",
+              "url": "https://www.tradeindia.com/products/spun-tfo-machine-compact-twister-c5149531.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › yarn twisting machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "usaytrade.com",
+              "title": "Saurer Volkmann Compact Twister 09 with Assembly Winder",
+              "description": "Saurer Volkmann Compact Twister 09 with Assembly Winder. 2 x Saurer Volkmann Compact Twister 09 Two for one. Year: 2016. No. of Spindles: 220. 150 mm. Read more",
+              "url": "https://usaytrade.com/product/ringspinning/twisting/saurer-volkmann-compact-twister-09-with-assembly-winder/",
+              "breadcrumb": "https://usaytrade.com › Ring Spinning › Twisting"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "www.meera.ind.in",
+              "title": "Spun Yarn Twister - Wool Carpet Yarn Twisting Machines ...",
+              "description": "Compact Twister Machine · Usage/Application: Yarn Twisting · Material: Mild Steel · Dinier Range Max: Up to 1200(Fine) · Spindle Lift: Auto Lift · Machine Type: ... Read more",
+              "url": "https://www.meera.ind.in/spun-yarn-twister.html",
+              "breadcrumb": "https://www.meera.ind.in › spun-yarn-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 12,
+              "page": 1,
+              "domain": "www.indiamart.com",
+              "title": "Compact Twister -VTS 07",
+              "description": "Compact Twister -VTS 0​7​ · Space saving · Low yarn tension, less power consumption and high quality of twisted yarn · Easy to operate and maintain, saves time, ... Read more",
+              "url": "https://www.indiamart.com/proddetail/compact-twister-vts-07-7033516012.html?srsltid=AfmBOop463osKHNVABv-VwvmXSqeXwQ11YkjA6afysDEFFjdD_EYYKNp",
+              "breadcrumb": "https://www.indiamart.com › ... › Textile Twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "meeraind.com",
+              "title": "Lab Twister Machine for Yarn Testing & Development",
+              "description": "The Lab Twister represents a breakthrough in yarn development technology, combining four distinct twisting processes into a single, compact machine. Read more",
+              "url": "https://meeraind.com/product/lab-twister",
+              "breadcrumb": "https://meeraind.com › product › lab-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "www.researchgate.net",
+              "title": "Two-for-one twisting machine. The original sets the standards",
+              "description": "The features and operating principle of the vollemann CompacTwister two-for-one twisting machine are described. The spindles, transmission, package structure ... Read more",
+              "url": "https://www.researchgate.net/publication/296008060_Compact_Twister_-_Two-for-one_twisting_machine_The_original_sets_the_standards",
+              "breadcrumb": "https://www.researchgate.net › publication › 29600806..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "leafsmachinery.en.made-in-china.com",
+              "title": "Two-for-One Twisting Machine Compact Tfo Twister ...",
+              "description": "The two for one twister for filament fibers is suitable for twisting of cotton yarn, wool yarn, acrylic yarn, polyester yarn and blended yarn etc. To purpose ... Read more",
+              "url": "https://leafsmachinery.en.made-in-china.com/product/QFpfDTOPqHGR/China-Two-for-One-Twisting-Machine-Compact-Tfo-Twister-Pneumatic-Treading-Air-Lifting-for-Staple-Yarn-Spun-Yarn-Acrylic-Viscose-Core-Wrapped-Fiber-Yarn.html",
+              "breadcrumb": "https://leafsmachinery.en.made-in-china.com › product"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.alibaba.com",
+              "title": "Fiber Twister - Compact and Efficient Yarn Twisting Machine",
+              "description": "Fiber twister machines offer efficient and reliable solutions for yarn twisting. With advanced features and durable construction, these machines meet ...",
+              "url": "https://www.alibaba.com/product-detail/COMPACTOR-TWISTER-COMPACTTWISTER-FUSIONTWISTER-FUSION-TWISTER_60515830321.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Spinning Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "saurer.com",
+              "title": "Two-for-one twisting machinePrimeTwister",
+              "description": "Saurer Twisting Solutions offers an optimum in variability and flexibility with the two-for-one twisting machine PrimeTwister. Read more",
+              "url": "https://saurer.com/en/products/machines/twisting-and-cabling/staple/primetwister",
+              "breadcrumb": "https://saurer.com › machines › staple › primetwister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.amazon.in",
+              "title": "Compact & Portable Tummy Twister for Men & Women",
+              "description": "✓ Non-Slip Surface: बेहतर ग्रिप के लिए रबराइज्ड और टेक्सचर्ड डिजाइन। ✓ Effective Core Workout: पेट, कमर और हिप्स की चर्बी घटाने में मददगार। ✓ Unisex Design ... Read more",
+              "url": "https://www.amazon.in/GJSHOP-Portable-Equipment-Abdominal-Exerciser/dp/B0FBWL8YY2",
+              "breadcrumb": "https://www.amazon.in › GJSHOP..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.indiamart.com",
+              "title": "Compact Twister",
+              "description": "Compact Twister ; Semi Automatic Twisting Machine. ₹ 11,00,000 ; Twisting Machine . ₹ 4,00,000 ; High Speed Flexible Twist Machine. ₹ 1,50,000 ; High Speed Single ... Read more",
+              "url": "https://www.indiamart.com/proddetail/compact-twister-7110200512.html?srsltid=AfmBOoqpsDiA1HVGzyMOwmmc_ziUA7kBk93rDfr9BWUgbP7w2jKYTUiJ",
+              "breadcrumb": "https://www.indiamart.com › ... › Twisting Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "www.sidecarshop.co.uk",
+              "title": "Compact Twister",
+              "description": "Fitness /. Compact Twister. Compact Twister. Compact Twister. Shipping costs. : € 10,77. € 73,99. Price per unit. Stock : 1 ... Read more",
+              "url": "https://www.sidecarshop.co.uk/en/Compact-Twister",
+              "breadcrumb": "https://www.sidecarshop.co.uk › Compact-Twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "www.justdial.com",
+              "title": "Top Twister Exerciser Products in Ratnagiri",
+              "description": "Compact Design: Many Twister Exercisers are designed to be space-efficient, making them suitable for gyms with limited space. This feature allows B2B buyers to ... Read more",
+              "url": "https://www.justdial.com/jdmart/Ratnagiri/Twister-Exerciser/jdm-1285155-ent-2-12334324",
+              "breadcrumb": "https://www.justdial.com › jdm-1285155-ent-2-12334324"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "sohamenterprise.co.in",
+              "title": "CompactTwister",
+              "description": "The broad-based spindle family of the new. CompactTwister covers the entire yarn count range from Nm 5/2 to Nm 200/2 and includes the spindle type series VTS-07 ... Read more",
+              "url": "https://sohamenterprise.co.in/wp-content/uploads/2023/11/CompactTwister_en.pdf",
+              "breadcrumb": "https://sohamenterprise.co.in › CompactTwister_en"
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "www.rieter.com",
+              "title": "Rieter – Leading Manufacturer of Systems for Short-Staple ...",
+              "description": "Rieter delivers machinery, automation and digital solutions that help spinning mills increase productivity and stay competitive – from fiber to yarn.",
+              "url": "https://www.rieter.com/",
+              "breadcrumb": "https://www.rieter.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.flipkart.com",
+              "title": "Newington Twister small for health and care Ab Exerciser",
+              "description": "SHAPE AND TONING: This tummy twister helps you to tone up your body and be in shape by twisting this disc twice a day for 10 minutes daily., TIGHTENS UP MUSCLES ... Read more",
+              "url": "https://www.flipkart.com/newington-twister-small-health-care-ab-exerciser/p/itmed25f5c7206ca",
+              "breadcrumb": "https://www.flipkart.com › newington-twister-small-hea..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.kompan.com",
+              "title": "Mini Twister - COR20310 - KOMPAN International Sales",
+              "description": "The Mini Twister's vertical rope attracts children to play, rotate and climb to the top, and the fun of rotating makes them return for more again and again. Read more",
+              "url": "https://www.kompan.com/en/int/p/cor20310",
+              "breadcrumb": "https://www.kompan.com › ... › Dynamics"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.syngentaflowers.com",
+              "title": "Lanai® Compact Twister™ Purple",
+              "description": "Compact, mounded habits ideal for smaller containers and baskets - maximizing bench space and profit per square foot. Class-leading disease resistance ensures ... Read more",
+              "url": "https://www.syngentaflowers.com/ams/product/flower/70060849",
+              "breadcrumb": "https://www.syngentaflowers.com › Home › Flowers"
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "meeraind.com",
+              "title": "Spun Staple Yarn Twister: Two For One TFO Technology",
+              "description": "Two-For-One (TFO) spun twisting inserts two twists for every spindle revolution, letting you ply singles into balanced yarn at higher speed. Read more",
+              "url": "https://meeraind.com/product/spun-staple-yarn-twister",
+              "breadcrumb": "https://meeraind.com › product › spun-staple-yarn-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "TWO FOR ONE TWISTER (T F O) || Study with Param ...",
+              "description": "Two For One Twisters for spun yarn. The TFO twisting machines comprises a superior quality gear change system for all types of settings.",
+              "url": "https://www.youtube.com/watch?v=-dpS3NVLPJ8",
+              "breadcrumb": "22.4K+ views  ·  4 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "www.decathlon.in",
+              "title": "Buy Treadmills and Steppers Online from Decathlon",
+              "description": "PowerMax Fitness WALKPAD (3HP Peak) Compact Motorized Treadmill for Home ... Twister, Push up Bar), 3-Level. MRP₹ 14,599. ADD TO CART. onlyOnline. Read more",
+              "url": "https://www.decathlon.in/c/treadmills-steppers-25455",
+              "breadcrumb": "https://www.decathlon.in › ... › Gym Equipment"
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 34,
+              "page": 3,
+              "domain": "m.made-in-china.com",
+              "title": "Mini Type Lab Cotton Thread Twister Sample Yarn Ring ...",
+              "description": "This machine is suitable for blending and pure spinning of 22~76mm fibers. It is used to twist plied yarn into folded yarns through ring spinning and twisting. Read more",
+              "url": "https://m.made-in-china.com/product/Mini-Type-Lab-Cotton-Thread-Twister-Sample-Yarn-Ring-Twisting-Machine-in-Laboratory-Spinning-Line-1939322171.html",
+              "breadcrumb": "https://m.made-in-china.com › product › Mini-Type-La..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "www.amazon.in",
+              "title": "Twister Exercise Machine For Home",
+              "description": "Tummy Twister Exercise Machine – Effective Twister Machine for Women's Belly Fat, Weight Loss & Home Use · 4.14.1 out of 5 stars (269). 800+ bought ... Read more",
+              "url": "https://www.amazon.in/twister-exercise-machine-for-home/s?k=twister+exercise+machine+for+home",
+              "breadcrumb": "https://www.amazon.in › twister-exercise-machine-for-h..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "saurer.com",
+              "title": "Two-for-one twisting machine FusionTwister",
+              "description": "The HD-spindle creates an efficient yarn balloon geometry that contributes to a high reduction on energy costs compared to traditional spindles. HD-spindles are ... Read more",
+              "url": "https://saurer.com/en/products/machines/twisting-and-cabling/staple/fusiontwister",
+              "breadcrumb": "https://saurer.com › twisting-and-cabling › staple › fusi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.campingaz.de",
+              "title": "Twister Plus PZ | compact 1-burner camping stove - Campingaz",
+              "description": "Compact & lightweight: Weighing only 263 g and including a practical carrying case, the stove fits in any backpack. Easy cartridge installation: The Campingaz ... Read more",
+              "url": "https://www.campingaz.de/en/products/twister-plus-pz?srsltid=AfmBOopLqRzXKoR7nxapNSbEOehx2ydU3hyXcpTMxvu9oV9fAh5MEA7c",
+              "breadcrumb": "https://www.campingaz.de › products › twister-plus-pz"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "www.indiamart.com",
+              "title": "Compact Twister Machine - Meera Industries Limited",
+              "description": "4 Aug 2024 — Technology : Two for One Twisting Technology. Products suitable to make : 2/ 100, 2/80, 2/60, 2/40, 2/30, 2/20, 2/10. Major Applications : Weaving, Knitting, Read more",
+              "url": "https://www.indiamart.com/proddetail/compact-twister-machine-2854585389030.html?srsltid=AfmBOorzn1SQs8Ew6-oBl45ofjpIn08rV6956BzzJGGh1uFoNbsJY-9F",
+              "breadcrumb": "https://www.indiamart.com › ... › Twisting Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "merachfit.com",
+              "title": "Waist Twisting Fitness Tool - Waist Twister Exercise Machine",
+              "description": "This compact waist twister exercise machine supports 300 lbs with smooth, quiet rotation. It is foldable and easy to store, perfect for daily waist twists, ... Read more",
+              "url": "https://merachfit.com/products/merach-waist-twister",
+              "breadcrumb": "https://merachfit.com › products › merach-waist-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "www.tradeindia.com",
+              "title": "Standing Twister - High Strength, Compact Size",
+              "description": "Used to exercise in a standing position. Product Features: High strength. Compact size. Perfect finish 50 Times a day Reduce your side Flabs with a remarkable ... Read more",
+              "url": "https://www.tradeindia.com/products/standing-twister-3283961.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › standing twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "averto.de",
+              "title": "Hand Rake Mini-Twister",
+              "description": "Compact and lightweight – only 0.35 kg · One-handed operation – easy and back-friendly · Deep and consistent soil aeration up to 20 cm · Durable spiral-shaped ... Read more",
+              "url": "https://averto.de/en/garden-hand-tools/tornadica/hand-rake-tornadica-mini-twister/",
+              "breadcrumb": "https://averto.de › ... › Garden tools TORNADICA"
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.carwale.com",
+              "title": "Toyota Taisor Price - Images, Colours & Reviews",
+              "description": "Overall, the Taisor is a balanced compact SUV — ideal for city users who want comfort and economy with Toyota reliability. Read more",
+              "url": "https://www.carwale.com/toyota-cars/taisor/",
+              "breadcrumb": "https://www.carwale.com › Toyota Cars"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "www.flipkart.com",
+              "title": "ABHINESH Twister small for health and care Ab Exerciser",
+              "description": "Color. Multicolor ; Type. Tummy Twister ; Foldable. No ; Exercise Type. Abs & Core ; Maximum Loading Weight. 150 kg. Read more",
+              "url": "https://www.flipkart.com/abhinesh-twister-small-health-care-ab-exerciser/p/itm025b3ffa64920?pid=ABEH7X5MVMPHPJTY&lid=LSTABEH7X5MVMPHPJTYRWBLX9&marketplace=FLIPKART&cmpid=content_ab-exerciser_8965229628_gmc",
+              "breadcrumb": "https://www.flipkart.com › abhinesh-twister-small-healt..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 45,
+              "page": 4,
+              "domain": "smkhelmets.com",
+              "title": "SMK Full Face Helmets Collection for Men and Women",
+              "description": "Explore SMK's full range of DOT & ECE certified full face helmets that covers and protects your entire face with stylish design and modern Safety features.",
+              "url": "https://smkhelmets.com/full-face-helmets/",
+              "breadcrumb": "https://smkhelmets.com › full-face-helmets"
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "www.compactfit.com",
+              "title": "Twister",
+              "description": "CompactFit Twister soveltuu erinomaisesti kuntoutukseen ja voimaharjoitteluun. Vastusta voidaan hakea käden eri osiin kääntelemällä voimakapulaa eri asentoihin. Read more",
+              "url": "https://www.compactfit.com/product/14/twister-voimakapula",
+              "breadcrumb": "https://www.compactfit.com › twist..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "www.syngentaflowers.com",
+              "title": "Lanai® Compact Twister Purple",
+              "description": "The Lanai you know and love, now in a more compact habit. High mildew tolerance ensures Lanai® looks great from grower to garden. Read more",
+              "url": "https://www.syngentaflowers.com/emea/product/flower/70060849",
+              "breadcrumb": "https://www.syngentaflowers.com › Home › Flowers"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.amazon.in",
+              "title": "Compact Power Twister Bar for Travel & Home Gym-Heavy ...",
+              "description": "Compact Power Twister Bar for Travel & Home Gym-Heavy Resistance Arm Exerciser-Chest Expander Muscle Building Equipment-Safe Use (1Pcs) (30KG) · Buy for ₹699 + ... Read more",
+              "url": "https://www.amazon.in/GNOLY-Gym-Heavy-Resistance-Exerciser-Chest-Equipment-Safe/dp/B0FVSFCK7B",
+              "breadcrumb": "https://www.amazon.in › GNOLY-Gym-Heavy-Resistan..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.lighting.philips.com",
+              "title": "Philips Eco Twister | ECOTWIST",
+              "description": "This small, compact spiral lamp offers a lifetime of up to 6000 hours. The family includes products from 8 to 23 W, allowing easy replacement of most GLS ...",
+              "url": "https://www.lighting.philips.com/prof/conventional-lamps-and-tubes/compact-fluorescent-integrated/energy-saver-twister-shape/eco-twister/LP_CF_ECOTWIST_EU/family",
+              "breadcrumb": "https://www.lighting.philips.com › eco-twister › family"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.climbingtechnology.com",
+              "title": "TWISTER - Swivels",
+              "description": "TWISTER is an hot forged light alloy swivel, compact and small, suited for medium loads and mounted on an axial ball bearing.",
+              "url": "https://www.climbingtechnology.com/en/professional-en/metal_anchors/swivels_/twister_",
+              "breadcrumb": "https://www.climbingtechnology.com › swivels_ › twister_"
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "www.hurawalhi.com",
+              "title": "Small Twister Bag - Black",
+              "description": "Luxury brand JW Anderson introduces the Small Bow Twister bag. Composed of 100% full grain lamb leather, the design features a twisted bow handle with a ... Read more",
+              "url": "https://www.hurawalhi.com/360panoramas/undersea_restaurant_slide.html?pano=data:text%2Fxml,%3Ckrpano%20onstart=%22loadpano(%27%2F%5C%2Fp6.pics%2Fp%2F8881881700%27)%3B%22%3E%3C/krpano%3E",
+              "breadcrumb": "https://www.hurawalhi.com › undersea_restaurant_slide"
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.indiamart.com",
+              "title": "Compact Twister -VTS 07",
+              "description": "Get Compact Twister -VTS 07 in New Delhi, Delhi at best price by A.T.E. Enterprises Private Limited. Also find Twisting Machines price list from verified ...",
+              "url": "https://www.indiamart.com/proddetail/compact-twister-vts-07-7110197573.html?srsltid=AfmBOooszDIJsc3G79Kbf2fHmon5cVjVvnw6G9hvBhOMNe4SgJehCsOe",
+              "breadcrumb": "https://www.indiamart.com › ... › Twisting Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "en.wikipedia.org",
+              "title": "Twister (ice cream)",
+              "description": "A smaller version, the \"Mini Twister\", is available in multipacks. Some Mini Twisters in each pack have the flavours reversed, so that the strawberry appears on ... Read more",
+              "url": "https://en.wikipedia.org/wiki/Twister_(ice_cream)",
+              "breadcrumb": "https://en.wikipedia.org › wiki › Twister_(ice_cream)"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "www.mistertwister.com",
+              "title": "Tri-Color Mini Tube - Fishing Lure",
+              "description": "Mister Twister's new 1-1/2 inch Tri-Color Mini Tube soft plastic lure is perfect trout and panfish! Order yours today.",
+              "url": "https://www.mistertwister.com/information/1-tri-color-mini-tube/821",
+              "breadcrumb": "https://www.mistertwister.com › information › 1-tri-col..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 56,
+              "page": 5,
+              "domain": "ancientartsfibre.com",
+              "title": "Socknado Twisters Mini Skeins",
+              "description": "A Galaxy Far, Far Away - Socknado Mini Twister 20 Gram - Dyed Stock $9.00 A Midnight Clear - Socknado Mini Twister 20 Gram - Dyed Stock $9.00 Read more",
+              "url": "https://ancientartsfibre.com/collections/socknado-twisters-mini-skeins?srsltid=AfmBOorrS7a0b7hVOEsgSpdxwHs0iqr1ioSj4c-qTHG3ZgUtSQy5VXrM",
+              "breadcrumb": "https://ancientartsfibre.com › collections › socknado-twi..."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+[
+  {
+    "domain": "amazon.com",
+    "response": "{\n    \"version\": \"0.1.20251203\",\n    \"status_code\": 40400,\n    \"status_message\": \"Not Found.\",\n    \"time\": \"0 sec.\",\n    \"cost\": 0,\n    \"tasks_count\": 0,\n    \"tasks_error\": 0,\n    \"tasks\": null\n}"
+  }
+]

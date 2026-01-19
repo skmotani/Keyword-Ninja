@@ -1,0 +1,45 @@
+{
+  "jobId": "590d0bd1-9939-4543-bd5d-d19b5130b1c7",
+  "status": "COMPLETED",
+  "clientCode": "01",
+  "selectedDomain": "www.meeraind.com",
+  "createdAt": "2025-12-26T11:26:25.133Z",
+  "startedAt": "2025-12-26T11:26:25.144Z",
+  "updatedAt": "2025-12-26T11:33:21.020Z",
+  "finishedAt": "2025-12-26T11:33:21.019Z",
+  "stage": "FINALIZE",
+  "totalKeywords": 48,
+  "metrics": {
+    "IN": {
+      "done": 0,
+      "total": 0,
+      "errors": 0
+    },
+    "GL": {
+      "done": 0,
+      "total": 48,
+      "errors": 48
+    }
+  },
+  "serp": {
+    "IN": {
+      "done": 48,
+      "total": 48,
+      "errors": 48,
+      "empty": 0
+    },
+    "GL": {
+      "done": 48,
+      "total": 48,
+      "errors": 48,
+      "empty": 0
+    }
+  },
+  "progressPercent": 100,
+  "etaSeconds": null,
+  "lastLogs": [],
+  "errors": [
+    "Metrics GL Failed: Metrics Polling Timed Out"
+  ],
+  "heartbeat": 138
+}

@@ -1,0 +1,796 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0447 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261752-1256-0066-0000-0b5d56c3c51d",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0347 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261752-1256-0066-0000-0b5d56c3c51d"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Rope Twister",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "b15759cf-ea66-4f54-932e-5343c531471f"
+      },
+      "result": [
+        {
+          "keyword": "Rope Twister",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=Rope%20Twister&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:52:58 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+rope+twister&hl=en&gl=IN&shoprs=GBIqDHJvcGUgdHdpc3RlcjIJCBISBVByaWNlYAE&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKAF6BAgXEDU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+rope+twister&hl=en&gl=IN&shoprs=GBIqDHJvcGUgdHdpc3RlcjIKCBISBk9ubGluZWAB&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKAJ6BAgXEDY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Skipping Ropes",
+                "url": "https://www.google.com/search?q=skipping+ropes+rope+twister&hl=en&gl=IN&shoprs=GAkqDHJvcGUgdHdpc3RlcjISCAkSDlNraXBwaW5nIFJvcGVzYAE&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKAN6BAgXEDc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Board Games & Card Games",
+                "url": "https://www.google.com/search?q=board+games+%26+card+games+rope+twister&hl=en&gl=IN&shoprs=GAkqDHJvcGUgdHdpc3RlcjIcCAkSGEJvYXJkIEdhbWVzICYgQ2FyZCBHYW1lc2AB&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKAR6BAgXEDg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=Rope+Twister+nearby&hl=en&gl=IN&shoprs=GAMqDHJvcGUgdHdpc3RlcjIMCAMSBk5lYXJieRgCWPCtIGAB&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKAV6BAgXEDk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+rope+twister&hl=en&gl=IN&shoprs=GBIqDHJvcGUgdHdpc3RlcjILCBISB1Jldmlld3NgAQ&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKAZ6BAgXEDo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Children",
+                "url": "https://www.google.com/search?q=rope+twister+for+children&hl=en&gl=IN&shoprs=GAEqDHJvcGUgdHdpc3RlcjIeCAESDEZvciBDaGlsZHJlbhgCOgoIubBqEL2wajADWPCtIGAB&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKAd6BAgXEDs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+rope+twister&hl=en&gl=IN&shoprs=GBIqDHJvcGUgdHdpc3RlcjIHCBISA0J1eWAB&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKAh6BAgXEDw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Black",
+                "url": "https://www.google.com/search?q=black+rope+twister&hl=en&gl=IN&shoprs=GAEqDHJvcGUgdHdpc3RlcjIXCAESBUJsYWNrOgwI2Iz1ARDlivUBMAtY8K0gYAE&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKAl6BAgXED0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=rope+twister+for+sale&hl=en&gl=IN&shoprs=GBIqDHJvcGUgdHdpc3RlcjIMCBISCEZvciBTYWxlYAE&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKAp6BAgXED4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Brain-teasers",
+                "url": "https://www.google.com/search?q=brain-teasers+rope+twister&hl=en&gl=IN&shoprs=GAkqDHJvcGUgdHdpc3RlcjIRCAkSDUJyYWluLXRlYXNlcnNgAQ&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKAt6BAgXED8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Man",
+                "url": "https://www.google.com/search?q=man+rope+twister&hl=en&gl=IN&shoprs=GBIqDHJvcGUgdHdpc3RlcjIHCBISA01hbmAB&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKAx6BAgXEEA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹2,500",
+                "url": "https://www.google.com/search?q=Rope+Twister+under+2500&hl=en&gl=IN&shoprs=Eg0SCxEAAAAgX6DiQRgBGAUqDHJvcGUgdHdpc3RlcjInCAUSDlVuZGVyIOKCuTIsNTAwGAIiDRILEQAAACBfoOJBGAEqAhgBWPCtIGAB&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKA16BAgXEEE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "White",
+                "url": "https://www.google.com/search?q=white+rope+twister&hl=en&gl=IN&shoprs=GAEqDHJvcGUgdHdpc3RlcjIXCAESBVdoaXRlOgwI2Iz1ARChi_UBMAtY8K0gYAE&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKA56BAgXEEI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Party Games",
+                "url": "https://www.google.com/search?q=party+games+rope+twister&hl=en&gl=IN&shoprs=GAkqDHJvcGUgdHdpc3RlcjIPCAkSC1BhcnR5IEdhbWVzYAE&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKA96BAgXEEM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Blue",
+                "url": "https://www.google.com/search?q=blue+rope+twister&hl=en&gl=IN&shoprs=GAEqDHJvcGUgdHdpc3RlcjIWCAESBEJsdWU6DAjYjPUBEOaK9QEwC1jwrSBgAQ&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKBB6BAgXEEQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Images",
+                "url": "https://www.google.com/search?q=images+rope+twister&hl=en&gl=IN&shoprs=GBIqDHJvcGUgdHdpc3RlcjIKCBISBkltYWdlc2AB&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKBF6BAgXEEU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Size",
+                "url": "https://www.google.com/search?q=size+rope+twister&hl=en&gl=IN&shoprs=GBIqDHJvcGUgdHdpc3RlcjIICBISBFNpemVgAQ&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKBJ6BAgXEEY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Green",
+                "url": "https://www.google.com/search?q=green+rope+twister&hl=en&gl=IN&shoprs=GAEqDHJvcGUgdHdpc3RlcjIXCAESBUdyZWVuOgwI2Iz1ARDoivUBMAtY8K0gYAE&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKBN6BAgXEEc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "On sale",
+                "url": "https://www.google.com/search?q=Rope+Twister+sale&hl=en&gl=IN&shoprs=EgRKAggBGAYqDHJvcGUgdHdpc3RlcjITCAYSB09uIHNhbGUYAiIESgIIAVjwrSBgAQ&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKBR6BAgXEEg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Boy",
+                "url": "https://www.google.com/search?q=boy+rope+twister&hl=en&gl=IN&shoprs=GBIqDHJvcGUgdHdpc3RlcjIHCBISA0JveWAB&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKBV6BAgXEEk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Female",
+                "url": "https://www.google.com/search?q=female+rope+twister&hl=en&gl=IN&shoprs=GBIqDHJvcGUgdHdpc3RlcjIKCBISBkZlbWFsZWAB&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKBZ6BAgXEEo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Orange",
+                "url": "https://www.google.com/search?q=orange+rope+twister&hl=en&gl=IN&shoprs=GAEqDHJvcGUgdHdpc3RlcjIYCAESBk9yYW5nZToMCNiM9QEQ7or1ATALWPCtIGAB&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKBd6BAgXEEs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Amazon.in",
+                "url": "https://www.google.com/search?q=amazon.in+rope+twister&hl=en&gl=IN&shoprs=GAIqDHJvcGUgdHdpc3RlcjINCAISCUFtYXpvbi5pbljwrSBgAQ&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKBh6BAgXEEw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Flipkart",
+                "url": "https://www.google.com/search?q=flipkart+rope+twister&hl=en&gl=IN&shoprs=GAIqDHJvcGUgdHdpc3RlcjIMCAISCEZsaXBrYXJ0WPCtIGAB&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKBl6BAgXEE0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Alibaba.com",
+                "url": "https://www.google.com/search?q=alibaba.com+rope+twister&hl=en&gl=IN&shoprs=GAIqDHJvcGUgdHdpc3RlcjIPCAISC0FsaWJhYmEuY29tWPCtIGAB&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKBp6BAgXEE4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tradeindia.com",
+                "url": "https://www.google.com/search?q=tradeindia.com+rope+twister&hl=en&gl=IN&shoprs=GAIqDHJvcGUgdHdpc3RlcjISCAISDlRyYWRlaW5kaWEuY29tWPCtIGAB&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKBt6BAgXEE8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "desertcart.in",
+                "url": "https://www.google.com/search?q=desertcart.in+rope+twister&hl=en&gl=IN&shoprs=GAIqDHJvcGUgdHdpc3RlcjIRCAISDWRlc2VydGNhcnQuaW5Y8K0gYAE&sa=X&ved=2ahUKEwiDl4yVztuRAxUEr5UCHequKjAQip4GKBx6BAgXEFA",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "images",
+            "video",
+            "popular_products",
+            "people_also_ask",
+            "organic",
+            "related_searches"
+          ],
+          "se_results_count": 49400000,
+          "pages_count": 5,
+          "items_count": 48,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 5,
+              "page": 1,
+              "domain": "www.amazon.in",
+              "title": "Fringe Twister with 4 Clips, Wood Cord Maker ...",
+              "description": "VERSATILE USE: This tassel twister can be used to make tassel on blankets, shawls, tapestries, scarves, and more, or make twisted ropes individually. DURABLE & ... Read more",
+              "url": "https://www.amazon.in/Twister-Quickly-Twisting-Weaving-Machine/dp/B09Y32R6F9",
+              "breadcrumb": "https://www.amazon.in › Twister-Quickly-Twisting-We..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 6,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Heavy Ring Twister Machine at Best Price in India",
+              "description": null,
+              "url": "https://dir.indiamart.com/impcat/heavy-ring-twister.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Spinning Machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "www.etsy.com",
+              "title": "Incredible Rope Maker, Cord Tool, Cord ... - Etsy",
+              "description": "In minutes you can make decorative ropes out of a range of yarns. With this specially-designed tool, you can create multi-colored or multi-textured, thick or ... Read more",
+              "url": "https://www.etsy.com/in-en/listing/489299652/schacht-rope-machine-incredible-rope",
+              "breadcrumb": "https://www.etsy.com › in-en › listing › schacht-rope-m..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "www.akiropes.com",
+              "title": "Rope Making Machine 16-44 mm - Akiropes",
+              "description": "Model Type : Mechanical & PLC ; Rope Range : 16MM to 44mm ; Strand Flyer RPM : 250 ; Rope Flyer RPM : 125 ; Twist Per Minute : Twice the Flyer. Read more",
+              "url": "https://www.akiropes.com/rope-making-machine-16-44.php",
+              "breadcrumb": "https://www.akiropes.com › rope-making-machine-16-44"
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "marutiplastotech.com",
+              "title": "Rope Making Machine MTRE / 612 & MTRE / 816",
+              "description": "Manufacturer & Supplier Of Rope Making Machines 6-12 MM In India. Maruti Plastotech With 10+ Years Experience And 35+ Countries Exports.",
+              "url": "https://marutiplastotech.com/rope-making-machine-mtre-612-and-mtre-816",
+              "breadcrumb": "https://marutiplastotech.com › rope-making-machine-m..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "www.youtube.com",
+              "title": "How to Make a Simple Rope making Machine |DIY",
+              "description": "HOW TO MAKE A ROPE WITH AN OLD TIME ROPE MAKING MACHINE. Daniel Mink ... Rope Making Demonstration ~ Antique Rope Maker. Emeryville•5.8K ...",
+              "url": "https://www.youtube.com/watch?v=2kQBp_5PPTc",
+              "breadcrumb": "10.6L+ views  ·  7 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "www.robco-eng.com",
+              "title": "robco rope making machines",
+              "description": "Machines for production of 3 and 4 strand laid ropes from Ø3 mm up to Ø52 mm. Available with both internal and external take-up to suit customer specific needs. Read more",
+              "url": "https://www.robco-eng.com/rope-making-machines/",
+              "breadcrumb": "https://www.robco-eng.com › rope-making-machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 12,
+              "page": 1,
+              "domain": "www.alibaba.com",
+              "title": "Rope Twisting Machine 3/4 Strand",
+              "description": null,
+              "url": "https://www.alibaba.com/showroom/rope-twisting-machine.html",
+              "breadcrumb": "https://www.alibaba.com › showroom › rope-twisting-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "www.pbo.co.uk",
+              "title": "How to make rope: Twist your own lines with a ...",
+              "description": "7 Sept 2021 — Wind the gear handle anticlockwise, twisting the yarns into strands. Gradually tension builds in the twisting yarns, and the traveller – with ... Read more",
+              "url": "https://www.pbo.co.uk/all-latest-posts/how-to-make-rope-twist-lines-traditional-ropewalk-device-68673",
+              "breadcrumb": "https://www.pbo.co.uk › All latest posts"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "www.youtube.com",
+              "title": "Making Rope with the Incredible Rope Machine",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=dJS-92kUicc",
+              "breadcrumb": "61.6K+ views  ·  8 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.jaylaxmitextilespindle.net",
+              "title": "Rope Making Machine - PLY YARN TWISTER ...",
+              "description": "Rope Making Machine. PLY YARN TWISTER MACHINE. Rs 70,000 / Number. PLY YARN TWISTER MACHINE. Usage/Application: TWINE; Power Consumption: 3 HP; Brand: KMMC ... Read more",
+              "url": "https://www.jaylaxmitextilespindle.net/rope-making-machine.html",
+              "breadcrumb": "https://www.jaylaxmitextilespindle.net › rope-making-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "cnrmropemachine.en.made-in-china.com",
+              "title": "Rope Twister Equipment 3/4 Strand Twisted ...",
+              "description": "Our rope and net machinery mainly includes: extruder, ring twister, twisted rope making machine, braided rope machine, ball winder, spool winder, coiler machine ... Read more",
+              "url": "https://cnrmropemachine.en.made-in-china.com/product/gwYtpjIUYrGC/China-Rope-Twister-Equipment-3-4-Strand-Twisted-Rope-Machine.html",
+              "breadcrumb": "https://cnrmropemachine.en.made-in-china.com › Chin..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.akiropes.com",
+              "title": "How Ring Twister Machines Improve Rope ...",
+              "description": "24 Nov 2025 — A Ring Twister Machine is a high-speed textile machine designed to twist multiple strands of yarn together, creating a stronger and more durable ... Read more",
+              "url": "https://www.akiropes.com/blog/how-ring-twister-machines-improve-rope-strength-and-twist-consistency-machine/",
+              "breadcrumb": "https://www.akiropes.com › blog › how-ring-twister-ma..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "play.google.com",
+              "title": "Twisted Rope 3D - Apps on Google Play",
+              "description": "20 Oct 2025 — Dive into hundreds of handcrafted levels where you'll untangle rope, solve tangled rope messes, and prove yourself as the true Knot Master. Read more",
+              "url": "https://play.google.com/store/apps/details?id=com.twisted.rope.tangle&hl=en",
+              "breadcrumb": "https://play.google.com › store › apps › details › id=com..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "shipsofscale.com",
+              "title": "Rope twist",
+              "description": "25 Jul 2022 — The direction of twist, number of threads in a rope and type of material all make a difference based on what the intended use of a rope is on the ship. Read more",
+              "url": "https://shipsofscale.com/sosforums/threads/rope-twist.10197/",
+              "breadcrumb": "https://shipsofscale.com › sosforums › threads › rope-twist"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.instructables.com",
+              "title": "Rope Making : 7 Steps (with Pictures)",
+              "description": "Set Up the Tension Side. As you twist the strands they will eventually twist together. This makes the entire rope rotate. A fishing swivel allows this rotation. Read more",
+              "url": "https://www.instructables.com/Rope-Making/",
+              "breadcrumb": "https://www.instructables.com › Outside › Knots"
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "www.youtube.com",
+              "title": "A Machine That Turns Plants Into Rope",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=kHDC70iC5jg",
+              "breadcrumb": "6.2L+ views  ·  3 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "www.aajjo.com",
+              "title": "Plastic Rope Twister Machine - Aajjo",
+              "description": "Get best Plastic Rope Twister Machine price in BHAVNAGAR, Gujarat from Aawadkrupa Plastomech Private Limited. Explore detailed Plastic Rope Twister Machine ...",
+              "url": "https://www.aajjo.com/product/plastic-rope-twister-machine-in-bhavnagar-aawadkrupa-plastomech-pvt-ltd",
+              "breadcrumb": "https://www.aajjo.com › product › plastic-rope-twister-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 25,
+              "page": 3,
+              "domain": "thespinnerystore.com",
+              "title": "Rope Makers & Fringe Twisters",
+              "description": "Schacht Incredible Rope Machine Cord Braid Fringe Twister Tassle Maker SUPERFAST SHIPPING! $69.99. \"Close (esc)\". Collections. Collections. Spinning · Weaving ... Read more",
+              "url": "https://thespinnerystore.com/collections/rope-maker?srsltid=AfmBOop4RPs7VdLRIU1aUk9RN07Ic4TjTH4eGUHDf8uRW8WXlV2jWt74",
+              "breadcrumb": "https://thespinnerystore.com › collections › rope-maker"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "www.alpinesavvy.com",
+              "title": "Anchor-induced rope twisting",
+              "description": "21 Jul 2025 — Some configurations of anchor hardware can give you a smooth easy rope pull with no twists. Others can add some snarls to your rope. Read more",
+              "url": "https://www.alpinesavvy.com/blog/anchor-induced-rope-twisting",
+              "breadcrumb": "https://www.alpinesavvy.com › blog › anchor-induced-r..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "www.robco-eng.com",
+              "title": "Twisting machines of high quality and productivity",
+              "description": "Robco twisting machines used for producing twine and rope yarn: heavy twine up to 1350000 denier and for light yarns down to 5000 denier.",
+              "url": "https://www.robco-eng.com/twisters/",
+              "breadcrumb": "https://www.robco-eng.com › twisters"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "Rope making stick/club",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=uwWFCNxdRJ4",
+              "breadcrumb": "2L+ views  ·  5 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "Twisted Rope Making Machine",
+              "description": null,
+              "url": "https://www.youtube.com/playlist?list=PLF0aZLMSqS26qUAuW3QL7FR_pNnQugdxo",
+              "breadcrumb": "6.1K+ followers"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.ebay.com",
+              "title": "Antique Rope Maker",
+              "description": "The New Era Rope Machine Maker Antique String Twister Minneapolis MN Iron Winder. $399.99. or Best Offer. +$44.01 delivery. Located in United States. Read more",
+              "url": "https://www.ebay.com/shop/antique-rope-maker?_nkw=antique+rope+maker",
+              "breadcrumb": "https://www.ebay.com › shop › antique-rope-maker"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.halcyonyarn.com",
+              "title": "Schacht Incredible Rope Machine & Yarn Twister",
+              "description": "Schacht Incredible Rope Machine & Yarn Twister by Schacht Spindle Co. | Create custom ropes and yarns easily with this versatile tool.",
+              "url": "https://www.halcyonyarn.com/products/schacht-incredible-rope-machine-and-yarn-twister?srsltid=AfmBOoqGxFtogYDkycWaP9FCGQ8Gp8-J0CnhCmE9ewZxJOYJhF5naPeb",
+              "breadcrumb": "https://www.halcyonyarn.com › products › schacht-incre..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "Rope twist- twisting rope by hand",
+              "description": "This time we are taking a look at how to twist rope by hand. This can be done with smaller rope, to create larger diameter rope.",
+              "url": "https://www.youtube.com/watch?v=OFTgWTSdKq8",
+              "breadcrumb": "2.7K+ views  ·  4 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "www.tanishq.co.in",
+              "title": "Rope Twist Gold Chain For Men",
+              "description": "Buy Rope Twist Gold Chain For Men from Tanishq Online Store. Perfect for any occasion, this piece adds elegance to your collection. Shop now!",
+              "url": "https://www.tanishq.co.in/product/rope-twist-gold-chain-for-men-50g5c1cbvaa00.html?lang=en_IN",
+              "breadcrumb": "https://www.tanishq.co.in › product › rope-twist-gold-c..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 34,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "Don't pay for it! Make Your Own Rope at Home with 100 Year ...",
+              "description": "In this video we show you how to make your own rope and rope. If you need rope, be sure to watch this video called rope making.",
+              "url": "https://www.youtube.com/watch?v=A0pjW8FC6GA",
+              "breadcrumb": "25L+ views  ·  3 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "en.wikipedia.org",
+              "title": "Tornado",
+              "description": "A tornado, also known as a twister, is a rapidly rotating column of air that extends vertically from the surface of the Earth to the base of a cumulonimbus ... Read more",
+              "url": "https://en.wikipedia.org/wiki/Tornado",
+              "breadcrumb": "https://en.wikipedia.org › wiki › Tornado"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "www.facebook.com",
+              "title": "Old Twist Tool Makes Rope #HandmadeRope ...",
+              "description": "Old Twist Tool Makes Rope #HandmadeRope #TraditionalSkills #NaturalFiber.",
+              "url": "https://www.facebook.com/fatafatnews/videos/old-twist-tool-makes-rope/1159764952499269/",
+              "breadcrumb": "60+ reactions  ·  7 months ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.crazygames.com",
+              "title": "Twisted Tangle 🕹️ Play on CrazyGames",
+              "description": "11 Apr 2025 — Twisted Tangle is a captivating puzzle game where your skills in untangling intricate knots are put to the ultimate test.",
+              "url": "https://www.crazygames.com/game/twisted-tangle-nmt",
+              "breadcrumb": "https://www.crazygames.com › Puzzle › Color"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "How to Make Rope - New Era Rope Machine",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=jajA4q4AhN4",
+              "breadcrumb": "50.7K+ views  ·  3 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.instructables.com",
+              "title": "Rope Twist Hairstyle - Instructables",
+              "description": "Split the ponytail into two equal sections, and twist one of the sections clockwise for the full length. Secure the twist momentarily by clipping or biting it. Read more",
+              "url": "https://www.instructables.com/Rope-Twist/",
+              "breadcrumb": "https://www.instructables.com › Living › Beauty"
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "www.robco-eng.com",
+              "title": "Robco Engineering: Twisters, rope making ...",
+              "description": "For making twine for different applications and also for making rope yarns we have twisting machines available for both heavy twines up to 1,350,000 denier and ... Read more",
+              "url": "https://www.robco-eng.com/",
+              "breadcrumb": "https://www.robco-eng.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.instagram.com",
+              "title": "Beautiful Loc Color & Boho Rope Twist by NappStar. Book ...",
+              "description": "NappStar is a renowned expert in locs and boho rope twist styles. With a focus on quality and attention to detail, their services will help ...",
+              "url": "https://www.instagram.com/reel/DSpbo0HEybx/",
+              "breadcrumb": "1.4K+ likes  ·  2 days ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.justdial.com",
+              "title": "Top Rope Twisting Machine Products from Verified Sellers",
+              "description": null,
+              "url": "https://www.justdial.com/india/rope-twisting-machine",
+              "breadcrumb": "https://www.justdial.com › ... › Textile Twister in India"
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "www.alibaba.com",
+              "title": "Rope Twister Machines - Efficient Yarn Spinning Solutions",
+              "description": null,
+              "url": "https://www.alibaba.com/showroom/rope-twister-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Braiding Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 45,
+              "page": 4,
+              "domain": "exileshmagazine.com",
+              "title": "Twist To Adjust From 20-330cm For Single Or Double Dutch",
+              "description": "10 hours ago — The twist-to-adjust feature is what makes it so special - you can change the length from 20cm all the way to 330cm just by twisting the handle. Read more",
+              "url": "https://exileshmagazine.com/Length-Jump-Rope-Twist-To-Adjust-From-20-330cm-For-Single-Or-976274",
+              "breadcrumb": "https://exileshmagazine.com › Jump Ropes"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "www.tiktok.com",
+              "title": "Black Man Hairstyle: Rope Twist Tutorial by Joyce Arts ...",
+              "description": "Learn how to create trendy rope twist hairstyles for black men with this tutorial by Joyce Arts, featuring Joe Mettle.",
+              "url": "https://www.tiktok.com/@joycearts8/video/7377725936583675169",
+              "breadcrumb": "26.2K+ views  ·  1 year ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "www.tradeindia.com",
+              "title": "Rope Twisting Machine at Best Price in Bhavnagar, Gujarat",
+              "description": "Buy low price rope twisting machine in nari road, bhavnagar. rope twisting ... 2mm Rope Ring Twister Machine. Vijay Mechanical. Bhavnagar, Gujarat. Send ... Read more",
+              "url": "https://www.tradeindia.com/products/rope-twisting-machine-c3441365.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › twisting machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "planetariochile.cl",
+              "title": "Jute Twine Twisted Manila Rope Natural (2 Inch X 65 Feet) ...",
+              "description": "Twisted Manila Rope Natural Jute Rope (2 Inch X 65 Feet) Heavy Duty. 4.8 stars ... PATIKIL 65ft/20M Twist Ties, 3 Pack PE Garden Plant Ties With Cutter ... Read more",
+              "url": "https://planetariochile.cl/2-Inch-X-65-Feet-Heavy-Duty/1168770",
+              "breadcrumb": "https://planetariochile.cl › 2-Inch-X-65-Feet-Heavy-Duty"
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.ijsrtjournal.com",
+              "title": "Design and Fabrication of a Pedal-Driven Rope Twisting ...",
+              "description": "by K Karthikeyan · 2025 — The fundamental goal of this initiative involves engineering and constructing a system that employs pedaling mechanisms to twist coconut fiber or yarn into ... Read more",
+              "url": "https://www.ijsrtjournal.com/article/Design-and-Fabrication-of-a-PedalDriven-Rope-Twisting-Machine-with-Integrated-Power-Generation",
+              "breadcrumb": "https://www.ijsrtjournal.com › article › Design-and-Fab..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.meera.ind.in",
+              "title": "Ring Twister For PP/ Poly / PA / Nylon / PE / HDPE",
+              "description": "Rope Twisting Machine · Operation Mode: Automatic · Usage/Application: Yarn Twisting · Machine Type: Automatic · Voltage: 220/380/440 - 50-60 Hz · Packaging Type: ... Read more",
+              "url": "https://www.meera.ind.in/ring-twister.html",
+              "breadcrumb": "https://www.meera.ind.in › ring-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "www.accio.com",
+              "title": "Twisted Rope Making Machine: Efficient & Reliable",
+              "description": "16 Dec 2025 — Wenzhou Mude Machinery Co., Ltd. N/A, 1 set, CN, $14,500, Combines twisting and pasting. 12 Spindles Yarn Twisting Machinery Twister pp Pe Pet ... Read more",
+              "url": "https://www.accio.com/plp/twisted-rope-making-machine",
+              "breadcrumb": "https://www.accio.com › plp › twisted-rope-making-mac..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.bkeithropemaker.com",
+              "title": "3. Single Strand Rope (Yarns)",
+              "description": null,
+              "url": "https://www.bkeithropemaker.com/Rope_Chapt_3.html",
+              "breadcrumb": "https://www.bkeithropemaker.com › Rope_Chapt_3"
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "How To Make Yarn Rope | How To Make Twisted Rope | How ...",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=pE7T3DTj3S0",
+              "breadcrumb": "1.1L+ views  ·  6 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "www.facebook.com",
+              "title": "Jalandhar's Biggest Paper Paratha 😍🔥 Crispy, Giant & ...",
+              "description": "(This will create extra-crispy layers!) --- Step 3: Roll, Spiral & Rope Twist Divide dough into 4–6 equal balls. Roll one out into a thin, large ... Read more",
+              "url": "https://www.facebook.com/IndiaYumYum/posts/jalandhars-biggest-paper-paratha-crispy-giant-cooked-live-on-tawa/1413769433732094/",
+              "breadcrumb": "50+ reactions  ·  1 hour ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 48,
+              "rank_absolute": 56,
+              "page": 5,
+              "domain": "en.wikipedia.org",
+              "title": "Oliver Twist",
+              "description": "Oliver Twist; or, The Parish Boy's Progress, is the second novel by English author Charles Dickens. It was originally published as a serial from 1837 to ... Read more",
+              "url": "https://en.wikipedia.org/wiki/Oliver_Twist",
+              "breadcrumb": "https://en.wikipedia.org › wiki › Oliver_Twist"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

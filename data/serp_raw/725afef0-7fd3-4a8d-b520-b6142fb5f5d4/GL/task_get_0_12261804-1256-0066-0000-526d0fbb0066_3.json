@@ -1,0 +1,760 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0543 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261804-1256-0066-0000-526d0fbb0066",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0451 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261804-1256-0066-0000-526d0fbb0066"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "covering machine",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "725afef0-7fd3-4a8d-b520-b6142fb5f5d4"
+      },
+      "result": [
+        {
+          "keyword": "covering machine",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2840,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=covering%20machine&hl=en&gl=US&ie=UTF-8&uule=w+CAIQIFISCQs2MuSEtepUEUK33kOSuTsc",
+          "datetime": "2025-12-26 16:04:25 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=covering+machine+nearby&hl=en&gl=US&shoprs=CAEYAyoQY292ZXJpbmcgbWFjaGluZTIMCAMSBk5lYXJieRgCYAE&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKAF6BAgaEDs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=covering+machine+for+sale&hl=en&gl=US&shoprs=CAEYEioQY292ZXJpbmcgbWFjaGluZTIMCBISCEZvciBTYWxlYAE&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKAJ6BAgaEDw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Printers",
+                "url": "https://www.google.com/search?q=printers+covering+machine&hl=en&gl=US&shoprs=CAEYCSoQY292ZXJpbmcgbWFjaGluZTIMCAkSCFByaW50ZXJzYAE&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKAN6BAgaED0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Books",
+                "url": "https://www.google.com/search?q=books+covering+machine&hl=en&gl=US&shoprs=CAEYCSoQY292ZXJpbmcgbWFjaGluZTIJCAkSBUJvb2tzYAE&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKAR6BAgaED4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Sewing Machines",
+                "url": "https://www.google.com/search?q=sewing+machines+covering+machine&hl=en&gl=US&shoprs=CAEYCSoQY292ZXJpbmcgbWFjaGluZTITCAkSD1Nld2luZyBNYWNoaW5lc2AB&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKAV6BAgaED8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+covering+machine&hl=en&gl=US&shoprs=CAEYEioQY292ZXJpbmcgbWFjaGluZTIHCBISA0J1eWAB&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKAZ6BAgaEEA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "New",
+                "url": "https://www.google.com/search?q=new+covering+machine&hl=en&gl=US&shoprs=CAEYCioQY292ZXJpbmcgbWFjaGluZTIHCAoSA05ld2AB&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKAd6BAgaEEE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Used",
+                "url": "https://www.google.com/search?q=used+covering+machine&hl=en&gl=US&shoprs=CAEYCioQY292ZXJpbmcgbWFjaGluZTIICAoSBFVzZWRgAQ&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKAh6BAgaEEI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Laminators",
+                "url": "https://www.google.com/search?q=laminators+covering+machine&hl=en&gl=US&shoprs=CAEYCSoQY292ZXJpbmcgbWFjaGluZTIOCAkSCkxhbWluYXRvcnNgAQ&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKAl6BAgaEEM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under $1,500",
+                "url": "https://www.google.com/search?q=covering+machine+under+$1,500&hl=en&gl=US&shoprs=CAESDRILEQAAAMALWtZBGAEYBSoQY292ZXJpbmcgbWFjaGluZTIlCAUSDFVuZGVyICQxLDUwMBgCIg0SCxEAAADAC1rWQRgBKgIYAWAB&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKAp6BAgaEEQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Paper Cutters & Trimmers",
+                "url": "https://www.google.com/search?q=paper+cutters+%26+trimmers+covering+machine&hl=en&gl=US&shoprs=CAEYCSoQY292ZXJpbmcgbWFjaGluZTIcCAkSGFBhcGVyIEN1dHRlcnMgJiBUcmltbWVyc2AB&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKAt6BAgaEEU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "On sale",
+                "url": "https://www.google.com/search?q=covering+machine+sale&hl=en&gl=US&shoprs=CAESBEoCGAEYBioQY292ZXJpbmcgbWFjaGluZTITCAYSB09uIHNhbGUYAiIESgIYAWAB&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKAx6BAgaEEY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Industrial",
+                "url": "https://www.google.com/search?q=industrial+covering+machine&hl=en&gl=US&shoprs=CAEYASoQY292ZXJpbmcgbWFjaGluZTIaCAESCkluZHVzdHJpYWw6CgiUtzsQlbc7MANgAQ&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKA16BAgaEEc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "White",
+                "url": "https://www.google.com/search?q=white+covering+machine&hl=en&gl=US&shoprs=CAEYASoQY292ZXJpbmcgbWFjaGluZTIXCAESBVdoaXRlOgwI2Iz1ARChi_UBMAtgAQ&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKA56BAgaEEg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+covering+machine&hl=en&gl=US&shoprs=CAEYEioQY292ZXJpbmcgbWFjaGluZTIKCBISBk9ubGluZWAB&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKA96BAgaEEk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Brand",
+                "url": "https://www.google.com/search?q=brand+covering+machine&hl=en&gl=US&shoprs=CAEYEioQY292ZXJpbmcgbWFjaGluZTIJCBISBUJyYW5kYAE&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKBB6BAgaEEo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Clothes",
+                "url": "https://www.google.com/search?q=clothes+covering+machine&hl=en&gl=US&shoprs=CAEYEioQY292ZXJpbmcgbWFjaGluZTILCBISB0Nsb3RoZXNgAQ&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKBF6BAgaEEs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+covering+machine&hl=en&gl=US&shoprs=CAEYEioQY292ZXJpbmcgbWFjaGluZTIJCBISBVByaWNlYAE&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKBJ6BAgaEEw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Store",
+                "url": "https://www.google.com/search?q=store+covering+machine&hl=en&gl=US&shoprs=CAEYEioQY292ZXJpbmcgbWFjaGluZTIJCBISBVN0b3JlYAE&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKBN6BAgaEE0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Definition",
+                "url": "https://www.google.com/search?q=definition+covering+machine&hl=en&gl=US&shoprs=CAEYEioQY292ZXJpbmcgbWFjaGluZTIOCBISCkRlZmluaXRpb25gAQ&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKBR6BAgaEE4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Usa",
+                "url": "https://www.google.com/search?q=usa+covering+machine&hl=en&gl=US&shoprs=CAEYEioQY292ZXJpbmcgbWFjaGluZTIHCBISA1VzYWAB&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKBV6BAgaEE8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Shirt",
+                "url": "https://www.google.com/search?q=shirt+covering+machine&hl=en&gl=US&shoprs=CAEYEioQY292ZXJpbmcgbWFjaGluZTIJCBISBVNoaXJ0YAE&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKBZ6BAgaEFA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Free",
+                "url": "https://www.google.com/search?q=free+covering+machine&hl=en&gl=US&shoprs=CAEYEioQY292ZXJpbmcgbWFjaGluZTIICBISBEZyZWVgAQ&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKBd6BAgaEFE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Plastic",
+                "url": "https://www.google.com/search?q=plastic+covering+machine&hl=en&gl=US&shoprs=CAEYEioQY292ZXJpbmcgbWFjaGluZTILCBISB1BsYXN0aWNgAQ&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKBh6BAgaEFI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Silk",
+                "url": "https://www.google.com/search?q=silk+covering+machine&hl=en&gl=US&shoprs=CAEYEioQY292ZXJpbmcgbWFjaGluZTIICBISBFNpbGtgAQ&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKBl6BAgaEFM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Man",
+                "url": "https://www.google.com/search?q=man+covering+machine&hl=en&gl=US&shoprs=CAEYEioQY292ZXJpbmcgbWFjaGluZTIHCBISA01hbmAB&sa=X&ved=2ahUKEwiynu3c0NuRAxVqr5UCHYjTGfMQip4GKBp6BAgaEFQ",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "images",
+            "organic",
+            "popular_products",
+            "people_also_ask",
+            "video",
+            "related_searches"
+          ],
+          "se_results_count": 1900000000,
+          "pages_count": 5,
+          "items_count": 46,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 2,
+              "page": 1,
+              "domain": "www.colibriusa.com",
+              "title": "Book Covering Machines",
+              "description": "CoLibrì book covering machines are efficient, compact, and portable. They are the secret to easily covering large quantities of books, ...",
+              "url": "https://www.colibriusa.com/collections/book-covering-machine",
+              "breadcrumb": "https://www.colibriusa.com › book-covering-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 3,
+              "page": 1,
+              "domain": "www.demco.com",
+              "title": "Book Covering Machines - Cover your textbooks faster",
+              "description": "Cover textbooks faster with book covering machines from Demco. Featuring CoLibri® Book Covering Systems and accessories.",
+              "url": "https://www.demco.com/products/library-supplies/book-covers-protection/book-covering-machines",
+              "breadcrumb": "https://www.demco.com › ... › Book Covers & Protection"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "thelibrarysupply.com",
+              "title": "Elettra Speedycover",
+              "description": "This innovative book covering system enables the efficient and easy covering of books of all types and sizes. Read more",
+              "url": "https://thelibrarysupply.com/collections/elettra-speedycover?srsltid=AfmBOoodOqZlNKTdClqeJcc-5wPg78G3TqYrW5ZQ-k59LarNUUmaLRjn",
+              "breadcrumb": "https://thelibrarysupply.com › collections › elettra-spee..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "www.colibriusa.com",
+              "title": "CoLibrì Book Covering System – CoLibri System | Book ...",
+              "description": "CoLibrì machines sense, check, lower, weld, trim, and rise again with the simple touch of a button. Our soft covers protect books from moisture, scratches, dust ... Read more",
+              "url": "https://www.colibriusa.com/",
+              "breadcrumb": "https://www.colibriusa.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.shopbrodart.com",
+              "title": "CoLibri e-DaVinci Book Covering Machine",
+              "description": "Designed to cover books of all sizes in 30 seconds ; At the touch of a button: machine senses, checks, gauges, lowers, welds, trims, and rises when finished ... Read more",
+              "url": "https://www.shopbrodart.com/Library-Supplies/Book-Jacket-Covers/Book-Jacket-Cover-Accessories/_/CoLibri-e-DaVinci-Book-Covering-Machine/?srsltid=AfmBOop-l27gUL0X7oPPMOf0-xeW45VYD3naLlltl9LulgmmEiLOZPlC",
+              "breadcrumb": "https://www.shopbrodart.com › Book-Jacket-Covers › C..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "www.hollingermetaledge.com",
+              "title": "CoLibri e-Davinci Book Covering Machine",
+              "description": "Covers a book in 30 seconds. Accurate machine-controlled trimming and welding means you will never need scissors or other equipment. Designed to cover even the ... Read more",
+              "url": "https://www.hollingermetaledge.com/colibri-e-davinci-book-covering-machine/?srsltid=AfmBOoqaTCkIk9rG90w-qg8fKPPA53SpWIaZTOfI9h_aP0Iup6nnH0NR",
+              "breadcrumb": "https://www.hollingermetaledge.com › colibri-e-davinci..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 12,
+              "page": 1,
+              "domain": "tp-v.com",
+              "title": "Rubber covering machine - Techprom",
+              "description": "Rubber covering machines are designed for rolls to be covered with rubber which are used in printing, textile, woodworking, pulp and paper, chemical, ... Read more",
+              "url": "https://tp-v.com/product/rewinding-machine/",
+              "breadcrumb": "https://tp-v.com › ... › Rubber roller covering machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 14,
+              "page": 1,
+              "domain": "www.librarysupplysolutions.com",
+              "title": "CoLibrì System Book Covering Machines & Eco Book Covers",
+              "description": "Each machine automatically senses the book's dimensions and completes the cover process; lowering, sealing, trimming, and resetting at the touch of a button. Read more",
+              "url": "https://www.librarysupplysolutions.com/colibri-book-covering-machine",
+              "breadcrumb": "https://www.librarysupplysolutions.com › colibri-book-c..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.coverone.net",
+              "title": "Cover One | Book Repair System For Schools, Libraries & ...",
+              "description": "Cover One, Inc. provides cities, agencies, schools and more with a simple and reliable system for repairing books and preparing documents.",
+              "url": "https://www.coverone.net/",
+              "breadcrumb": "https://www.coverone.net"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "meeraind.com",
+              "title": "Covering Machine for Spandex & Elastic Yarn Processing",
+              "description": "A double-deck covering machine delivers precise S/Z twist, consistent Lycra® elongation boosting productivity, reducing waste, and ensuring high-quality ... Read more",
+              "url": "https://meeraind.com/product/covering-machine",
+              "breadcrumb": "https://meeraind.com › product › covering-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.alibaba.com",
+              "title": "Spandex Covering Machine(999+)",
+              "description": null,
+              "url": "https://www.alibaba.com/showroom/spandex-covering-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Other Textile Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.youtube.com",
+              "title": "WM10 - Semi-automatic book cover machine",
+              "description": "Our semi-automatic book cover machine is designed to automatically cut and make protective book covers on demand and facilitate their ...",
+              "url": "https://www.youtube.com/watch?v=1kwwnQ1RQy0",
+              "breadcrumb": "9.7K+ views  ·  5 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.sitma.com",
+              "title": "WM10 Book Cover - Sitma Machinery S.p.A. - 5470",
+              "description": "TECHNICAL FEATURES: · Mechanical speed: up to 1,000 books per hour · Possibility of variable inkjet printing · Possibility to adjust the dimensions of pockets. Read more",
+              "url": "https://www.sitma.com/en/machines/wm10/",
+              "breadcrumb": "https://www.sitma.com › machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.ssm.ch",
+              "title": "XENO-AC air covering machine - SSM",
+              "description": "Elevate yarn finishing with SSM air covering machines, engineered for precision and efficiency to meet the demands of modern textile manufacturing.",
+              "url": "https://www.ssm.ch/products/yarn-processing-solutions/air-covering-machines",
+              "breadcrumb": "https://www.ssm.ch › ... › Yarn Processing Solutions"
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "www.brodart.ca",
+              "title": "CoLibri e-DaVinci Book Covering Machine",
+              "description": "Designed to cover books of all sizes in 30 seconds ; At the touch of a button: machine senses, checks, gauges, lowers, welds, trims, and rises when finished ... Read more",
+              "url": "https://www.brodart.ca/b7a1291a-5aa4-49ca-b990-2db47965e02b/_/CoLibri-e-DaVinci-Book-Covering-Machine/",
+              "breadcrumb": "https://www.brodart.ca › CoLibri-e-DaVinci-Book-Cover..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "www.tfotwister.com",
+              "title": "Elastic Yarn Covering Machine Manufacturer from Surat",
+              "description": "Elastic Yarn Covering Machine specially designed for fine denier lycra, spandex, latex rubber yarn. This product easily convertible from single to double ... Read more",
+              "url": "https://www.tfotwister.com/covering-machine.html",
+              "breadcrumb": "https://www.tfotwister.com › covering-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 24,
+              "page": 2,
+              "domain": "www.colibriusa.com",
+              "title": "e-Leonardo Book Covering Machine",
+              "description": null,
+              "url": "https://www.colibriusa.com/products/e-leonardo-book-covering-machine",
+              "breadcrumb": "https://www.colibriusa.com › products › e-leonardo-bo..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 25,
+              "page": 2,
+              "domain": "www.weavetech.com",
+              "title": "Covering Machine in Textiles - Weavetech",
+              "description": "A covering machine is a textile machine used to cover one yarn over another to produce what is well referred to as covered yarn. The process strengthens, makes ... Read more",
+              "url": "https://www.weavetech.com/what-is-a-covering-machine-complete-guide-for-textile-manufacturers/",
+              "breadcrumb": "https://www.weavetech.com › what-is-a-covering-machi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "en.lanbopm.com",
+              "title": "YARN COVERING MACHINE",
+              "description": null,
+              "url": "https://en.lanbopm.com/product/YARN-COVERING-MACHINE-5",
+              "breadcrumb": "https://en.lanbopm.com › product › YARN-COVERING-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.kyangyhe.com",
+              "title": "Yarn Covering Machine Series | Factory-Direct Textile ...",
+              "description": "The yarn covering machine is commonly used in the production of elastic yarns, no matter single covered, double covered, core yarn can use elastic or non- ... Read more",
+              "url": "https://www.kyangyhe.com/en/category/CATE-covering-machine.html",
+              "breadcrumb": "https://www.kyangyhe.com › category › CATE-covering..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.errebitextilemachinery.it",
+              "title": "errebi s.r.l. - Covering Machines",
+              "description": "errebi s.r.l. develops and manufacture advanced covering machines for elastic covered yarns and frisè yarn, machines for single or double covering.",
+              "url": "https://www.errebitextilemachinery.it/covering.html",
+              "breadcrumb": "https://www.errebitextilemachinery.it › covering"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.filfix.ie",
+              "title": "Filfix Book Covering Machine",
+              "description": "Dec 19, 2023 — The FilFix Book Covering Machine, crafted in Germany, offers swift and efficient custom-fitting for book covers of all sizes.",
+              "url": "https://www.filfix.ie/book-covering-machine/",
+              "breadcrumb": "https://www.filfix.ie › book-covering-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "bookcoverco.com.au",
+              "title": "CoverPro System",
+              "description": "Introducing the CoverPro, a book covering machine which applies self adhesive film to books in seconds, increasing efficiency and reducing costs. Read more",
+              "url": "https://bookcoverco.com.au/coverpro-system/?srsltid=AfmBOoo6UcqPKl0L7r6i4pwGcpEIteRytrucJxZ5aJgTCgLH-50hhEcC",
+              "breadcrumb": "https://bookcoverco.com.au › coverpro-system"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "www.rieter.com",
+              "title": "SSM Yarn Processing Machines",
+              "description": "Conventional covering. Machines for parallel winding of spun and filament yarns on flanged bobbins as well as for conventional single covering. Explore. Read more",
+              "url": "https://www.rieter.com/products/systems/winding-machines/yarn-processing",
+              "breadcrumb": "https://www.rieter.com › Products › Systems › Winding"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "www.aiki-japan.com",
+              "title": "AIKI RIOTECH CORPORATION / PRODUCTS / Air ...",
+              "description": "The air covering machine has the following functions: it feeds continuous fibers such as polyurethane yarn, generally known as spandex, nylon and polyester, ... Read more",
+              "url": "https://www.aiki-japan.com/products/acm_index.html",
+              "breadcrumb": "https://www.aiki-japan.com › products › acm_index"
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 34,
+              "page": 3,
+              "domain": "www.sagareng.com",
+              "title": "Double Paper Covering Machines Manufacturer from Jaipur",
+              "description": "High Speed Double Paper Covering Machine · Production Capacity: 100 Kg Per Day · Voltage: 380 V · Driven Type: Electric · Body Mateial: Stainless Steel · Number ... Read more",
+              "url": "https://www.sagareng.com/paper-covering-machines.html",
+              "breadcrumb": "https://www.sagareng.com › paper-covering-machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "www.colibriaustralia.com.au",
+              "title": "Book Covering Machines",
+              "description": "Cover books in just 20 seconds with the CoLibri Eco Shield Book Covers. The big advantage of this Automatic Machine is its one-Touch hands free feature. Read more",
+              "url": "https://www.colibriaustralia.com.au/pages/book-covering-machines",
+              "breadcrumb": "https://www.colibriaustralia.com.au › pages › book-cove..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "What is a Coverstitch Machine and Do I Need One?",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=IEMHT4MHDBA",
+              "breadcrumb": "23.8K+ views  ·  1 year ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.ebay.com",
+              "title": "Yarn covering machine",
+              "description": "This machine will cover, combine,and support all types of yarns and fibers. Widely used to produce gimp yarns and can be used to create a wide array of yarn ...",
+              "url": "https://www.ebay.com/itm/324727349093",
+              "breadcrumb": "https://www.ebay.com › ... › Other Business & Industrial"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "www.colibriusa.com",
+              "title": "CoLibrì System - Book covering machine and covers",
+              "description": "CoLibrì book covering machines are efficient, compact, and portable. They are the secret to easily covering large quantities of books, wrinkle and bubble-free. Read more",
+              "url": "https://www.colibriusa.com/pages/getting-started-with-colibri",
+              "breadcrumb": "https://www.colibriusa.com › getting-started-with-colibri"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.va.gov",
+              "title": "Order Medical Supplies | Veterans Affairs",
+              "description": "Sep 9, 2025 — Find out if you're eligible to order certain free medical supplies from us. You may be able to order hearing aid batteries and accessories, ...",
+              "url": "https://www.va.gov/health-care/order-medical-supplies/",
+              "breadcrumb": "https://www.va.gov › health-care › order-medical-suppl..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "www.zheng-run.com",
+              "title": "What is a cover machine? A complete guide to its functions ...",
+              "description": "May 16, 2025 — A cover machine is an efficient and automated machine used to produce laminated products such as hardcover book covers, notebook bindings, gift boxes, desk ... Read more",
+              "url": "https://www.zheng-run.com/company-news/what-is-a-cover-machine-a-complete-guide-to-its-functions-and-applications",
+              "breadcrumb": "https://www.zheng-run.com › company-news › what-is-a..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "MEERA Double Covering Machine For Spandex / Elastic ...",
+              "description": "High Speed Double Covering Machine For Technical Textiles Technology - Double Covering Machine Suitable Yarn - Polyester, PP , Nylon, ...",
+              "url": "https://www.youtube.com/watch?v=Op-NBc9iiqQ",
+              "breadcrumb": "1.9K+ views  ·  5 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "exercisebooksdirect.co.uk",
+              "title": "CoLibrì Book Covering Machine",
+              "description": "This machine has been designed to enable you to add a plastic cover to your books quickly and efficiently - and with a perfect fit every time. Read more",
+              "url": "https://exercisebooksdirect.co.uk/products/e-davinci-colibri-book-covering-machine?srsltid=AfmBOopQbwPJCIWxNXxenq3_riNvVHV5YMXfLc4YVGCeCPyXS5P3yw9m",
+              "breadcrumb": "https://exercisebooksdirect.co.uk › products › e-davinci..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "store.dbcgroup.ie",
+              "title": "School-Book-covering-machines - DBC Group",
+              "description": null,
+              "url": "https://store.dbcgroup.ie/book-covering-machines",
+              "breadcrumb": "https://store.dbcgroup.ie › book-covering-machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 45,
+              "page": 4,
+              "domain": "wanzhi.goldsupplier.com",
+              "title": "Yarn Covering Machine from China Manufacturers",
+              "description": null,
+              "url": "https://wanzhi.goldsupplier.com/235401-Yarn-Covering-Machine/",
+              "breadcrumb": "https://wanzhi.goldsupplier.com › 235401-Yarn-Coverin..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "weifeng.en.made-in-china.com",
+              "title": "Single Covering Machine (WF-192)",
+              "description": "Single Covering Machine (WF-192), Find Details and Price about Covering Machine from Single Covering Machine (WF-192) - Zhejiang Weifeng Machinery Co., Ltd.",
+              "url": "https://weifeng.en.made-in-china.com/product/OMImwQnEsflV/China-Single-Covering-Machine-WF-192-.html",
+              "breadcrumb": "https://weifeng.en.made-in-china.com › OMImwQnEsflV"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "coveryourtracks.eff.org",
+              "title": "Cover Your Tracks",
+              "description": "See how trackers view your browser ... How does tracking technology follow your trail around the web, even if you've taken protective measures? Cover Your Tracks ... Read more",
+              "url": "https://coveryourtracks.eff.org/",
+              "breadcrumb": "https://coveryourtracks.eff.org"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.da-hu.com",
+              "title": "DAHU 20 heads covering yarn machine for single and ...",
+              "description": "The 20 heads covering machine is driven by electronic inverter, and it also equips with HMI for customer to modify parameter. Read more",
+              "url": "https://www.da-hu.com/en/product/DH-CR-20.html",
+              "breadcrumb": "https://www.da-hu.com › ... › Covering Yarn Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.alibaba.com",
+              "title": "Air Covering Machine - High Efficiency Yarn Spindle Speed",
+              "description": null,
+              "url": "https://www.alibaba.com/showroom/air-covering-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Other Textile Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.amazon.com",
+              "title": "Hobestluk 3 in 1 Bean Bag Chair Giant ...",
+              "description": "Buy Hobestluk 3 in 1 Bean Bag Chair Giant Bean Bag Chairs Convertible Bean Bag Floor Cushion with Machine Washable Cover, Beanbag Chairs for Adult (Dark ...",
+              "url": "https://www.amazon.com/Hobestluk-Convertible-Cushion-Machine-Washable/dp/B0DGFTJ4CX",
+              "breadcrumb": "https://www.amazon.com › Hobestluk-Convertible-Cus..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "KY-TCR20 yarn covering machine",
+              "description": "KY-TCR20 Yarn Covering Machine, regardless of the single covered or double covered is easy to operate. Suitable for elastic and non-elastic ...",
+              "url": "https://www.youtube.com/watch?v=lyCTEupP3BQ",
+              "breadcrumb": "3.8K+ views  ·  4 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.avanca.com",
+              "title": "Automatic Covering Machine Factory, Custom ...",
+              "description": null,
+              "url": "https://www.avanca.com/bbebaUshop/factory/automatic-covering-machine.html",
+              "breadcrumb": "https://www.avanca.com › bbebaUshop › automatic-cove..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.jgtextilemachine.com",
+              "title": "Double-Covering Yarn Covering Machine",
+              "description": "Equipment overview. HKV 141H Double-Covering Yarn Covering Machine is used to produce MX and MH typemetallic yarn. It adopts the purl as the core yarn. Read more",
+              "url": "https://www.jgtextilemachine.com/doublecovering-yarn-covering-machine_product16.html",
+              "breadcrumb": "https://www.jgtextilemachine.com › doublecovering-yar..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "www.indiamart.com",
+              "title": "Elastic Yarn Covering Machine at ₹ 1800000 | Surat",
+              "description": "Elastic Yarn Covering Machine specially designed for fine denier lycra, spandex, latex rubber yarn. This product easily convertible from single to double ... Read more",
+              "url": "https://www.indiamart.com/proddetail/elastic-yarn-covering-machine-15158361562.html?srsltid=AfmBOopevu-VnYJ4B0ch8j_aZbI5P9pxJXivTdlF_voM5FnRYXVCo--S",
+              "breadcrumb": "https://www.indiamart.com › ... › Yarn Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 56,
+              "page": 5,
+              "domain": "www.kyangyhe.com",
+              "title": "Sample Yarn Covering Machine | Industrial Textile ...",
+              "description": "Sample yarn covering machine is driven by electronic inverter, and it also equips with HMI for customers to modify parameters. Read more",
+              "url": "https://www.kyangyhe.com/en/product/KY-TCR20_yarn-covering-machine.html",
+              "breadcrumb": "https://www.kyangyhe.com › product › KY-TCR20_yar..."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

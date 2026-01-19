@@ -1,0 +1,47 @@
+{
+  "jobId": "803bd204-da7f-4925-91b7-d63e3054118d",
+  "clientCode": "O2",
+  "selectedDomain": "RahulNandan.com",
+  "keywords": [
+    "Chemistry test series for JEE",
+    "Chemistry test series for NEET",
+    "JEE chemistry mock tests",
+    "NEET chemistry mock tests",
+    "Online chemistry test series",
+    "Chapter wise chemistry test series",
+    "Physical chemistry test series",
+    "Organic chemistry test series",
+    "Chemistry full syllabus mock test",
+    "Best chemistry test series for JEE and NEET"
+  ],
+  "status": "COMPLETED",
+  "stage": "DONE",
+  "progress": {
+    "IN": {
+      "done": 10,
+      "total": 10,
+      "current": "Chunk 1 completed"
+    },
+    "GL": {
+      "done": 10,
+      "total": 10,
+      "current": "Chunk 1 completed"
+    }
+  },
+  "errors": [
+    "Chemistry test series for JEE (GL): Task Handed.",
+    "Chemistry test series for JEE (IN): Task Handed.",
+    "Chapter wise chemistry test series (GL): Task Handed.",
+    "Chemistry test series for NEET (GL): Task Handed.",
+    "Organic chemistry test series (GL): Task Handed.",
+    "Chemistry full syllabus mock test (GL): Task Handed.",
+    "Physical chemistry test series (GL): Task Handed.",
+    "JEE chemistry mock tests (GL): Task Handed.",
+    "Chapter wise chemistry test series (IN): Task Handed.",
+    "Organic chemistry test series (IN): Task Handed.",
+    "NEET chemistry mock tests (IN): Task Handed.",
+    "Online chemistry test series (IN): Task Handed."
+  ],
+  "startedAt": "2025-12-27T00:56:09.335Z",
+  "updatedAt": "2025-12-27T00:56:10.670Z"
+}

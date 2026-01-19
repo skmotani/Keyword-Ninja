@@ -1,0 +1,624 @@
+{
+  "summary": {
+    "totalDomains": 17,
+    "totalBrandKeywords": 77,
+    "totalBrandVolume": 93280
+  },
+  "domains": [
+    {
+      "domain": "meeraind.com",
+      "domainType": "Self",
+      "brandName": "Meera",
+      "brandKeywordCount": 4,
+      "totalBrandVolume": 29450,
+      "keywords": [
+        {
+          "keyword": "meera",
+          "location": "IN",
+          "position": 12,
+          "volume": 27100
+        },
+        {
+          "keyword": "meera industries",
+          "location": "IN",
+          "position": 1,
+          "volume": 880
+        },
+        {
+          "keyword": "meera industries ltd",
+          "location": "IN",
+          "position": 1,
+          "volume": 880
+        },
+        {
+          "keyword": "meera industries limited",
+          "location": "IN",
+          "position": 1,
+          "volume": 590
+        }
+      ]
+    },
+    {
+      "domain": "www.meera.ind.in",
+      "domainType": "Self",
+      "brandName": "Meera",
+      "brandKeywordCount": 3,
+      "totalBrandVolume": 2350,
+      "keywords": [
+        {
+          "keyword": "meera industries",
+          "location": "IN",
+          "position": 3,
+          "volume": 880
+        },
+        {
+          "keyword": "meera industries ltd",
+          "location": "IN",
+          "position": 3,
+          "volume": 880
+        },
+        {
+          "keyword": "meera industries limited",
+          "location": "IN",
+          "position": 2,
+          "volume": 590
+        }
+      ]
+    },
+    {
+      "domain": "saviospa.com",
+      "domainType": "Main Competitor",
+      "brandName": "SAvio",
+      "brandKeywordCount": 10,
+      "totalBrandVolume": 20170,
+      "keywords": [
+        {
+          "keyword": "savio",
+          "location": "GL",
+          "position": 24,
+          "volume": 6600
+        },
+        {
+          "keyword": "savio's",
+          "location": "GL",
+          "position": 24,
+          "volume": 6600
+        },
+        {
+          "keyword": "savio",
+          "location": "IN",
+          "position": 1,
+          "volume": 2400
+        },
+        {
+          "keyword": "vandewiele-savio india private limited",
+          "location": "IN",
+          "position": 12,
+          "volume": 1600
+        },
+        {
+          "keyword": "vandewiele-savio india pvt ltd",
+          "location": "IN",
+          "position": 12,
+          "volume": 1600
+        },
+        {
+          "keyword": "vandewiele-savio",
+          "location": "IN",
+          "position": 5,
+          "volume": 720
+        },
+        {
+          "keyword": "savio india",
+          "location": "IN",
+          "position": 10,
+          "volume": 390
+        },
+        {
+          "keyword": "vandewiele savio india private limited photos",
+          "location": "IN",
+          "position": 25,
+          "volume": 170
+        },
+        {
+          "keyword": "textile spinning machinery",
+          "location": "GL",
+          "position": 28,
+          "volume": 50
+        },
+        {
+          "keyword": "gina del savio",
+          "location": "GL",
+          "position": 75,
+          "volume": 40
+        }
+      ]
+    },
+    {
+      "domain": "www.fadis.it",
+      "domainType": "Main Competitor",
+      "brandName": "fadis",
+      "brandKeywordCount": 1,
+      "totalBrandVolume": 12100,
+      "keywords": [
+        {
+          "keyword": "fadis",
+          "location": "GL",
+          "position": 34,
+          "volume": 12100
+        }
+      ]
+    },
+    {
+      "domain": "veejaylakshmi.com",
+      "domainType": "Main Competitor",
+      "brandName": "veejaylakshmi",
+      "brandKeywordCount": 7,
+      "totalBrandVolume": 9880,
+      "keywords": [
+        {
+          "keyword": "lakshmi mills in coimbatore",
+          "location": "IN",
+          "position": 97,
+          "volume": 8100
+        },
+        {
+          "keyword": "veejay lakshmi engineering works ltd",
+          "location": "IN",
+          "position": 1,
+          "volume": 590
+        },
+        {
+          "keyword": "lakshmi engineering products",
+          "location": "IN",
+          "position": 24,
+          "volume": 480
+        },
+        {
+          "keyword": "vishnu lakshmi mills pvt ltd",
+          "location": "IN",
+          "position": 75,
+          "volume": 260
+        },
+        {
+          "keyword": "vijayalakshmi engineering",
+          "location": "IN",
+          "position": 2,
+          "volume": 210
+        },
+        {
+          "keyword": "vijayalakshmi engineering works",
+          "location": "IN",
+          "position": 2,
+          "volume": 210
+        },
+        {
+          "keyword": "lakshmi mills coimbatore",
+          "location": "GL",
+          "position": 61,
+          "volume": 30
+        }
+      ]
+    },
+    {
+      "domain": "saurer.com",
+      "domainType": "Main Competitor",
+      "brandName": "Saurer",
+      "brandKeywordCount": 14,
+      "totalBrandVolume": 5590,
+      "keywords": [
+        {
+          "keyword": "saurer textile solutions",
+          "location": "IN",
+          "position": 1,
+          "volume": 1600
+        },
+        {
+          "keyword": "saurer textile solutions private limited",
+          "location": "IN",
+          "position": 1,
+          "volume": 1600
+        },
+        {
+          "keyword": "saurer textile solutions pvt ltd",
+          "location": "IN",
+          "position": 1,
+          "volume": 1600
+        },
+        {
+          "keyword": "saurer",
+          "location": "GL",
+          "position": 1,
+          "volume": 320
+        },
+        {
+          "keyword": "saurer inc",
+          "location": "GL",
+          "position": 1,
+          "volume": 70
+        },
+        {
+          "keyword": "spinning machinery",
+          "location": "GL",
+          "position": 62,
+          "volume": 70
+        },
+        {
+          "keyword": "saurer truck",
+          "location": "GL",
+          "position": 7,
+          "volume": 50
+        },
+        {
+          "keyword": "saurer trucks",
+          "location": "GL",
+          "position": 24,
+          "volume": 50
+        },
+        {
+          "keyword": "textile spinning machinery",
+          "location": "GL",
+          "position": 22,
+          "volume": 50
+        },
+        {
+          "keyword": "machine saurer",
+          "location": "GL",
+          "position": 10,
+          "volume": 40
+        },
+        {
+          "keyword": "saurer machine",
+          "location": "GL",
+          "position": 1,
+          "volume": 40
+        },
+        {
+          "keyword": "saurer machinery",
+          "location": "GL",
+          "position": 2,
+          "volume": 40
+        },
+        {
+          "keyword": "saurer charlotte",
+          "location": "GL",
+          "position": 1,
+          "volume": 30
+        },
+        {
+          "keyword": "saurer charlotte nc",
+          "location": "GL",
+          "position": 1,
+          "volume": 30
+        }
+      ]
+    },
+    {
+      "domain": "vandewiele.com",
+      "domainType": "Main Competitor",
+      "brandName": "Vandewiele",
+      "brandKeywordCount": 7,
+      "totalBrandVolume": 5430,
+      "keywords": [
+        {
+          "keyword": "vandewiele-savio india private limited",
+          "location": "IN",
+          "position": 4,
+          "volume": 1600
+        },
+        {
+          "keyword": "vandewiele-savio india pvt ltd",
+          "location": "IN",
+          "position": 4,
+          "volume": 1600
+        },
+        {
+          "keyword": "cotton-spinning machinery",
+          "location": "IN",
+          "position": 84,
+          "volume": 880
+        },
+        {
+          "keyword": "vandewiele-savio",
+          "location": "IN",
+          "position": 2,
+          "volume": 720
+        },
+        {
+          "keyword": "savio india",
+          "location": "IN",
+          "position": 4,
+          "volume": 390
+        },
+        {
+          "keyword": "vandewiele savio india private limited photos",
+          "location": "IN",
+          "position": 19,
+          "volume": 170
+        },
+        {
+          "keyword": "spinning machinery",
+          "location": "GL",
+          "position": 4,
+          "volume": 70
+        }
+      ]
+    },
+    {
+      "domain": "www.reshmiindustries.co.in",
+      "domainType": "Main Competitor",
+      "brandName": "reshmi",
+      "brandKeywordCount": 5,
+      "totalBrandVolume": 2020,
+      "keywords": [
+        {
+          "keyword": "reshmi industries",
+          "location": "IN",
+          "position": 1,
+          "volume": 720
+        },
+        {
+          "keyword": "reshmi industries pvt ltd",
+          "location": "IN",
+          "position": 1,
+          "volume": 390
+        },
+        {
+          "keyword": "reshmi",
+          "location": "GL",
+          "position": 22,
+          "volume": 390
+        },
+        {
+          "keyword": "reshmi industries india private limited",
+          "location": "IN",
+          "position": 1,
+          "volume": 260
+        },
+        {
+          "keyword": "reshmi industries india pvt ltd",
+          "location": "IN",
+          "position": 1,
+          "volume": 260
+        }
+      ]
+    },
+    {
+      "domain": "aalidhra.in",
+      "domainType": "Main Competitor",
+      "brandName": "Aalidhra",
+      "brandKeywordCount": 5,
+      "totalBrandVolume": 1880,
+      "keywords": [
+        {
+          "keyword": "aalidhra pharmachem pvt ltd",
+          "location": "IN",
+          "position": 43,
+          "volume": 880
+        },
+        {
+          "keyword": "aalidhra textile engineers ltd",
+          "location": "IN",
+          "position": 1,
+          "volume": 320
+        },
+        {
+          "keyword": "alidhra weavetech group",
+          "location": "IN",
+          "position": 17,
+          "volume": 260
+        },
+        {
+          "keyword": "weavetech engineers limited",
+          "location": "IN",
+          "position": 56,
+          "volume": 210
+        },
+        {
+          "keyword": "weavetech engineers ltd",
+          "location": "IN",
+          "position": 56,
+          "volume": 210
+        }
+      ]
+    },
+    {
+      "domain": "www.jcmachine.com",
+      "domainType": "Main Competitor",
+      "brandName": "Www",
+      "brandKeywordCount": 5,
+      "totalBrandVolume": 1350,
+      "keywords": [
+        {
+          "keyword": "rima machines private limited",
+          "location": "IN",
+          "position": 1,
+          "volume": 390
+        },
+        {
+          "keyword": "rima machines pvt ltd",
+          "location": "IN",
+          "position": 1,
+          "volume": 390
+        },
+        {
+          "keyword": "rima manufacturing",
+          "location": "GL",
+          "position": 50,
+          "volume": 260
+        },
+        {
+          "keyword": "rima manufacturing company",
+          "location": "GL",
+          "position": 86,
+          "volume": 260
+        },
+        {
+          "keyword": "rima tech products",
+          "location": "GL",
+          "position": 43,
+          "volume": 50
+        }
+      ]
+    },
+    {
+      "domain": "tfotwister.com",
+      "domainType": "Main Competitor",
+      "brandName": "RIMA",
+      "brandKeywordCount": 3,
+      "totalBrandVolume": 1040,
+      "keywords": [
+        {
+          "keyword": "rima machines private limited",
+          "location": "IN",
+          "position": 3,
+          "volume": 390
+        },
+        {
+          "keyword": "rima machines pvt ltd",
+          "location": "IN",
+          "position": 3,
+          "volume": 390
+        },
+        {
+          "keyword": "rima manufacturing company",
+          "location": "GL",
+          "position": 57,
+          "volume": 260
+        }
+      ]
+    },
+    {
+      "domain": "aalidhratexpro.in",
+      "domainType": "Main Competitor",
+      "brandName": "Aalidhra",
+      "brandKeywordCount": 4,
+      "totalBrandVolume": 1000,
+      "keywords": [
+        {
+          "keyword": "aalidhra textile engineers ltd",
+          "location": "IN",
+          "position": 3,
+          "volume": 320
+        },
+        {
+          "keyword": "alidhra weavetech group",
+          "location": "IN",
+          "position": 64,
+          "volume": 260
+        },
+        {
+          "keyword": "weavetech engineers limited",
+          "location": "IN",
+          "position": 59,
+          "volume": 210
+        },
+        {
+          "keyword": "weavetech engineers ltd",
+          "location": "IN",
+          "position": 46,
+          "volume": 210
+        }
+      ]
+    },
+    {
+      "domain": "www.weavetech.in",
+      "domainType": "Main Competitor",
+      "brandName": "weavetech",
+      "brandKeywordCount": 4,
+      "totalBrandVolume": 720,
+      "keywords": [
+        {
+          "keyword": "alidhra weavetech group",
+          "location": "IN",
+          "position": 3,
+          "volume": 260
+        },
+        {
+          "keyword": "weavetech engineers limited",
+          "location": "IN",
+          "position": 2,
+          "volume": 210
+        },
+        {
+          "keyword": "weavetech engineers ltd",
+          "location": "IN",
+          "position": 2,
+          "volume": 210
+        },
+        {
+          "keyword": "weavetech",
+          "location": "GL",
+          "position": 15,
+          "volume": 40
+        }
+      ]
+    },
+    {
+      "domain": "gaudino.com",
+      "domainType": "Main Competitor",
+      "brandName": "quadino",
+      "brandKeywordCount": 2,
+      "totalBrandVolume": 120,
+      "keywords": [
+        {
+          "keyword": "spinning machinery",
+          "location": "GL",
+          "position": 9,
+          "volume": 70
+        },
+        {
+          "keyword": "textile spinning machinery",
+          "location": "GL",
+          "position": 4,
+          "volume": 50
+        }
+      ]
+    },
+    {
+      "domain": "twistechnology.com",
+      "domainType": "Main Competitor",
+      "brandName": "Twistech",
+      "brandKeywordCount": 1,
+      "totalBrandVolume": 110,
+      "keywords": [
+        {
+          "keyword": "twistech",
+          "location": "GL",
+          "position": 10,
+          "volume": 110
+        }
+      ]
+    },
+    {
+      "domain": "nationaltexeng.com",
+      "domainType": "Main Competitor",
+      "brandName": "national",
+      "brandKeywordCount": 1,
+      "totalBrandVolume": 40,
+      "keywords": [
+        {
+          "keyword": "national textile",
+          "location": "GL",
+          "position": 23,
+          "volume": 40
+        }
+      ]
+    },
+    {
+      "domain": "en.imaginsz.com",
+      "domainType": "Main Competitor",
+      "brandName": "imagine",
+      "brandKeywordCount": 1,
+      "totalBrandVolume": 30,
+      "keywords": [
+        {
+          "keyword": "imagine machine",
+          "location": "GL",
+          "position": 47,
+          "volume": 30
+        }
+      ]
+    }
+  ]
+}

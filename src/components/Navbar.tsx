@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import { useDevMode } from '@/contexts/DevModeContext';
+import ApiStatusIndicator from '@/components/ApiStatusIndicator';
 
 const masterItems = [
   { href: '/clients', label: 'Clients' },
@@ -624,6 +625,9 @@ export default function Navbar() {
                 />
               </svg>
             </button>
+
+            {/* API Status Indicator */}
+            <ApiStatusIndicator />
 
             <Link
               href="/settings/api-credentials"

@@ -1,0 +1,21 @@
+{
+  "jobId": "ed9af07c-9145-4750-8951-d9c0af8f7251",
+  "clientCode": "01",
+  "selectedDomain": 48,
+  "keywords": "www.meeraind.com",
+  "status": "QUEUED",
+  "stage": "PREPARE",
+  "progress": {
+    "IN": {
+      "done": 0,
+      "total": 16
+    },
+    "GL": {
+      "done": 0,
+      "total": 16
+    }
+  },
+  "errors": [],
+  "startedAt": "2025-12-26T16:18:42.998Z",
+  "updatedAt": "2025-12-26T16:18:42.998Z"
+}

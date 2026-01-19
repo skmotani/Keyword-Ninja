@@ -1,0 +1,691 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0532 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-2901afb4c217",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0413 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-2901afb4c217"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "ring doubling machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "ring doubling machine",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=ring%20doubling%20machine&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:59:23 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+ring+doubling+machine&hl=en&gl=IN&shoprs=GBIqFXJpbmcgZG91YmxpbmcgbWFjaGluZTIJCBISBVByaWNlYAE&sa=X&ved=2ahUKEwixhozOz9uRAxWz-jgGHa8vFWoQip4GKAF6BAgbEC0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+ring+doubling+machine&hl=en&gl=IN&shoprs=GBIqFXJpbmcgZG91YmxpbmcgbWFjaGluZTIKCBISBk9ubGluZWAB&sa=X&ved=2ahUKEwixhozOz9uRAxWz-jgGHa8vFWoQip4GKAJ6BAgbEC4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+ring+doubling+machine&hl=en&gl=IN&shoprs=GBIqFXJpbmcgZG91YmxpbmcgbWFjaGluZTIHCBISA0J1eWAB&sa=X&ved=2ahUKEwixhozOz9uRAxWz-jgGHa8vFWoQip4GKAN6BAgbEC8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹60,000",
+                "url": "https://www.google.com/search?q=ring+doubling+machine+under+60000&hl=en&gl=IN&shoprs=Eg0SCxEAAACAjvArQhgBGAUqFXJpbmcgZG91YmxpbmcgbWFjaGluZTIoCAUSD1VuZGVyIOKCuTYwLDAwMBgCIg0SCxEAAACAjvArQhgBKgIYAWAB&sa=X&ved=2ahUKEwixhozOz9uRAxWz-jgGHa8vFWoQip4GKAR6BAgbEDA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=ring+doubling+machine+nearby&hl=en&gl=IN&shoprs=GAMqFXJpbmcgZG91YmxpbmcgbWFjaGluZTIMCAMSBk5lYXJieRgCYAE&sa=X&ved=2ahUKEwixhozOz9uRAxWz-jgGHa8vFWoQip4GKAV6BAgbEDE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=ring+doubling+machine+for+sale&hl=en&gl=IN&shoprs=GBIqFXJpbmcgZG91YmxpbmcgbWFjaGluZTIMCBISCEZvciBTYWxlYAE&sa=X&ved=2ahUKEwixhozOz9uRAxWz-jgGHa8vFWoQip4GKAZ6BAgbEDI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Usa",
+                "url": "https://www.google.com/search?q=usa+ring+doubling+machine&hl=en&gl=IN&shoprs=GBIqFXJpbmcgZG91YmxpbmcgbWFjaGluZTIHCBISA1VzYWAB&sa=X&ved=2ahUKEwixhozOz9uRAxWz-jgGHa8vFWoQip4GKAd6BAgbEDM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+ring+doubling+machine&hl=en&gl=IN&shoprs=GBIqFXJpbmcgZG91YmxpbmcgbWFjaGluZTILCBISB1Jldmlld3NgAQ&sa=X&ved=2ahUKEwixhozOz9uRAxWz-jgGHa8vFWoQip4GKAh6BAgbEDQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Images",
+                "url": "https://www.google.com/search?q=images+ring+doubling+machine&hl=en&gl=IN&shoprs=GBIqFXJpbmcgZG91YmxpbmcgbWFjaGluZTIKCBISBkltYWdlc2AB&sa=X&ved=2ahUKEwixhozOz9uRAxWz-jgGHa8vFWoQip4GKAl6BAgbEDU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Amazon.in",
+                "url": "https://www.google.com/search?q=amazon.in+ring+doubling+machine&hl=en&gl=IN&shoprs=GAIqFXJpbmcgZG91YmxpbmcgbWFjaGluZTINCAISCUFtYXpvbi5pbmAB&sa=X&ved=2ahUKEwixhozOz9uRAxWz-jgGHa8vFWoQip4GKAp6BAgbEDY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tradeindia.com",
+                "url": "https://www.google.com/search?q=tradeindia.com+ring+doubling+machine&hl=en&gl=IN&shoprs=GAIqFXJpbmcgZG91YmxpbmcgbWFjaGluZTISCAISDlRyYWRlaW5kaWEuY29tYAE&sa=X&ved=2ahUKEwixhozOz9uRAxWz-jgGHa8vFWoQip4GKAt6BAgbEDc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Alibaba.com",
+                "url": "https://www.google.com/search?q=alibaba.com+ring+doubling+machine&hl=en&gl=IN&shoprs=GAIqFXJpbmcgZG91YmxpbmcgbWFjaGluZTIPCAISC0FsaWJhYmEuY29tYAE&sa=X&ved=2ahUKEwixhozOz9uRAxWz-jgGHa8vFWoQip4GKAx6BAgbEDg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "IndiaMART",
+                "url": "https://www.google.com/search?q=indiamart+ring+doubling+machine&hl=en&gl=IN&shoprs=GAIqFXJpbmcgZG91YmxpbmcgbWFjaGluZTINCAISCUluZGlhTUFSVGAB&sa=X&ved=2ahUKEwixhozOz9uRAxWz-jgGHa8vFWoQip4GKA16BAgbEDk",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "popular_products",
+            "organic",
+            "video",
+            "images",
+            "people_also_ask",
+            "related_searches"
+          ],
+          "se_results_count": 3040000,
+          "pages_count": 5,
+          "items_count": 48,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 2,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Ring Doubling Frame Machine at Best Price in India",
+              "description": "We are leading manufacturer and marketer of ring doubling frames. Some of the standard features are: Rigid Skeleton made of graded CI with C section spindle ... Read more",
+              "url": "https://dir.indiamart.com/impcat/ring-doubling-frame.html",
+              "breadcrumb": "https://dir.indiamart.com › impcat › ring-doubling-frame"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 3,
+              "page": 1,
+              "domain": "www.tradeindia.com",
+              "title": "Ring Doubling Machine Manufacturers, Suppliers, Dealers ...",
+              "description": "Find Ring Doubling Machine manufacturers, suppliers, dealers & latest prices from top companies in India. Buy from a wide range of Ring Doubling Machine ...",
+              "url": "https://www.tradeindia.com/manufacturers/ring-doubling-machine.html",
+              "breadcrumb": "https://www.tradeindia.com › Machineries"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 4,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Ring Doubler at Best Price in India",
+              "description": "Double Ring Machine is a specialized industrial machine used to manufacture double rings or loop components from metal wire. It automates processes like cutting ... Read more",
+              "url": "https://dir.indiamart.com/impcat/ring-doubler.html",
+              "breadcrumb": "https://dir.indiamart.com › impcat › ring-doubler"
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "textilelearner.net",
+              "title": "Ring Doubling Frame: Parts, Specification, Gearing ...",
+              "description": "4 Mar 2021 — From this experiment we can learn about ring doubling frame of spindle speed, front roller delivery, twist, twist constant etc.",
+              "url": "https://textilelearner.net/ring-doubling-frame-parts-specifications/",
+              "breadcrumb": "https://textilelearner.net › ring-doubling-frame-parts-spec..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "www.jaylaxmitextilespindle.net",
+              "title": "Ring Doubling Machines KMMC",
+              "description": "Ring Doubling Machines KMMC · Automation Grade: Semi-Automatic · Country of Origin: Made in India · Size: 3\" 3\" 3. 1/2\" 4\" · Brand: KMMC · Packaging: Wooden Box. Read more",
+              "url": "https://www.jaylaxmitextilespindle.net/ring-doubling-machine.html",
+              "breadcrumb": "https://www.jaylaxmitextilespindle.net › ring-doubling-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.ssbtex.com",
+              "title": "Ring Doubling Machines & Yarn Twisting machines",
+              "description": "We offer a wide range of Ring Doubling Machines that ensure saving of precious energy and thus helps in cutting down production costs. These doubling machines ... Read more",
+              "url": "https://www.ssbtex.com/ring-doubling-machines-yarn-twisting-machines.html",
+              "breadcrumb": "https://www.ssbtex.com › ring-doubling-machines-yarn..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "lntsufin.com",
+              "title": "Get Quote for Ring Doubling Machine at best prices.",
+              "description": "L&T-SuFin presents you with a range of Ring Doubling Machine from top sellers and brands, all at wholesale prices. Purchase online or request a quotation from ... Read more",
+              "url": "https://lntsufin.com/catalog/textile-machinery-spares-accessories/yarn-manufacturing-processing-machines/ring-doubling-machine/",
+              "breadcrumb": "https://lntsufin.com › textile-machinery-spares-accessories"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 12,
+              "page": 1,
+              "domain": "kmmcringtwister.com",
+              "title": "Ring Doubling Machine Manufacturer in India",
+              "description": "Our Ring Doubling Machine is a versatile solution for ring diameters from 2\", 2.1/8\", 2.1/2\", 3\". Its uniform and multifunctional operations are suitable for ... Read more",
+              "url": "https://kmmcringtwister.com/ring-doubling.html",
+              "breadcrumb": "https://kmmcringtwister.com › ring-doubling"
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "www.hariomyarnmachinery.in",
+              "title": "Ring Doubling Machine Manufacturer Exporter Supplier ...",
+              "description": "Ring Doubling Machine Manufacturer Exporter & Supplier in Bhavnagar India- Hariom Yarn Machinery is a best Manufacturer Exporter & Supplier of Ring Doubling ...",
+              "url": "https://www.hariomyarnmachinery.in/ring-doubling-machine.htm",
+              "breadcrumb": "https://www.hariomyarnmachinery.in › Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "www.exportersindia.com",
+              "title": "Doubling Machine at Best Price from Manufacturers ...",
+              "description": "VMW MILD STEEL Polished Plain Ring Doubling Machine, Feature : Fine Finishing, Low Maintenance 3.50 Lakh - 10 Lakh / Piece Read more",
+              "url": "https://www.exportersindia.com/indian-suppliers/doubling-machines.htm",
+              "breadcrumb": "https://www.exportersindia.com › indian-suppliers › dou..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "jimtrade.com",
+              "title": "Ring Doubling Machine for Cotton Textile Industry",
+              "description": "Jeyaletshmi Machine Works offers Ring Spinning, Ring Twister, Heavy Duty Ring Twister, Jute Twine Twister and Fancy Doubler. Ring Doubling Machines are ... Read more",
+              "url": "https://jimtrade.com/products/ring_doubling_machine_cotton_textile_industry_186276",
+              "breadcrumb": "https://jimtrade.com › products › ring_doubling_machi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.justdial.com",
+              "title": "Ring Doubling Machine Spindle Rpm 11000, 3 kW, 440 ...",
+              "description": "Ring Doubling Machine Spindle Rpm 11000, 3 kW, 440 Volts, 5 HP, Fully Automatic ... Our Ring Doubling Machine is a versatile solution for ring diameters from 2\", ... Read more",
+              "url": "https://www.justdial.com/jdmart/Ahmedabad/Ring-Doubling-Machine-Spindle-Rpm-11000-3-kW-440-Volts-5-HP-Fully-Automatic/pid-2023183425/079PXX79-XX79-180606110716-I2D5",
+              "breadcrumb": "https://www.justdial.com › Ahmedabad › pid-2023183425"
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "m.made-in-china.com",
+              "title": "Mini Size Lab Ring Spinning Line Yarn Sample Twisting ...",
+              "description": "24 Jan 2024 — The machine is suitable for all kinds of spun yarn twisting and doubling on one machine.It is convenient for proofing . Read more",
+              "url": "https://m.made-in-china.com/product/Mini-Size-Lab-Ring-Spinning-Line-Yarn-Sample-Twisting-and-Doubling-Machine-1940781071.html",
+              "breadcrumb": "https://m.made-in-china.com › ... › Winding Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "dir.indiamart.com",
+              "title": "Ring Doubling Frame Machine in Coimbatore, Tamil Nadu",
+              "description": "We are one of the most prominent manufacturer and supplier of Ring Doubling Frame-SDI, which is extensively used in textile industry due to consisting of no ... Read more",
+              "url": "https://dir.indiamart.com/coimbatore/ring-doubling-frame.html",
+              "breadcrumb": "https://dir.indiamart.com › coimbatore › ring-doubling-f..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "archive.nptel.ac.in",
+              "title": "Yarn Doubling",
+              "description": "So doubled yarns are preferred. 2. Why tensioning device is so important in doubling machine? ... How ring doubler is different from ring frame spinning? Read more",
+              "url": "https://archive.nptel.ac.in/content/storage2/courses/116102038/download/faqmod6.pdf",
+              "breadcrumb": "https://archive.nptel.ac.in › download › faqmod6"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.tradeindia.com",
+              "title": "Ring Doubling Machine In Surat - Prices Manufacturers & ...",
+              "description": "20000.0 INR (Approx.) ... 5000 INR (Approx.) ... 1499997.0 INR (Approx.) ... 600000 INR (Approx.) ... 1000 INR (Approx.) ... 5000000 INR (Approx.) ... 30000000.0 INR ( ... Read more",
+              "url": "https://www.tradeindia.com/surat/ring-doubling-machine-city-220891.html",
+              "breadcrumb": "https://www.tradeindia.com › surat › ring-doubling-ma..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "www.youtube.com",
+              "title": "RING DOUBLING MACHINE/RING DOUBLER MACHINE.",
+              "description": "Our ring doubling machines are suitable for ring diameters from 3.5”, 4.5”, 5.5”, and 6.0”. It is suitable for process type of cotton, ...",
+              "url": "https://www.youtube.com/watch?v=AnHr76nbITM",
+              "breadcrumb": "5.7K+ views  ·  12 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "kmmcringtwister.com",
+              "title": "Video",
+              "description": "KMMC is trusted brand for textile machinery mfg. since 2003. for Ring Doubler Machine, Ring Twister & Online Ring Winder Machines.",
+              "url": "https://kmmcringtwister.com/video.html",
+              "breadcrumb": "https://kmmcringtwister.com › video"
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 25,
+              "page": 3,
+              "domain": "www.onlineringtwistermachine.com",
+              "title": "online ring twister machine, yarn doubling machine, yarn ...",
+              "description": "Online Ring Twister machines is also known as Ring Doubling Machine, Twister for Rope, Doubler for Yarn, Doubler for Rope, Yarn Twister Machine, Yarn Doubler ... Read more",
+              "url": "http://www.onlineringtwistermachine.com/",
+              "breadcrumb": "http://www.onlineringtwistermachine.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "jmwindia.com",
+              "title": "Ring Doubler - Coimbatore",
+              "description": "Ring Doubler Dry & Wet. The Ring Doubler is a machine designed to double yarns, meaning it combines two strands of yarn into one. This process is often done ... Read more",
+              "url": "https://jmwindia.com/ring-doubler.php",
+              "breadcrumb": "https://jmwindia.com › ring-doubler"
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "www.justdial.com",
+              "title": "Ring doubling machines - Efficient, Reliable & High- ...",
+              "description": "Top Ring Doubling Machines Products from Verified Sellers · 1.5 kW Two Phase Doubling Machine · 2 kW Semi-Automatic Doubling Machine · 1 kW Single Phase ... Read more",
+              "url": "https://www.justdial.com/india/ring-doubling-machines",
+              "breadcrumb": "https://www.justdial.com › ... › Doubling Machine in India"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.scribd.com",
+              "title": "Yarn Doubling | PDF",
+              "description": "Ring doublers are similar to ring frames but feed doubled yarn packages rather than rovings. TFO machines can insert two twists per spindle turn, allowing ... Read more",
+              "url": "https://www.scribd.com/document/395129599/Yarn-Doubling",
+              "breadcrumb": "https://www.scribd.com › document › Yarn-Doubling"
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.dttwister.com",
+              "title": "Cotton Yarn Doubling Machine Ring Twister Yarn Twisting ...",
+              "description": "Relying on the enterprise spirit of 'technical innovation, winning by quality' and the work style of 'paying attention to details and striving for perfection', ... Read more",
+              "url": "https://www.dttwister.com/showroom/cotton-yarn-doubling-machine-ring-twister-yarn-twisting-machine.html",
+              "breadcrumb": "https://www.dttwister.com › showroom › cotton-yarn-d..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.tradeindia.com",
+              "title": "Ring Doubling Machine In Howrah",
+              "description": "Get ring doubling machine in Howrah West Bengal at best price. View Howrah based ring doubling machine manufacturers suppliers and dealers.",
+              "url": "https://www.tradeindia.com/howrah/ring-doubling-machine-city-228090.html",
+              "breadcrumb": "https://www.tradeindia.com › howrah › ring-doubling-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.ringtwistermachinevmw.co.in",
+              "title": "Ring Doubling Machine",
+              "description": "Vijay Mechanical - Exporter, Manufacturer & Supplier of Ring Doubling Machine 6.0 RING DOUBLING MACHINE,5.5 RING DOUBLING MACHINE,Ring Doubling Machine,6.5 ...",
+              "url": "https://www.ringtwistermachinevmw.co.in/ring-doubling-machine-.html",
+              "breadcrumb": "https://www.ringtwistermachinevmw.co.in › Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "www.esstexengineeringtrading.com",
+              "title": "Doubling Machine Manufacturer,Exporter,Supplier in Mumbai",
+              "description": "Ring Doubling Machine. Minimum Order Quantity : 1 Unit. Ring Doubling Machine. Automatic Grade:Automatic. Color:Green. Material:Metal. Voltage:380-440 Volt (v). Read more",
+              "url": "https://www.esstexengineeringtrading.com/doubling-machine-3102941.html",
+              "breadcrumb": "https://www.esstexengineeringtrading.com › doubling-m..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "dir.indiamart.com",
+              "title": "Doubling Machines in Coimbatore, Tamil Nadu",
+              "description": "Ring Doubling Machines ... features rigid skeleton made of graded c. I. With 'c' section spindle rails wider width spring pieces for better stability. bottom ... Read more",
+              "url": "https://dir.indiamart.com/coimbatore/doubling-machines.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Coimbatore"
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 34,
+              "page": 3,
+              "domain": "www.etextilemagazine.com",
+              "title": "Ring Doubling and Twisting Machines for Medium Scaled ...",
+              "description": "23 Jul 2019 — KISS-ROLL: KR1500M. Device specially designed for overlay finish application into yarns. It allows operating in a continuous in-line process ... Read more",
+              "url": "https://www.etextilemagazine.com/ring-doubling-and-twisting-machines-for-medium-scaled-productions.html",
+              "breadcrumb": "https://www.etextilemagazine.com › ring-doubling-and-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "www.rieter.com",
+              "title": "Ring Spinning Machines – High-Speed Production & ...",
+              "description": "Ring spinning machine G 37 – spinning room with several G 37 machines ... This is based on the intensive double compacting that does not require any additional ... Read more",
+              "url": "https://www.rieter.com/products/systems/ring-spinning-machines",
+              "breadcrumb": "https://www.rieter.com › Products › Systems"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "nationaltexeng.com",
+              "title": "5.5″ Ring Doubler Machine",
+              "description": "Spandex Covering Machine. Spendex Covering Machine Single Covering · Spandex Covering Machine [Double Covering]. Yarn Covering. SNZ Covering Machine · Single ... Read more",
+              "url": "https://nationaltexeng.com/5-5-ring-doubler-machine/",
+              "breadcrumb": "https://nationaltexeng.com › 5-5-ring-doubler-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.k-online.com",
+              "title": "RING DOUBLING AND TWISTING MACHINE UNI 1x1 ...",
+              "description": "UNI / MULTI RANGE Modular machines · 100% Independent Main advantages 100% independent, per spindle in UNI 1x1, per module in MULTI.",
+              "url": "http://www.k-online.com/vis/v1/en/exhprofiles/Fc07uqdoTS2vBeNSUDCYkQ/details/prodinfo=SbdVwdp1R2emR8XDe1rjFw",
+              "breadcrumb": "http://www.k-online.com › vis › exhprofiles › details"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "Ring Twister Machine , Ring Twister, Ring Twister , Online ...",
+              "description": "1 Ring Twister Machine is also known as Doubler Machine, Yarn Doubling Machine, Plastic Rope Doubling Machine, Doubler Machine, Online Doubler, ...",
+              "url": "https://www.youtube.com/watch?v=15N_yFO6fX0",
+              "breadcrumb": "1K+ views  ·  6 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.fibre2fashion.com",
+              "title": "12\", 16\", 18\", Ring Doubling Machines Suppliers 1596288",
+              "description": "Spinning Equipment : 12\", 16\", 18\", Ring Doubling Machines Supplier. 12\", 16\", 18\", Ring Doubling Machines. For Illustration Purpose Only. FOB Price : 5.00 USD ... Read more",
+              "url": "https://www.fibre2fashion.com/machines/spinning-equipment-suppliers-1596288",
+              "breadcrumb": "https://www.fibre2fashion.com › machines › spinning-eq..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "patents.google.com",
+              "title": "Doffing mechanism for ring spinning, doubling, and twisting ...",
+              "description": "Theinvention hasfor its-object-to provide in a-ring spinning, doubling or twisting machine, im-m'ovedmeansfor removing or dofling the yarn packages from the ... Read more",
+              "url": "https://patents.google.com/patent/US2582696A/en",
+              "breadcrumb": "https://patents.google.com › patent"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.china-tongda.com",
+              "title": "Doubling Machine",
+              "description": "The doubling machine TD688 used in the production of various kinds of cone yarn, for warping machine, knitting machine, tatting machine and hosiery machine.",
+              "url": "https://www.china-tongda.com/doubling-machine-td688.html",
+              "breadcrumb": "https://www.china-tongda.com › doubling-machine-td6..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.textileinfomedia.com",
+              "title": "Spinntex SDI Ring Doubling Machines",
+              "description": "We offer a wide range of Ring Doubling Machines that ensure saving of precious energy and thus helps in cutting down production costs. These doubling machines ... Read more",
+              "url": "https://www.textileinfomedia.com/product/spinntex-sdi-ring-doubling-machines-gb5",
+              "breadcrumb": "https://www.textileinfomedia.com › product › spinntex-s..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "www.indianyellowpages.com",
+              "title": "Doubling Machine Dealers, Suppliers & Manufacturer List",
+              "description": "Our Ring Doubling Machine is a versatile solution for ring diameters from ... Ring Doubling Machines, Textile Machine Spares, Ring Spinning Machin. Get ... Read more",
+              "url": "https://www.indianyellowpages.com/directory/doubling-machines.htm",
+              "breadcrumb": "https://www.indianyellowpages.com › directory › doubli..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 45,
+              "page": 4,
+              "domain": "www.exportersindia.com",
+              "title": "Ring Doubling Frame Machine",
+              "description": "Non Draft Ring Frame Doubling Machine · List of Ring Doubling Frame Machine Manufacturers | Suppliers in India · Post Your Requirement. Read more",
+              "url": "https://www.exportersindia.com/indian-suppliers/ring-doubling-frame.htm",
+              "breadcrumb": "https://www.exportersindia.com › indian-suppliers › ring..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "www.jaylaxmispindle.com",
+              "title": "Textiles Spindle For Ring Doubling / Ring Twisting Machine",
+              "description": "Textiles Spindle For Ring Doubling / Ring Twisting Machine. MACHINE : ISHIKAWA , RIETER , ZINSER , MAZROLI, SUESSEN ,HIMSON , AAWADHKRUPA , LAXMI NARAYAN ... Read more",
+              "url": "http://www.jaylaxmispindle.com/textiles-spindle-for-ring-doubling-ring-twisting-machine.html",
+              "breadcrumb": "http://www.jaylaxmispindle.com › textiles-spindle-for-rin..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "www.goldencoats.in",
+              "title": "ring doubler for fishnet twine(hdpe) - Golden Coats",
+              "description": "A Ring Doubler for fishnet twine is a specialized machine used in the production of fishnets or fishing nets. It is designed to double or twist multiple ... Read more",
+              "url": "https://www.goldencoats.in/ring-doublers.html",
+              "breadcrumb": "https://www.goldencoats.in › ring-doublers"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "textileeducationtips.blogspot.com",
+              "title": "Study on Ring Doubling Frame/ Producing Double Yarn In ...",
+              "description": "* Traveler. * Thread weight or slip roller. * Lappet Spindle. Specification: Motor rpm = 1430. Motor pulley diameter = 6.25². Machine ... Read more",
+              "url": "http://textileeducationtips.blogspot.com/2013/03/study-on-ring-doubling-frame-producing.html",
+              "breadcrumb": "http://textileeducationtips.blogspot.com › 2013/03 › stu..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "uelthai.co.th",
+              "title": "Textile machinery and accessories. Spindles for ring-spinning ...",
+              "description": "3 Spindles Two For One Yarn Twisting And 1 Spindle Doubling Machine Laboratory Use Easy Operate 2 Spindles Yarn Doubling And Twisting Jari Doubler Machine ...",
+              "url": "https://uelthai.co.th/?f=textile-machinery-and-accessories-spindles-for-ringspinning-and-doubling-x-rrSpmdsr9",
+              "breadcrumb": "https://uelthai.co.th › f=textile-machinery-and-accessories..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.justdial.com",
+              "title": "Top Doubling Machine Manufacturers in Panipat near me",
+              "description": "Ring Doubling Machine Spindle Rpm 8000 3kW 440V 5HP Fully AutomaticKamdhenu Machinery Manufacturing Co ... Reeling Machine Wholesalers. About Doubling Machine ... Read more",
+              "url": "https://www.justdial.com/Panipat/Doubling-Machine-Manufacturers/nct-10171401",
+              "breadcrumb": "https://www.justdial.com › Panipat › nct-10171401"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "www.alibaba.com",
+              "title": "Verified Supplier Ring Doubling Machine 3k+",
+              "description": "Roughly $3380, purchase this ring doubling machine suitable for industrial use. With a minimum order of 1 unit, start your bulk purchase from our verified ...",
+              "url": "https://www.alibaba.com/showroom/ring-doubling-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Spinning Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.accio.com",
+              "title": "Ring Doubling Machine: Find Top Suppliers Now",
+              "description": "16 Dec 2025 — What Are the Best Ring Doubling Machines? ; Automatic Ring Making Machine Circle Making Machine, N/A, 1 set, $3,100-3,300, 33% buyer record rate, ... Read more",
+              "url": "https://www.accio.com/plp/ring-doubling-machine",
+              "breadcrumb": "https://www.accio.com › plp › ring-doubling-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "5.imimg.com",
+              "title": "Ring Doubling Machine",
+              "description": "Ring Doubling Machine. Keeping track of the latest market developments, we are introducing a wide range of Heavy Doubling Machines. These doubling ... Read more",
+              "url": "https://5.imimg.com/data5/SELLER/Doc/2022/9/ZA/RY/MN/3221099/ring-doubling-machine.pdf",
+              "breadcrumb": "https://5.imimg.com › data5 › SELLER › Doc › ri..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "www.multipackmachinery.com",
+              "title": "Heavy Duty Spindles For Ring Twisting & Doubling Frames",
+              "description": "Multipack Machinery Company offers heavy duty spindles for ring twisting & doubling frames with special spinning head to limit tension of baloon from ...",
+              "url": "https://www.multipackmachinery.com/heavy-duty-spindles-for-ring-twisting-doubling-frames/",
+              "breadcrumb": "https://www.multipackmachinery.com › heavy-duty-spin..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 48,
+              "rank_absolute": 56,
+              "page": 5,
+              "domain": "en.wikipedia.org",
+              "title": "Doubling (textiles)",
+              "description": "Ring spinning, Spinning. Reeling. Doubling ... doubling frame (doubling winding machine). The ends pass through a series of ... Read more",
+              "url": "https://en.wikipedia.org/wiki/Doubling_(textiles)",
+              "breadcrumb": "https://en.wikipedia.org › wiki › Doubling_(textiles)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

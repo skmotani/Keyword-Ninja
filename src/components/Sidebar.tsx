@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import { useDevMode } from '@/contexts/DevModeContext';
+import ApiStatusIndicator from '@/components/ApiStatusIndicator';
 
 // Menu item definitions
 const menuSections = [
@@ -369,6 +370,9 @@ export default function Sidebar() {
                         <span className="ml-auto text-xs bg-amber-500/30 text-amber-400 px-1.5 py-0.5 rounded">ON</span>
                     )}
                 </button>
+
+                {/* API Status Indicator */}
+                {!collapsed && <ApiStatusIndicator />}
 
                 {/* Settings */}
                 <Link

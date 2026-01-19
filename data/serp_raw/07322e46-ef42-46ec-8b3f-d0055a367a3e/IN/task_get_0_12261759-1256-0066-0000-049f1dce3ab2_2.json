@@ -1,0 +1,775 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0623 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-049f1dce3ab2",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0475 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-049f1dce3ab2"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Filament Yarn Machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "Filament Yarn Machine",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=Filament%20Yarn%20Machine&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:59:20 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+filament+yarn+machine&hl=en&gl=IN&shoprs=GBIqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIJCBISBVByaWNlYAE&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKAF6BAgeEDc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=Filament+Yarn+Machine+nearby&hl=en&gl=IN&shoprs=GAMqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIMCAMSBk5lYXJieRgCYAE&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKAJ6BAgeEDg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+filament+yarn+machine&hl=en&gl=IN&shoprs=GBIqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIKCBISBk9ubGluZWAB&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKAN6BAgeEDk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+filament+yarn+machine&hl=en&gl=IN&shoprs=GBIqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIHCBISA0J1eWAB&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKAR6BAgeEDo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "New",
+                "url": "https://www.google.com/search?q=new+Filament+Yarn+Machine&hl=en&gl=IN&shoprs=GAoqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIHCAoSA05ld2AB&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKAV6BAgeEDs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Used",
+                "url": "https://www.google.com/search?q=used+Filament+Yarn+Machine&hl=en&gl=IN&shoprs=GAoqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIICAoSBFVzZWRgAQ&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKAZ6BAgeEDw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹15,00,000",
+                "url": "https://www.google.com/search?q=Filament+Yarn+Machine+under+1500001&hl=en&gl=IN&shoprs=Eg0SCxEAAACA79N1QhgBGAUqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIrCAUSElVuZGVyIOKCuTE1LDAwLDAwMBgCIg0SCxEAAACA79N1QhgBKgIYAWAB&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKAd6BAgeED0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=filament+yarn+machine+for+sale&hl=en&gl=IN&shoprs=GBIqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIMCBISCEZvciBTYWxlYAE&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKAh6BAgeED4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+filament+yarn+machine&hl=en&gl=IN&shoprs=GBIqFWZpbGFtZW50IHlhcm4gbWFjaGluZTILCBISB1Jldmlld3NgAQ&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKAl6BAgeED8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Rent",
+                "url": "https://www.google.com/search?q=rent+filament+yarn+machine&hl=en&gl=IN&shoprs=GBIqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIICBISBFJlbnRgAQ&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKAp6BAgeEEA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Usa",
+                "url": "https://www.google.com/search?q=usa+filament+yarn+machine&hl=en&gl=IN&shoprs=GBIqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIHCBISA1VzYWAB&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKAt6BAgeEEE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "White",
+                "url": "https://www.google.com/search?q=white+filament+yarn+machine&hl=en&gl=IN&shoprs=GAEqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIXCAESBVdoaXRlOgwI2Iz1ARChi_UBMAtgAQ&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKAx6BAgeEEI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Size",
+                "url": "https://www.google.com/search?q=size+filament+yarn+machine&hl=en&gl=IN&shoprs=GBIqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIICBISBFNpemVgAQ&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKA16BAgeEEM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Black",
+                "url": "https://www.google.com/search?q=black+filament+yarn+machine&hl=en&gl=IN&shoprs=GAEqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIXCAESBUJsYWNrOgwI2Iz1ARDlivUBMAtgAQ&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKA56BAgeEEQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Blue",
+                "url": "https://www.google.com/search?q=blue+filament+yarn+machine&hl=en&gl=IN&shoprs=GAEqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIWCAESBEJsdWU6DAjYjPUBEOaK9QEwC2AB&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKA96BAgeEEU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Candyfloss Machines",
+                "url": "https://www.google.com/search?q=candyfloss+machines+filament+yarn+machine&hl=en&gl=IN&shoprs=GAkqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIXCAkSE0NhbmR5Zmxvc3MgTWFjaGluZXNgAQ&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKBB6BAgeEEY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Images",
+                "url": "https://www.google.com/search?q=images+filament+yarn+machine&hl=en&gl=IN&shoprs=GBIqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIKCBISBkltYWdlc2AB&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKBF6BAgeEEc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Amazon.in",
+                "url": "https://www.google.com/search?q=amazon.in+filament+yarn+machine&hl=en&gl=IN&shoprs=GAIqFWZpbGFtZW50IHlhcm4gbWFjaGluZTINCAISCUFtYXpvbi5pbmAB&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKBJ6BAgeEEg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tradeindia.com",
+                "url": "https://www.google.com/search?q=tradeindia.com+filament+yarn+machine&hl=en&gl=IN&shoprs=GAIqFWZpbGFtZW50IHlhcm4gbWFjaGluZTISCAISDlRyYWRlaW5kaWEuY29tYAE&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKBN6BAgeEEk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Grey",
+                "url": "https://www.google.com/search?q=grey+filament+yarn+machine&hl=en&gl=IN&shoprs=GAEqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIWCAESBEdyZXk6DAjYjPUBEOqK9QEwC2AB&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKBR6BAgeEEo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "3D Printer Filaments",
+                "url": "https://www.google.com/search?q=3d+printer+filaments+filament+yarn+machine&hl=en&gl=IN&shoprs=GAkqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIYCAkSFDNEIFByaW50ZXIgRmlsYW1lbnRzYAE&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKBV6BAgeEEs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Free delivery",
+                "url": "https://www.google.com/search?q=Filament+Yarn+Machine+free+delivery&hl=en&gl=IN&shoprs=EgRSAhABGBkqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIXCBkSDUZyZWUgZGVsaXZlcnkiBFICEAFgAQ&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKBZ6BAgeEEw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Etsy",
+                "url": "https://www.google.com/search?q=etsy+filament+yarn+machine&hl=en&gl=IN&shoprs=GAIqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIICAISBEV0c3lgAQ&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKBd6BAgeEE0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Alibaba.com",
+                "url": "https://www.google.com/search?q=alibaba.com+filament+yarn+machine&hl=en&gl=IN&shoprs=GAIqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIPCAISC0FsaWJhYmEuY29tYAE&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKBh6BAgeEE4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Made-in-China.com",
+                "url": "https://www.google.com/search?q=made-in-china.com+filament+yarn+machine&hl=en&gl=IN&shoprs=GAIqFWZpbGFtZW50IHlhcm4gbWFjaGluZTIVCAISEU1hZGUtaW4tQ2hpbmEuY29tYAE&sa=X&ved=2ahUKEwituM3Mz9uRAxVFRmwGHXxXJgQQip4GKBl6BAgeEE8",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "organic",
+            "video",
+            "popular_products",
+            "people_also_ask",
+            "related_searches",
+            "images"
+          ],
+          "se_results_count": 1610000,
+          "pages_count": 5,
+          "items_count": 48,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 1,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Filament Yarn Machine at Best Price in India",
+              "description": "Clients can avail from us the economical model of filament yarn machines that are designed for high TPM. These machines are fabricated using high grade powder ... Read more",
+              "url": "https://dir.indiamart.com/impcat/filament-yarn-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Textile Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 4,
+              "page": 1,
+              "domain": "meeraind.com",
+              "title": "Filament Yarn Twister Machine by Meera Industries",
+              "description": "Advanced filament yarn twisting technology for polyester, nylon and technical yarns. Reliable performance for textile manufacturing.",
+              "url": "https://meeraind.com/product/filament-yarn-twister",
+              "breadcrumb": "https://meeraind.com › product › filament-yarn-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 5,
+              "page": 1,
+              "domain": "www.weavetech.in",
+              "title": "Filament Yarn TFO Twister Machine Manufacturer from Surat",
+              "description": "Denier Range: 20-150 denier Filament Yarns ; Twist Range: 600-3000 TPM (Ideal); Spindle Type: 60mm,70mm,80mm,90mm; Speeds: 16000 RPM & 50 mtrs/min ... Read more",
+              "url": "https://www.weavetech.in/filament-yarn-twister.html",
+              "breadcrumb": "https://www.weavetech.in › filament-yarn-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 6,
+              "page": 1,
+              "domain": "www.lohiagroup.com",
+              "title": "Multifilament Extrusion & Winding Machines",
+              "description": "Lohia Corp's multifilament extrusion and winding machines deliver high-strength yarns with precision and efficiency. Ideal for diverse industrial ...",
+              "url": "https://www.lohiagroup.com/products/multifilament",
+              "breadcrumb": "https://www.lohiagroup.com › products › multifilament"
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "www.tradeindia.com",
+              "title": "Filament Yarn Machine at Best Price from Manufacturers, ...",
+              "description": "Find Filament Yarn Machine manufacturers, suppliers, dealers & latest prices from top companies in India. Buy from a wide range of Filament Yarn Machine ...",
+              "url": "https://www.tradeindia.com/manufacturers/filament-yarn-machine.html",
+              "breadcrumb": "https://www.tradeindia.com › manufacturers › filament-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.ategroup.com",
+              "title": "FILSIZE Filament Sizing Machine",
+              "description": "The KARL MAYER FILSIZE filament sizing machine features central process management and supervision with data archiving. Online measurements of all needed ... Read more",
+              "url": "https://www.ategroup.com/textile-engineering/product-family/product-description/siz-o-matic-filament/",
+              "breadcrumb": "https://www.ategroup.com › ... › Siz-o-matic-filament"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "www.rifatextile.com",
+              "title": "Textile Twisting Machine",
+              "description": "It is designed to handle single or multi-strand twisting of various filament fibers such as POY, HDY, FDY, DTY, and more. It is also suitable for processing a ... Read more",
+              "url": "https://www.rifatextile.com/textile-twisting-machine/",
+              "breadcrumb": "https://www.rifatextile.com › textile-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "www.oerlikon.com",
+              "title": "Filament Yarn (POY/FDY) | Barmag",
+              "description": "12 Aug 2018 — Oerlikon Barmag systems master the processes required for manufacturing textile and industrial yarns and spin the standard polymers polyester, polyamide 6 and ... Read more",
+              "url": "https://www.oerlikon.com/barmag/en/solutions-technologies/from-melt-to%E2%80%A6/filament-yarn-poyfdy/",
+              "breadcrumb": "https://www.oerlikon.com › ... › From Melt to…"
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 12,
+              "page": 1,
+              "domain": "www.meera.ind.in",
+              "title": "Filament Yarn Twister - Industrial Threads Twisting Machine ...",
+              "description": "Filament Yarn Twister · Minimum Order Quantity: 1 Unit · Yarn Speed: Upto - 8000RPM · Machine Type: Automatic · Voltage: 220/380/440 - 50-60 Hz · Country of ... Read more",
+              "url": "https://www.meera.ind.in/filament-yarn-twister.html",
+              "breadcrumb": "https://www.meera.ind.in › filament-yarn-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "www.staubli.com",
+              "title": "Automatic drawing-in machine for filament",
+              "description": "The SAFIR PRO S37 automatic drawing-in system is ideal for processing filament yarns to make fabrics for awnings, leisure wear, and linings as well as ... Read more",
+              "url": "https://www.staubli.com/in/en/textile/products/drawing-in-machine/safir-pro-s37-automatic-warp-drawing-in-machine.html",
+              "breadcrumb": "https://www.staubli.com › ... › Drawing-in machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "www.prtexpro.in",
+              "title": "Tfo Machine - Paper Tube 110 Mm Pot Filament Yarn ...",
+              "description": "Filament Yarn TFO Twister Machine · Speed: 14000 RPM & 100 mtrs/min (Mechanical Max) · TakeUp: 170mm,200mm,230mm Parallel tubes · Feed Type: FDY Cops,Textured ... Read more",
+              "url": "https://www.prtexpro.in/tfo-machine.html",
+              "breadcrumb": "https://www.prtexpro.in › tfo-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "lntsufin.com",
+              "title": "Aakash Filament Yarn TFO Yarn Twisting Machine ATE",
+              "description": "TFO Twister is for the most economic production of High-Twist Filament yarn packages for use in clothing & garment fabrics to give an ultra-soft feel. Read more",
+              "url": "https://lntsufin.com/product/aakash-filament-yarn-tfo-yarn-twisting-machine-ate-100-e-upto-648-spindles-upto-18-sections/16003-141",
+              "breadcrumb": "https://lntsufin.com › product › aakash-filament-yarn-tfo..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.hariomyarnmachinery.in",
+              "title": "Filament Yarn Machine Manufacturer Exporter Supplier ...",
+              "description": "Filament Yarn Machine Manufacturer Exporter & Supplier in Bhavnagar India - Hariom Yarn Machinery is a best Manufacturer Exporter & Supplier of Filament Yarn ...",
+              "url": "https://www.hariomyarnmachinery.in/filament-yarn-machine.htm",
+              "breadcrumb": "https://www.hariomyarnmachinery.in › Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.oerlikon.com",
+              "title": "Filament Yarn (POY/FDY) | Barmag",
+              "description": "12 Aug 2018 — These machines are in operation day and night, year in, year out. The slightest fault in the spinning process cannot be subsequently corrected. Read more",
+              "url": "https://www.oerlikon.com/barmag/en/solutions-technologies/from-melt-to%E2%80%A6/filament-yarn-poyfdy/",
+              "breadcrumb": "https://www.oerlikon.com › ... › From Melt to…"
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.weavetech.com",
+              "title": "Filament Yarn TFO Twister Machine - Weavetech",
+              "description": "Our Twister Machines are built for superior performance, featuring advanced technology that ensures optimal yarn quality and productivity. With customizable ... Read more",
+              "url": "https://www.weavetech.com/twisting-machines/filament-yarn-tfo-twister-machine/",
+              "breadcrumb": "https://www.weavetech.com › Twisting Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "dir.indiamart.com",
+              "title": "Filament Yarn Machine - Manufacturer",
+              "description": "Two For One Twister For Filament Yarn - (70) 1 Kg. Material: Stainless Steel. Machine Type: Automatic. Power Source: Electric. Stop Motion: Mechanical ... Read more",
+              "url": "https://dir.indiamart.com/impcat/filament-yarn-machine.html?biz=10",
+              "breadcrumb": "https://dir.indiamart.com › ... › Filament Yarn Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "www.meeraind.com",
+              "title": "Filament Yarn Machines Manufacturers and Suppliers",
+              "description": "3 days ago — Comprehensive range of advanced filament yarn machines including twisters, covering machines, bulking systems, and precision winders. Engineered ... Read more",
+              "url": "https://www.meeraind.com/feeds/category/filament-yarn-machine",
+              "breadcrumb": "https://www.meeraind.com › filament-yarn-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "rifa-texmachine.com",
+              "title": "RF310G Two For One Twister For Filament Fibers",
+              "description": "The RF310G two for one twister for filament fibers is suitable for twisting of cotton yarn, wool yarn, acrylic yarn, polyester yarn and blended yarn etc.",
+              "url": "http://rifa-texmachine.com/2018/8-2-1-filament-fiber-twisting-machine.html",
+              "breadcrumb": "http://rifa-texmachine.com › 8-2-1-filament-fiber-twistin..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 25,
+              "page": 3,
+              "domain": "www.justdial.com",
+              "title": "Filament Yarn Machine - High-Quality, Durable & Efficient",
+              "description": "The Filament Yarn Machine is a sophisticated piece of equipment designed for the production of high-quality filament yarns. Utilizing advanced technology, it ... Read more",
+              "url": "https://www.justdial.com/india/Filament-Yarn-Machine",
+              "breadcrumb": "https://www.justdial.com › india › Filament-Yarn-Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "www.alibaba.com",
+              "title": "Polyester Filament Yarn Making Machine(601)",
+              "description": "Discover polyester filament yarn making machines with CE certification, automatic operation & extrusion technology. Ideal for industrial textile production.",
+              "url": "https://www.alibaba.com/showroom/polyester-filament-yarn-making-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Spinning Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "saurer.com",
+              "title": "Volkmann Systems glass filament yarn twisting",
+              "description": "With Volkmann Systems we provide a wide range of specialised glass filament yarn twisting solutions in the market. Read more",
+              "url": "https://saurer.com/en/systems/volkmann-systems/volkmann-systems-glass-filament-yarn-twisting",
+              "breadcrumb": "https://saurer.com › systems › volkmann-systems-glass-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.jmfibermachine.com",
+              "title": "POY PET Polyester multifilament yarn spinning machine",
+              "description": "POY spinning machine adopts spinnable polyester screw extruder, continuous large area melt filter, spinning box with high efficiency static mixer and heat ... Read more",
+              "url": "https://www.jmfibermachine.com/poy-multifilament-spinning-machine/poy-pet-polyester-multifilament-yarn-spinning-machine.html",
+              "breadcrumb": "https://www.jmfibermachine.com › poy-pet-polyester-m..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "fdymachine.en.made-in-china.com",
+              "title": "PP FDY Filament Yarn Machine (polypropylene) Spinning ...",
+              "description": "Applications: PP FDY equipment for peoducing polypropylene(PP) FDY yarn. mainly used to make bags, ribbon, fabric furniture, decorative curtains, ropes, packing ... Read more",
+              "url": "https://fdymachine.en.made-in-china.com/product/gQsYKqMUaJVR/China-PP-FDY-Filament-Yarn-Machine-polypropylene-Spinning-Machine.html",
+              "breadcrumb": "https://fdymachine.en.made-in-china.com › product › C..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "Monofilament Yarn Making Machine",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=gmuY6IU2yIk",
+              "breadcrumb": "2.8K+ views  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.alconetex.com",
+              "title": "Textile Machinery Manufacturers & Suppliers in Gujarat India",
+              "description": "Filament Yarn Twister · Compact TFO · Enlarged TFO. Filament Rewinder Machine. Servo Rewinder · Mechanical Rewinder · Yarn and Jari Covering Machine ... Read more",
+              "url": "https://www.alconetex.com/",
+              "breadcrumb": "https://www.alconetex.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "vandewiele.com",
+              "title": "Yarn spinning machines & components",
+              "description": "Discover our multitude of yarn spinning machines and components, designed with precision and engineered for optimal performance. Read more",
+              "url": "https://vandewiele.com/textile-solutions/yarn-spinning",
+              "breadcrumb": "https://vandewiele.com › Textile solutions"
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "www.exportersindia.com",
+              "title": "Yarn Machine at Best Price from Manufacturers, Suppliers ...",
+              "description": "Warper Machine. 20 / Piece. R.K. Enterprise. Ask for Price. Sectional Warping Machine For Filament Yarn. Read more",
+              "url": "https://www.exportersindia.com/indian-suppliers/yarn-machine.htm",
+              "breadcrumb": "https://www.exportersindia.com › indian-suppliers › yarn..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 34,
+              "page": 3,
+              "domain": "www.jwellextrusions.com",
+              "title": "Spandex Machine",
+              "description": "JWELL Machinery provides high-end custom spandex machine. With 1000m/min of mechanical speed, bottom mounted type of spin pack, both automatic and ...",
+              "url": "https://www.jwellextrusions.com/products/spandex-machine/",
+              "breadcrumb": "https://www.jwellextrusions.com › products › spandex-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "www.shivamengg.com",
+              "title": "TFO Twister for Man Made Filament Yarn",
+              "description": "Its vibration free balanced spindle having hard anodised / S.S. pot gives long lasting performance. Spindles ø 60, ø 70, ø 90 pot are given as per requirement. Read more",
+              "url": "http://www.shivamengg.com/tfo-twister-man-made-filament-yarn.html",
+              "breadcrumb": "http://www.shivamengg.com › tfo-twister-man-made-fila..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "www.tradeindia.com",
+              "title": "Filament Yarn Machine In Ahmedabad",
+              "description": "The range of offered filament yarn machine products in Ahmedabad is impressive with a total of 62 products currently available. Where can I find filament ... Read more",
+              "url": "https://www.tradeindia.com/ahmedabad/filament-yarn-machine-city-178823.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › Filament yarn machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.jwellextrusions.com",
+              "title": "Polyester Yarn Making Machine-Polyester Spinning Process",
+              "description": "Jwell Machinery's polyester spinning machine is specially designed with strong performance. The polyester yarn making machine can be used for PET recycle ...",
+              "url": "https://www.jwellextrusions.com/video/polyester-yarn-making-machine-polyester-spinning-process.html",
+              "breadcrumb": "https://www.jwellextrusions.com · 19 Jan 2022"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "www.directindustry.com",
+              "title": "Polypropylene spinning machine - Lofil Duo HS",
+              "description": "LofilDuo HS range of Spin-Draw-Wind Lines provides spinning solution for producing high & medium-tenacity polypropylene continuous filament yarn. Read more",
+              "url": "https://www.directindustry.com/prod/lohia-corp-limited/product-125039-2613903.html",
+              "breadcrumb": "https://www.directindustry.com › ... › Spinning machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.beekaylon.com",
+              "title": "What is BCF Yarn (Bulk Continuous Filament )?",
+              "description": "20 Jul 2023 — BCF yarn stands for Bulk Continuous Filament yarn. It is a type of synthetic yarn that is produced using a continuous extrusion process.",
+              "url": "https://www.beekaylon.com/what-is-bcf-yarn",
+              "breadcrumb": "https://www.beekaylon.com › what-is-bcf-yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "www.prtexpro.in",
+              "title": "Yarn Twisting Machine - SD E Series Spun Yarn TFO ...",
+              "description": "Machine Type: Automatic ; Yarn Speed Max: 70 m/min; Width: 600 mm; Tension Device: Capsule Type; Spindle Pitch: 208 mm; No. of Spindle: 160 to 260. Read more",
+              "url": "https://www.prtexpro.in/yarn-twisting-machine.html",
+              "breadcrumb": "https://www.prtexpro.in › yarn-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.justdial.com",
+              "title": "High-Efficiency Polyester Filament Yarn Machine - Kurnool",
+              "description": "A cutting-edge machine designed for efficient production, this innovative solution is essential for manufacturers looking to enhance their yarn output. Read more",
+              "url": "https://www.justdial.com/jdmart/Kurnool/High-Efficiency-Polyester-Filament-Yarn-Machine/pid-802436549/9999P8518-8518-1223619467S3Y2D9-DC",
+              "breadcrumb": "https://www.justdial.com › Kurnool › pid-802436549"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.monofilamentextruder.com",
+              "title": "Plastic PP/PE/Polypropylene Monofilament Net Yarn Making ...",
+              "description": "This machine is specialized for PP/HDPE round filament produce. It is widely used for rope and fishing net produce. It also used for some net produce used as ... Read more",
+              "url": "https://www.monofilamentextruder.com/pp-pe-monofilament-extruder-machine/plastic-pp-pe-polypropylene-monofilament-net-yarn-making%20machine.html",
+              "breadcrumb": "https://www.monofilamentextruder.com › plastic-pp-pe-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "dir.indiamart.com",
+              "title": "Yarn Machine at Best Price in India",
+              "description": "Filament Yarn TFO Twister Machine · Filament Yarn TFO Twister Machine. ₹ 2,350. Speed: 14000 RPM & 100 mtrs/min (Mechanical Max). Drive System: Inverter Driven ... Read more",
+              "url": "https://dir.indiamart.com/impcat/yarn-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › impcat › yarn-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 45,
+              "page": 4,
+              "domain": "www.weavetech.com",
+              "title": "What Is a TFO Twister Machine? | Filament Yarn Twisting ...",
+              "description": "The TFO Twister Machine stands out as a productive textile device built to twist yarns—filament yarns. “TFO” means “Two-for-One,” pointing to the machine's ... Read more",
+              "url": "https://www.weavetech.com/tfo-twister-machine-filament-yarn-twisting/",
+              "breadcrumb": "https://www.weavetech.com › tfo-twister-machine-filam..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "www.rifatextile.com",
+              "title": "Types of Spinning Machines in Textiles",
+              "description": "Yarn Winding Machine : Essential for preparing yarn into uniform rolls for weaving. Research shows that these innovations have led to substantial improvements in ... Read more",
+              "url": "https://www.rifatextile.com/types-of-spinning-machines-in-textiles.html",
+              "breadcrumb": "https://www.rifatextile.com › Company › News"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "www.made-in-china.com",
+              "title": "Multifilament yarn machine Manufacturers & Suppliers ...",
+              "description": "FDY Spinning Polypropylene/PP Multifilament Yarn Machine. US$30,000.00 /Set · Spinning Production Line- POY FDY Multifilament Yarn Spinning Machine. US$40,000.00 ... Read more",
+              "url": "https://www.made-in-china.com/manufacturers/multifilament-yarn-machine.html",
+              "breadcrumb": "https://www.made-in-china.com › manufacturers › mult..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.jmfibermachine.com",
+              "title": "ATY air jet texturing machine, fancy yarn twisting ...",
+              "description": "Automatic Polypropylene Polyester Nylon multifilament yarn winding machine. Inquire Now air textured yarn drawing machine/ aty machinery. Read more",
+              "url": "https://www.jmfibermachine.com/related-products/",
+              "breadcrumb": "https://www.jmfibermachine.com › related-products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.shivamengg.com",
+              "title": "Assembly Winders / Doubling Machine",
+              "description": "Assembly Winders & Yarn Doubling Machine, Shivam Eingeering & Fabrication ... OUR PRODUCTS. TFO Twister for Pure Silk · TFO Twister for Man Made Filament Yarn ... Read more",
+              "url": "http://www.shivamengg.com/yarn-doubling-machine.html",
+              "breadcrumb": "http://www.shivamengg.com › yarn-doubling-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "multi filament yarn machine Lohia",
+              "description": "multi filament yarn machine Lohia. 89 views · 7 months ago ...more. Raghvendra vlogs. 18.1K. Subscribe. 21. Share. Read more",
+              "url": "https://www.youtube.com/watch?v=6aFrKKhOJHI",
+              "breadcrumb": "80+ views  ·  8 months ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "www.tradeindia.com",
+              "title": "filament yarn machine in Delhi",
+              "description": "Get filament yarn machine in Delhi Delhi at best price. View New Delhi based filament yarn machine manufacturers suppliers and dealers.",
+              "url": "https://www.tradeindia.com/delhi/filament-yarn-machine-city-228067.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › Filament yarn machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.rieter.com",
+              "title": "Rieter – Leading Manufacturer of Systems for Short-Staple ...",
+              "description": "Rieter delivers machinery, automation and digital solutions that help spinning mills increase productivity and stay competitive – from fiber to yarn.",
+              "url": "https://www.rieter.com/",
+              "breadcrumb": "https://www.rieter.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.accio.com",
+              "title": "pp multifilament yarn machine: High-Speed Production",
+              "description": "17 Oct 2025 — Discover the latest pp multifilament yarn machine for efficient, high-speed production. Explore key features, customization options, ...",
+              "url": "https://www.accio.com/plp/pp-multifilament-yarn-machine",
+              "breadcrumb": "https://www.accio.com › plp › pp-multifilament-yarn-ma..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "www.smwdyeing.com",
+              "title": "HTHP Filament Yarn Dyeing Machine in Meghalaya",
+              "description": "This machine is used to dye Filament Yarns. The machine consists of a dye vat, a dye pump, and a yarn tensioner. The yarn is fed through the dye vat and the dye ... Read more",
+              "url": "https://www.smwdyeing.com/meghalaya/hthp-filament-yarn-dyeing-machine.html",
+              "breadcrumb": "https://www.smwdyeing.com › meghalaya › hthp-filam..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 48,
+              "rank_absolute": 56,
+              "page": 5,
+              "domain": "www.garwarefibres.com",
+              "title": "Garware Technical Fibres: Net & Rope Manufacturer & Supplier",
+              "description": "Garware Technical Fibres is one stop solution for Top Quality Aquaculture Net & Ropes. a Go-To Solution for Fisheries, Aquaculture, and Industrial ...",
+              "url": "https://www.garwarefibres.com/",
+              "breadcrumb": "https://www.garwarefibres.com"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,681 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0415 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-aec7a80f3b69",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0330 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-aec7a80f3b69"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "doubling machine price in india",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "doubling machine price in india",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=doubling%20machine%20price%20in%20india&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:59:17 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹1,50,000",
+                "url": "https://www.google.com/search?q=doubling+machine+price+in+india+under+150000&hl=en&gl=IN&shoprs=Eg0SCxEAAAAgWXZBQhgBGAUqH2RvdWJsaW5nIG1hY2hpbmUgcHJpY2UgaW4gaW5kaWEyKggFEhFVbmRlciDigrkxLDUwLDAwMBgCIg0SCxEAAAAgWXZBQhgBKgIYAWAB&sa=X&ved=2ahUKEwj18fjLz9uRAxUxVUEAHS1FFv4Qip4GKAF6BAgeEDE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+doubling+machine+price+in+india&hl=en&gl=IN&shoprs=GBIqH2RvdWJsaW5nIG1hY2hpbmUgcHJpY2UgaW4gaW5kaWEyCggSEgZPbmxpbmVgAQ&sa=X&ved=2ahUKEwj18fjLz9uRAxUxVUEAHS1FFv4Qip4GKAJ6BAgeEDI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+doubling+machine+price+in+india&hl=en&gl=IN&shoprs=GBIqH2RvdWJsaW5nIG1hY2hpbmUgcHJpY2UgaW4gaW5kaWEyBwgSEgNCdXlgAQ&sa=X&ved=2ahUKEwj18fjLz9uRAxUxVUEAHS1FFv4Qip4GKAN6BAgeEDM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Small",
+                "url": "https://www.google.com/search?q=small+doubling+machine+price+in+india&hl=en&gl=IN&shoprs=GBIqH2RvdWJsaW5nIG1hY2hpbmUgcHJpY2UgaW4gaW5kaWEyCQgSEgVTbWFsbGAB&sa=X&ved=2ahUKEwj18fjLz9uRAxUxVUEAHS1FFv4Qip4GKAR6BAgeEDQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Brand",
+                "url": "https://www.google.com/search?q=brand+doubling+machine+price+in+india&hl=en&gl=IN&shoprs=GBIqH2RvdWJsaW5nIG1hY2hpbmUgcHJpY2UgaW4gaW5kaWEyCQgSEgVCcmFuZGAB&sa=X&ved=2ahUKEwj18fjLz9uRAxUxVUEAHS1FFv4Qip4GKAV6BAgeEDU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Milling Machines",
+                "url": "https://www.google.com/search?q=milling+machines+doubling+machine+price+in+india&hl=en&gl=IN&shoprs=GAkqH2RvdWJsaW5nIG1hY2hpbmUgcHJpY2UgaW4gaW5kaWEyFAgJEhBNaWxsaW5nIE1hY2hpbmVzYAE&sa=X&ved=2ahUKEwj18fjLz9uRAxUxVUEAHS1FFv4Qip4GKAZ6BAgeEDY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Sewing Machines",
+                "url": "https://www.google.com/search?q=sewing+machines+doubling+machine+price+in+india&hl=en&gl=IN&shoprs=GAkqH2RvdWJsaW5nIG1hY2hpbmUgcHJpY2UgaW4gaW5kaWEyEwgJEg9TZXdpbmcgTWFjaGluZXNgAQ&sa=X&ved=2ahUKEwj18fjLz9uRAxUxVUEAHS1FFv4Qip4GKAd6BAgeEDc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Toy",
+                "url": "https://www.google.com/search?q=toy+doubling+machine+price+in+india&hl=en&gl=IN&shoprs=GBIqH2RvdWJsaW5nIG1hY2hpbmUgcHJpY2UgaW4gaW5kaWEyBwgSEgNUb3lgAQ&sa=X&ved=2ahUKEwj18fjLz9uRAxUxVUEAHS1FFv4Qip4GKAh6BAgeEDg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "High",
+                "url": "https://www.google.com/search?q=high+doubling+machine+price+in+india&hl=en&gl=IN&shoprs=GBIqH2RvdWJsaW5nIG1hY2hpbmUgcHJpY2UgaW4gaW5kaWEyCAgSEgRIaWdoYAE&sa=X&ved=2ahUKEwj18fjLz9uRAxUxVUEAHS1FFv4Qip4GKAl6BAgeEDk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Usha",
+                "url": "https://www.google.com/search?q=usha+doubling+machine+price+in+india&hl=en&gl=IN&shoprs=GAEqH2RvdWJsaW5nIG1hY2hpbmUgcHJpY2UgaW4gaW5kaWEyFAgBEgRVc2hhOgoIg_M8EMzmUjABYAE&sa=X&ved=2ahUKEwj18fjLz9uRAxUxVUEAHS1FFv4Qip4GKAp6BAgeEDo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Paper",
+                "url": "https://www.google.com/search?q=paper+doubling+machine+price+in+india&hl=en&gl=IN&shoprs=GAEqH2RvdWJsaW5nIG1hY2hpbmUgcHJpY2UgaW4gaW5kaWEyFQgBEgVQYXBlcjoKCLnRcBC60XAwAGAB&sa=X&ved=2ahUKEwj18fjLz9uRAxUxVUEAHS1FFv4Qip4GKAt6BAgeEDs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Red",
+                "url": "https://www.google.com/search?q=red+doubling+machine+price+in+india&hl=en&gl=IN&shoprs=GAEqH2RvdWJsaW5nIG1hY2hpbmUgcHJpY2UgaW4gaW5kaWEyFQgBEgNSZWQ6DAjYjPUBEOeK9QEwC2AB&sa=X&ved=2ahUKEwj18fjLz9uRAxUxVUEAHS1FFv4Qip4GKAx6BAgeEDw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Green",
+                "url": "https://www.google.com/search?q=green+doubling+machine+price+in+india&hl=en&gl=IN&shoprs=GAEqH2RvdWJsaW5nIG1hY2hpbmUgcHJpY2UgaW4gaW5kaWEyFwgBEgVHcmVlbjoMCNiM9QEQ6Ir1ATALYAE&sa=X&ved=2ahUKEwj18fjLz9uRAxUxVUEAHS1FFv4Qip4GKA16BAgeED0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tradeindia.com",
+                "url": "https://www.google.com/search?q=tradeindia.com+doubling+machine+price+in+india&hl=en&gl=IN&shoprs=GAIqH2RvdWJsaW5nIG1hY2hpbmUgcHJpY2UgaW4gaW5kaWEyEggCEg5UcmFkZWluZGlhLmNvbWAB&sa=X&ved=2ahUKEwj18fjLz9uRAxUxVUEAHS1FFv4Qip4GKA56BAgeED4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "IndiaMART",
+                "url": "https://www.google.com/search?q=indiamart+doubling+machine+price+in+india&hl=en&gl=IN&shoprs=GAIqH2RvdWJsaW5nIG1hY2hpbmUgcHJpY2UgaW4gaW5kaWEyDQgCEglJbmRpYU1BUlRgAQ&sa=X&ved=2ahUKEwj18fjLz9uRAxUxVUEAHS1FFv4Qip4GKA96BAgeED8",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "popular_products",
+            "organic",
+            "images",
+            "related_searches"
+          ],
+          "se_results_count": 2400000,
+          "pages_count": 5,
+          "items_count": 46,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 2,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Doubling Machines at Best Price in India",
+              "description": "Doubling Machine s · 3 Ply Doubling Machine · 5 HP Automatic Doubling Machine · 5 HP Automatic Doubling Machine. ₹ 2,600/Piece. Voltage: 380V. Number Of Spindles ... Read more",
+              "url": "https://dir.indiamart.com/impcat/doubling-machines.html",
+              "breadcrumb": "https://dir.indiamart.com › impcat › doubling-machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 3,
+              "page": 1,
+              "domain": "www.exportersindia.com",
+              "title": "Doubling Machine at Best Price from Manufacturers ...",
+              "description": "VMW MILD STEEL Polished Plain Ring Doubling Machine, Feature : Fine Finishing, Low Maintenance 3.50 Lakh - 10 Lakh / Piece Read more",
+              "url": "https://www.exportersindia.com/indian-suppliers/doubling-machines.htm",
+              "breadcrumb": "https://www.exportersindia.com › indian-suppliers › dou..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 4,
+              "page": 1,
+              "domain": "www.tradeindia.com",
+              "title": "Metal Ring Doubling Frame Machine",
+              "description": "Metal Ring Doubling Frame Machine · Price: 600000.00 INR / Unit · Product Specifications · Company Details · Hariom Yarn Machinery · Related Products · Explore ... Read more",
+              "url": "https://www.tradeindia.com/products/ring-doubling-frame-machine-c5913616.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › ring doubling machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 5,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Doubling Machines in Surat, डब्लिंग मशीन, सूरत, Gujarat",
+              "description": "Available price ranges for Doubling Machines. Below ₹3,000₹3,001 - ₹25,000₹25,001 - ₹1,00,000Above ₹1,00,001. Doubling Machine · Doubling Machine. Machine Type: ... Read more",
+              "url": "https://dir.indiamart.com/surat/doubling-machines.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Doubling Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 6,
+              "page": 1,
+              "domain": "www.tradeindia.com",
+              "title": "Doubling Machine at 5000.00 INR in Surat, Gujarat",
+              "description": "Doubling Machine - Mild Steel and Stainless Steel Alloy | Industrial Use for Textile and Fabric Processing. Price: 5000.00 INR / Number (5000.00 INR + 0% GST) Read more",
+              "url": "https://www.tradeindia.com/products/8-hp-textile-doubling-machine-c8278512.html",
+              "breadcrumb": "https://www.tradeindia.com › products › 8-hp-textile-d..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "www.indiamart.com",
+              "title": "Yarn Doubling Machine",
+              "description": "Get Yarn Doubling Machine in Coimbatore, Tamil Nadu at best price by SSB Tex Engineering. Also find Doubling Machines price list from verified suppliers with",
+              "url": "https://www.indiamart.com/proddetail/yarn-doubling-machine-15024373430.html?srsltid=AfmBOooLQqUs49hKYOMRazDBuGxhRaIl8XCNZPuy4m9u1gIH5KhauSN5",
+              "breadcrumb": "https://www.indiamart.com › ... › Doubling Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.tradeindia.com",
+              "title": "Doubling Machine at 1000.00 INR in Mumbai, Maharashtra",
+              "description": "Product Specifications ; Main Domestic Market, All India ; Price, 1000.00 INR (Approx.) ; Mop, 1 ; Moq, 1 ; Unit Type, Piece/Pieces. Read more",
+              "url": "https://www.tradeindia.com/products/doubling-machine-c3102941.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › doubling machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "www.ringtwistermachinevmw.co.in",
+              "title": "Ring Doubling Combo Machine",
+              "description": "Extudres Machine. Price 100000.0 INR / Unit. Minimum Order Quantity : 1 Unit. Automation Grade : No. Surface Finish : Coated. Type : Extudres ... Read more",
+              "url": "https://www.ringtwistermachinevmw.co.in/ring-doubling-combo-machine-11284692.html",
+              "breadcrumb": "https://www.ringtwistermachinevmw.co.in › ring-doublin..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "www.indiamart.com",
+              "title": "3 Ply Doubling Machine",
+              "description": "Filament yarn doubling machine. ₹ 2,250/Piece · TFO Doubling Twisting Machine. ₹ 1,00,000 · Assembly Doubling Machine. ₹ 20,000/Unit · Doubling And Twisting ... Read more",
+              "url": "https://www.indiamart.com/proddetail/3-ply-doubling-machine-20624119948.html?srsltid=AfmBOoqpmV-VkM7p6nXVIPhhP012sOW0YN_xgcRMc_KsuGIVvTkaSLzZ",
+              "breadcrumb": "https://www.indiamart.com › ... › Doubling Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 13,
+              "page": 2,
+              "domain": "www.indiamart.com",
+              "title": "3 Ply Doubling Machine",
+              "description": "Filament yarn doubling machine. ₹ 2,250/Piece · TFO Doubling Twisting Machine. ₹ 1,00,000 · Assembly Doubling Machine. ₹ 20,000/Unit · Doubling And Twisting ... Read more",
+              "url": "https://www.indiamart.com/proddetail/3-ply-doubling-machine-20624119948.html?srsltid=AfmBOordt9GxCq-F8WzccNmTT-dzBiXG6Z3MKcm9cUbT6fWKh3OyYr_C",
+              "breadcrumb": "https://www.indiamart.com › ... › Doubling Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "www.esstexengineeringtrading.com",
+              "title": "Doubling Machine Manufacturer,Exporter,Supplier in Mumbai",
+              "description": "Doubling Machine ; Color: Blue and White ; Material: Metal ; Voltage: 220-380 Volt (v) ; Weight: 5000-6600 Kilograms (kg) ; Delivery Time: 3-6 Days. Read more",
+              "url": "https://www.esstexengineeringtrading.com/doubling-machine-3102941.html",
+              "breadcrumb": "https://www.esstexengineeringtrading.com › doubling-m..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "jingtianchina.en.made-in-china.com",
+              "title": "2025 Twisting and doubling machine",
+              "description": "Cotton Yarn Doubling Textile Machine. US $ 9,999-19,999/setFOB. MOQ:1 set. Video. Ring Yarn Spinning Textile Twisting Machine. US $ 9,999-19,999/setFOB. Read more",
+              "url": "https://jingtianchina.en.made-in-china.com/product-group/VeDtdSnUHgYc/Twisting-And-Doubling-Machine-catalog-1.html",
+              "breadcrumb": "https://jingtianchina.en.made-in-china.com › Twisting-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.tradeindia.com",
+              "title": "Three Phase Semi Automatic Yarn Doubling Machine For ...",
+              "description": "White Three Phase Semi Automatic Yarn Doubling Machine For Textiles Industries · Price: 120000.00 INR / Unit · Product Specifications · Product Overview · Company ... Read more",
+              "url": "https://www.tradeindia.com/products/three-phase-semi-automatic-yarn-doubling-machine-for-textiles-industries-8172194.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › doubling machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.ssbtex.com",
+              "title": "Ring Doubling Machines & Yarn Twisting machines",
+              "description": "Ring Doubling Frame-SD1. 2,00,000 / Piece. Ring Doubling Frame-SD1 ; Variator Drive System. Rs 500 / No(s). Variator Drive System ; ABS Pulleys (Or) Tin Roll ... Read more",
+              "url": "https://www.ssbtex.com/ring-doubling-machines-yarn-twisting-machines.html",
+              "breadcrumb": "https://www.ssbtex.com › ring-doubling-machines-yarn..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.prtexpro.in",
+              "title": "Yarn Twisting Machine - SD E Series Spun Yarn TFO ...",
+              "description": "Filament yarn doubling machine. Rs 2,250 ... Country of Origin: Made in India. two for one twisting machine. know more. 2853704403412. Get Best PriceCall Now ... Read more",
+              "url": "https://www.prtexpro.in/yarn-twisting-machine.html",
+              "breadcrumb": "https://www.prtexpro.in › yarn-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.conewinding.com",
+              "title": "Two For One Twisting Machine For Cotton Yarn",
+              "description": "Yarn Twisting Machine ; Two For One Twisting Machine For Cotton Yarn. Rs 28,400 · Two For One Twisting Machine For Cotton Yarn. Operation Mode: Automatic ... Read more",
+              "url": "https://www.conewinding.com/yarn-twisting-machine.html",
+              "breadcrumb": "https://www.conewinding.com › yarn-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "dir.indiamart.com",
+              "title": "Doubling Machines in Coimbatore, Tamil Nadu",
+              "description": "Available price ranges for Doubling Machines. Below ₹3,000₹3,001 - ₹25,000 ... Balaji Syndicate. Address : 50, Cox Street, Kattoor, Coimbatore-641009, Tamil Nadu, ... Read more",
+              "url": "https://dir.indiamart.com/coimbatore/doubling-machines.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Doubling Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.indianyellowpages.com",
+              "title": "Doubling Machine Dealers, Suppliers & Manufacturer List",
+              "description": "Doubling Machine. Get Price Quote. Doubling Machine, Velvet Fabric, TEXTILES MACHINERY, Textile Machine. Get Price Contact. Chandni Textiles ... Read more",
+              "url": "https://www.indianyellowpages.com/directory/doubling-machines.htm",
+              "breadcrumb": "https://www.indianyellowpages.com › directory › doubli..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 24,
+              "page": 3,
+              "domain": "www.universaltextile.co.in",
+              "title": "Twisting Machine - Filament Tfo Machine Trader",
+              "description": "... Machine. know more. 17619450733. Get Best PriceCall Now. Hollow Fancy Doubling Machine. 5,00,000 / Piece. Hollow Fancy Doubling Machine. Capacity: Any ... Read more",
+              "url": "https://www.universaltextile.co.in/twisting-machine.html",
+              "breadcrumb": "https://www.universaltextile.co.in › twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 25,
+              "page": 3,
+              "domain": "www.dial4trade.com",
+              "title": "Buy Doubling Machines at Wholesale Price in Ahmedabad",
+              "description": "Doubling Machines ; Condition, New, Used ; Weight, 1000-2000kg, 2000-3000kg, 4000-5000kg ; Automation Grade, Automatic, Semi Automatic, Fully Automatic ; Power : 0- ... Read more",
+              "url": "https://www.dial4trade.com/harish-textile-corporation/doubling-machines-pdid-4343454.htm",
+              "breadcrumb": "https://www.dial4trade.com › ... › Doubling Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "www.alibaba.com",
+              "title": "High Efficiency Yarn Doubling Machines for Wholesale",
+              "description": "Discover yarn doubling machines with automatic winding & twist control for textile production. CE-certified, 1-year warranty, high-speed performance.",
+              "url": "https://www.alibaba.com/showroom/yarn-doubling-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Winding Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "www.textilemanufacturersintamilnadu.com",
+              "title": "Textile Spinning Machinery Spare Parts - Spindle Brakes ...",
+              "description": "Textile spinning machine and doubling machine jockey pulley both we provide order based.................. know more. Call UsGet Best Price. Carding Cylinder ... Read more",
+              "url": "https://www.textilemanufacturersintamilnadu.com/textile-spinning-machinery-spare-parts.html",
+              "breadcrumb": "https://www.textilemanufacturersintamilnadu.com › text..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.aalidhratexpro.in",
+              "title": "Doubling Yarn Twister Machine",
+              "description": "Industrial Textile Winders Machine. Price: 600000 INR. /. Unit. Minimum Order Quantity : 1 Unit. Industrial Textile Winders Machine. Read more",
+              "url": "https://www.aalidhratexpro.in/doubling-yarn-twister-machine-7535687.html",
+              "breadcrumb": "https://www.aalidhratexpro.in › doubling-yarn-twister-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.hariomyarnmachinery.in",
+              "title": "Ring Doubling Machine Manufacturer Exporter Supplier ...",
+              "description": "... Doubling Machine Supplier Gujarat, Ring Doubling Machine Manufacturing Company in India ... Get Best Price. Call Us Best Price. Specifications. Business Type ... Read more",
+              "url": "https://www.hariomyarnmachinery.in/ring-doubling-machine.htm",
+              "breadcrumb": "https://www.hariomyarnmachinery.in › Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.machineseeker-india.com",
+              "title": "Used tire service equipment for sale (9)",
+              "description": "Balancing Machine for car wheels. HeinlATH-550. Certified Dealer. Price info Price info. Already requested. Call. Year of construction: 2010, condition: used ... Read more",
+              "url": "https://www.machineseeker-india.com/Tire-service-equipment/ci-282",
+              "breadcrumb": "https://www.machineseeker-india.com › Tire-service-eq..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.justdial.com",
+              "title": "Doubling Machine Spindles Price Starting From Rs 200/Unit",
+              "description": "Product Name, 1.5 kW Two Phase Doubling Machine · 1 kW Single Phase Doubling Machine ; Category name ; Price, ₹ 200 - ₹ 32 K ; Specifications. Spindle Speed: 3000 ... Read more",
+              "url": "https://www.justdial.com/india/Doubling-Machine-Spindles",
+              "breadcrumb": "https://www.justdial.com › ... › Doubling Machine in India"
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "www.jaylaxmitextilespindle.net",
+              "title": "Ring Doubling Machines KMMC",
+              "description": "Get Best PriceCall Now. Ring Doubling Machines. Rs 25,000 / Piece. Ring Doubling Machines · Automation Grade: Semi Automatic; Country of Origin: Made in India ... Read more",
+              "url": "https://www.jaylaxmitextilespindle.net/ring-doubling-machine.html",
+              "breadcrumb": "https://www.jaylaxmitextilespindle.net › ring-doubling-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 35,
+              "page": 4,
+              "domain": "www.tradeindia.com",
+              "title": "Ring Doubling Machine at 1000.00 INR in Mumbai ...",
+              "description": "Product Specifications ; Price Type, fixed ; Stock Quantity, 1000 ; Mop, 200 ; Price, 1000.00 INR (Approx.) ; Moq, 200. Read more",
+              "url": "https://www.tradeindia.com/products/ring-doubling-machine-c3102942.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › ring doubling machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "www.kinwah-group.com",
+              "title": "cotton yarn doubling machine price in india - Kin Wah",
+              "description": "For inquiries about our products or pricelist, please leave your email to us and we will be in touch within 24 hours. Inquiry Now. Contact Us. Read more",
+              "url": "https://www.kinwah-group.com/vs/cotton-yarn-doubling-machine-price-in-india",
+              "breadcrumb": "https://www.kinwah-group.com › cotton-yarn-doubling..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "www.aakashtexeng.in",
+              "title": "140 Spun TFO Double Deck Machine",
+              "description": "Get Latest Price · Crepe Texturising Machine. Price: 2000000 INR. /. Unit. Minimum Order Quantity : 1 Unit. Crepe Texturising Machine. Frequency:50 Hertz (HZ). Read more",
+              "url": "https://www.aakashtexeng.in/140-spun-tfo-double-deck-machine-5993551.html",
+              "breadcrumb": "https://www.aakashtexeng.in › 140-spun-tfo-double-de..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.exportersindia.com",
+              "title": "Textile Doubling Machine at Best Price in Coimbatore - ID",
+              "description": "Electric Doubling Machine, Voltage : 110V, 220V, 380V, 440V · Sen Tex Traders. Ondipudur, Coimbatore, Tamil Nadu ; Ring Doubling Machine · Hariom Yarn ... Read more",
+              "url": "https://www.exportersindia.com/product-detail/textile-doubling-machine-1278552.htm",
+              "breadcrumb": "https://www.exportersindia.com › ... › Doubling Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "www.marutiplastotech.in",
+              "title": "Yarn Doubling Machine Manufacturer from Bhavnagar",
+              "description": "Yarn Doubling Machine ; Production Capacity: 200 kg/hr ; Automation Grade: Semi Automatic ; Country of Origin: Made in India ; Spindle Gauge: 10\" ; Ring Dia: 10\" ... Read more",
+              "url": "https://www.marutiplastotech.in/doubling-machines.html",
+              "breadcrumb": "https://www.marutiplastotech.in › doubling-machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "yarn doubling machine price in india",
+              "description": "yarn doubling machine price in india · high speed yarn twisting machine manufacturers india · cotton yarn doubling machine price in india. Read more",
+              "url": "https://www.youtube.com/playlist?list=PLtthWZqHD2Atvn0IawRknHHpOfLJE3z3M",
+              "breadcrumb": "490+ followers"
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "www.ringtwistermachinevmw.co.in",
+              "title": "4.5 Ring Doubling Machine - Supreme Quality at Attractive Price",
+              "description": "Discover the high-performance 4.5 Ring Doubling Machine available at the best price. Crafted from durable MS material with a 1-year warranty, ...",
+              "url": "https://www.ringtwistermachinevmw.co.in/4-5-ring-doubling-machine-11490441.html",
+              "breadcrumb": "https://www.ringtwistermachinevmw.co.in › 4-5-ring-do..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.indiamart.com",
+              "title": "Yarn Doubling Machine",
+              "description": "3 Ply Doubling Machine. Get Latest Price ; Assembly Winder Doubling Machine · ₹ 20,000/Unit ; Drum Motor Savio Machine Spares · ₹ 12,000/Piece ; Heavy Doubling ... Read more",
+              "url": "https://www.indiamart.com/proddetail/yarn-doubling-machine-2849527548688.html?srsltid=AfmBOorad_XrzdnmZRi5T0n2kHGiOt133fga5ZkiSHkS45DalN8CMJyH",
+              "breadcrumb": "https://www.indiamart.com › ... › Cotton TFO Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.textileinfomedia.com",
+              "title": "Ganesh Doubling Factory - solapur, maharashtra",
+              "description": "Ganesh Doubling Factory was 1976 . we are manufacturer ,wholesaler and exporter of embroidery thread ,nylon thread ,cotton yarn ,viscose yarn ,polyester yarn , ... Read more",
+              "url": "https://www.textileinfomedia.com/Ganesh-Doubling-Factory",
+              "breadcrumb": "https://www.textileinfomedia.com › Ganesh-Doubling-Fa..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "www.tfotwister.com",
+              "title": "Double Deck TFO Twister Manufacturer from Surat",
+              "description": "Double Deck TFO Twister. 15,00,000 · Double Deck TFO Twister · Automatic, Semi-Automatic; No. of Spindle: ; Blended Yarn TFO Twister. 12,00,000 · Blended Yarn TFO ... Read more",
+              "url": "https://www.tfotwister.com/tfo-twisting-machine.html",
+              "breadcrumb": "https://www.tfotwister.com › tfo-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 46,
+              "page": 5,
+              "domain": "www.fibre2fashion.com",
+              "title": "Heavy Doubling Machine Suppliers 19164753",
+              "description": "Heavy Doubling Machine. For Illustration Purpose Only. Heavy Doubling Machine. For Illustration Purpose Only. 1; 2. Price : Price on request. Min Order : 1 Sets. Read more",
+              "url": "https://www.fibre2fashion.com/machines/doubling-machine-suppliers-19164753",
+              "breadcrumb": "https://www.fibre2fashion.com › machines › doubling-m..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "www.accio.com",
+              "title": "yarn doubling machine: High-Speed & Efficient",
+              "description": "26 Nov 2025 — What Are the Best Yarn Doubling Machines? ; Small Yarn TFO (Qingdao Blue Island), 4.9, 1 set, $1,200 - $1,500, Small Scale, Customized Heads ... Read more",
+              "url": "https://www.accio.com/plp/yarn-doubling-machine",
+              "breadcrumb": "https://www.accio.com › plp › yarn-doubling-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "www.indiantextilemagazine.in",
+              "title": "Sanathan Textiles Expands with ₹1850 Crore Investment ...",
+              "description": "3 Apr 2025 — Sanathan Textiles Expands with ₹1,850 Crore Investment in Punjab, Doubling Production Capacity · Polyester Filament Yarns : As the company's ... Read more",
+              "url": "https://www.indiantextilemagazine.in/sanathan-textiles-expands-with-%E2%82%B91850-crore-investment-in-punjab-doubling-production-capacity/",
+              "breadcrumb": "https://www.indiantextilemagazine.in › Latest News"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.aajjo.com",
+              "title": "Top Doubling Machine in Chennai",
+              "description": "Find the best Doubling Machine in Chennai at unbeatable prices. Explore top brands, trusted dealers, detailed specifications, and choose the perfect ...",
+              "url": "https://www.aajjo.com/chennai/apparel-textile-machinery/doubling-machine",
+              "breadcrumb": "https://www.aajjo.com › apparel-textile-machinery › do..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "CA 20 Amplifier Price in India || Original kaise Buy Kare?",
+              "description": "8:36 · Go to channel · Is doubling speakers +3dB or +6dB? What's parallel and series wiring? ALPHA SOUND•329K views · 7:51 · Go to channel ...",
+              "url": "https://www.youtube.com/watch?v=8NcDArj69D8",
+              "breadcrumb": "19.4K+ views  ·  3 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.tridentindia.com",
+              "title": "Trident Group: Top Textile Company | Bedsheet & Towel ...",
+              "description": "Trident Group is a diversified textile fabric manufacturer, offering a range of products and services in Home Textiles, Paper, Chemicals and Yarn.",
+              "url": "https://www.tridentindia.com/",
+              "breadcrumb": "https://www.tridentindia.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "maticrobots.com",
+              "title": "Shop Matic",
+              "description": "Matic. Free delivery + free returns (contiguous US only). $1,245 | ADD TO CART. DOUBLING UP? Buy ... Read more",
+              "url": "https://maticrobots.com/product",
+              "breadcrumb": "https://maticrobots.com › product"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.dakumar.com",
+              "title": "Plastic Injection Molding Machine|Injection Molding Machine ...",
+              "description": "DKM is a Plastic Injection Molding Machine innovator and manufacturer in China,offers precision highspeed plastic injection machines and turnkey injection ...",
+              "url": "https://www.dakumar.com/",
+              "breadcrumb": "https://www.dakumar.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "www.wotol.com",
+              "title": "Used Doubling machines",
+              "description": "Price : On request. More details · Fadis TUAN BE, Doubling. Price On request. More details · 4 4. ROF Doubling Machine. -- 57 spindle number – 8 ... Read more",
+              "url": "https://www.wotol.com/cat/doubling-machines/yarn-manufacturing-sythetic-cotton/textile-and-leather-machinery/1097",
+              "breadcrumb": "https://www.wotol.com › textile-and-leather-machinery"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

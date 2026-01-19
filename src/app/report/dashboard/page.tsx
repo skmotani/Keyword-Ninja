@@ -1013,53 +1013,7 @@ function BrandPowerCard({ data }: { data: BrandPowerData }) {
                                 {/* Expanded Keywords Table */}
                                 {isExpanded && (
                                     <div className="border-t border-gray-200 bg-white">
-                                        <table className="min-w-full text-xs">
-                                            <thead>
-                                                <tr className="bg-gray-50">
-                                                    <th className="px-3 py-2 text-left font-semibold text-gray-600">Keyword</th>
-                                                    <th className="px-3 py-2 text-center font-semibold text-gray-600 w-16">Loc</th>
-                                                    <th className="px-3 py-2 text-center font-semibold text-gray-600 w-16">Pos</th>
-                                                    <th className="px-3 py-2 text-right font-semibold text-gray-600 w-20">Vol</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody className="divide-y divide-gray-100">
-                                                {domainData.keywords.map((kw, kwIdx) => (
-                                                    <tr key={`${kw.keyword}-${kwIdx}`} className="hover:bg-gray-50">
-                                                        <td className="px-3 py-1.5 font-medium text-gray-900">
-                                                            {kw.keyword}
-                                                        </td>
-                                                        <td className="px-3 py-1.5 text-center">
-                                                            <span className={`px-1.5 py-0.5 rounded text-xs ${kw.location === 'India' || kw.location === 'IN'
-                                                                ? 'bg-orange-100 text-orange-700'
-                                                                : 'bg-blue-100 text-blue-700'
-                                                                }`}>
-                                                                {kw.location === 'India' ? 'IN' : kw.location === 'United States' ? 'US' : kw.location}
-                                                            </span>
-                                                        </td>
-                                                        <td className="px-3 py-1.5 text-center">
-                                                            <span className={`px-2 py-0.5 rounded text-xs font-medium ${kw.position <= 3
-                                                                ? 'bg-green-100 text-green-700'
-                                                                : kw.position <= 10
-                                                                    ? 'bg-blue-100 text-blue-700'
-                                                                    : kw.position <= 30
-                                                                        ? 'bg-yellow-100 text-yellow-700'
-                                                                        : 'bg-gray-100 text-gray-600'
-                                                                }`}>
-                                                                #{kw.position}
-                                                            </span>
-                                                        </td>
-                                                        <td className="px-3 py-1.5 text-right text-indigo-600 font-semibold">
-                                                            {kw.volume.toLocaleString()}
-                                                        </td>
-                                                    </tr>
-                                                ))}
-                                            </tbody>
-                                        </table>
-                                        {domainData.keywords.length === 0 && (
-                                            <div className="text-center py-4 text-gray-500 text-sm">
-                                                No keywords found for this domain
-                                            </div>
-                                        )}
+                                        <SortableBrandTable keywords={domainData.keywords} />
                                     </div>
                                 )}
                             </div>
@@ -1067,6 +1021,123 @@ function BrandPowerCard({ data }: { data: BrandPowerData }) {
                     })
                 )}
             </div>
+        </div>
+    );
+}
+
+function SortableBrandTable({ keywords }: { keywords: BrandPowerData['domains'][0]['keywords'] }) {
+    const [sortConfig, setSortConfig] = React.useState<{ key: string; direction: 'asc' | 'desc' } | null>({ key: 'volume', direction: 'desc' });
+
+    const sortedKeywords = React.useMemo(() => {
+        if (!sortConfig) return keywords;
+        return [...keywords].sort((a, b) => {
+            const aValue = sortConfig.key === 'volume' ? a.volume :
+                sortConfig.key === 'position' ? a.position :
+                    sortConfig.key === 'keyword' ? a.keyword :
+                        sortConfig.key === 'location' ? a.location : 0;
+            const bValue = sortConfig.key === 'volume' ? b.volume :
+                sortConfig.key === 'position' ? b.position :
+                    sortConfig.key === 'keyword' ? b.keyword :
+                        sortConfig.key === 'location' ? b.location : 0;
+
+            if (aValue < bValue) return sortConfig.direction === 'asc' ? -1 : 1;
+            if (aValue > bValue) return sortConfig.direction === 'asc' ? 1 : -1;
+            return 0;
+        });
+    }, [keywords, sortConfig]);
+
+    const requestSort = (key: string) => {
+        let direction: 'asc' | 'desc' = 'asc';
+        if (sortConfig && sortConfig.key === key && sortConfig.direction === 'asc') {
+            direction = 'desc';
+        }
+        setSortConfig({ key, direction });
+    };
+
+    const getSortIcon = (name: string) => {
+        if (!sortConfig || sortConfig.key !== name) {
+            return <span className="text-gray-400 ml-1">↕</span>;
+        }
+        return <span className="text-indigo-600 ml-1">{sortConfig.direction === 'asc' ? '↑' : '↓'}</span>;
+    };
+
+    return (
+        <div className="overflow-x-auto">
+            <table className="min-w-full text-xs">
+                <thead>
+                    <tr className="bg-gray-50">
+                        <th
+                            className="px-3 py-2 text-left font-semibold text-gray-600 cursor-pointer hover:bg-gray-100"
+                            onClick={() => requestSort('keyword')}
+                        >
+                            Keyword {getSortIcon('keyword')}
+                        </th>
+                        <th
+                            className="px-3 py-2 text-center font-semibold text-gray-600 w-16 cursor-pointer hover:bg-gray-100"
+                            onClick={() => requestSort('location')}
+                        >
+                            Loc {getSortIcon('location')}
+                        </th>
+                        <th
+                            className="px-3 py-2 text-center font-semibold text-gray-600 w-16 cursor-pointer hover:bg-gray-100"
+                            onClick={() => requestSort('position')}
+                        >
+                            Pos {getSortIcon('position')}
+                        </th>
+                        <th
+                            className="px-3 py-2 text-right font-semibold text-gray-600 w-20 cursor-pointer hover:bg-gray-100"
+                            onClick={() => requestSort('volume')}
+                        >
+                            Vol {getSortIcon('volume')}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                    {sortedKeywords.map((kw, kwIdx) => (
+                        <tr key={`${kw.keyword}-${kwIdx}`} className="hover:bg-gray-50">
+                            <td className="px-3 py-1.5 font-medium text-gray-900">
+                                <a
+                                    href={`https://www.google.com/search?q=${encodeURIComponent(kw.keyword)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-indigo-600 hover:underline"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    {kw.keyword}
+                                </a>
+                            </td>
+                            <td className="px-3 py-1.5 text-center">
+                                <span className={`px-1.5 py-0.5 rounded text-xs ${kw.location === 'India' || kw.location === 'IN'
+                                    ? 'bg-orange-100 text-orange-700'
+                                    : 'bg-blue-100 text-blue-700'
+                                    }`}>
+                                    {kw.location === 'India' ? 'IN' : kw.location === 'United States' ? 'US' : kw.location}
+                                </span>
+                            </td>
+                            <td className="px-3 py-1.5 text-center">
+                                <span className={`px-2 py-0.5 rounded text-xs font-medium ${kw.position <= 3
+                                    ? 'bg-green-100 text-green-700'
+                                    : kw.position <= 10
+                                        ? 'bg-blue-100 text-blue-700'
+                                        : kw.position <= 30
+                                            ? 'bg-yellow-100 text-yellow-700'
+                                            : 'bg-gray-100 text-gray-600'
+                                    }`}>
+                                    #{kw.position}
+                                </span>
+                            </td>
+                            <td className="px-3 py-1.5 text-right text-indigo-600 font-semibold">
+                                {kw.volume.toLocaleString()}
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            {keywords.length === 0 && (
+                <div className="text-center py-4 text-gray-500 text-sm">
+                    No keywords found for this domain
+                </div>
+            )}
         </div>
     );
 }

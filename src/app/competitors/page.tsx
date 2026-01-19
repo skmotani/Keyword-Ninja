@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo, Suspense, useRef } from 'react';
+import React, { useState, useEffect, useMemo, Suspense, useRef } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import PageHeader from '@/components/PageHeader';
 import ExportButton, { ExportColumn } from '@/components/ExportButton';
@@ -213,6 +213,8 @@ function CompetitorsContent() {
   const [aiProfiles, setAiProfiles] = useState<Record<string, ClientAIProfile>>({});
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
+  const [enrichingId, setEnrichingId] = useState<string | null>(null);
   const [notification, setNotification] = useState<{ type: 'success' | 'error' | 'info'; message: string } | null>(null);
   const [recentlyAddedDomains, setRecentlyAddedDomains] = useState<Set<string>>(new Set());
 
@@ -495,6 +497,114 @@ function CompetitorsContent() {
     fetchData();
   }
 
+  async function handleEnrich(competitor: Competitor) {
+    setEnrichingId(competitor.id);
+    try {
+      const res = await fetch('/api/competitors/enrich', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ domain: competitor.domain }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+
+        // Update local state immediately for better UX
+        const updates: any = {};
+        if (data.logos && data.logos.length > 0) {
+          // STRICT OVERWRITE: We want exactly what the API returns (2 logos: Favicon + Best Scraped)
+          // Do not merge with old junk.
+          updates.logos = data.logos;
+        }
+
+        if (data.officialBrandName && (!competitor.officialBrandName || !competitor.brandNames || competitor.brandNames.length === 0)) {
+          updates.officialBrandName = data.officialBrandName;
+          // Also populate the 'brandNames' array if empty
+          if (!competitor.brandNames || competitor.brandNames.length === 0) {
+            updates.brandNames = [data.officialBrandName];
+          }
+        }
+
+        if (data.metaTitle) updates.metaTitle = data.metaTitle;
+        if (data.metaDescription) updates.metaDescription = data.metaDescription;
+
+        if (Object.keys(updates).length > 0) {
+          await updateCompetitor(competitor.id, updates);
+          setNotification({ type: 'success', message: `Enriched ${competitor.domain}` });
+        } else {
+          setNotification({ type: 'info', message: `No new info found for ${competitor.domain}` });
+        }
+      } else {
+        setNotification({ type: 'error', message: 'Enrichment failed' });
+      }
+    } catch (error) {
+      console.error('Enrichment error', error);
+      setNotification({ type: 'error', message: 'Enrichment failed' });
+    } finally {
+      setEnrichingId(null);
+    }
+  }
+
+  async function handleBulkEnrich() {
+    if (!confirm(`This will attempt to enrich ${filteredCompetitors.length} competitors. Continue?`)) return;
+
+    let processed = 0;
+    for (const competitor of filteredCompetitors) {
+      // Skip if already has logo (optional, but good for saving API calls)
+      // if (competitor.logos && competitor.logos.length > 0) continue; 
+
+      await handleEnrich(competitor);
+      processed++;
+      // Small delay to be nice to APIs
+      await new Promise(r => setTimeout(r, 500));
+    }
+    setNotification({ type: 'success', message: `Bulk enrichment completed. Processed ${processed} domains.` });
+  }
+
+  async function handleAutoLabelNames() {
+    if (!filteredCompetitors || filteredCompetitors.length === 0) {
+      setNotification({ type: 'error', message: "No competitors listed to label." });
+      return;
+    }
+
+    if (!confirm(`Auto-Label ${filteredCompetitors.length} competitors using AI? This will update their Official Brand Names.`)) return;
+
+    setLoading(true);
+    try {
+      const domains = filteredCompetitors.map(c => c.domain);
+      const res = await fetch('/api/competitors/bulk-brand-names', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ domains })
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setNotification({ type: 'success', message: `Successfully updated ${data.updatedCount} brand names!` });
+        fetchData();
+      } else {
+        const errData = await res.json().catch(() => ({}));
+        setNotification({ type: 'error', message: `Failed: ${errData.details || errData.error || 'Unknown error'}` });
+      }
+    } catch (e) {
+      console.error(e);
+      setNotification({ type: 'error', message: "Error connecting to AI service." });
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function updateCompetitor(id: string, updates: Partial<Competitor>) {
+    await fetch('/api/competitors', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, ...updates }),
+    });
+    fetchData();
+  }
+
+
+
   function startEdit(competitor: Competitor) {
     setEditingId(competitor.id);
     setEditFormData({
@@ -506,6 +616,16 @@ function CompetitorsContent() {
       competitionType: competitor.competitionType || '',
       competitorForProducts: competitor.competitorForProducts || [],
     });
+  }
+
+  function toggleExpandResult(id: string) {
+    const newSet = new Set(expandedRows);
+    if (newSet.has(id)) {
+      newSet.delete(id);
+    } else {
+      newSet.add(id);
+    }
+    setExpandedRows(newSet);
   }
 
   if (loading) {
@@ -623,8 +743,10 @@ function CompetitorsContent() {
                 data={filteredCompetitors}
                 columns={[
                   { key: 'clientCode', header: 'Client Code' },
+                  { key: 'logos', header: 'Logo' },
                   { key: 'name', header: 'Name' },
                   { key: 'domain', header: 'Domain' },
+                  { key: 'brandNames', header: 'Brand Names' },
                   { key: 'competitionType', header: 'Competition Type' },
                   { key: 'competitorForProducts', header: 'Competitor For Products' },
                   { key: 'importanceScore', header: 'Importance Score' },
@@ -634,7 +756,7 @@ function CompetitorsContent() {
                   { key: 'businessRelevanceCategory', header: 'Business Relevance' },
                   { key: 'source', header: 'Source' },
                   { key: 'isActive', header: 'Active' },
-                  { key: 'brandNames', header: 'Brand Names' },
+
                   { key: 'notes', header: 'Notes' },
                 ] as ExportColumn<Competitor>[]}
                 filename={`competitors-${clientFilter || 'all'}-${new Date().toISOString().split('T')[0]}`}
@@ -648,6 +770,20 @@ function CompetitorsContent() {
       <div className="bg-white rounded-lg shadow-sm border p-4 mb-6">
         <div className="flex justify-between items-center mb-3">
           <h2 className="text-sm font-semibold text-gray-700">Add New Competitor</h2>
+          <button
+            onClick={() => handleAutoLabelNames()}
+            className="mr-2 text-indigo-600 hover:text-indigo-800 text-xs font-medium border border-indigo-200 px-2 py-1 rounded bg-indigo-50"
+            title="Use AI to instantly guess brand names for all domains"
+          >
+            ✨ Auto-Label Names
+          </button>
+          <button
+            onClick={() => handleBulkEnrich()}
+            className="mr-2 text-purple-600 hover:text-purple-800 text-xs font-medium"
+            title="Fetch logos for all filtered competitors"
+          >
+            ✨ Enrich All
+          </button>
           <button
             onClick={() => setShowBulkImport(!showBulkImport)}
             className="text-indigo-600 hover:text-indigo-800 text-xs font-medium"
@@ -729,9 +865,11 @@ function CompetitorsContent() {
             <thead className="bg-gray-50 sticky top-0 z-10">
               <tr>
                 <th className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase w-8">#</th>
+                <th className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase w-12">Logo</th>
                 <th onClick={() => toggleSort('clientCode')} className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100 w-16">Client<SortIcon col="clientCode" /></th>
                 <th onClick={() => toggleSort('name')} className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100 w-20">Name<SortIcon col="name" /></th>
                 <th onClick={() => toggleSort('domain')} className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100 w-28">Domain<SortIcon col="domain" /></th>
+                <th className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase w-36" title="This col will be used to tag branded keyword traffic from domain keywords">Brand Names</th>
                 <th onClick={() => toggleSort('competitionType')} className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100 w-20">Comp.<SortIcon col="competitionType" /></th>
                 <th className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase w-24">Products</th>
                 <th onClick={() => toggleSort('importanceScore')} className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100 w-10">Scr<SortIcon col="importanceScore" /></th>
@@ -741,14 +879,14 @@ function CompetitorsContent() {
                 <th onClick={() => toggleSort('relevance')} className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100 w-24">Relevance<SortIcon col="relevance" /></th>
                 <th onClick={() => toggleSort('source')} className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100 w-14">Src<SortIcon col="source" /></th>
                 <th onClick={() => toggleSort('isActive')} className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100 w-10">Act<SortIcon col="isActive" /></th>
-                <th className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase w-36" title="This col will be used to tag branded keyword traffic from domain keywords">Brand Names</th>
+
                 <th className="px-1 py-2 text-left text-[9px] font-semibold text-gray-600 uppercase w-20">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-100">
               {filteredCompetitors.length === 0 ? (
                 <tr>
-                  <td colSpan={14} className="px-6 py-8 text-center text-gray-500">
+                  <td colSpan={16} className="px-6 py-8 text-center text-gray-500">
                     {clientFilter ? 'No competitors found for this client.' : 'No competitors yet.'}
                   </td>
                 </tr>
@@ -765,6 +903,7 @@ function CompetitorsContent() {
                     return (
                       <tr key={c.id} className="bg-yellow-50">
                         <td className="px-2 py-2 text-xs text-gray-400">{i + 1}</td>
+                        <td className="px-2 py-2"></td>
                         <td className="px-2 py-2">
                           <select
                             value={editFormData.clientCode}
@@ -788,6 +927,7 @@ function CompetitorsContent() {
                             className="w-full px-1 py-0.5 border rounded text-xs"
                           />
                         </td>
+                        <td className="px-2 py-2 text-xs text-gray-400">-</td>
                         <td className="px-2 py-2">
                           <select
                             value={editFormData.competitionType}
@@ -822,7 +962,7 @@ function CompetitorsContent() {
                           </select>
                         </td>
                         <td className="px-2 py-2"></td>
-                        <td className="px-2 py-2 text-xs text-gray-400">-</td>
+
                         <td className="px-2 py-2 space-x-1">
                           <button onClick={() => handleUpdate(c.id)} className="text-green-600 hover:underline text-xs">Save</button>
                           <button onClick={() => setEditingId(null)} className="text-gray-500 hover:underline text-xs">Cancel</button>
@@ -832,103 +972,202 @@ function CompetitorsContent() {
                   }
 
                   return (
-                    <tr key={c.id} className={`${!c.isActive ? 'bg-gray-50 opacity-60' : ''} ${isRecent ? 'bg-green-50 ring-1 ring-green-200 ring-inset' : ''} hover:bg-gray-50`}>
-                      <td className="px-2 py-2 text-xs text-gray-400">{i + 1}</td>
-                      <td className="px-2 py-2 text-xs text-gray-700 truncate max-w-24" title={getClientName(c.clientCode)}>{c.clientCode}</td>
-                      <td className="px-2 py-2 text-xs font-medium text-gray-900 truncate max-w-28" title={c.name}>{c.name}</td>
-                      <td className="px-2 py-2 text-xs">
-                        <a href={domainUrl} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline truncate block max-w-36" title={c.domain}>
-                          {c.domain}
-                        </a>
-                      </td>
-                      <td className="px-2 py-2">
-                        <TagSelector
-                          value={c.competitionType}
-                          options={competitionTypes}
-                          onChange={val => updateCompetitorField(c.id, 'competitionType', val)}
-                          onAddNew={val => setCompetitionTypes([...competitionTypes, val])}
-                          colorFn={getCompetitionTypeColor}
-                          placeholder="Set..."
-                        />
-                      </td>
-                      <td className="px-2 py-2">
-                        {c.competitorForProducts && c.competitorForProducts.length > 0 ? (
-                          <div className="flex flex-wrap gap-0.5">
-                            {c.competitorForProducts.slice(0, 2).map(p => (
-                              <span key={p} className="px-1 py-0.5 bg-purple-100 text-purple-700 text-[9px] rounded">{p}</span>
-                            ))}
-                            {c.competitorForProducts.length > 2 && (
-                              <span className="text-[9px] text-gray-400">+{c.competitorForProducts.length - 2}</span>
+                    <React.Fragment key={c.id}>
+                      <tr className={`${!c.isActive ? 'bg-gray-50 opacity-60' : ''} ${isRecent ? 'bg-green-50 ring-1 ring-green-200 ring-inset' : ''} hover:bg-gray-50`}>
+                        <td className="px-2 py-2 text-xs text-gray-400">
+                          <button onClick={() => toggleExpandResult(c.id)} className="hover:bg-gray-200 rounded p-0.5">
+                            {expandedRows.has(c.id) ? '▼' : '▶'}
+                          </button>
+                        </td>
+                        <td className="px-2 py-2">
+                          <div className="relative group">
+                            {c.logos && c.logos.length > 0 ? (
+                              <div className="flex items-center">
+                                <img src={c.logos[0]} alt={c.name} className="w-6 h-6 object-contain rounded-sm bg-white border" />
+                                {c.logos.length > 1 && (
+                                  <span className="ml-1 text-[9px] text-gray-500 bg-gray-100 px-0.5 rounded">+{c.logos.length - 1}</span>
+                                )}
+                              </div>
+                            ) : (
+                              <div className="w-6 h-6 bg-gray-100 rounded-sm border flex items-center justify-center text-[8px] text-gray-400">?</div>
                             )}
                           </div>
-                        ) : (
-                          <button
-                            onClick={() => startEdit(c)}
-                            className="text-[9px] text-gray-400 hover:text-gray-600"
-                          >
-                            + Add
-                          </button>
-                        )}
-                      </td>
-                      <td className="px-2 py-2 text-xs text-gray-600">
-                        {typeof c.importanceScore === 'number' ? c.importanceScore.toFixed(1) : <span className="text-gray-300">-</span>}
-                      </td>
-                      <td className="px-2 py-2 text-[10px] text-gray-600 truncate max-w-28" title={c.domainType}>
-                        {c.domainType || <span className="text-gray-300">-</span>}
-                      </td>
-                      <td className="px-2 py-2 text-[10px] text-gray-600">
-                        {c.pageIntent || <span className="text-gray-300">-</span>}
-                      </td>
-                      <td className="px-2 py-2 text-[10px]">
-                        {c.productMatchScoreValue !== undefined ? (
-                          <span className={getMatchBucketColor(c.productMatchScoreBucket || 'None')}>
-                            {Math.round(c.productMatchScoreValue * 100)}%
+                        </td>
+                        <td className="px-2 py-2 text-xs text-gray-700 truncate max-w-24" title={getClientName(c.clientCode)}>{c.clientCode}</td>
+                        <td className="px-2 py-2 text-xs font-medium text-gray-900 truncate max-w-28" title={c.name}>{c.name}</td>
+                        <td className="px-2 py-2 text-xs">
+                          <a href={domainUrl} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline truncate block max-w-36" title={c.domain}>
+                            {c.domain}
+                          </a>
+                        </td>
+                        <td className="px-2 py-2">
+                          <input
+                            type="text"
+                            defaultValue={(c.brandNames || []).join(', ')}
+                            placeholder="e.g., Meera, MI"
+                            onBlur={(e) => {
+                              const brands = e.target.value.split(',').map(b => b.trim()).filter(b => b.length > 0);
+                              if (JSON.stringify(brands) !== JSON.stringify(c.brandNames || [])) {
+                                updateCompetitorField(c.id, 'brandNames', brands);
+                              }
+                            }}
+                            className="w-full min-w-24 px-1.5 py-0.5 border rounded text-xs focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+                            title="Comma-separated brand names for tagging branded keyword traffic"
+                          />
+                        </td>
+                        <td className="px-2 py-2">
+                          <TagSelector
+                            value={c.competitionType}
+                            options={competitionTypes}
+                            onChange={val => updateCompetitorField(c.id, 'competitionType', val)}
+                            onAddNew={val => setCompetitionTypes([...competitionTypes, val])}
+                            colorFn={getCompetitionTypeColor}
+                            placeholder="Set..."
+                          />
+                        </td>
+                        <td className="px-2 py-2">
+                          {c.competitorForProducts && c.competitorForProducts.length > 0 ? (
+                            <div className="flex flex-wrap gap-0.5">
+                              {c.competitorForProducts.slice(0, 2).map(p => (
+                                <span key={p} className="px-1 py-0.5 bg-purple-100 text-purple-700 text-[9px] rounded">{p}</span>
+                              ))}
+                              {c.competitorForProducts.length > 2 && (
+                                <span className="text-[9px] text-gray-400">+{c.competitorForProducts.length - 2}</span>
+                              )}
+                            </div>
+                          ) : (
+                            <button
+                              onClick={() => startEdit(c)}
+                              className="text-[9px] text-gray-400 hover:text-gray-600"
+                            >
+                              + Add
+                            </button>
+                          )}
+                        </td>
+                        <td className="px-2 py-2 text-xs text-gray-600">
+                          {typeof c.importanceScore === 'number' ? c.importanceScore.toFixed(1) : <span className="text-gray-300">-</span>}
+                        </td>
+                        <td className="px-2 py-2 text-[10px] text-gray-600 truncate max-w-28" title={c.domainType}>
+                          {c.domainType || <span className="text-gray-300">-</span>}
+                        </td>
+                        <td className="px-2 py-2 text-[10px] text-gray-600">
+                          {c.pageIntent || <span className="text-gray-300">-</span>}
+                        </td>
+                        <td className="px-2 py-2 text-[10px]">
+                          {c.productMatchScoreValue !== undefined ? (
+                            <span className={getMatchBucketColor(c.productMatchScoreBucket || 'None')}>
+                              {Math.round(c.productMatchScoreValue * 100)}%
+                            </span>
+                          ) : <span className="text-gray-300">-</span>}
+                        </td>
+                        <td className="px-2 py-2">
+                          {c.businessRelevanceCategory ? (
+                            <button
+                              onClick={() => setExplanationModal(c)}
+                              className={`px-1.5 py-0.5 rounded text-[9px] font-medium cursor-pointer hover:opacity-80 ${getRelevanceBadgeColor(c.businessRelevanceCategory)}`}
+                            >
+                              {c.businessRelevanceCategory}
+                            </button>
+                          ) : <span className="text-gray-300 text-[10px]">-</span>}
+                        </td>
+                        <td className="px-2 py-2">
+                          <span className={`px-1.5 py-0.5 text-[9px] rounded ${c.source === 'Via SERP Search' ? 'bg-purple-100 text-purple-700' : 'bg-gray-100 text-gray-600'}`}>
+                            {c.source === 'Via SERP Search' ? 'SERP' : 'Manual'}
                           </span>
-                        ) : <span className="text-gray-300">-</span>}
-                      </td>
-                      <td className="px-2 py-2">
-                        {c.businessRelevanceCategory ? (
-                          <button
-                            onClick={() => setExplanationModal(c)}
-                            className={`px-1.5 py-0.5 rounded text-[9px] font-medium cursor-pointer hover:opacity-80 ${getRelevanceBadgeColor(c.businessRelevanceCategory)}`}
-                          >
-                            {c.businessRelevanceCategory}
+                        </td>
+                        <td className="px-2 py-2">
+                          <span className={`px-1.5 py-0.5 text-[9px] rounded ${c.isActive ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
+                            {c.isActive ? 'Yes' : 'No'}
+                          </span>
+                        </td>
+
+                        <td className="px-2 py-2 text-xs space-x-1 whitespace-nowrap">
+                          <button onClick={() => startEdit(c)} className="text-indigo-600 hover:underline">Edit</button>
+                          <button onClick={() => toggleActive(c)} className={c.isActive ? 'text-orange-600 hover:underline' : 'text-green-600 hover:underline'}>
+                            {c.isActive ? 'Arch' : 'Un'}
                           </button>
-                        ) : <span className="text-gray-300 text-[10px]">-</span>}
-                      </td>
-                      <td className="px-2 py-2">
-                        <span className={`px-1.5 py-0.5 text-[9px] rounded ${c.source === 'Via SERP Search' ? 'bg-purple-100 text-purple-700' : 'bg-gray-100 text-gray-600'}`}>
-                          {c.source === 'Via SERP Search' ? 'SERP' : 'Manual'}
-                        </span>
-                      </td>
-                      <td className="px-2 py-2">
-                        <span className={`px-1.5 py-0.5 text-[9px] rounded ${c.isActive ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
-                          {c.isActive ? 'Yes' : 'No'}
-                        </span>
-                      </td>
-                      <td className="px-2 py-2">
-                        <input
-                          type="text"
-                          defaultValue={(c.brandNames || []).join(', ')}
-                          placeholder="e.g., Meera, MI"
-                          onBlur={(e) => {
-                            const brands = e.target.value.split(',').map(b => b.trim()).filter(b => b.length > 0);
-                            if (JSON.stringify(brands) !== JSON.stringify(c.brandNames || [])) {
-                              updateCompetitorField(c.id, 'brandNames', brands);
-                            }
-                          }}
-                          className="w-full min-w-24 px-1.5 py-0.5 border rounded text-xs focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
-                          title="Comma-separated brand names for tagging branded keyword traffic"
-                        />
-                      </td>
-                      <td className="px-2 py-2 text-xs space-x-1 whitespace-nowrap">
-                        <button onClick={() => startEdit(c)} className="text-indigo-600 hover:underline">Edit</button>
-                        <button onClick={() => toggleActive(c)} className={c.isActive ? 'text-orange-600 hover:underline' : 'text-green-600 hover:underline'}>
-                          {c.isActive ? 'Arch' : 'Un'}
-                        </button>
-                        <button onClick={() => handleDelete(c.id)} className="text-red-600 hover:underline">Del</button>
-                      </td>
-                    </tr>
+                          <button onClick={() => handleDelete(c.id)} className="text-red-600 hover:underline">Del</button>
+                          <button
+                            onClick={() => handleEnrich(c)}
+                            disabled={enrichingId === c.id}
+                            className={`text-purple-600 hover:underline text-[10px] ${enrichingId === c.id ? 'opacity-50 cursor-wait' : ''}`}
+                            title="Fetch Logo & Brand Name"
+                          >
+                            {enrichingId === c.id ? '...' : 'Enrich'}
+                          </button>
+                        </td>
+                      </tr>
+                      {expandedRows.has(c.id) && (
+                        <tr className="bg-gray-50 text-xs">
+                          <td colSpan={2}></td>
+                          <td colSpan={14} className="p-3 border-b border-gray-100 shadow-inner">
+                            <div className="space-y-3">
+                              <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                  <label className="block text-[10px] uppercase text-gray-500 font-semibold mb-1">Official Brand Name</label>
+                                  <div className="flex gap-2">
+                                    <input
+                                      className="border rounded px-2 py-1 flex-1 text-sm text-gray-800"
+                                      defaultValue={c.officialBrandName}
+                                      onBlur={(e) => {
+                                        if (e.target.value !== c.officialBrandName) {
+                                          updateCompetitorField(c.id, 'officialBrandName', e.target.value);
+                                        }
+                                      }}
+                                      placeholder="Not set"
+                                    />
+                                    <div>
+                                      <label className="block text-[10px] uppercase text-gray-500 font-semibold mb-1">Logos Found</label>
+                                      <div className="flex gap-4 overflow-x-auto pb-2">
+                                        {c.logos && c.logos.map((logo, idx) => {
+                                          let source = 'Scraped';
+                                          if (logo.includes('google.com')) source = 'Favicon';
+
+                                          return (
+                                            <div key={idx} className="flex flex-col items-center gap-1 min-w-[70px]">
+                                              <a href={logo} target="_blank" rel="noopener noreferrer" className="h-16 w-16 bg-white border rounded flex items-center justify-center p-1 hover:border-indigo-400 shadow-sm relative group">
+                                                <img
+                                                  src={logo}
+                                                  className="max-h-full max-w-full object-contain"
+                                                  onError={(e) => {
+                                                    const img = e.currentTarget;
+                                                    const container = img.closest('.flex-col');
+                                                    if (container) (container as HTMLElement).style.display = 'none';
+                                                  }}
+                                                  onLoad={(e) => {
+                                                    const img = e.currentTarget;
+                                                    const sizeSpan = img.parentElement?.nextElementSibling?.nextElementSibling;
+                                                    if (sizeSpan) sizeSpan.textContent = `${img.naturalWidth}x${img.naturalHeight}`;
+                                                  }}
+                                                />
+                                              </a>
+                                              <span className="text-[9px] text-gray-500 font-medium">{source}</span>
+                                              <span className="text-[8px] text-gray-400 font-mono">...</span>
+                                            </div>
+                                          );
+                                        })}
+                                        {(!c.logos || c.logos.length === 0) && <span className="text-gray-400 italic">None</span>}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="space-y-3">
+                                  <div>
+                                    <label className="block text-[10px] uppercase text-gray-500 font-semibold mb-1">Page Title</label>
+                                    <p className="text-gray-800 bg-white border px-2 py-1.5 rounded text-xs">{c.metaTitle || <span className="text-gray-400 italic">Not fetched</span>}</p>
+                                  </div>
+                                  <div>
+                                    <label className="block text-[10px] uppercase text-gray-500 font-semibold mb-1">Meta Description</label>
+                                    <p className="text-gray-600 bg-white border px-2 py-1.5 rounded text-xs">{c.metaDescription || <span className="text-gray-400 italic">Not fetched</span>}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      )
+                      }
+                    </React.Fragment>
                   );
                 })
               )}
@@ -938,59 +1177,61 @@ function CompetitorsContent() {
       </div>
 
       {/* Explanation Modal */}
-      {explanationModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full overflow-hidden">
-            <div className="px-4 py-3 border-b flex justify-between items-center bg-purple-50">
-              <div>
-                <h3 className="text-sm font-semibold text-gray-900">Classification Details</h3>
-                <p className="text-xs text-gray-600 mt-0.5">{explanationModal.domain}</p>
+      {
+        explanationModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full overflow-hidden">
+              <div className="px-4 py-3 border-b flex justify-between items-center bg-purple-50">
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-900">Classification Details</h3>
+                  <p className="text-xs text-gray-600 mt-0.5">{explanationModal.domain}</p>
+                </div>
+                <button onClick={() => setExplanationModal(null)} className="text-gray-400 hover:text-gray-600 text-xl">&times;</button>
               </div>
-              <button onClick={() => setExplanationModal(null)} className="text-gray-400 hover:text-gray-600 text-xl">&times;</button>
-            </div>
-            <div className="p-4 space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-[10px] text-gray-500 uppercase">Domain Type</p>
-                  <p className="text-sm font-medium text-gray-800">{explanationModal.domainType || '-'}</p>
+              <div className="p-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-[10px] text-gray-500 uppercase">Domain Type</p>
+                    <p className="text-sm font-medium text-gray-800">{explanationModal.domainType || '-'}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-gray-500 uppercase">Page Intent</p>
+                    <p className="text-sm font-medium text-gray-800">{explanationModal.pageIntent || '-'}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-gray-500 uppercase">Product Match</p>
+                    <p className={`text-sm font-medium ${getMatchBucketColor(explanationModal.productMatchScoreBucket || 'None')}`}>
+                      {explanationModal.productMatchScoreValue !== undefined
+                        ? `${Math.round(explanationModal.productMatchScoreValue * 100)}% (${explanationModal.productMatchScoreBucket})`
+                        : '-'}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-gray-500 uppercase">Business Relevance</p>
+                    {explanationModal.businessRelevanceCategory ? (
+                      <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${getRelevanceBadgeColor(explanationModal.businessRelevanceCategory)}`}>
+                        {explanationModal.businessRelevanceCategory}
+                      </span>
+                    ) : <span className="text-gray-400">-</span>}
+                  </div>
                 </div>
-                <div>
-                  <p className="text-[10px] text-gray-500 uppercase">Page Intent</p>
-                  <p className="text-sm font-medium text-gray-800">{explanationModal.pageIntent || '-'}</p>
-                </div>
-                <div>
-                  <p className="text-[10px] text-gray-500 uppercase">Product Match</p>
-                  <p className={`text-sm font-medium ${getMatchBucketColor(explanationModal.productMatchScoreBucket || 'None')}`}>
-                    {explanationModal.productMatchScoreValue !== undefined
-                      ? `${Math.round(explanationModal.productMatchScoreValue * 100)}% (${explanationModal.productMatchScoreBucket})`
-                      : '-'}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-[10px] text-gray-500 uppercase">Business Relevance</p>
-                  {explanationModal.businessRelevanceCategory ? (
-                    <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${getRelevanceBadgeColor(explanationModal.businessRelevanceCategory)}`}>
-                      {explanationModal.businessRelevanceCategory}
-                    </span>
-                  ) : <span className="text-gray-400">-</span>}
-                </div>
+                {explanationModal.explanationSummary && (
+                  <div className="border-t pt-4">
+                    <p className="text-[10px] text-gray-500 uppercase mb-2">Why This Classification?</p>
+                    <p className="text-sm text-gray-700 leading-relaxed">{explanationModal.explanationSummary}</p>
+                  </div>
+                )}
               </div>
-              {explanationModal.explanationSummary && (
-                <div className="border-t pt-4">
-                  <p className="text-[10px] text-gray-500 uppercase mb-2">Why This Classification?</p>
-                  <p className="text-sm text-gray-700 leading-relaxed">{explanationModal.explanationSummary}</p>
-                </div>
-              )}
-            </div>
-            <div className="px-4 py-3 border-t bg-gray-50 flex justify-end">
-              <button onClick={() => setExplanationModal(null)} className="px-4 py-1.5 text-xs font-medium text-gray-700 bg-white border rounded hover:bg-gray-50">
-                Close
-              </button>
+              <div className="px-4 py-3 border-t bg-gray-50 flex justify-end">
+                <button onClick={() => setExplanationModal(null)} className="px-4 py-1.5 text-xs font-medium text-gray-700 bg-white border rounded hover:bg-gray-50">
+                  Close
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )
+      }
+    </div >
   );
 }
 

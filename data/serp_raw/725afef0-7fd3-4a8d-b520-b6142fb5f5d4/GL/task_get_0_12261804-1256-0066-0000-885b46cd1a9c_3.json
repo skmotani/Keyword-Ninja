@@ -1,0 +1,759 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0423 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261804-1256-0066-0000-885b46cd1a9c",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0334 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261804-1256-0066-0000-885b46cd1a9c"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Cone To Cone Winder",
+        "location_code": 2840,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "725afef0-7fd3-4a8d-b520-b6142fb5f5d4"
+      },
+      "result": [
+        {
+          "keyword": "Cone To Cone Winder",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2840,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=Cone%20To%20Cone%20Winder&hl=en&gl=US&ie=UTF-8&uule=w+CAIQIFISCQs2MuSEtepUEUK33kOSuTsc",
+          "datetime": "2025-12-26 16:04:25 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Traffic Cones & Barrels",
+                "url": "https://www.google.com/search?q=traffic+cones+%26+barrels+cone+to+cone+winder&hl=en&gl=US&shoprs=GAkqE2NvbmUgdG8gY29uZSB3aW5kZXIyGwgJEhdUcmFmZmljIENvbmVzICYgQmFycmVsc2AB&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKAF6BAgcEDs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=Cone+To+Cone+Winder+nearby&hl=en&gl=US&shoprs=GAMqE2NvbmUgdG8gY29uZSB3aW5kZXIyDAgDEgZOZWFyYnkYAliQ3SBgAQ&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKAJ6BAgcEDw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=cone+to+cone+winder+for+sale&hl=en&gl=US&shoprs=GBIqE2NvbmUgdG8gY29uZSB3aW5kZXIyDAgSEghGb3IgU2FsZWAB&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKAN6BAgcED0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "New",
+                "url": "https://www.google.com/search?q=new+Cone+To+Cone+Winder&hl=en&gl=US&shoprs=GAoqE2NvbmUgdG8gY29uZSB3aW5kZXIyBwgKEgNOZXdYkN0gYAE&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKAR6BAgcED4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Used",
+                "url": "https://www.google.com/search?q=used+Cone+To+Cone+Winder&hl=en&gl=US&shoprs=GAoqE2NvbmUgdG8gY29uZSB3aW5kZXIyCAgKEgRVc2VkWJDdIGAB&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKAV6BAgcED8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "On sale",
+                "url": "https://www.google.com/search?q=Cone+To+Cone+Winder+sale&hl=en&gl=US&shoprs=EgRKAhgBGAYqE2NvbmUgdG8gY29uZSB3aW5kZXIyEwgGEgdPbiBzYWxlGAIiBEoCGAFYkN0gYAE&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKAZ6BAgcEEA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Ice Cream Cones",
+                "url": "https://www.google.com/search?q=ice+cream+cones+cone+to+cone+winder&hl=en&gl=US&shoprs=GAkqE2NvbmUgdG8gY29uZSB3aW5kZXIyEwgJEg9JY2UgQ3JlYW0gQ29uZXNgAQ&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKAd6BAgcEEE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+cone+to+cone+winder&hl=en&gl=US&shoprs=GBIqE2NvbmUgdG8gY29uZSB3aW5kZXIyCwgSEgdSZXZpZXdzYAE&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKAh6BAgcEEI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+cone+to+cone+winder&hl=en&gl=US&shoprs=GBIqE2NvbmUgdG8gY29uZSB3aW5kZXIyBwgSEgNCdXlgAQ&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKAl6BAgcEEM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Diy",
+                "url": "https://www.google.com/search?q=diy+cone+to+cone+winder&hl=en&gl=US&shoprs=GBIqE2NvbmUgdG8gY29uZSB3aW5kZXIyBwgSEgNEaXlgAQ&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKAp6BAgcEEQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Black",
+                "url": "https://www.google.com/search?q=black+cone+to+cone+winder&hl=en&gl=US&shoprs=GAEqE2NvbmUgdG8gY29uZSB3aW5kZXIyFwgBEgVCbGFjazoMCNiM9QEQ5Yr1ATALWJDdIGAB&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKAt6BAgcEEU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Walmart",
+                "url": "https://www.google.com/search?q=walmart+cone+to+cone+winder&hl=en&gl=US&shoprs=GAIqE2NvbmUgdG8gY29uZSB3aW5kZXIyCwgCEgdXYWxtYXJ0WJDdIGAB&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKAx6BAgcEEY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "White",
+                "url": "https://www.google.com/search?q=white+cone+to+cone+winder&hl=en&gl=US&shoprs=GAEqE2NvbmUgdG8gY29uZSB3aW5kZXIyFwgBEgVXaGl0ZToMCNiM9QEQoYv1ATALWJDdIGAB&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKA16BAgcEEg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+cone+to+cone+winder&hl=en&gl=US&shoprs=GBIqE2NvbmUgdG8gY29uZSB3aW5kZXIyCQgSEgVQcmljZWAB&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKA56BAgcEEk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Blue",
+                "url": "https://www.google.com/search?q=blue+cone+to+cone+winder&hl=en&gl=US&shoprs=GAEqE2NvbmUgdG8gY29uZSB3aW5kZXIyFggBEgRCbHVlOgwI2Iz1ARDmivUBMAtYkN0gYAE&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKA96BAgcEEo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under $200",
+                "url": "https://www.google.com/search?q=Cone+To+Cone+Winder+under+$200&hl=en&gl=US&shoprs=Eg0SCxEAAAAAhNenQRgBGAUqE2NvbmUgdG8gY29uZSB3aW5kZXIyIwgFEgpVbmRlciAkMjAwGAIiDRILEQAAAACE16dBGAEqAhgBWJDdIGAB&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKBB6BAgcEEs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Red",
+                "url": "https://www.google.com/search?q=red+cone+to+cone+winder&hl=en&gl=US&shoprs=GAEqE2NvbmUgdG8gY29uZSB3aW5kZXIyFQgBEgNSZWQ6DAjYjPUBEOeK9QEwC1iQ3SBgAQ&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKBF6BAgcEEw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Lift Trucks & Tables",
+                "url": "https://www.google.com/search?q=lift+trucks+%26+tables+cone+to+cone+winder&hl=en&gl=US&shoprs=GAkqE2NvbmUgdG8gY29uZSB3aW5kZXIyGAgJEhRMaWZ0IFRydWNrcyAmIFRhYmxlc2AB&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKBJ6BAgcEE0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Orange",
+                "url": "https://www.google.com/search?q=orange+cone+to+cone+winder&hl=en&gl=US&shoprs=GAEqE2NvbmUgdG8gY29uZSB3aW5kZXIyGAgBEgZPcmFuZ2U6DAjYjPUBEO6K9QEwC1iQ3SBgAQ&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKBN6BAgcEE4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+cone+to+cone+winder&hl=en&gl=US&shoprs=GBIqE2NvbmUgdG8gY29uZSB3aW5kZXIyCggSEgZPbmxpbmVgAQ&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKBR6BAgcEE8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Large",
+                "url": "https://www.google.com/search?q=large+cone+to+cone+winder&hl=en&gl=US&shoprs=GBIqE2NvbmUgdG8gY29uZSB3aW5kZXIyCQgSEgVMYXJnZWAB&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKBV6BAgcEFA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Small",
+                "url": "https://www.google.com/search?q=small+cone+to+cone+winder&hl=en&gl=US&shoprs=GBIqE2NvbmUgdG8gY29uZSB3aW5kZXIyCQgSEgVTbWFsbGAB&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKBZ6BAgcEFE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "eBay",
+                "url": "https://www.google.com/search?q=ebay+cone+to+cone+winder&hl=en&gl=US&shoprs=GAIqE2NvbmUgdG8gY29uZSB3aW5kZXIyCAgCEgRlQmF5WJDdIGAB&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKBd6BAgcEFI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "WebstaurantStore.com",
+                "url": "https://www.google.com/search?q=webstaurantstore.com+cone+to+cone+winder&hl=en&gl=US&shoprs=GAIqE2NvbmUgdG8gY29uZSB3aW5kZXIyGAgCEhRXZWJzdGF1cmFudFN0b3JlLmNvbViQ3SBgAQ&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKBh6BAgcEFQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Waffle",
+                "url": "https://www.google.com/search?q=waffle+cone+to+cone+winder&hl=en&gl=US&shoprs=GAEqE2NvbmUgdG8gY29uZSB3aW5kZXIyFggBEgZXYWZmbGU6CgjTnDgQ15w4MAJYkN0gYAE&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKBl6BAgcEFY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Small business",
+                "url": "https://www.google.com/search?q=cone+to+cone+winder&hl=en&gl=US&shoprs=EgJqABgWKhNjb25lIHRvIGNvbmUgd2luZGVyMhwIFhIOU21hbGwgYnVzaW5lc3MiAmoAKgQQARgBYAE&sa=X&ved=2ahUKEwiD593d0NuRAxVjcGwGHUD6Cz4Qip4GKBp6BAgcEFc",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "images",
+            "organic",
+            "video",
+            "popular_products",
+            "related_searches"
+          ],
+          "se_results_count": 879000,
+          "pages_count": 5,
+          "items_count": 46,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 2,
+              "page": 1,
+              "domain": "www.dreamingrobots.com",
+              "title": "EEW Cone Winder",
+              "description": "Description. The EEW Cone Winder automatically winds yarn evenly onto cones, with a guided drum that moves the yarn back and forth for consistent results. Read more",
+              "url": "https://www.dreamingrobots.com/product/eew-cone-winder/?srsltid=AfmBOopRlCscsLDvIUu19Rdu6eQiQyq4WITrYArOr6FOqEftFd_bsJS8",
+              "breadcrumb": "https://www.dreamingrobots.com › product › eew-cone..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 3,
+              "page": 1,
+              "domain": "woolery.com",
+              "title": "Bobbin Winders & Cone Winders | Bobbin Winding",
+              "description": "The Woolery is your trusted source for bobbin winders and cone winders! From yarn cones to electric winders, we have many options for you to choose from.",
+              "url": "https://woolery.com/collections/bobbin-cone-winders?srsltid=AfmBOopoBxsf_J23C_xDyvyM8bKxPlK9RD4s7NwvdSovv1hEARHuJ0VU",
+              "breadcrumb": "https://woolery.com › collections › bobbin-cone-winders"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 5,
+              "page": 1,
+              "domain": "www.deanandbean.com",
+              "title": "Yarn Winder",
+              "description": "Yarn winding tool for use with automatic drill (not included) to wind your sock yarn onto cones for providing consistent tension when knitting on a CSM. Read more",
+              "url": "https://www.deanandbean.com/product/yarn-winder/3",
+              "breadcrumb": "https://www.deanandbean.com › product › yarn-winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 6,
+              "page": 1,
+              "domain": "csmsupplies.com",
+              "title": "Cone Winders & Cones",
+              "description": "This handy tool makes it simple to wind your yarn into the perfect cone for knitting on a circular knitting machine. Our cardboard cones are sturdy and ... Read more",
+              "url": "https://csmsupplies.com/product-category/cones/",
+              "breadcrumb": "https://csmsupplies.com › Store"
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "www.amazon.com",
+              "title": "Yarn Cone Winder",
+              "description": "Results · Consfly Yarn Cone Winder 3500 RPM Yarn Tube Winder with Automatic Pause & Length Detection, Cone Winding Machine for Crocheting & Sewing. Add to cart. Read more",
+              "url": "https://www.amazon.com/yarn-cone-winder/s?k=yarn+cone+winder",
+              "breadcrumb": "https://www.amazon.com › yarn-cone-winder › k=yarn..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "erlbacherknitting.com",
+              "title": "Drill Winder",
+              "description": "Here's an easy way to wind yarn onto a cone for machine knitting! Made to fit the cones we have available! Read more",
+              "url": "https://erlbacherknitting.com/product/drill-winder/",
+              "breadcrumb": "https://erlbacherknitting.com › ... › Parts and Accessories"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "joyceknitsandsews.com",
+              "title": "Speedy Cone Winder 2.0",
+              "description": "This cone holder design, with slide-on adapters and a universal cone retention knob, means that you can easily wind on three different styles of cones. Read more",
+              "url": "https://joyceknitsandsews.com/products/speedy-cone-winder-2-0",
+              "breadcrumb": "https://joyceknitsandsews.com › products › speedy-cone-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 12,
+              "page": 1,
+              "domain": "www.csmlove.com",
+              "title": "Yarn Winders",
+              "description": "Cones for this winder are sturdy, stackable and can load over 200grams of sock yarn on one convenient cone! KEEP LOOKING DOWN THE PAGE FOR MORE INFO. Read more",
+              "url": "https://www.csmlove.com/yarn-winders",
+              "breadcrumb": "https://www.csmlove.com › yarn-winders"
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "www.wonkyweaver.com",
+              "title": "EEW Cone Winder - easily winds yarn to cones",
+              "description": "The EEW Cone Winder automatically winds yarn evenly on cones. The drum guides the yarn back and forth on the cone. The tension system allows you to set the ... Read more",
+              "url": "https://www.wonkyweaver.com/product-page/eew-cone-winder",
+              "breadcrumb": "https://www.wonkyweaver.com › product-page › eew-c..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "elyknits.com",
+              "title": "The EEW Cone Winder- Unboxing and Initial Thoughts",
+              "description": "Jan 26, 2024 — The cone winder now retails at $259 and is in stock as of the time of writing. each block is ~1 inch for size reference. Read more",
+              "url": "https://elyknits.com/2024/01/26/the-eew-cone-winder-unboxing-and-initial-thoughts/",
+              "breadcrumb": "https://elyknits.com › 2024/01/26 › the-eew-cone-wind..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.ebay.com",
+              "title": "Cone Winder",
+              "description": "Yarn Cone Winder Adjustable Cone Thread Winder With Timing & Stranding Function. Brand New. $259.99$379.99. or Best Offer. Free delivery. Read more",
+              "url": "https://www.ebay.com/shop/cone-winder?_nkw=cone+winder",
+              "breadcrumb": "https://www.ebay.com › shop › cone-winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.kickstarter.com",
+              "title": "EEW Cone Winder by Maurice Ribble",
+              "description": "Oct 3, 2022 — The Electric Eel Wheel (EEW) Cone Winder is a tool to automatically wind yarn. It enables knitters, weavers, and other fiber artists to put ... Read more",
+              "url": "https://www.kickstarter.com/projects/dreamingrobots/eew-cone-winder",
+              "breadcrumb": "https://www.kickstarter.com › projects › dreamingrobots"
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.knititnow.com",
+              "title": "Silver Needles electric cone winder",
+              "description": "$275.00 (USD) ... The electric cone winder made by Silver Needles is wonderful for machine knitters. It makes it easy and fast to wind yarn onto cones. Using a ... Read more",
+              "url": "https://www.knititnow.com/marketplace/75/item/silver-needles-electric-cone-winder",
+              "breadcrumb": "https://www.knititnow.com › marketplace › item › silve..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.etsy.com",
+              "title": "Electrical Cone Wool/yarn Winder Cone to Cone Twister ...",
+              "description": "May include: Green metal electronic cone winder with a black winding wheel and a white ... May include: A metal wool twister frame with adjustable arms, measuring ... Read more",
+              "url": "https://www.etsy.com/listing/965828497/electrical-cone-woolyarn-winder-cone-to",
+              "breadcrumb": "https://www.etsy.com › listing › electrical-cone-woolyar..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.amazon.com",
+              "title": "DEHIWI Professional Adjustable Home Use Electric Yarn ...",
+              "description": "✪【Automatic Winder】: Cast iron base and reinforced nylon gears make it durable and ensure that the gear noise is kept to a minimum. Read more",
+              "url": "https://www.amazon.com/DEHIWI-Professional-Adjustable-Electric-Winder/dp/B0CHB74X8S",
+              "breadcrumb": "https://www.amazon.com › DEHIWI-Professional-Adju..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "www.creditocean.net",
+              "title": "The 5 Types of Cone Winding Machines Explained",
+              "description": "This guide explores the five main types of cone and yarn winding machines, their key features, applications, and benefits for enhanced efficiency in textile ... Read more",
+              "url": "https://www.creditocean.net/5-styles-of-cone-winding-machines",
+              "breadcrumb": "https://www.creditocean.net › 5-styles-of-cone-winding..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 24,
+              "page": 2,
+              "domain": "www.ramella.com",
+              "title": "Cone winder for fiber mills and textile laboratories",
+              "description": "Our cone winders can be of two types: Fitted with a mobile thread guide, slower and ideal for thicker yarns. Fitted with a grooved roller, very fast and ... Read more",
+              "url": "https://www.ramella.com/cone_winder.php",
+              "breadcrumb": "https://www.ramella.com › cone_winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "www.amazon.com",
+              "title": "DEHIWI Professional Adjustable Home Use Electric Yarn ...",
+              "description": "✪【Automatic Winder】: Cast iron base and reinforced nylon gears make it durable and ensure that the gear noise is kept to a minimum. Read more",
+              "url": "https://www.amazon.com/DEHIWI-Professional-Adjustable-Electric-Winder/dp/B0CHB74X8S",
+              "breadcrumb": "https://www.amazon.com › DEHIWI-Professional-Adju..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.dreamingrobots.com",
+              "title": "EEW Cone Winder",
+              "description": "The EEW Cone Winder automatically winds yarn evenly onto cones, with a guided drum that moves the yarn back and forth for consistent results. Key Features. Read more",
+              "url": "https://www.dreamingrobots.com/eew-cone-winder/?srsltid=AfmBOoptEhOsK1F8v1AWd3nvUOZBASWPP3xvrKJ89NHQJgDDWct3dgkE",
+              "breadcrumb": "https://www.dreamingrobots.com › eew-cone-winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "joyceknitsandsews.com",
+              "title": "Handy Cone Winder",
+              "description": "The Handy Cone Winder™ is a hand crank winder which uses a similar level winding mechanism as our Speedy Cone Winder 2.0™. It contains a cone holder ... Read more",
+              "url": "https://joyceknitsandsews.com/products/handy-cone-winder",
+              "breadcrumb": "https://joyceknitsandsews.com › products › handy-cone-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "taobhtuathtweeds.com",
+              "title": "Cone Winder",
+              "description": "Jun 7, 2014 — I was recently given an electric single head cone winder as sometimes you need to 'cut' bobbins down, especially for warping. Read more",
+              "url": "https://taobhtuathtweeds.com/2014/06/07/cone-winder/",
+              "breadcrumb": "https://taobhtuathtweeds.com › 2014/06/07 › cone-winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.reddit.com",
+              "title": "EEW Cone Winder for mid-gauge knitting : r/MachineKnitting",
+              "description": "Winding from the hank onto the cone can add tension to the yarn since it's hard to wind consistently without it, but once it's on a cone, it ... Read more",
+              "url": "https://www.reddit.com/r/MachineKnitting/comments/1f3dp3u/eew_cone_winder_for_midgauge_knitting/",
+              "breadcrumb": "2 comments  ·  1 year ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "cozywoolyyarn.ca",
+              "title": "Knitting Machine. Wool winder on cone",
+              "description": "This electric cone yarn winder offers variable speed control, allowing you to tailor the winding process to your preferences. Read more",
+              "url": "https://cozywoolyyarn.ca/collections/machine?srsltid=AfmBOoo6xF0ov6MFvHxojYsX2aEMqSgACleoN7CdMaH6Uo9Wzs-tM_qq",
+              "breadcrumb": "https://cozywoolyyarn.ca › collections › machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "talk.lansingmakersnetwork.org",
+              "title": "Yarn cone winder (I need to make an over engineered tube)",
+              "description": "Feb 11, 2025 — Cone winders are super expensive, I found out it's mostly because they have a lot of complicated math involved on the winding roller. I found 3d ... Read more",
+              "url": "https://talk.lansingmakersnetwork.org/t/yarn-cone-winder-i-need-to-make-an-over-engineered-tube/6282",
+              "breadcrumb": "https://talk.lansingmakersnetwork.org › yarn-cone-wind..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 34,
+              "page": 3,
+              "domain": "www.directindustry.com",
+              "title": "Cone to cone winding machine - All industrial manufacturers",
+              "description": "Electronic cone winding machine with grooved drum Designed to prepare dyeing packages, with yarn overfeeding, axial movement and electronic meter counter ... Read more",
+              "url": "https://www.directindustry.com/industrial-manufacturer/cone-to-cone-winding-machine-236425.html",
+              "breadcrumb": "https://www.directindustry.com › industrial-manufacturer"
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 35,
+              "page": 3,
+              "domain": "www.facebook.com",
+              "title": "Yarn Winder is a must have! 😍 Big Yarn Cone into a Yarn ...",
+              "description": "Each of the cones behind the machine have two full hanks wound on them and it takes just under 4 min to to wind 2 hanks directly from your swift ... Read more",
+              "url": "https://www.facebook.com/groups/412407128130943/posts/798721549499497/",
+              "breadcrumb": "4 months ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "Silver Needles Electric Cone Winder",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=3WE7LGuF0ss",
+              "breadcrumb": "13.6K+ views  ·  8 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.csmlove.com",
+              "title": "Yarn Winders-Electric",
+              "description": "A cone winder (or bobbin winder - see the bottom of this page) offers consistent support and yarn tension from beginning to end. Thus a cone or bobbin is often ... Read more",
+              "url": "https://www.csmlove.com/yarnwinders-electric",
+              "breadcrumb": "https://www.csmlove.com › yarnwinders-electric"
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "woolery.com",
+              "title": "Dreaming Robots Electric Eel Cone Winder",
+              "description": "The EEW Cone Winder automatically winds yarn evenly on cones. The drum guides the yarn back and forth on the cone. The tension system allows you to set the yarn ... Read more",
+              "url": "https://woolery.com/collections/new-arrivals/products/electric-eel-cone-winder?srsltid=AfmBOoqMeEmKq0i1SvFkNGbtriLcBPLeO0S4xMloDzFxGyrJSrIPlndZ",
+              "breadcrumb": "https://woolery.com › ... › Electric Eel Cone Winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "thread-winder.com",
+              "title": "High-Speed Yarn Cone To Cone Rewinding Machine",
+              "description": "GH018-B High-Speed Yarn Cone To Cone Rewinder Machine is used to wind yarns from cone to cone by using cylindrical or conic bobbins.",
+              "url": "http://thread-winder.com/12-high-speed-yarn-cone-to-cone-rewinding-machine.html",
+              "breadcrumb": "http://thread-winder.com › 12-high-speed-yarn-cone-to..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "csmsupplies.com",
+              "title": "Sunfire III Cone Winder",
+              "description": "Sunfire III Cone Winder. $250.00. The Sunfire cone winder was designed by Dave Huelster. He designed this cone winder in order for us to achieve the perfect ... Read more",
+              "url": "https://csmsupplies.com/cones/sunfire-iii-cone-winder/",
+              "breadcrumb": "https://csmsupplies.com › cones › sunfire-iii-cone-winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "CSM Yarn Cone Winder",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=md3EgO1FRO0",
+              "breadcrumb": "4.8K+ views  ·  5 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.taining.com.tw",
+              "title": "Auto Cone Winder, Thread Winding, and Yarn ...",
+              "description": "Our products include various professionally made fully-automated winding machines, fully-automated cone winders, high-speed winding machines, combiners. Read more",
+              "url": "https://www.taining.com.tw/textile-winding-machine",
+              "breadcrumb": "https://www.taining.com.tw › Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "www.ekracargo.com",
+              "title": "Cone-to-Cone Winding: Boost Your Production",
+              "description": "A cone-to-cone winding machine is a device used in the textile industry to transfer yarn from one cone to another. Read more",
+              "url": "https://www.ekracargo.com/blog/cone-to-cone-winding-machines",
+              "breadcrumb": "https://www.ekracargo.com › blog › cone-to-cone-windi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 45,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "Ball Winders v Cone Winders & Preparing Hand Knit Yarns ...",
+              "description": "In this video I wanted to talk about yarn winders and rewinding yarn for machine knitting.",
+              "url": "https://www.youtube.com/watch?v=xQHKZ02ZO14",
+              "breadcrumb": "3.5K+ views  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 46,
+              "page": 4,
+              "domain": "www.machinio.com",
+              "title": "Used Cone Winders for sale. Appleton equipment & more",
+              "description": "Used cone winders · 78\" Wide Parkinson Turret Winder, 3 Position, 24\" Diameter · 120\" APPLETON Automatic Core Cutter, Model A301 · Winding, Cone to cone winder, ... Read more",
+              "url": "https://www.machinio.com/cat/cone-winders",
+              "breadcrumb": "https://www.machinio.com › cat › cone-winders"
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "www.etsy.com",
+              "title": "Cone Winder",
+              "description": "Check out our cone winder selection for the very best in unique or custom, handmade pieces from our tools shops.",
+              "url": "https://www.etsy.com/market/cone_winder",
+              "breadcrumb": "https://www.etsy.com › market › cone_winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.facebook.com",
+              "title": "Here is the EWW Cone Winder in action",
+              "description": "Here is the EWW Cone Winder in action Erlbacher Knitting Machine Group Page members discuss the EWW Cone Winder's effectiveness in coning ...",
+              "url": "https://www.facebook.com/groups/erlbacherknitting/posts/1930315080879323/",
+              "breadcrumb": "6 comments  ·  1 month ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.exapro.com",
+              "title": "Spinning - used winders",
+              "description": "Hank to Cone Winders: Convert yarn from hanks to cones, facilitating easier handling and processing. The Exapro Advantage: Buying & Selling Winding Machines. Read more",
+              "url": "https://www.exapro.com/textile-machines-texapro-spinning-winders-c530/",
+              "breadcrumb": "https://www.exapro.com › textile-machines-texapro-spi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "en.wikipedia.org",
+              "title": "AIM-9 Sidewinder",
+              "description": "The AIM-9 Sidewinder is a short-range air-to-air missile. It entered service with the United States Navy in 1956 and the Air Force in 1964, ... Read more",
+              "url": "https://en.wikipedia.org/wiki/AIM-9_Sidewinder",
+              "breadcrumb": "https://en.wikipedia.org › wiki › AIM-9_Sidewinder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "www.xhtstmc.com",
+              "title": "Hard Cone Coning Winder / Winding Machine",
+              "description": "Yarn cone winding machine is used to wind good yarn cone shape for knitting,warping, weaving, dyeing,bleaching,etc. It is suitable for cotton yarn,wool yarn, ... Read more",
+              "url": "https://www.xhtstmc.com/ts008m-high-speed-hard-winding-machine/hard-cone-coning-winder-winding-machine.html",
+              "breadcrumb": "https://www.xhtstmc.com › hard-cone-coning-winder-w..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.pledgebox.com",
+              "title": "Choosing Your Perfect Yarn Cone Winder",
+              "description": "Nov 5, 2025 — Tired of tangled yarn? Our guide explains how a yarn cone winder works, compares the top types, and helps you choose the best model for your ...",
+              "url": "https://www.pledgebox.com/post/yarn-cone-winder",
+              "breadcrumb": "https://www.pledgebox.com › post › yarn-cone-winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.meera.ind.in",
+              "title": "Cone To Cone Winder Manufacturer from Surat",
+              "description": "Manufacturer of Cone To Cone Winder offered by Meera Industries Limited, Surat, Gujarat.",
+              "url": "https://www.meera.ind.in/cone-to-cone-winder.html",
+              "breadcrumb": "https://www.meera.ind.in › cone-to-cone-winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "www.wsf-tex.com",
+              "title": "Winding Machine in Textile, Yarn Winder Manufacturer | WSF",
+              "description": "WSF200B Precision Winder-Cone to Cone · WSF618B-01 Precision Winder · WSF618B-02 Precision Winder · Semi-automatic One Spindle One Head Winding Machine · Semi- ... Read more",
+              "url": "http://www.wsf-tex.com/",
+              "breadcrumb": "http://www.wsf-tex.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 56,
+              "page": 5,
+              "domain": "www.reddit.com",
+              "title": "fine yarn cone winder : r/MachineKnitting",
+              "description": "I have a Sunfire cone winder that I am very happy with but it isn't electric. Depending on how much yarn you have to wind that may be a factor. Read more",
+              "url": "https://www.reddit.com/r/MachineKnitting/comments/1ciene2/fine_yarn_cone_winder/",
+              "breadcrumb": "10+ comments  ·  1 year ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 57,
+              "page": 5,
+              "domain": "haguedirect.co.uk",
+              "title": "Yarn Winders & Twisters",
+              "description": "Shop By Price · Hague PDB 125G Electric Yarn Winder · Hague PDB 250G Electric Yarn Winder · Large Jumbo Cone Winder · Hague Twisting Yarn Stack · Hague Spare Bobbin ... Read more",
+              "url": "https://haguedirect.co.uk/yarn-winders/",
+              "breadcrumb": "https://haguedirect.co.uk › yarn-winders"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

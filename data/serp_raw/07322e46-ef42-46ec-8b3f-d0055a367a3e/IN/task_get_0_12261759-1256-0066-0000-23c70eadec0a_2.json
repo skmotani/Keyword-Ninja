@@ -1,0 +1,785 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0389 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-23c70eadec0a",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0302 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-23c70eadec0a"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Yarn Twisting Machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "Yarn Twisting Machine",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=Yarn%20Twisting%20Machine&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:59:18 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+yarn+twisting+machine&hl=en&gl=IN&shoprs=GBIqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIJCBISBVByaWNlYAE&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKAF6BAgdEDk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "New",
+                "url": "https://www.google.com/search?q=new+Yarn+Twisting+Machine&hl=en&gl=IN&shoprs=GAoqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIHCAoSA05ld1jN8CBgAQ&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKAJ6BAgdEDo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Used",
+                "url": "https://www.google.com/search?q=used+Yarn+Twisting+Machine&hl=en&gl=IN&shoprs=GAoqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIICAoSBFVzZWRYzfAgYAE&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKAN6BAgdEDs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+yarn+twisting+machine&hl=en&gl=IN&shoprs=GBIqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIKCBISBk9ubGluZWAB&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKAR6BAgdEDw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=Yarn+Twisting+Machine+nearby&hl=en&gl=IN&shoprs=GAMqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIMCAMSBk5lYXJieRgCWM3wIGAB&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKAV6BAgdED0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+yarn+twisting+machine&hl=en&gl=IN&shoprs=GBIqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIHCBISA0J1eWAB&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKAZ6BAgdED4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=yarn+twisting+machine+for+sale&hl=en&gl=IN&shoprs=GBIqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIMCBISCEZvciBTYWxlYAE&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKAd6BAgdED8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹80,000",
+                "url": "https://www.google.com/search?q=Yarn+Twisting+Machine+under+80000&hl=en&gl=IN&shoprs=Eg0SCxEAAAAAX6AyQhgBGAUqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIoCAUSD1VuZGVyIOKCuTgwLDAwMBgCIg0SCxEAAAAAX6AyQhgBKgIYAVjN8CBgAQ&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKAh6BAgdEEA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Knitting Looms",
+                "url": "https://www.google.com/search?q=knitting+looms+yarn+twisting+machine&hl=en&gl=IN&shoprs=GAkqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTISCAkSDktuaXR0aW5nIExvb21zYAE&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKAl6BAgdEEE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "White",
+                "url": "https://www.google.com/search?q=white+yarn+twisting+machine&hl=en&gl=IN&shoprs=GAEqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIXCAESBVdoaXRlOgwI2Iz1ARChi_UBMAtYzfAgYAE&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKAp6BAgdEEI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Usa",
+                "url": "https://www.google.com/search?q=usa+yarn+twisting+machine&hl=en&gl=IN&shoprs=GBIqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIHCBISA1VzYWAB&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKAt6BAgdEEM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Images",
+                "url": "https://www.google.com/search?q=images+yarn+twisting+machine&hl=en&gl=IN&shoprs=GBIqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIKCBISBkltYWdlc2AB&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKAx6BAgdEEQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Rent",
+                "url": "https://www.google.com/search?q=rent+yarn+twisting+machine&hl=en&gl=IN&shoprs=GBIqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIICBISBFJlbnRgAQ&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKA16BAgdEEU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Size",
+                "url": "https://www.google.com/search?q=size+yarn+twisting+machine&hl=en&gl=IN&shoprs=GBIqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIICBISBFNpemVgAQ&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKA56BAgdEEY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+yarn+twisting+machine&hl=en&gl=IN&shoprs=GBIqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTILCBISB1Jldmlld3NgAQ&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKA96BAgdEEc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Free",
+                "url": "https://www.google.com/search?q=free+yarn+twisting+machine&hl=en&gl=IN&shoprs=GBIqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIICBISBEZyZWVgAQ&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKBB6BAgdEEg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Clothes",
+                "url": "https://www.google.com/search?q=clothes+yarn+twisting+machine&hl=en&gl=IN&shoprs=GBIqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTILCBISB0Nsb3RoZXNgAQ&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKBF6BAgdEEk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Sewing Machines",
+                "url": "https://www.google.com/search?q=sewing+machines+yarn+twisting+machine&hl=en&gl=IN&shoprs=GAkqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTITCAkSD1Nld2luZyBNYWNoaW5lc2AB&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKBJ6BAgdEEo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tradeindia.com",
+                "url": "https://www.google.com/search?q=tradeindia.com+yarn+twisting+machine&hl=en&gl=IN&shoprs=GAIqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTISCAISDlRyYWRlaW5kaWEuY29tWM3wIGAB&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKBN6BAgdEEs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Blue",
+                "url": "https://www.google.com/search?q=blue+yarn+twisting+machine&hl=en&gl=IN&shoprs=GAEqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIWCAESBEJsdWU6DAjYjPUBEOaK9QEwC1jN8CBgAQ&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKBR6BAgdEEw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Dress",
+                "url": "https://www.google.com/search?q=dress+yarn+twisting+machine&hl=en&gl=IN&shoprs=GBIqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIJCBISBURyZXNzYAE&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKBV6BAgdEE0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Pink",
+                "url": "https://www.google.com/search?q=pink+yarn+twisting+machine&hl=en&gl=IN&shoprs=GAEqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIWCAESBFBpbms6DAjYjPUBEOmK9QEwC1jN8CBgAQ&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKBZ6BAgdEE4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Amazon.in",
+                "url": "https://www.google.com/search?q=amazon.in+yarn+twisting+machine&hl=en&gl=IN&shoprs=GAIqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTINCAISCUFtYXpvbi5pbljN8CBgAQ&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKBd6BAgdEE8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Grey",
+                "url": "https://www.google.com/search?q=grey+yarn+twisting+machine&hl=en&gl=IN&shoprs=GAEqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIWCAESBEdyZXk6DAjYjPUBEOqK9QEwC1jN8CBgAQ&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKBh6BAgdEFA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Candyfloss Machines",
+                "url": "https://www.google.com/search?q=candyfloss+machines+yarn+twisting+machine&hl=en&gl=IN&shoprs=GAkqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIXCAkSE0NhbmR5Zmxvc3MgTWFjaGluZXNgAQ&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKBl6BAgdEFE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Green",
+                "url": "https://www.google.com/search?q=green+yarn+twisting+machine&hl=en&gl=IN&shoprs=GAEqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIXCAESBUdyZWVuOgwI2Iz1ARDoivUBMAtYzfAgYAE&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKBp6BAgdEFI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Crafts & Hobbies",
+                "url": "https://www.google.com/search?q=crafts+%26+hobbies+yarn+twisting+machine&hl=en&gl=IN&shoprs=GAkqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIUCAkSEENyYWZ0cyAmIEhvYmJpZXNgAQ&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKBt6BAgdEFM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Etsy",
+                "url": "https://www.google.com/search?q=etsy+yarn+twisting+machine&hl=en&gl=IN&shoprs=GAIqFXlhcm4gdHdpc3RpbmcgbWFjaGluZTIICAISBEV0c3lYzfAgYAE&sa=X&ved=2ahUKEwja8prMz9uRAxUD2DgGHRMNJFEQip4GKBx6BAgdEFQ",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "organic",
+            "video",
+            "popular_products",
+            "images",
+            "people_also_ask",
+            "related_searches"
+          ],
+          "se_results_count": 1940000,
+          "pages_count": 5,
+          "items_count": 47,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 1,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Yarn Twisting Machine at Best Price in India",
+              "description": "Yarn Twisting Machine · Tfo Twisting Machine, Production Capacity: More than 700 m/min · Alfa Spun Yarn Twisting Machine · Mild Steel Yarn Ring Twister Machine, ... Read more",
+              "url": "https://dir.indiamart.com/impcat/yarn-twisting-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Spinning Machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 4,
+              "page": 1,
+              "domain": "www.tfotwister.com",
+              "title": "Double Deck TFO Twister Manufacturer from Surat",
+              "description": "Double Deck TFO Twister gives optimum utilization of the valuable space. Suitable for medium to fine count range of Cotton, Polyester, Blended and PVT yarn. Read more",
+              "url": "https://www.tfotwister.com/tfo-twisting-machine.html",
+              "breadcrumb": "https://www.tfotwister.com › tfo-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 6,
+              "page": 1,
+              "domain": "meeraind.com",
+              "title": "Filament Yarn Twister Machine by Meera Industries",
+              "description": "Advanced filament yarn twisting technology for polyester, nylon and technical yarns. Reliable performance for textile manufacturing.",
+              "url": "https://meeraind.com/product/filament-yarn-twister",
+              "breadcrumb": "https://meeraind.com › product › filament-yarn-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "www.rifatextile.com",
+              "title": "Textile Twisting Machine",
+              "description": "A: The machine works by feeding yarn through a series of rollers and then twisting it around itself. The twist can be adjusted to create different effects in ... Read more",
+              "url": "https://www.rifatextile.com/textile-twisting-machine/",
+              "breadcrumb": "https://www.rifatextile.com › textile-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.tradeindia.com",
+              "title": "Yarn Twisting Machine at Best Price from Manufacturers, ...",
+              "description": "Doubling Yarn Twister Machine - Metal, 220-440 Volt | Enhanced Softness, Moisture Absorption, Increased Tensile Strength, Reduced Hairiness, Improved Yarn ... Read more",
+              "url": "https://www.tradeindia.com/manufacturers/yarn-twisting-machines.html",
+              "breadcrumb": "https://www.tradeindia.com › manufacturers › yarn-twis..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "saviospa.com",
+              "title": "Yarn twisting machines - Savio",
+              "description": "Savio offers yarn twisting machines that enhance the strength and twisting characteristics required to expand the performance of the end product. Read more",
+              "url": "https://saviospa.com/en/yarn-spinning/two-for-one-twisting-machines",
+              "breadcrumb": "https://saviospa.com › Home › Yarn spinning"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "www.kristeel.com",
+              "title": "Top Textile Machinery Manufacturers and Suppliers in India",
+              "description": "Twisting machines, which are suitable from Denier range 500 D to 5000 D are in operation. Machines are made to customer's specification and have following ... Read more",
+              "url": "https://www.kristeel.com/textile-machinery/?srsltid=AfmBOorTAAhW_N_pY5kjMeszZ2z1LCfxRqv2-j276di_ExyWpVBVrbuF",
+              "breadcrumb": "https://www.kristeel.com › textile-machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 12,
+              "page": 1,
+              "domain": "www.weavetech.com",
+              "title": "Filament Yarn TFO Twister Machine - Weavetech",
+              "description": "Our Twister Machines are built for superior performance, featuring advanced technology that ensures optimal yarn quality and productivity. With customizable ... Read more",
+              "url": "https://www.weavetech.com/twisting-machines/filament-yarn-tfo-twister-machine/",
+              "breadcrumb": "https://www.weavetech.com › Twisting Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "www.akiropes.com",
+              "title": "Ply Yarn Twister Machine Manufacturer - Akiropes",
+              "description": "The Ply Yarn Twister Machine comes with a twisting mechanism that effectively mixes yarn strands to produce tightly twisted ply yarns, all while operating ... Read more",
+              "url": "https://www.akiropes.com/ply-yarn-twister.php",
+              "breadcrumb": "https://www.akiropes.com › ply-yarn-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "www.meera.ind.in",
+              "title": "Spun Yarn Twister - Wool Carpet Yarn Twisting Machines ...",
+              "description": "Machine Type: Automatic ; Type: Polyester Cotton, Acrylic, Wool or any Spun/ Blended Yarn; Brand: Meera; Pot Size: 70-290 mm; Count Range: 2/100 - 2/1 ... Read more",
+              "url": "https://www.meera.ind.in/spun-yarn-twister.html",
+              "breadcrumb": "https://www.meera.ind.in › spun-yarn-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.agteks.com",
+              "title": "Twisting Machine Technology",
+              "description": "Twisting Machines are machines that fold and twist more than one yarn and they are similar to doubling machines. Read more",
+              "url": "https://www.agteks.com/twisting-machine-technology/",
+              "breadcrumb": "https://www.agteks.com › twisting-machine-technology"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.prtexpro.in",
+              "title": "Yarn Twisting Machine - SD E Series Spun Yarn TFO ...",
+              "description": "Spun Yarn Tfo Twister Machine · Machine Type: Automatic · Yarn Speed Max: 70 m/min · Width: 600 mm · Tension Device: Capsule Type · Spindle Pitch: 208 mm · No. Read more",
+              "url": "https://www.prtexpro.in/yarn-twisting-machine.html",
+              "breadcrumb": "https://www.prtexpro.in › yarn-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "dir.indiamart.com",
+              "title": "Twisting Machines at Best Price in India",
+              "description": "Twisting Machines ; Semi Automatic Twisting Machine · Semi Automatic Twisting Machine. ₹ 11,00,000 ; JSKTEXMECH Yarn Double Twisting Machines · JSKTEXMECH Yarn ... Read more",
+              "url": "https://dir.indiamart.com/impcat/twisting-machines.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Spinning Machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "saurer.com",
+              "title": "Two-for-one twisting machine CompactTwister",
+              "description": "Two-for-one twisting machine · Delivery speeds up to 120 m/min. · Amount of twist can be set at any level · Flanged-bobbin form, traverse and traverse variation ... Read more",
+              "url": "https://saurer.com/en/products/machines/twisting-and-cabling/staple/compacttwister",
+              "breadcrumb": "https://saurer.com › twisting-and-cabling › staple › com..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.kviconline.gov.in",
+              "title": "YARN TWISTING",
+              "description": "The method of twisting two or more single yarns is called doubling or folding or ply twisting. Such yarns are designated as doubled yarn, folded yarn or plied ... Read more",
+              "url": "https://www.kviconline.gov.in/pmegp/pmegpweb/docs/commonprojectprofile/YarnTwisting.pdf",
+              "breadcrumb": "https://www.kviconline.gov.in › pmegpweb › docs"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.alconetex.com",
+              "title": "TFO Machine & Yarn Twisting Machine",
+              "description": "A TFO Machine is a special type of twisting machine designed to produce twisted yarn efficiently. It gets its name \"Two-for-One\" because it can twist two ... Read more",
+              "url": "https://www.alconetex.com/products.php",
+              "breadcrumb": "https://www.alconetex.com › products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "meeraind.com",
+              "title": "Spun Staple Yarn Twister: Two For One TFO Technology",
+              "description": "Two-For-One (TFO) spun twisting inserts two twists for every spindle revolution, letting you ply singles into balanced yarn at higher speed. Read more",
+              "url": "https://meeraind.com/product/spun-staple-yarn-twister",
+              "breadcrumb": "https://meeraind.com › product › spun-staple-yarn-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "www.alibaba.com",
+              "title": "Yarn Twisting Machine - 3000 RPM, Ring Spinning",
+              "description": "Discover high-speed yarn twisting machines with PLC control & spindle speeds up to 14000r/min. Ideal for cotton, wool, polyester.",
+              "url": "https://www.alibaba.com/showroom/yarn-twisting-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Spinning Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 25,
+              "page": 3,
+              "domain": "www.justdial.com",
+              "title": "Yarn Twisting Machine in Coimbatore at ₹ 20000",
+              "description": "Yarn Twisting Machine · Material Steel and Aluminum · Size 1200mm x 800mm x 1500mm · Twist Type S/Z Twist · Power 1.5 kW · Voltage 220V · Speed 300 RPM ... Read more",
+              "url": "https://www.justdial.com/jdmart/Coimbatore/Yarn-Twisting-Machine/pid-2020456729/0422P422STD3100099",
+              "breadcrumb": "https://www.justdial.com › Coimbatore › pid-2020456729"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "www.exportersindia.com",
+              "title": "Yarn Twisting Machine at Best Price from Manufacturers ...",
+              "description": "Models Available : Single-sided And Double-sided. Type : Yarn Twister Machine. Usage/Application : Twisting Two Or More Yarn Strands To Produce ... Read more",
+              "url": "https://www.exportersindia.com/indian-suppliers/yarn-twisting-machine.htm",
+              "breadcrumb": "https://www.exportersindia.com › indian-suppliers › yarn..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "Saurer CompactTwister two-for-one twisting machine",
+              "description": "The CompactTwister from Saurer has been established in the market for over 25 years. The latest generation, the series 8, once again sets ...",
+              "url": "https://www.youtube.com/watch?v=n6G8bb76YDQ",
+              "breadcrumb": "32K+ views  ·  5 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.weavetech.com",
+              "title": "Twisting Machine | Spun Yarn Twister - S-Series - Weavetech",
+              "description": "Imparting Twists on fine to medium count Spun yarns. Technology. Takeup Speed: Up to 50 mtrs/min (Mech). Spindle Speed: Up to 11000 RPM ... Read more",
+              "url": "https://www.weavetech.com/twisting-machines/spun-yarn-tfo-twister-machine/s200-s-series/",
+              "breadcrumb": "https://www.weavetech.com › s200-s-series"
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.tradeindia.com",
+              "title": "Yarn Twisting Machines In Kolkata (Calcutta)",
+              "description": "The range of offered yarn twisting machines products in Kolkata is impressive with a total of 43 products currently available. Read more",
+              "url": "https://www.tradeindia.com/kolkata/yarn-twisting-machines-city-200579.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › Yarn twisting machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.conewinding.com",
+              "title": "Two For One Twisting Machine For Cotton Yarn",
+              "description": "Type of Machine: Bag Making Machine ; Machine Material: Mild Steel; Frequency: 50 Hz; Phase: Single Phase; Power Source: Electric; Voltage: 240V. Read more",
+              "url": "https://www.conewinding.com/yarn-twisting-machine.html",
+              "breadcrumb": "https://www.conewinding.com › yarn-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "saurer.com",
+              "title": "Volkmann Systems staple fibre yarn twisting",
+              "description": "Highest twist quality due to high quality yarn guiding elements · Minimised friction losses due to optimised drive and bearing technology · Optimised energy ... Read more",
+              "url": "https://saurer.com/en/systems/volkmann-systems/volkmann-systems-staple-fibre-yarn-twisting",
+              "breadcrumb": "https://saurer.com › systems › volkmann-systems-staple..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "www.aakashtextileengineers.com",
+              "title": "Thread Twister Machine Manufacturer from Surat",
+              "description": "Filament Yarn Tfo Twister Machine · Operation Mode: Automatic · Usage/Application: Industrial Use · Capacity(kg/hr): 100 kg/hr · Material: Mild Steel · Country of ... Read more",
+              "url": "https://www.aakashtextileengineers.com/yarn-twisting-machine.html",
+              "breadcrumb": "https://www.aakashtextileengineers.com › yarn-twisting-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "www.aalidhratexpro.in",
+              "title": "Yarn Twister Machine",
+              "description": "Aalidhra Texpro Engineers Pvt. Ltd. is processing a wide range of premium quality yarn twister machines. These are used in textile industries for twisting ... Read more",
+              "url": "https://www.aalidhratexpro.in/yarn-twister-machine.html",
+              "breadcrumb": "https://www.aalidhratexpro.in › yarn-twister-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 35,
+              "page": 4,
+              "domain": "www.agteks.com",
+              "title": "Twisting Machines",
+              "description": "You can perform twisting and covering processes with your technical yarns such as carbon, glass, metal, aramid etc. It is also possible to use any type of yarn. Read more",
+              "url": "https://www.agteks.com/twisting-machines/",
+              "breadcrumb": "https://www.agteks.com › twisting-machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "dir.indiamart.com",
+              "title": "Yarn Twisting Machine in Coimbatore, Tamil Nadu",
+              "description": "These spinning machines are used for twisting different types of fibers to bind them into strong and long yarn. We can provide these machines in different ... Read more",
+              "url": "https://dir.indiamart.com/coimbatore/yarn-twisting-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Yarn Twisting Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "www.taizhengmachine.com",
+              "title": "The Different Types of Twisting Machines",
+              "description": "30 Mar 2023 — Twisting machines are used in textile production to twist or spin fibers together to create yarns, ropes, cords, and other materials. Read more",
+              "url": "https://www.taizhengmachine.com/the-different-types-of-twisting-machines.html",
+              "breadcrumb": "https://www.taizhengmachine.com › the-different-types-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.rieter.com",
+              "title": "Rieter – Leading Manufacturer of Systems for Short-Staple ...",
+              "description": "Rieter delivers machinery, automation and digital solutions that help spinning mills increase productivity and stay competitive – from fiber to yarn.",
+              "url": "https://www.rieter.com/",
+              "breadcrumb": "https://www.rieter.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "meeraind.com",
+              "title": "Silk Yarn Twisting Machine: A Complete Guide",
+              "description": "4 Oct 2025 — Silk yarn twisting machines are specially designed to handle the delicate texture and strength of silk fibers. They provide precise tension ... Read more",
+              "url": "https://meeraind.com/blog/silk-yarn-twisting-machine-guide",
+              "breadcrumb": "https://meeraind.com › blog › silk-yarn-twisting-machi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.classicmachine.in",
+              "title": "Yarn Twister Machine Manufacturer from Surat",
+              "description": "Tfo Twister Machine · Production Capacity: 700 m/min · Capacity: .5 - 6KG · Material: Mild Steel · Usage/Application: Yarn Twisting · Power Consumption: 3HP- ... Read more",
+              "url": "https://www.classicmachine.in/twisting-machines.html",
+              "breadcrumb": "https://www.classicmachine.in › twisting-machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "textilemachinery.en.made-in-china.com",
+              "title": "Small Twisting Machine",
+              "description": "Two-for One Twisting Machinery Mini Size, Fancy Tfo Silk Wire Thread Yarn Doubling Ring Rope Twisting Machine for Twine Fancy Yarn Twisting Machine. Read more",
+              "url": "https://textilemachinery.en.made-in-china.com/product-group/BMbfmhjPhuAV/Small-Twisting-Machine-1.html",
+              "breadcrumb": "https://textilemachinery.en.made-in-china.com › Small-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.weavetech.com",
+              "title": "Spun Yarn TFO Twister Machine - Weavetech",
+              "description": "Weavech provides you world largest range of Spun yarn twisters from wide range of twisting machine, tfo machine at best prices.",
+              "url": "https://www.weavetech.com/twisting-machines/spun-yarn-tfo-twister-machine/",
+              "breadcrumb": "https://www.weavetech.com › Twisting Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "www.dttwister.com",
+              "title": "Working Principle of Twisting machine",
+              "description": "4 Jul 2019 — Twisting machine is a textile machinery which twists multiple strands of yarn into one strand. The function is to process yarn or merged stranded yarn products ... Read more",
+              "url": "https://www.dttwister.com/info/working-principle-of-twisting-36686692.html",
+              "breadcrumb": "https://www.dttwister.com › Knowledges"
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "www.alibaba.com",
+              "title": "TFO Twisting Machine",
+              "description": "Discover TFO twisting machines with ring spinning tech, 50-2500 T/m twist range & ISO9001 certification. Ideal for polyester, cotton, nylon yarn production.",
+              "url": "https://www.alibaba.com/showroom/tfo-twisting-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Spinning Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 46,
+              "page": 5,
+              "domain": "www.shreejiplastomechexport.com",
+              "title": "Twisting Machine Manufacturer, Supplier From Bhavnagar ...",
+              "description": "We are proud to offer an exclusive range of machines, including the Inflow Twister Machine, Out Flow Twisting Machine, Twisting Machine, and Yarn Twisting ... Read more",
+              "url": "https://www.shreejiplastomechexport.com/twisting-machine.html",
+              "breadcrumb": "https://www.shreejiplastomechexport.com › twisting-mac..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "www.rifatextile.com",
+              "title": "Yarn Twisting Machine: The Key to Enhancing Textile Quality",
+              "description": "A yarn twisting machine is a specialized device used for twisting yarn. Through its unique drive system and twisting technology, it maintains efficiency and ... Read more",
+              "url": "https://www.rifatextile.com/yarn-twisting-machine-the-key-to-enhancing-textile-quality.html",
+              "breadcrumb": "https://www.rifatextile.com › Company › News"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "www.tfotwister.com",
+              "title": "TFO Twisting Machine",
+              "description": "Manufacturer of TFO Twisting Machine, Winder Machine & Covering Machine offered by Rima Machines Private Limited from Surat, Gujarat, India.",
+              "url": "https://www.tfotwister.com/",
+              "breadcrumb": "https://www.tfotwister.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.aajjo.com",
+              "title": "Yarn Twisting Machine",
+              "description": "Aajjo is one of the B2B platforms offering a wide range of Yarn Twisting Machine products. Some of the most recognized ones include Semi-Automatic Thread ... Read more",
+              "url": "https://www.aajjo.com/apparel-textile-machinery/yarn-twisting-machine",
+              "breadcrumb": "https://www.aajjo.com › apparel-textile-machinery › ya..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.tradeindia.com",
+              "title": "Yarn Twisting Machines In Bhavnagar",
+              "description": "Get yarn twisting machines in Bhavnagar Gujarat at best price. View Bhavnagar based yarn twisting machines manufacturers suppliers and dealers.",
+              "url": "https://www.tradeindia.com/bhavnagar/yarn-twisting-machines-city-183694.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › Yarn twisting machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.batliboi.com",
+              "title": "Batliboi: Home",
+              "description": "Twisting Machines · Solutions for Nonwovens · Knitting · Circular Knitting Machines · Processing · Yarn Dyeing Machines ... Machine Tools – Manufactured Products. Read more",
+              "url": "https://www.batliboi.com/",
+              "breadcrumb": "https://www.batliboi.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "www.accio.com",
+              "title": "Twisting Machine Yarn: Top Suppliers & Models for Textile ...",
+              "description": "27 Nov 2025 — Need high-speed yarn twisting machines? Compare 450+ models with automatic tension control and precision winding.",
+              "url": "https://www.accio.com/plp/twisting-machine-yarn",
+              "breadcrumb": "https://www.accio.com › plp › twisting-machine-yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.alconetex.com",
+              "title": "Filament Yarn Twister Compact TFO Manufacturers in India",
+              "description": "We are Filament Yarn Twister Compact TFO Machine Manufacturers & Exporters in Gujarat, India. Denier Range : 20 - 150 Denier Filament Yarns, Take Up Device ...",
+              "url": "https://www.alconetex.com/filament-yarn-twister-compact-tfo.php",
+              "breadcrumb": "https://www.alconetex.com › filament-yarn-twister-comp..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.indiamart.com",
+              "title": "Textile yarn Twine Twister Machine",
+              "description": "New Items (4) · Automatic Yarn Heavy Ring Twister · Automatic Yarn Heavy Ring Twister. ₹ 6,00,000/Unit. Call Now+918047652023. WhatsApp · Medium Ring Twister. Read more",
+              "url": "https://www.indiamart.com/lakshminarayanindustries/textile-yarn-twine-twister-machine.html?srsltid=AfmBOorbBWM7FbG2SnpsINz4GkdE2r6GIGYNQhHbkzoTS-001dB907ul",
+              "breadcrumb": "https://www.indiamart.com › ... › Products & Services"
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "Using the KrisKrafter Yarn Twister",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=K_zjDpbYZmw",
+              "breadcrumb": "5.8K+ views  ·  4 years ago"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

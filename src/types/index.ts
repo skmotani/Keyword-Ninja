@@ -73,6 +73,12 @@ export interface Competitor {
   competitionType?: string;  // e.g., "Main Competitor", "Partial Competitor", "Not a Competitor"
   competitorForProducts?: string[];  // Product lines this competitor competes for
   brandNames?: string[];  // Brand names for tagging branded keyword traffic (comma-separated input)
+
+  // Enrichment Data
+  logos?: string[];       // Array of candidate logo URLs
+  officialBrandName?: string; // Extracted official brand name
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 export interface ManualKeyword {

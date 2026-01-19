@@ -1,0 +1,773 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0400 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-96ed101fb901",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0308 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-96ed101fb901"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Cops Winder",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "Cops Winder",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=Cops%20Winder&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:59:20 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+cops+winder&hl=en&gl=IN&shoprs=GBIqC2NvcHMgd2luZGVyMgkIEhIFUHJpY2VgAQ&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKAF6BAgcEDg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+cops+winder&hl=en&gl=IN&shoprs=GBIqC2NvcHMgd2luZGVyMgsIEhIHUmV2aWV3c2AB&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKAJ6BAgcEDk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+cops+winder&hl=en&gl=IN&shoprs=GBIqC2NvcHMgd2luZGVyMgoIEhIGT25saW5lYAE&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKAN6BAgcEDo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Books",
+                "url": "https://www.google.com/search?q=books+cops+winder&hl=en&gl=IN&shoprs=GAkqC2NvcHMgd2luZGVyMgkICRIFQm9va3NgAQ&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKAR6BAgcEDs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=cops+winder+for+sale&hl=en&gl=IN&shoprs=GBIqC2NvcHMgd2luZGVyMgwIEhIIRm9yIFNhbGVgAQ&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKAV6BAgcEDw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+cops+winder&hl=en&gl=IN&shoprs=GBIqC2NvcHMgd2luZGVyMgcIEhIDQnV5YAE&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKAZ6BAgcED0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=Cops+Winder+nearby&hl=en&gl=IN&shoprs=GAMqC2NvcHMgd2luZGVyMgwIAxIGTmVhcmJ5GAJYk78gYAE&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKAd6BAgcED4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "On sale",
+                "url": "https://www.google.com/search?q=Cops+Winder+sale&hl=en&gl=IN&shoprs=EgRKAggBGAYqC2NvcHMgd2luZGVyMhMIBhIHT24gc2FsZRgCIgRKAggBWJO_IGAB&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKAh6BAgcED8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹20,000",
+                "url": "https://www.google.com/search?q=Cops+Winder+under+20000&hl=en&gl=IN&shoprs=Eg0SCxEAAAAAX6ASQhgBGAUqC2NvcHMgd2luZGVyMigIBRIPVW5kZXIg4oK5MjAsMDAwGAIiDRILEQAAAABfoBJCGAEqAhgBWJO_IGAB&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKAl6BAgcEEA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Free",
+                "url": "https://www.google.com/search?q=free+cops+winder&hl=en&gl=IN&shoprs=GBIqC2NvcHMgd2luZGVyMggIEhIERnJlZWAB&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKAp6BAgcEEE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Man",
+                "url": "https://www.google.com/search?q=man+cops+winder&hl=en&gl=IN&shoprs=GBIqC2NvcHMgd2luZGVyMgcIEhIDTWFuYAE&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKAt6BAgcEEI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Usa",
+                "url": "https://www.google.com/search?q=usa+cops+winder&hl=en&gl=IN&shoprs=GBIqC2NvcHMgd2luZGVyMgcIEhIDVXNhYAE&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKAx6BAgcEEM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Black",
+                "url": "https://www.google.com/search?q=black+cops+winder&hl=en&gl=IN&shoprs=GAEqC2NvcHMgd2luZGVyMhcIARIFQmxhY2s6DAjYjPUBEOWK9QEwC1iTvyBgAQ&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKA16BAgcEEQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Watches",
+                "url": "https://www.google.com/search?q=watches+cops+winder&hl=en&gl=IN&shoprs=GAkqC2NvcHMgd2luZGVyMgsICRIHV2F0Y2hlc2AB&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKA56BAgcEEU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Images",
+                "url": "https://www.google.com/search?q=images+cops+winder&hl=en&gl=IN&shoprs=GBIqC2NvcHMgd2luZGVyMgoIEhIGSW1hZ2VzYAE&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKA96BAgcEEY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Red",
+                "url": "https://www.google.com/search?q=red+cops+winder&hl=en&gl=IN&shoprs=GAEqC2NvcHMgd2luZGVyMhUIARIDUmVkOgwI2Iz1ARDnivUBMAtYk78gYAE&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKBB6BAgcEEc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Female",
+                "url": "https://www.google.com/search?q=female+cops+winder&hl=en&gl=IN&shoprs=GBIqC2NvcHMgd2luZGVyMgoIEhIGRmVtYWxlYAE&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKBF6BAgcEEg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "White",
+                "url": "https://www.google.com/search?q=white+cops+winder&hl=en&gl=IN&shoprs=GAEqC2NvcHMgd2luZGVyMhcIARIFV2hpdGU6DAjYjPUBEKGL9QEwC1iTvyBgAQ&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKBJ6BAgcEEk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Girl",
+                "url": "https://www.google.com/search?q=girl+cops+winder&hl=en&gl=IN&shoprs=GBIqC2NvcHMgd2luZGVyMggIEhIER2lybGAB&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKBN6BAgcEEo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Woman",
+                "url": "https://www.google.com/search?q=woman+cops+winder&hl=en&gl=IN&shoprs=GBIqC2NvcHMgd2luZGVyMgkIEhIFV29tYW5gAQ&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKBR6BAgcEEs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Blue",
+                "url": "https://www.google.com/search?q=blue+cops+winder&hl=en&gl=IN&shoprs=GAEqC2NvcHMgd2luZGVyMhYIARIEQmx1ZToMCNiM9QEQ5or1ATALWJO_IGAB&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKBV6BAgcEEw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Green",
+                "url": "https://www.google.com/search?q=green+cops+winder&hl=en&gl=IN&shoprs=GAEqC2NvcHMgd2luZGVyMhcIARIFR3JlZW46DAjYjPUBEOiK9QEwC1iTvyBgAQ&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKBZ6BAgcEE0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Men's",
+                "url": "https://www.google.com/search?q=men's+cops+winder&hl=en&gl=IN&shoprs=GAEqC2NvcHMgd2luZGVyMhUIARIFTWVuJ3M6CgiAoz4QgaM-MAVYk78gYAE&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKBd6BAgcEE4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "amazon.in",
+                "url": "https://www.google.com/search?q=amazon.in+cops+winder&hl=en&gl=IN&shoprs=GAIqC2NvcHMgd2luZGVyMg0IAhIJYW1hem9uLmluWJO_IGAB&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKBh6BAgcEE8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "TATA CLiQ LUXURY",
+                "url": "https://www.google.com/search?q=tata+cliq+luxury+cops+winder&hl=en&gl=IN&shoprs=GAIqC2NvcHMgd2luZGVyMhQIAhIQVEFUQSBDTGlRIExVWFVSWViTvyBgAQ&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKBl6BAgcEFA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Flipkart",
+                "url": "https://www.google.com/search?q=flipkart+cops+winder&hl=en&gl=IN&shoprs=GAIqC2NvcHMgd2luZGVyMgwIAhIIRmxpcGthcnRYk78gYAE&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKBp6BAgcEFE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tradeindia.com",
+                "url": "https://www.google.com/search?q=tradeindia.com+cops+winder&hl=en&gl=IN&shoprs=GAIqC2NvcHMgd2luZGVyMhIIAhIOVHJhZGVpbmRpYS5jb21Yk78gYAE&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKBt6BAgcEFI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Alibaba.com",
+                "url": "https://www.google.com/search?q=alibaba.com+cops+winder&hl=en&gl=IN&shoprs=GAIqC2NvcHMgd2luZGVyMg8IAhILQWxpYmFiYS5jb21Yk78gYAE&sa=X&ved=2ahUKEwinzIvMz9uRAxXhOzQIHSuWIgMQip4GKBx6BAgcEFM",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "organic",
+            "video",
+            "images",
+            "popular_products",
+            "related_searches"
+          ],
+          "se_results_count": 109000,
+          "pages_count": 5,
+          "items_count": 46,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 1,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Cops Winder at Best Price in India",
+              "description": null,
+              "url": "https://dir.indiamart.com/impcat/cops-winder.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Spinning Machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 4,
+              "page": 1,
+              "domain": "www.weavetech.com",
+              "title": "Cops Winder Machine | Pirns Winding Machine",
+              "description": "Alidhra weavetech provides best cops winding machine and pirns winding machine for the preparation of small cops/ pirns and bobbing for twisting and ...",
+              "url": "https://www.weavetech.com/winding-machines/cops-pirn-bobbin-winders/cw-series/",
+              "breadcrumb": "https://www.weavetech.com › cw-series"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 5,
+              "page": 1,
+              "domain": "www.maheshengineers.com",
+              "title": "Cops Winder MTP / CW-100",
+              "description": "Cops Winder MTP / CW-100, cops-winder-mtp-cw-100, Technical Specification, Get Connected to Mahesh Twisto Tech Pvt. Ltd., Enquire Now. Read more",
+              "url": "https://www.maheshengineers.com/cops-winder-mtp-cw-100.html",
+              "breadcrumb": "https://www.maheshengineers.com › cops-winder-mtp-c..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 6,
+              "page": 1,
+              "domain": "meeraind.com",
+              "title": "Servo Controlled Cop Winder - Meera Industries",
+              "description": "Designed for flexibility, the Cop Winder supports winding of all yarn types, including pin, bottle, and spool bobbins, while maintaining constant yarn speed up ... Read more",
+              "url": "https://meeraind.com/product/servo-controlled-cop-winder",
+              "breadcrumb": "https://meeraind.com › product › servo-controlled-cop-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "www.axessmachine.com",
+              "title": "Cops Winder",
+              "description": "Salient Features : 1-) Construction of the machine frame is rigid and maintenance free. 2-) Inverter drive offers constant yarn speed as well as per ... Read more",
+              "url": "https://www.axessmachine.com/cops-winder-bm-w35/",
+              "breadcrumb": "https://www.axessmachine.com › cops-winder-bm-w35"
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "www.aawadkrupaplastomech.com",
+              "title": "Cops Winder - Aawadkrupa Plastomech Pvt. Ltd.",
+              "description": "Cops Winder · Available in multiple stations. · Individual control system. · Adjustable mechanical & electronic travel unit. · Less noisy. · Less power ... Read more",
+              "url": "https://www.aawadkrupaplastomech.com/cops-winder.htm",
+              "breadcrumb": "https://www.aawadkrupaplastomech.com › Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "www.justdial.com",
+              "title": "Top Cops Winder Products in Ratnagiri - Justdial",
+              "description": "The Cops Winder is an essential tool in various industries, particularly in the textile and manufacturing sectors. As businesses in Ratnagiri seek to optimize ... Read more",
+              "url": "https://www.justdial.com/jdmart/Ratnagiri/Cops-Winder/jdm-1233635-ent-2-17676989",
+              "breadcrumb": "https://www.justdial.com › jdm-1233635-ent-2-17676989"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "www.prtexpro.in",
+              "title": "Cops winder machine Manufacturer from Surat",
+              "description": "Cops winder machine · Usage/Application: Yarn Twisting · Material: Mild Steel · Power Consumption: 5w/hour · Machine Type: Automatic · Capacity: 20m/Hour. Usage ... Read more",
+              "url": "https://www.prtexpro.in/cops-winder-machine.html",
+              "breadcrumb": "https://www.prtexpro.in › cops-winder-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 13,
+              "page": 2,
+              "domain": "bhagat.co",
+              "title": "Cops Winder Invertor",
+              "description": "TECHNICAL SPECIFICATIONS OF COPS WINDER MODEL: BM- 28 ; Yarn Speed, Constant Up to 600 Meter per minute ; Package Forming (Inverter Drive), Differential winding. Read more",
+              "url": "https://bhagat.co/cops-winder-invertor/",
+              "breadcrumb": "https://bhagat.co › cops-winder-invertor"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "www.tradeindia.com",
+              "title": "Cops Winder Manufacturers, Suppliers, Dealers & Prices",
+              "description": null,
+              "url": "https://www.tradeindia.com/manufacturers/cops-winder.html",
+              "breadcrumb": "https://www.tradeindia.com › manufacturers › cops-win..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "www.meera.ind.in",
+              "title": "Servo Controlled Cop Winder",
+              "description": "Individual Counter Meter Cops Winder · Usage/Application: Yarn Twisting · Material: Mild Steel · Machine Type: Automatic · Control Type: PLC Based HMI · Phase: ... Read more",
+              "url": "https://www.meera.ind.in/servo-controlled-cop-winder.html",
+              "breadcrumb": "https://www.meera.ind.in › servo-controlled-cop-winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "dir.indiamart.com",
+              "title": "Cops Winder in Surat, कॉप्स वाइंडर, सूरत, Gujarat",
+              "description": null,
+              "url": "https://dir.indiamart.com/surat/cops-winder.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Cops Winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "aakashtexeng.com",
+              "title": "Servo Cops Winder",
+              "description": "Experience unparalleled winding quality with our highly sophisticated Servo Controlled COPS Winder. Driven by a cutting-edge servomotor-powered PLC system. Read more",
+              "url": "https://aakashtexeng.com/products/servo-cops-winder/",
+              "breadcrumb": "https://aakashtexeng.com › products › servo-cops-winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.jcmachine.com",
+              "title": "Cops Winder",
+              "description": "Assembly Winder · Metal Fab Services · Spare Parts · Careers; Inquiry. Textile Machines · Metal Fab · Spare Parts · Contact Us. Cops Winder. Home; Cops Winder ... Read more",
+              "url": "https://www.jcmachine.com/cops-winder/",
+              "breadcrumb": "https://www.jcmachine.com › cops-winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.shivamengg.com",
+              "title": "Cops Winders - Shivam Engineering & Fabrication ...",
+              "description": "Smooth winding operation on cops having different lengths visible 210mm, 220mm, 240mm and 270mm can be done on this machine. Cops winders having two models ... Read more",
+              "url": "http://www.shivamengg.com/cops-winders-machine.html",
+              "breadcrumb": "http://www.shivamengg.com › cops-winders-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.alibaba.com",
+              "title": "winding machine/ cops winder / twisting ...",
+              "description": "WINDING MACHINE/ COPS WINDER / TWISTING MACHINE WINDER by nanfeng offers efficient yarn winding, durable core components, and reliable performance.",
+              "url": "https://www.alibaba.com/product-detail/WINDING-MACHINE-COPS-WINDER-TWISTING-MACHINE_420974804.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Other Textile Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "gaudino.com",
+              "title": "Cop winding: the first of the twisting phases of a filament",
+              "description": "Cop winding is the first of the twisting phases. Cop winding is used to collect the yarn on a package that can be processed in the twisting phase. Read more",
+              "url": "https://gaudino.com/en/cop-winding/",
+              "breadcrumb": "https://gaudino.com › cop-winding"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 23,
+              "page": 3,
+              "domain": "www.aakashtexeng.in",
+              "title": "Cops Winder Manufacturer, Supplier, Exporter",
+              "description": "The Cops winder is the highly functional machine, which is extensively used in the textile industry to wind jute as well as supply the weft yarn. Read more",
+              "url": "https://www.aakashtexeng.in/cops-winder-6145502.html",
+              "breadcrumb": "https://www.aakashtexeng.in › cops-winder-6145502"
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 24,
+              "page": 3,
+              "domain": "www.indiamart.com",
+              "title": "COPS Winder Machine Spindles at ₹ 700/piece | Lakhtar",
+              "description": "Vindex Industries - Offering COPS Winder Machine Spindles, Cops Winder at ₹ 700/piece in Lakhtar, Gujarat. Get contact number of verified dealers of Machine ...",
+              "url": "https://www.indiamart.com/proddetail/cops-winder-machine-spindles-23826679430.html?srsltid=AfmBOorCHFgzjTx5VGUsCORPBF2qkFQDxdhNI0WpTx5aUm8TBKEGYTSC",
+              "breadcrumb": "https://www.indiamart.com › ... › Cops Winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 25,
+              "page": 3,
+              "domain": "www.tradeindia.com",
+              "title": "Cop Winder Manufacturers Suppliers In New Delhi",
+              "description": null,
+              "url": "https://www.tradeindia.com/delhi/cop-winder-city-228067.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › Cop winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "www.justdial.com",
+              "title": "Top Winding Cops Winder Products from Verified Sellers",
+              "description": "Product Comparison ; Product Name, Cop Winder Machine · Bobbin Winder MTP / BW ; Category name, Cops Winder, Cops Winder ; Price, ₹ 2 L - ₹ 5 L · ₹ 400 - ₹ 8 K ... Read more",
+              "url": "https://www.justdial.com/india/Winding-Cops-Winder",
+              "breadcrumb": "https://www.justdial.com › ... › Cops Winder in India"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "www.dial4trade.com",
+              "title": "Buy MECHANICAL COPS WINDER at Wholesale Price in ...",
+              "description": "MECHANICAL COPS WINDER TECHNICAL SPECIFICATION FRAME SINGLE DECK ON BOTH SIDES NO OF SPINDLES SECTION 16 NOS COPS SIZE 220 mm 300mm YARN WEIGHT UP TO 1 Kg ... Read more",
+              "url": "https://www.dial4trade.com/arun-textile-engineers-limited/mechanical-cops-winder-pdid-1046991.htm",
+              "breadcrumb": "https://www.dial4trade.com › mechanical-cops-winder-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.exportersindia.com",
+              "title": "Cops Winder at Best Price from Manufacturers, Suppliers ...",
+              "description": "Materials : Mild Steel,Stainless Steel,Iron. Condition : New,Used. Frequency : 50 Hz,60 Hz. Country of Origin : 220 V,320 V,420 V,440 V. Read more",
+              "url": "https://www.exportersindia.com/indian-suppliers/cops-winder.htm",
+              "breadcrumb": "https://www.exportersindia.com › indian-suppliers › cops..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "nationaltexeng.com",
+              "title": "Cops Winder Machine [Servo]",
+              "description": "Soft Winder Machine [230mm Take Up]. Winder Machine. Cops Winder Machine. Cops Winder Machine [ Mechanical ] · Cops Winder Machine [Servo] · Winder Machine [ ... Read more",
+              "url": "https://nationaltexeng.com/servo/",
+              "breadcrumb": "https://nationaltexeng.com › servo"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.aakashtextileengineers.com",
+              "title": "Servo Cops Winder Machine",
+              "description": "Product details : Servo based plc operated cops winding machine with fully automatic mechanism for optimium and precise winding quality. Read more",
+              "url": "https://www.aakashtextileengineers.com/cops-winder-machine.html",
+              "breadcrumb": "https://www.aakashtextileengineers.com › cops-winder-m..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "jimtrade.com",
+              "title": "Servo Drive Cops Winder - Indian Products",
+              "description": "Arun Textile Engineers Pvt. Ltd. manufactures textile machines. Servo Drive Cops Winder is provided with single deck frame on both sides. The parameter settings ... Read more",
+              "url": "https://jimtrade.com/products/servo_drive_cops_winder_193154",
+              "breadcrumb": "https://jimtrade.com › products › servo_drive_cops_wi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 33,
+              "page": 4,
+              "domain": "www.aajjo.com",
+              "title": "List of Top Cops Winder Manufacturers & Suppliers",
+              "description": "Explore leading Cops Winder manufacturers and suppliers. Find trusted vendors offering Cops Winder and related products. Discover verified vendors today!",
+              "url": "https://www.aajjo.com/apparel-textile-machinery/cops-winder",
+              "breadcrumb": "https://www.aajjo.com › apparel-textile-machinery › co..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 34,
+              "page": 4,
+              "domain": "www.indiamart.com",
+              "title": "Cops Winder Machine - Sainath Engineering Works",
+              "description": "Cops Winder Machine (3) · Semi Automatic Cops Winding Machine. ₹ 2,450/Piece. Call Now+918047627872. WhatsApp. Read more",
+              "url": "https://www.indiamart.com/sainathengineeringworkssurat/cops-winder-machine.html",
+              "breadcrumb": "https://www.indiamart.com › ... › Our Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 35,
+              "page": 4,
+              "domain": "www.mahashiv.com",
+              "title": "Servo Controlled Cops Winder",
+              "description": "We are the leading textile machinery manufacturer and engineering equipment exporters offering servo cop winding machines. Visit us today to know more about ...",
+              "url": "https://www.mahashiv.com/Servo-winder.html",
+              "breadcrumb": "https://www.mahashiv.com › Servo-winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "bhagat.co",
+              "title": "Cops Winder Servo",
+              "description": "Cops Winder Invertor, Cops Winder Servo, High Speed Automatic Splitting Machine, Two For One Twister, High Twist TFO, Low Twist TFO Thread, Ply Twister Looms. Read more",
+              "url": "https://bhagat.co/cops-winder-servo/",
+              "breadcrumb": "https://bhagat.co › cops-winder-servo"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "www.tradeindia.com",
+              "title": "Cops Winder Machine By M And T Engineering Equipment's",
+              "description": "Product Type, Other, Cops Winder Machine ; Material, Stainless Steel ; Machinery Type, Winding Machine ; Capacity, 150 Kg/hr ; Voltage, 220 Volt (v). Read more",
+              "url": "https://www.tradeindia.com/products/cops-winder-machine-8632068.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › cop winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.aruntexeng.com",
+              "title": "Cops Servo Drive TFO Machine",
+              "description": "Discover the advanced Cops Servo Drive TFO machine, designed for precise and controlled yarn twisting. Arun Textile Engineers offers efficient and reliable ...",
+              "url": "https://www.aruntexeng.com/cops-servo-drive.html",
+              "breadcrumb": "https://www.aruntexeng.com › cops-servo-drive"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "www.fadis.it",
+              "title": "Premium cops winding range - Fadis Textile Machine",
+              "description": "Complete with on-line automatic tension control, it has been designed for winding speeds up to 2.000 m/min (mechanical speed up to 2.500 m/min); it offers the ... Read more",
+              "url": "https://www.fadis.it/premium-technology/premium-cops-winding-range/",
+              "breadcrumb": "https://www.fadis.it › premium-technology › premium-c..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.classicmachine.in",
+              "title": "Electric Cops Winding Machine Manufacturer from Surat",
+              "description": "Electric Cops Winder · Country of Origin: Made in India · Winding Speed: 500 meter/min · Frequency: 50 Hz · Phase: Three Phase · Material: Mild Steel · Voltage: 220 V. Read more",
+              "url": "https://www.classicmachine.in/winding-machine.html",
+              "breadcrumb": "https://www.classicmachine.in › winding-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "www.aakashtexeng.in",
+              "title": "Servo Cops Winder - Aakash Textile Engineers LLP",
+              "description": "The textile industry uses the state-of-the-art Servo Cops Winder to wind yarn or thread onto cops, which are cylindrical bobbins used to store and transport ... Read more",
+              "url": "https://www.aakashtexeng.in/servo-cops-winder-6842470.html",
+              "breadcrumb": "https://www.aakashtexeng.in › servo-cops-winder-6842..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "5.imimg.com",
+              "title": "servo cops winder machine",
+              "description": "High Precision Dial Tensioners With Super-finished Ceramics That Support. Wide Variety Of Yarns. PLC BASED. SERVO COPS WINDERS. Page 4. PRESENT. FUTURE. Read more",
+              "url": "https://5.imimg.com/data5/SELLER/Doc/2024/6/431256758/VC/TA/NL/9326204/servo-yarn-cops-rewinder.pdf",
+              "breadcrumb": "https://5.imimg.com › data5 › SELLER › Doc › se..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 44,
+              "page": 5,
+              "domain": "gtaforums.com",
+              "title": "All [PC v1 and Mobile] Game Missions Save Files",
+              "description": "10 Jun 2008 — 3) Chiliad Challenge, Birdseye Winder 4) Chiliad Challenge ... cops spawn, only foot cops with pistol spawn at a very reasonable rate. Read more",
+              "url": "https://gtaforums.com/topic/356192-all-pc-v1-and-mobile-game-missions-save-files/",
+              "breadcrumb": "https://gtaforums.com › ... › Help & Support"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 45,
+              "page": 5,
+              "domain": "www.weavetech.com",
+              "title": "How Are Cop Winding and Pirn Winding ...",
+              "description": "Cop winding machines wind yarn onto bobbins called cops, which are larger and wider than pirns. Cops are used in the production of fabrics such as silk and ... Read more",
+              "url": "https://www.weavetech.com/how-are-cop-winding-and-pirn-winding-machines-different/",
+              "breadcrumb": "https://www.weavetech.com › how-are-cop-winding-an..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 46,
+              "page": 5,
+              "domain": "www.exportersindia.com",
+              "title": "Cops Winder at Best Price in Surat - ID: 3625335",
+              "description": "Custom Cops Winding Machines with a wide variety of options in various parts of the machine are manufactured as per your requirements. We are highly ... Read more",
+              "url": "https://www.exportersindia.com/product-detail/cops-winder-3625335.htm",
+              "breadcrumb": "https://www.exportersindia.com › ... › Cops Winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "www.justdial.com",
+              "title": "COPS Winder Machine in Surat at ₹ 400",
+              "description": "COPS Winder Machine in Surat offered by Bhagwati Engineering. Get Best Price, MOQ for COPS Winder Machine along with Contact Details, Address, ...",
+              "url": "https://www.justdial.com/jdmart/Surat/COPS-Winder-Machine/pid-2023963115/0261PX261-X261-210614224841-C8G6",
+              "breadcrumb": "https://www.justdial.com › ... › Cops Winder in Surat"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "www.indiamart.com",
+              "title": "Cops Winder Machine",
+              "description": "Techonology: Cop Winding Application: Rewinding On The Cops for Twisting Suitable Yarn : Flat, Textured, Crimped Any Filament Yarn Read more",
+              "url": "https://www.indiamart.com/proddetail/cops-winder-machine-5666327730.html?srsltid=AfmBOor4TPOrY5YZgvTELwqJsGez87E5MRCMQ3OWaHEQ2GBjnUmjeDTx",
+              "breadcrumb": "https://www.indiamart.com › ... › Cops Winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.alibaba.com",
+              "title": "Order Online Cop Winder Supports Cotton & Polyester",
+              "description": null,
+              "url": "https://www.alibaba.com/showroom/cop-winder.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Winding Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "classictexmachine.tradeindia.com",
+              "title": "Electric Cops Winder Machine",
+              "description": "Electric Cops Winder Machine Price And Quantity · Price Range 150000.00 - 1500000.00 INR/Unit · Minimum Order Quantity 1 Unit. Electric Cops Winder Machine ... Read more",
+              "url": "https://classictexmachine.tradeindia.com/electric-cops-winder-machine-7466417.html",
+              "breadcrumb": "https://classictexmachine.tradeindia.com › electric-cops-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.aajjo.com",
+              "title": "Automatic Cops Winder Machine Price in Surat, Gujarat",
+              "description": "Cop winding machines are generally used in the textile industry to wind jute and supply the weft yarn. The machine has four heads, which helps it to wind four ... Read more",
+              "url": "https://www.aajjo.com/product/automatic-cops-winder-machine-in-surat-prashant-textile-engineers",
+              "breadcrumb": "https://www.aajjo.com › ... › Cops Winder"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "www.rattiluino.com",
+              "title": "NEXT TEXTILE GmbH",
+              "description": "13 Apr 2022 — Cops-winder · R700 · Electronic Traverse Device ETD · OMM & Menegatto products · Electronic spooling machine · BVE-R · Covering · Menegatto- 21 ... Read more",
+              "url": "https://www.rattiluino.com/en/company/sales-network/ites-gmbh/",
+              "breadcrumb": "https://www.rattiluino.com › ... › Sales network"
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.textileinfomedia.com",
+              "title": "Sepson Textile Machines - surat, gujarat",
+              "description": "Sepson Textile Machines is Retailer of cops winder machine/ servo type and mechanical type, industrial electric motors & yarn two for one twister machine in ... Read more",
+              "url": "https://www.textileinfomedia.com/Sepson-Textile-Machines",
+              "breadcrumb": "https://www.textileinfomedia.com › Sepson-Textile-Mac..."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

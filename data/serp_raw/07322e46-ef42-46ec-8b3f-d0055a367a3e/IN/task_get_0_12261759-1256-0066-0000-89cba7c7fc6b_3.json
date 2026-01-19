@@ -1,0 +1,719 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0407 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-89cba7c7fc6b",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0322 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-89cba7c7fc6b"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "tfo doubling machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "tfo doubling machine",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=tfo%20doubling%20machine&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:59:27 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+tfo+doubling+machine&hl=en&gl=IN&shoprs=GBIqFHRmbyBkb3VibGluZyBtYWNoaW5lMgkIEhIFUHJpY2VgAQ&sa=X&ved=2ahUKEwilrYvPz9uRAxUyXEEAHfJdEGoQip4GKAF6BAgbECo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+tfo+doubling+machine&hl=en&gl=IN&shoprs=GBIqFHRmbyBkb3VibGluZyBtYWNoaW5lMgsIEhIHUmV2aWV3c2AB&sa=X&ved=2ahUKEwilrYvPz9uRAxUyXEEAHfJdEGoQip4GKAJ6BAgbECs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=tfo+doubling+machine+for+sale&hl=en&gl=IN&shoprs=GBIqFHRmbyBkb3VibGluZyBtYWNoaW5lMgwIEhIIRm9yIFNhbGVgAQ&sa=X&ved=2ahUKEwilrYvPz9uRAxUyXEEAHfJdEGoQip4GKAN6BAgbECw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+tfo+doubling+machine&hl=en&gl=IN&shoprs=GBIqFHRmbyBkb3VibGluZyBtYWNoaW5lMgoIEhIGT25saW5lYAE&sa=X&ved=2ahUKEwilrYvPz9uRAxUyXEEAHfJdEGoQip4GKAR6BAgbEC0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+tfo+doubling+machine&hl=en&gl=IN&shoprs=GBIqFHRmbyBkb3VibGluZyBtYWNoaW5lMgcIEhIDQnV5YAE&sa=X&ved=2ahUKEwilrYvPz9uRAxUyXEEAHfJdEGoQip4GKAV6BAgbEC4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Usa",
+                "url": "https://www.google.com/search?q=usa+tfo+doubling+machine&hl=en&gl=IN&shoprs=GBIqFHRmbyBkb3VibGluZyBtYWNoaW5lMgcIEhIDVXNhYAE&sa=X&ved=2ahUKEwilrYvPz9uRAxUyXEEAHfJdEGoQip4GKAZ6BAgbEC8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Size",
+                "url": "https://www.google.com/search?q=size+tfo+doubling+machine&hl=en&gl=IN&shoprs=GBIqFHRmbyBkb3VibGluZyBtYWNoaW5lMggIEhIEU2l6ZWAB&sa=X&ved=2ahUKEwilrYvPz9uRAxUyXEEAHfJdEGoQip4GKAd6BAgbEDA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Dimensions",
+                "url": "https://www.google.com/search?q=dimensions+tfo+doubling+machine&hl=en&gl=IN&shoprs=GBIqFHRmbyBkb3VibGluZyBtYWNoaW5lMg4IEhIKRGltZW5zaW9uc2AB&sa=X&ved=2ahUKEwilrYvPz9uRAxUyXEEAHfJdEGoQip4GKAh6BAgbEDE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Electrical Motors",
+                "url": "https://www.google.com/search?q=electrical+motors+tfo+doubling+machine&hl=en&gl=IN&shoprs=GAkqFHRmbyBkb3VibGluZyBtYWNoaW5lMhUICRIRRWxlY3RyaWNhbCBNb3RvcnNgAQ&sa=X&ved=2ahUKEwilrYvPz9uRAxUyXEEAHfJdEGoQip4GKAl6BAgbEDI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Black",
+                "url": "https://www.google.com/search?q=black+tfo+doubling+machine&hl=en&gl=IN&shoprs=GAEqFHRmbyBkb3VibGluZyBtYWNoaW5lMhcIARIFQmxhY2s6DAjYjPUBEOWK9QEwC2AB&sa=X&ved=2ahUKEwilrYvPz9uRAxUyXEEAHfJdEGoQip4GKAp6BAgbEDM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹9,00,000",
+                "url": "https://www.google.com/search?q=tfo+doubling+machine+under+900000&hl=en&gl=IN&shoprs=Eg0SCxEAAADAhTFqQhgBGAUqFHRmbyBkb3VibGluZyBtYWNoaW5lMioIBRIRVW5kZXIg4oK5OSwwMCwwMDAYAiINEgsRAAAAwIUxakIYASoCGAFgAQ&sa=X&ved=2ahUKEwilrYvPz9uRAxUyXEEAHfJdEGoQip4GKAt6BAgbEDQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "White",
+                "url": "https://www.google.com/search?q=white+tfo+doubling+machine&hl=en&gl=IN&shoprs=GAEqFHRmbyBkb3VibGluZyBtYWNoaW5lMhcIARIFV2hpdGU6DAjYjPUBEKGL9QEwC2AB&sa=X&ved=2ahUKEwilrYvPz9uRAxUyXEEAHfJdEGoQip4GKAx6BAgbEDU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Amazon.in",
+                "url": "https://www.google.com/search?q=amazon.in+tfo+doubling+machine&hl=en&gl=IN&shoprs=GAIqFHRmbyBkb3VibGluZyBtYWNoaW5lMg0IAhIJQW1hem9uLmluYAE&sa=X&ved=2ahUKEwilrYvPz9uRAxUyXEEAHfJdEGoQip4GKA16BAgbEDY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tradeindia.com",
+                "url": "https://www.google.com/search?q=tradeindia.com+tfo+doubling+machine&hl=en&gl=IN&shoprs=GAIqFHRmbyBkb3VibGluZyBtYWNoaW5lMhIIAhIOVHJhZGVpbmRpYS5jb21gAQ&sa=X&ved=2ahUKEwilrYvPz9uRAxUyXEEAHfJdEGoQip4GKA56BAgbEDc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Alibaba.com",
+                "url": "https://www.google.com/search?q=alibaba.com+tfo+doubling+machine&hl=en&gl=IN&shoprs=GAIqFHRmbyBkb3VibGluZyBtYWNoaW5lMg8IAhILQWxpYmFiYS5jb21gAQ&sa=X&ved=2ahUKEwilrYvPz9uRAxUyXEEAHfJdEGoQip4GKA96BAgbEDg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "IndiaMART",
+                "url": "https://www.google.com/search?q=indiamart+tfo+doubling+machine&hl=en&gl=IN&shoprs=GAIqFHRmbyBkb3VibGluZyBtYWNoaW5lMg0IAhIJSW5kaWFNQVJUYAE&sa=X&ved=2ahUKEwilrYvPz9uRAxUyXEEAHfJdEGoQip4GKBB6BAgbEDk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Made-in-China.com",
+                "url": "https://www.google.com/search?q=made-in-china.com+tfo+doubling+machine&hl=en&gl=IN&shoprs=GAIqFHRmbyBkb3VibGluZyBtYWNoaW5lMhUIAhIRTWFkZS1pbi1DaGluYS5jb21gAQ&sa=X&ved=2ahUKEwilrYvPz9uRAxUyXEEAHfJdEGoQip4GKBF6BAgbEDo",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "organic",
+            "video",
+            "popular_products",
+            "people_also_ask",
+            "images",
+            "related_searches"
+          ],
+          "se_results_count": 39500,
+          "pages_count": 5,
+          "items_count": 48,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 1,
+              "page": 1,
+              "domain": "www.indiamart.com",
+              "title": "National TFO Doubler Machine, 1​0​HP",
+              "description": "National TFO Doubler Machine, 1​0​HP · Embroidery Thread Doubler TFO Machine. ₹ 2,500/Unit · Tfo Doubler Machine. ₹ 2,450/Piece · Cotton TFO Machine · Meera ... Read more",
+              "url": "https://www.indiamart.com/proddetail/tfo-doubler-machine-4703467148.html?srsltid=AfmBOopYC6rs2vkh5G_5kzxEOOoIGelKzs_d8B7VGe6xC6rXc4vAgyOC",
+              "breadcrumb": "https://www.indiamart.com › ... › Doubling Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 2,
+              "page": 1,
+              "domain": "www.tfotwister.com",
+              "title": "Double Deck TFO Twister Manufacturer from Surat",
+              "description": "Double Deck TFO Twister gives optimum utilization of the valuable space. Suitable for medium to fine count range of Cotton, Polyester, Blended and PVT yarn. Read more",
+              "url": "https://www.tfotwister.com/tfo-twisting-machine.html",
+              "breadcrumb": "https://www.tfotwister.com › tfo-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 6,
+              "page": 1,
+              "domain": "nationaltexeng.com",
+              "title": "TFO Doubler Machine",
+              "description": "National TFO DOUBLER machine is the most Efficient choice, in terms of production cost, for produing 2ply – 3ply & multiply for yarn, Polyester , PP , Nylon , ... Read more",
+              "url": "https://nationaltexeng.com/tfo-doubler-machine/",
+              "breadcrumb": "https://nationaltexeng.com › tfo-doubler-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "www.jcmachine.com",
+              "title": "Double Deck Advanced Cotton / Spun Yarn",
+              "description": "Machine Features : · Improved international design of spindles, minimum contact with yarn, minimises hairiness. · Fabricated sturdy frame structure of sheet metal ... Read more",
+              "url": "https://www.jcmachine.com/double-deck-advanced-cotton-spun-yarn/",
+              "breadcrumb": "https://www.jcmachine.com › double-deck-advanced-c..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "www.prtexpro.in",
+              "title": "Tfo Machine - Paper Tube 110 Mm Pot Filament Yarn ...",
+              "description": "Double Decker Cotton TFO Machine · Machine Type: Semi Automatic · Power Consumption: 3HP · Max. Spindle Speed: 11000 Rpm · Spindle Pitch: 204 mm · Pot Diameter: 90 ... Read more",
+              "url": "https://www.prtexpro.in/tfo-machine.html",
+              "breadcrumb": "https://www.prtexpro.in › tfo-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.aakashtexeng.in",
+              "title": "140 Spun TFO Double Deck Machine",
+              "description": "Manufactured using premium SS and MS materials, the 140 Spun TFO Double Deck Machine stands out for its durability and resistance to wear under continuous use. Read more",
+              "url": "https://www.aakashtexeng.in/140-spun-tfo-double-deck-machine-5993551.html",
+              "breadcrumb": "https://www.aakashtexeng.in › 140-spun-tfo-double-de..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Cotton TFO Machine at Best Price in India",
+              "description": "Mild Steel Stpt Tfo Doubler Machine, 3hp * 2 Motor · Mild Steel Stpt Tfo Doubler Machine, 3hp * 2 Motor. ₹ 11,000/Unit. Machine Type: Automatic, Manual, Semi- ... Read more",
+              "url": "https://dir.indiamart.com/impcat/cotton-tfo-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Spinning Machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 12,
+              "page": 1,
+              "domain": "jingtianchina.en.made-in-china.com",
+              "title": "2025 Twisting and doubling machine",
+              "description": "PP Yarn Tfo Doubling and Twisting Doubling Machine. US $ 9,999-19,999/setFOB. MOQ:1 set. Video · Cotton Yarn Doubling Textile Machine. US $ 9,999-19,999/setFOB. Read more",
+              "url": "https://jingtianchina.en.made-in-china.com/product-group/VeDtdSnUHgYc/Twisting-And-Doubling-Machine-catalog-1.html",
+              "breadcrumb": "https://jingtianchina.en.made-in-china.com › Twisting-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "www.weavetech.com",
+              "title": "What is Two for one twister (TFO) ? - Weavetech",
+              "description": "The term TFO stands for Two-for-One, indicating that two turns are inserted for each turn of the twisting element. Read more",
+              "url": "https://www.weavetech.com/what-is-two-for-one-twister-tfo/",
+              "breadcrumb": "https://www.weavetech.com › what-is-two-for-one-twist..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "www.universaltextile.co.in",
+              "title": "Twisting Machine - Filament Tfo Machine Trader",
+              "description": "Twisting Machine · Filament Tfo Machine · Yarn Covering Machine · Fancy Twisting Machine · TFO Twisting Machine · Hollow Fancy Doubling Machine · Explore More ... Read more",
+              "url": "https://www.universaltextile.co.in/twisting-machine.html",
+              "breadcrumb": "https://www.universaltextile.co.in › twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.alconetex.com",
+              "title": "TFO Machine & Yarn Twisting Machine",
+              "description": "Alcone Tex Engineering provides the latest model TFO (two-for-one) twister, producing high accuracy in twisting, doubling, covering, and rewinding the yarns. Read more",
+              "url": "https://www.alconetex.com/products.php",
+              "breadcrumb": "https://www.alconetex.com › products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.tradeindia.com",
+              "title": "TFO Machine Manufacturer & - Price, India's Top Suppliers",
+              "description": "Tfo Yarn Twisting Machine - Advanced Twisting For Single Or Double Yarns ... Multi Color Tfo Doubler Machine · Multi Color Tfo Doubler Machine. Get Latest ... Read more",
+              "url": "https://www.tradeindia.com/manufacturers/tfo-machine.html",
+              "breadcrumb": "https://www.tradeindia.com › manufacturers › tfo-mach..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "saviospa.com",
+              "title": "Yarn twisting machines - Savio",
+              "description": "Tfo. Two-for-one twisting machines. Savio offers yarn twisting machines that ... The machine is designed to ensure maximum cost-effectiveness, combining ... Read more",
+              "url": "https://saviospa.com/en/yarn-spinning/two-for-one-twisting-machines",
+              "breadcrumb": "https://saviospa.com › Home › Yarn spinning"
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.alibaba.com",
+              "title": "Automatic Two for One TFO Yarn Twister Machine",
+              "description": "Automatic two for one TFO yarn twister machine for yarn doubling and twisting. Features adjustable speed, auto brake stop, and versatile yarn types.",
+              "url": "https://www.alibaba.com/product-detail/Automatic-Two-for-One-TFO-Yarn_1601006341989.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Other Textile Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.justdial.com",
+              "title": "TFO Doubler Machine in Bagalkot",
+              "description": "Overview of TFO Doubler Machines. The TFO Doubler Machine operates by twisting multiple strands of yarn together, effectively doubling their strength and ... Read more",
+              "url": "https://www.justdial.com/jdmart/Bagalkot/TFO-Doubler-Machine/jdm-1030495-ent-6-22918749",
+              "breadcrumb": "https://www.justdial.com › jdm-1030495-ent-6-22918749"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.classicmachine.in",
+              "title": "Yarn Twister Machine Manufacturer from Surat",
+              "description": "Manufacturer of Twisting Machines - Yarn Twister Machine, Primry Doubling Twisting Machines, TFO Doubling Twisting Machine and Cotton TFO Twisting Machine ...",
+              "url": "https://www.classicmachine.in/twisting-machines.html",
+              "breadcrumb": "https://www.classicmachine.in › twisting-machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "www.youtube.com",
+              "title": "Ring doubling machine and two for one twister ( T. F. O. ...",
+              "description": "Ring doubling machine and two for one twister ( T. F. O. ) production calculation. 6.8K views · 4 years ago ...more ...",
+              "url": "https://www.youtube.com/watch?v=CLjGu_iyeb4",
+              "breadcrumb": "6.9K+ views  ·  4 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "archive.nptel.ac.in",
+              "title": "Yarn Doubling",
+              "description": "So doubled yarns are preferred. 2. Why tensioning device is so important in doubling machine? ... What are the special features one can expect from modern TFO ... Read more",
+              "url": "https://archive.nptel.ac.in/content/storage2/courses/116102038/download/faqmod6.pdf",
+              "breadcrumb": "https://archive.nptel.ac.in › download › faqmod6"
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 25,
+              "page": 3,
+              "domain": "www.aajjo.com",
+              "title": "Automatic Double Deck Cotton TFO Machine, Capacity",
+              "description": "Automatic Double Deck Cotton TFO Machine, Capacity: Upto 6-8 Tons/Month ... The yarn after passing through the guide 'A' is then led through the hollow rotating ... Read more",
+              "url": "https://www.aajjo.com/product/automatic-double-deck-cotton-tfo-machine-capacity-upto-6-8-tonsmonth-in-surat-prashant-textile-engineers",
+              "breadcrumb": "https://www.aajjo.com › ... › Cotton TFO Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "www.exportersindia.com",
+              "title": "Tfo Twister Double Decker Machine at Best Price in Surat - ID",
+              "description": "Buy Tfo Twister Double Decker Machine from Tara Engineering Works Find Company contact details & address in Surat, Gujarat | ID: 1050716.",
+              "url": "https://www.exportersindia.com/product-detail/tfo-twister-double-decker-machine-1050716.htm",
+              "breadcrumb": "https://www.exportersindia.com › product-detail › tfo-tw..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "dir.indiamart.com",
+              "title": "Two For One Twisting Machine in Coimbatore, Tamil Nadu",
+              "description": "Two For One Twisting Machine · Textile Machines · Yarn Twisting Machine · Cotton TFO Machine · Doubling Machines · Automated Spinning Mill · Twisting Machines. Read more",
+              "url": "https://dir.indiamart.com/coimbatore/two-for-one-twisting-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › coimbatore › two-for-one-twi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.weavetech.in",
+              "title": "Filament Yarn TFO Twister Machine Manufacturer from Surat",
+              "description": "Embroidery Thread TFO Twister Twisting Machine. Ask Price. Thread Doubling Yarn Twisting Machine. Thread Doubling Yarn Twisting Machine. know more. Read more",
+              "url": "https://www.weavetech.in/filament-yarn-twister.html",
+              "breadcrumb": "https://www.weavetech.in › filament-yarn-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.tradeindia.com",
+              "title": "Tfo Doubler Machine at Best Price in Surat, Gujarat",
+              "description": "Buy low price tfo doubler machine in udhna, surat. tfo doubler machine offered by national textile engineering industries is available with multiple payment ...",
+              "url": "https://www.tradeindia.com/products/tfo-doubler-machine-c2398550.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › tfo machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.accio.ai",
+              "title": "TFO Twisting Machine: High-Speed Yarn Processing",
+              "description": "4 Dec 2025 — Taian Jiamei Machinery Technology Co., Ltd. 5.0, 1 set, CN, $39,000, Premium model with full automation. TFO Twisting Machine Spindle Double ... Read more",
+              "url": "https://www.accio.ai/find-product/tfo-twisting-machine",
+              "breadcrumb": "https://www.accio.ai › find-product › tfo-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.prtexpro.in",
+              "title": "Yarn Twisting Machine - SD E Series Spun Yarn TFO ...",
+              "description": "Manufacturer of Yarn Twisting Machine - SD E Series Spun Yarn TFO Twister, SD S Series Spun Yarn TFO Twister, Double Deck Spun Yarn TFO Twister and Cylinder ...",
+              "url": "https://www.prtexpro.in/yarn-twisting-machine.html",
+              "breadcrumb": "https://www.prtexpro.in › yarn-twisting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "www.alconetex.com",
+              "title": "Spun/Cotton Yarn Twister Double Deck",
+              "description": "Spun TFO Doubler Machine is an essential textile machine designed for high-efficiency yarn twisting, catering to both spun and cotton fibers. With a double-deck ... Read more",
+              "url": "https://www.alconetex.com/spun-cotton-yarn-twister-double-deck.php",
+              "breadcrumb": "https://www.alconetex.com › spun-cotton-yarn-twister-d..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "www.aruntexeng.com",
+              "title": "Double Deck Cotton/Spun TFO Machine",
+              "description": "Main Features · High quality for fine and coarse counts · High productivity and efficiency · Low power consumption and maintenance · Dynamically balanced ... Read more",
+              "url": "https://www.aruntexeng.com/double-deck.html",
+              "breadcrumb": "https://www.aruntexeng.com › double-deck"
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 34,
+              "page": 3,
+              "domain": "m.made-in-china.com",
+              "title": "Two for One Drum Twister Doubling and Tfo Twisting ...",
+              "description": "14 Mar 2024 — Two for One Drum Twister Doubling and Tfo Twisting Machine for Cotton Yarn Spinning Mill Short Fiber, Find Details about Drum Twister, ...",
+              "url": "https://m.made-in-china.com/product/Two-for-One-Drum-Twister-Doubling-and-Tfo-Twisting-Machine-for-Cotton-Yarn-Spinning-Mill-Short-Fiber-1940895491.html",
+              "breadcrumb": "https://m.made-in-china.com › product › Two-for-One-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "www.justdial.com",
+              "title": "TFO Doubler Machine - 4800 Watts, Two For One Twister ...",
+              "description": "TFO Doubler Machine - 4800 Watts, Two For One Twister TFO, 2000mm x 1500mm x 1800mm in Erode offered by Garima Corporation. Get Best Price, MOQ for TFO ...",
+              "url": "https://www.justdial.com/jdmart/Erode/TFO-Doubler-Machine/pid-2008135319/0261PX261-X261-190705195555-Y2S2",
+              "breadcrumb": "https://www.justdial.com › Erode › pid-2008135319"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "www.alibaba.com",
+              "title": "Automatic Yarn TFO Doubling and Twisting Machine",
+              "description": "Automatic Yarn TFO Doubling and Twisting Machine Yarn Winder Machine by Bisland offers adjustable speed, auto yarn brake, and 1-year warranty.",
+              "url": "https://www.alibaba.com/product-detail/automatic-Yarn-TFO-Doubling-and-Twisting_1601185507799.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Winding Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.rifatextile.com",
+              "title": "What Is a TFO Machine?",
+              "description": "The RFDK Double Knitting Machine is a specialized device used for creating two layers of fabric simultaneously, allowing for reversible designs and ... Read more",
+              "url": "https://www.rifatextile.com/what-is-a-tfo-machine.html",
+              "breadcrumb": "https://www.rifatextile.com › Company › News"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "dir.indiamart.com",
+              "title": "Doubling Machines at Best Price in India",
+              "description": "We are successfully meeting the varied requirements of our clients by providing the best quality range of TFO Doubler Machine. Godsun Engineering. Surat. GST. Read more",
+              "url": "https://dir.indiamart.com/impcat/doubling-machines.html",
+              "breadcrumb": "https://dir.indiamart.com › impcat › doubling-machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.tfotwister.com",
+              "title": "Rima Machines Private Limited, Surat - Manufacturer of TFO ...",
+              "description": "Manufacturer of TFO Twisting Machine, Winder Machine & Covering Machine offered by Rima Machines Private Limited from Surat, Gujarat, India.",
+              "url": "https://www.tfotwister.com/",
+              "breadcrumb": "https://www.tfotwister.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "www.aalidhratexpro.in",
+              "title": "TFO Cotton Yarn Twister Machine",
+              "description": "TFO Cotton Yarn Twister Machine. 1100000 INR / Unit. share. TFO Cotton Yarn ... Product Type:Other, Doubling Yarn Twister Machine. Voltage:220-440 Volt (v). Read more",
+              "url": "https://www.aalidhratexpro.in/tfo-cotton-yarn-twister-machine-7535689.html",
+              "breadcrumb": "https://www.aalidhratexpro.in › tfo-cotton-yarn-twister-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.textileschool.com",
+              "title": "Yarn Doubling - types, objectives, and application",
+              "description": "Two-For-One (TFO) is a two-stage process where the yarns are doubled and then twisted. In TFO process two or more single yarns are twisted in order to enhance ... Read more",
+              "url": "https://www.textileschool.com/421/types-of-doubling-uses-and-objectives/",
+              "breadcrumb": "https://www.textileschool.com › Fiber & Yarns › Yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "arihanttextiletraders.com",
+              "title": "TFO machine manufacturer & exporters",
+              "description": "The number of turns should be defined on several factors like the yarn, twist angle, fineness, and double yarn twist to single yarn twist ration, etc. Drop Wire ... Read more",
+              "url": "https://arihanttextiletraders.com/TFO-machine.php",
+              "breadcrumb": "https://arihanttextiletraders.com › TFO-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "lntsufin.com",
+              "title": "TFO Yarn Twisting Machine",
+              "description": "Buy online TFO Yarn Twisting Machine, Yarn Mfg. & Processing Machines in bulk from manufacturers | Request Quotations and get financing.",
+              "url": "https://lntsufin.com/catalog/textile-machinery-spares-accessories/yarn-manufacturing-processing-machines/tfo-yarn-twisting-machine/",
+              "breadcrumb": "https://lntsufin.com › textile-machinery-spares-accessories"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 45,
+              "page": 4,
+              "domain": "piotex.in",
+              "title": "Spun Yarn TFO Twister | Single & Double Deck ...",
+              "description": "TFO Twisting machines are suitable for Pure Cotton, Spun Polyester, Blends & PVT Yarn with a 7wide range for TPI selection. Better engineering with optimized ... Read more",
+              "url": "https://piotex.in/spun-yarn-tfo-twister/",
+              "breadcrumb": "https://piotex.in › spun-yarn-tfo-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "How to work TFO | Doubling | Twister",
+              "description": "Share your videos with friends, family, and the world.",
+              "url": "https://www.youtube.com/watch?v=2ycjBesUj6w",
+              "breadcrumb": "22.3K+ views  ·  3 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "www.akbtextileengineers.com",
+              "title": "Two For One Twister for Spun - AKB TEXTILE ENGINEERING",
+              "description": "It is possible to set the RPM, T/M, lease ANGLE, and take-up LENGTH without changing the gears by electronic control of the machine ... TFO Twister (70-EC) ... Read more",
+              "url": "http://www.akbtextileengineers.com/tfo_for_spun.html",
+              "breadcrumb": "http://www.akbtextileengineers.com › tfo_for_spun"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.textileinfomedia.com",
+              "title": "TFO machine Manufacturers, Supplier & Importers",
+              "description": "+91 9879742---; Mohammad Khandvawala; manufacturer. Business Dealing In. TFO Doubler Machine manufacturer. Contact Supplier ... tfo machine. Textile ... Read more",
+              "url": "https://www.textileinfomedia.com/tfo-machine.htm",
+              "breadcrumb": "https://www.textileinfomedia.com › textile machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.fibre2fashion.com",
+              "title": "Study on Two-For-One Twisting (TFO)",
+              "description": "Such yarns are designated as doubled yarn, folded yarn or plied yarn and the machines intended for the purpose are called doublers, ply-twisters or two-for-one ... Read more",
+              "url": "https://www.fibre2fashion.com/industry-article/1449/study-on-two-for-one-twisting",
+              "breadcrumb": "https://www.fibre2fashion.com › industry-article › study-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.kimtextilemachine.com",
+              "title": "High Speed TFO Textile Twister Manufacturer from Surat",
+              "description": "Manufacturer of TFO Twister - High Speed TFO Textile Twister, Cotton TFO Machine ... The method of twisting two or more single yarns is called doubling or folding ... Read more",
+              "url": "https://www.kimtextilemachine.com/tfo-twister.html",
+              "breadcrumb": "https://www.kimtextilemachine.com › tfo-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "www.tradeindia.com",
+              "title": "Tfo Machine In Dadra-And-Nagar-Haveli",
+              "description": "Multi Color Tfo Doubler Machine · Multi Color Tfo Doubler Machine. Get Latest Price. Product TypeGarment Machinery. MaterialStainless Steel. Machinery TypeTFO ... Read more",
+              "url": "https://www.tradeindia.com/dadra-and-nagar-haveli/tfo-machine-city-235497.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › Tfo machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.exportersindia.com",
+              "title": "Cotton Yarn TFO Twister Machine, For Textile",
+              "description": "Buy Cotton Yarn TFO Twister Machine from Rima Machines Pvt Ltd (J C Group) Find Company contact details & address in Surat, Gujarat | ID: ...",
+              "url": "https://www.exportersindia.com/product-detail/cotton-yarn-tfo-twister-machine-5239894.htm",
+              "breadcrumb": "https://www.exportersindia.com › product-detail › cotton..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.kristeel.com",
+              "title": "Top Textile Machinery Manufacturers and Suppliers in India",
+              "description": "... Machine- KRISLON. Industrial Yarn Twisting machine Krislon. TFO Yarn Machine ... Display of RPM / TPM / Double Strokes / Production. User Friendly & Low ... Read more",
+              "url": "https://www.kristeel.com/textile-machinery/?srsltid=AfmBOorG6RxjK75gLSJR2ZCw3qODR4RwDAaEKw2XG1uq66audg2bwCDV",
+              "breadcrumb": "https://www.kristeel.com › textile-machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "www.veejaylakshmi.com",
+              "title": "Two-for-One Twister",
+              "description": "Ring Doubler. Winding Solutions. Automatic Cone Winder · Assembly Winder · TFO VJ-150M / VJ-120M · TFO VJ-250. Products - Two-for-One Twister. High quality, ... Read more",
+              "url": "http://www.veejaylakshmi.com/page/prod-tfo.html",
+              "breadcrumb": "http://www.veejaylakshmi.com › page › prod-tfo"
+            },
+            {
+              "type": "organic",
+              "rank_group": 48,
+              "rank_absolute": 56,
+              "page": 5,
+              "domain": "jxtwisting.com",
+              "title": "How does a TFO twisting machine work",
+              "description": "How does a TFO twisting machine work ... TFO Twisting Machine · Doubling and Twisting Machine · Doubling machine · False Twisting Machine · Twister machine ... Read more",
+              "url": "https://jxtwisting.com/?list_4/165.html",
+              "breadcrumb": "https://jxtwisting.com › list_4"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

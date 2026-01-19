@@ -1,0 +1,29 @@
+{
+  "receivedAt": "2025-12-26T11:20:04.530Z",
+  "headers": {
+    "accept": "*/*",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "en-US",
+    "connection": "keep-alive",
+    "content-length": "55",
+    "content-type": "text/plain;charset=UTF-8",
+    "host": "localhost:5000",
+    "origin": "http://localhost:5000",
+    "referer": "http://localhost:5000/curated/client-position",
+    "sec-ch-ua": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Cursor/2.2.23 Chrome/138.0.7204.251 Electron/37.7.0 Safari/537.36",
+    "x-forwarded-for": "127.0.0.1",
+    "x-forwarded-host": "localhost:5000",
+    "x-forwarded-port": "5000",
+    "x-forwarded-proto": "http"
+  },
+  "body": {
+    "clientCode": "01",
+    "selectedDomain": "www.meeraind.com"
+  }
+}

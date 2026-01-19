@@ -1,0 +1,19 @@
+{
+  "receivedAt": "2025-12-26T11:26:25.120Z",
+  "headers": {
+    "connection": "Keep-Alive",
+    "content-length": "73",
+    "content-type": "application/json",
+    "expect": "100-continue",
+    "host": "localhost:5000",
+    "user-agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.6899",
+    "x-forwarded-for": "127.0.0.1",
+    "x-forwarded-host": "localhost:5000",
+    "x-forwarded-port": "5000",
+    "x-forwarded-proto": "http"
+  },
+  "body": {
+    "selectedDomain": "www.meeraind.com",
+    "clientCode": "01"
+  }
+}

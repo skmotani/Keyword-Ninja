@@ -237,8 +237,8 @@
     "queryNumber": "2.5",
     "groupId": "GRP-002",
     "title": "Brand Power Analysis",
-    "description": "Compare brand strength between Self and Main Competitor domains",
-    "tooltip": "TABLE: domain_keywords.json + AI Term Dictionary\\nFILTER: Keywords containing terms with bucket=brand from AI Keyword Builder\\n\\nMATRIX LOGIC:\\n• Rank Buckets: Top (1-10), Medium (11-30), Low (31+)\\n• Volume Buckets: High (≥P25), Low (<P25) - Top 25% threshold\\n\\nBRAND KEYWORDS: Keywords containing brand terms like company names, product lines etc.",
+    "description": "See how many people are searching for your Brand vs Competitors.",
+    "tooltip": "**Query Logic:**\nChecks how many people search for keywords containing your Brand Name (e.g. \"Meera\") vs your competitors.\n\n**Why it matters:**\nMore brand searches = Higher Trust & Authority.",
     "status": "Info",
     "queryType": "brand-keywords-matrix",
     "config": {

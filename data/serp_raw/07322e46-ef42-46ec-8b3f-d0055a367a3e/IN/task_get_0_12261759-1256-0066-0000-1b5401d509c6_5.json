@@ -1,0 +1,787 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0373 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-1b5401d509c6",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0297 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-1b5401d509c6"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "heat setting machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "heat setting machine",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=heat%20setting%20machine&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:59:39 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+heat+setting+machine&hl=en&gl=IN&shoprs=GBIqFGhlYXQgc2V0dGluZyBtYWNoaW5lMgkIEhIFUHJpY2VgAQ&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKAF6BAgZEEY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Bosch",
+                "url": "https://www.google.com/search?q=bosch+heat+setting+machine&hl=en&gl=IN&shoprs=GAEqFGhlYXQgc2V0dGluZyBtYWNoaW5lMhUIARIFQm9zY2g6CgiD8zwQweA9MAFYzfAgYAE&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKAJ6BAgZEEc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+heat+setting+machine&hl=en&gl=IN&shoprs=GBIqFGhlYXQgc2V0dGluZyBtYWNoaW5lMgoIEhIGT25saW5lYAE&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKAN6BAgZEEg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹15,000",
+                "url": "https://www.google.com/search?q=heat+setting+machine+under+15000&hl=en&gl=IN&shoprs=Eg0SCxEAAACAjvALQhgBGAUqFGhlYXQgc2V0dGluZyBtYWNoaW5lMigIBRIPVW5kZXIg4oK5MTUsMDAwGAIiDRILEQAAAICO8AtCGAEqAhgBWM3wIGAB&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKAR6BAgZEEk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=heat+setting+machine+nearby&hl=en&gl=IN&shoprs=GAMqFGhlYXQgc2V0dGluZyBtYWNoaW5lMgwIAxIGTmVhcmJ5GAJYzfAgYAE&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKAV6BAgZEEo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Space Heaters",
+                "url": "https://www.google.com/search?q=space+heaters+heat+setting+machine&hl=en&gl=IN&shoprs=GAkqFGhlYXQgc2V0dGluZyBtYWNoaW5lMhEICRINU3BhY2UgSGVhdGVyc2AB&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKAZ6BAgZEEs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Welding & Soldering Tools",
+                "url": "https://www.google.com/search?q=welding+%26+soldering+tools+heat+setting+machine&hl=en&gl=IN&shoprs=GAkqFGhlYXQgc2V0dGluZyBtYWNoaW5lMh0ICRIZV2VsZGluZyAmIFNvbGRlcmluZyBUb29sc2AB&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKAd6BAgZEEw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+heat+setting+machine&hl=en&gl=IN&shoprs=GBIqFGhlYXQgc2V0dGluZyBtYWNoaW5lMgcIEhIDQnV5YAE&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKAh6BAgZEE0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Hair Straighteners",
+                "url": "https://www.google.com/search?q=hair+straighteners+heat+setting+machine&hl=en&gl=IN&shoprs=GAkqFGhlYXQgc2V0dGluZyBtYWNoaW5lMhYICRISSGFpciBTdHJhaWdodGVuZXJzYAE&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKAl6BAgZEE4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "On sale",
+                "url": "https://www.google.com/search?q=heat+setting+machine+sale&hl=en&gl=IN&shoprs=EgRKAggBGAYqFGhlYXQgc2V0dGluZyBtYWNoaW5lMhMIBhIHT24gc2FsZRgCIgRKAggBWM3wIGAB&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKAp6BAgZEE8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=heat+setting+machine+for+sale&hl=en&gl=IN&shoprs=GBIqFGhlYXQgc2V0dGluZyBtYWNoaW5lMgwIEhIIRm9yIFNhbGVgAQ&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKAt6BAgZEFA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Body",
+                "url": "https://www.google.com/search?q=body+heat+setting+machine&hl=en&gl=IN&shoprs=GBIqFGhlYXQgc2V0dGluZyBtYWNoaW5lMggIEhIEQm9keWAB&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKAx6BAgZEFE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Printers",
+                "url": "https://www.google.com/search?q=printers+heat+setting+machine&hl=en&gl=IN&shoprs=GAkqFGhlYXQgc2V0dGluZyBtYWNoaW5lMgwICRIIUHJpbnRlcnNgAQ&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKA16BAgZEFI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+heat+setting+machine&hl=en&gl=IN&shoprs=GBIqFGhlYXQgc2V0dGluZyBtYWNoaW5lMgsIEhIHUmV2aWV3c2AB&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKA56BAgZEFM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Free",
+                "url": "https://www.google.com/search?q=free+heat+setting+machine&hl=en&gl=IN&shoprs=GBIqFGhlYXQgc2V0dGluZyBtYWNoaW5lMggIEhIERnJlZWAB&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKA96BAgZEFQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Soldering Irons",
+                "url": "https://www.google.com/search?q=soldering+irons+heat+setting+machine&hl=en&gl=IN&shoprs=GAkqFGhlYXQgc2V0dGluZyBtYWNoaW5lMhMICRIPU29sZGVyaW5nIElyb25zYAE&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKBB6BAgZEFU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Small",
+                "url": "https://www.google.com/search?q=small+heat+setting+machine&hl=en&gl=IN&shoprs=GBIqFGhlYXQgc2V0dGluZyBtYWNoaW5lMgkIEhIFU21hbGxgAQ&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKBF6BAgZEFY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Clothes",
+                "url": "https://www.google.com/search?q=clothes+heat+setting+machine&hl=en&gl=IN&shoprs=GBIqFGhlYXQgc2V0dGluZyBtYWNoaW5lMgsIEhIHQ2xvdGhlc2AB&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKBJ6BAgZEFc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Hairdryers",
+                "url": "https://www.google.com/search?q=hairdryers+heat+setting+machine&hl=en&gl=IN&shoprs=GAkqFGhlYXQgc2V0dGluZyBtYWNoaW5lMg4ICRIKSGFpcmRyeWVyc2AB&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKBN6BAgZEFg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Images",
+                "url": "https://www.google.com/search?q=images+heat+setting+machine&hl=en&gl=IN&shoprs=GBIqFGhlYXQgc2V0dGluZyBtYWNoaW5lMgoIEhIGSW1hZ2VzYAE&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKBR6BAgZEFk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Ikonic",
+                "url": "https://www.google.com/search?q=ikonic+heat+setting+machine&hl=en&gl=IN&shoprs=GAEqFGhlYXQgc2V0dGluZyBtYWNoaW5lMhYIARIGSWtvbmljOgoIg_M8EIS6UzABWM3wIGAB&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKBV6BAgZEFo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Electricity",
+                "url": "https://www.google.com/search?q=electricity+heat+setting+machine&hl=en&gl=IN&shoprs=GAEqFGhlYXQgc2V0dGluZyBtYWNoaW5lMhsIARILRWxlY3RyaWNpdHk6Cgiu_z0Qr_89MABYzfAgYAE&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKBZ6BAgZEFs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Philips",
+                "url": "https://www.google.com/search?q=philips+heat+setting+machine&hl=en&gl=IN&shoprs=GAEqFGhlYXQgc2V0dGluZyBtYWNoaW5lMhcIARIHUGhpbGlwczoKCIPzPBDf5T0wAVjN8CBgAQ&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKBd6BAgZEFw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tradeindia.com",
+                "url": "https://www.google.com/search?q=tradeindia.com+heat+setting+machine&hl=en&gl=IN&shoprs=GAIqFGhlYXQgc2V0dGluZyBtYWNoaW5lMhIIAhIOVHJhZGVpbmRpYS5jb21YzfAgYAE&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKBh6BAgZEF0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Red",
+                "url": "https://www.google.com/search?q=red+heat+setting+machine&hl=en&gl=IN&shoprs=GAEqFGhlYXQgc2V0dGluZyBtYWNoaW5lMhUIARIDUmVkOgwI2Iz1ARDnivUBMAtYzfAgYAE&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKBl6BAgZEF4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Blue",
+                "url": "https://www.google.com/search?q=blue+heat+setting+machine&hl=en&gl=IN&shoprs=GAEqFGhlYXQgc2V0dGluZyBtYWNoaW5lMhYIARIEQmx1ZToMCNiM9QEQ5or1ATALWM3wIGAB&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKBp6BAgZEF8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Flat Iron",
+                "url": "https://www.google.com/search?q=flat+iron+heat+setting+machine&hl=en&gl=IN&shoprs=GAEqFGhlYXQgc2V0dGluZyBtYWNoaW5lMhsIARIJRmxhdCBJcm9uOgwIntylARCf3KUBMAJYzfAgYAE&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKBt6BAgZEGA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Amazon.in",
+                "url": "https://www.google.com/search?q=amazon.in+heat+setting+machine&hl=en&gl=IN&shoprs=GAIqFGhlYXQgc2V0dGluZyBtYWNoaW5lMg0IAhIJQW1hem9uLmluWM3wIGAB&sa=X&ved=2ahUKEwj44NLPz9uRAxWVh1YBHdUTDvAQip4GKBx6BAgZEGE",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "images",
+            "people_also_ask",
+            "organic",
+            "video",
+            "popular_products",
+            "related_searches",
+            "google_reviews",
+            "knowledge_graph"
+          ],
+          "se_results_count": 663000000,
+          "pages_count": 5,
+          "items_count": 47,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 3,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Heat Setting Machine at Best Price in India",
+              "description": "Heat Setting Machine ... ₹ 35,000We are the leading supplier of Pneumatic Sole Press made from high quality material at competitive prices. Rounak Udyog. Narela, ... Read more",
+              "url": "https://dir.indiamart.com/impcat/heat-setting-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Textile Finishing Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 5,
+              "page": 1,
+              "domain": "www.swastiktextile.com",
+              "title": "Tubular Heat Setting Machine",
+              "description": "The Heat Setting Machine is used for the pre-setting of Lycra / Elastene blends with cotton or synthetic fibres before the wet processing of the gray fabric. Read more",
+              "url": "http://www.swastiktextile.com/tubular-heat-setting-machine/",
+              "breadcrumb": "http://www.swastiktextile.com › tubular-heat-setting-ma..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 6,
+              "page": 1,
+              "domain": "www.ategroup.com",
+              "title": "Carpet yarn heatsetting machine",
+              "description": "The machines can heatset both natural and synthetic fibres using overheated steam under atmospheric pressure. The design of these machines makes them very ... Read more",
+              "url": "https://www.ategroup.com/textile-engineering/product-family/product-description/carpet-yarn-heat-setting-machine/",
+              "breadcrumb": "https://www.ategroup.com › product-description › carpet..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "meeraind.com",
+              "title": "MeeraBAH High Bulking Machine for Carpet Yarn Production",
+              "description": "The MeeraBAH is an online continuous bulking and heat setting machine utilizing Super Heated Steam Technology for the lowest per kg operational and capital cost ... Read more",
+              "url": "https://meeraind.com/product/meerabah",
+              "breadcrumb": "https://meeraind.com › product › meerabah"
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.sarangalsteelworks.in",
+              "title": "Heat Setting Machine | Manufacturer & Supplier in ...",
+              "description": "The Heat Setting Machine is ideal for a variety of industrial applications. It can be used for heat setting, curing, and drying of various materials. It is ... Read more",
+              "url": "https://www.sarangalsteelworks.in/heat-setting-machine-8499671.html",
+              "breadcrumb": "https://www.sarangalsteelworks.in › heat-setting-machin..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "www.tradeindia.com",
+              "title": "Heat Setter Machine - Manufacturers, Suppliers & Prices",
+              "description": "Heat Setting Machine Price List. Product Name. Expected Price. Heat Setting Machine, 215000. Heating Machine, 150000. Heat Setting Machine, 8500000. Tubular ... Read more",
+              "url": "https://www.tradeindia.com/manufacturers/heat-setting-machine.html",
+              "breadcrumb": "https://www.tradeindia.com › heat-setting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Heat Setting Machine in Ludhiana (हीट सेटिंग मशीन, लुधियाना)",
+              "description": "We are one of the leading fabricators and suppliers of Heat Setting Machines, which are engineered with precision by following well defined industrial ... Read more",
+              "url": "https://dir.indiamart.com/ludhiana/heat-setting-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Heat Setting Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 12,
+              "page": 1,
+              "domain": "superba.com",
+              "title": "Heatsetting machines",
+              "description": "Superba machines enables you to manufacture different types of rugs, such as home rugs, prayer carpets, bath mats or car mats.",
+              "url": "https://superba.com/en/products/filaments/heatsetting-machines",
+              "breadcrumb": "https://superba.com › Home › Products › Filaments"
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "www.omsaiengineering.co.in",
+              "title": "Yarn Heat Setting Machine",
+              "description": "Features. Ideal production machine for spinners to achieve twist setting, yarn conditioning. Stabilizes moisture content in the yarn. Read more",
+              "url": "https://www.omsaiengineering.co.in/heat-setting-machine.html",
+              "breadcrumb": "https://www.omsaiengineering.co.in › heat-setting-mach..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "rbe.net.in",
+              "title": "YARN CONDITIONING & HEAT SETTING MACHINE",
+              "description": "A wide range of laboratory yarn conditioning and heat setting machines, large capacity yarn conditioning and heat setting machines products.",
+              "url": "https://rbe.net.in/index.php/portfolio_category/yarn-conditioning-heat-setting-machine/",
+              "breadcrumb": "https://rbe.net.in › index.php › portfolio_category › yarn..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.justdial.com",
+              "title": "Heat Setting Machine - Reliable, Efficient, Durable",
+              "description": "A heat setting machine is a specialized apparatus designed to stabilize and enhance the dimensional integrity of textiles. By applying controlled heat and ... Read more",
+              "url": "https://www.justdial.com/india/Heat-Setting-Machine",
+              "breadcrumb": "https://www.justdial.com › Home › Heat Setting Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.gurusonindia.com",
+              "title": "Industrial Heat Setting Machine Tubular - Guruson International",
+              "description": "An Industrial Heat Setting Machine is a piece of equipment commonly used in textile manufacturing processes, particularly in the production of synthetic ... Read more",
+              "url": "https://www.gurusonindia.com/industrial-heat-setting-machine-tubular-9317662.html",
+              "breadcrumb": "https://www.gurusonindia.com › industrial-heat-setting-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.power-heat-set.com",
+              "title": "Power-Heat-Set GmbH",
+              "description": "A team of skilled and experienced engineers develops and designs our heatsetting machines. Our R&D department focuses on bringing advantages to our ... Read more",
+              "url": "https://www.power-heat-set.com/",
+              "breadcrumb": "https://www.power-heat-set.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.stenter-machines.com",
+              "title": "Tubular Gas Heated Fabric Heat Setting Machine For Towel ...",
+              "description": "Tubular Gas Heated Fabric Heat Setting Machine For Towel Fabrics 2200mm. MOQ:1 SET. Price:USD5000-300000. Get Best Price. Contact Us. Read more",
+              "url": "https://www.stenter-machines.com/sale-33513415-tubular-gas-heated-fabric-heat-setting-machine-for-towel-fabrics-2200mm.html",
+              "breadcrumb": "https://www.stenter-machines.com › sale-33513415-tubu..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.exportersindia.com",
+              "title": "Heat Setting Machine at Best Price from Manufacturers, ...",
+              "description": "The Heat Setting Machine is used for the pre-setting of Lycra Elastene blends with cotton ... ST. Swastik Textile Engineers Pvt. Ltd. Ahmedabad, ... Read more",
+              "url": "https://www.exportersindia.com/indian-suppliers/heat-setting-machine.htm",
+              "breadcrumb": "https://www.exportersindia.com › indian-suppliers › heat..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.alibaba.com",
+              "title": "Fabric Heat Setting Machine(836)",
+              "description": "The purpose of the fabric heat-setting machine is to stabilize textile materials and prevent further shrinkage or deformations after heat exposure. There are ... Read more",
+              "url": "https://www.alibaba.com/showroom/fabric-heat-setting-machine.html",
+              "breadcrumb": "https://www.alibaba.com › showroom › fabric-heat-setti..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "www.youtube.com",
+              "title": "Heat Setting Machine By Guruson International",
+              "description": "In fact the machine is required to remove crush marks, Crease Marks wrinkles of tube form fabrics. After process the fabric comes outwith ...",
+              "url": "https://www.youtube.com/watch?v=xdGdB0Kw12M",
+              "breadcrumb": "8.4K+ views  ·  11 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "finestart.en.made-in-china.com",
+              "title": "High Temperature Heat Setting Machine for Tubular ...",
+              "description": "This Heat Setting Machine is used for processing of tubular chemical knitted fabric, The machine makes synthetic and mixed fabric to obtain stable siez with ... Read more",
+              "url": "https://finestart.en.made-in-china.com/product/lXHmAekDaLRW/China-High-Temperature-Heat-Setting-Machine-for-Tubular-Chemical-Knitted-Fabric.html",
+              "breadcrumb": "https://finestart.en.made-in-china.com › product › Chin..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 25,
+              "page": 3,
+              "domain": "www.amazon.in",
+              "title": "Buy Maharaja Whiteline Quato 800 Watts Quartz Heater",
+              "description": "Maharaja Quato room heater features 2 heat settings that ensures high heating efficiency and convenience of setting the heat level from lowest to highest ...",
+              "url": "https://www.amazon.in/Maharaja-Whiteline-Quato-800-Watt-Quartz/dp/B00NIFGIAA",
+              "breadcrumb": "https://www.amazon.in › Maharaja-Whiteline-Quato-80..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "dyeingmachineindia.com",
+              "title": "Heat Setting Machine For Tube Knitted Fabrics – Guruson",
+              "description": "Heat Setting Machine by GURUSON is specially designed for tube knitted Lycra Fabric, P.C., Polyester, spun and all type of blended fabrics. Read more",
+              "url": "https://dyeingmachineindia.com/heat-setting-machine/",
+              "breadcrumb": "https://dyeingmachineindia.com › heat-setting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "www.tradeindia.com",
+              "title": "Knitting Fabric Heat Setting Machine Capacity: 9 Ton/Day",
+              "description": "This Knitting fabric heat setting machine adopts hot air setting,maximum working temperature is 220.it is used for heat setting of tubular polyesterblender ... Read more",
+              "url": "https://www.tradeindia.com/products/knitting-fabric-heat-setting-machine-c5696691.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › heat setting machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "dir.indiamart.com",
+              "title": "Heat Setting Machine in Coimbatore, Tamil Nadu",
+              "description": "Capacity: 1 to 20 m/min. Machine Type: Automatic. Power Consumption: 15.8kw. Working Width of Machine 2800mmMachine Speed1 to 20 m/minDesign TemperatureMax ... Read more",
+              "url": "https://dir.indiamart.com/coimbatore/heat-setting-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Coimbatore"
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.facebook.com",
+              "title": "Tubular Heat Setting machine is deisgned and used for ...",
+              "description": "Tubular Heat Setting machine is deisgned and used for processing tubular chemical fabric. And the working width of machine is 300~1700mm, can meet your special ...",
+              "url": "https://www.facebook.com/DGTextilemachinery/videos/tubular-heat-setting-machine-is-deisgned-and-used-for-processing-tubular-chemica/640178873131845/",
+              "breadcrumb": "610+ reactions  ·  6 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "gslindia.com",
+              "title": "Fabric Heat Setting Machine (Tubular)",
+              "description": "Temperature: 100° C - 350° C Variable Temperature With PLC Adjustment Command From Computer For Equal Temperature. Structure: Heavy Duty Structure. Paint: Epoxy ... Read more",
+              "url": "https://gslindia.com/services/tubular-fabric-heat-setting-machine",
+              "breadcrumb": "https://gslindia.com › services › tubular-fabric-heat-setti..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.geetinternational.in",
+              "title": "Heat Setting Stenter Machine Trader",
+              "description": "Heat Setting Stenter Machine · Power Consumption: 2 kW · Machine Type: Semi-Automatic · Surface Finish: Polished · Power Source: Electric · Voltage: 220 V ... Read more",
+              "url": "https://www.geetinternational.in/heat-setting-machine.html",
+              "breadcrumb": "https://www.geetinternational.in › heat-setting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "thietbidetnhuom.com",
+              "title": "Tubular knitting heat-setting machine",
+              "description": "This machine is used for heat setting of tubular polyester blender cotton fabrics. This tubular knitting heat-setting machine can be used for pre-setting of ... Read more",
+              "url": "http://thietbidetnhuom.com/en/products/stenter/tubular-knitting-heat-setting-machine.html",
+              "breadcrumb": "http://thietbidetnhuom.com › Home › Products › Stenter"
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "www.justdial.com",
+              "title": "Popular Heat Setting Machine Manufacturers in Ahmedabad",
+              "description": "Heat setting machines utilize heat and pressure to treat fabrics, making them more resilient and easier to care for. The process involves applying controlled ... Read more",
+              "url": "https://www.justdial.com/Ahmedabad/Heat-Setting-Machine-Manufacturers/nct-11458274",
+              "breadcrumb": "https://www.justdial.com › ... › 3+ Listings"
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 35,
+              "page": 4,
+              "domain": "www.gurusondyeingmachines.com",
+              "title": "Heat Setting Machine Manufacturer from Ludhiana",
+              "description": "Heat Setting Machine · Power Consumption: 45 KW · Capacity: 65\" , 72\" , 80\" · Model Name/Number: HSM · Machine Type: Automatic · Condition: Brand New · Surface ... Read more",
+              "url": "https://www.gurusondyeingmachines.com/heat-setting-machine.html",
+              "breadcrumb": "https://www.gurusondyeingmachines.com › heat-setting..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "www.sarangalsteelworks.in",
+              "title": "Tubular Heat Setting Machine Manufacturer Ludhiana",
+              "description": "Heat Setting Machine · Price: 1000000 INR · Unit. Minimum Order Quantity : 10 Unit. Heat Setting Machine. Color:Blue. Operating Type:Semi Automatic. Power:45 ... Read more",
+              "url": "https://www.sarangalsteelworks.in/tubular-heat-setting-machine-8499673.html",
+              "breadcrumb": "https://www.sarangalsteelworks.in › tubular-heat-setting..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "en.wikipedia.org",
+              "title": "Heatsetting",
+              "description": "Heat setting is a term used in the textile industry to describe a thermal process usually taking place in either a steam atmosphere or a dry heat environment. Read more",
+              "url": "https://en.wikipedia.org/wiki/Heatsetting",
+              "breadcrumb": "https://en.wikipedia.org › wiki › Heatsetting"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.dztpyfj.com",
+              "title": "Heat Setting Machine",
+              "description": "Machine usage: The Tubular Heat Setting Machine is used for processing tubular polyester /spandex/Lycra fabrics, after processed by our heat setter machine ...",
+              "url": "https://www.dztpyfj.com/heatsettingmachine/",
+              "breadcrumb": "https://www.dztpyfj.com › heatsettingmachine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "www.asscent.in",
+              "title": "Tubular Heat Setting Machine - Asscent Engineers",
+              "description": "Working Width of Machine, 2800mm. Machine Speed, 1 to 20 m/min. Design Temperature, Max 220 0 C. Power, 15.8kw. Working width of Fabric, 32\" x 3 / 48\" x 2 ... Read more",
+              "url": "https://www.asscent.in/tubular-heat-setting-machine.html",
+              "breadcrumb": "https://www.asscent.in › tubular-heat-setting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.slideshare.net",
+              "title": "Stenter machine & heat set | PPTX",
+              "description": "This document provides information about operating and setting heat parameters for a stenter machine at MAA Garment & Textiles Factory in Ethiopia.",
+              "url": "https://www.slideshare.net/slideshow/stenter-machine-amp-heat-set/72889871",
+              "breadcrumb": "https://www.slideshare.net › Engineering"
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "havells.com",
+              "title": "Top Quality Room Heaters - Shop Now at Havells",
+              "description": "Stay warm with Havells' range of energy-efficient room heaters. Choose from a variety of models to suit your needs and enjoy quick heating ...",
+              "url": "https://havells.com/home-appliances/appliances/room-heaters.html",
+              "breadcrumb": "https://havells.com › home-appliances › appliances › roo..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.instagram.com",
+              "title": "A stenter (sometimes called a tenter) is a machine used in ...",
+              "description": "A stenter (sometimes called a tenter) is a machine used in textile finishing. It serves multiple purposes, including heat setting, drying, and ...",
+              "url": "https://www.instagram.com/reel/C2uhPHwNltr/",
+              "breadcrumb": "70+ likes  ·  1 year ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "jingtianchina.en.made-in-china.com",
+              "title": "Knitted Fabric Heat Setting Machine with 6 Chambers",
+              "description": "This machine is used for gluing, stretching, shaping and drying the back of blankets, carpets, coral velvet fabrics, as well as cotton, polyester and blended ... Read more",
+              "url": "https://jingtianchina.en.made-in-china.com/product/eZjfUAYBCXRu/China-Knitted-Fabric-Heat-Setting-Machine-with-6-Chambers.html",
+              "breadcrumb": "https://jingtianchina.en.made-in-china.com › product"
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "Stenter Machine - Function and Working Procedure of Stenter ...",
+              "description": "We'll break down the complex operation procedure of a stenter machine into simple steps that anyone can understand.",
+              "url": "https://www.youtube.com/watch?v=EZu2vNP-Zpk",
+              "breadcrumb": "66.2K+ views  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 46,
+              "page": 5,
+              "domain": "www.dztpyjx.com",
+              "title": "Heat Setting Machine for Sale - TAIPING",
+              "description": "A: During heat setting process the fabrics are passed through heated chambers of stenter machine. The temperature of heated chamber varies from 140°C to 210°C ... Read more",
+              "url": "https://www.dztpyjx.com/heat-setting-machine/",
+              "breadcrumb": "https://www.dztpyjx.com › Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "www.tradeindia.com",
+              "title": "Heat Setting Machine In Delhi",
+              "description": "The range of offered heat setting machine products in Delhi is impressive with a total of 46 products currently available. Where can I find heat setting ... Read more",
+              "url": "https://www.tradeindia.com/delhi/heat-setting-machine-city-228067.html",
+              "breadcrumb": "https://www.tradeindia.com › ... › Heat setting machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "3vintl.in",
+              "title": "Tubulor Heat Setting Machine - 3V International",
+              "description": "3V Heat Setting Machine is specially designed for tube knit Lycra Fabric, P.C., Polyester, spun and all type of blended fabrics. Read more",
+              "url": "https://3vintl.in/tubulor-heat-setting-machine.html",
+              "breadcrumb": "https://3vintl.in › tubulor-heat-setting-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "dir.indiamart.com",
+              "title": "Heat Setting Machine in Surat, हीट सेटिंग मशीन, सूरत, Gujarat",
+              "description": "Heat Setting Machine in Surat (हीट सेटिंग मशीन, सूरत) · Heat Setting Machine, Capacity: 1 Ton · Yarn Heat Setting Machine, Capacity: 1200 Pairs/8 Hour · Yarn Heat ... Read more",
+              "url": "https://dir.indiamart.com/surat/heat-setting-machine.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Heat Setting Machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.dyson.in",
+              "title": "Dyson Airwrap i.d.™ Multi-Styler Dryer in Vinca Blue & Topaz",
+              "description": "One device does it all. More styles. No heat damage. Read more",
+              "url": "https://www.dyson.in/airwrap-id-multi-styler-dryer-vinca-blue-topaz",
+              "breadcrumb": "https://www.dyson.in › airwrap-id-multi-styler-dryer-vi..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.meera.ind.in",
+              "title": "Continuous Bulk Heat Setting Machine - Carpet Yarn Bulking ...",
+              "description": "Manufacturer of Continuous Bulk Heat Setting Machine - Carpet Yarn Bulking Machine, Carpet Yarn Heat Setting Machine, Continuous Bulking And Heat Machine ...",
+              "url": "https://www.meera.ind.in/continuous-bulk-heat-setting-machine.html",
+              "breadcrumb": "https://www.meera.ind.in › continuous-bulk-heat-setting-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "indianmsme.in",
+              "title": "Heat Setting Machines for Synthetic Textiles in Bengaluru",
+              "description": "Aimerse Heat setting machines Min. 1 Pieces Also Serve To Bengaluru. Lion MSME Available Not-Available 33 Yrs. Tubular Knit Fabric Heat Setting Machine. Read more",
+              "url": "https://indianmsme.in/heat-setting-machines-products-in-bengaluru",
+              "breadcrumb": "https://indianmsme.in › heat-setting-machines-products-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "idealtextilesolutions.com",
+              "title": "Heat-Setting Stenter Machine",
+              "description": "Heat Setting Stenter Machine. img. (Main technical data). Nominal width ( mm ) - 1800-3600. Working width ( mm ) - 600-3400. Machine speed ( r/min ) ... Read more",
+              "url": "https://idealtextilesolutions.com/heat-setting-stenter-machine.html",
+              "breadcrumb": "https://idealtextilesolutions.com › heat-setting-stenter-ma..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "www.amazon.in",
+              "title": "Philips HP8100/46 Compact Hair Dryer| 2 Flexible heat ...",
+              "description": "Philips HP8100/46 Compact Hair Dryer| 2 Flexible heat setting| ThermoProtect prevents overhearting | 1000 Watts- Purple ... device; HASSLE-FREE SERVICE: 'No ... Read more",
+              "url": "https://www.amazon.in/Philips-HP8100-46-Dryer-Purple/dp/B00KCD8NFY",
+              "breadcrumb": "https://www.amazon.in › Philips-HP8100-46-Dryer-Pur..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "SUPERBA, GLOBAL LEADER IN YARN CONTINUOUS HEAT ...",
+              "description": "... heat - setting line with saturated steam under pressure, or the DHS3 with overheated steam, together with the unequalled MF400 texturizing machine ...",
+              "url": "https://www.youtube.com/watch?v=1sI3NlvxcSM",
+              "breadcrumb": "2.5K+ views  ·  3 years ago"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

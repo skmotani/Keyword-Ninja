@@ -1,0 +1,796 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0461 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-6b81f4b456a6",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0364 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-6b81f4b456a6"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "carpet yarn",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "carpet yarn",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=carpet%20yarn&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:59:33 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+carpet+yarn&hl=en&gl=IN&shoprs=CAEYEioLY2FycGV0IHlhcm4yCQgSEgVQcmljZWAB&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKAF6BAghEG4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Cotton",
+                "url": "https://www.google.com/search?q=cotton+carpet+yarn&hl=en&gl=IN&shoprs=CAEYASoLY2FycGV0IHlhcm4yFggBEgZDb3R0b246Cgi9tC0Qw7QtMABYx-wgYAE&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKAJ6BAghEG8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Wool",
+                "url": "https://www.google.com/search?q=wool+carpet+yarn&hl=en&gl=IN&shoprs=CAEYASoLY2FycGV0IHlhcm4yFAgBEgRXb29sOgoIvbQtEL60LTAAWMfsIGAB&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKAN6BAghEHA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=carpet+yarn+nearby&hl=en&gl=IN&shoprs=CAEYAyoLY2FycGV0IHlhcm4yDAgDEgZOZWFyYnkYAljH7CBgAQ&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKAR6BAghEHE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Acrylic",
+                "url": "https://www.google.com/search?q=acrylic+carpet+yarn&hl=en&gl=IN&shoprs=CAEYASoLY2FycGV0IHlhcm4yFwgBEgdBY3J5bGljOgoIvbQtEMu0LTAAWMfsIGAB&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKAV6BAghEHI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+carpet+yarn&hl=en&gl=IN&shoprs=CAEYEioLY2FycGV0IHlhcm4yCggSEgZPbmxpbmVgAQ&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKAZ6BAghEHM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+carpet+yarn&hl=en&gl=IN&shoprs=CAEYEioLY2FycGV0IHlhcm4yBwgSEgNCdXlgAQ&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKAd6BAghEHQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Polyester",
+                "url": "https://www.google.com/search?q=polyester+carpet+yarn&hl=en&gl=IN&shoprs=CAEYASoLY2FycGV0IHlhcm4yGQgBEglQb2x5ZXN0ZXI6Cgi9tC0Qo7UtMABYx-wgYAE&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKAh6BAghEHU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Rug",
+                "url": "https://www.google.com/search?q=rug+carpet+yarn&hl=en&gl=IN&shoprs=CAEYASoLY2FycGV0IHlhcm4yEwgBEgNSdWc6CgibtS0QtLUtMAJYx-wgYAE&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKAl6BAghEHY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Chunky",
+                "url": "https://www.google.com/search?q=chunky+carpet+yarn&hl=en&gl=IN&shoprs=CAEYASoLY2FycGV0IHlhcm4yFggBEgZDaHVua3k6Cgi1tC0Qu7QtMABYx-wgYAE&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKAp6BAghEHc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Aran",
+                "url": "https://www.google.com/search?q=aran+carpet+yarn&hl=en&gl=IN&shoprs=CAEYASoLY2FycGV0IHlhcm4yFAgBEgRBcmFuOgoItbQtELq0LTAAWMfsIGAB&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKAt6BAghEHg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Size",
+                "url": "https://www.google.com/search?q=size+carpet+yarn&hl=en&gl=IN&shoprs=CAEYEioLY2FycGV0IHlhcm4yCAgSEgRTaXplYAE&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKAx6BAghEHk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Brand",
+                "url": "https://www.google.com/search?q=brand+carpet+yarn&hl=en&gl=IN&shoprs=CAEYEioLY2FycGV0IHlhcm4yCQgSEgVCcmFuZGAB&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKA16BAghEHo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "On sale",
+                "url": "https://www.google.com/search?q=carpet+yarn+sale&hl=en&gl=IN&shoprs=CAESBEoCCAEYBioLY2FycGV0IHlhcm4yEwgGEgdPbiBzYWxlGAIiBEoCCAFYx-wgYAE&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKA56BAghEHs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹1,000",
+                "url": "https://www.google.com/search?q=carpet+yarn+under+1000&hl=en&gl=IN&shoprs=CAESDRILEQAAAABlzc1BGAEYBSoLY2FycGV0IHlhcm4yJwgFEg5VbmRlciDigrkxLDAwMBgCIg0SCxEAAAAAZc3NQRgBKgIYAVjH7CBgAQ&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKA96BAghEHw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "New",
+                "url": "https://www.google.com/search?q=new+carpet+yarn&hl=en&gl=IN&shoprs=CAEYCioLY2FycGV0IHlhcm4yBwgKEgNOZXdYx-wgYAE&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKBB6BAghEH0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Used",
+                "url": "https://www.google.com/search?q=used+carpet+yarn&hl=en&gl=IN&shoprs=CAEYCioLY2FycGV0IHlhcm4yCAgKEgRVc2VkWMfsIGAB&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKBF6BAghEH4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Images",
+                "url": "https://www.google.com/search?q=images+carpet+yarn&hl=en&gl=IN&shoprs=CAEYEioLY2FycGV0IHlhcm4yCggSEgZJbWFnZXNgAQ&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKBJ6BAghEH8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Rugs",
+                "url": "https://www.google.com/search?q=rugs+carpet+yarn&hl=en&gl=IN&shoprs=CAEYCSoLY2FycGV0IHlhcm4yCAgJEgRSdWdzYAE&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKBN6BQghEIAB",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Pom Pom",
+                "url": "https://www.google.com/search?q=pom+pom+carpet+yarn&hl=en&gl=IN&shoprs=CAEYASoLY2FycGV0IHlhcm4yFwgBEgdQb20gUG9tOgoIm7UtEL3ALTACWMfsIGAB&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKBR6BQghEIEB",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Silk",
+                "url": "https://www.google.com/search?q=silk+carpet+yarn&hl=en&gl=IN&shoprs=CAEYASoLY2FycGV0IHlhcm4yFAgBEgRTaWxrOgoIvbQtEMW0LTAAWMfsIGAB&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKBV6BQghEIIB",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Large",
+                "url": "https://www.google.com/search?q=large+carpet+yarn&hl=en&gl=IN&shoprs=CAEYEioLY2FycGV0IHlhcm4yCQgSEgVMYXJnZWAB&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKBZ6BQghEIMB",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Clothes",
+                "url": "https://www.google.com/search?q=clothes+carpet+yarn&hl=en&gl=IN&shoprs=CAEYEioLY2FycGV0IHlhcm4yCwgSEgdDbG90aGVzYAE&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKBd6BQghEIQB",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+carpet+yarn&hl=en&gl=IN&shoprs=CAEYEioLY2FycGV0IHlhcm4yCwgSEgdSZXZpZXdzYAE&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKBh6BQghEIUB",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Handmade",
+                "url": "https://www.google.com/search?q=handmade+carpet+yarn&hl=en&gl=IN&shoprs=CAEYASoLY2FycGV0IHlhcm4yGggBEghIYW5kbWFkZToMCKeEgwEQqISDATADWMfsIGAB&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKBl6BQghEIYB",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Meaning",
+                "url": "https://www.google.com/search?q=meaning+carpet+yarn&hl=en&gl=IN&shoprs=CAEYEioLY2FycGV0IHlhcm4yCwgSEgdNZWFuaW5nYAE&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKBp6BQghEIcB",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tufted",
+                "url": "https://www.google.com/search?q=tufted+carpet+yarn&hl=en&gl=IN&shoprs=CAEYASoLY2FycGV0IHlhcm4yFggBEgZUdWZ0ZWQ6Cgjr614Q7eteMABYx-wgYAE&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKBt6BQghEIgB",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Store",
+                "url": "https://www.google.com/search?q=store+carpet+yarn&hl=en&gl=IN&shoprs=CAEYEioLY2FycGV0IHlhcm4yCQgSEgVTdG9yZWAB&sa=X&ved=2ahUKEwiXlNHSz9uRAxWlDrkGHVWnFrgQip4GKBx6BQghEIkB",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "organic",
+            "images",
+            "popular_products",
+            "people_also_ask",
+            "video",
+            "related_searches"
+          ],
+          "se_results_count": 15800000,
+          "pages_count": 5,
+          "items_count": 48,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 1,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Carpet Yarn at Best Price in India",
+              "description": "₹ 78/kgWe are the Leading Manufacturer & Supplier of Carpet Yarn. We manufacture and supply superior quality, curl free and cost effective Carpet Yarn. Our ... Read more",
+              "url": "https://dir.indiamart.com/impcat/carpet-yarn.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Furnishing Yarns"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 4,
+              "page": 1,
+              "domain": "www.devwoollenmills.com",
+              "title": "Mohair Yarn For Carpet Manufacturer from Ludhiana",
+              "description": "Manufacturer of Carpet Yarn - Mohair Yarn For Carpet, Raised Mohair Yarn, Carpet Yarn . and Wool Carpet Yarn offered by Dev Woollen Mills, Ludhiana, Punjab.",
+              "url": "https://www.devwoollenmills.com/carpet-yarn.html",
+              "breadcrumb": "https://www.devwoollenmills.com › carpet-yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 5,
+              "page": 1,
+              "domain": "sdpolytech.com",
+              "title": "What Is Carpet Yarn A Beginner Guide",
+              "description": "Carpet Yarn is a specially designed yarn used in the making of carpets, rugs, and floor coverings. Unlike normal yarns, carpet yarns are manufactured to be ... Read more",
+              "url": "https://sdpolytech.com/blog/article/What-Is-Carpet-Yarn-A-Beginner-Guide",
+              "breadcrumb": "https://sdpolytech.com › blog › article › What-Is-Carpet-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 6,
+              "page": 1,
+              "domain": "www.creativeyarns.in",
+              "title": "Carpet Yarn, Recycled Polyester Yarn Manufacturers ...",
+              "description": "Our yarns are ideal for the manufacture of a variety of products such as area rugs, bath mats, wall-to-wall carpets, prayer mats, contract carpets and tiles for ... Read more",
+              "url": "https://www.creativeyarns.in/carpet-yarns",
+              "breadcrumb": "https://www.creativeyarns.in › carpet-yarns"
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 7,
+              "page": 1,
+              "domain": "gangaacrowools.com",
+              "title": "Carpet Yarns",
+              "description": "We make Yarns for Bathroom carpets, Area Rugs and Wall to Wall to Carpets ,We Introduced Micro Denier in 100% Acrylic for Bathroom carpets and other innovative ... Read more",
+              "url": "https://gangaacrowools.com/carpet-products.aspx",
+              "breadcrumb": "https://gangaacrowools.com › carpet-products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.sumeetindustries.com",
+              "title": "Carpet Yarn - Sumeet Industries",
+              "description": "We are producing Carpets yarns like: · 150*2*16 ply – Raw White (Ekru ) & Dope Dyed – We have more than 250 running colours · 300*2*8 ply – Raw White (Ekru) & ... Read more",
+              "url": "https://www.sumeetindustries.com/wpcproduct/carpet-yarn/",
+              "breadcrumb": "https://www.sumeetindustries.com › wpcproduct › carp..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "www.amazon.in",
+              "title": "Rug Yarn",
+              "description": "BSB HOME Designer Superfine Chenille Carpet | 500 GSM Velvet Carpet/Area Rug/Durries with Fine Gold Yarn for Living Room, Bedroom, Runner| 150x210 cm or 5x7 ft, ... Read more",
+              "url": "https://www.amazon.in/rug-yarn/s?k=rug+yarn",
+              "breadcrumb": "https://www.amazon.in › rug-yarn › k=rug+yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 12,
+              "page": 1,
+              "domain": "saanikaindustries.com",
+              "title": "Carpet Yarn",
+              "description": "Carpet Yarn, Product Range: Denier as per requirement, Type of yarn: Denier, Multiply: 3600 to 6000, Cris: 2100 to 3600, 3D: 4200 to 5400, Aqua Read more",
+              "url": "https://saanikaindustries.com/carpet-yarn/",
+              "breadcrumb": "https://saanikaindustries.com › carpet-yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "www.chandakspinning.co.in",
+              "title": "White Wool Carpet Yarn Manufacturer, Supplier from Bikaner",
+              "description": "MOQ : 1 Ton. Business Type : Manufacturer, Supplier. Color : White. Material : Wool. No. Of Ply : 1 Ply. Yarn Count : 60 Count. Packaging Type : Roll. Read more",
+              "url": "https://www.chandakspinning.co.in/white-wool-carpet-yarn.htm",
+              "breadcrumb": "https://www.chandakspinning.co.in › Textile Yarns"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "www.geetanjaliwoollens.com",
+              "title": "Carpet Yarns",
+              "description": "We currently produce a wide range of 100% Wool or 80/20 Wool/Synthetic (Nylon or Polyester) carpet yarns suitable for a wide range of Machine made or hand made ... Read more",
+              "url": "https://www.geetanjaliwoollens.com/carpet-yarns.html",
+              "breadcrumb": "https://www.geetanjaliwoollens.com › carpet-yarns"
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.swicofil.com",
+              "title": "Nylon fibers for spinning carpet yarns",
+              "description": "Ninety-seven percent of pile yarns today are made up of synthetic polymers; the rest of the yarns are wool and comprise the more expensive, woven carpet. Read more",
+              "url": "https://www.swicofil.com/consult/industrial-applications/para-textil-and-carpets/carpet",
+              "breadcrumb": "https://www.swicofil.com › para-textil-and-carpets › car..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.yarnsupplierindia.com",
+              "title": "Industrial Yarns - Polyester Carpet Yarn Manufacturer from ...",
+              "description": "AMBERLY TEXTILES No. 76, H - 5, 8th Street, Vinayagapuram North, Behind SRP Mills, Sathy Road, Saravanampatty Post, Coimbatore - 641035, Tamil Nadu, India Read more",
+              "url": "https://www.yarnsupplierindia.com/industrial-yarns.html",
+              "breadcrumb": "https://www.yarnsupplierindia.com › industrial-yarns"
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.aquafil.com",
+              "title": "Recycled Yarn for Carpets from plastic",
+              "description": "Our research excellence in the circular economy field has made our Group one of the main suppliers of sustainable synthetic fibers for carpet flooring around ... Read more",
+              "url": "https://www.aquafil.com/products/carpet-yarn/",
+              "breadcrumb": "https://www.aquafil.com › products › carpet-yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.tradeindia.com",
+              "title": "Carpet Yarn In Baramati Maharashtra At Best Price",
+              "description": "You can find carpet yarn around Baramati such as Ichalkaranji Bhiwandi Mumbai Palghar Silvassa Surat Panoli Ankleshwar Vadodara Halol Pithampur Indore Butibori ... Read more",
+              "url": "https://www.tradeindia.com/baramati/carpet-yarn-city-182536.html",
+              "breadcrumb": "https://www.tradeindia.com › Yarn › Carpet yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "golden-yarn.com",
+              "title": "Polypropylene Yarns For Rug And Carpet Manufacturing ...",
+              "description": "We specialize in manufacturing premium polypropylene yarns meticulously designed for rug and carpet production, ensuring outstanding performance and durability. Read more",
+              "url": "https://golden-yarn.com/",
+              "breadcrumb": "https://golden-yarn.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.cnhago.com",
+              "title": "Wholesale Carpet Yarn | Suppliers & Manufacturers - HAGO",
+              "description": "We offer one-stop solutions for wholesale yarns for carpets, featuring a wide variety of colors, textures, and weights to suit every need. Read more",
+              "url": "https://www.cnhago.com/carpet-yarn/",
+              "breadcrumb": "https://www.cnhago.com › Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "dir.indiamart.com",
+              "title": "Carpet Yarn in Panipat, कालीन धागा, पानीपत, Haryana",
+              "description": "We make carpet yarns in a count range like 0count,00count & 5 to 90 count in single ply or multi ply as required by the client. Our prices like 125-350 as per ... Read more",
+              "url": "https://dir.indiamart.com/panipat/carpet-yarn.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Carpet Yarn › Panipat"
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "www.fibre2fashion.com",
+              "title": "Carpet Yarn : Dyed, For Knitting, Weaving Purpose, 4800, ...",
+              "description": "Carpet Yarn For Illustration Purpose Only. FOB Price : 2.70 USD / Kgs. Min Order : 20000 Kgs. Reference No : 1596926 Business Lead : Selling Offer 1 Read more",
+              "url": "https://www.fibre2fashion.com/yarns/carpet-yarn-suppliers-1596926",
+              "breadcrumb": "https://www.fibre2fashion.com › yarns › carpet-yarn-sup..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 25,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "Carpet yarn manufacturering extrusion process from Standard ...",
+              "description": "Carpet yarn manufacturering extrusion process from Standard Carpets Dubai for. Revolution Mills. 3.6K views · 2 years ago ...more ...",
+              "url": "https://www.youtube.com/watch?v=n9MU_8Sy0Xs",
+              "breadcrumb": "3.7K+ views  ·  2 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "www.magibaindia.net",
+              "title": "Polyester Carpet Yarn Manufacturer from Surat",
+              "description": "Polyester Carpet Yarn · Usage/Application: Carpet and Rug · Material: Polyester · No. Of Ply: multi ply · Packaging Size: Kilogram · Packaging Type: Roll · I ... Read more",
+              "url": "https://www.magibaindia.net/carpet-yarn.html",
+              "breadcrumb": "https://www.magibaindia.net › carpet-yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "www.justdial.com",
+              "title": "Top Carpet Yarn Wholesalers in Delhi near me",
+              "description": "Popular Carpet Yarn Wholesalers in Delhi · Shree Ambika Trading Company · Wings Woollen & Weaving Mills · Innovative Edge · Parveen Woollen & Spinning Mills. Read more",
+              "url": "https://www.justdial.com/Delhi/Carpet-Yarn-Wholesalers/nct-11533323",
+              "breadcrumb": "https://www.justdial.com › ... › 3+ Listings"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.etsy.com",
+              "title": "Buy Carpet Yarn Online In India",
+              "description": "Natural Wool Yarn - Hand Woven Carpet Yarn (1 Kg) - Pure Rope Without Additives. Read more",
+              "url": "https://www.etsy.com/in-en/market/carpet_yarn",
+              "breadcrumb": "https://www.etsy.com › in-en › market › carpet_yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "en.wikipedia.org",
+              "title": "Carpet",
+              "description": "A carpet or rug is a textile floor covering typically consisting of an upper layer of pile attached to a backing. The pile was traditionally made from wool, ... Read more",
+              "url": "https://en.wikipedia.org/wiki/Carpet",
+              "breadcrumb": "https://en.wikipedia.org › wiki › Carpet"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "www.facebook.com",
+              "title": "🧶Carpet Yarn Types: Part 1 Polypropelene & Polyester Join ...",
+              "description": "Carpet Yarn Types: Part 1 Polypropelene & Polyester Join us as Adrian takes you through the different types of carpet yarn and their unique ...",
+              "url": "https://www.facebook.com/100087056232659/videos/carpet-yarn-types-part-1polypropelene-polyesterjoin-us-as-adrian-takes-you-throu/7433674426755022/",
+              "breadcrumb": "6 reactions  ·  1 year ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "www.zjhy-group.com",
+              "title": "The Complete Guide to Carpet and Rug Yarns",
+              "description": "26 Jun 2025 — Carpet yarn generally refers to the yarn used in machine-made carpets, often designed for wall-to-wall installations or large area rugs. Read more",
+              "url": "https://www.zjhy-group.com/news/the-complete-guide-to-carpet-and-rug-yarns-materials-selection-and-care.html",
+              "breadcrumb": "https://www.zjhy-group.com › news › the-complete-gui..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "woolery.com",
+              "title": "Rug Weaving Yarns",
+              "description": "Rug wool yarn is coarser and would be suitable for rug weaving both for warp and weft. There are certain types of cotton yarn which are made with being rug warp ... Read more",
+              "url": "https://woolery.com/collections/rug-weaving-yarns?srsltid=AfmBOorH9NDagHZPdIAYpmedb9XdIesCwg_ukPM-ai_MYZFW7r2VXv_n",
+              "breadcrumb": "https://woolery.com › collections › rug-weaving-yarns"
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "www.itc-carpets.com",
+              "title": "Textile flooring: synthetic and natural yarns",
+              "description": "ITC manufactures carpet flooring and other textiles using synthetic or natural yarns. Synthetic yarns such as polyamide (PA), which we produce in-house from PA ... Read more",
+              "url": "https://www.itc-carpets.com/yarns",
+              "breadcrumb": "https://www.itc-carpets.com › yarns"
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 34,
+              "page": 3,
+              "domain": "www.tradeindia.com",
+              "title": "Carpet Yarn In Amritsar Punjab At Best Price",
+              "description": "Product DescriptionFor quality carpets / Mats (woven and tufted) in acrylic and wool we supply yarns of all kinds \\342\\200\\223 HB and regular dyed melange ... Read more",
+              "url": "https://www.tradeindia.com/amritsar/carpet-yarn-city-180088.html",
+              "breadcrumb": "https://www.tradeindia.com › Yarn › Carpet yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "www.woollencarpetyarn.com",
+              "title": "Carpet Yarn Manufacturer, Supplier From Ludhiana, Punjab",
+              "description": "Carpet yarns are soft yet sturdy fabrics that create products which can withstand numerous footsteps and resistant to scratches from pets. Offered items can be ... Read more",
+              "url": "https://www.woollencarpetyarn.com/carpet-yarn.html",
+              "breadcrumb": "https://www.woollencarpetyarn.com › carpet-yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "anker-carpets.com",
+              "title": "Yarn - an important component of carpeting",
+              "description": "A single fiber does not make a carpet. But many together do! First, they create yarn, and many yarns create a carpet. The type and thickness of the fibers ... Read more",
+              "url": "https://anker-carpets.com/en/innovations/yarn",
+              "breadcrumb": "https://anker-carpets.com › innovations › yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.spentex.net",
+              "title": "Spentex | Global Textile Manufacturer & Leading Yarn Supplier",
+              "description": "Carpet Yarn. High quality Fabric in grey, bleached and dyed forms are available for… more · Sewing Thread. Manufactured from best quality raw cotton, yarns are ... Read more",
+              "url": "https://www.spentex.net/",
+              "breadcrumb": "https://www.spentex.net"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "www.exportersindia.com",
+              "title": "Carpet Yarn at Best Price from Manufacturers, Suppliers ...",
+              "description": "Kalyani Polymers Pvt. Ltd. Ask for Price. carpet woolen yarn. 200 - 210 ... Read more",
+              "url": "https://www.exportersindia.com/indian-suppliers/carpet-yarn.htm",
+              "breadcrumb": "https://www.exportersindia.com › ... › Furnishing Yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "gangaacrowools.com",
+              "title": "Ganga Acrowools",
+              "description": "About Gangaacrowools · Our Products · Machine Knitting Yarns · Handknitting Yarns · Weaving Yarns · Carpet Yarns · Instagram Feed · Important Links. Read more",
+              "url": "https://gangaacrowools.com/",
+              "breadcrumb": "https://gangaacrowools.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "nakshcarpets.in",
+              "title": "Yarn",
+              "description": "Adhesive/ Rug Latex · Accessories · Tufting Machine Spare Parts · Hand Tufted ... 3ply NZ Tufting Wool Yarn - (15-Black)/500gram. Rs. 300.00 Rs. 358.00. Read more",
+              "url": "https://nakshcarpets.in/collections/yarn",
+              "breadcrumb": "https://nakshcarpets.in › collections › yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.urbanconnect.ae",
+              "title": "Understanding Carpet yarns: An overview",
+              "description": "We offer carpet tiles made with high-quality solution-dyed nylon yarn, ensuring exceptional durability and long-lasting color. Read more",
+              "url": "https://www.urbanconnect.ae/understanding-carpet-yarns/",
+              "breadcrumb": "https://www.urbanconnect.ae › understanding-carpet-ya..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "amyoxford.com",
+              "title": "Rug Yarn",
+              "description": "Rug Yarn ... This high twist 3 ply 100% Wool yarn is produced specially for rug hooking. The high twist on the yarn ensures smooth punching experience with our #8 ... Read more",
+              "url": "https://amyoxford.com/collections/rug-yarn?srsltid=AfmBOordZVfbiMp4cAzYiOTKO7jQvx78FzhtUWZzVhHsID5Kl6R9i2du",
+              "breadcrumb": "https://amyoxford.com › collections › rug-yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "dir.indiamart.com",
+              "title": "Carpet Yarn in Delhi (कालीन धागा, दिल्ली)",
+              "description": "Top Carpet Yarn Sellers near Delhi · A G Enterprises. Address : E-176, 1st Floor, New Delhi-110052, Delhi, India · Pioneer Embroideries Limited · Gupta ... Read more",
+              "url": "https://dir.indiamart.com/delhi/carpet-yarn.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Carpet Yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 45,
+              "page": 4,
+              "domain": "www.carpet-yarn.com",
+              "title": "Carpet Woollen Yarns",
+              "description": "We produce Woollen carded yarns for Woven & Tufted carpets. We have special range yarns for Axminster & Wilton carpets. All our blend components are selected ... Read more",
+              "url": "http://www.carpet-yarn.com/carpet_yarn/carpet_woollen_yarn/carpet-woollen-yarns",
+              "breadcrumb": "http://www.carpet-yarn.com › carpet_yarn › carpet-wool..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "www.danfloor.co.uk",
+              "title": "Manufacture carpets with high performance yarns",
+              "description": "Whether you're looking for a natural wool carpet, a carpet made from synthetic fibres or a combination of both we have a flooring solution for you. Read more",
+              "url": "https://www.danfloor.co.uk/feature/carpet-yarn/",
+              "breadcrumb": "https://www.danfloor.co.uk › feature › carpet-yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "www.youtube.com",
+              "title": "All about cotton (carpet warp/rug warp)",
+              "description": null,
+              "url": "https://www.youtube.com/watch?v=-U9ZvuOn0Og",
+              "breadcrumb": "4.5K+ views  ·  5 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.glosterjute.com",
+              "title": "Gloster Limited: Jute Burlap, Goods Manufacturer in Kolkata ...",
+              "description": "Yarn. Fine Yarn; Blended Yarn; Carpet Weft Yarn; Dyed Yarn; Twines / Ropes; Carpet. Non-woven. Felt / Cloth Pieces. Floor Covering & Home Furnishing. Woven Flat ... Read more",
+              "url": "https://www.glosterjute.com/",
+              "breadcrumb": "https://www.glosterjute.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.korteks.com.tr",
+              "title": "Carpet Yarns",
+              "description": "KORTEKS manufactures polyester yarns for use in carpets that are excellent alternatives to or may be combined with the acrylic, polypropylene, and bulk ... Read more",
+              "url": "https://www.korteks.com.tr/en/products/functional-yarns/carpet-yarns",
+              "breadcrumb": "https://www.korteks.com.tr › products › functional-yarns"
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "www.justdial.com",
+              "title": "Top Carpet Yarn Products in Chennai",
+              "description": "Wool Yarn : Known for its resilience and luxurious feel, wool yarn is often used in high-end carpets. Nylon Yarn: This synthetic option is favored for its ... Read more",
+              "url": "https://www.justdial.com/jdmart/Chennai/Carpet-Yarn/jdm-1295107-ent-2-17710587",
+              "breadcrumb": "https://www.justdial.com › jdm-1295107-ent-2-17710587"
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "textilelearner.net",
+              "title": "Carpet Fibers and Yarn: Types, Characteristics and ...",
+              "description": "17 Nov 2021 — All carpets are made from either natural fibers, man made fibers or a combination of both that are spun into yarn that is then woven or tufted into the ... Read more",
+              "url": "https://textilelearner.net/carpet-fibers-and-yarn/",
+              "breadcrumb": "https://textilelearner.net › carpet-fibers-and-yarn"
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.surekasgroup.com",
+              "title": "Carpet polyester yarn for making carpets",
+              "description": "Carpet Yarns. We also provide different kind of polyester yarns for making the carpets, may be handmade or machine made. These are as under :-. Read more",
+              "url": "https://www.surekasgroup.com/carpet-yarns.html",
+              "breadcrumb": "https://www.surekasgroup.com › carpet-yarns"
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "yarnoncone.co.uk",
+              "title": "Rug & Carpet Yarn",
+              "description": "£16.95 · Premium quality rug yarn · 100% pure wool · Ideal for rug weaving, tufting guns, carpet whipping and tapestry making · Medium weight approx 9 WPI · YoC ... Read more",
+              "url": "https://yarnoncone.co.uk/product-category/rug-carpet-yarn/",
+              "breadcrumb": "https://yarnoncone.co.uk › product-category › rug-carpe..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "littlerugyarncompany.co.uk",
+              "title": "The Little Rug Yarn Company: Rug Yarns. Lots of different ...",
+              "description": "80% wool, 20% nylon Axminster rug yarns in a wide range of bright and earthy shades. Thicknesses do vary so if you aren't familiar with the yarn I suggest you ... Read more",
+              "url": "https://littlerugyarncompany.co.uk/",
+              "breadcrumb": "https://littlerugyarncompany.co.uk"
+            },
+            {
+              "type": "organic",
+              "rank_group": 48,
+              "rank_absolute": 56,
+              "page": 5,
+              "domain": "outdoorcarpets.in",
+              "title": "Handwoven PET Yarn Rugs",
+              "description": "Searching for pet yarn carpet manufacturers? Connect with Rugs In Style, the leading pet yarn carpet exporters. Get in touch with these A-grade polyester ...",
+              "url": "https://outdoorcarpets.in/handwoven-pet-yarn-rugs/",
+              "breadcrumb": "https://outdoorcarpets.in › handwoven-pet-yarn-rugs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

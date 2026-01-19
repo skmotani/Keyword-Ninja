@@ -1,0 +1,716 @@
+{
+  "version": "0.1.20251226",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0539 sec.",
+  "cost": 0.0024,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "12261759-1256-0066-0000-d3168dacc21b",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0447 sec.",
+      "cost": 0.0024,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "serp",
+        "google",
+        "organic",
+        "task_get",
+        "regular",
+        "12261759-1256-0066-0000-d3168dacc21b"
+      ],
+      "data": {
+        "api": "serp",
+        "function": "task_get",
+        "se": "google",
+        "se_type": "organic",
+        "keyword": "Ring Twister Machine",
+        "location_code": 2356,
+        "language_code": "en",
+        "device": "desktop",
+        "os": "windows",
+        "depth": 50,
+        "tag": "07322e46-ef42-46ec-8b3f-d0055a367a3e"
+      },
+      "result": [
+        {
+          "keyword": "Ring Twister Machine",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2356,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=Ring%20Twister%20Machine&hl=en&gl=IN&ie=UTF-8&uule=w+CAIQICIFSW5kaWE",
+          "datetime": "2025-12-26 15:59:21 +00:00",
+          "spell": null,
+          "refinement_chips": {
+            "type": "refinement_chips",
+            "xpath": "/html[1]/body[1]/div[3]/div[1]/div[9]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]",
+            "items": [
+              {
+                "type": "refinement_chips_element",
+                "title": "Price",
+                "url": "https://www.google.com/search?q=price+ring+twister+machine&hl=en&gl=IN&shoprs=GBIqFHJpbmcgdHdpc3RlciBtYWNoaW5lMgkIEhIFUHJpY2VgAQ&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKAF6BAgVECw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Online",
+                "url": "https://www.google.com/search?q=online+ring+twister+machine&hl=en&gl=IN&shoprs=GBIqFHJpbmcgdHdpc3RlciBtYWNoaW5lMgoIEhIGT25saW5lYAE&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKAJ6BAgVEC0",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Nearby",
+                "url": "https://www.google.com/search?q=Ring+Twister+Machine+nearby&hl=en&gl=IN&shoprs=GAMqFHJpbmcgdHdpc3RlciBtYWNoaW5lMgwIAxIGTmVhcmJ5GAJgAQ&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKAN6BAgVEC4",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Under ₹2,50,000",
+                "url": "https://www.google.com/search?q=Ring+Twister+Machine+under+250000&hl=en&gl=IN&shoprs=Eg0SCxEAAACglBpNQhgBGAUqFHJpbmcgdHdpc3RlciBtYWNoaW5lMioIBRIRVW5kZXIg4oK5Miw1MCwwMDAYAiINEgsRAAAAoJQaTUIYASoCGAFgAQ&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKAR6BAgVEC8",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "For Sale",
+                "url": "https://www.google.com/search?q=ring+twister+machine+for+sale&hl=en&gl=IN&shoprs=GBIqFHJpbmcgdHdpc3RlciBtYWNoaW5lMgwIEhIIRm9yIFNhbGVgAQ&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKAV6BAgVEDA",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Buy",
+                "url": "https://www.google.com/search?q=buy+ring+twister+machine&hl=en&gl=IN&shoprs=GBIqFHJpbmcgdHdpc3RlciBtYWNoaW5lMgcIEhIDQnV5YAE&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKAZ6BAgVEDE",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Reviews",
+                "url": "https://www.google.com/search?q=reviews+ring+twister+machine&hl=en&gl=IN&shoprs=GBIqFHJpbmcgdHdpc3RlciBtYWNoaW5lMgsIEhIHUmV2aWV3c2AB&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKAd6BAgVEDI",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Black",
+                "url": "https://www.google.com/search?q=black+ring+twister+machine&hl=en&gl=IN&shoprs=GAEqFHJpbmcgdHdpc3RlciBtYWNoaW5lMhcIARIFQmxhY2s6DAjYjPUBEOWK9QEwC2AB&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKAh6BAgVEDM",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Professional",
+                "url": "https://www.google.com/search?q=professional+ring+twister+machine&hl=en&gl=IN&shoprs=GBIqFHJpbmcgdHdpc3RlciBtYWNoaW5lMhAIEhIMUHJvZmVzc2lvbmFsYAE&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKAl6BAgVEDQ",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Brand",
+                "url": "https://www.google.com/search?q=brand+ring+twister+machine&hl=en&gl=IN&shoprs=GBIqFHJpbmcgdHdpc3RlciBtYWNoaW5lMgkIEhIFQnJhbmRgAQ&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKAp6BAgVEDU",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Tradeindia.com",
+                "url": "https://www.google.com/search?q=tradeindia.com+ring+twister+machine&hl=en&gl=IN&shoprs=GAIqFHJpbmcgdHdpc3RlciBtYWNoaW5lMhIIAhIOVHJhZGVpbmRpYS5jb21gAQ&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKAt6BAgVEDY",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Red",
+                "url": "https://www.google.com/search?q=red+ring+twister+machine&hl=en&gl=IN&shoprs=GAEqFHJpbmcgdHdpc3RlciBtYWNoaW5lMhUIARIDUmVkOgwI2Iz1ARDnivUBMAtgAQ&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKAx6BAgVEDc",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Blue",
+                "url": "https://www.google.com/search?q=blue+ring+twister+machine&hl=en&gl=IN&shoprs=GAEqFHJpbmcgdHdpc3RlciBtYWNoaW5lMhYIARIEQmx1ZToMCNiM9QEQ5or1ATALYAE&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKA16BAgVEDg",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Yellow",
+                "url": "https://www.google.com/search?q=yellow+ring+twister+machine&hl=en&gl=IN&shoprs=GAEqFHJpbmcgdHdpc3RlciBtYWNoaW5lMhgIARIGWWVsbG93OgwI2Iz1ARDtivUBMAtgAQ&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKA56BAgVEDk",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Flipkart",
+                "url": "https://www.google.com/search?q=flipkart+ring+twister+machine&hl=en&gl=IN&shoprs=GAIqFHJpbmcgdHdpc3RlciBtYWNoaW5lMgwIAhIIRmxpcGthcnRgAQ&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKA96BAgVEDo",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "amazon.in",
+                "url": "https://www.google.com/search?q=amazon.in+ring+twister+machine&hl=en&gl=IN&shoprs=GAIqFHJpbmcgdHdpc3RlciBtYWNoaW5lMg0IAhIJYW1hem9uLmluYAE&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKBB6BAgVEDs",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Alibaba.com",
+                "url": "https://www.google.com/search?q=alibaba.com+ring+twister+machine&hl=en&gl=IN&shoprs=GAIqFHJpbmcgdHdpc3RlciBtYWNoaW5lMg8IAhILQWxpYmFiYS5jb21gAQ&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKBF6BAgVEDw",
+                "domain": "www.google.com",
+                "options": null
+              },
+              {
+                "type": "refinement_chips_element",
+                "title": "Ubuy",
+                "url": "https://www.google.com/search?q=ubuy+ring+twister+machine&hl=en&gl=IN&shoprs=GAIqFHJpbmcgdHdpc3RlciBtYWNoaW5lMggIAhIEVWJ1eWAB&sa=X&ved=2ahUKEwiMrcrNz9uRAxUSA7kGHZf9F60Qip4GKBJ6BAgVED0",
+                "domain": "www.google.com",
+                "options": null
+              }
+            ]
+          },
+          "item_types": [
+            "images",
+            "popular_products",
+            "organic",
+            "video",
+            "carousel",
+            "people_also_ask",
+            "related_searches"
+          ],
+          "se_results_count": 3200000,
+          "pages_count": 5,
+          "items_count": 47,
+          "items": [
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 3,
+              "page": 1,
+              "domain": "dir.indiamart.com",
+              "title": "Heavy Ring Twister Machine at Best Price in India",
+              "description": null,
+              "url": "https://dir.indiamart.com/impcat/heavy-ring-twister.html",
+              "breadcrumb": "https://dir.indiamart.com › ... › Spinning Machinery"
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 4,
+              "page": 1,
+              "domain": "www.maheshengineers.com",
+              "title": "Offline Ring Twister - Mahesh Twisto Tech Pvt. Ltd.",
+              "description": "2800 RPM (Max.) RING SIZE, As per Customer Requirement. Key Features : Rope Icon. High Speed Ring Twister Machine For Best Yarn Quality With High Productivity. Read more",
+              "url": "https://www.maheshengineers.com/offline-ring-twister.html",
+              "breadcrumb": "https://www.maheshengineers.com › offline-ring-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 8,
+              "page": 1,
+              "domain": "meeraind.com",
+              "title": "Ring Twister Machines for Technical Textile ...",
+              "description": "Ring Twister Smart Technology Features · Fully inverter controlled drive system · Individual spindle motor technology · Energy savings up to 40% · Precise speed ... Read more",
+              "url": "https://meeraind.com/product/ring-twister",
+              "breadcrumb": "https://meeraind.com › product › ring-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 9,
+              "page": 1,
+              "domain": "www.aawadkrupaplastomech.com",
+              "title": "Ring Twister - Bhavnagar",
+              "description": "The Ring Twister is provided with reversible spindle drive that is mainly used for S or Z twisting. TPM setting - Single and Doubling both setting by HMI & PLC. Read more",
+              "url": "https://www.aawadkrupaplastomech.com/ring-twister.htm",
+              "breadcrumb": "https://www.aawadkrupaplastomech.com › Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 10,
+              "page": 1,
+              "domain": "saurer.com",
+              "title": "Ring twisting machine GlassTwister",
+              "description": "Our GlassTwister is an innovative high performance ring twisting machine for winding up glass filament and plied yarns and has become well established in the ... Read more",
+              "url": "https://saurer.com/en/products/machines/twisting-and-cabling/glass/glasstwister",
+              "breadcrumb": "https://saurer.com › twisting-and-cabling › glass › glasst..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 11,
+              "page": 1,
+              "domain": "www.akiropes.com",
+              "title": "Manufacturer of Ring Twister Machine - Akiropes",
+              "description": "22 Nov 2025 — Our Ring Twister machine is a flexible piece of equipment that can be tailored to meet specific customer demands. It offers a wide variety of ... Read more",
+              "url": "https://www.akiropes.com/blog/best-manufacturer-of-ring-twister-machine-in-india/",
+              "breadcrumb": "https://www.akiropes.com › blog › best-manufacturer-o..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 12,
+              "page": 1,
+              "domain": "www.jaylaxmitextilespindle.net",
+              "title": "Heavy Ring Twister Machine",
+              "description": "Our ring twister machine is a versatile machine, it's customized to suit client requirement it gives large range diameter to suit different product, thread and ... Read more",
+              "url": "https://www.jaylaxmitextilespindle.net/ring-twister-machine.html",
+              "breadcrumb": "https://www.jaylaxmitextilespindle.net › ring-twister-ma..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 14,
+              "page": 2,
+              "domain": "www.jmwindia.com",
+              "title": "Heavy Ring Twister - Jeyaletshmi Machine Works",
+              "description": "Heavy Ring Twister. This machine is designed to twist yarns or threads to increase their strength, stability, and other desired properties. Read more",
+              "url": "http://www.jmwindia.com/heavy-ring-twister.php",
+              "breadcrumb": "http://www.jmwindia.com › heavy-ring-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 15,
+              "page": 2,
+              "domain": "gaudino.com",
+              "title": "Our Assembly - Twisting machines",
+              "description": "The ring twisters of the LEMA LEZZENI division are assembly twisters or combination twisters. Assembly twisting is the processing phase that follows spinning. Read more",
+              "url": "https://gaudino.com/en/twisting/",
+              "breadcrumb": "https://gaudino.com › twisting"
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 16,
+              "page": 2,
+              "domain": "www.marutiplastotech.in",
+              "title": "Maruti Heavy Duty Ring Twister Machine",
+              "description": "Usage/Application: Rope Twisting; Material: Mild Steel; Capacity(kg/hr): 50 kg/hr; Power Consumption: 22.3 Kw; Machine Type: Semi Automatic ... Read more",
+              "url": "https://www.marutiplastotech.in/ring-twister-machine.html",
+              "breadcrumb": "https://www.marutiplastotech.in › ring-twister-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 17,
+              "page": 2,
+              "domain": "www.prtexpro.in",
+              "title": "Ring Twister Machine - Servo Cops Winder ...",
+              "description": "TFO Twister Machine Single Rope Yarn · Capacity: 250 kg/Hour · Power Consumption: 2.6 kW · Machine Type: Automatic · Voltage: 380 V · Material: Stainless Steel ... Read more",
+              "url": "https://www.prtexpro.in/ring-twister-machine.html",
+              "breadcrumb": "https://www.prtexpro.in › ring-twister-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 18,
+              "page": 2,
+              "domain": "www.aawadkrupaextrusion.com",
+              "title": "Ring Twister Manufacturer,Supplier,Exporter",
+              "description": "These versatile Ring Twister Machines are designed to meet various demands of the clients as they can work on different threads. Read more",
+              "url": "https://www.aawadkrupaextrusion.com/ring-twister.html",
+              "breadcrumb": "https://www.aawadkrupaextrusion.com › ring-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 13,
+              "rank_absolute": 19,
+              "page": 2,
+              "domain": "www.tradeindia.com",
+              "title": "Ring Twisting Machine Manufacturers, Suppliers, Dealers ...",
+              "description": null,
+              "url": "https://www.tradeindia.com/manufacturers/ring-twisting-machine.html",
+              "breadcrumb": "https://www.tradeindia.com › manufacturers › ring-twis..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 14,
+              "rank_absolute": 20,
+              "page": 2,
+              "domain": "www.meera.ind.in",
+              "title": "Ring Twister For PP/ Poly / PA / Nylon / PE / HDPE",
+              "description": "High Tenacity Low Shrinkage Polyester Yarn Twisting Machine · Operation Mode: Automatic · Brand: Meera · Machine Type: Automatic · Automation Grade: Automatic ... Read more",
+              "url": "https://www.meera.ind.in/ring-twister.html",
+              "breadcrumb": "https://www.meera.ind.in › ring-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 15,
+              "rank_absolute": 21,
+              "page": 2,
+              "domain": "www.youtube.com",
+              "title": "Ring Twister Machine",
+              "description": null,
+              "url": "https://www.youtube.com/playlist?list=PLF0aZLMSqS27tFam0D4TsOy7pYKdKT7oo",
+              "breadcrumb": "6.1K+ followers"
+            },
+            {
+              "type": "organic",
+              "rank_group": 16,
+              "rank_absolute": 22,
+              "page": 2,
+              "domain": "kmmcringtwister.com",
+              "title": "Ring Twister Machine Manufacturer in India",
+              "description": "Our ring twister machine is a versatile machine, it's customized to suitable client requirement it gives large range diameter to suitable different product. Read more",
+              "url": "https://kmmcringtwister.com/ring-twister-machine.html",
+              "breadcrumb": "https://kmmcringtwister.com › ring-twister-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 17,
+              "rank_absolute": 23,
+              "page": 2,
+              "domain": "www.messe.de",
+              "title": "ring twister",
+              "description": "MEERA Ring Twister is an innovative high performance ring twisting machine for Single Step Plying / Doubling. Twisting machine. 4. Page 5. www.meeraind.com. Read more",
+              "url": "https://www.messe.de/apollo/domotex_2020/obs/Binary/A984024/25764_43506_157562584426796200_aeid_205__265_atomfeld_205_265-13932991575625889.pdf",
+              "breadcrumb": "https://www.messe.de › apollo › obs › Binary › 2..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 18,
+              "rank_absolute": 25,
+              "page": 3,
+              "domain": "www.agteks.com",
+              "title": "Twisting Machine Technology",
+              "description": "Ring twisting machines are one of the doubling twisting machines used in flat twisting and can perform single and double twisting. Doubling and Twisting on ... Read more",
+              "url": "https://www.agteks.com/twisting-machine-technology/",
+              "breadcrumb": "https://www.agteks.com › twisting-machine-technology"
+            },
+            {
+              "type": "organic",
+              "rank_group": 19,
+              "rank_absolute": 26,
+              "page": 3,
+              "domain": "www.codina.tech",
+              "title": "High-Performance Ring Twister Machine by Codina",
+              "description": "Explore the Codina Ring Twister Machine for reliable and efficient twisting. Perfect for various applications, it simplifies your workflow.",
+              "url": "https://www.codina.tech/ring-twisters",
+              "breadcrumb": "https://www.codina.tech › ring-twisters"
+            },
+            {
+              "type": "organic",
+              "rank_group": 20,
+              "rank_absolute": 27,
+              "page": 3,
+              "domain": "dir.indiamart.com",
+              "title": "Heavy Ring Twister Machine in Bhavnagar, हैवी रिंग ट्विस्टर ...",
+              "description": null,
+              "url": "https://dir.indiamart.com/bhavnagar/heavy-ring-twister.html",
+              "breadcrumb": "https://dir.indiamart.com › bhavnagar › heavy-ring-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 21,
+              "rank_absolute": 28,
+              "page": 3,
+              "domain": "www.justdial.com",
+              "title": "Popular Heavy Ring Twister Manufacturers in Coimbatore",
+              "description": null,
+              "url": "https://www.justdial.com/Coimbatore/Heavy-Ring-Twister-Manufacturers/nct-11476814",
+              "breadcrumb": "https://www.justdial.com › ... › 2+ Listings"
+            },
+            {
+              "type": "organic",
+              "rank_group": 22,
+              "rank_absolute": 29,
+              "page": 3,
+              "domain": "www.akiropes.com",
+              "title": "How Ring Twister Machines Improve Rope ...",
+              "description": "24 Nov 2025 — A Ring Twister Machine is a high-speed textile machine designed to twist multiple strands of yarn together, creating a stronger and more durable ... Read more",
+              "url": "https://www.akiropes.com/blog/how-ring-twister-machines-improve-rope-strength-and-twist-consistency-machine/",
+              "breadcrumb": "https://www.akiropes.com › blog › how-ring-twister-ma..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 23,
+              "rank_absolute": 30,
+              "page": 3,
+              "domain": "jingtianchina.en.made-in-china.com",
+              "title": "Professional Manufacturer High Speed Ring Type ...",
+              "description": "This machine is high effective twister and has set the mechanism of twisting direction changing, anti-conversing turning device for roller, safe device and ... Read more",
+              "url": "https://jingtianchina.en.made-in-china.com/product/UOJaxklPVWpi/China-Professional-Manufacturer-High-Speed-Ring-Type-Twisting-Machine.html",
+              "breadcrumb": "https://jingtianchina.en.made-in-china.com › product"
+            },
+            {
+              "type": "organic",
+              "rank_group": 24,
+              "rank_absolute": 31,
+              "page": 3,
+              "domain": "marutiplastotech.com",
+              "title": "Ring Twister Machine | Maruti Plastotech Pvt. Ltd.",
+              "description": "We The Maruti Plastotech Prime Manufacturer & Exporter of Online/Offline Ring Twister Machine in India/Gujarat. One Of The Best Manufacturer & Supplier Read more",
+              "url": "https://marutiplastotech.com/offline-ring-twister-machine",
+              "breadcrumb": "https://marutiplastotech.com › offline-ring-twister-mach..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 25,
+              "rank_absolute": 32,
+              "page": 3,
+              "domain": "fibrxl.com",
+              "title": "Ring twisting",
+              "description": "Our innovative high-performance ring twisting machines from Galan and Twist Technology combine the advantages of ring twisting with greater flexibility in ... Read more",
+              "url": "https://fibrxl.com/fibrxl-performance/processing/ring-twisting-2/",
+              "breadcrumb": "https://fibrxl.com › FibrXL Performance › Processing"
+            },
+            {
+              "type": "organic",
+              "rank_group": 26,
+              "rank_absolute": 33,
+              "page": 3,
+              "domain": "www.ambaeng.com",
+              "title": "Ring Twister Machine, Ring Twister for Textile",
+              "description": "13 Sept 2019 — Best yarn quality & high productivity. Uniform counter balancing. High speed Ring Twister machine. Optimum production & Easy to operate. Spindle ... Read more",
+              "url": "https://www.ambaeng.com/2019/09/13/ring-twister-machine-ring-twister-for-textile/",
+              "breadcrumb": "https://www.ambaeng.com › 2019/09/13 › ring-twister-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 27,
+              "rank_absolute": 34,
+              "page": 3,
+              "domain": "www.youtube.com",
+              "title": "Ring Twister Machine｜High Speed Ring Type Twisting ...",
+              "description": "Ring Twister Machine ｜High Speed Ring Type Twisting Machine (HY7-T10)｜Hao Yu. 24K views · 6 years ago #Manufacturer #RingTwister ...more ...",
+              "url": "https://www.youtube.com/watch?v=W6nbjFmdP5w",
+              "breadcrumb": "24.2K+ views  ·  6 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 28,
+              "rank_absolute": 36,
+              "page": 4,
+              "domain": "www.alibaba.com",
+              "title": "High Speed Ring Twisting Machine",
+              "description": null,
+              "url": "https://www.alibaba.com/showroom/ring-twisting-machine.html",
+              "breadcrumb": "https://www.alibaba.com › ... › Spinning Machines"
+            },
+            {
+              "type": "organic",
+              "rank_group": 29,
+              "rank_absolute": 37,
+              "page": 4,
+              "domain": "www.taizhengmachine.com",
+              "title": "The Different Types of Twisting Machines",
+              "description": "30 Mar 2023 — The ring twister, also known as a flyer twister, is a type of twisting machine that uses a ring-shaped flyer to twist fibers together. Read more",
+              "url": "https://www.taizhengmachine.com/the-different-types-of-twisting-machines.html",
+              "breadcrumb": "https://www.taizhengmachine.com › the-different-types-..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 30,
+              "rank_absolute": 38,
+              "page": 4,
+              "domain": "www.exportersindia.com",
+              "title": "Heavy Ring Twister Machine",
+              "description": null,
+              "url": "https://www.exportersindia.com/indian-suppliers/heavy-ring-twister.htm",
+              "breadcrumb": "https://www.exportersindia.com › indian-suppliers › hea..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 31,
+              "rank_absolute": 39,
+              "page": 4,
+              "domain": "www.youtube.com",
+              "title": "Ring Twisting Machine",
+              "description": "Ring Twister Machine ｜High Speed Ring Type Twisting Machine (HY7-T10)｜Hao Yu. Hao Yu Precision Machinery Industry Co.,Ltd•21K views · 15:34.",
+              "url": "https://www.youtube.com/watch?v=EVdFKtrzqIA",
+              "breadcrumb": "6.4K+ views  ·  11 years ago"
+            },
+            {
+              "type": "organic",
+              "rank_group": 32,
+              "rank_absolute": 40,
+              "page": 4,
+              "domain": "www.indiamart.com",
+              "title": "Ring Twister Machine Manufacturer from Ahmedabad",
+              "description": "Manufacturer of Ring Twister Machine offered by Minarva Machinery Mfrs Pvt. Ltd., Ahmedabad, Gujarat.",
+              "url": "https://www.indiamart.com/minarvamachinerymanufacturers/ring-twister-machine.html?srsltid=AfmBOopvSOnVGStY5UxrcNgDE-htBXPvpwZfVv6ULszgqjUXc2bM1aek",
+              "breadcrumb": "https://www.indiamart.com › ... › Products & Services"
+            },
+            {
+              "type": "organic",
+              "rank_group": 33,
+              "rank_absolute": 41,
+              "page": 4,
+              "domain": "meeraind.com",
+              "title": "Guide to Modern Types of Twisting Machines in 2025",
+              "description": "17 Sept 2025 — Ring and Double Twist machines focus on high-speed, uniform yarn production with reduced downtime and lower energy costs. Two-for-One (TFO) ... Read more",
+              "url": "https://meeraind.com/blog/modern-twisting-machine-guide",
+              "breadcrumb": "https://meeraind.com › blog › modern-twisting-machin..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 34,
+              "rank_absolute": 42,
+              "page": 4,
+              "domain": "www.rieter.com",
+              "title": "Rieter – Leading Manufacturer of Systems for Short-Staple ...",
+              "description": "Rieter delivers machinery, automation and digital solutions that help spinning mills increase productivity and stay competitive – from fiber to yarn.",
+              "url": "https://www.rieter.com/",
+              "breadcrumb": "https://www.rieter.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 35,
+              "rank_absolute": 43,
+              "page": 4,
+              "domain": "onlineringtwistermachine.com",
+              "title": "Online Ring, Doubler, Twisting, Spinning, Machine, Plastic ...",
+              "description": "Online Ring Twister machines is also known as Ring Doubling Machine, Twister for Rope, Doubler for Yarn, Doubler for Rope, Yarn Twister Machine, Yarn Doubler ... Read more",
+              "url": "http://onlineringtwistermachine.com/",
+              "breadcrumb": "http://onlineringtwistermachine.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 36,
+              "rank_absolute": 44,
+              "page": 4,
+              "domain": "www.kalashfrp.com",
+              "title": "Ring Twister Machine",
+              "description": "Presenting our innovative Ring Twister Machine, designed with cutting-edge technology to revolutionize your textile production needs. Read more",
+              "url": "https://www.kalashfrp.com/ring-twister-machine.html",
+              "breadcrumb": "https://www.kalashfrp.com › Products"
+            },
+            {
+              "type": "organic",
+              "rank_group": 37,
+              "rank_absolute": 45,
+              "page": 4,
+              "domain": "aawadkrupa.com",
+              "title": "Ring Twister",
+              "description": "Complete powder coated heavy duty structure. High speed machine. Best yarn quality & high productivity. Two line roller and hard chromium plating. Optimum ... Read more",
+              "url": "https://aawadkrupa.com/plastic-extrusion-plant.php?link=44",
+              "breadcrumb": "https://aawadkrupa.com › plastic-extrusion-plant"
+            },
+            {
+              "type": "organic",
+              "rank_group": 38,
+              "rank_absolute": 47,
+              "page": 5,
+              "domain": "en.qdkivas.com",
+              "title": "Twister machine,/Ring Twister Machine",
+              "description": "It is a high efficiency and output yarn twisting machine with twisting and stranding. It has the mechanism with planetary direction exchanging. Stranding and ... Read more",
+              "url": "http://en.qdkivas.com/twister-machinering-twister-machine-product/",
+              "breadcrumb": "http://en.qdkivas.com › twister-machinering-twister-mac..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 39,
+              "rank_absolute": 48,
+              "page": 5,
+              "domain": "kmmcringtwister.com",
+              "title": "kamdhenu machinery mfg. co.",
+              "description": "KMMC is trusted brand for textile machinery mfg. since 2003. for Ring Doubler Machine, Ring Twister & Online Ring Winder Machines.",
+              "url": "https://kmmcringtwister.com/",
+              "breadcrumb": "https://kmmcringtwister.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 40,
+              "rank_absolute": 49,
+              "page": 5,
+              "domain": "www.akiropes.com",
+              "title": "Ring Twister Machine Manufacturer and Exporter",
+              "description": "As a leading manufacturer and exporter, we deliver top-quality Ring Twister Machine worldwide, including our innovative Glass Twister model designed for ... Read more",
+              "url": "https://www.akiropes.com/ring-twister.php",
+              "breadcrumb": "https://www.akiropes.com › ring-twister"
+            },
+            {
+              "type": "organic",
+              "rank_group": 41,
+              "rank_absolute": 50,
+              "page": 5,
+              "domain": "www.sigmaplastomech.com",
+              "title": "Ring Twister Model SSE-RT-24",
+              "description": "... Machine, PP Tape Fibrillating Extrusion Machine, Ring Twister Machine, Ring Winder & Ply Yarn Twister Machine, Latest Technology Rope Making Machine, High ...",
+              "url": "https://www.sigmaplastomech.com/ring-twister-details?id=1",
+              "breadcrumb": "https://www.sigmaplastomech.com › ring-twister-details"
+            },
+            {
+              "type": "organic",
+              "rank_group": 42,
+              "rank_absolute": 51,
+              "page": 5,
+              "domain": "en.ropenetmachine.com",
+              "title": "Twister Machine - Shandong Rope Net Machinery Co., Ltd.",
+              "description": "Extruder · PP Monofilament Extruder · Film Blowing Machine ; ROPE MAKING MACHINE · Rope Making Machines · Type D Machines Series ; Twister Machine · 250 Ring ... Read more",
+              "url": "https://en.ropenetmachine.com/product/twister-machine.html",
+              "breadcrumb": "https://en.ropenetmachine.com › product › twister-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 43,
+              "rank_absolute": 52,
+              "page": 5,
+              "domain": "www.dttwister.com",
+              "title": "Polyester Embroidery Yarn Ring Twisting Machine",
+              "description": "DT9808 polyester embroidery yarn ring twisting machine owns Japan Mitsubishi frequency conversion control, pulling capstan roller, imported high speed steel ... Read more",
+              "url": "https://www.dttwister.com/twisting-machine/98-cnc-composite-twisting-machine/polyester-embroidery-yarn-ring-twisting.html",
+              "breadcrumb": "https://www.dttwister.com › twisting-machine › polyest..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 44,
+              "rank_absolute": 53,
+              "page": 5,
+              "domain": "www.monofilamentextruder.com",
+              "title": "Ring Twister Machine",
+              "description": "Home >> Products >> Related Machine >> Ring Twister Machine · PP/HDPE/PET/Nylon Yarn Ring Twister Machine · Inquire Now · Plastic Filament Ring Twister ... Read more",
+              "url": "https://www.monofilamentextruder.com/ring-twister-machine/",
+              "breadcrumb": "https://www.monofilamentextruder.com › ring-twister-m..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 45,
+              "rank_absolute": 54,
+              "page": 5,
+              "domain": "twistechnology.com",
+              "title": "TwisTechnology | Precision Machines for Technical yarns",
+              "description": "TwisTechnology is a leading manufacturer of high-precision twisting, coating, and drying machines for technical yarns. Trusted since 1939.",
+              "url": "https://twistechnology.com/",
+              "breadcrumb": "https://twistechnology.com"
+            },
+            {
+              "type": "organic",
+              "rank_group": 46,
+              "rank_absolute": 55,
+              "page": 5,
+              "domain": "www.jmfibermachine.com",
+              "title": "Ring Twister Machine",
+              "description": "ring spinning machine, ring spinning machine manufacturers, yarn twisting and doubling machine, yarn doubling machine.",
+              "url": "https://www.jmfibermachine.com/ring-twister-machine/",
+              "breadcrumb": "https://www.jmfibermachine.com › ring-twister-machine"
+            },
+            {
+              "type": "organic",
+              "rank_group": 47,
+              "rank_absolute": 56,
+              "page": 5,
+              "domain": "www.quora.com",
+              "title": "What is ring spinning in textile machinery?",
+              "description": ") Twisting- It is done to impart twist to the yarn so that fibres can be held firmly into the yarn. Also appropriate twist in the yarn ... Read more",
+              "url": "https://www.quora.com/What-is-ring-spinning-in-textile-machinery",
+              "breadcrumb": "3 answers  ·  8 years ago"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
