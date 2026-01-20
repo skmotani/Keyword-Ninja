@@ -22,6 +22,7 @@ import {
     PriorityLevel,
     CompetitorBalloonData,
     ClientBusinessData,
+    HomePageData,
     ExecuteQueryRequest,
     DashboardQueryDefinition
 } from '@/types/dashboardTypes';
@@ -1493,6 +1494,47 @@ async function executeClientBusinessQuery(
     };
 }
 
+// MANUAL_003: Home Page Query - Fetches client logo, app logo, tagline, punchline
+async function executeHomePageQuery(
+    params: ExecuteQueryRequest
+): Promise<HomePageData> {
+    const clients = await readClients();
+    const client = clients.find(c => c.code === params.clientCode);
+
+    if (!client) {
+        throw new Error(`Client not found: ${params.clientCode}`);
+    }
+
+    // Get client logo from brandPhotos
+    const clientLogo = client.brandPhotos && client.brandPhotos.length > 0
+        ? client.brandPhotos[0]
+        : null;
+
+    // Get app profile from PostgreSQL
+    let appProfile = null;
+    try {
+        const { prisma } = await import('@/lib/prisma');
+        appProfile = await prisma.appProfile.findUnique({
+            where: { key: 'primary' },
+            include: { logos: { where: { isPrimary: true }, take: 1 } }
+        });
+    } catch (error) {
+        console.warn('Failed to read app profile from database:', error);
+    }
+
+    // Get app logo (primary logo)
+    const appLogo = appProfile?.logos?.[0]?.url || null;
+
+    return {
+        clientName: client.name,
+        clientLogo,
+        appName: appProfile?.appName || 'Keyword Ninja',
+        appLogo,
+        tagline: appProfile?.tagline || null,
+        punchline: appProfile?.punchline || null
+    };
+}
+
 async function executeCompetitorBalloonQuery(clientCode: string, queryDef?: any): Promise<CompetitorBalloonData> {
     const clients = await readClients();
     const client = clients.find(c => c.code === clientCode);
@@ -1594,6 +1636,8 @@ function getSourceLink(queryType: string): DataSourceLink {
             return { label: 'AI Keyword Builder (Include|Learn)', href: '/keywords/domain-keywords' };
         case 'client-business':
             return { label: 'Client Master + AI Client Profile', href: '/master/clients' };
+        case 'home-page':
+            return { label: 'Client Master + App Profile', href: '/master/app-profile' };
         default:
             return { label: 'Unknown Source', href: '/' };
     }
@@ -1662,6 +1706,9 @@ export async function POST(request: Request) {
 
             case 'client-business':
                 data = await executeClientBusinessQuery({ clientCode, queryId }, query);
+                break;
+            case 'home-page':
+                data = await executeHomePageQuery({ clientCode, queryId });
                 break;
             default:
                 data = { message: 'Custom query type - no execution logic defined' };

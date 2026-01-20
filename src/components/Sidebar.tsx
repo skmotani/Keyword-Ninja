@@ -29,6 +29,7 @@ const menuSections = [
             { href: '/master/domain-credibility-age', label: 'Domain Credibility' },
             { href: '/master/domain-authority', label: 'Domain Authority' },
             { href: '/keywords/manual', label: 'Keyword Manual' },
+            { href: '/master/app-profile', label: 'App Profile' },
         ],
     },
     {

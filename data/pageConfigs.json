@@ -645,5 +645,26 @@
     "userDescription": "",
     "comments": [],
     "updatedAt": "2026-01-16T01:10:20.640Z"
+  },
+  {
+    "path": "/master/app-profile",
+    "userDescription": "",
+    "comments": [
+      {
+        "id": "8b286df5-d18f-428a-9765-b776a05034be",
+        "text": "What We do \nAt Motani, we Analyze your market data and Automate your digital presence so that you can Dominate your industry across every search platform.",
+        "status": "pending",
+        "createdAt": "2026-01-20T00:45:54.321Z",
+        "updatedAt": "2026-01-20T00:45:54.321Z"
+      },
+      {
+        "id": "fb68af6d-fa4f-4a54-872f-b5977d719509",
+        "text": "For a Social Media Post (Catchy & Engaging)\n\"Success in the AI era isn't magic; it’s a process. We Analyze deep market intent and Automate your digital footprint so your brand can Dominate the search results that actually matter.\"\n\nFor a Slide Deck or Proposal (Professional & Results-Driven)\n\"Motani bridges the gap between data and revenue. By using AI to Analyze competitor gaps and Automate high-performance content, we position your business to Dominate your niche and scale faster.\"\n\nFor a Quick Elevator Pitch (Short & Punchy)\n\"We Analyze the data, Automate the growth, and help you Dominate the market—putting your business exactly where the money is.\"\n\nThe \"Simple Value\" Version (Client-Focused)\n\"We take the guesswork out of growth. Our team Analyzes your best opportunities and Automates the heavy lifting so you can Dominate your industry without the technical headache.\"",
+        "status": "pending",
+        "createdAt": "2026-01-20T00:45:10.315Z",
+        "updatedAt": "2026-01-20T00:45:10.315Z"
+      }
+    ],
+    "updatedAt": "2026-01-20T00:45:54.351Z"
   }
 ]

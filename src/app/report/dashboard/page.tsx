@@ -21,7 +21,8 @@ import {
     Top20IncludeLearnData,
     CompetitorBalloonData,
     ClientBusinessData,
-    BrandETVData
+    BrandETVData,
+    HomePageData
 } from '@/types/dashboardTypes';
 import Link from 'next/link';
 import {
@@ -527,6 +528,63 @@ function ClientBusinessCard({ data }: { data: ClientBusinessData }) {
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+    );
+}
+
+// MANUAL_003 - Home Page Card with Client Logo, App Logo, Tagline, Punchline
+function HomePageCard({ data }: { data: HomePageData }) {
+    return (
+        <div className="flex flex-col items-center text-center py-8">
+            {/* Logos Section */}
+            <div className="flex items-center justify-center gap-8 mb-6">
+                {/* Client Logo */}
+                {data.clientLogo && (
+                    <div className="flex flex-col items-center">
+                        <div className="w-24 h-24 rounded-xl bg-white shadow-lg border border-gray-100 overflow-hidden flex items-center justify-center p-2">
+                            <img src={data.clientLogo} alt={data.clientName} className="max-w-full max-h-full object-contain" />
+                        </div>
+                        <span className="text-xs text-gray-500 mt-2">{data.clientName}</span>
+                    </div>
+                )}
+
+                {/* Divider */}
+                {data.clientLogo && data.appLogo && (
+                    <div className="text-3xl text-gray-300">×</div>
+                )}
+
+                {/* App Logo */}
+                {data.appLogo && (
+                    <div className="flex flex-col items-center">
+                        <div className="w-24 h-24 rounded-xl bg-white shadow-lg border border-gray-100 overflow-hidden flex items-center justify-center p-2">
+                            <img src={data.appLogo} alt={data.appName} className="max-w-full max-h-full object-contain" />
+                        </div>
+                        <span className="text-xs text-gray-500 mt-2">{data.appName}</span>
+                    </div>
+                )}
+            </div>
+
+            {/* App Name if no logos */}
+            {!data.clientLogo && !data.appLogo && (
+                <h1 className="text-3xl font-bold text-gray-800 mb-2">{data.appName}</h1>
+            )}
+
+            {/* Tagline */}
+            {data.tagline && (
+                <p className="text-lg text-gray-600 font-medium mb-2">{data.tagline}</p>
+            )}
+
+            {/* Punchline */}
+            {data.punchline && (
+                <p className="text-sm text-indigo-600 font-semibold tracking-wide uppercase">{data.punchline}</p>
+            )}
+
+            {/* Welcome Message */}
+            <div className="mt-6 px-6 py-3 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg border border-indigo-100">
+                <p className="text-sm text-gray-700">
+                    Welcome to your SEO Dashboard for <span className="font-semibold text-indigo-700">{data.clientName}</span>
+                </p>
             </div>
         </div>
     );
@@ -2017,7 +2075,8 @@ function QueryCard({
                                     <CompetitorBalloonCard data={result.data as CompetitorBalloonData} />
                                 ) : result.queryType === 'client-business' ? (
                                     <ClientBusinessCard data={result.data as ClientBusinessData} />
-
+                                ) : result.queryType === 'home-page' ? (
+                                    <HomePageCard data={result.data as HomePageData} />
 
                                 ) : (
                                     <pre className="text-sm bg-gray-50 p-3 rounded overflow-auto">

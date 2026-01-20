@@ -1,5 +1,27 @@
 [
   {
+    "id": "MANUAL_003",
+    "queryNumber": "0.1",
+    "groupId": "GRP-001",
+    "title": "Home Page",
+    "description": "Dashboard welcome card with client and app branding",
+    "tooltip": "Displays client logo, app logo, tagline, and punchline.",
+    "status": "Info",
+    "queryType": "home-page",
+    "config": {},
+    "sourceInfo": {
+      "tables": [
+        "clients.json",
+        "AppProfile (postgres)"
+      ],
+      "page": "App Profile",
+      "pageUrl": "/master/app-profile"
+    },
+    "isActive": true,
+    "createdAt": "2026-01-20T06:30:00.000Z",
+    "updatedAt": "2026-01-20T06:30:00.000Z"
+  },
+  {
     "id": "Q001",
     "queryNumber": "1.1",
     "groupId": "GRP-001",

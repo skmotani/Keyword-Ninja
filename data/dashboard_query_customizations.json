@@ -3,13 +3,13 @@
     {
       "queryId": "Q001",
       "customTitle": "About Client Business",
-      "pageContent": "Title : We Know Your Business |",
-      "updatedAt": "2026-01-19T23:15:45.301Z"
+      "pageContent": "SEO Benefits\nFoundation for Strategy 🎯\nEstablishes the client's digital identity baseline before any SEO work\nDocuments what the business actually does, preventing off-target keyword targeting\nDomain Health Assessment 📊\nShows current organic traffic per domain (e.g., \"meeraind.com has 1,288 monthly organic visits\")\nIdentifies underperforming domains that need attention\nTarget Audience Clarity 👥\n\"Target Customer Segments\" (e.g., textile manufacturers, fabric producers) guide keyword intent mapping\nHelps classify keywords as relevant vs irrelevant based on actual customer profiles\nMulti-Domain Strategy 🌐\nReveals if traffic is concentrated on one domain or spread across multiple\nHelps decide where to focus SEO efforts and which domains to prioritize\nContent Direction 📝\nProduct lines inform content pillar development\nGeographies inform location-based targeting and hreflang strategy",
+      "updatedAt": "2026-01-20T00:10:34.685Z"
     },
     {
       "queryId": "MANUAL_001",
-      "customTitle": "First Title Page",
-      "updatedAt": "2026-01-18T03:54:19.355Z",
+      "customTitle": "Top 20  Buy KW with Client SERP POS",
+      "updatedAt": "2026-01-20T00:53:36.907Z",
       "pageTitle": "Money Magnets | Keyword with Transactional Intent ( include | Buy + Include | Learn ) With Client Postion",
       "pageContent": "Pulls keywords from your AI Keyword Builder - Only keywords you've manually categorized into the \"Include | Buy\" bucket (purchase-intent keywords)\nCombines India + Global search volumes - For the same keyword appearing in both India (IN) and Global (GL) locations, it sums up both volumes to show true total demand. For example, \"rope making machine\" with 390 IN volume + 720 GL volume = 1,110 total demand\n\n\nShows YOUR position (Self domains only) - Instead of competitor positions, it shows where YOUR domains (meeraind.com, meera.ind.in) actually rank for each keyword. Keywords where you don't rank show \"-\"\nSorts by combined volume - The top 20 are ranked by total market demand (IN + GL)"
     },
@@ -43,20 +43,28 @@
       "queryId": "Q013",
       "customTitle": "You Vs Your Competitor on ETV",
       "updatedAt": "2026-01-19T09:56:51.897Z"
+    },
+    {
+      "queryId": "MANUAL_003",
+      "customTitle": "Home Page",
+      "updatedAt": "2026-01-20T01:17:12.552Z",
+      "pageTitle": "Home page",
+      "pageContent": "SEO Benefits:\nBrand Consistency - aligned visual identity\nProfessional Presentation - builds client trust\nQuick Context - instant client identification\nCentralized Branding - single source of truth"
     }
   ],
   "categories": [
     {
       "groupId": "GRP-001",
-      "customName": "Digital Fosotprint",
-      "updatedAt": "2026-01-17T07:02:33.881Z"
+      "customName": "Introduction",
+      "updatedAt": "2026-01-20T01:17:50.929Z"
     }
   ],
   "queryOrder": {
     "GRP-001": [
+      "MANUAL_003",
+      "Q001",
       "MANUAL_001",
-      "MANUAL_002",
-      "Q001"
+      "MANUAL_002"
     ],
     "GRP-002": [
       "Q002",
@@ -74,9 +82,8 @@
       "Q009"
     ],
     "GRP-005": [
-      "Q013",
-      "Q012",
-      "Q008"
+      "Q008",
+      "Q012"
     ]
   }
 }

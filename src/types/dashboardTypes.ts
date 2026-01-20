@@ -28,6 +28,7 @@ export type QueryType =
     | 'top20-include-learn'
     | 'competitor-balloon'
     | 'client-business'
+    | 'home-page'
     | 'custom'
     | 'manual';
 
@@ -319,6 +320,16 @@ export interface BrandETVData {
     }[];
 }
 
+// MANUAL_003: Home Page Data
+export interface HomePageData {
+    clientName: string;
+    clientLogo: string | null;
+    appName: string;
+    appLogo: string | null;
+    tagline: string | null;
+    punchline: string | null;
+}
+
 // Source link for data verification
 export interface DataSourceLink {
     label: string;
@@ -333,7 +344,7 @@ export interface DashboardQueryResult {
     status: QueryStatus;
     queryType: string;
     tooltip?: string;
-    data: KeywordBalloonData[] | DomainInfo | ClientRankingsData | KeywordsAbsenceData | CompetitorGlobalData | MarketSizeData | ETVComparisonData | KeywordOpportunityMatrixData | BrandPowerData | Top20IncludeBuyData | Top20IncludeLearnData | CompetitorBalloonData | ClientBusinessData | unknown;
+    data: KeywordBalloonData[] | DomainInfo | ClientRankingsData | KeywordsAbsenceData | CompetitorGlobalData | MarketSizeData | ETVComparisonData | KeywordOpportunityMatrixData | BrandPowerData | Top20IncludeBuyData | Top20IncludeLearnData | CompetitorBalloonData | ClientBusinessData | HomePageData | unknown;
     executedAt: string;
     error?: string;
     sourceLink?: DataSourceLink;  // Link to source table for verification

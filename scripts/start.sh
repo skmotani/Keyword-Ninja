@@ -20,6 +20,10 @@ else
     echo "📁 Data already exists in volume - skipping initialization"
 fi
 
+# Ensure uploads directory exists for file uploads
+mkdir -p "$DATA_DIR/uploads/logos"
+echo "📂 Uploads directory ready"
+
 # Run prisma db push
 echo "🔄 Syncing database schema..."
 npx prisma db push --accept-data-loss

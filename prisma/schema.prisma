@@ -491,3 +491,48 @@ model FootprintSurfaceRegistry {
   @@index([enabled])
   @@index([sourceType])
 }
+
+// ============================================
+// APP PROFILE - Global App Branding
+// ============================================
+
+model AppProfile {
+  id          String   @id @default(cuid())
+  key         String   @unique @default("primary")  // e.g., "primary"
+  
+  // Branding
+  appName     String   @default("Keyword Ninja")
+  tagline     String?  // Short tagline
+  punchline   String?  // Marketing punch line
+  
+  // SEO Meta
+  metaTitle       String?
+  metaDescription String? @db.Text
+  
+  // Custom Fields (JSON for flexibility)
+  customFields Json?   // { fieldName: value, ... }
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  logos       AppLogo[]
+}
+
+model AppLogo {
+  id          String   @id @default(cuid())
+  profileId   String
+  
+  name        String   // e.g., "Primary Logo", "Dark Mode Logo"
+  filename    String
+  mimeType    String
+  size        Int
+  url         String   // Local path or CDN URL
+  isPrimary   Boolean  @default(false)
+  
+  createdAt   DateTime @default(now())
+  
+  profile     AppProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  
+  @@index([profileId])
+}
+
