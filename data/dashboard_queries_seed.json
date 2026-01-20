@@ -7,7 +7,7 @@
     "description": "Overview of client digital presence including domain information and status assessment",
     "tooltip": "TABLE: clients.json + client_ai_profiles.json\nFILTER: clientCode = selected\nOUTPUT: name, mainDomain, businessOverview, products, targetSegments, geographies",
     "status": "Critical",
-    "queryType": "domain-info",
+    "queryType": "client-business",
     "config": {},
     "sourceInfo": {
       "tables": [
@@ -280,5 +280,27 @@
     "isActive": true,
     "createdAt": "2026-01-17T18:00:00.000Z",
     "updatedAt": "2026-01-17T18:00:00.000Z"
+  },
+  {
+    "id": "Q012",
+    "queryNumber": "5.2",
+    "groupId": "GRP-005",
+    "title": "You Vs Your Competitor",
+    "description": "Visualize your traffic share and domain strength against main competitors using balloon visualization.",
+    "tooltip": "TABLE: domain_credibility + competitors.json\nFILTER: Competition Type = 'Main Competitor'\nOUTPUT: Balloons sized by organic traffic. Hover for Age, Traffic, ETV ($).",
+    "status": "Info",
+    "queryType": "competitor-balloon",
+    "config": {},
+    "sourceInfo": {
+      "tables": [
+        "domain_credibility.json",
+        "competitors.json"
+      ],
+      "page": "Domain Authority",
+      "pageUrl": "/master/domain-authority"
+    },
+    "isActive": true,
+    "createdAt": "2026-01-19T00:00:00.000Z",
+    "updatedAt": "2026-01-19T00:00:00.000Z"
   }
 ]

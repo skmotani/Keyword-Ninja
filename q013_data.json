@@ -1,0 +1,172 @@
+[
+  {
+    "name": "Weavetech",
+    "etv": 11936.395437519997,
+    "domains": [
+      "weavetech.com",
+      "weavetech.in"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "Saurer",
+    "etv": 7171.740613752976,
+    "domains": [
+      "saurer.com"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "Vandewiele",
+    "etv": 6192.174591459334,
+    "domains": [
+      "vandewiele.com"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "Meera",
+    "etv": 4952.763927511871,
+    "domains": [
+      "meeraind.com",
+      "meera.ind.in"
+    ],
+    "isSelf": true
+  },
+  {
+    "name": "Savio",
+    "etv": 3635.4486254677176,
+    "domains": [
+      "saviospa.com"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "TFO Twister",
+    "etv": 2275.298005644232,
+    "domains": [
+      "tfotwister.com"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "Gaudino",
+    "etv": 1541.7533429320902,
+    "domains": [
+      "gaudino.com"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "Veejay Lakshmi",
+    "etv": 1440.2760068923235,
+    "domains": [
+      "veejaylakshmi.com"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "JC Machine",
+    "etv": 560.7519906535745,
+    "domains": [
+      "jcmachine.com"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "PR Texpro",
+    "etv": 416.21400098502636,
+    "domains": [
+      "prtexpro.in"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "Fadis",
+    "etv": 359.5180021710694,
+    "domains": [
+      "fadis.it"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "Cone Winding",
+    "etv": 279.5910046696663,
+    "domains": [
+      "conewinding.com"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "Aalidhra",
+    "etv": 256.358998388052,
+    "domains": [
+      "aalidhra.in"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "Twis Technology",
+    "etv": 152.761999797076,
+    "domains": [
+      "twistechnology.com"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "Aalidhra Texpro",
+    "etv": 146.29899970442057,
+    "domains": [
+      "aalidhratexpro.in"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "National Textile Engineers",
+    "etv": 114.70100150443614,
+    "domains": [
+      "nationaltexeng.com"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "JMW India",
+    "etv": 66.11899945139885,
+    "domains": [
+      "jmwindia.com"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "Aakash Textile Engineers",
+    "etv": 4.074000030755997,
+    "domains": [
+      "aakashtexeng.in"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "Imagin SZ",
+    "etv": 0,
+    "domains": [
+      "en.imaginsz.com"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "Reshmi Industries",
+    "etv": 0,
+    "domains": [
+      "reshmiindustries.co.in"
+    ],
+    "isSelf": false
+  },
+  {
+    "name": "Smew India",
+    "etv": 0,
+    "domains": [
+      "smew-india.com"
+    ],
+    "isSelf": false
+  }
+]

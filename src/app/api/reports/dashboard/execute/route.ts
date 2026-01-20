@@ -19,12 +19,18 @@ import {
     RankBucket,
     VolumeBucket,
     OpportunityType,
-    PriorityLevel
+    PriorityLevel,
+    CompetitorBalloonData,
+    ClientBusinessData,
+    ExecuteQueryRequest,
+    DashboardQueryDefinition
 } from '@/types/dashboardTypes';
 import { Client, KeywordApiDataRecord, ClientAIProfile, DomainKeywordRecord, Competitor } from '@/types';
 import { readClientSerpData } from '@/lib/clientSerpStore';
 import { getKeywordApiDataByClientAndLocations } from '@/lib/keywordApiStore';
 import { readTags, normalizeKeyword } from '@/lib/keywordTagsStore';
+import { getCredibilityByClientAndLocation, getCredibilityByClient } from '@/lib/storage/domainCredibilityStore';
+
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 
@@ -1401,6 +1407,162 @@ async function executeTop20IncludeBuyQuery(
     };
 }
 
+
+
+
+// Execute client business query (Q001)
+async function executeClientBusinessQuery(
+    params: ExecuteQueryRequest,
+    queryDef: DashboardQueryDefinition
+): Promise<ClientBusinessData> {
+    const clients = await readClients();
+    const client = clients.find(c => c.code === params.clientCode);
+
+    if (!client) {
+        throw new Error(`Client not found: ${params.clientCode}`);
+    }
+
+    // Read AI Client Profile
+    const aiProfilesPath = path.join(process.cwd(), 'data', 'client_ai_profiles.json');
+    let aiProfile = null;
+    try {
+        if (await fs.stat(aiProfilesPath).then(() => true).catch(() => false)) {
+            const aiProfilesRaw = await fs.readFile(aiProfilesPath, 'utf-8');
+            const aiProfiles = JSON.parse(aiProfilesRaw);
+            aiProfile = aiProfiles.find((p: any) => p.clientCode === params.clientCode);
+        }
+    } catch (error) {
+        console.warn('Failed to read AI profiles:', error);
+    }
+
+    // Read Domain Profiles (correct data source for client domain metrics)
+    const domainProfilesPath = path.join(process.cwd(), 'data', 'domainProfiles.json');
+    let domainProfiles: any[] = [];
+    try {
+        if (await fs.stat(domainProfilesPath).then(() => true).catch(() => false)) {
+            const domainProfilesRaw = await fs.readFile(domainProfilesPath, 'utf-8');
+            domainProfiles = JSON.parse(domainProfilesRaw);
+        }
+    } catch (error) {
+        console.warn('Failed to read domain profiles:', error);
+    }
+
+    // Filter domain profiles for this client
+    const clientDomainProfiles = domainProfiles.filter((dp: any) => dp.clientCode === params.clientCode);
+
+    // Assemble Data (Deduplicated)
+    const domainsData: any[] = [];
+    const seenDomains = new Set<string>();
+
+    (client.domains || []).forEach((domain: string) => {
+        // Clean domain for matching
+        const cleanDomain = domain.toLowerCase().trim().replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/$/, '');
+
+        if (seenDomains.has(cleanDomain)) return;
+        seenDomains.add(cleanDomain);
+
+        // Match against domain profiles (try exact match first, then cleaned match)
+        const profile = clientDomainProfiles.find((dp: any) => {
+            const dpClean = dp.domain.toLowerCase().trim().replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/$/, '');
+            return dpClean === cleanDomain || dp.domain.toLowerCase() === domain.toLowerCase();
+        });
+
+        domainsData.push({
+            domain: domain,
+            cleanDomain: cleanDomain,
+            organicTraffic: Math.round(profile?.organicTraffic || 0),
+            organicKeywords: profile?.organicKeywordsCount || 0
+        });
+    });
+
+    return {
+        businessOverview: {
+            summary: aiProfile?.shortSummary || "N/A",
+            businessModel: aiProfile?.businessModel || "N/A",
+            industry: aiProfile?.industryType || "N/A"
+        },
+        productMarket: {
+            products: aiProfile?.productLines || [],
+            segments: aiProfile?.targetCustomerSegments || [],
+            geographies: aiProfile?.targetGeographies || []
+        },
+        assets: {
+            brandPhotos: client.brandPhotos || []
+        },
+        domains: domainsData
+    };
+}
+
+async function executeCompetitorBalloonQuery(clientCode: string, queryDef?: any): Promise<CompetitorBalloonData> {
+    const clients = await readClients();
+    const client = clients.find(c => c.code === clientCode);
+    if (!client) throw new Error(`Client not found: ${clientCode}`);
+
+    const competitors = await readCompetitors();
+    const relevantCompetitors = competitors.filter(c => c.clientCode === clientCode && c.isActive && c.competitionType === 'Main Competitor');
+
+    // Get credibility data
+    const LOCATION_CODE = 'IN'; // Default to India for now
+    const credibilityRecords = await getCredibilityByClientAndLocation(clientCode, LOCATION_CODE);
+
+    const balloons: CompetitorBalloonData['balloons'] = [];
+    let totalMainCompTraffic = 0;
+    let yourTraffic = 0;
+
+    // Process Client Domains
+    for (const domain of client.domains || [client.mainDomain]) {
+        const cleanDomain = domain.toLowerCase().trim().replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/.*$/, '');
+        const record = credibilityRecords.find(r => r.domain.toLowerCase() === cleanDomain);
+
+        const traffic = record?.organicTraffic || 0;
+        yourTraffic += traffic;
+
+        if (traffic > 0 || record) {
+            balloons.push({
+                domain: cleanDomain,
+                brandName: client.name,
+                logo: client.brandPhotos?.[0] || null,
+                traffic: traffic,
+                etv: record?.organicCost || 0,
+                age: record?.domainAgeYears || null,
+                isSelf: true
+            });
+        }
+    }
+
+    // Process Competitors
+    for (const comp of relevantCompetitors) {
+        const cleanDomain = comp.domain.toLowerCase().trim().replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/.*$/, '');
+        const record = credibilityRecords.find(r => r.domain.toLowerCase() === cleanDomain);
+
+        const traffic = record?.organicTraffic || 0;
+        totalMainCompTraffic += traffic;
+
+        if (traffic > 0 || record) {
+            balloons.push({
+                domain: cleanDomain,
+                brandName: comp.name,
+                logo: comp.logos?.[0] || null,
+                traffic: traffic,
+                etv: record?.organicCost || 0,
+                age: record?.domainAgeYears || null,
+                isSelf: false
+            });
+        }
+    }
+
+    const totalTraffic = totalMainCompTraffic + yourTraffic;
+    const yourTrafficShare = totalTraffic > 0 ? (yourTraffic / totalTraffic) * 100 : 0;
+
+    return {
+        summary: {
+            totalMainCompetitors: relevantCompetitors.length,
+            yourTrafficShare
+        },
+        balloons: balloons.sort((a, b) => b.traffic - a.traffic)
+    };
+}
+
 // Get source link for data verification
 function getSourceLink(queryType: string): DataSourceLink {
     switch (queryType) {
@@ -1418,14 +1580,20 @@ function getSourceLink(queryType: string): DataSourceLink {
             return { label: 'Domain Keywords (CTR Model)', href: '/keywords/domain-keywords' };
         case 'etv-comparison':
             return { label: 'Competitors + Domain Overview', href: '/keywords/domain-overview' };
+        case 'etv-brand-comparison':
+            return { label: 'Domain Authority (ETV)', href: '/master/domain-authority' };
         case 'keyword-opportunity-matrix':
             return { label: 'Domain Keywords (Opportunity Matrix)', href: '/keywords/domain-keywords' };
         case 'brand-keywords-matrix':
             return { label: 'Brand Keywords (P25 Matrix)', href: '/keywords/domain-keywords' };
+        case 'competitor-balloon':
+            return { label: 'Competitors + Domain Credibility', href: '/master/domain-authority' };
         case 'top20-include-buy':
             return { label: 'AI Keyword Builder (Include|Buy)', href: '/keywords/domain-keywords' };
         case 'top20-include-learn':
             return { label: 'AI Keyword Builder (Include|Learn)', href: '/keywords/domain-keywords' };
+        case 'client-business':
+            return { label: 'Client Master + AI Client Profile', href: '/master/clients' };
         default:
             return { label: 'Unknown Source', href: '/' };
     }
@@ -1487,6 +1655,13 @@ export async function POST(request: Request) {
                 break;
             case 'top20-include-learn':
                 data = await executeTop20IncludeLearnQuery(clientCode, query.config);
+                break;
+            case 'competitor-balloon':
+                data = await executeCompetitorBalloonQuery(clientCode);
+                break;
+
+            case 'client-business':
+                data = await executeClientBusinessQuery({ clientCode, queryId }, query);
                 break;
             default:
                 data = { message: 'Custom query type - no execution logic defined' };

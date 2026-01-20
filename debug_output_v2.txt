@@ -1,0 +1,4 @@
+--- Debugging Q013 V2 ---
+Loaded 160 credibility records for 01
+Found 24 Main Competitors
+Sorted Brands: Weavetech: 11936.395437519997, Saurer: 7171.740613752976, Vandewiele: 6192.174591459334, Meera: 4952.763927511871, Savio: 3635.4486254677176, TFO Twister: 2275.298005644232, Gaudino: 1541.7533429320902, Veejay Lakshmi: 1440.2760068923235, JC Machine: 560.7519906535745, PR Texpro: 416.21400098502636, Fadis: 359.5180021710694, Cone Winding: 279.5910046696663, Aalidhra: 256.358998388052, Twis Technology: 152.761999797076, Aalidhra Texpro: 146.29899970442057, National Textile Engineers: 114.70100150443614, JMW India: 66.11899945139885, Aakash Textile Engineers: 4.074000030755997, Imagin SZ: 0, Reshmi Industries: 0, Smew India: 0

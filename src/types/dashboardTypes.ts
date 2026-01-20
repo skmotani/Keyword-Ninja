@@ -26,6 +26,8 @@ export type QueryType =
     | 'brand-keywords-matrix'
     | 'top20-include-buy'
     | 'top20-include-learn'
+    | 'competitor-balloon'
+    | 'client-business'
     | 'custom'
     | 'manual';
 
@@ -251,6 +253,72 @@ export interface Top20IncludeLearnData {
     };
 }
 
+
+
+// Q001: Client Business Data
+export interface ClientBusinessData {
+    businessOverview: {
+        summary: string;
+        businessModel: string;
+        industry: string;
+    };
+    productMarket: {
+        products: string[];
+        segments: string[];
+        geographies: string[];
+    };
+    assets: {
+        brandPhotos: string[];
+    };
+    domains: {
+        domain: string;
+        cleanDomain: string;
+        organicTraffic: number;
+        organicKeywords: number;
+        source: string;
+    }[];
+}
+
+// Q012: You Vs Competitor Balloon Data
+export interface CompetitorBalloonData {
+    summary: {
+        totalMainCompetitors: number;
+        yourTrafficShare: number;
+    };
+    balloons: {
+        domain: string;
+        brandName: string;
+        logo: string | null;
+        traffic: number;
+        etv: number;
+        age: number | null;
+        isSelf: boolean;
+    }[];
+}
+
+// Q011: Brand ETV Comparison Data
+export interface BrandETVData {
+    note: string;
+    self: {
+        brandName: string;
+        logo: string | null;
+        totalETV: number;
+        domainsCount: number;
+    };
+    topCompetitor: {
+        brandName: string;
+        logo: string | null;
+        totalETV: number;
+        domainsCount: number;
+    };
+    chasers?: {
+        rank: number;
+        brandName: string;
+        favicon: string | null;
+        etv: number;
+    }[];
+}
+
 // Source link for data verification
 export interface DataSourceLink {
     label: string;
@@ -265,7 +333,7 @@ export interface DashboardQueryResult {
     status: QueryStatus;
     queryType: string;
     tooltip?: string;
-    data: KeywordBalloonData[] | DomainInfo | ClientRankingsData | KeywordsAbsenceData | CompetitorGlobalData | MarketSizeData | unknown;
+    data: KeywordBalloonData[] | DomainInfo | ClientRankingsData | KeywordsAbsenceData | CompetitorGlobalData | MarketSizeData | ETVComparisonData | KeywordOpportunityMatrixData | BrandPowerData | Top20IncludeBuyData | Top20IncludeLearnData | CompetitorBalloonData | ClientBusinessData | unknown;
     executedAt: string;
     error?: string;
     sourceLink?: DataSourceLink;  // Link to source table for verification

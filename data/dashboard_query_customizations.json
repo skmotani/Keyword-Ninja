@@ -2,9 +2,9 @@
   "queries": [
     {
       "queryId": "Q001",
-      "customTitle": "About Client",
+      "customTitle": "About Client Business",
       "pageContent": "Title : We Know Your Business |",
-      "updatedAt": "2026-01-18T03:29:00.969Z"
+      "updatedAt": "2026-01-19T23:15:45.301Z"
     },
     {
       "queryId": "MANUAL_001",
@@ -38,6 +38,11 @@
       "pageTitle": "Brand Authority & Market Presence Analysis",
       "pageContent": "**Query Logic:**\nThis report analyzes how often people search for your brand name versus your competitors. We look for keywords containing your specific brand terms (e.g., \"Meera\", \"Meera Industries\") and compare the total search volume.\n\n**SEO Advantage (Why this matters):**\n1. **Brand Health Check:** A high brand search volume means people know and trust your name. It's the ultimate measure of \"off-page\" SEO and real-world reputation.\n2. **Navigation Intent:** Users searching your name WANT to find you. Ensure you rank #1 for these terms to capture 100% of this high-intent traffic.\n3. **Competitor Benchmarking:** See if competitors are growing their brand awareness faster than you.",
       "updatedAt": "2026-01-18T06:25:22.824Z"
+    },
+    {
+      "queryId": "Q013",
+      "customTitle": "You Vs Your Competitor on ETV",
+      "updatedAt": "2026-01-19T09:56:51.897Z"
     }
   ],
   "categories": [
@@ -69,6 +74,8 @@
       "Q009"
     ],
     "GRP-005": [
+      "Q013",
+      "Q012",
       "Q008"
     ]
   }

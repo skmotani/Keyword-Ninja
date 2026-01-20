@@ -212,47 +212,26 @@
         "keyword": "twisting machine",
         "position": 15,
         "searchVolume": 1300,
-        "cpc": 0.029999999329447746,
+        "cpc": 0.009999999776482582,
         "url": "https://www.meera.ind.in/spun-yarn-twister.html"
       },
       {
-        "keyword": "twisting machines",
-        "position": 64,
-        "searchVolume": 1300,
-        "cpc": 0.029999999329447746,
-        "url": "https://www.meera.ind.in/ring-twister.html"
-      },
-      {
         "keyword": "meera industries",
-        "position": 2,
+        "position": 3,
         "searchVolume": 880,
         "cpc": null,
         "url": "https://www.meera.ind.in/"
       },
       {
         "keyword": "meera industries ltd",
-        "position": 4,
+        "position": 3,
         "searchVolume": 880,
         "cpc": null,
         "url": "https://www.meera.ind.in/"
       },
       {
         "keyword": "cone to cone winding machine",
-        "position": 16,
-        "searchVolume": 720,
-        "cpc": 0.009999999776482582,
-        "url": "https://www.meera.ind.in/cone-to-cone-winder.html"
-      },
-      {
-        "keyword": "cone winder",
-        "position": 7,
-        "searchVolume": 720,
-        "cpc": 0.009999999776482582,
-        "url": "https://www.meera.ind.in/cone-to-cone-winder.html"
-      },
-      {
-        "keyword": "cone winder machine",
-        "position": 11,
+        "position": 31,
         "searchVolume": 720,
         "cpc": 0.009999999776482582,
         "url": "https://www.meera.ind.in/cone-to-cone-winder.html"
@@ -266,16 +245,9 @@
       },
       {
         "keyword": "ring twister",
-        "position": 7,
+        "position": 17,
         "searchVolume": 480,
-        "cpc": 0.10999999940395355,
-        "url": "https://www.meera.ind.in/ring-twister.html"
-      },
-      {
-        "keyword": "ring twisting",
-        "position": 6,
-        "searchVolume": 480,
-        "cpc": 0.10999999940395355,
+        "cpc": 0.05000000074505806,
         "url": "https://www.meera.ind.in/ring-twister.html"
       },
       {
@@ -286,6 +258,13 @@
         "url": "https://www.meera.ind.in/spun-yarn-twister.html"
       },
       {
+        "keyword": "meera corporation",
+        "position": 48,
+        "searchVolume": 390,
+        "cpc": null,
+        "url": "https://www.meera.ind.in/"
+      },
+      {
         "keyword": "mera machine",
         "position": 21,
         "searchVolume": 390,
@@ -293,30 +272,30 @@
         "url": "https://www.meera.ind.in/tprs-twister-machine.html"
       },
       {
-        "keyword": "meera exports",
-        "position": 30,
+        "keyword": "meera glass industries",
+        "position": 38,
         "searchVolume": 260,
         "cpc": null,
-        "url": "https://www.meera.ind.in/export.html"
+        "url": "https://www.meera.ind.in/"
       },
       {
         "keyword": "yarn twister",
-        "position": 11,
+        "position": 6,
         "searchVolume": 260,
-        "cpc": null,
-        "url": "https://www.meera.ind.in/spun-yarn-twister.html"
+        "cpc": 0.009999999776482582,
+        "url": "https://www.meera.ind.in/ring-twister.html"
       }
     ],
-    "organicTraffic": null,
-    "organicKeywordsCount": null,
+    "organicTraffic": 301.2660033106804,
+    "organicKeywordsCount": 11,
     "backlinksCount": null,
     "referringDomainsCount": null,
     "domainRank": null,
     "fetchStatus": "success",
     "errorMessage": null,
-    "lastFetchedAt": "2025-12-07T03:26:57.678Z",
+    "lastFetchedAt": "2026-01-20T00:00:17.736Z",
     "createdAt": "2025-12-07T03:26:55.707Z",
-    "updatedAt": "2025-12-07T03:26:57.679Z"
+    "updatedAt": "2026-01-20T00:00:17.736Z"
   },
   {
     "id": "b1ea4ad9-e77c-4825-b95f-abdf87509f84",

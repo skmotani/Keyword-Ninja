@@ -18,7 +18,10 @@ import {
     KeywordOpportunityMatrixData,
     BrandPowerData,
     Top20IncludeBuyData,
-    Top20IncludeLearnData
+    Top20IncludeLearnData,
+    CompetitorBalloonData,
+    ClientBusinessData,
+    BrandETVData
 } from '@/types/dashboardTypes';
 import Link from 'next/link';
 import {
@@ -138,6 +141,189 @@ function InfoModal({
     );
 }
 
+// Competitor Balloon Card Component (Q012)
+function BrandETVCard({ data }: { data: BrandETVData }) {
+    if (!data || !data.self || !data.topCompetitor) {
+        return <div className="text-gray-500 text-sm italic">No ETV comparison data available</div>;
+    }
+
+    const [isNoteExpanded, setIsNoteExpanded] = useState(true);
+
+    return (
+        <div className="space-y-6">
+            {/* Editable Note Section */}
+            <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 relative">
+                <div
+                    className="flex items-center justify-between cursor-pointer mb-2"
+                    onClick={() => setIsNoteExpanded(!isNoteExpanded)}
+                >
+                    <h4 className="text-sm font-semibold text-blue-900 flex items-center gap-2">
+                        💡 Why ETV is Important?
+                        <svg className={`w-4 h-4 transition-transform ${isNoteExpanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </h4>
+                </div>
+                {isNoteExpanded && (
+                    <div className="text-sm text-blue-800 whitespace-pre-line">
+                        {data.note.replace(/\*\*/g, '')}
+                    </div>
+                )}
+            </div>
+
+            {/* The Big Fight */}
+            <div className="grid grid-cols-[1fr_auto_1fr] gap-4 items-center bg-gradient-to-br from-gray-50 to-slate-100 rounded-xl p-6 border border-gray-200">
+                {/* Use Your Brand Card */}
+                <div className="flex flex-col items-center text-center space-y-3">
+                    <div className="relative w-24 h-24 rounded-full bg-white shadow-lg border-4 border-indigo-100 flex items-center justify-center p-2 overflow-hidden">
+                        {data.self.logo ? (
+                            <img src={data.self.logo} alt={data.self.brandName} className="w-full h-full object-contain" />
+                        ) : (
+                            <span className="text-xl font-bold text-gray-400">{data.self.brandName.substring(0, 2).toUpperCase()}</span>
+                        )}
+                    </div>
+                    <div>
+                        <div className="font-bold text-lg text-gray-900">{data.self.brandName}</div>
+                        <div className="text-xs text-indigo-600 font-medium tracking-wide uppercase">Your Brand</div>
+                    </div>
+                    <div className="bg-white px-4 py-2 rounded-lg shadow-sm w-full border border-gray-100">
+                        <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Total ETV</div>
+                        <div className="text-2xl font-bold text-indigo-600">${data.self.totalETV.toLocaleString(undefined, { maximumFractionDigits: 0 })}</div>
+                        <div className="text-[10px] text-gray-400 mt-1">{data.self.domainsCount} Domain{data.self.domainsCount !== 1 ? 's' : ''}</div>
+                    </div>
+                </div>
+
+                {/* VS Badge */}
+                <div className="flex flex-col items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-slate-800 text-white flex items-center justify-center font-black italic text-lg shadow-xl z-10 border-4 border-white">
+                        VS
+                    </div>
+                </div>
+
+                {/* Top Competitor Card */}
+                <div className="flex flex-col items-center text-center space-y-3">
+                    <div className="relative w-24 h-24 rounded-full bg-white shadow-lg border-4 border-red-100 flex items-center justify-center p-2 overflow-hidden">
+                        {data.topCompetitor.logo ? (
+                            <img src={data.topCompetitor.logo} alt={data.topCompetitor.brandName} className="w-full h-full object-contain" />
+                        ) : (
+                            <span className="text-xl font-bold text-gray-400">{data.topCompetitor.brandName.substring(0, 2).toUpperCase()}</span>
+                        )}
+                        {/* Crown for winner */}
+                        {data.topCompetitor.totalETV > data.self.totalETV && (
+                            <div className="absolute -top-1 -right-1 text-2xl filter drop-shadow-md">👑</div>
+                        )}
+                    </div>
+                    <div>
+                        <div className="font-bold text-lg text-gray-900">{data.topCompetitor.brandName}</div>
+                        <div className="text-xs text-red-500 font-medium tracking-wide uppercase">Top Competitor</div>
+                    </div>
+                    <div className="bg-white px-4 py-2 rounded-lg shadow-sm w-full border border-gray-100">
+                        <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Total ETV</div>
+                        <div className="text-2xl font-bold text-gray-900">${data.topCompetitor.totalETV.toLocaleString(undefined, { maximumFractionDigits: 0 })}</div>
+                        <div className="text-[10px] text-gray-400 mt-1">{data.topCompetitor.domainsCount} Domain{data.topCompetitor.domainsCount !== 1 ? 's' : ''}</div>
+                    </div>
+                </div>
+            </div>
+
+            {/* The Chasers */}
+            {data.chasers && data.chasers.length > 0 && (
+                <div>
+                    <h5 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 ml-1">The Chasers (Next Competitors)</h5>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        {data.chasers.map((chaser, idx) => (
+                            <div key={idx} className="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+                                <div className="text-lg font-bold text-gray-300 w-6 text-center">#{chaser.rank}</div>
+                                <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center overflow-hidden flex-shrink-0">
+                                    {chaser.favicon ? (
+                                        <img src={chaser.favicon} alt="" className="w-5 h-5 opacity-80" onError={(e) => e.currentTarget.style.display = 'none'} />
+                                    ) : (
+                                        <div className="w-2 h-2 rounded-full bg-gray-300"></div>
+                                    )}
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                    <div className="font-medium text-sm truncate" title={chaser.brandName}>{chaser.brandName}</div>
+                                    <div className="text-xs text-green-600 font-mono">${chaser.etv.toLocaleString(undefined, { maximumFractionDigits: 0 })}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
+
+function CompetitorBalloonCard({ data }: { data: CompetitorBalloonData }) {
+    if (!data || !data.balloons || data.balloons.length === 0) {
+        return <div className="text-gray-500 text-sm italic">No competitor data available</div>;
+    }
+
+    const maxTraffic = Math.max(...data.balloons.map(b => b.traffic));
+    const minSize = 60;
+    const maxSize = 180;
+
+    const getSize = (traffic: number) => {
+        if (maxTraffic === 0) return minSize;
+        const ratio = traffic / maxTraffic;
+        return minSize + (maxSize - minSize) * Math.sqrt(ratio);
+    };
+
+    return (
+        <div className="space-y-6">
+            <div className="flex gap-6 p-4 bg-gray-50 rounded-lg">
+                <div className="text-sm">
+                    <span className="text-gray-500">Total Competitors:</span>
+                    <span className="ml-2 font-semibold">{data.summary.totalMainCompetitors}</span>
+                </div>
+                <div className="text-sm">
+                    <span className="text-gray-500">Your Traffic Share:</span>
+                    <span className="ml-2 font-semibold text-indigo-600">{data.summary.yourTrafficShare.toFixed(1)}%</span>
+                </div>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-6 p-8 min-h-[300px] bg-gradient-to-br from-slate-50 to-blue-50 rounded-xl relative overflow-hidden">
+                {data.balloons.map((item, index) => {
+                    const size = getSize(item.traffic);
+                    return (
+                        <div
+                            key={index}
+                            className={`group relative flex items-center justify-center rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:z-10 cursor-pointer border-4 ${item.isSelf ? 'border-indigo-500 shadow-indigo-200' : 'border-white shadow-gray-200'}`}
+                            style={{
+                                width: `${size}px`,
+                                height: `${size}px`,
+                                backgroundColor: 'white',
+                            }}
+                        >
+                            <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center p-2 bg-white">
+                                {item.logo ? (
+                                    <img src={item.logo} alt={item.brandName} className="w-full h-full object-contain" />
+                                ) : (
+                                    <span className="text-center font-bold text-gray-700 leading-tight" style={{ fontSize: `${size / 6}px` }}>
+                                        {item.brandName}
+                                    </span>
+                                )}
+                            </div>
+
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-48 bg-gray-900/95 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20 p-3 shadow-xl backdrop-blur-sm">
+                                <div className="font-bold text-sm mb-1">{item.brandName}</div>
+                                <div className="text-gray-300 text-[10px] mb-2">{item.domain}</div>
+                                <div className="grid grid-cols-2 gap-2">
+                                    <div className="text-gray-400">Traffic</div>
+                                    <div className="text-right font-mono">{item.traffic.toLocaleString()}</div>
+                                    <div className="text-gray-400">ETV</div>
+                                    <div className="text-right font-mono text-green-400">${item.etv.toLocaleString()}</div>
+                                    <div className="text-gray-400">Age</div>
+                                    <div className="text-right font-mono">{item.age ? `${item.age}y` : '-'}</div>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    );
+}
+
 // Balloon Chart Component for keyword volume visualization
 function BalloonChart({ data }: { data: KeywordBalloonData[] }) {
     if (!data || data.length === 0) {
@@ -238,6 +424,110 @@ function SourceFooter({ sourceLink }: { sourceLink?: DataSourceLink }) {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
             </Link>
+        </div>
+    );
+}
+
+// Q001 - Client Business Overview Card
+function ClientBusinessCard({ data }: { data: ClientBusinessData }) {
+    return (
+        <div className="space-y-6">
+            {/* 1. Business Overview */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="md:col-span-2">
+                    <h4 className="text-xs font-semibold text-gray-500 uppercase mb-1">Business Summary</h4>
+                    <p className="text-sm text-gray-800 leading-relaxed bg-gray-50 p-3 rounded border border-gray-100">
+                        {data.businessOverview.summary}
+                    </p>
+                </div>
+                <div className="space-y-4">
+                    <div>
+                        <h4 className="text-xs font-semibold text-gray-500 uppercase mb-1">Business Model</h4>
+                        <span className="inline-block px-2 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded border border-blue-100">
+                            {data.businessOverview.businessModel}
+                        </span>
+                    </div>
+                    <div>
+                        <h4 className="text-xs font-semibold text-gray-500 uppercase mb-1">Industry</h4>
+                        <span className="inline-block px-2 py-1 bg-purple-50 text-purple-700 text-xs font-medium rounded border border-purple-100">
+                            {data.businessOverview.industry}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            {/* 2. Product & Market */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t pt-4">
+                <div>
+                    <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2">Key Products</h4>
+                    <div className="flex flex-wrap gap-2">
+                        {data.productMarket.products.map((p, i) => (
+                            <span key={i} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded border border-gray-200">
+                                {p}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+                <div>
+                    <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2">Target Customer Segments</h4>
+                    <div className="flex flex-wrap gap-2">
+                        {data.productMarket.segments.map((s, i) => (
+                            <span key={i} className="px-2 py-1 bg-green-50 text-green-700 text-xs rounded border border-green-200">
+                                {s}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+                <div>
+                    <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2">Geographies</h4>
+                    <div className="flex flex-wrap gap-2">
+                        {data.productMarket.geographies.map((g, i) => (
+                            <span key={i} className="px-2 py-1 bg-yellow-50 text-yellow-700 text-xs rounded border border-yellow-200">
+                                {g}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* 3. Assets & Photos */}
+            {data.assets.brandPhotos.length > 0 && (
+                <div className="border-t pt-4">
+                    <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2">Brand Assets</h4>
+                    <div className="flex gap-4 overflow-x-auto pb-2">
+                        {data.assets.brandPhotos.map((photo, i) => (
+                            <div key={i} className="h-24 w-auto rounded border border-gray-200 overflow-hidden shadow-sm">
+                                <img src={photo} alt={`Brand Asset ${i + 1}`} className="h-full object-contain" />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {/* 4. Domain Metrics */}
+            <div className="border-t pt-4">
+                <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2">Domain Performance</h4>
+                <div className="overflow-x-auto border rounded-lg">
+                    <table className="min-w-full divide-y divide-gray-200">
+                        <thead className="bg-gray-50">
+                            <tr>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Domain</th>
+                                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Organic Traffic</th>
+                                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ranked Keywords</th>
+                            </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                            {data.domains.map((d, i) => (
+                                <tr key={i} className="hover:bg-gray-50">
+                                    <td className="px-3 py-2 text-sm text-gray-900 font-medium">{d.cleanDomain}</td>
+                                    <td className="px-3 py-2 text-sm text-right text-gray-700">{Math.round(d.organicTraffic).toLocaleString()}</td>
+                                    <td className="px-3 py-2 text-sm text-right text-gray-700">{Math.round(d.organicKeywords).toLocaleString()}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     );
 }
@@ -1723,6 +2013,12 @@ function QueryCard({
                                     <Top20IncludeBuyCard data={result.data as Top20IncludeBuyData} />
                                 ) : result.queryType === 'top20-include-learn' ? (
                                     <Top20IncludeLearnCard data={result.data as Top20IncludeLearnData} />
+                                ) : result.queryType === 'competitor-balloon' ? (
+                                    <CompetitorBalloonCard data={result.data as CompetitorBalloonData} />
+                                ) : result.queryType === 'client-business' ? (
+                                    <ClientBusinessCard data={result.data as ClientBusinessData} />
+
+
                                 ) : (
                                     <pre className="text-sm bg-gray-50 p-3 rounded overflow-auto">
                                         {JSON.stringify(result.data, null, 2)}
