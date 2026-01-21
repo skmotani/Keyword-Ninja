@@ -1,0 +1,58 @@
+﻿{
+    "overall":  "FAIL",
+    "summary":  {
+                    "passed":  7,
+                    "failed":  2,
+                    "total":  9
+                },
+    "checks":  [
+                   {
+                       "name":  "A1: Partial Unique Index",
+                       "passed":  true,
+                       "details":  "Found: CREATE UNIQUE INDEX one_active_rule_per_surface ON public.footprint_surface_rules USING btree (\"surf..."
+                   },
+                   {
+                       "name":  "A2: surface_key Index",
+                       "passed":  false,
+                       "details":  "Index count: 0"
+                   },
+                   {
+                       "name":  "A3: Rules Unique Index",
+                       "passed":  true,
+                       "details":  "Index count: 1"
+                   },
+                   {
+                       "name":  "A4: Scan Results Unique Index",
+                       "passed":  true,
+                       "details":  "Index count: 1"
+                   },
+                   {
+                       "name":  "B1: Enabled Surfaces Count",
+                       "passed":  true,
+                       "details":  "Found 81 enabled surfaces"
+                   },
+                   {
+                       "name":  "B2: Active Rules Match Surfaces",
+                       "passed":  true,
+                       "details":  "Active rules (joined): 81, Enabled surfaces: 81"
+                   },
+                   {
+                       "name":  "B3: No Surfaces Missing Rules",
+                       "passed":  true,
+                       "details":  "Missing: 0 surfaces"
+                   },
+                   {
+                       "name":  "B4: One Active Rule Per Surface",
+                       "passed":  true,
+                       "details":  "Surfaces with multiple active rules: 0"
+                   },
+                   {
+                       "name":  "C1: Scan Completeness",
+                       "passed":  false,
+                       "details":  "No scans found",
+                       "remediation":  "Run a scan first"
+                   }
+               ],
+    "scanId":  null,
+    "timestamp":  "2026-01-20T09:42:36.265Z"
+}

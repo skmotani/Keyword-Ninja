@@ -457,32 +457,145 @@ model SurfaceResult {
 }
 
 // ============================================================================
-// FOOTPRINT SURFACE REGISTRY
-// Master list of surfaces for digital footprint scans
+// FOOTPRINT SURFACE REGISTRY (NORMALIZED)
+// Separate catalog from versioned scanning rules
 // ============================================================================
 
-model FootprintSurfaceRegistry {
+// A) FootprintSurface - CATALOG: what the surface is
+model FootprintSurface {
   id                     String   @id @default(cuid())
   surfaceKey             String   @unique // GOOGLE_ORGANIC_BRAND, LINKEDIN, etc.
   label                  String   // Display name
-  category               String   // owned, search, social, video, trust, authority, marketplace, community, technical, ai
+  category               String   // owned, search, social, video, trust, authority, marketplace, community, technical, aeo, eeat_entity, performance_security
   importanceTier         String   // CRITICAL, HIGH, MEDIUM, LOW
   basePoints             Int      @default(10) // 0-30
   defaultRelevanceWeight Float    @default(1)  // 0..1
-  sourceType             String   // WEBSITE_CRAWL, DATAFORSEO_SERP, DATAFORSEO_AUTOCOMPLETE, PLATFORM_API, DNS_LOOKUP, THIRD_PARTY
-  searchEngine           String?  // google, bing, yahoo, baidu, naver, youtube
-  queryTemplates         Json     // Array of query strings with tokens: {brand}, {domain}, {city}, etc.
+  enabled                Boolean  @default(true)
+  tooltipTemplates       Json?    // { why, how, action } with status variants
+  notes                  String?  @db.Text
+  
+  // Historical metadata
+  launchYear             Int?     // Year this surface became available (e.g., 2012)
+  technicalName          String?  // Original/technical name when released
+  businessImpact         Json?    // { impactLevel, absenceImpact, partialImpact }
+  
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+  
+  rules                  FootprintSurfaceRule[]
+
+  @@index([category])
+  @@index([importanceTier])
+  @@index([enabled])
+  @@map("footprint_surfaces")
+}
+
+// B) FootprintSurfaceRule - RULES: how to scan this surface (VERSIONED)
+model FootprintSurfaceRule {
+  id                     String   @id @default(cuid())
+  surfaceId              String
+  ruleVersion            Int      @default(1)
+  isActive               Boolean  @default(true)
+  
+  // From JSON registry:
+  sourceType             String   // WEBSITE_CRAWL, DATAFORSEO_SERP, DATAFORSEO_AUTOCOMPLETE, DNS_LOOKUP, MANUAL_REVIEW, GSC_API, BING_WMT_API, PAGESPEED_API
+  searchEngine           String?  // google, bing, etc.
+  queryTemplates         Json     @default("[]") // Array of query strings
   maxQueries             Int      @default(2)
   confirmationArtifact   String   @db.Text // What confirms presence
   presenceRules          Json?    // Rules for Present/Partial/Absent/Unknown
   officialnessRules      Json?    // Rules to decide official vs unverified
   officialnessRequired   Boolean  @default(true)
-  evidenceFields         Json?    // Which fields to store: url/title/snippet/rating/etc.
-  tooltipTemplates       Json?    // { why, how, action } with status variants
+  evidenceFields         Json?    // Which fields to store
+  
+  // From CSV methods:
+  checkMode              String?  // crawl_url, crawl_site, dns_lookup, requires_api_or_manual, etc.
+  crawlOnlyFeasible      String?  // YES, PARTIAL, NO
+  canonicalInputNeeded   String?  // domain, handle, qid, etc.
+  discoveryApproach      String?  // prefer_entity_profile_url, entity_profile_or_schema_sameAs, etc.
+  presenceLogic          String?  @db.Text // How to determine presence
+  partialLogic           String?  @db.Text // What counts as partial
+  evidenceProvider       String?  // CRAWL, DNS, SERP_PROVIDER, SUGGEST_PROVIDER, OWNER_API, MANUAL
+  dataforseoRecommended  Boolean  @default(false)
+  dataforseoEndpoint     String?  // DFS_SERP, DFS_AUTOCOMPLETE
+  recommendedEvidenceArtifact String? @db.Text
+  crawlFallbackIfNoDFS   String?  @db.Text
+  metricsPossible        String?  @db.Text
+  lastUpdatedExtraction  String?  @db.Text
+  ruleNotes              String?  @db.Text
+  
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+  
+  surface                FootprintSurface @relation(fields: [surfaceId], references: [id], onDelete: Cascade)
+  overrides              FootprintSurfaceRuleOverride[]
+  playbook               FootprintSurfaceManualPlaybook?
+
+  @@unique([surfaceId, ruleVersion])
+  @@index([surfaceId])
+  @@index([isActive])
+  @@index([sourceType])
+  @@map("footprint_surface_rules")
+}
+
+// C) FootprintSurfaceRuleOverride - Geo/Industry multipliers
+model FootprintSurfaceRuleOverride {
+  id            String   @id @default(cuid())
+  surfaceRuleId String
+  overrideType  String   // "geo" or "industry"
+  overrideKey   String   // e.g., "india", "global", "export", "b2b_manufacturing"
+  multiplier    Float
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  rule          FootprintSurfaceRule @relation(fields: [surfaceRuleId], references: [id], onDelete: Cascade)
+
+  @@index([surfaceRuleId])
+  @@map("footprint_surface_rule_overrides")
+}
+
+// D) FootprintSurfaceManualPlaybook - Manual instructions + evidence capture
+model FootprintSurfaceManualPlaybook {
+  id                   String   @id @default(cuid())
+  surfaceRuleId        String   @unique
+  instructionsMarkdown String   @db.Text
+  requiredEvidence     Json?    // { fields: [{name,type,required}], uploadsAllowed, screenshotRequired }
+  validationChecklist  Json?    // Array of checklist items
+  exampleQueries       Json?    // Array of strings
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  
+  rule                 FootprintSurfaceRule @relation(fields: [surfaceRuleId], references: [id], onDelete: Cascade)
+
+  @@map("footprint_surface_manual_playbooks")
+}
+
+// LEGACY: Keep old model for migration compatibility (will be removed later)
+model FootprintSurfaceRegistry {
+  id                     String   @id @default(cuid())
+  surfaceKey             String   @unique
+  label                  String
+  category               String
+  importanceTier         String
+  basePoints             Int      @default(10)
+  defaultRelevanceWeight Float    @default(1)
+  sourceType             String
+  searchEngine           String?
+  queryTemplates         Json
+  maxQueries             Int      @default(2)
+  confirmationArtifact   String   @db.Text
+  presenceRules          Json?
+  officialnessRules      Json?
+  officialnessRequired   Boolean  @default(true)
+  evidenceFields         Json?
+  tooltipTemplates       Json?
   enabled                Boolean  @default(true)
   notes                  String?  @db.Text
-  industryOverrides      Json?    // { "b2b_manufacturer": 0.1, "furniture_retail": 1.0 }
-  geoOverrides           Json?    // { "local": 1.0, "global": 0.5 }
+  industryOverrides      Json?
+  geoOverrides           Json?
+  launchYear             Int?
+  technicalName          String?
+  businessImpact         Json?
   createdAt              DateTime @default(now())
   updatedAt              DateTime @updatedAt
 
@@ -536,3 +649,90 @@ model AppLogo {
   @@index([profileId])
 }
 
+// ============================================================================
+// DIGITAL FOOTPRINT SCAN - Scan execution and results
+// ============================================================================
+
+// A) DigitalFootprintScan - One scan execution per client
+model DigitalFootprintScan {
+  id          String    @id @default(cuid())
+  clientId    String    // FK to Client (stored in JSON, not DB relation)
+  clientName  String?   // Denormalized for easy display
+  mode        String    @default("CRAWL_ONLY") // CRAWL_ONLY | CRAWL_PLUS_PROVIDER
+  status      String    @default("RUNNING")    // RUNNING | COMPLETED | FAILED
+  startedAt   DateTime  @default(now())
+  completedAt DateTime?
+  
+  // Summary stats (computed after completion)
+  summary     Json?     // { counts: { present, partial, absent, ... }, score, criticalGaps: [] }
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  results     DigitalFootprintScanResult[]
+  
+  @@index([clientId])
+  @@index([status])
+  @@map("digital_footprint_scans")
+}
+
+// B) DigitalFootprintScanResult - Result for each surface in a scan
+model DigitalFootprintScanResult {
+  id            String    @id @default(cuid())
+  scanId        String
+  surfaceKey    String
+  surfaceRuleId String?   // FK to FootprintSurfaceRule (active version used)
+  surfaceLabel  String?   // Denormalized for display
+  category      String?   // Denormalized for grouping
+  importanceTier String?  // Denormalized for prioritization
+  
+  // Result status
+  status        String    @default("PENDING") // PRESENT_CONFIRMED | PRESENT_PARTIAL | ABSENT | NEEDS_ENTITY_INPUT | MANUAL_REQUIRED | REQUIRES_PROVIDER | ERROR | SKIPPED | PENDING
+  confidence    Int       @default(50) // 0-100
+  
+  // Evidence captured during scan
+  evidence      Json?     // { final_url, http_status, redirect_chain, page_title, extracted_fields, html_hash, checked_at, ... }
+  
+  // Metrics (when available)
+  metrics       Json?     // { sitemapCount, lastPostDate, reviewCount, followerCount, ... }
+  
+  // Timestamps
+  checkedAt     DateTime  @default(now())
+  lastUpdatedAt DateTime?
+  
+  // Error handling
+  errorMessage  String?   @db.Text
+  
+  // Manual submission tracking
+  submittedBy   String?   // User ID who submitted manual evidence
+  submittedAt   DateTime?
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  scan          DigitalFootprintScan @relation(fields: [scanId], references: [id], onDelete: Cascade)
+  evidenceFiles DigitalFootprintEvidenceFile[]
+  
+  @@unique([scanId, surfaceKey])
+  @@index([scanId])
+  @@index([surfaceKey])
+  @@index([status])
+  @@map("digital_footprint_scan_results")
+}
+
+// C) DigitalFootprintEvidenceFile - Uploaded evidence files
+model DigitalFootprintEvidenceFile {
+  id           String   @id @default(cuid())
+  scanResultId String
+  fileUrl      String
+  fileType     String   // screenshot, pdf, etc.
+  fileName     String?
+  fileSize     Int?
+  uploadedBy   String?  // User ID
+  createdAt    DateTime @default(now())
+  
+  scanResult   DigitalFootprintScanResult @relation(fields: [scanResultId], references: [id], onDelete: Cascade)
+  
+  @@index([scanResultId])
+  @@map("digital_footprint_evidence_files")
+}

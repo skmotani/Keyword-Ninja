@@ -62,6 +62,26 @@ interface HistoryItem {
 type FilterType = 'all' | 'gaps' | 'critical' | 'unknown';
 type TabType = 'scan' | 'history';
 
+// Client master data interface
+interface ClientMaster {
+    id: string;
+    code: string;
+    name: string;
+    mainDomain: string;
+    domains: string[];
+    aiProfile?: {
+        shortSummary?: string;
+        productLines?: string[];
+        targetCustomerSegments?: string[];
+        businessModel?: string;
+        industryType?: string;
+        targetGeographies?: string[];
+        coreTopics?: string[];
+        adjacentTopics?: string[];
+        oemManufacturerIndicators?: string[];
+    };
+}
+
 export default function DigitalFootprintPage() {
     const [activeTab, setActiveTab] = useState<TabType>('scan');
     const [domains, setDomains] = useState('');
@@ -72,10 +92,20 @@ export default function DigitalFootprintPage() {
     const [filter, setFilter] = useState<FilterType>('all');
     const [expandedDomain, setExpandedDomain] = useState<string | null>(null);
 
+    // Client selection state
+    const [clients, setClients] = useState<ClientMaster[]>([]);
+    const [selectedClientId, setSelectedClientId] = useState<string>('');
+    const [clientsLoading, setClientsLoading] = useState(false);
+
     // History state
     const [history, setHistory] = useState<HistoryItem[]>([]);
     const [historyLoading, setHistoryLoading] = useState(false);
     const [selectedHistoryId, setSelectedHistoryId] = useState<string | null>(null);
+
+    // Load clients on mount
+    useEffect(() => {
+        loadClients();
+    }, []);
 
     // Load history when tab changes
     useEffect(() => {
@@ -83,6 +113,120 @@ export default function DigitalFootprintPage() {
             loadHistory();
         }
     }, [activeTab]);
+
+    // Auto-populate when client is selected
+    useEffect(() => {
+        if (selectedClientId) {
+            const client = clients.find(c => c.id === selectedClientId);
+            if (client) {
+                // Populate domains from client master
+                const domainList = client.domains.length > 0
+                    ? client.domains.join('\n')
+                    : client.mainDomain;
+                setDomains(domainList);
+
+                // Build comprehensive hints from AI profile for better entity matching
+                const hintParts: string[] = [];
+
+                // Brand identity
+                hintParts.push(`Brand Name: ${client.name}`);
+
+                // Business model & industry (critical for entity classification)
+                if (client.aiProfile?.businessModel) {
+                    hintParts.push(`Business Model: ${client.aiProfile.businessModel}`);
+                }
+                if (client.aiProfile?.industryType) {
+                    hintParts.push(`Industry: ${client.aiProfile.industryType.replace(/_/g, ' ')}`);
+                }
+
+                // Products/services (helps match product pages, directories)
+                if (client.aiProfile?.productLines?.length) {
+                    hintParts.push(`Products/Services: ${client.aiProfile.productLines.join(', ')}`);
+                }
+
+                // Target customers (helps identify marketplace presence)
+                if (client.aiProfile?.targetCustomerSegments?.length) {
+                    hintParts.push(`Target Customers: ${client.aiProfile.targetCustomerSegments.join(', ')}`);
+                }
+
+                // Core topics (critical SEO keywords)
+                if (client.aiProfile?.coreTopics?.length) {
+                    hintParts.push(`Core Topics: ${client.aiProfile.coreTopics.join(', ')}`);
+                }
+
+                // Adjacent topics (related areas to check)
+                if (client.aiProfile?.adjacentTopics?.length) {
+                    hintParts.push(`Related Topics: ${client.aiProfile.adjacentTopics.join(', ')}`);
+                }
+
+                // Geographic focus (for local presence checks)
+                if (client.aiProfile?.targetGeographies?.length) {
+                    hintParts.push(`Geographies: ${client.aiProfile.targetGeographies.join(', ')}`);
+                }
+
+                // OEM indicators if available
+                if (client.aiProfile?.oemManufacturerIndicators?.length) {
+                    hintParts.push(`Business Keywords: ${client.aiProfile.oemManufacturerIndicators.join(', ')}`);
+                }
+
+                setHints(hintParts.join('\n'));
+            }
+        }
+    }, [selectedClientId, clients]);
+
+    const loadClients = async () => {
+        setClientsLoading(true);
+        try {
+            const res = await fetch('/api/clients');
+            if (res.ok) {
+                const clientsData = await res.json();
+
+                // Also fetch AI profiles to merge data
+                const aiRes = await fetch('/api/client-ai-profile');
+                let aiProfiles: Record<string, ClientMaster['aiProfile']> = {};
+                if (aiRes.ok) {
+                    const aiData = await aiRes.json();
+                    aiProfiles = aiData.reduce((acc: Record<string, ClientMaster['aiProfile']>, p: {
+                        clientCode: string;
+                        shortSummary?: string;
+                        productLines?: string[];
+                        targetCustomerSegments?: string[];
+                        businessModel?: string;
+                        industryType?: string;
+                        targetGeographies?: string[];
+                        coreTopics?: string[];
+                        adjacentTopics?: string[];
+                        domainTypePatterns?: { oemManufacturerIndicators?: string[] };
+                    }) => {
+                        acc[p.clientCode] = {
+                            shortSummary: p.shortSummary,
+                            productLines: p.productLines,
+                            targetCustomerSegments: p.targetCustomerSegments,
+                            businessModel: p.businessModel,
+                            industryType: p.industryType,
+                            targetGeographies: p.targetGeographies,
+                            coreTopics: p.coreTopics,
+                            adjacentTopics: p.adjacentTopics,
+                            oemManufacturerIndicators: p.domainTypePatterns?.oemManufacturerIndicators,
+                        };
+                        return acc;
+                    }, {});
+                }
+
+                // Merge AI profiles into clients
+                const enrichedClients = clientsData.map((c: ClientMaster) => ({
+                    ...c,
+                    aiProfile: aiProfiles[c.code] || undefined,
+                }));
+
+                setClients(enrichedClients);
+            }
+        } catch (err) {
+            console.error('Failed to load clients:', err);
+        } finally {
+            setClientsLoading(false);
+        }
+    };
 
     const loadHistory = async () => {
         setHistoryLoading(true);
@@ -279,6 +423,47 @@ export default function DigitalFootprintPage() {
                 <>
                     {/* Input Section */}
                     <div className="bg-white rounded-xl shadow-sm border p-6">
+                        {/* Client Selection */}
+                        <div className="mb-6">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                📋 Select Client (Quick Fill)
+                            </label>
+                            <div className="flex gap-3">
+                                <select
+                                    value={selectedClientId}
+                                    onChange={(e) => setSelectedClientId(e.target.value)}
+                                    className="flex-1 px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    disabled={clientsLoading}
+                                >
+                                    <option value="">— Select a client or enter manually —</option>
+                                    {clients.map(client => (
+                                        <option key={client.id} value={client.id}>
+                                            {client.name} ({client.mainDomain})
+                                            {client.aiProfile ? ' ✓ AI Profile' : ''}
+                                        </option>
+                                    ))}
+                                </select>
+                                {selectedClientId && (
+                                    <button
+                                        onClick={() => {
+                                            setSelectedClientId('');
+                                            setDomains('');
+                                            setHints('');
+                                        }}
+                                        className="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200"
+                                        title="Clear selection"
+                                    >
+                                        ✕ Clear
+                                    </button>
+                                )}
+                            </div>
+                            {selectedClientId && clients.find(c => c.id === selectedClientId)?.aiProfile?.shortSummary && (
+                                <p className="mt-2 text-sm text-gray-500 italic">
+                                    💡 {clients.find(c => c.id === selectedClientId)?.aiProfile?.shortSummary}
+                                </p>
+                            )}
+                        </div>
+
                         <div className="grid md:grid-cols-2 gap-6">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">

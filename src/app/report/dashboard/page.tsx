@@ -22,7 +22,8 @@ import {
     CompetitorBalloonData,
     ClientBusinessData,
     BrandETVData,
-    HomePageData
+    HomePageData,
+    Top3SurfacesByCategoryData
 } from '@/types/dashboardTypes';
 import Link from 'next/link';
 import {
@@ -137,6 +138,149 @@ function InfoModal({
                 >
                     Got it
                 </button>
+            </div>
+        </div>
+    );
+}
+
+// Export Selection Modal Component
+function ExportSelectionModal({
+    isOpen,
+    onClose,
+    queries,
+    onExport,
+    isExporting
+}: {
+    isOpen: boolean;
+    onClose: () => void;
+    queries: { id: string; title: string; queryNumber?: string }[];
+    onExport: (selectedIds: string[]) => void;
+    isExporting: boolean;
+}) {
+    const [selectedIds, setSelectedIds] = React.useState<Set<string>>(new Set(queries.map(q => q.id)));
+
+    // Reset selection when modal opens
+    React.useEffect(() => {
+        if (isOpen) {
+            setSelectedIds(new Set(queries.map(q => q.id)));
+        }
+    }, [isOpen, queries]);
+
+    if (!isOpen) return null;
+
+    const toggleQuery = (id: string) => {
+        const newSet = new Set(selectedIds);
+        if (newSet.has(id)) {
+            newSet.delete(id);
+        } else {
+            newSet.add(id);
+        }
+        setSelectedIds(newSet);
+    };
+
+    const selectAll = () => setSelectedIds(new Set(queries.map(q => q.id)));
+    const deselectAll = () => setSelectedIds(new Set());
+
+    const handleExport = () => {
+        onExport(Array.from(selectedIds));
+    };
+
+    return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
+            <div className="absolute inset-0 bg-black/50"></div>
+            <div
+                className="relative bg-white rounded-xl shadow-2xl max-w-lg w-full max-h-[80vh] flex flex-col animate-in fade-in zoom-in duration-200"
+                onClick={(e) => e.stopPropagation()}
+            >
+                {/* Header */}
+                <div className="flex items-center justify-between p-4 border-b">
+                    <h3 className="text-lg font-semibold text-gray-900">Select Queries to Export</h3>
+                    <button
+                        onClick={onClose}
+                        className="text-gray-400 hover:text-gray-600"
+                    >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                {/* Actions Bar */}
+                <div className="flex items-center justify-between px-4 py-2 bg-gray-50 border-b">
+                    <div className="flex gap-2">
+                        <button
+                            onClick={selectAll}
+                            className="text-xs px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded hover:bg-indigo-200 font-medium"
+                        >
+                            Select All
+                        </button>
+                        <button
+                            onClick={deselectAll}
+                            className="text-xs px-3 py-1.5 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 font-medium"
+                        >
+                            Deselect All
+                        </button>
+                    </div>
+                    <span className="text-sm text-gray-600 font-medium">
+                        {selectedIds.size} / {queries.length} selected
+                    </span>
+                </div>
+
+                {/* Query List */}
+                <div className="flex-1 overflow-y-auto p-4 space-y-1">
+                    {queries.map((query) => (
+                        <label
+                            key={query.id}
+                            className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-colors ${selectedIds.has(query.id) ? 'bg-indigo-50 border border-indigo-200' : 'hover:bg-gray-50 border border-transparent'
+                                }`}
+                        >
+                            <input
+                                type="checkbox"
+                                checked={selectedIds.has(query.id)}
+                                onChange={() => toggleQuery(query.id)}
+                                className="w-4 h-4 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500"
+                            />
+                            <span className="text-xs font-mono bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">
+                                {query.queryNumber || query.id}
+                            </span>
+                            <span className={`text-sm flex-1 ${selectedIds.has(query.id) ? 'text-gray-900 font-medium' : 'text-gray-600'}`}>
+                                {query.title}
+                            </span>
+                        </label>
+                    ))}
+                </div>
+
+                {/* Footer */}
+                <div className="flex items-center justify-end gap-3 p-4 border-t bg-gray-50">
+                    <button
+                        onClick={onClose}
+                        className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        onClick={handleExport}
+                        disabled={selectedIds.size === 0 || isExporting}
+                        className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-semibold hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                    >
+                        {isExporting ? (
+                            <>
+                                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                                </svg>
+                                Exporting...
+                            </>
+                        ) : (
+                            <>
+                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                                Export {selectedIds.size} {selectedIds.size === 1 ? 'Query' : 'Queries'}
+                            </>
+                        )}
+                    </button>
+                </div>
             </div>
         </div>
     );
@@ -1660,6 +1804,98 @@ function Top20IncludeLearnCard({ data }: { data: Top20IncludeLearnData }) {
     );
 }
 
+// MANUAL_004: Top 3 Surfaces by Category Card
+function Top3SurfacesByCategoryCard({ data }: { data: Top3SurfacesByCategoryData }) {
+    const getImportanceColor = (importance: string) => {
+        switch (importance) {
+            case 'Critical': return 'bg-red-100 text-red-700 border-red-300';
+            case 'High': return 'bg-orange-100 text-orange-700 border-orange-300';
+            case 'Medium': return 'bg-yellow-100 text-yellow-700 border-yellow-300';
+            default: return 'bg-gray-100 text-gray-600 border-gray-300';
+        }
+    };
+
+    const getCategoryColor = (category: string) => {
+        const colors: Record<string, string> = {
+            owned: 'bg-green-50 border-green-200',
+            search: 'bg-blue-50 border-blue-200',
+            social: 'bg-purple-50 border-purple-200',
+            video: 'bg-pink-50 border-pink-200',
+            community: 'bg-indigo-50 border-indigo-200',
+            trust: 'bg-amber-50 border-amber-200',
+            authority: 'bg-teal-50 border-teal-200',
+            marketplace: 'bg-cyan-50 border-cyan-200',
+            technical: 'bg-slate-50 border-slate-200',
+            ai: 'bg-violet-50 border-violet-200',
+            aeo: 'bg-fuchsia-50 border-fuchsia-200',
+            performance_security: 'bg-rose-50 border-rose-200',
+            eeat_entity: 'bg-emerald-50 border-emerald-200',
+        };
+        return colors[category] || 'bg-gray-50 border-gray-200';
+    };
+
+    // Handle loading or error state
+    if (!data || !data.summary || !data.categories) {
+        return (
+            <div className="text-center py-8 text-gray-500">
+                Loading surfaces data...
+            </div>
+        );
+    }
+
+    return (
+        <div className="space-y-4">
+            {/* Summary */}
+            <div className="flex items-center gap-4 text-sm text-gray-500 bg-gray-50 px-3 py-2 rounded-lg">
+                <span>
+                    Categories: <strong className="text-gray-900">{data.summary.totalCategories}</strong>
+                </span>
+                <span>|</span>
+                <span>
+                    Surfaces: <strong className="text-gray-900">{data.summary.totalSurfaces}</strong>
+                </span>
+                <span>|</span>
+                <span>
+                    Total Points: <strong className="text-indigo-600">{data.summary.totalPoints}</strong>
+                </span>
+            </div>
+
+            {/* Categories Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                {data.categories.map((cat) => (
+                    <div key={cat.category} className={`rounded-lg border p-3 ${getCategoryColor(cat.category)}`}>
+                        <h4 className="font-semibold text-sm text-gray-800 mb-2 border-b pb-1">
+                            {cat.categoryLabel}
+                        </h4>
+                        <div className="space-y-2">
+                            {cat.surfaces.map((surface, idx) => (
+                                <div key={idx} className="bg-white/80 rounded p-2 text-xs">
+                                    <div className="flex items-center justify-between mb-1">
+                                        <span className="font-medium text-gray-900 truncate flex-1" title={surface.label}>
+                                            {surface.label}
+                                        </span>
+                                        <div className="flex items-center gap-1.5 flex-shrink-0 ml-2">
+                                            <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium border ${getImportanceColor(surface.importance)}`}>
+                                                {surface.importance}
+                                            </span>
+                                            <span className="bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded text-[10px] font-bold">
+                                                {surface.points}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <p className="text-gray-500 text-[10px] leading-tight">
+                                        {surface.whyItMatters}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
 // Sortable Query Card Wrapper for drag-and-drop
 function SortableQueryCard({
     id,
@@ -2077,6 +2313,8 @@ function QueryCard({
                                     <ClientBusinessCard data={result.data as ClientBusinessData} />
                                 ) : result.queryType === 'home-page' ? (
                                     <HomePageCard data={result.data as HomePageData} />
+                                ) : result.queryType === 'top3-surfaces-by-category' ? (
+                                    <Top3SurfacesByCategoryCard data={result.data as Top3SurfacesByCategoryData} />
 
                                 ) : (
                                     <pre className="text-sm bg-gray-50 p-3 rounded overflow-auto">
@@ -2108,6 +2346,7 @@ export default function DashboardPage() {
     const [loadingQueries, setLoadingQueries] = useState<Set<string>>(new Set());
     const [loading, setLoading] = useState(false);
     const [exporting, setExporting] = useState(false);
+    const [showExportModal, setShowExportModal] = useState(false);
     const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
     // Custom editable titles, pageTitles, pageContents (GLOBAL - same for all clients)
@@ -2462,9 +2701,14 @@ export default function DashboardPage() {
         }
     }
 
-    async function handleExportPdf() {
+    async function handleExportPdf(selectedQueryIds: string[]) {
         if (!selectedClientCode) {
             showNotification('error', 'Please select a client');
+            return;
+        }
+
+        if (selectedQueryIds.length === 0) {
+            showNotification('error', 'Please select at least one query');
             return;
         }
 
@@ -2475,7 +2719,7 @@ export default function DashboardPage() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     clientCode: selectedClientCode,
-                    queryIds: queries.map(q => q.id),
+                    queryIds: selectedQueryIds,
                 }),
             });
 
@@ -2496,7 +2740,8 @@ export default function DashboardPage() {
                 };
             }
 
-            showNotification('success', 'Report opened for printing. Use Ctrl+P to save as PDF.');
+            showNotification('success', `Exported ${selectedQueryIds.length} queries. Use Ctrl+P to save as PDF.`);
+            setShowExportModal(false);
         } catch (error) {
             console.error('Export failed:', error);
             showNotification('error', 'Failed to export PDF');
@@ -2603,26 +2848,14 @@ export default function DashboardPage() {
                             Collapse All
                         </button>
                         <button
-                            onClick={handleExportPdf}
-                            disabled={exporting || !selectedClientCode}
+                            onClick={() => setShowExportModal(true)}
+                            disabled={!selectedClientCode || queries.length === 0}
                             className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-semibold hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-sm"
                         >
-                            {exporting ? (
-                                <>
-                                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                                    </svg>
-                                    Exporting...
-                                </>
-                            ) : (
-                                <>
-                                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                    </svg>
-                                    Export PDF
-                                </>
-                            )}
+                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            Export PDF
                         </button>
                     </div>
                 </div>
@@ -2818,9 +3051,18 @@ export default function DashboardPage() {
                     <li>• Click on a query to expand and view results</li>
                     <li>• Balloon sizes represent search volume - larger = higher volume</li>
                     <li>• Status badges indicate query importance: Critical, Warning, Info, Success</li>
-                    <li>• Export PDF opens a print dialog - use "Save as PDF" option</li>
+                    <li>• Export PDF opens a selection modal - choose which queries to include</li>
                 </ul>
             </div>
+
+            {/* Export Selection Modal */}
+            <ExportSelectionModal
+                isOpen={showExportModal}
+                onClose={() => setShowExportModal(false)}
+                queries={queries.map(q => ({ id: q.id, title: q.title, queryNumber: q.queryNumber }))}
+                onExport={handleExportPdf}
+                isExporting={exporting}
+            />
         </div>
     );
 }

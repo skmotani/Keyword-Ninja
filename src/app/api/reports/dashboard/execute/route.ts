@@ -1535,6 +1535,90 @@ async function executeHomePageQuery(
     };
 }
 
+// MANUAL_004: Top 3 Surfaces by Category from Footprint Registry
+async function executeTop3SurfacesByCategoryQuery(): Promise<{
+    categories: { category: string; categoryLabel: string; surfaces: { label: string; importance: string; points: number; whyItMatters: string; }[]; }[];
+    summary: { totalCategories: number; totalSurfaces: number; totalPoints: number; };
+}> {
+    const { prisma } = await import('@/lib/prisma');
+
+    // SEO meaning descriptions
+    const getSurfaceSeoMeaning = (surfaceKey: string, label: string, category: string): string => {
+        const key = surfaceKey.toLowerCase();
+        const labelLower = label.toLowerCase();
+
+        const meanings: Record<string, string> = {
+            'linkedin': 'Professional network presence. Builds B2B trust.',
+            'facebook': 'Social proof and community engagement.',
+            'youtube': 'Video SEO powerhouse, 2nd largest search engine.',
+            'google': 'Core search visibility indicator.',
+            'gbp': 'Google Business Profile, critical for local SEO.',
+            'knowledge_panel': 'Brand entity surface for SERP trust.',
+            'wikipedia': 'Highest authority backlink.',
+            'wikidata': 'Structured entity graph for AI/LLMs.',
+            'website': 'Core web presence, foundation of SEO.',
+            'schema': 'Structured data for rich snippets.',
+            'gsc': 'Site ownership + indexing diagnostics.',
+        };
+
+        for (const [keyword, meaning] of Object.entries(meanings)) {
+            if (key.includes(keyword) || labelLower.includes(keyword)) {
+                return meaning;
+            }
+        }
+        return 'Digital footprint surface.';
+    };
+
+    const CATEGORY_LABELS: Record<string, string> = {
+        'owned': 'Owned Properties', 'search': 'Search Presence', 'social': 'Social Media',
+        'video': 'Video Platforms', 'community': 'Community & Forums', 'trust': 'Trust & Reviews',
+        'authority': 'Authority Signals', 'marketplace': 'Marketplaces', 'technical': 'Technical SEO',
+        'ai': 'AI Platforms', 'aeo': 'Answer Engine Optimization',
+        'performance_security': 'Performance & Security', 'eeat_entity': 'E-E-A-T & Entity',
+    };
+
+    const IMPORTANCE_DISPLAY: Record<string, string> = {
+        'CRITICAL': 'Critical', 'HIGH': 'High', 'MEDIUM': 'Medium', 'LOW': 'Low',
+    };
+
+    const surfaces = await prisma.footprintSurfaceRegistry.findMany({
+        where: { enabled: true },
+        orderBy: { basePoints: 'desc' },
+        select: { surfaceKey: true, label: true, category: true, importanceTier: true, basePoints: true },
+    });
+
+    const categoryGroups: Record<string, typeof surfaces> = {};
+    for (const surface of surfaces) {
+        if (!categoryGroups[surface.category]) categoryGroups[surface.category] = [];
+        if (categoryGroups[surface.category].length < 3) categoryGroups[surface.category].push(surface);
+    }
+
+    const categories = Object.entries(categoryGroups)
+        .filter(([, items]) => items.length > 0)
+        .map(([category, items]) => ({
+            category,
+            categoryLabel: CATEGORY_LABELS[category] || category,
+            totalPoints: items.reduce((sum, s) => sum + s.basePoints, 0),
+            surfaces: items.map(s => ({
+                label: s.label,
+                importance: IMPORTANCE_DISPLAY[s.importanceTier] || s.importanceTier,
+                points: s.basePoints,
+                whyItMatters: getSurfaceSeoMeaning(s.surfaceKey, s.label, s.category),
+            })),
+        }))
+        // Sort by total points descending (highest first)
+        .sort((a, b) => b.totalPoints - a.totalPoints);
+
+    return {
+        categories,
+        summary: {
+            totalCategories: categories.length,
+            totalSurfaces: categories.reduce((sum, c) => sum + c.surfaces.length, 0),
+            totalPoints: categories.reduce((sum, c) => sum + c.surfaces.reduce((s, surf) => s + surf.points, 0), 0),
+        },
+    };
+}
+
 async function executeCompetitorBalloonQuery(clientCode: string, queryDef?: any): Promise<CompetitorBalloonData> {
     const clients = await readClients();
     const client = clients.find(c => c.code === clientCode);
@@ -1638,6 +1722,8 @@ function getSourceLink(queryType: string): DataSourceLink {
             return { label: 'Client Master + AI Client Profile', href: '/master/clients' };
         case 'home-page':
             return { label: 'Client Master + App Profile', href: '/master/app-profile' };
+        case 'top3-surfaces-by-category':
+            return { label: 'Footprint Registry', href: '/admin/footprint-registry' };
         default:
             return { label: 'Unknown Source', href: '/' };
     }
@@ -1709,6 +1795,9 @@ export async function POST(request: Request) {
                 break;
             case 'home-page':
                 data = await executeHomePageQuery({ clientCode, queryId });
+                break;
+            case 'top3-surfaces-by-category':
+                data = await executeTop3SurfacesByCategoryQuery();
                 break;
             default:
                 data = { message: 'Custom query type - no execution logic defined' };

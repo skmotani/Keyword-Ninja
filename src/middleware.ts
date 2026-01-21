@@ -3,6 +3,7 @@ import { getToken } from "next-auth/jwt";
 
 export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
+    const isDev = process.env.NODE_ENV !== "production";
 
     // Public routes that don't require authentication
     const publicRoutes = [
@@ -11,10 +12,43 @@ export async function middleware(request: NextRequest) {
         "/feed",        // Public feed pages  
         "/api/cms",     // CMS API (temporarily public for testing)
     ];
+
+    // Dev-only routes (require admin in production, public in dev)
+    const devOnlyRoutes = [
+        "/api/digital-footprint/verify",
+        "/api/digital-footprint/diagnose",
+        "/api/digital-footprint/cleanup-orphans",
+        "/api/digital-footprint/test-scan",
+    ];
+
     const isPublicRoute = publicRoutes.some(route => pathname.startsWith(route));
+    const isDevOnlyRoute = devOnlyRoutes.some(route => pathname.startsWith(route));
 
     // Allow public routes
     if (isPublicRoute) {
+        return NextResponse.next();
+    }
+
+    // Dev-only routes: allow in dev, require admin in production
+    if (isDevOnlyRoute) {
+        if (isDev) {
+            return NextResponse.next();
+        }
+        // In production, require admin token
+        const token = await getToken({
+            req: request,
+            secret: process.env.NEXTAUTH_SECRET,
+        });
+
+        if (!token) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
+        const role = token.role as string;
+        if (role !== "superadmin" && role !== "admin") {
+            return NextResponse.json({ error: "Admin access required" }, { status: 403 });
+        }
+
         return NextResponse.next();
     }
 

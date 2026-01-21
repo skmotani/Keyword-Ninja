@@ -50,6 +50,13 @@
       "updatedAt": "2026-01-20T01:17:12.552Z",
       "pageTitle": "Home page",
       "pageContent": "SEO Benefits:\nBrand Consistency - aligned visual identity\nProfessional Presentation - builds client trust\nQuick Context - instant client identification\nCentralized Branding - single source of truth"
+    },
+    {
+      "queryId": "MANUAL_004",
+      "customTitle": "2026 Digital Footprint Coverage ScorecardNew Card.",
+      "updatedAt": "2026-01-20T23:50:37.633Z",
+      "pageTitle": "A business in 2026 must maintain a minimum number of digital footprints across key online surfaces. How many surfaces have you covered so far? List each surface, explain why it matters, and score it—where the size/weight of each item is determined by the points assigned to that row.",
+      "pageContent": "Why It Matters\tPts\nCore web presence. Foundation of all SEO.\t18\nCore search visibility indicator. Fundamental to organic traffic.\t10\nE-E-A-T + Entity signals.\t10\nE-E-A-T + Entity signals.\t6\nE-E-A-T + Entity signals.\t6\nE-E-A-T + Entity signals.\t6\nE-E-A-T + Entity signals.\t6\nE-E-A-T + Entity signals.\t6\nE-E-A-T + Entity signals.\t6\nE-E-A-T + Entity signals.\t6\nHighest authority backlink. Wikipedia citations signal notable entity.\t8\nProfessional network presence. Builds B2B trust, showcases expertise, enables employee advocacy.\t10\nVideo SEO powerhouse. 2nd largest search engine. Videos rank in Google.\t8\nCore search visibility indicator. Fundamental to organic traffic.\t10\nReal-time brand presence. Tweets can appear in search results.\t3\nSocial proof and community engagement. Affects local SEO, enables reviews.\t4\nVisual discovery engine. Drives referral traffic, especially for lifestyle brands.\t2\nVisual brand identity. High engagement rates, influences younger demographics.\t4\nStructured data markup. Enables rich snippets in search results.\t10\nStructured entity graph for machines/LLMs.\t8\nBrand entity surface; impacts brand SERP trust and AI/LLM understanding.\t10\nStructured entity graph for machines/LLMs.\t8\nCore search visibility indicator. Fundamental to organic traffic.\t10\nCore search visibility indicator. Fundamental to organic traffic.\t10\nHigh-conversion contact surface; supports lead capture and customer trust.\t4\nStructured data markup. Enables rich snippets in search results.\t6\nPerformance UX baseline; impacts rankings.\t8\nVideo SEO powerhouse. 2nd largest search engine. Videos rank in Google.\t6\nAnswer Engine Optimization.\t3"
     }
   ],
   "categories": [
@@ -61,6 +68,7 @@
   ],
   "queryOrder": {
     "GRP-001": [
+      "MANUAL_004",
       "MANUAL_003",
       "Q001",
       "MANUAL_001",

@@ -1,0 +1,79 @@
+﻿{
+    "overall":  "FAIL",
+    "summary":  {
+                    "passed":  12,
+                    "failed":  1,
+                    "skipped":  0,
+                    "total":  13
+                },
+    "checks":  [
+                   {
+                       "name":  "A1: Partial Unique Index",
+                       "passed":  true,
+                       "details":  "Found: CREATE UNIQUE INDEX one_active_rule_per_surface ON public.footprint_surface_rules USING btree (\"surf..."
+                   },
+                   {
+                       "name":  "A2: surfaceKey Index",
+                       "passed":  true,
+                       "details":  "Index count: 1"
+                   },
+                   {
+                       "name":  "A3: Rules Unique Index",
+                       "passed":  true,
+                       "details":  "Index count: 1"
+                   },
+                   {
+                       "name":  "A4: Scan Results Unique Index",
+                       "passed":  true,
+                       "details":  "Index count: 1"
+                   },
+                   {
+                       "name":  "B1: Enabled Surfaces Count",
+                       "passed":  true,
+                       "details":  "Found 81 enabled surfaces"
+                   },
+                   {
+                       "name":  "B2: Active Rules Match Surfaces",
+                       "passed":  true,
+                       "details":  "Active rules (joined): 81, Enabled surfaces: 81"
+                   },
+                   {
+                       "name":  "B3: No Surfaces Missing Rules",
+                       "passed":  true,
+                       "details":  "Missing: 0 surfaces"
+                   },
+                   {
+                       "name":  "B4: One Active Rule Per Surface",
+                       "passed":  true,
+                       "details":  "Surfaces with multiple active rules: 0"
+                   },
+                   {
+                       "name":  "C1: Scan Completeness",
+                       "passed":  true,
+                       "details":  "Scan eb460774... has 81 results (expected 81)"
+                   },
+                   {
+                       "name":  "C2: No Duplicate Results",
+                       "passed":  true,
+                       "details":  "Duplicate (scanId, surfaceKey) pairs: 0"
+                   },
+                   {
+                       "name":  "C3: Confidence Bounds (0-100)",
+                       "passed":  true,
+                       "details":  "Out of bounds: 0"
+                   },
+                   {
+                       "name":  "C4: Evidence Schema Consistency",
+                       "passed":  true,
+                       "details":  "5/5 samples have valid schema"
+                   },
+                   {
+                       "name":  "C5: Status Distribution",
+                       "passed":  false,
+                       "details":  "All 81 results are QUEUED (scan not executed)",
+                       "remediation":  "Run a real scan to update statuses"
+                   }
+               ],
+    "scanId":  "eb460774-29c3-40d0-ab79-d7bfc4dc9a5e",
+    "timestamp":  "2026-01-20T10:25:21.548Z"
+}

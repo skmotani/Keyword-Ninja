@@ -20,7 +20,111 @@
     },
     "brandPhotos": [
       "/api/clients/b28ce55e-5598-4d2f-9f96-58c5f6e86de1/photos/photo_1768621083320.png"
-    ]
+    ],
+    "canonicalEntity": {
+      "entityId": "ent_meera_dbc1ea23",
+      "entityVersion": 3,
+      "generatedAt": "2026-01-20T05:27:13.749Z",
+      "names": {
+        "brand": "Meera",
+        "legal": "Meera",
+        "aliases": []
+      },
+      "web": {
+        "canonicalDomain": "meeraind.com",
+        "allowedDomains": [
+          "meeraind.com",
+          "meera.ind.in",
+          "meeraind.in"
+        ],
+        "canonicalUrl": "https://meeraind.com",
+        "brandEmailDomains": [
+          "meeraind.com"
+        ]
+      },
+      "contact": {
+        "primaryPhoneE164": "+0100-02",
+        "supportEmails": [
+          "info@meeraind.com"
+        ]
+      },
+      "location": {
+        "hq": {
+          "addressLine": "2126, Road No. 2, GIDC, Sachin",
+          "city": "Surat",
+          "state": "Gujarat",
+          "country": "India",
+          "postalCode": "394230"
+        },
+        "serviceGeographies": [
+          "India",
+          "International"
+        ]
+      },
+      "industry": {
+        "businessModel": "B2B",
+        "industry": "textile manufacturing",
+        "products": [
+          "twisting machines",
+          "winding machines",
+          "heat setting machinery"
+        ],
+        "keywords": [
+          "textile machinery",
+          "manufacturing equipment",
+          "energy-efficient machinery"
+        ],
+        "uniqueIdentifiers": []
+      },
+      "profiles": {
+        "googleBusiness": {
+          "placeId": null,
+          "cid": null,
+          "preferredNameOnGBP": null
+        },
+        "knowledgeGraph": {
+          "wikidataQid": null,
+          "wikipediaUrl": null
+        },
+        "directories": {
+          "crunchbaseUrl": null,
+          "g2Url": null,
+          "capterraUrl": null,
+          "trustpilotUrl": null,
+          "clutchUrl": null
+        },
+        "social": {
+          "linkedinCompanySlug": "meera-industries-limited",
+          "youtubeHandle": "meeraind",
+          "instagramHandle": null,
+          "xHandle": null,
+          "facebookPage": "MeeraIndustrieslimited"
+        }
+      },
+      "proofSignals": {
+        "logoUrl": "/api/clients/b28ce55e-5598-4d2f-9f96-58c5f6e86de1/photos/photo_1768621083320.png",
+        "logoHashPhash": null,
+        "tagline": "Meera Industries specializes in advanced twisting, winding, and heat setting machinery for the texti",
+        "keyPeople": [
+          "and Managing Director",
+          "presented to our",
+          "and Managing"
+        ]
+      },
+      "disambiguation": {
+        "topCompetitors": [],
+        "negativeKeywords": [
+          "textile jobs",
+          "weaving equipment",
+          "textile jobs"
+        ]
+      }
+    },
+    "canonicalEntityStatus": {
+      "status": "generated",
+      "lastReviewedAt": null,
+      "lastReviewedBy": null
+    }
   },
   {
     "id": "ff1e7b43-006c-4aa8-8781-86fe6ec34f17",

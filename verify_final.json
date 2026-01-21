@@ -1,0 +1,78 @@
+﻿{
+    "overall":  "FAIL",
+    "summary":  {
+                    "passed":  11,
+                    "failed":  2,
+                    "total":  13
+                },
+    "checks":  [
+                   {
+                       "name":  "A1: Partial Unique Index",
+                       "passed":  false,
+                       "details":  "Query failed: PrismaClientKnownRequestError: \nInvalid `prisma.$queryRaw()` invocation:\n\n\nCan\u0027t reach database server at `caboose.proxy.rlwy.net:42177`\n\nPlease make sure your database server is running at `caboose.proxy.rlwy.net:42177`.",
+                       "remediation":  "Run: npx prisma migrate deploy"
+                   },
+                   {
+                       "name":  "A2: surfaceKey Index",
+                       "passed":  false,
+                       "details":  "Query failed: PrismaClientKnownRequestError: \nInvalid `prisma.$queryRaw()` invocation:\n\n\nCan\u0027t reach database server at `caboose.proxy.rlwy.net:42177`\n\nPlease make sure your database server is running at `caboose.proxy.rlwy.net:42177`."
+                   },
+                   {
+                       "name":  "A3: Rules Unique Index",
+                       "passed":  true,
+                       "details":  "Index count: 1"
+                   },
+                   {
+                       "name":  "A4: Scan Results Unique Index",
+                       "passed":  true,
+                       "details":  "Index count: 1"
+                   },
+                   {
+                       "name":  "B1: Enabled Surfaces Count",
+                       "passed":  true,
+                       "details":  "Found 81 enabled surfaces"
+                   },
+                   {
+                       "name":  "B2: Active Rules Match Surfaces",
+                       "passed":  true,
+                       "details":  "Active rules (joined): 81, Enabled surfaces: 81"
+                   },
+                   {
+                       "name":  "B3: No Surfaces Missing Rules",
+                       "passed":  true,
+                       "details":  "Missing: 0 surfaces"
+                   },
+                   {
+                       "name":  "B4: One Active Rule Per Surface",
+                       "passed":  true,
+                       "details":  "Surfaces with multiple active rules: 0"
+                   },
+                   {
+                       "name":  "C1: Scan Completeness",
+                       "passed":  true,
+                       "details":  "Scan eb460774... has 81 results (expected 81)"
+                   },
+                   {
+                       "name":  "C2: No Duplicate Results",
+                       "passed":  true,
+                       "details":  "Duplicate (scanId, surfaceKey) pairs: 0"
+                   },
+                   {
+                       "name":  "C3: Confidence Bounds (0-100)",
+                       "passed":  true,
+                       "details":  "Out of bounds: 0"
+                   },
+                   {
+                       "name":  "C4: Evidence Schema Consistency",
+                       "passed":  true,
+                       "details":  "5/5 samples have valid schema"
+                   },
+                   {
+                       "name":  "C5: Status Distribution",
+                       "passed":  true,
+                       "details":  "QUEUED: 81"
+                   }
+               ],
+    "scanId":  "eb460774-29c3-40d0-ab79-d7bfc4dc9a5e",
+    "timestamp":  "2026-01-20T10:07:02.866Z"
+}

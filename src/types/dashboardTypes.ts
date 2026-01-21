@@ -29,6 +29,7 @@ export type QueryType =
     | 'competitor-balloon'
     | 'client-business'
     | 'home-page'
+    | 'top3-surfaces-by-category'
     | 'custom'
     | 'manual';
 
@@ -330,6 +331,25 @@ export interface HomePageData {
     punchline: string | null;
 }
 
+// MANUAL_004: Top 3 Surfaces by Category (from Footprint Registry)
+export interface Top3SurfacesByCategoryData {
+    categories: {
+        category: string;
+        categoryLabel: string;
+        surfaces: {
+            label: string;
+            importance: string;  // 'Critical', 'High', 'Medium', 'Low'
+            points: number;
+            whyItMatters: string;
+        }[];
+    }[];
+    summary: {
+        totalCategories: number;
+        totalSurfaces: number;
+        totalPoints: number;
+    };
+}
+
 // Source link for data verification
 export interface DataSourceLink {
     label: string;
@@ -344,7 +364,7 @@ export interface DashboardQueryResult {
     status: QueryStatus;
     queryType: string;
     tooltip?: string;
-    data: KeywordBalloonData[] | DomainInfo | ClientRankingsData | KeywordsAbsenceData | CompetitorGlobalData | MarketSizeData | ETVComparisonData | KeywordOpportunityMatrixData | BrandPowerData | Top20IncludeBuyData | Top20IncludeLearnData | CompetitorBalloonData | ClientBusinessData | HomePageData | unknown;
+    data: KeywordBalloonData[] | DomainInfo | ClientRankingsData | KeywordsAbsenceData | CompetitorGlobalData | MarketSizeData | ETVComparisonData | KeywordOpportunityMatrixData | BrandPowerData | Top20IncludeBuyData | Top20IncludeLearnData | CompetitorBalloonData | ClientBusinessData | HomePageData | Top3SurfacesByCategoryData | unknown;
     executedAt: string;
     error?: string;
     sourceLink?: DataSourceLink;  // Link to source table for verification

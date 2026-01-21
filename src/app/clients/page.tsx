@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import PageHeader from '@/components/PageHeader';
 import ExportButton, { ExportColumn } from '@/components/ExportButton';
 import HelpInfoIcon from '@/components/HelpInfoIcon';
+import CanonicalEntitySection from '@/components/CanonicalEntitySection';
 
 import { Client, DomainProfile, ClientAIProfile } from '@/types';
 
@@ -1152,6 +1153,13 @@ export default function ClientsPage() {
                             </div>
                           )}
                         </div>
+
+                        {/* Canonical Entity ID Section */}
+                        <CanonicalEntitySection
+                          client={client}
+                          onUpdate={fetchClients}
+                          showNotification={showNotification}
+                        />
 
                         {/* Business Metrics Section */}
                         <div className="bg-white rounded-lg border p-4 mt-4">

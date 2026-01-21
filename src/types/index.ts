@@ -21,6 +21,111 @@ export interface Client {
     rfqToOrder?: string;     // RFQ → Order Win - % RFQs converting to orders
     avgTicketSize?: string;  // Average machinery ticket size
   };
+  // Canonical Entity ID for accurate presence verification
+  canonicalEntity?: CanonicalEntity | null;
+  canonicalEntityStatus?: CanonicalEntityStatus | null;
+}
+
+// ============================================
+// CANONICAL ENTITY TYPES
+// Used for accurate entity matching across 82 Footprint Registry surfaces
+// ============================================
+
+export interface CanonicalEntity {
+  entityId: string;              // Deterministic: ent_{slug}_{hash}
+  entityVersion: number;
+  generatedAt: string;           // ISO date
+  names: CanonicalEntityNames;
+  web: CanonicalEntityWeb;
+  contact: CanonicalEntityContact;
+  location: CanonicalEntityLocation;
+  industry: CanonicalEntityIndustry;
+  profiles: CanonicalEntityProfiles;
+  proofSignals: CanonicalEntityProofSignals;
+  disambiguation: CanonicalEntityDisambiguation;
+}
+
+export interface CanonicalEntityNames {
+  brand: string;
+  legal: string;
+  aliases: string[];
+}
+
+export interface CanonicalEntityWeb {
+  canonicalDomain: string;
+  allowedDomains: string[];
+  canonicalUrl: string;
+  brandEmailDomains: string[];
+}
+
+export interface CanonicalEntityContact {
+  primaryPhoneE164: string;
+  supportEmails: string[];
+}
+
+export interface CanonicalEntityLocation {
+  hq: {
+    addressLine: string;
+    city: string;
+    state: string;
+    country: string;
+    postalCode: string;
+  };
+  serviceGeographies: string[];
+}
+
+export interface CanonicalEntityIndustry {
+  businessModel: string;
+  industry: string;
+  products: string[];
+  keywords: string[];
+  uniqueIdentifiers: string[];  // SKUs, model numbers, certifications
+}
+
+export interface CanonicalEntityProfiles {
+  googleBusiness: {
+    placeId?: string | null;
+    cid?: string | null;
+    preferredNameOnGBP?: string | null;
+  };
+  knowledgeGraph: {
+    wikidataQid?: string | null;
+    wikipediaUrl?: string | null;
+  };
+  directories: {
+    crunchbaseUrl?: string | null;
+    g2Url?: string | null;
+    capterraUrl?: string | null;
+    trustpilotUrl?: string | null;
+    clutchUrl?: string | null;
+  };
+  social: {
+    linkedinCompanySlug?: string | null;
+    youtubeHandle?: string | null;
+    instagramHandle?: string | null;
+    xHandle?: string | null;
+    facebookPage?: string | null;
+  };
+}
+
+export interface CanonicalEntityProofSignals {
+  logoUrl?: string | null;
+  logoHashPhash?: string | null;
+  tagline?: string | null;
+  keyPeople?: string[];
+}
+
+export interface CanonicalEntityDisambiguation {
+  topCompetitors?: string[];
+  negativeKeywords?: string[];
+}
+
+export type CanonicalEntityStatusType = 'draft' | 'generated' | 'reviewed';
+
+export interface CanonicalEntityStatus {
+  status: CanonicalEntityStatusType;
+  lastReviewedAt: string | null;
+  lastReviewedBy: string | null;
 }
 
 export interface DomainProfile {

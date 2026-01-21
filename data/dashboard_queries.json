@@ -349,5 +349,26 @@
     "isActive": true,
     "createdAt": "2026-01-19T00:00:00.000Z",
     "updatedAt": "2026-01-19T00:00:00.000Z"
+  },
+  {
+    "id": "MANUAL_004",
+    "queryNumber": "1.4",
+    "groupId": "GRP-001",
+    "title": "Top 3 Digital Surfaces by Category",
+    "description": "Priority surfaces from each SEO category. Focus on these to maximize your digital footprint coverage.",
+    "tooltip": "**Data Source:** Footprint Registry\n\n**Query Logic:**\n1. Group all enabled surfaces by category\n2. Take top 3 surfaces by base points from each category\n3. Show importance tier and SEO value\n\n**SEO Value:**\nThese are the highest-impact surfaces in each category. Prioritize establishing presence on these platforms for maximum visibility and trust signals.",
+    "status": "Info",
+    "queryType": "top3-surfaces-by-category",
+    "config": {},
+    "sourceInfo": {
+      "tables": [
+        "footprint_surface_registry (Prisma)"
+      ],
+      "page": "Footprint Registry",
+      "pageUrl": "/admin/footprint-registry"
+    },
+    "isActive": true,
+    "createdAt": "2026-01-21T00:00:00.000Z",
+    "updatedAt": "2026-01-21T00:00:00.000Z"
   }
 ]
