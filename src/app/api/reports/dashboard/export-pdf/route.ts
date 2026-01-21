@@ -186,30 +186,36 @@ function renderBrandPowerHtml(data: any): string {
     return '<p>No brand power data</p>';
   }
 
+  // Only show summary row and summary table - NO individual domain keyword tables
   let html = `
         <div class="summary-row">
             <span><strong>Total Domains:</strong> ${data.summary?.totalDomains || 0}</span>
             <span><strong>Brand Keywords:</strong> ${data.summary?.totalBrandKeywords || 0}</span>
             <span><strong>Brand Volume:</strong> ${(data.summary?.totalBrandVolume || 0).toLocaleString()}</span>
         </div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Domain</th>
+                    <th>Brand Name</th>
+                    <th>Type</th>
+                    <th>Brand Keywords</th>
+                    <th>Total Volume</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${data.domains.map((d: any) => `
+                    <tr>
+                        <td>${d.domain}</td>
+                        <td>${d.brandName}</td>
+                        <td><span class="badge">${d.domainType}</span></td>
+                        <td>${d.brandKeywordCount}</td>
+                        <td>${(d.totalBrandVolume || 0).toLocaleString()}</td>
+                    </tr>
+                `).join('')}
+            </tbody>
+        </table>
     `;
-
-  for (const domain of data.domains.slice(0, 5)) {
-    html += `
-            <div class="domain-section">
-                <h4>${domain.domain} <span class="badge">${domain.domainType}</span></h4>
-                <p>Brand: ${domain.brandName} | Keywords: ${domain.brandKeywordCount} | Volume: ${domain.totalBrandVolume.toLocaleString()}</p>
-                <table class="data-table small">
-                    <thead><tr><th>Keyword</th><th>Location</th><th>Position</th><th>Volume</th></tr></thead>
-                    <tbody>
-                        ${(domain.keywords || []).slice(0, 10).map((k: any) => `
-                            <tr><td>${k.keyword}</td><td>${k.location}</td><td>${k.position}</td><td>${k.volume.toLocaleString()}</td></tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-            </div>
-        `;
-  }
 
   return html;
 }
