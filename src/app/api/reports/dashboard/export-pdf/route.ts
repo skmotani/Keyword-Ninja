@@ -4,6 +4,7 @@ import path from 'path';
 import { getQueryById, getActiveQueries } from '@/lib/storage/dashboardQueryStore';
 import { DashboardQueryResult } from '@/types/dashboardTypes';
 import { Client } from '@/types';
+import { POST as executeQuery } from '../execute/route';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 
@@ -636,33 +637,28 @@ export async function POST(request: Request) {
     // Execute each query using the main execute API logic
     const results: ResultWithMeta[] = [];
 
-    // Build base URL for internal API calls
-    const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
-    const host = process.env.VERCEL_URL || process.env.RAILWAY_PUBLIC_DOMAIN || 'localhost:3000';
-    const baseUrl = `${protocol}://${host}`;
-
     for (const query of queriesToExport) {
       if (!query) continue;
 
       try {
-        // Call the execute API to get the actual data
-        const executeRes = await fetch(`${baseUrl}/api/reports/dashboard/execute`, {
+        // Create mock Request to call executeQuery directly (avoids HTTP fetch issues in server context)
+        const mockRequest = new Request('http://localhost/api/reports/dashboard/execute', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ clientCode, queryId: query.id }),
         });
 
-        if (executeRes.ok) {
-          const executeData = await executeRes.json();
-          if (executeData.success && executeData.result) {
-            results.push({
-              result: executeData.result,
-              description: query.description,
-              tooltip: query.tooltip,
-              sourceInfo: query.sourceInfo,
-            });
-            continue;
-          }
+        const executeRes = await executeQuery(mockRequest);
+        const executeData = await executeRes.json();
+
+        if (executeData.success && executeData.result) {
+          results.push({
+            result: executeData.result,
+            description: query.description,
+            tooltip: query.tooltip,
+            sourceInfo: query.sourceInfo,
+          });
+          continue;
         }
       } catch (err) {
         console.warn(`Failed to execute query ${query.id}:`, err);
