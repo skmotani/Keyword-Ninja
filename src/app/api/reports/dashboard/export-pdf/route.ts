@@ -128,8 +128,19 @@ function renderClientBusinessHtml(data: any): string {
 }
 
 function renderHomePageHtml(data: any): string {
+  let imagesHtml = '';
+
+  // Render logos if available
+  if (data.clientLogo || data.appLogo) {
+    imagesHtml = `<div class="logo-row">
+      ${data.clientLogo ? `<div class="logo-item"><img src="${data.clientLogo}" alt="Client Logo" class="report-logo" /><span>Client Logo</span></div>` : ''}
+      ${data.appLogo ? `<div class="logo-item"><img src="${data.appLogo}" alt="App Logo" class="report-logo" /><span>App Logo</span></div>` : ''}
+    </div>`;
+  }
+
   return `
         <div class="home-page-info">
+            ${imagesHtml}
             <p><strong>Client:</strong> ${data.clientName || 'N/A'}</p>
             <p><strong>App Name:</strong> ${data.appName || 'N/A'}</p>
             ${data.tagline ? `<p><strong>Tagline:</strong> ${data.tagline}</p>` : ''}
@@ -299,18 +310,41 @@ function formatValue(value: any): string {
   return String(value);
 }
 
-// Generate HTML content for PDF
+// Generate HTML content for PDF - includes full card data
 function generatePdfHtml(
   clientName: string,
   clientCode: string,
-  results: DashboardQueryResult[]
+  results: Array<{
+    result: DashboardQueryResult;
+    description?: string;
+    tooltip?: string;
+    sourceInfo?: { tables: string[]; page?: string; pageUrl?: string };
+  }>
 ): string {
   const now = new Date().toLocaleString();
 
   let querySections = '';
 
-  for (const result of results) {
+  for (const { result, description, tooltip, sourceInfo } of results) {
     const dataHtml = renderDataAsHtml(result.queryType, result.data);
+
+    // Build metadata section
+    let metadataHtml = '';
+
+    if (description) {
+      metadataHtml += `<div class="query-meta"><span class="meta-label">Query:</span> ${description}</div>`;
+    }
+
+    if (tooltip) {
+      metadataHtml += `<div class="query-meta seo-text"><span class="meta-label">SEO:</span> ${tooltip}</div>`;
+    }
+
+    if (sourceInfo?.tables?.length) {
+      metadataHtml += `<div class="query-meta tables-info">
+        <span class="meta-label">📊 Tables:</span> ${sourceInfo.tables.join(', ')}
+        ${sourceInfo.page ? `<span class="page-link">| 📄 Page: ${sourceInfo.page}</span>` : ''}
+      </div>`;
+    }
 
     querySections += `
       <div class="query-section">
@@ -318,12 +352,14 @@ function generatePdfHtml(
           <h2>${result.queryId} - ${result.title}</h2>
           <span class="status-badge status-${result.status.toLowerCase()}">${result.status}</span>
         </div>
+        ${metadataHtml ? `<div class="query-metadata">${metadataHtml}</div>` : ''}
         <div class="query-content">
           ${dataHtml}
         </div>
       </div>
     `;
   }
+
 
   return `
     <!DOCTYPE html>
@@ -384,6 +420,26 @@ function generatePdfHtml(
         .status-warning { background: #fef3c7; color: #d97706; }
         .status-info { background: #dbeafe; color: #2563eb; }
         .status-success { background: #dcfce7; color: #16a34a; }
+        .query-metadata {
+          padding: 12px 20px;
+          background: #fefce8;
+          border-bottom: 1px solid #e5e7eb;
+          font-size: 12px;
+        }
+        .query-meta {
+          margin-bottom: 6px;
+          color: #555;
+          line-height: 1.4;
+        }
+        .query-meta:last-child { margin-bottom: 0; }
+        .meta-label {
+          font-weight: 600;
+          color: #374151;
+          margin-right: 6px;
+        }
+        .seo-text { color: #059669; font-style: italic; }
+        .tables-info { color: #6b7280; }
+        .page-link { margin-left: 10px; color: #4f46e5; }
         .query-content { padding: 20px; }
         .no-data { color: #999; font-style: italic; }
         .summary-row {
@@ -449,6 +505,33 @@ function generatePdfHtml(
           border-radius: 4px;
           font-size: 11px;
           margin-left: 8px;
+        }
+        .logo-row {
+          display: flex;
+          gap: 30px;
+          margin-bottom: 20px;
+          padding: 15px;
+          background: #f8f9fa;
+          border-radius: 8px;
+        }
+        .logo-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 8px;
+        }
+        .logo-item span {
+          font-size: 11px;
+          color: #6b7280;
+        }
+        .report-logo {
+          max-width: 120px;
+          max-height: 80px;
+          object-fit: contain;
+          border: 1px solid #e5e7eb;
+          border-radius: 6px;
+          padding: 8px;
+          background: #fff;
         }
         .info-section {
           margin-bottom: 20px;
@@ -536,14 +619,22 @@ export async function POST(request: Request) {
     let queriesToExport;
     if (queryIds && queryIds.length > 0) {
       const promises = queryIds.map((id: string) => getQueryById(id));
-      const results = await Promise.all(promises);
-      queriesToExport = results.filter(q => q !== null);
+      const queryResults = await Promise.all(promises);
+      queriesToExport = queryResults.filter(q => q !== null);
     } else {
       queriesToExport = await getActiveQueries();
     }
 
+    // Type for results with metadata
+    type ResultWithMeta = {
+      result: DashboardQueryResult;
+      description?: string;
+      tooltip?: string;
+      sourceInfo?: { tables: string[]; page?: string; pageUrl?: string };
+    };
+
     // Execute each query using the main execute API logic
-    const results: DashboardQueryResult[] = [];
+    const results: ResultWithMeta[] = [];
 
     // Build base URL for internal API calls
     const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
@@ -564,7 +655,12 @@ export async function POST(request: Request) {
         if (executeRes.ok) {
           const executeData = await executeRes.json();
           if (executeData.success && executeData.result) {
-            results.push(executeData.result);
+            results.push({
+              result: executeData.result,
+              description: query.description,
+              tooltip: query.tooltip,
+              sourceInfo: query.sourceInfo,
+            });
             continue;
           }
         }
@@ -574,13 +670,18 @@ export async function POST(request: Request) {
 
       // Fallback: add query with no data
       results.push({
-        queryId: query.id,
-        clientCode,
-        title: query.title,
-        status: query.status,
-        queryType: query.queryType,
-        data: { message: 'Data loading failed' },
-        executedAt: new Date().toISOString(),
+        result: {
+          queryId: query.id,
+          clientCode,
+          title: query.title,
+          status: query.status,
+          queryType: query.queryType,
+          data: { message: 'Data loading failed' },
+          executedAt: new Date().toISOString(),
+        },
+        description: query.description,
+        tooltip: query.tooltip,
+        sourceInfo: query.sourceInfo,
       });
     }
 
