@@ -189,6 +189,90 @@ model Competitor {
   @@index([competitionType])
 }
 
+// --- DOMAIN KEYWORDS (Phase 2) ---
+model DomainKeyword {
+  id            String   @id @default(cuid())
+  clientCode    String
+  domain        String
+  label         String?
+  locationCode  String?
+  languageCode  String?
+  keyword       String
+  position      Int?
+  searchVolume  Int?
+  cpc           Float?
+  url           String?  @db.Text
+  fetchedAt     DateTime?
+  snapshotDate  String?
+  
+  // Tagging fields
+  tagId         String?
+  tagData       Json?
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([clientCode, domain, keyword, locationCode])
+  @@index([clientCode, domain])
+  @@index([keyword])
+  @@index([clientCode])
+}
+
+// --- DOMAIN PAGES (Phase 2) ---
+model DomainPage {
+  id            String   @id @default(cuid())
+  clientCode    String
+  domain        String
+  label         String?
+  locationCode  String?
+  languageCode  String?
+  pageURL       String   @db.Text
+  estTrafficETV Float?
+  keywordsCount Int?
+  fetchedAt     DateTime?
+  snapshotDate  String?
+  
+  // Classification fields
+  pageType      String?
+  pageIntent    String?
+  isSeoRelevant Boolean?
+  classificationMethod String?
+  classificationConfidence String?
+  needsAiReview Boolean?
+  seoAction     String?
+  classificationExplanation Json?
+  
+  // Priority fields
+  priorityScore Float?
+  priorityTier  String?
+  priorityScoreBreakdown Json?
+  priorityCalculatedAt DateTime?
+  
+  // Product/Cluster fields
+  matchedProduct String?
+  clusterName   String?
+  productClassifiedAt DateTime?
+  cluster       String?
+  clusterSource String?
+  clusterExplanation Json?
+  clusterTaggedAt DateTime?
+  
+  // LLM Cluster fields
+  llmClusterId  String?
+  llmClusterLabel String?
+  llmClusterDescription String? @db.Text
+  llmClusterBatchId String?
+  llmClusterRunId String?
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([clientCode, domain, pageURL])
+  @@index([clientCode, domain])
+  @@index([pageType])
+  @@index([clientCode])
+}
+
 // ============================================
 // CMS MODELS - Content Management System
 // ============================================
