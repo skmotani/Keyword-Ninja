@@ -99,22 +99,22 @@ async function migrateClientAIProfiles() {
                 update: {
                     companyName: companyName || 'Unknown',
                     mainDomain,
-                    productCategories: productCategories || null,
-                    serviceOfferings: serviceOfferings || null,
-                    targetMarkets: targetMarkets || null,
+                    productCategories: productCategories || undefined,
+                    serviceOfferings: serviceOfferings || undefined,
+                    targetMarkets: targetMarkets || undefined,
                     assistantInstructions,
-                    profileData: Object.keys(otherProfileData).length > 0 ? otherProfileData : null,
+                    profileData: Object.keys(otherProfileData).length > 0 ? otherProfileData : undefined,
                     updatedAt: new Date()
                 },
                 create: {
                     clientCode: profile.clientCode,
                     companyName: companyName || 'Unknown',
                     mainDomain,
-                    productCategories: productCategories || null,
-                    serviceOfferings: serviceOfferings || null,
-                    targetMarkets: targetMarkets || null,
+                    productCategories: productCategories || undefined,
+                    serviceOfferings: serviceOfferings || undefined,
+                    targetMarkets: targetMarkets || undefined,
                     assistantInstructions,
-                    profileData: Object.keys(otherProfileData).length > 0 ? otherProfileData : null
+                    profileData: Object.keys(otherProfileData).length > 0 ? otherProfileData : undefined
                 }
             });
             profileCount++;
