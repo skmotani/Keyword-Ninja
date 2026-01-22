@@ -1,8 +1,39 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import { Client, Competitor, ManualKeyword } from '@/types';
+import { PrismaClient, Competitor as PrismaCompetitor } from '@prisma/client';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
+
+// Feature flag for PostgreSQL migration  
+const USE_POSTGRES_COMPETITORS = process.env.USE_POSTGRES_COMPETITORS === 'true';
+
+// Prisma singleton
+let prisma: PrismaClient | null = null;
+function getPrisma(): PrismaClient {
+  if (!prisma) {
+    prisma = new PrismaClient();
+  }
+  return prisma;
+}
+
+// Convert Prisma competitor to app type
+function prismaToCompetitor(pc: PrismaCompetitor): Competitor {
+  return {
+    id: pc.id,
+    domain: pc.domain,
+    clientCode: pc.clientCode,
+    brandName: pc.brandName || undefined,
+    competitionType: pc.competitionType || undefined,
+    label: pc.label || undefined,
+    notes: pc.notes || undefined,
+    source: 'PostgreSQL',
+    createdAt: pc.createdAt.toISOString(),
+    updatedAt: pc.updatedAt.toISOString()
+  } as Competitor;
+}
+
+
 
 async function readJsonFile<T>(filename: string): Promise<T[]> {
   try {

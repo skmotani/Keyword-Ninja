@@ -97,6 +97,96 @@ model Client {
   cmsAssets     CmsAsset[]
   cmsClusters   CmsCluster[]
   cmsSitemap    CmsSitemap?
+  
+  // Phase 1 Migration Relations
+  aiProfile     ClientAIProfile?
+  competitors   Competitor[]
+}
+
+// ============================================
+// CLIENT AI PROFILES (Phase 1 Migration)
+// ============================================
+
+model ClientAIProfile {
+  id                    String   @id @default(cuid())
+  clientCode            String   @unique
+  
+  // Company Info
+  companyName           String
+  mainDomain            String?
+  productCategories     Json?    // Array of strings
+  serviceOfferings      Json?
+  targetMarkets         Json?
+  
+  // AI Assistant Config
+  assistantInstructions String?  @db.Text
+  
+  // Other profile fields (catch-all for flexibility)
+  profileData           Json?    // Additional fields from JSON
+  
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  
+  client                Client   @relation(fields: [clientCode], references: [code], onDelete: Cascade)
+  termDictionary        TermDictionary?
+}
+
+// --- TERM DICTIONARY (Keyword Classification) ---
+model TermDictionary {
+  id              String   @id @default(cuid())
+  profileId       String   @unique
+  version         Int      @default(1)
+  domain          String?
+  industryKey     String?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  profile         ClientAIProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  terms           DictionaryTerm[]
+}
+
+model DictionaryTerm {
+  id              String   @id @default(cuid())
+  dictionaryId    String
+  
+  term            String
+  bucket          String   // include, exclude, brand, review
+  ngramType       String   // unigram, bigram, trigram, full
+  source          String?  // user, ai, global
+  confidence      Float    @default(0)
+  locked          Boolean  @default(false)
+  
+  createdAt       DateTime @default(now())
+  
+  dictionary      TermDictionary @relation(fields: [dictionaryId], references: [id], onDelete: Cascade)
+  
+  @@unique([dictionaryId, term])
+  @@index([dictionaryId, bucket])
+}
+
+// --- COMPETITORS ---
+model Competitor {
+  id                String   @id @default(cuid())
+  clientCode        String
+  domain            String
+  
+  brandName         String?
+  competitionType   String?  // Main, Partial, Indirect, Not a, Self, Marketplace, Small
+  label             String?
+  notes             String?  @db.Text
+  
+  // Additional fields from JSON
+  isActive          Boolean  @default(true)
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  client            Client   @relation(fields: [clientCode], references: [code], onDelete: Cascade)
+  
+  @@unique([clientCode, domain])
+  @@index([clientCode])
+  @@index([competitionType])
 }
 
 // ============================================
