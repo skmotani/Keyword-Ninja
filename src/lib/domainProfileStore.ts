@@ -25,7 +25,7 @@ async function readData(): Promise<DomainProfile[]> {
       domainRank: r.domainRank,
       fetchStatus: r.fetchStatus as any ?? 'pending',
       errorMessage: r.errorMessage,
-      lastFetchedAt: r.lastFetchedAt,
+      lastFetchedAt: r.lastFetchedAt?.toISOString() ?? null,
       createdAt: r.createdAt.toISOString(),
       updatedAt: r.updatedAt.toISOString(),
     }));
@@ -67,7 +67,7 @@ export async function getDomainProfilesByClient(clientCode: string): Promise<Dom
       domainRank: r.domainRank,
       fetchStatus: r.fetchStatus as any ?? 'pending',
       errorMessage: r.errorMessage,
-      lastFetchedAt: r.lastFetchedAt,
+      lastFetchedAt: r.lastFetchedAt?.toISOString() ?? null,
       createdAt: r.createdAt.toISOString(),
       updatedAt: r.updatedAt.toISOString(),
     }));
@@ -98,7 +98,7 @@ export async function getDomainProfile(clientCode: string, domain: string): Prom
       domainRank: record.domainRank,
       fetchStatus: record.fetchStatus as any ?? 'pending',
       errorMessage: record.errorMessage,
-      lastFetchedAt: record.lastFetchedAt,
+      lastFetchedAt: record.lastFetchedAt?.toISOString() ?? null,
       createdAt: record.createdAt.toISOString(),
       updatedAt: record.updatedAt.toISOString(),
     };
@@ -129,7 +129,7 @@ export async function getDomainProfileById(id: string): Promise<DomainProfile | 
       domainRank: record.domainRank,
       fetchStatus: record.fetchStatus as any ?? 'pending',
       errorMessage: record.errorMessage,
-      lastFetchedAt: record.lastFetchedAt,
+      lastFetchedAt: record.lastFetchedAt?.toISOString() ?? null,
       createdAt: record.createdAt.toISOString(),
       updatedAt: record.updatedAt.toISOString(),
     };
@@ -192,7 +192,7 @@ export async function updateDomainProfile(id: string, updates: Partial<DomainPro
       domainRank: record.domainRank,
       fetchStatus: record.fetchStatus as any ?? 'pending',
       errorMessage: record.errorMessage,
-      lastFetchedAt: record.lastFetchedAt,
+      lastFetchedAt: record.lastFetchedAt?.toISOString() ?? null,
       createdAt: record.createdAt.toISOString(),
       updatedAt: record.updatedAt.toISOString(),
     };
@@ -232,7 +232,7 @@ export async function upsertDomainProfile(clientCode: string, domain: string, up
         domainRank: record.domainRank,
         fetchStatus: record.fetchStatus as any ?? 'pending',
         errorMessage: record.errorMessage,
-        lastFetchedAt: record.lastFetchedAt,
+        lastFetchedAt: record.lastFetchedAt?.toISOString() ?? null,
         createdAt: record.createdAt.toISOString(),
         updatedAt: record.updatedAt.toISOString(),
       };
@@ -272,7 +272,7 @@ export async function upsertDomainProfile(clientCode: string, domain: string, up
         domainRank: record.domainRank,
         fetchStatus: record.fetchStatus as any ?? 'pending',
         errorMessage: record.errorMessage,
-        lastFetchedAt: record.lastFetchedAt,
+        lastFetchedAt: record.lastFetchedAt?.toISOString() ?? null,
         createdAt: record.createdAt.toISOString(),
         updatedAt: record.updatedAt.toISOString(),
       };
