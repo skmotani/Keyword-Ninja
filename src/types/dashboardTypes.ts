@@ -30,6 +30,9 @@ export type QueryType =
     | 'client-business'
     | 'home-page'
     | 'top3-surfaces-by-category'
+    | 'kw-volume-2x2'
+    | 'kw-volume-gap'
+    | 'blue-ocean'
     | 'custom'
     | 'manual';
 
