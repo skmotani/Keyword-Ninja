@@ -23,14 +23,16 @@ function prismaToCompetitor(pc: PrismaCompetitor): Competitor {
     id: pc.id,
     domain: pc.domain,
     clientCode: pc.clientCode,
+    name: pc.brandName || pc.domain, // Required by Competitor type
     brandName: pc.brandName || undefined,
     competitionType: pc.competitionType || undefined,
     label: pc.label || undefined,
     notes: pc.notes || undefined,
-    source: 'PostgreSQL',
+    isActive: pc.isActive ?? true, // Required by Competitor type
+    source: 'Manual Entry' as const,
     createdAt: pc.createdAt.toISOString(),
     updatedAt: pc.updatedAt.toISOString()
-  } as Competitor;
+  } as unknown as Competitor;
 }
 
 
