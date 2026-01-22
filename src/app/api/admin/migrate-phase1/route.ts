@@ -17,6 +17,7 @@ const DATA_DIR = path.join(process.cwd(), 'data');
 export async function GET(req: NextRequest) {
     const results: any = {
         started: new Date().toISOString(),
+        clients: { success: 0, errors: [] as string[] },
         profiles: { success: 0, errors: [] as string[] },
         dictionaries: { success: 0, terms: 0 },
         competitors: { success: 0, errors: [] as string[] },
@@ -24,6 +25,42 @@ export async function GET(req: NextRequest) {
     };
 
     try {
+        // ========== MIGRATE CLIENTS FIRST ==========
+        const clientsPath = path.join(DATA_DIR, 'clients.json');
+        if (fs.existsSync(clientsPath)) {
+            const clients = JSON.parse(fs.readFileSync(clientsPath, 'utf-8'));
+
+            for (const client of clients) {
+                try {
+                    await prisma.client.upsert({
+                        where: { code: client.code },
+                        update: {
+                            name: client.name,
+                            mainDomain: client.mainDomain || '',
+                            domains: client.domains || [],
+                            notes: client.notes || undefined,
+                            isActive: client.isActive ?? true,
+                            industry: client.industry || undefined,
+                            updatedAt: new Date()
+                        },
+                        create: {
+                            id: client.id,
+                            code: client.code,
+                            name: client.name,
+                            mainDomain: client.mainDomain || '',
+                            domains: client.domains || [],
+                            notes: client.notes || undefined,
+                            isActive: client.isActive ?? true,
+                            industry: client.industry || undefined
+                        }
+                    });
+                    results.clients.success++;
+                } catch (e: any) {
+                    results.clients.errors.push(`${client.code}: ${e.message}`);
+                }
+            }
+        }
+
         // ========== MIGRATE CLIENT AI PROFILES ==========
         const profilesPath = path.join(DATA_DIR, 'client_ai_profiles.json');
         if (fs.existsSync(profilesPath)) {
