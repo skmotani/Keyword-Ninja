@@ -23,8 +23,8 @@ export async function GET(request: Request) {
             queries = await getActiveQueries();
         }
 
-        // Sort by query number
-        queries.sort((a, b) => a.queryNumber.localeCompare(b.queryNumber));
+        // Sort by query number (handle undefined)
+        queries.sort((a, b) => (a.queryNumber || '').localeCompare(b.queryNumber || ''));
 
         return NextResponse.json({ success: true, queries });
     } catch (error) {

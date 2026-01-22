@@ -420,26 +420,31 @@ export async function initializeSeedData(): Promise<{ groupsCreated: number; que
 
             if (!activeQ) {
                 if (USE_POSTGRES) {
-                    await prisma.dashboardQuery.create({
-                        data: {
-                            id: seedQ.id,
-                            queryNumber: seedQ.queryNumber,
-                            groupId: seedQ.groupId,
-                            title: seedQ.title,
-                            description: seedQ.description,
-                            tooltip: seedQ.tooltip,
-                            status: seedQ.status,
-                            queryType: seedQ.queryType,
-                            config: seedQ.config,
-                            sourceInfo: seedQ.sourceInfo,
-                            isActive: seedQ.isActive ?? true,
-                        }
-                    });
+                    try {
+                        await prisma.dashboardQuery.create({
+                            data: {
+                                id: seedQ.id,
+                                queryNumber: seedQ.queryNumber,
+                                groupId: seedQ.groupId,
+                                title: seedQ.title,
+                                description: seedQ.description,
+                                tooltip: seedQ.tooltip,
+                                status: seedQ.status,
+                                queryType: seedQ.queryType,
+                                config: seedQ.config,
+                                sourceInfo: seedQ.sourceInfo,
+                                isActive: seedQ.isActive ?? true,
+                            }
+                        });
+                        queriesCreated++;
+                    } catch {
+                        // Query already exists, skip
+                    }
                 } else {
                     activeQueries.push(seedQ);
+                    queriesCreated++;
                 }
                 updatesNeeded = true;
-                queriesCreated++;
             } else if (activeQ.queryType !== seedQ.queryType) {
                 Object.assign(activeQ, {
                     queryType: seedQ.queryType,

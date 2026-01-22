@@ -71,7 +71,7 @@ export async function GET() {
 
         if (orphans.length > 0) {
             // Sort orphans by queryNumber to maintain logical order when inserting
-            orphans.sort((a, b) => a.queryNumber.localeCompare(b.queryNumber));
+            orphans.sort((a, b) => (a.queryNumber || '').localeCompare(b.queryNumber || ''));
 
             for (const q of orphans) {
                 if (!data.queryOrder[q.groupId]) {
