@@ -100,12 +100,25 @@ export default function ClientsPage() {
     try {
       const res = await fetch(`/api/domain-profiles?clientCode=${clientCode}`);
       const profiles = await res.json();
-      setDomainProfiles(prev => ({
-        ...prev,
-        [clientCode]: profiles,
-      }));
+      // Ensure profiles is an array before setting state
+      if (Array.isArray(profiles)) {
+        setDomainProfiles(prev => ({
+          ...prev,
+          [clientCode]: profiles,
+        }));
+      } else {
+        console.error('Domain profiles response is not an array:', profiles);
+        setDomainProfiles(prev => ({
+          ...prev,
+          [clientCode]: [],
+        }));
+      }
     } catch (error) {
       console.error('Failed to fetch domain profiles:', error);
+      setDomainProfiles(prev => ({
+        ...prev,
+        [clientCode]: [],
+      }));
     }
   }
 
