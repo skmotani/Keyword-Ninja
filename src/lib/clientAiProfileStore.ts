@@ -123,22 +123,22 @@ async function saveAiProfileToPrisma(profile: ClientAIProfile): Promise<void> {
     update: {
       companyName: companyName || 'Unknown',
       mainDomain,
-      productCategories: productCategories || null,
-      serviceOfferings: serviceOfferings || null,
-      targetMarkets: targetMarkets || null,
+      productCategories: productCategories || undefined,
+      serviceOfferings: serviceOfferings || undefined,
+      targetMarkets: targetMarkets || undefined,
       assistantInstructions,
-      profileData: Object.keys(otherData).length > 0 ? otherData : null,
+      profileData: Object.keys(otherData).length > 0 ? otherData : undefined,
       updatedAt: new Date()
     },
     create: {
       clientCode,
       companyName: companyName || 'Unknown',
       mainDomain,
-      productCategories: productCategories || null,
-      serviceOfferings: serviceOfferings || null,
-      targetMarkets: targetMarkets || null,
+      productCategories: productCategories || undefined,
+      serviceOfferings: serviceOfferings || undefined,
+      targetMarkets: targetMarkets || undefined,
       assistantInstructions,
-      profileData: Object.keys(otherData).length > 0 ? otherData : null
+      profileData: Object.keys(otherData).length > 0 ? otherData : undefined
     }
   });
 
