@@ -74,7 +74,7 @@ function prismaToClientProfile(dbProfile: PrismaProfileWithRelations): ClientAIP
         locked: t.locked
       }))
     } : undefined
-  } as ClientAIProfile;
+  } as unknown as ClientAIProfile;
 }
 
 async function getAllAiProfilesFromPrisma(): Promise<ClientAIProfile[]> {
@@ -105,6 +105,8 @@ async function getAiProfileByClientCodeFromPrisma(clientCode: string): Promise<C
 async function saveAiProfileToPrisma(profile: ClientAIProfile): Promise<void> {
   const db = getPrisma();
 
+  // Cast to any since the actual profile structure varies from the interface
+  const profileData = profile as any;
   const {
     clientCode,
     companyName,
@@ -115,7 +117,7 @@ async function saveAiProfileToPrisma(profile: ClientAIProfile): Promise<void> {
     assistantInstructions,
     ai_kw_builder_term_dictionary,
     ...otherData
-  } = profile;
+  } = profileData;
 
   // Upsert the profile
   const dbProfile = await db.clientAIProfile.upsert({
