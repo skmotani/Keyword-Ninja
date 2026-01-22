@@ -340,6 +340,58 @@ model DomainOverview {
   @@index([clientCode])
 }
 
+// --- CLIENT POSITIONS (Phase 4) ---
+model ClientPosition {
+  id             String   @id @default(cuid())
+  clientCode     String
+  keywordOrTheme String
+  currentPosition String?
+  competitor     String?
+  source         String?
+  notes          String?  @db.Text
+  asOfDate       String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  
+  @@index([clientCode])
+  @@index([keywordOrTheme])
+}
+
+// --- DOMAIN CLASSIFICATIONS (Phase 4) ---
+model DomainClassification {
+  id                        String   @id
+  clientCode                String
+  domain                    String
+  domainType                String?
+  pageIntent                String?
+  productMatchScoreValue    Float?
+  productMatchScoreBucket   String?
+  businessRelevanceCategory String?
+  explanationLink           String?
+  explanationSummary        String?  @db.Text
+  classifiedAt              DateTime?
+  updatedAt                 DateTime @updatedAt
+  
+  @@index([clientCode])
+  @@index([domain])
+  @@index([businessRelevanceCategory])
+}
+
+// --- MANUAL KEYWORDS (Phase 4) ---
+model ManualKeyword {
+  id          String   @id @default(cuid())
+  clientCode  String
+  keywordText String
+  notes       String?  @db.Text
+  isActive    Boolean  @default(true)
+  source      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@unique([clientCode, keywordText])
+  @@index([clientCode])
+}
+
 // ============================================
 // CMS MODELS - Content Management System
 // ============================================
