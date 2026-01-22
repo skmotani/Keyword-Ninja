@@ -1689,6 +1689,411 @@ async function executeCompetitorBalloonQuery(clientCode: string, queryDef?: any)
     };
 }
 
+// Execute 2x2 KW/Volume Analysis for Self
+async function executeKwVolume2x2Query(clientCode: string) {
+    const aiProfiles = await readAiProfiles();
+    const domainKeywords = await readDomainKeywords();
+    const clients = await readClients();
+
+    // Get client's self domains
+    const clientData = clients.find(c => c.code === clientCode);
+    const normalizeDomain = (d: string): string => {
+        if (!d) return '';
+        return d.replace(/^https?:\/\//, '').replace(/^www\./, '').toLowerCase().replace(/\/$/, '');
+    };
+    const selfDomains = new Set((clientData?.domains || []).map(normalizeDomain));
+    if (clientData?.mainDomain) selfDomains.add(normalizeDomain(clientData.mainDomain));
+
+    // Get AI profile term dictionary for bucket mapping
+    const profile = aiProfiles.find(p => p.clientCode === clientCode);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const termDictionary = (profile as any)?.ai_kw_builder_term_dictionary as { terms?: Record<string, { name?: string; term?: string; bucket?: string }> } | undefined;
+    const terms = termDictionary?.terms || {};
+
+    // Build term -> bucket map
+    const termBucketMap = new Map<string, string>();
+    for (const [, term] of Object.entries(terms)) {
+        const termName = (term.name || term.term || '').toLowerCase();
+        const bucket = term.bucket || 'unassigned';
+        if (termName) termBucketMap.set(termName, bucket);
+    }
+
+    // Normalize bucket name
+    const normalizeBucket = (bucket: string): string => {
+        const b = bucket.toLowerCase().trim();
+        if (b === 'include' || b === 'include | buy' || b === 'include|buy') return 'Include | Buy';
+        if (b === 'review' || b === 'include | learn' || b === 'include|learn') return 'Include | Learn';
+        if (b === 'brand' || b === 'brand | nav' || b === 'brand|nav') return 'Brand | Nav';
+        if (b === 'exclude' || b === 'exclude | noise' || b === 'exclude|noise' || b === 'noise') return 'Exclude | Noise';
+        return 'Unassigned';
+    };
+
+    // Get bucket for keyword
+    const getBucket = (keyword: string): string => {
+        const kw = keyword.toLowerCase();
+        if (termBucketMap.has(kw)) return normalizeBucket(termBucketMap.get(kw)!);
+        for (const [term, bucket] of Array.from(termBucketMap.entries())) {
+            if (kw.includes(term)) return normalizeBucket(bucket);
+        }
+        return 'Unassigned';
+    };
+
+    // Excluded buckets
+    const EXCLUDED_BUCKETS = ['Exclude | Noise', 'Unassigned'];
+
+    // Filter for SELF domain with valid ranks and non-excluded buckets
+    const filtered: { keyword: string; volume: number; rank: number; bucket: string }[] = [];
+    const bucketsFound = new Set<string>();
+
+    for (const dk of domainKeywords.filter(d => d.clientCode === clientCode)) {
+        const normalizedDomain = normalizeDomain(dk.domain);
+        const isSelf = selfDomains.has(normalizedDomain);
+        const hasValidRank = dk.position && Number.isInteger(dk.position) && dk.position > 0;
+
+        if (!isSelf || !hasValidRank) continue;
+
+        const bucket = getBucket(dk.keyword);
+        if (EXCLUDED_BUCKETS.includes(bucket)) continue;
+
+        bucketsFound.add(bucket);
+        filtered.push({
+            keyword: dk.keyword,
+            volume: dk.searchVolume || 0,
+            rank: dk.position as number,
+            bucket,
+        });
+    }
+
+    if (filtered.length === 0) {
+        return {
+            quadrants: { q1: [], q2: [], q3: [], q4: [] },
+            summary: { total: 0, p70: 0, q1: 0, q2: 0, q3: 0, q4: 0 },
+            includedBuckets: []
+        };
+    }
+
+    // Calculate P70 (top 30% threshold)
+    const volumes = filtered.map(f => f.volume).sort((a, b) => a - b);
+    const n = volumes.length;
+    const index = Math.max(0, Math.min(n - 1, Math.ceil(0.70 * n) - 1));
+    const p70 = volumes[index];
+
+    // Assign quadrants
+    const q1: typeof filtered = [];
+    const q2: typeof filtered = [];
+    const q3: typeof filtered = [];
+    const q4: typeof filtered = [];
+
+    for (const kw of filtered) {
+        const isHighVolume = kw.volume >= p70;
+        const isHighRank = kw.rank >= 1 && kw.rank <= 10;
+
+        if (isHighVolume && isHighRank) q1.push(kw);
+        else if (isHighVolume && !isHighRank) q2.push(kw);
+        else if (!isHighVolume && isHighRank) q3.push(kw);
+        else q4.push(kw);
+    }
+
+    // Sort by volume DESC, rank ASC
+    const sortFn = (a: typeof filtered[0], b: typeof filtered[0]) => {
+        if (b.volume !== a.volume) return b.volume - a.volume;
+        return a.rank - b.rank;
+    };
+    q1.sort(sortFn);
+    q2.sort(sortFn);
+    q3.sort(sortFn);
+    q4.sort(sortFn);
+
+    return {
+        quadrants: { q1, q2, q3, q4 },
+        summary: { total: filtered.length, p70, q1: q1.length, q2: q2.length, q3: q3.length, q4: q4.length },
+        includedBuckets: Array.from(bucketsFound)
+    };
+}
+
+// Execute 2x2 Gap Analysis - Keywords where SELF is absent but competitors rank
+async function executeKwVolumeGapQuery(clientCode: string) {
+    const aiProfiles = await readAiProfiles();
+    const domainKeywords = await readDomainKeywords();
+    const clients = await readClients();
+
+    // Get client's self domains
+    const clientData = clients.find(c => c.code === clientCode);
+    const normalizeDomain = (d: string): string => {
+        if (!d) return '';
+        return d.replace(/^https?:\/\//, '').replace(/^www\./, '').toLowerCase().replace(/\/$/, '');
+    };
+    const selfDomains = new Set((clientData?.domains || []).map(normalizeDomain));
+    if (clientData?.mainDomain) selfDomains.add(normalizeDomain(clientData.mainDomain));
+
+    // Get AI profile term dictionary for bucket mapping
+    const profile = aiProfiles.find(p => p.clientCode === clientCode);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const termDictionary = (profile as any)?.ai_kw_builder_term_dictionary as { terms?: Record<string, { name?: string; term?: string; bucket?: string }> } | undefined;
+    const terms = termDictionary?.terms || {};
+
+    // Build term -> bucket map
+    const termBucketMap = new Map<string, string>();
+    for (const [, term] of Object.entries(terms)) {
+        const termName = (term.name || term.term || '').toLowerCase();
+        const bucket = term.bucket || 'unassigned';
+        if (termName) termBucketMap.set(termName, bucket);
+    }
+
+    // Normalize bucket name
+    const normalizeBucket = (bucket: string): string => {
+        const b = bucket.toLowerCase().trim();
+        if (b === 'include' || b === 'include | buy' || b === 'include|buy') return 'Include | Buy';
+        if (b === 'review' || b === 'include | learn' || b === 'include|learn') return 'Include | Learn';
+        if (b === 'brand' || b === 'brand | nav' || b === 'brand|nav') return 'Brand | Nav';
+        if (b === 'exclude' || b === 'exclude | noise' || b === 'exclude|noise' || b === 'noise') return 'Exclude | Noise';
+        return 'Unassigned';
+    };
+
+    // Get bucket for keyword
+    const getBucket = (keyword: string): string => {
+        const kw = keyword.toLowerCase();
+        if (termBucketMap.has(kw)) return normalizeBucket(termBucketMap.get(kw)!);
+        for (const [term, bucket] of Array.from(termBucketMap.entries())) {
+            if (kw.includes(term)) return normalizeBucket(bucket);
+        }
+        return 'Unassigned';
+    };
+
+    // Get all keywords for this client
+    const clientKws = domainKeywords.filter(d => d.clientCode === clientCode);
+
+    // Find keywords where SELF ranks
+    const selfRankingKeywords = new Set(
+        clientKws
+            .filter(k => selfDomains.has(normalizeDomain(k.domain)) && k.position && k.position > 0)
+            .map(k => k.keyword)
+    );
+
+    // Group competitor rankings by keyword
+    const keywordCompetitors = new Map<string, { domain: string; position: number }[]>();
+    for (const dk of clientKws) {
+        const domain = normalizeDomain(dk.domain);
+        if (selfDomains.has(domain)) continue; // Skip self domains
+        if (!dk.position || dk.position <= 0) continue;
+
+        if (!keywordCompetitors.has(dk.keyword)) {
+            keywordCompetitors.set(dk.keyword, []);
+        }
+        keywordCompetitors.get(dk.keyword)!.push({ domain: dk.domain, position: dk.position });
+    }
+
+    // Only Include buckets (Include | Buy, Include | Learn)
+    const INCLUDED_BUCKETS = ['Include | Buy', 'Include | Learn'];
+
+    // Build gap keywords list
+    interface GapKeyword {
+        keyword: string;
+        volume: number;
+        bucket: string;
+        bestRank: number;
+        topCompetitors: string; // "domain.com (#3), other.com (#7)"
+    }
+
+    const gapKeywords: GapKeyword[] = [];
+    const bucketsFound = new Set<string>();
+
+    for (const [keyword, competitors] of Array.from(keywordCompetitors.entries())) {
+        // Skip if SELF is ranking
+        if (selfRankingKeywords.has(keyword)) continue;
+
+        const bucket = getBucket(keyword);
+
+        // Only include "Include" buckets
+        if (!INCLUDED_BUCKETS.includes(bucket)) continue;
+
+        // Get best rank among competitors
+        const sortedComps = competitors.sort((a, b) => a.position - b.position);
+        const bestRank = sortedComps[0].position;
+
+        // Get top 3 competitors as string
+        const topComps = sortedComps.slice(0, 3)
+            .map(c => `${c.domain} (#${c.position})`)
+            .join(', ');
+
+        // Get volume from any record of this keyword
+        const kwRecord = clientKws.find(k => k.keyword === keyword);
+        const volume = kwRecord?.searchVolume || 0;
+
+        bucketsFound.add(bucket);
+        gapKeywords.push({
+            keyword,
+            volume,
+            bucket,
+            bestRank,
+            topCompetitors: topComps
+        });
+    }
+
+    if (gapKeywords.length === 0) {
+        return {
+            quadrants: { q1: [], q2: [], q3: [], q4: [] },
+            summary: { total: 0, p70: 0, q1: 0, q2: 0, q3: 0, q4: 0, selfRanking: selfRankingKeywords.size },
+            includedBuckets: []
+        };
+    }
+
+    // Calculate P70 (top 30% threshold)
+    const volumes = gapKeywords.map(f => f.volume).sort((a, b) => a - b);
+    const n = volumes.length;
+    const index = Math.max(0, Math.min(n - 1, Math.ceil(0.70 * n) - 1));
+    const p70 = volumes[index];
+
+    // Assign quadrants based on COMPETITOR's best rank
+    const q1: GapKeyword[] = []; // High Vol + Competitor Top 10 (Urgent gaps)
+    const q2: GapKeyword[] = []; // High Vol + Competitor Below 10 (Quick wins)
+    const q3: GapKeyword[] = []; // Low Vol + Competitor Top 10 (Niche gaps)
+    const q4: GapKeyword[] = []; // Low Vol + Competitor Below 10 (Low priority)
+
+    for (const kw of gapKeywords) {
+        const isHighVolume = kw.volume >= p70;
+        const isCompetitorTop10 = kw.bestRank >= 1 && kw.bestRank <= 10;
+
+        if (isHighVolume && isCompetitorTop10) q1.push(kw);
+        else if (isHighVolume && !isCompetitorTop10) q2.push(kw);
+        else if (!isHighVolume && isCompetitorTop10) q3.push(kw);
+        else q4.push(kw);
+    }
+
+    // Sort by volume DESC, bestRank ASC
+    const sortFn = (a: GapKeyword, b: GapKeyword) => {
+        if (b.volume !== a.volume) return b.volume - a.volume;
+        return a.bestRank - b.bestRank;
+    };
+    q1.sort(sortFn);
+    q2.sort(sortFn);
+    q3.sort(sortFn);
+    q4.sort(sortFn);
+
+    return {
+        quadrants: { q1, q2, q3, q4 },
+        summary: {
+            total: gapKeywords.length,
+            p70,
+            q1: q1.length,
+            q2: q2.length,
+            q3: q3.length,
+            q4: q4.length,
+            selfRanking: selfRankingKeywords.size
+        },
+        includedBuckets: Array.from(bucketsFound)
+    };
+}
+
+// Execute Blue Ocean Query - High volume keywords where NO domain is ranking
+async function executeBlueOceanQuery(clientCode: string) {
+    const aiProfiles = await readAiProfiles();
+    const domainKeywords = await readDomainKeywords();
+    const clients = await readClients();
+
+    // Get client's self domains
+    const clientData = clients.find(c => c.code === clientCode);
+    const normalizeDomain = (d: string): string => {
+        if (!d) return '';
+        return d.replace(/^https?:\/\//, '').replace(/^www\./, '').toLowerCase().replace(/\/$/, '');
+    };
+    const selfDomains = new Set((clientData?.domains || []).map(normalizeDomain));
+    if (clientData?.mainDomain) selfDomains.add(normalizeDomain(clientData.mainDomain));
+
+    // Get AI profile term dictionary
+    const profile = aiProfiles.find(p => p.clientCode === clientCode);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const termDictionary = (profile as any)?.ai_kw_builder_term_dictionary as { terms?: Record<string, { name?: string; term?: string; bucket?: string }> } | undefined;
+    const terms = termDictionary?.terms || {};
+
+    const termBucketMap = new Map<string, string>();
+    for (const [, term] of Object.entries(terms)) {
+        const termName = (term.name || term.term || '').toLowerCase();
+        const bucket = term.bucket || 'unassigned';
+        if (termName) termBucketMap.set(termName, bucket);
+    }
+
+    const normalizeBucket = (bucket: string): string => {
+        const b = bucket.toLowerCase().trim();
+        if (b === 'include' || b === 'include | buy' || b === 'include|buy') return 'Include | Buy';
+        if (b === 'review' || b === 'include | learn' || b === 'include|learn') return 'Include | Learn';
+        return 'Unassigned';
+    };
+
+    const getBucket = (keyword: string): string => {
+        const kw = keyword.toLowerCase();
+        if (termBucketMap.has(kw)) return normalizeBucket(termBucketMap.get(kw)!);
+        for (const [term, bucket] of Array.from(termBucketMap.entries())) {
+            if (kw.includes(term)) return normalizeBucket(bucket);
+        }
+        return 'Unassigned';
+    };
+
+    // Get all keywords for this client
+    const clientKws = domainKeywords.filter(d => d.clientCode === clientCode);
+
+    // Build keyword -> volume map (take max volume)
+    const keywordVolumes = new Map<string, number>();
+    const keywordsWithRanking = new Set<string>();
+
+    for (const dk of clientKws) {
+        const kw = dk.keyword;
+        const vol = dk.searchVolume || 0;
+
+        // Track volume (take max)
+        if (!keywordVolumes.has(kw) || (keywordVolumes.get(kw) || 0) < vol) {
+            keywordVolumes.set(kw, vol);
+        }
+
+        // Track if ANY domain is ranking (any position > 0, not just top 50)
+        if (dk.position && dk.position > 0) {
+            keywordsWithRanking.add(kw);
+        }
+    }
+
+    // Calculate P50 (median)
+    const volumes = Array.from(keywordVolumes.values()).sort((a, b) => a - b);
+    const p50Index = Math.floor(volumes.length * 0.50);
+    const p50 = volumes[p50Index] || 0;
+
+    // Find blue ocean keywords
+    const INCLUDED_BUCKETS = ['Include | Buy', 'Include | Learn'];
+    interface BlueOceanKeyword {
+        keyword: string;
+        volume: number;
+        bucket: string;
+    }
+
+    const blueOceanKeywords: BlueOceanKeyword[] = [];
+    const bucketsFound = new Set<string>();
+
+    for (const [keyword, volume] of Array.from(keywordVolumes.entries())) {
+        if (volume < p50) continue; // Skip low volume
+        if (keywordsWithRanking.has(keyword)) continue; // Skip if anyone is ranking
+
+        const bucket = getBucket(keyword);
+        if (!INCLUDED_BUCKETS.includes(bucket)) continue;
+
+        bucketsFound.add(bucket);
+        blueOceanKeywords.push({ keyword, volume, bucket });
+    }
+
+    // Sort by volume desc
+    blueOceanKeywords.sort((a, b) => b.volume - a.volume);
+
+    return {
+        keywords: blueOceanKeywords,
+        summary: {
+            total: blueOceanKeywords.length,
+            totalTracked: keywordVolumes.size,
+            withRanking: keywordsWithRanking.size,
+            p50
+        },
+        includedBuckets: Array.from(bucketsFound),
+        selfDomains: Array.from(selfDomains)
+    };
+}
+
 // Get source link for data verification
 function getSourceLink(queryType: string): DataSourceLink {
     switch (queryType) {
@@ -1724,6 +2129,12 @@ function getSourceLink(queryType: string): DataSourceLink {
             return { label: 'Client Master + App Profile', href: '/master/app-profile' };
         case 'top3-surfaces-by-category':
             return { label: 'Footprint Registry', href: '/admin/footprint-registry' };
+        case 'kw-volume-2x2':
+            return { label: '2x2 KW/Volume Analysis', href: '/report/preview-2x2' };
+        case 'kw-volume-gap':
+            return { label: '2x2 Gap Analysis', href: '/report/preview-2x2' };
+        case 'blue-ocean':
+            return { label: 'Blue Ocean Keywords', href: '/report/preview-2x2' };
         default:
             return { label: 'Unknown Source', href: '/' };
     }
@@ -1798,6 +2209,15 @@ export async function POST(request: Request) {
                 break;
             case 'top3-surfaces-by-category':
                 data = await executeTop3SurfacesByCategoryQuery();
+                break;
+            case 'kw-volume-2x2':
+                data = await executeKwVolume2x2Query(clientCode);
+                break;
+            case 'kw-volume-gap':
+                data = await executeKwVolumeGapQuery(clientCode);
+                break;
+            case 'blue-ocean':
+                data = await executeBlueOceanQuery(clientCode);
                 break;
             default:
                 data = { message: 'Custom query type - no execution logic defined' };

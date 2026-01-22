@@ -1911,7 +1911,7 @@ export default function DomainKeywordsPage() {
         domain={client?.mainDomain || ''}
         industryKey="general"
         rawKeywords={records.map(r => r.keyword)}
-        rawKeywordData={records.map(r => ({ keyword: r.keyword, volume: r.searchVolume || 0, domain: r.domain, position: r.position ?? undefined }))}
+        rawKeywordData={records.map(r => ({ keyword: r.keyword, volume: r.searchVolume || 0, domain: r.domain, position: r.position ?? undefined, competitionType: domainToCompetitionType[r.domain.toLowerCase()] || 'Not Assigned' }))}
         onDictionaryChange={fetchProfile}
       />
 

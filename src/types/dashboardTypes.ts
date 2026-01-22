@@ -350,6 +350,58 @@ export interface Top3SurfacesByCategoryData {
     };
 }
 
+// Q012 - 2x2 KW/Volume Analysis Data
+export interface KwVolume2x2Data {
+    quadrants: {
+        q1: { keyword: string; volume: number; rank: number; bucket: string }[];
+        q2: { keyword: string; volume: number; rank: number; bucket: string }[];
+        q3: { keyword: string; volume: number; rank: number; bucket: string }[];
+        q4: { keyword: string; volume: number; rank: number; bucket: string }[];
+    };
+    summary: {
+        total: number;
+        p70: number;
+        q1: number;
+        q2: number;
+        q3: number;
+        q4: number;
+    };
+    includedBuckets: string[];
+}
+
+// Q014 - 2x2 Gap Analysis Data (Keywords where SELF is absent)
+export interface KwVolumeGapData {
+    quadrants: {
+        q1: { keyword: string; volume: number; bucket: string; bestRank: number; topCompetitors: string }[];
+        q2: { keyword: string; volume: number; bucket: string; bestRank: number; topCompetitors: string }[];
+        q3: { keyword: string; volume: number; bucket: string; bestRank: number; topCompetitors: string }[];
+        q4: { keyword: string; volume: number; bucket: string; bestRank: number; topCompetitors: string }[];
+    };
+    summary: {
+        total: number;
+        p70: number;
+        q1: number;
+        q2: number;
+        q3: number;
+        q4: number;
+        selfRanking: number;
+    };
+    includedBuckets: string[];
+}
+
+// Q015 - Blue Ocean Keywords Data (High volume, no rankings)
+export interface BlueOceanData {
+    keywords: { keyword: string; volume: number; bucket: string }[];
+    summary: {
+        total: number;
+        totalTracked: number;
+        withRanking: number;
+        p50: number;
+    };
+    includedBuckets: string[];
+    selfDomains: string[];
+}
+
 // Source link for data verification
 export interface DataSourceLink {
     label: string;

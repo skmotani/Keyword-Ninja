@@ -370,5 +370,97 @@
     "isActive": true,
     "createdAt": "2026-01-21T00:00:00.000Z",
     "updatedAt": "2026-01-21T00:00:00.000Z"
+  },
+  {
+    "id": "Q012",
+    "queryNumber": "2.1",
+    "groupId": "GRP-002",
+    "title": "You Vs Your Competitor",
+    "description": "Visualize your traffic share and domain strength against main competitors using balloon visualization.",
+    "tooltip": "TABLE: domain_credibility + competitors.json\nFILTER: Competition Type = 'Main Competitor'\nOUTPUT: Balloons sized by organic traffic. Hover for Age, Traffic, ETV ($).",
+    "status": "Critical",
+    "queryType": "competitor-balloon",
+    "config": {},
+    "sourceInfo": {
+      "tables": [
+        "domain_credibility.json",
+        "competitors.json"
+      ],
+      "page": "Domain Authority",
+      "pageUrl": "/master/domain-authority"
+    },
+    "isActive": true,
+    "createdAt": "2026-01-22T00:00:00.000Z",
+    "updatedAt": "2026-01-22T00:00:00.000Z"
+  },
+  {
+    "id": "Q013",
+    "queryNumber": "2.1",
+    "groupId": "GRP-002",
+    "title": "2x2 KW / Volume Analysis for Self",
+    "description": "Quadrant analysis of keywords where your domain is ranking, grouped by Volume and Rank thresholds.",
+    "tooltip": "Q1  Defend: High Vol + High Rank — Protect rankings, lift CTR, expand coverage.\nQ2  Attack: High Vol + Low Rank — Fix intent + strengthen page to break into Top 10.\nQ3  Harvest: Low Vol + High Rank — Maintain with light effort, improve conversions.\nQ4  Deprioritize: Low Vol + Low Rank — Ignore, merge, or retarget.\n\nThresholds: High Rank = 1-10, High Volume = Top 30% (P70)",
+    "status": "Critical",
+    "queryType": "kw-volume-2x2",
+    "config": {},
+    "sourceInfo": {
+      "tables": [
+        "domain_keywords.json",
+        "client_ai_profiles.json",
+        "clients.json"
+      ],
+      "page": "2x2 Preview",
+      "pageUrl": "/report/preview-2x2"
+    },
+    "isActive": true,
+    "createdAt": "2026-01-22T00:00:00.000Z",
+    "updatedAt": "2026-01-22T00:00:00.000Z"
+  },
+  {
+    "id": "Q014",
+    "queryNumber": "2.2",
+    "groupId": "GRP-002",
+    "title": "2x2 Gap Analysis - Keywords Where Competitors Rank But You Don't",
+    "description": "Show me all keywords where MY competitors are ranking on Google, but MY website is completely invisible. Tell me which gaps are URGENT vs which to IGNORE.",
+    "tooltip": "**📝 Query in Plain English:**\n\"Find keywords my competitors capture but I'm missing. Prioritize by volume and how well competitors rank.\"\n\n**🎯 SEO Advantage:**\n• Content Gap Discovery — Topics competitors cover that you don't\n• Traffic Opportunity — High-volume gaps = immediate revenue potential\n• Content Calendar Fuel — Prioritized list of pages to create\n• Competitive Intel — See which competitors own which topics\n• ROI Focus — Q1 (Urgent) = highest ROI content to create first\n\n**📊 Filters:**\n• Keywords where SELF is NOT ranking\n• Buckets: Include|Buy, Include|Learn only\n\n**🔲 Quadrants:**\n🚨 Q1: High Vol + Competitor Top 10 → Urgent\n⚡ Q2: High Vol + Competitor Above 10 → Quick Win\n🌱 Q3: Low Vol + Competitor Top 10 → Niche\n⏸️ Q4: Low Vol + Competitor Above 10 → Skip",
+    "status": "Critical",
+    "queryType": "kw-volume-gap",
+    "config": {},
+    "sourceInfo": {
+      "tables": [
+        "domain_keywords.json",
+        "client_ai_profiles.json",
+        "clients.json",
+        "competitors.json"
+      ],
+      "page": "Gap Analysis",
+      "pageUrl": "/report/preview-2x2"
+    },
+    "isActive": true,
+    "createdAt": "2026-01-22T00:00:00.000Z",
+    "updatedAt": "2026-01-22T00:00:00.000Z"
+  },
+  {
+    "id": "Q015",
+    "queryNumber": "2.3",
+    "groupId": "GRP-002",
+    "title": "Blue Ocean Keywords - High Volume, No Competition",
+    "description": "Show me high-volume keywords where NOBODY is ranking - not me, not competitors. These are uncontested opportunities.",
+    "tooltip": "**📝 Query in Plain English:**\n\"Find keywords with good search volume where NO ONE is ranking in my tracked data.\"\n\n**🎯 SEO Advantage:**\n• Blue Ocean — Zero competition visible\n• First Mover — Be first to create content\n• Easy Wins — No existing content to compete against\n• Market Gap — Topics the entire market is missing\n• Low Effort / High Reward — Rank fast with minimal backlinks\n\n**📊 Filters:**\n• Volume ≥ P50 (top 50%)\n• NO domain ranking (Self + Competitors absent)\n• Buckets: Include|Buy, Include|Learn only\n\n**⚠️ Caveat:**\nMay indicate incomplete SERP data. Verify in Google before creating content.",
+    "status": "Critical",
+    "queryType": "blue-ocean",
+    "config": {},
+    "sourceInfo": {
+      "tables": [
+        "domain_keywords.json",
+        "client_ai_profiles.json",
+        "clients.json"
+      ],
+      "page": "Blue Ocean",
+      "pageUrl": "/report/preview-2x2"
+    },
+    "isActive": true,
+    "createdAt": "2026-01-22T00:00:00.000Z",
+    "updatedAt": "2026-01-22T00:00:00.000Z"
   }
 ]

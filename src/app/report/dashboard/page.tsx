@@ -23,7 +23,10 @@ import {
     ClientBusinessData,
     BrandETVData,
     HomePageData,
-    Top3SurfacesByCategoryData
+    Top3SurfacesByCategoryData,
+    KwVolume2x2Data,
+    KwVolumeGapData,
+    BlueOceanData
 } from '@/types/dashboardTypes';
 import Link from 'next/link';
 import {
@@ -1646,6 +1649,442 @@ function SortableBrandTable({ keywords }: { keywords: BrandPowerData['domains'][
     );
 }
 
+// Q012: 2x2 KW/Volume Analysis Card
+function KwVolume2x2Card({ data }: { data: KwVolume2x2Data }) {
+    const [expandedQuadrant, setExpandedQuadrant] = React.useState<string | null>(null);
+
+    // Quadrant config with colors and actions
+    const QUADRANT_CONFIG = {
+        q1: { color: '#22c55e', emoji: '🛡️', label: 'Defend & Scale', caption: 'Protect rankings, lift CTR, expand coverage.', title: 'Q1: High Vol + High Rank' },
+        q2: { color: '#f59e0b', emoji: '⚔️', label: 'Attack (Top Priority)', caption: 'Fix intent + strengthen page + links to break into Top 10.', title: 'Q2: High Vol + Low Rank' },
+        q3: { color: '#3b82f6', emoji: '🌾', label: 'Harvest & Optimize', caption: 'Maintain with light effort, improve conversions.', title: 'Q3: Low Vol + High Rank' },
+        q4: { color: '#ef4444', emoji: '🧊', label: 'Deprioritize / Reframe', caption: 'Ignore, merge, or retarget long-tail.', title: 'Q4: Low Vol + Low Rank' },
+    };
+
+    // Bucket colors
+    const BUCKET_COLORS: Record<string, string> = {
+        'Include | Buy': '#22c55e',
+        'Include | Learn': '#3b82f6',
+        'Brand | Nav': '#8b5cf6',
+    };
+
+    const QuadrantSection = ({ quadrantKey, keywords }: { quadrantKey: keyof typeof QUADRANT_CONFIG; keywords: typeof data.quadrants.q1 }) => {
+        const config = QUADRANT_CONFIG[quadrantKey];
+        const isExpanded = expandedQuadrant === quadrantKey;
+        const displayData = isExpanded ? keywords : keywords.slice(0, 10);
+
+        return (
+            <div className="bg-white rounded-lg border-2 shadow-sm overflow-hidden" style={{ borderColor: config.color }}>
+                <div className="p-3" style={{ backgroundColor: `${config.color}15` }}>
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <h4 className="font-bold text-sm flex items-center gap-1.5" style={{ color: config.color }}>
+                                <span>{config.emoji}</span>
+                                {config.title}
+                            </h4>
+                            <p className="text-xs text-gray-600 mt-0.5" title={config.caption}>
+                                <span className="font-medium" style={{ color: config.color }}>{config.label}</span>
+                                <span className="mx-1">—</span>
+                                <span className="text-gray-500">{config.caption}</span>
+                            </p>
+                        </div>
+                        <span className="text-xl font-bold" style={{ color: config.color }}>{keywords.length}</span>
+                    </div>
+                </div>
+                <div className="p-2 max-h-64 overflow-auto">
+                    {keywords.length === 0 ? (
+                        <p className="text-gray-400 italic text-xs p-2">No keywords</p>
+                    ) : (
+                        <>
+                            <table className="w-full text-xs">
+                                <thead>
+                                    <tr className="border-b">
+                                        <th className="text-left py-1 font-medium text-gray-600">Keyword</th>
+                                        <th className="text-left py-1 font-medium text-gray-600">Bucket</th>
+                                        <th className="text-right py-1 font-medium text-gray-600">Vol</th>
+                                        <th className="text-right py-1 font-medium text-gray-600">Rank</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {displayData.map((kw, i) => (
+                                        <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
+                                            <td className="py-1 text-gray-800 truncate max-w-[120px]" title={kw.keyword}>{kw.keyword}</td>
+                                            <td className="py-1">
+                                                <span
+                                                    className="px-1 py-0.5 rounded text-xs"
+                                                    style={{ backgroundColor: `${BUCKET_COLORS[kw.bucket] || '#6b7280'}20`, color: BUCKET_COLORS[kw.bucket] || '#6b7280' }}
+                                                >
+                                                    {kw.bucket}
+                                                </span>
+                                            </td>
+                                            <td className="py-1 text-right text-gray-600">{kw.volume.toLocaleString()}</td>
+                                            <td className="py-1 text-right font-mono text-gray-600">{kw.rank}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                            {keywords.length > 10 && (
+                                <button
+                                    onClick={() => setExpandedQuadrant(isExpanded ? null : quadrantKey)}
+                                    className="mt-2 text-xs font-medium hover:underline"
+                                    style={{ color: config.color }}
+                                >
+                                    {isExpanded ? 'Show less' : `View all ${keywords.length}`}
+                                </button>
+                            )}
+                        </>
+                    )}
+                </div>
+            </div>
+        );
+    };
+
+    return (
+        <div className="space-y-4">
+            {/* Summary strip */}
+            <div className="flex flex-wrap gap-2 text-xs">
+                <span className="bg-gray-100 px-2 py-1 rounded-full">
+                    <strong>Total:</strong> {data.summary.total}
+                </span>
+                <span className="bg-gray-100 px-2 py-1 rounded-full">
+                    <strong>P70:</strong> {data.summary.p70.toLocaleString()}
+                </span>
+                {data.includedBuckets.length > 0 && (
+                    <span className="bg-gray-100 px-2 py-1 rounded-full">
+                        <strong>Buckets:</strong> {data.includedBuckets.join(', ')}
+                    </span>
+                )}
+            </div>
+
+            {/* 2x2 Grid */}
+            <div className="grid grid-cols-2 gap-3">
+                <QuadrantSection quadrantKey="q2" keywords={data.quadrants.q2} />
+                <QuadrantSection quadrantKey="q1" keywords={data.quadrants.q1} />
+                <QuadrantSection quadrantKey="q4" keywords={data.quadrants.q4} />
+                <QuadrantSection quadrantKey="q3" keywords={data.quadrants.q3} />
+            </div>
+
+            <div className="text-xs text-gray-500 text-center">
+                Y-axis: High Volume (top) / Low Volume (bottom) | X-axis: Low Rank (left) / High Rank (right)
+            </div>
+        </div>
+    );
+}
+
+// Q014: 2x2 Gap Analysis Card - Keywords where SELF is absent
+function KwVolumeGapCard({ data }: { data: KwVolumeGapData }) {
+    const [expandedQuadrant, setExpandedQuadrant] = React.useState<string | null>(null);
+
+    // Quadrant config - different messaging for gap analysis
+    const QUADRANT_CONFIG = {
+        q1: { color: '#ef4444', emoji: '🚨', label: 'Urgent Gap', caption: 'High volume, competitors own page 1. Create content immediately!', title: 'Q1: High Vol + Competitor Top 10' },
+        q2: { color: '#f59e0b', emoji: '⚡', label: 'Quick Win', caption: 'High volume, competitors not dominant. Easy to win!', title: 'Q2: High Vol + Competitor Above 10' },
+        q3: { color: '#3b82f6', emoji: '🌱', label: 'Niche Gap', caption: 'Lower volume but competitors own it. Add if relevant.', title: 'Q3: Low Vol + Competitor Top 10' },
+        q4: { color: '#6b7280', emoji: '⏸️', label: 'Skip', caption: 'Low volume, competitors not even ranking well. Ignore.', title: 'Q4: Low Vol + Competitor Above 10' },
+    };
+
+    // Bucket colors
+    const BUCKET_COLORS: Record<string, string> = {
+        'Include | Buy': '#22c55e',
+        'Include | Learn': '#3b82f6',
+    };
+
+    const QuadrantSection = ({ quadrantKey, keywords }: { quadrantKey: keyof typeof QUADRANT_CONFIG; keywords: typeof data.quadrants.q1 }) => {
+        const config = QUADRANT_CONFIG[quadrantKey];
+        const isExpanded = expandedQuadrant === quadrantKey;
+        const displayData = isExpanded ? keywords : keywords.slice(0, 8);
+
+        return (
+            <div className="bg-white rounded-lg border-2 shadow-sm overflow-hidden" style={{ borderColor: config.color }}>
+                <div className="p-3" style={{ backgroundColor: `${config.color}15` }}>
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <h4 className="font-bold text-sm flex items-center gap-1.5" style={{ color: config.color }}>
+                                <span>{config.emoji}</span>
+                                {config.title}
+                            </h4>
+                            <p className="text-xs text-gray-600 mt-0.5">
+                                <span className="font-medium" style={{ color: config.color }}>{config.label}</span>
+                                <span className="mx-1">—</span>
+                                <span className="text-gray-500">{config.caption}</span>
+                            </p>
+                        </div>
+                        <span className="text-xl font-bold" style={{ color: config.color }}>{keywords.length}</span>
+                    </div>
+                </div>
+                <div className="p-2 max-h-64 overflow-auto">
+                    {keywords.length === 0 ? (
+                        <p className="text-gray-400 italic text-xs p-2">No gap keywords</p>
+                    ) : (
+                        <>
+                            <table className="w-full text-xs">
+                                <thead>
+                                    <tr className="border-b">
+                                        <th className="text-left py-2 px-2 font-medium text-gray-600 w-[200px]">Keyword</th>
+                                        <th className="text-center py-2 px-2 font-medium text-gray-600 w-[70px]">Bucket</th>
+                                        <th className="text-right py-2 px-2 font-medium text-gray-600 w-[80px]">Vol</th>
+                                        <th className="text-left py-2 px-2 font-medium text-gray-600">Top Competitors</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {displayData.map((kw, i) => (
+                                        <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
+                                            <td className="py-1.5 px-2 w-[200px]">
+                                                <a
+                                                    href={`https://www.google.com/search?q=${encodeURIComponent(kw.keyword)}`}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-blue-600 hover:text-blue-800 hover:underline font-medium"
+                                                    title={`Search "${kw.keyword}" on Google`}
+                                                >
+                                                    {kw.keyword}
+                                                </a>
+                                            </td>
+                                            <td className="py-1.5 px-2 text-center w-[70px]">
+                                                <span
+                                                    className="px-1.5 py-0.5 rounded text-xs"
+                                                    style={{ backgroundColor: `${BUCKET_COLORS[kw.bucket] || '#6b7280'}20`, color: BUCKET_COLORS[kw.bucket] || '#6b7280' }}
+                                                >
+                                                    {kw.bucket.replace('Include | ', '')}
+                                                </span>
+                                            </td>
+                                            <td className="py-1.5 px-2 text-right text-gray-700 font-medium w-[80px]">{kw.volume.toLocaleString()}</td>
+                                            <td className="py-1.5 px-2 text-xs">
+                                                <div className="flex flex-wrap gap-1">
+                                                    {kw.topCompetitors.split(', ').map((comp, idx) => {
+                                                        const match = comp.match(/^(.+?)\s*\(#(\d+)\)$/);
+                                                        if (!match) return <span key={idx} className="text-gray-500">{comp}</span>;
+                                                        const domain = match[1];
+                                                        const rank = match[2];
+                                                        return (
+                                                            <span key={idx} className="inline-flex items-center gap-0.5 bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">
+                                                                <img
+                                                                    src={`https://www.google.com/s2/favicons?domain=${domain}&sz=16`}
+                                                                    alt=""
+                                                                    className="w-3 h-3"
+                                                                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                                                                />
+                                                                <span className="truncate max-w-[80px]" title={domain}>{domain.replace(/^www\./, '')}</span>
+                                                                <span className="text-gray-400">(#{rank})</span>
+                                                            </span>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                            {keywords.length > 8 && (
+                                <button
+                                    onClick={() => setExpandedQuadrant(isExpanded ? null : quadrantKey)}
+                                    className="mt-2 text-xs font-medium hover:underline"
+                                    style={{ color: config.color }}
+                                >
+                                    {isExpanded ? 'Show less' : `View all ${keywords.length}`}
+                                </button>
+                            )}
+                        </>
+                    )}
+                </div>
+            </div>
+        );
+    };
+
+    return (
+        <div className="space-y-4">
+            {/* Summary strip */}
+            <div className="flex flex-wrap gap-2 text-xs">
+                <span className="bg-red-100 text-red-700 px-2 py-1 rounded-full font-medium">
+                    🔴 Gap Keywords: {data.summary.total}
+                </span>
+                <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full">
+                    ✅ Self Ranking: {data.summary.selfRanking}
+                </span>
+                <span className="bg-gray-100 px-2 py-1 rounded-full">
+                    <strong>P70:</strong> {data.summary.p70.toLocaleString()}
+                </span>
+                {data.includedBuckets.length > 0 && (
+                    <span className="bg-gray-100 px-2 py-1 rounded-full">
+                        <strong>Buckets:</strong> {data.includedBuckets.join(', ')}
+                    </span>
+                )}
+            </div>
+
+            {/* Query Definitions */}
+            <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-xs text-slate-700">
+                <details className="cursor-pointer">
+                    <summary className="font-semibold text-slate-800">📋 Query Definitions & Filters</summary>
+                    <div className="mt-2 grid grid-cols-2 gap-3">
+                        <div>
+                            <p className="font-medium text-slate-600 mb-1">🏢 Competitors Used:</p>
+                            <p>All domains in <code className="bg-slate-200 px-1 rounded">domain_keywords.json</code> except SELF domains (Main Competitor, Partial, Small, Marketplace)</p>
+                        </div>
+                        <div>
+                            <p className="font-medium text-slate-600 mb-1">📊 High Volume Threshold (P70):</p>
+                            <p>Top 30% of keyword volumes = <strong>{data.summary.p70.toLocaleString()}</strong> (keywords ≥ this value)</p>
+                        </div>
+                        <div>
+                            <p className="font-medium text-slate-600 mb-1">🎯 Top Rank Definition:</p>
+                            <p>Position 1-10 (Page 1 of Google)</p>
+                        </div>
+                        <div>
+                            <p className="font-medium text-slate-600 mb-1">🪣 Bucket Filter:</p>
+                            <p><strong>Include | Buy</strong>, <strong>Include | Learn</strong> only (Brand/Noise excluded)</p>
+                        </div>
+                        <div className="col-span-2">
+                            <p className="font-medium text-slate-600 mb-1">🔍 Gap Definition:</p>
+                            <p>Keywords where YOUR domain has <strong>NO ranking</strong> (absent from top 50), but at least one competitor is ranking.</p>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            {/* Info banner */}
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-800">
+                <strong>📊 Gap Analysis:</strong> These are keywords where YOUR domain is completely absent, but competitors are ranking.
+                Focus on <span className="font-bold text-red-600">Q1 (Urgent)</span> first — high volume keywords where competitors own page 1.
+            </div>
+
+            {/* Stacked boxes in sequence Q1, Q2, Q3, Q4 */}
+            <div className="grid grid-cols-1 gap-4">
+                <QuadrantSection quadrantKey="q1" keywords={data.quadrants.q1} />
+                <QuadrantSection quadrantKey="q2" keywords={data.quadrants.q2} />
+                <QuadrantSection quadrantKey="q3" keywords={data.quadrants.q3} />
+                <QuadrantSection quadrantKey="q4" keywords={data.quadrants.q4} />
+            </div>
+        </div>
+    );
+}
+
+// Q015: Blue Ocean Keywords Card - High volume, no rankings
+function BlueOceanCard({ data }: { data: BlueOceanData }) {
+    const [showAll, setShowAll] = React.useState(false);
+    const displayData = showAll ? data.keywords : data.keywords.slice(0, 20);
+
+    // Bucket colors
+    const BUCKET_COLORS: Record<string, string> = {
+        'Include | Buy': '#22c55e',
+        'Include | Learn': '#3b82f6',
+    };
+
+    return (
+        <div className="space-y-4">
+            {/* Summary strip */}
+            <div className="flex flex-wrap gap-2 text-xs">
+                <span className="bg-cyan-100 text-cyan-700 px-2 py-1 rounded-full font-medium">
+                    🌊 Blue Ocean: {data.summary.total}
+                </span>
+                <span className="bg-gray-100 px-2 py-1 rounded-full">
+                    <strong>Total Tracked:</strong> {data.summary.totalTracked.toLocaleString()}
+                </span>
+                <span className="bg-gray-100 px-2 py-1 rounded-full">
+                    <strong>With Ranking:</strong> {data.summary.withRanking.toLocaleString()}
+                </span>
+                <span className="bg-gray-100 px-2 py-1 rounded-full">
+                    <strong>P50 Volume:</strong> {data.summary.p50.toLocaleString()}
+                </span>
+                {data.includedBuckets.length > 0 && (
+                    <span className="bg-gray-100 px-2 py-1 rounded-full">
+                        <strong>Buckets:</strong> {data.includedBuckets.join(', ')}
+                    </span>
+                )}
+            </div>
+
+            {/* Query Definitions */}
+            <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-xs text-slate-700">
+                <details className="cursor-pointer">
+                    <summary className="font-semibold text-slate-800">📋 Query Definitions & Filters</summary>
+                    <div className="mt-2 grid grid-cols-2 gap-3">
+                        <div>
+                            <p className="font-medium text-slate-600 mb-1">🌊 Blue Ocean Definition:</p>
+                            <p>Keywords with <strong>NO ranking</strong> from ANY domain (Self or Competitors) at ANY position</p>
+                        </div>
+                        <div>
+                            <p className="font-medium text-slate-600 mb-1">📊 Volume Threshold (P50):</p>
+                            <p>Top 50% of keyword volumes ≥ <strong>{data.summary.p50.toLocaleString()}</strong></p>
+                        </div>
+                        <div>
+                            <p className="font-medium text-slate-600 mb-1">🏢 Self Domains:</p>
+                            <p>{data.selfDomains.join(', ')}</p>
+                        </div>
+                        <div>
+                            <p className="font-medium text-slate-600 mb-1">🪣 Bucket Filter:</p>
+                            <p><strong>Include | Buy</strong>, <strong>Include | Learn</strong> only</p>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            {/* Info banner */}
+            <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-3 text-sm text-cyan-800">
+                <strong>🌊 Blue Ocean Opportunity:</strong> These keywords have good search volume but NO ONE is ranking for them in your tracked data.
+                <span className="text-cyan-600 ml-1">⚠️ Verify in Google before creating content — may indicate incomplete SERP data.</span>
+            </div>
+
+            {/* Keywords Table */}
+            <div className="bg-white rounded-lg border shadow-sm overflow-hidden">
+                <div className="p-3 bg-cyan-50 border-b">
+                    <h4 className="font-bold text-cyan-700">🎯 Uncontested Keywords (Vol ≥ {data.summary.p50.toLocaleString()})</h4>
+                </div>
+                <div className="p-2 max-h-96 overflow-auto">
+                    {data.keywords.length === 0 ? (
+                        <p className="text-gray-400 italic text-sm p-4 text-center">No blue ocean keywords found. All tracked keywords have at least one domain ranking.</p>
+                    ) : (
+                        <>
+                            <table className="w-full text-xs">
+                                <thead>
+                                    <tr className="border-b">
+                                        <th className="text-left py-2 px-2 font-medium text-gray-600 w-8">#</th>
+                                        <th className="text-left py-2 px-2 font-medium text-gray-600">Keyword</th>
+                                        <th className="text-center py-2 px-2 font-medium text-gray-600 w-[70px]">Bucket</th>
+                                        <th className="text-right py-2 px-2 font-medium text-gray-600 w-[80px]">Volume</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {displayData.map((kw, i) => (
+                                        <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
+                                            <td className="py-1.5 px-2 text-gray-400">{i + 1}</td>
+                                            <td className="py-1.5 px-2">
+                                                <a
+                                                    href={`https://www.google.com/search?q=${encodeURIComponent(kw.keyword)}`}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-blue-600 hover:text-blue-800 hover:underline font-medium"
+                                                    title={`Search "${kw.keyword}" on Google`}
+                                                >
+                                                    {kw.keyword}
+                                                </a>
+                                            </td>
+                                            <td className="py-1.5 px-2 text-center">
+                                                <span
+                                                    className="px-1.5 py-0.5 rounded text-xs"
+                                                    style={{ backgroundColor: `${BUCKET_COLORS[kw.bucket] || '#6b7280'}20`, color: BUCKET_COLORS[kw.bucket] || '#6b7280' }}
+                                                >
+                                                    {kw.bucket.replace('Include | ', '')}
+                                                </span>
+                                            </td>
+                                            <td className="py-1.5 px-2 text-right text-gray-700 font-medium">{kw.volume.toLocaleString()}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                            {data.keywords.length > 20 && (
+                                <button
+                                    onClick={() => setShowAll(!showAll)}
+                                    className="mt-2 text-xs font-medium text-cyan-600 hover:underline"
+                                >
+                                    {showAll ? 'Show less' : `View all ${data.keywords.length}`}
+                                </button>
+                            )}
+                        </>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}
+
 // MANUAL_001: Top 20 Include|Buy Keywords Card
 function Top20IncludeBuyCard({ data }: { data: Top20IncludeBuyData }) {
     return (
@@ -2315,7 +2754,12 @@ function QueryCard({
                                     <HomePageCard data={result.data as HomePageData} />
                                 ) : result.queryType === 'top3-surfaces-by-category' ? (
                                     <Top3SurfacesByCategoryCard data={result.data as Top3SurfacesByCategoryData} />
-
+                                ) : result.queryType === 'kw-volume-2x2' ? (
+                                    <KwVolume2x2Card data={result.data as KwVolume2x2Data} />
+                                ) : result.queryType === 'kw-volume-gap' ? (
+                                    <KwVolumeGapCard data={result.data as KwVolumeGapData} />
+                                ) : result.queryType === 'blue-ocean' ? (
+                                    <BlueOceanCard data={result.data as BlueOceanData} />
                                 ) : (
                                     <pre className="text-sm bg-gray-50 p-3 rounded overflow-auto">
                                         {JSON.stringify(result.data, null, 2)}

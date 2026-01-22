@@ -18,7 +18,7 @@ interface AiKwBuilderPanelProps {
     // We accept raw keywords to build terms from if load doesn't provide them
     rawKeywords?: string[];
     // NEW: Keyword with volume data for volume-based sizing
-    rawKeywordData?: { keyword: string; volume: number; domain?: string; position?: number }[];
+    rawKeywordData?: { keyword: string; volume: number; domain?: string; position?: number; competitionType?: string }[];
     // Callback to refresh profile data after dictionary changes
     onDictionaryChange?: () => void;
 }
@@ -105,7 +105,9 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
         sortOrder: 'desc' as 'desc' | 'asc',  // Sort order (largest first or smallest first)
         positionRange: '' as '' | '1-3' | '1-5' | '1-10' | '5-10' | '10-20' | '20-50' | '50+',  // Position filter
         volumePercentile: [] as ('ultra-high' | 'high' | 'mid' | 'low' | 'ultra-low')[],  // Volume percentile filter: multi-select
-        strategicFilter: [] as ('core' | 'wins' | 'leakage' | 'build' | 'gaps' | 'niche' | 'passive' | 'uncategorized')[]  // Multi-select strategic filters
+        strategicFilter: [] as ('core' | 'wins' | 'leakage' | 'build' | 'gaps' | 'niche' | 'passive' | 'uncategorized')[],  // Multi-select strategic filters
+        competitionType: [] as string[],  // NEW: Competition type filter (Main, Marketplace, Partial, Self, Small, Not Assigned)
+        selectedDomains: [] as string[]  // NEW: Domain multi-select filter
     });
 
     // --- Loading Logic ---
@@ -210,23 +212,23 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
             // ONLY process FULL KEYWORDS (no unigrams or bigrams)
             const freqMap = new Map<string, number>();
             const volumeMap = new Map<string, number>();
-            const domainPositionsMap = new Map<string, { domain: string; position: number }[]>();
+            const domainPositionsMap = new Map<string, { domain: string; position: number; competitionType?: string }[]>();
 
             rawKeywords.forEach(kw => {
                 // Include ALL keywords regardless of length
                 freqMap.set(kw, (freqMap.get(kw) || 0) + 1);
 
-                // Get volume, domain, position from rawKeywordData
+                // Get volume, domain, position, competitionType from rawKeywordData
                 const allKwData = rawKeywordData.filter(d => d.keyword.toLowerCase() === kw.toLowerCase());
                 allKwData.forEach(kwData => {
                     if (kwData.volume && !volumeMap.has(kw)) {
                         volumeMap.set(kw, kwData.volume);
                     }
-                    // Store domain + position info for tooltip (unique domains only)
+                    // Store domain + position + competitionType info for tooltip and filtering (unique domains only)
                     if (kwData.domain && kwData.position) {
                         const existing = domainPositionsMap.get(kw) || [];
                         if (!existing.some(e => e.domain === kwData.domain)) {
-                            existing.push({ domain: kwData.domain, position: kwData.position });
+                            existing.push({ domain: kwData.domain, position: kwData.position, competitionType: kwData.competitionType });
                             domainPositionsMap.set(kw, existing);
                         }
                     }
@@ -561,6 +563,43 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
         return { ultraHigh: ultraHighCount, high: highCount, mid: midCount, low: lowCount, ultraLow: ultraLowCount, p15: p15Value, p40: p40Value, p75: p75Value, p95: p95Value };
     }, [terms, filters.ngram]);
 
+    // Competition type counts for filter UI
+    const competitionTypeCounts = useMemo(() => {
+        const counts: Record<string, number> = {};
+        terms.forEach(t => {
+            const positions = (t as any).domainPositions as { domain: string; position: number; competitionType?: string }[] | undefined;
+            if (positions) {
+                positions.forEach(p => {
+                    const type = p.competitionType || 'Not Assigned';
+                    counts[type] = (counts[type] || 0) + 1;
+                });
+            }
+        });
+        return counts;
+    }, [terms]);
+
+    // Unique competition types
+    const uniqueCompetitionTypes = useMemo(() => {
+        return Object.keys(competitionTypeCounts).sort((a, b) => {
+            const order = ['Main', 'Self', 'Partial', 'Small', 'Marketplace', 'Not a', 'Not Assigned'];
+            return order.indexOf(a) - order.indexOf(b);
+        });
+    }, [competitionTypeCounts]);
+
+    // Unique domains with counts for filter
+    const uniqueDomains = useMemo(() => {
+        const domainCounts: Record<string, number> = {};
+        terms.forEach(t => {
+            const positions = (t as any).domainPositions as { domain: string; position: number; competitionType?: string }[] | undefined;
+            if (positions) {
+                positions.forEach(p => {
+                    domainCounts[p.domain] = (domainCounts[p.domain] || 0) + 1;
+                });
+            }
+        });
+        return domainCounts;
+    }, [terms]);
+
     // --- Interaction ---
     const handleTermClick = (term: TermEntry) => {
         const newSet = new Set(selectedTerms);
@@ -666,8 +705,21 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
                 if (!range) return true;
 
                 return positions.some(p => p.position >= range[0] && p.position <= range[1]);
+            })
+            // Competition Type filter (multi-select)
+            .filter(t => {
+                if (filters.competitionType.length === 0) return true;
+                const positions = (t as any).domainPositions as { domain: string; position: number; competitionType?: string }[] | undefined;
+                if (!positions || positions.length === 0) return filters.competitionType.includes('Not Assigned');
+                return positions.some(p => filters.competitionType.includes(p.competitionType || 'Not Assigned'));
+            })
+            // Domain filter (multi-select)
+            .filter(t => {
+                if (filters.selectedDomains.length === 0) return true;
+                const positions = (t as any).domainPositions as { domain: string; position: number }[] | undefined;
+                if (!positions || positions.length === 0) return false;
+                return positions.some(p => filters.selectedDomains.includes(p.domain));
             });
-
         // Volume percentile filter (only applies when volume data is available)
         if (filters.volumePercentile.length > 0 && filters.ngram === 'full') {
             // Get all volumes for percentile calculation
@@ -1440,7 +1492,107 @@ export default function AiKwBuilderPanel({ isOpen, onClose, clientCode, domain, 
                     </div>
                 </div>
 
-                {/* Strategic Filters Row - Preset filter combinations */}
+                {/* Competition Type and Domain Filter Row */}
+                <div className="px-6 py-2 border-b bg-gray-50/50 flex flex-wrap gap-4 items-center text-sm shrink-0">
+                    {/* Competition Type Filter */}
+                    <div className="flex items-center gap-2">
+                        <span className="text-gray-500 text-xs">Competition Type:</span>
+                        <div className="flex gap-1 flex-wrap">
+                            {uniqueCompetitionTypes.map(type => {
+                                const isSelected = filters.competitionType.includes(type);
+                                const count = competitionTypeCounts[type] || 0;
+                                const colorClass = type === 'Main' ? 'bg-red-100 text-red-700 border-red-300' :
+                                    type === 'Self' ? 'bg-blue-100 text-blue-700 border-blue-300' :
+                                        type === 'Partial' ? 'bg-yellow-100 text-yellow-700 border-yellow-300' :
+                                            type === 'Small' ? 'bg-orange-100 text-orange-700 border-orange-300' :
+                                                type === 'Marketplace' ? 'bg-purple-100 text-purple-700 border-purple-300' :
+                                                    type === 'Not a' ? 'bg-gray-100 text-gray-600 border-gray-300' :
+                                                        'bg-gray-50 text-gray-500 border-gray-200';
+                                return (
+                                    <button
+                                        key={type}
+                                        onClick={() => {
+                                            setFilters(prev => ({
+                                                ...prev,
+                                                competitionType: isSelected
+                                                    ? prev.competitionType.filter(t => t !== type)
+                                                    : [...prev.competitionType, type]
+                                            }));
+                                        }}
+                                        className={`px-2 py-0.5 text-[10px] rounded border transition-all ${isSelected
+                                            ? `${colorClass} ring-2 ring-offset-1 ring-indigo-400 font-bold`
+                                            : 'bg-white text-gray-400 border-gray-200 hover:border-gray-400'
+                                            }`}
+                                    >
+                                        {type} ({count})
+                                    </button>
+                                );
+                            })}
+                            {filters.competitionType.length > 0 && (
+                                <button
+                                    onClick={() => setFilters(prev => ({ ...prev, competitionType: [] }))}
+                                    className="px-1.5 py-0.5 text-[10px] text-gray-400 hover:text-gray-600"
+                                    title="Clear competition type filter"
+                                >
+                                    ✕
+                                </button>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Domain Filter - Multi-select with search */}
+                    <div className="flex items-center gap-2 border-l pl-4">
+                        <span className="text-gray-500 text-xs">Domain:</span>
+                        <div className="relative">
+                            <select
+                                className="text-xs border border-gray-200 rounded px-2 py-1 bg-white min-w-[150px] max-w-[200px]"
+                                value=""
+                                onChange={(e) => {
+                                    const val = e.target.value;
+                                    if (val && !filters.selectedDomains.includes(val)) {
+                                        setFilters(prev => ({ ...prev, selectedDomains: [...prev.selectedDomains, val] }));
+                                    }
+                                }}
+                            >
+                                <option value="">Select domain...</option>
+                                {Object.entries(uniqueDomains).map(([domain, count]) => (
+                                    <option key={domain} value={domain} disabled={filters.selectedDomains.includes(domain)}>
+                                        {domain} ({count})
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        {filters.selectedDomains.length > 0 && (
+                            <div className="flex gap-1 flex-wrap">
+                                {filters.selectedDomains.map(domain => (
+                                    <span
+                                        key={domain}
+                                        className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-indigo-100 text-indigo-700 text-[10px] rounded border border-indigo-200"
+                                    >
+                                        {domain}
+                                        <button
+                                            onClick={() => setFilters(prev => ({
+                                                ...prev,
+                                                selectedDomains: prev.selectedDomains.filter(d => d !== domain)
+                                            }))}
+                                            className="text-indigo-400 hover:text-indigo-600"
+                                        >
+                                            ✕
+                                        </button>
+                                    </span>
+                                ))}
+                                <button
+                                    onClick={() => setFilters(prev => ({ ...prev, selectedDomains: [] }))}
+                                    className="px-1.5 py-0.5 text-[10px] text-gray-400 hover:text-red-500"
+                                    title="Clear all domains"
+                                >
+                                    Clear all
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
                 <div className="px-6 py-2.5 border-b bg-gradient-to-r from-slate-100/80 via-white to-slate-50/50 flex flex-wrap gap-2 items-center text-sm shrink-0">
                     <div className="flex items-center gap-2 mr-2">
                         <span className="text-gray-700 font-bold text-xs uppercase tracking-wide">Strategy</span>

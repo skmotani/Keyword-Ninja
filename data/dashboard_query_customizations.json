@@ -30,7 +30,9 @@
     },
     {
       "queryId": "Q010",
-      "updatedAt": "2026-01-18T03:29:13.172Z"
+      "updatedAt": "2026-01-22T02:07:06.043Z",
+      "customTitle": "2x2 Rank / Volume Analysis for Client KW",
+      "pageTitle": "Show me all the keywords where MY website is ranking on Google. Split them into 4 boxes based on:\n\nHow much people search for them (High vs Low volume)\nHow well I'm ranking (Top 10 vs Below Top 10)\nDon't include keywords I've marked as 'Noise' or haven't classified yet.\n\nTell me which keywords to Defend, which to Attack, which to just Maintain, and which to Ignore."
     },
     {
       "queryId": "Q011",
@@ -41,8 +43,9 @@
     },
     {
       "queryId": "Q013",
-      "customTitle": "You Vs Your Competitor on ETV",
-      "updatedAt": "2026-01-19T09:56:51.897Z"
+      "customTitle": "2x2 Analysis for Self KW Volume / Rank",
+      "updatedAt": "2026-01-22T02:07:40.367Z",
+      "pageContent": "As a BCG-style consultant, the benefit of this 2×2 is that it converts a long, noisy keyword universe into an executive decision system—clear choices, clear trade-offs, measurable outcomes.\n\n1) It forces strategic focus, not activity\n\nMost SEO teams default to “do more content” or “fix everything.” This matrix makes prioritization non-negotiable:\n\nQ2 (High Vol + Low Rank) becomes the growth engine.\nQ1 (High Vol + High Rank) becomes the asset you protect.\nQ3/Q4 stop consuming disproportionate time.\n\nNet effect: fewer initiatives, higher impact.\n\n2) It links effort to value (and prevents misallocation)\n\nThe single biggest SEO waste is investing senior time in low-return keywords.\nThis model ties the work directly to business value proxies:\n\nVolume approximates demand.\nRank approximates current capture.\nSo you invest where ROI is structurally higher, not where opinions are loudest.\n\n3) It creates a portfolio operating model\n\nYou stop treating SEO as a list and start managing it like a portfolio:\nDefend & Scale (Q1): preserve your “cash cow” traffic base.\nAttack (Q2): invest to shift share quickly.\nHarvest (Q3): low-effort optimization for incremental yield.\nDeprioritize (Q4): prune, consolidate, or reposition.\nThis is exactly how mature organizations run performance programs.\n\n4) It quantifies risk and makes it visible to leadership\n\nWhen Q1 slips, traffic impact is immediate and painful.\nWith this 2×2, you can report:\n\n“We have 140 high-volume keywords in Top 10—these are the ones we must defend.”\nThat turns SEO from “marketing work” into risk-managed performance with clear accountability.\n\n5) It defines a clear transformation path (a “north star” KPI)\n\nThe matrix creates one simple goal:\n\nMove keywords from Q2 → Q1.\nThat is a measurable transformation: improved share of demand where it matters most.\nIt also enables clean progress tracking week-over-week and month-over-month.\n\n6) It enables an execution cadence that scales\n\nYou can operationalize it into a repeatable cadence:\nWeekly: Q1 monitoring + Q2 sprint execution.\nMonthly: refresh P70 threshold + reassess quadrant mix.\nQuarterly: re-platform content architecture + authority building.\nThis becomes a management system, not an ad-hoc SEO to-do list.\n\n7) It makes reporting “consulting-grade”\n\nInstead of presenting 5,000 keywords, you present:\n\n4 boxes, counts, and a simple narrative:\n“Here is what we defend.”\n“Here is what we invest in.”\n“Here is what we monetize.”\n\n“Here is what we stop doing.”\nThat’s exactly the kind of clarity executives fund and support."
     },
     {
       "queryId": "MANUAL_003",
@@ -57,6 +60,18 @@
       "updatedAt": "2026-01-20T23:50:37.633Z",
       "pageTitle": "A business in 2026 must maintain a minimum number of digital footprints across key online surfaces. How many surfaces have you covered so far? List each surface, explain why it matters, and score it—where the size/weight of each item is determined by the points assigned to that row.",
       "pageContent": "Why It Matters\tPts\nCore web presence. Foundation of all SEO.\t18\nCore search visibility indicator. Fundamental to organic traffic.\t10\nE-E-A-T + Entity signals.\t10\nE-E-A-T + Entity signals.\t6\nE-E-A-T + Entity signals.\t6\nE-E-A-T + Entity signals.\t6\nE-E-A-T + Entity signals.\t6\nE-E-A-T + Entity signals.\t6\nE-E-A-T + Entity signals.\t6\nE-E-A-T + Entity signals.\t6\nHighest authority backlink. Wikipedia citations signal notable entity.\t8\nProfessional network presence. Builds B2B trust, showcases expertise, enables employee advocacy.\t10\nVideo SEO powerhouse. 2nd largest search engine. Videos rank in Google.\t8\nCore search visibility indicator. Fundamental to organic traffic.\t10\nReal-time brand presence. Tweets can appear in search results.\t3\nSocial proof and community engagement. Affects local SEO, enables reviews.\t4\nVisual discovery engine. Drives referral traffic, especially for lifestyle brands.\t2\nVisual brand identity. High engagement rates, influences younger demographics.\t4\nStructured data markup. Enables rich snippets in search results.\t10\nStructured entity graph for machines/LLMs.\t8\nBrand entity surface; impacts brand SERP trust and AI/LLM understanding.\t10\nStructured entity graph for machines/LLMs.\t8\nCore search visibility indicator. Fundamental to organic traffic.\t10\nCore search visibility indicator. Fundamental to organic traffic.\t10\nHigh-conversion contact surface; supports lead capture and customer trust.\t4\nStructured data markup. Enables rich snippets in search results.\t6\nPerformance UX baseline; impacts rankings.\t8\nVideo SEO powerhouse. 2nd largest search engine. Videos rank in Google.\t6\nAnswer Engine Optimization.\t3"
+    },
+    {
+      "queryId": "Q014",
+      "updatedAt": "2026-01-22T03:31:58.145Z",
+      "customTitle": "Gap Analysis - Keywords Where Competitors Rank But You Don't.",
+      "pageContent": "SEO Advantages:\n\n📊 Content Gap Discovery — Topics competitors cover that you don't\n💰 Traffic Opportunity — High-volume gaps = immediate revenue potential\n📅 Content Calendar Fuel — Prioritized list of pages to create\n🔍 Competitive Intel — See which competitors own which topics\n🎯 ROI Focus — Q1 (Urgent) = highest ROI content to create first",
+      "pageTitle": "Show me all keywords where MY competitors are ranking on Google, but MY website is completely invisible. Tell me which gaps are URGENT vs which to IGNORE."
+    },
+    {
+      "queryId": "Q015",
+      "pageTitle": "\"Find keywords with good search volume where NO ONE is ranking in my tracked data.",
+      "updatedAt": "2026-01-22T03:55:36.121Z"
     }
   ],
   "categories": [
@@ -75,6 +90,12 @@
       "Q011"
     ],
     "GRP-002": [
+      "Q015",
+      "Q014",
+      "Q013",
+      "Q004",
+      "Q003",
+      "Q002",
       "Q010"
     ],
     "GRP-003": [
