@@ -273,6 +273,73 @@ model DomainPage {
   @@index([clientCode])
 }
 
+// --- SERP RESULTS (Phase 3) ---
+model SerpResult {
+  id           String   @id @default(cuid())
+  clientCode   String
+  keyword      String
+  locationCode Int?
+  languageCode String?
+  rank         Int?
+  rankAbsolute Int?
+  url          String?  @db.Text
+  title        String?
+  description  String?  @db.Text
+  domain       String?
+  breadcrumb   String?
+  isFeaturedSnippet Boolean @default(false)
+  isImage      Boolean @default(false)
+  isVideo      Boolean @default(false)
+  highlighted  Json?
+  etv          Float?
+  estimatedPaidTrafficCost Float?
+  fetchedAt    DateTime?
+  
+  createdAt    DateTime @default(now())
+
+  @@index([clientCode, keyword])
+  @@index([domain])
+  @@index([clientCode])
+}
+
+// --- KEYWORD TAGS (Phase 3) ---
+model KeywordTag {
+  id             String   @id
+  clientCode     String
+  profileVersion String?
+  keyword        String
+  fitStatus      String?
+  productLine    String?
+  rationale      String?  @db.Text
+  modelRunId     String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  
+  @@index([clientCode])
+  @@index([keyword])
+  @@index([fitStatus])
+}
+
+// --- DOMAIN OVERVIEW (Phase 3) ---
+model DomainOverview {
+  id                  String   @id @default(cuid())
+  clientCode          String
+  domain              String
+  label               String?
+  locationCode        String?
+  languageCode        String?
+  organicTrafficETV   Float?
+  organicKeywordsCount Int?
+  fetchedAt           DateTime?
+  snapshotDate        String?
+  
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@unique([clientCode, domain, locationCode])
+  @@index([clientCode])
+}
+
 // ============================================
 // CMS MODELS - Content Management System
 // ============================================
