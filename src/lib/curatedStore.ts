@@ -1,7 +1,20 @@
 import { promises as fs } from 'fs';
 import path from 'path';
+import { PrismaClient } from '@prisma/client';
 import { CuratedKeyword, ClientPosition } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
+
+// Feature flag for PostgreSQL
+const USE_POSTGRES_CLIENT_POSITIONS = process.env.USE_POSTGRES_CLIENT_POSITIONS === 'true';
+
+// Prisma singleton
+let prisma: PrismaClient | null = null;
+function getPrisma(): PrismaClient {
+    if (!prisma) {
+        prisma = new PrismaClient();
+    }
+    return prisma;
+}
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 const CURATED_KEYWORDS_FILE = 'curated_keywords.json';
@@ -80,6 +93,30 @@ export async function deleteCuratedKeyword(id: string): Promise<void> {
 // --- CLIENT POSITIONS ---
 
 async function readClientPositions(): Promise<ClientPosition[]> {
+    // Use PostgreSQL when feature flag is enabled
+    if (USE_POSTGRES_CLIENT_POSITIONS) {
+        try {
+            const db = getPrisma();
+            const positions = await db.clientPosition.findMany();
+            return positions.map(p => ({
+                id: p.id,
+                clientCode: p.clientCode,
+                keywordOrTheme: p.keywordOrTheme,
+                currentPosition: p.currentPosition || '-',
+                competitor: p.competitor || '',
+                source: p.source || 'Manual',
+                notes: p.notes || '',
+                asOfDate: p.asOfDate || '',
+                createdAt: p.createdAt.toISOString(),
+                updatedAt: p.updatedAt.toISOString()
+            })) as ClientPosition[];
+        } catch (e) {
+            console.error('Failed to read client positions from PostgreSQL:', e);
+            return [];
+        }
+    }
+
+    // Fallback to JSON file
     try {
         const filePath = path.join(DATA_DIR, CLIENT_POSITIONS_FILE);
         const data = await fs.readFile(filePath, 'utf-8');

@@ -5,8 +5,9 @@ import { PrismaClient, Competitor as PrismaCompetitor } from '@prisma/client';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 
-// Feature flag for PostgreSQL migration  
+// Feature flags for PostgreSQL migration  
 const USE_POSTGRES_COMPETITORS = process.env.USE_POSTGRES_COMPETITORS === 'true';
+const USE_POSTGRES_MANUAL_KEYWORDS = process.env.USE_POSTGRES_MANUAL_KEYWORDS === 'true';
 
 // Prisma singleton
 let prisma: PrismaClient | null = null;
@@ -123,6 +124,26 @@ export async function deleteCompetitor(id: string): Promise<boolean> {
 }
 
 export async function getManualKeywords(): Promise<ManualKeyword[]> {
+  // Use PostgreSQL when feature flag is enabled
+  if (USE_POSTGRES_MANUAL_KEYWORDS) {
+    try {
+      const db = getPrisma();
+      const keywords = await db.manualKeyword.findMany();
+      return keywords.map(k => ({
+        id: k.id,
+        clientCode: k.clientCode,
+        keywordText: k.keywordText,
+        notes: k.notes || '',
+        isActive: k.isActive,
+        source: k.source || 'Manual Entry'
+      })) as ManualKeyword[];
+    } catch (e) {
+      console.error('Failed to read manual keywords from PostgreSQL:', e);
+      return [];
+    }
+  }
+
+  // Fallback to JSON file
   const keywords = await readJsonFile<ManualKeyword>('manualKeywords.json');
   return keywords.map(k => ({
     ...k,
