@@ -285,10 +285,14 @@ export async function GET(req: NextRequest) {
 
             for (const r of records) {
                 try {
+                    // File uses pageKey not pageId
+                    const pageId = r.pageKey || r.pageId;
+                    if (!pageId || !r.columnName) continue;
+
                     await prisma.exportColumnRegistry.upsert({
                         where: {
                             pageId_columnName: {
-                                pageId: r.pageId,
+                                pageId: pageId,
                                 columnName: r.columnName
                             }
                         },
@@ -297,17 +301,17 @@ export async function GET(req: NextRequest) {
                             dataType: r.dataType || undefined,
                             sourceField: r.sourceField || undefined,
                             metricMatchKey: r.metricMatchKey || undefined,
-                            isActive: r.isActive ?? true,
+                            isActive: true,
                             updatedAt: new Date()
                         },
                         create: {
-                            pageId: r.pageId,
+                            pageId: pageId,
                             columnName: r.columnName,
                             displayName: r.displayName,
                             dataType: r.dataType || undefined,
                             sourceField: r.sourceField || undefined,
                             metricMatchKey: r.metricMatchKey || undefined,
-                            isActive: r.isActive ?? true
+                            isActive: true
                         }
                     });
                     results.exportColumnRegistry.success++;
