@@ -525,6 +525,117 @@ model PageConfig {
   updatedAt       DateTime @updatedAt
 }
 
+// --- KEYWORD API DATA V2 (Phase 6) ---
+model KeywordApiDataV2 {
+  id               String   @id @default(cuid())
+  clientCode       String
+  keywordText      String
+  normalizedKeyword String?
+  searchVolume     Int?
+  cpc              Float?
+  competition      String?
+  lowTopOfPageBid  Float?
+  highTopOfPageBid Float?
+  locationCode     Int?
+  languageCode     String?
+  sourceApi        String?
+  snapshotDate     String?
+  lastPulledAt     DateTime?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  
+  @@unique([clientCode, keywordText, locationCode])
+  @@index([clientCode])
+  @@index([keywordText])
+}
+
+// --- CURATED KEYWORD (Phase 6) ---
+model CuratedKeyword {
+  id          String   @id @default(cuid())
+  clientCode  String
+  keyword     String
+  notes       String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@unique([clientCode, keyword])
+  @@index([clientCode])
+}
+
+// --- DASHBOARD QUERY GROUP (Phase 6) ---
+model DashboardQueryGroup {
+  id          String   @id
+  name        String
+  description String?  @db.Text
+  displayOrder Int     @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// --- DASHBOARD QUERY (Phase 6) ---
+model DashboardQuery {
+  id          String   @id
+  queryNumber String?
+  groupId     String?
+  title       String
+  description String?  @db.Text
+  tooltip     String?  @db.Text
+  status      String?
+  queryType   String?
+  config      Json?
+  sourceInfo  Json?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([groupId])
+}
+
+// --- DASHBOARD QUERY CUSTOMIZATION (Phase 6) ---
+model DashboardQueryCustomization {
+  id          String   @id @default(cuid())
+  clientCode  String
+  queryId     String
+  customTitle String?
+  customConfig Json?
+  isHidden    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@unique([clientCode, queryId])
+  @@index([clientCode])
+}
+
+// --- EXPORT PAGE REGISTRY (Phase 6) ---
+model ExportPageRegistry {
+  id           String   @id @default(cuid())
+  pageId       String   @unique
+  displayName  String
+  dataSourceRef String?
+  description  String?  @db.Text
+  columns      Json?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// --- EXPORT COLUMN REGISTRY (Phase 6) ---
+model ExportColumnRegistry {
+  id           String   @id @default(cuid())
+  pageId       String
+  columnName   String
+  displayName  String
+  dataType     String?
+  sourceField  String?
+  metricMatchKey String?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@unique([pageId, columnName])
+  @@index([pageId])
+}
+
 // ============================================
 // CMS MODELS - Content Management System
 // ============================================
