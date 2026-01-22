@@ -1,24 +1,14 @@
 /**
  * Domain Credibility Storage
- * Persists domain credibility data to JSON files
- * 
- * Features:
- * - Save with timestamps
- * - Load without re-fetching
- * - Track previous fetches for comparison
- * - Per-client storage
+ * Uses PostgreSQL when USE_POSTGRES_DOMAIN_CREDIBILITY is enabled
  */
 
 import { promises as fs } from 'fs';
 import path from 'path';
 import { DomainCredibilityRecord, LocationCode } from '@/lib/dataforseo/index';
+import { prisma } from '@/lib/prisma';
 
-console.log('[CredibilityStore] Module loaded');
-
-// ============================================================================
-// CONFIGURATION
-// ============================================================================
-
+const USE_POSTGRES = process.env.USE_POSTGRES_DOMAIN_CREDIBILITY === 'true';
 const DATA_DIR = path.join(process.cwd(), 'data');
 const STORE_FILE = path.join(DATA_DIR, 'domain_credibility.json');
 
@@ -46,31 +36,52 @@ async function ensureDataDir(): Promise<void> {
         await fs.access(DATA_DIR);
     } catch {
         await fs.mkdir(DATA_DIR, { recursive: true });
-        console.log(`[CredibilityStore] Created data directory: ${DATA_DIR}`);
     }
 }
 
 async function readStore(): Promise<DomainCredibilityRecord[]> {
+    if (USE_POSTGRES) {
+        const records = await prisma.domainCredibility.findMany();
+        return records.map(r => ({
+            id: r.id,
+            clientCode: r.clientCode,
+            domain: r.domain,
+            domainType: r.domainType as 'client' | 'competitor',
+            locationCode: r.locationCode as LocationCode,
+            domainAgeYears: r.domainAgeYears,
+            referringDomains: r.referringDomains,
+            totalBacklinks: r.totalBacklinks,
+            dofollowBacklinks: r.dofollowBacklinks,
+            nofollowBacklinks: r.nofollowBacklinks,
+            organicTraffic: r.organicTraffic,
+            organicCost: r.organicCost,
+            organicKeywordsCount: r.organicKeywordsCount,
+            paidKeywordsCount: r.paidKeywordsCount,
+            organicTop3: r.organicTop3,
+            organicTop10: r.organicTop10,
+            organicTop100: r.organicTop100,
+            keywordVisibilityScore: r.keywordVisibilityScore,
+            paidTraffic: r.paidTraffic,
+            paidCost: r.paidCost,
+            fetchedAt: r.fetchedAt,
+        }));
+    }
     try {
         await ensureDataDir();
         const data = await fs.readFile(STORE_FILE, 'utf-8');
-        const records = JSON.parse(data) as DomainCredibilityRecord[];
-        console.log(`[CredibilityStore] Loaded ${records.length} records from storage`);
-        return records;
+        return JSON.parse(data) as DomainCredibilityRecord[];
     } catch (error) {
         if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
-            console.log('[CredibilityStore] No existing store file, starting fresh');
             return [];
         }
-        console.error('[CredibilityStore] Error reading store:', error);
         return [];
     }
 }
 
 async function writeStore(records: DomainCredibilityRecord[]): Promise<void> {
+    if (USE_POSTGRES) return;
     await ensureDataDir();
     await fs.writeFile(STORE_FILE, JSON.stringify(records, null, 2), 'utf-8');
-    console.log(`[CredibilityStore] Saved ${records.length} records to storage`);
 }
 
 function createRecordKey(clientCode: string, domain: string, locationCode: LocationCode): string {
@@ -81,42 +92,109 @@ function createRecordKey(clientCode: string, domain: string, locationCode: Locat
 // PUBLIC API - Read Operations
 // ============================================================================
 
-/**
- * Get all credibility records
- */
 export async function getAllCredibilityRecords(): Promise<DomainCredibilityRecord[]> {
     return readStore();
 }
 
-/**
- * Get credibility records for a specific client
- */
-export async function getCredibilityByClient(
-    clientCode: string
-): Promise<DomainCredibilityRecord[]> {
+export async function getCredibilityByClient(clientCode: string): Promise<DomainCredibilityRecord[]> {
+    if (USE_POSTGRES) {
+        const records = await prisma.domainCredibility.findMany({ where: { clientCode } });
+        return records.map(r => ({
+            id: r.id,
+            clientCode: r.clientCode,
+            domain: r.domain,
+            domainType: r.domainType as 'client' | 'competitor',
+            locationCode: r.locationCode as LocationCode,
+            domainAgeYears: r.domainAgeYears,
+            referringDomains: r.referringDomains,
+            totalBacklinks: r.totalBacklinks,
+            dofollowBacklinks: r.dofollowBacklinks,
+            nofollowBacklinks: r.nofollowBacklinks,
+            organicTraffic: r.organicTraffic,
+            organicCost: r.organicCost,
+            organicKeywordsCount: r.organicKeywordsCount,
+            paidKeywordsCount: r.paidKeywordsCount,
+            organicTop3: r.organicTop3,
+            organicTop10: r.organicTop10,
+            organicTop100: r.organicTop100,
+            keywordVisibilityScore: r.keywordVisibilityScore,
+            paidTraffic: r.paidTraffic,
+            paidCost: r.paidCost,
+            fetchedAt: r.fetchedAt,
+        }));
+    }
     const records = await readStore();
     return records.filter(r => r.clientCode === clientCode);
 }
 
-/**
- * Get credibility records for a client and location
- */
 export async function getCredibilityByClientAndLocation(
     clientCode: string,
     locationCode: LocationCode
 ): Promise<DomainCredibilityRecord[]> {
+    if (USE_POSTGRES) {
+        const records = await prisma.domainCredibility.findMany({ where: { clientCode, locationCode } });
+        return records.map(r => ({
+            id: r.id,
+            clientCode: r.clientCode,
+            domain: r.domain,
+            domainType: r.domainType as 'client' | 'competitor',
+            locationCode: r.locationCode as LocationCode,
+            domainAgeYears: r.domainAgeYears,
+            referringDomains: r.referringDomains,
+            totalBacklinks: r.totalBacklinks,
+            dofollowBacklinks: r.dofollowBacklinks,
+            nofollowBacklinks: r.nofollowBacklinks,
+            organicTraffic: r.organicTraffic,
+            organicCost: r.organicCost,
+            organicKeywordsCount: r.organicKeywordsCount,
+            paidKeywordsCount: r.paidKeywordsCount,
+            organicTop3: r.organicTop3,
+            organicTop10: r.organicTop10,
+            organicTop100: r.organicTop100,
+            keywordVisibilityScore: r.keywordVisibilityScore,
+            paidTraffic: r.paidTraffic,
+            paidCost: r.paidCost,
+            fetchedAt: r.fetchedAt,
+        }));
+    }
     const records = await readStore();
     return records.filter(r => r.clientCode === clientCode && r.locationCode === locationCode);
 }
 
-/**
- * Get credibility record for a specific domain
- */
 export async function getCredibilityByDomain(
     clientCode: string,
     domain: string,
     locationCode: LocationCode
 ): Promise<DomainCredibilityRecord | null> {
+    if (USE_POSTGRES) {
+        const record = await prisma.domainCredibility.findFirst({
+            where: { clientCode, domain: { equals: domain, mode: 'insensitive' }, locationCode }
+        });
+        if (!record) return null;
+        return {
+            id: record.id,
+            clientCode: record.clientCode,
+            domain: record.domain,
+            domainType: record.domainType as 'client' | 'competitor',
+            locationCode: record.locationCode as LocationCode,
+            domainAgeYears: record.domainAgeYears,
+            referringDomains: record.referringDomains,
+            totalBacklinks: record.totalBacklinks,
+            dofollowBacklinks: record.dofollowBacklinks,
+            nofollowBacklinks: record.nofollowBacklinks,
+            organicTraffic: record.organicTraffic,
+            organicCost: record.organicCost,
+            organicKeywordsCount: record.organicKeywordsCount,
+            paidKeywordsCount: record.paidKeywordsCount,
+            organicTop3: record.organicTop3,
+            organicTop10: record.organicTop10,
+            organicTop100: record.organicTop100,
+            keywordVisibilityScore: record.keywordVisibilityScore,
+            paidTraffic: record.paidTraffic,
+            paidCost: record.paidCost,
+            fetchedAt: record.fetchedAt,
+        };
+    }
     const records = await readStore();
     const normalizedDomain = domain.toLowerCase().trim();
     return records.find(
@@ -126,9 +204,6 @@ export async function getCredibilityByDomain(
     ) || null;
 }
 
-/**
- * Check if we have recent data (within specified hours)
- */
 export async function hasRecentData(
     clientCode: string,
     locationCode: LocationCode,
@@ -145,19 +220,75 @@ export async function hasRecentData(
 // PUBLIC API - Write Operations
 // ============================================================================
 
-/**
- * Save or update credibility records (upsert)
- * Uses clientCode + domain + locationCode as unique key
- */
 export async function saveCredibilityRecords(
     newRecords: DomainCredibilityRecord[]
 ): Promise<{ saved: number; updated: number }> {
-    const existing = await readStore();
+    if (USE_POSTGRES) {
+        let saved = 0, updated = 0;
+        for (const record of newRecords) {
+            const existing = await prisma.domainCredibility.findFirst({
+                where: { clientCode: record.clientCode, domain: { equals: record.domain, mode: 'insensitive' }, locationCode: record.locationCode }
+            });
+            if (existing) {
+                await prisma.domainCredibility.update({
+                    where: { id: existing.id },
+                    data: {
+                        domainType: record.domainType,
+                        domainAgeYears: record.domainAgeYears,
+                        referringDomains: record.referringDomains,
+                        totalBacklinks: record.totalBacklinks,
+                        dofollowBacklinks: record.dofollowBacklinks,
+                        nofollowBacklinks: record.nofollowBacklinks,
+                        organicTraffic: record.organicTraffic,
+                        organicCost: record.organicCost,
+                        organicKeywordsCount: record.organicKeywordsCount,
+                        paidKeywordsCount: record.paidKeywordsCount,
+                        organicTop3: record.organicTop3,
+                        organicTop10: record.organicTop10,
+                        organicTop100: record.organicTop100,
+                        keywordVisibilityScore: record.keywordVisibilityScore,
+                        paidTraffic: record.paidTraffic,
+                        paidCost: record.paidCost,
+                        fetchedAt: record.fetchedAt,
+                        updatedAt: new Date(),
+                    }
+                });
+                updated++;
+            } else {
+                await prisma.domainCredibility.create({
+                    data: {
+                        id: record.id,
+                        clientCode: record.clientCode,
+                        domain: record.domain,
+                        domainType: record.domainType,
+                        locationCode: record.locationCode,
+                        domainAgeYears: record.domainAgeYears,
+                        referringDomains: record.referringDomains,
+                        totalBacklinks: record.totalBacklinks,
+                        dofollowBacklinks: record.dofollowBacklinks,
+                        nofollowBacklinks: record.nofollowBacklinks,
+                        organicTraffic: record.organicTraffic,
+                        organicCost: record.organicCost,
+                        organicKeywordsCount: record.organicKeywordsCount,
+                        paidKeywordsCount: record.paidKeywordsCount,
+                        organicTop3: record.organicTop3,
+                        organicTop10: record.organicTop10,
+                        organicTop100: record.organicTop100,
+                        keywordVisibilityScore: record.keywordVisibilityScore,
+                        paidTraffic: record.paidTraffic,
+                        paidCost: record.paidCost,
+                        fetchedAt: record.fetchedAt,
+                    }
+                });
+                saved++;
+            }
+        }
+        return { saved, updated };
+    }
 
-    // Create a map for efficient lookup
+    const existing = await readStore();
     const recordMap = new Map<string, DomainCredibilityRecord>();
 
-    // Add existing records to map
     for (const record of existing) {
         const key = createRecordKey(record.clientCode, record.domain, record.locationCode);
         recordMap.set(key, record);
@@ -166,17 +297,12 @@ export async function saveCredibilityRecords(
     let updated = 0;
     let saved = 0;
 
-    // Upsert new records
     for (const record of newRecords) {
         const key = createRecordKey(record.clientCode, record.domain, record.locationCode);
 
         if (recordMap.has(key)) {
-            // Update existing - keep the old record's ID but update data
             const oldRecord = recordMap.get(key)!;
-            recordMap.set(key, {
-                ...record,
-                id: oldRecord.id, // Keep original ID
-            });
+            recordMap.set(key, { ...record, id: oldRecord.id });
             updated++;
         } else {
             recordMap.set(key, record);
@@ -184,44 +310,67 @@ export async function saveCredibilityRecords(
         }
     }
 
-    // Convert back to array and save
     const allRecords = Array.from(recordMap.values());
     await writeStore(allRecords);
 
-    console.log(`[CredibilityStore] Saved: ${saved} new, Updated: ${updated} existing`);
     return { saved, updated };
 }
 
-/**
- * Replace all records for a client and location
- */
 export async function replaceClientLocationCredibility(
     clientCode: string,
     locationCode: LocationCode,
     newRecords: DomainCredibilityRecord[]
 ): Promise<void> {
+    if (USE_POSTGRES) {
+        await prisma.domainCredibility.deleteMany({ where: { clientCode, locationCode } });
+        for (const record of newRecords) {
+            await prisma.domainCredibility.create({
+                data: {
+                    id: record.id,
+                    clientCode: record.clientCode,
+                    domain: record.domain,
+                    domainType: record.domainType,
+                    locationCode: record.locationCode,
+                    domainAgeYears: record.domainAgeYears,
+                    referringDomains: record.referringDomains,
+                    totalBacklinks: record.totalBacklinks,
+                    dofollowBacklinks: record.dofollowBacklinks,
+                    nofollowBacklinks: record.nofollowBacklinks,
+                    organicTraffic: record.organicTraffic,
+                    organicCost: record.organicCost,
+                    organicKeywordsCount: record.organicKeywordsCount,
+                    paidKeywordsCount: record.paidKeywordsCount,
+                    organicTop3: record.organicTop3,
+                    organicTop10: record.organicTop10,
+                    organicTop100: record.organicTop100,
+                    keywordVisibilityScore: record.keywordVisibilityScore,
+                    paidTraffic: record.paidTraffic,
+                    paidCost: record.paidCost,
+                    fetchedAt: record.fetchedAt,
+                }
+            });
+        }
+        return;
+    }
     const existing = await readStore();
-
-    // Remove old records for this client+location
-    const filtered = existing.filter(
-        r => !(r.clientCode === clientCode && r.locationCode === locationCode)
-    );
-
-    // Add new records
+    const filtered = existing.filter(r => !(r.clientCode === clientCode && r.locationCode === locationCode));
     const updated = [...filtered, ...newRecords];
     await writeStore(updated);
-
-    console.log(`[CredibilityStore] Replaced ${newRecords.length} records for ${clientCode}/${locationCode}`);
 }
 
-/**
- * Delete a single credibility record
- */
 export async function deleteCredibilityRecord(
     clientCode: string,
     domain: string,
     locationCode: LocationCode
 ): Promise<boolean> {
+    if (USE_POSTGRES) {
+        const existing = await prisma.domainCredibility.findFirst({
+            where: { clientCode, domain: { equals: domain, mode: 'insensitive' }, locationCode }
+        });
+        if (!existing) return false;
+        await prisma.domainCredibility.delete({ where: { id: existing.id } });
+        return true;
+    }
     const records = await readStore();
     const normalizedDomain = domain.toLowerCase().trim();
 
@@ -232,24 +381,23 @@ export async function deleteCredibilityRecord(
     );
 
     if (filtered.length === records.length) {
-        return false; // Nothing deleted
+        return false;
     }
 
     await writeStore(filtered);
-    console.log(`[CredibilityStore] Deleted record for ${domain}`);
     return true;
 }
 
-/**
- * Delete all records for a client
- */
 export async function deleteClientCredibility(clientCode: string): Promise<number> {
+    if (USE_POSTGRES) {
+        const result = await prisma.domainCredibility.deleteMany({ where: { clientCode } });
+        return result.count;
+    }
     const records = await readStore();
     const filtered = records.filter(r => r.clientCode !== clientCode);
     const deletedCount = records.length - filtered.length;
 
     await writeStore(filtered);
-    console.log(`[CredibilityStore] Deleted ${deletedCount} records for client ${clientCode}`);
     return deletedCount;
 }
 
@@ -257,9 +405,6 @@ export async function deleteClientCredibility(clientCode: string): Promise<numbe
 // PUBLIC API - Summary & Analytics
 // ============================================================================
 
-/**
- * Get summary statistics for a client
- */
 export async function getCredibilitySummary(
     clientCode: string,
     locationCode?: LocationCode
@@ -286,7 +431,6 @@ export async function getCredibilitySummary(
     const clientDomains = records.filter(r => r.domainType === 'client');
     const competitorDomains = records.filter(r => r.domainType === 'competitor');
 
-    // Calculate averages (only from records with data)
     const agesWithData = records.filter(r => r.domainAgeYears !== null);
     const avgDomainAge = agesWithData.length > 0
         ? Math.round((agesWithData.reduce((sum, r) => sum + (r.domainAgeYears || 0), 0) / agesWithData.length) * 10) / 10
@@ -297,7 +441,6 @@ export async function getCredibilitySummary(
         ? Math.round(rdWithData.reduce((sum, r) => sum + (r.referringDomains || 0), 0) / rdWithData.length)
         : null;
 
-    // Find oldest and newest fetch times
     const sortedByTime = [...records].sort(
         (a, b) => new Date(a.fetchedAt).getTime() - new Date(b.fetchedAt).getTime()
     );
@@ -314,9 +457,6 @@ export async function getCredibilitySummary(
     };
 }
 
-/**
- * Get the last fetch timestamp for a client
- */
 export async function getLastFetchedAt(
     clientCode: string,
     locationCode?: LocationCode
@@ -336,9 +476,4 @@ export async function getLastFetchedAt(
     return sorted[0].fetchedAt;
 }
 
-// ============================================================================
-// VERSION
-// ============================================================================
-
-export const CREDIBILITY_STORE_VERSION = '1.0.0';
-console.log(`[CredibilityStore] Version: ${CREDIBILITY_STORE_VERSION}`);
+export const CREDIBILITY_STORE_VERSION = '2.0.0';

@@ -1,19 +1,40 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-import { ClientPositionSerpRecord } from '@/types';
+import { ClientPositionSerpRecord, SerpResult } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
+import { prisma } from '@/lib/prisma';
+
+const USE_POSTGRES_CLIENT_POSITIONS_SERP = process.env.USE_POSTGRES_CLIENT_POSITIONS_SERP === 'true';
+const USE_POSTGRES_SERP_RESULTS = process.env.USE_POSTGRES_SERP_RESULTS === 'true';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 const SERP_POSITIONS_FILE = 'client_positions_serp.json';
+const SERP_RESULTS_FILE = 'serp_results.json';
+
+// --------------------------------------------------------
+// CLIENT POSITIONS SERP (client_positions_serp.json)
+// --------------------------------------------------------
 
 async function readSerpRecords(): Promise<ClientPositionSerpRecord[]> {
+  if (USE_POSTGRES_CLIENT_POSITIONS_SERP) {
+    const records = await prisma.clientPositionSerp.findMany();
+    return records.map(r => ({
+      id: r.id,
+      clientCode: r.clientCode,
+      keyword: r.keyword,
+      selectedDomain: r.selectedDomain,
+      locationType: r.locationType as 'IN' | 'GL',
+      rank: r.rank,
+      url: r.url,
+      fetchedAt: r.fetchedAt,
+      createdAt: r.createdAt.toISOString(),
+      updatedAt: r.updatedAt.toISOString(),
+    }));
+  }
   try {
     const filePath = path.join(DATA_DIR, SERP_POSITIONS_FILE);
     const data = await fs.readFile(filePath, 'utf-8');
     const raw = JSON.parse(data);
-
-    // On-the-fly Migration: GLOBAL -> GL
-    // This ensures legacy data is read correctly as GL
     return raw.map((r: any) => ({
       ...r,
       locationType: r.locationType === 'GLOBAL' ? 'GL' : r.locationType
@@ -24,6 +45,7 @@ async function readSerpRecords(): Promise<ClientPositionSerpRecord[]> {
 }
 
 async function writeSerpRecords(records: ClientPositionSerpRecord[]): Promise<void> {
+  if (USE_POSTGRES_CLIENT_POSITIONS_SERP) return;
   const filePath = path.join(DATA_DIR, SERP_POSITIONS_FILE);
   await fs.writeFile(filePath, JSON.stringify(records, null, 2), 'utf-8');
 }
@@ -33,6 +55,25 @@ export async function getClientPositionSerpRecords(
   selectedDomain?: string,
   locationType?: 'IN' | 'GL'
 ): Promise<ClientPositionSerpRecord[]> {
+  if (USE_POSTGRES_CLIENT_POSITIONS_SERP) {
+    const where: any = { clientCode };
+    if (selectedDomain) where.selectedDomain = selectedDomain;
+    if (locationType) where.locationType = locationType;
+
+    const records = await prisma.clientPositionSerp.findMany({ where });
+    return records.map(r => ({
+      id: r.id,
+      clientCode: r.clientCode,
+      keyword: r.keyword,
+      selectedDomain: r.selectedDomain,
+      locationType: r.locationType as 'IN' | 'GL',
+      rank: r.rank,
+      url: r.url,
+      fetchedAt: r.fetchedAt,
+      createdAt: r.createdAt.toISOString(),
+      updatedAt: r.updatedAt.toISOString(),
+    }));
+  }
   const all = await readSerpRecords();
   return all.filter(r =>
     r.clientCode === clientCode &&
@@ -44,10 +85,42 @@ export async function getClientPositionSerpRecords(
 export async function upsertClientPositionSerpRecords(
   newRecords: Omit<ClientPositionSerpRecord, 'id' | 'createdAt' | 'updatedAt'>[]
 ): Promise<void> {
+  if (USE_POSTGRES_CLIENT_POSITIONS_SERP) {
+    for (const r of newRecords) {
+      const existing = await prisma.clientPositionSerp.findFirst({
+        where: {
+          clientCode: r.clientCode,
+          keyword: { equals: r.keyword, mode: 'insensitive' },
+          selectedDomain: { equals: r.selectedDomain, mode: 'insensitive' },
+          locationType: r.locationType
+        }
+      });
+
+      if (existing) {
+        await prisma.clientPositionSerp.update({
+          where: { id: existing.id },
+          data: { rank: r.rank, url: r.url, fetchedAt: r.fetchedAt, updatedAt: new Date() }
+        });
+      } else {
+        await prisma.clientPositionSerp.create({
+          data: {
+            clientCode: r.clientCode,
+            keyword: r.keyword,
+            selectedDomain: r.selectedDomain,
+            locationType: r.locationType,
+            rank: r.rank,
+            url: r.url,
+            fetchedAt: r.fetchedAt,
+          }
+        });
+      }
+    }
+    return;
+  }
+
   const all = await readSerpRecords();
   const timestamp = new Date().toISOString();
 
-  // Composite key: clientCode + keyword + selectedDomain + locationType
   const getKey = (r: { clientCode: string, keyword: string, selectedDomain: string, locationType: string }) =>
     `${r.clientCode}|${r.keyword.toLowerCase()}|${r.selectedDomain.toLowerCase()}|${r.locationType}`;
 
@@ -70,7 +143,6 @@ export async function upsertClientPositionSerpRecords(
     return existing;
   });
 
-  // Add remaining new records
   newMap.forEach((val) => {
     updatedList.push({
       id: uuidv4(),
@@ -87,10 +159,25 @@ export async function upsertClientPositionSerpRecords(
 // SERP RESULTS (Detailed Top 10) - serp_results.json
 // --------------------------------------------------------
 
-const SERP_RESULTS_FILE = 'serp_results.json';
-import { SerpResult } from '@/types';
-
 async function readSerpResultRecords(): Promise<SerpResult[]> {
+  if (USE_POSTGRES_SERP_RESULTS) {
+    const records = await prisma.serpResult.findMany();
+    return records.map(r => ({
+      id: r.id,
+      clientCode: r.clientCode,
+      keyword: r.keyword,
+      locationCode: r.locationCode,
+      rank: r.rank,
+      domain: r.domain,
+      url: r.url,
+      title: r.title ?? '',
+      description: r.description ?? '',
+      serpData: r.serpData as any,
+      fetchedAt: r.fetchedAt,
+      createdAt: r.createdAt.toISOString(),
+      updatedAt: r.updatedAt.toISOString(),
+    }));
+  }
   try {
     const filePath = path.join(DATA_DIR, SERP_RESULTS_FILE);
     const data = await fs.readFile(filePath, 'utf-8');
@@ -101,6 +188,7 @@ async function readSerpResultRecords(): Promise<SerpResult[]> {
 }
 
 async function writeSerpResultRecords(records: SerpResult[]): Promise<void> {
+  if (USE_POSTGRES_SERP_RESULTS) return;
   const filePath = path.join(DATA_DIR, SERP_RESULTS_FILE);
   await fs.writeFile(filePath, JSON.stringify(records, null, 2), 'utf-8');
 }
@@ -109,6 +197,26 @@ export async function getSerpDataByClientAndLocations(
   clientCode: string,
   locationCodes: number[]
 ): Promise<SerpResult[]> {
+  if (USE_POSTGRES_SERP_RESULTS) {
+    const records = await prisma.serpResult.findMany({
+      where: { clientCode, locationCode: { in: locationCodes } }
+    });
+    return records.map(r => ({
+      id: r.id,
+      clientCode: r.clientCode,
+      keyword: r.keyword,
+      locationCode: r.locationCode,
+      rank: r.rank,
+      domain: r.domain,
+      url: r.url,
+      title: r.title ?? '',
+      description: r.description ?? '',
+      serpData: r.serpData as any,
+      fetchedAt: r.fetchedAt,
+      createdAt: r.createdAt.toISOString(),
+      updatedAt: r.updatedAt.toISOString(),
+    }));
+  }
   const all = await readSerpResultRecords();
   return all.filter(r =>
     r.clientCode === clientCode &&
@@ -121,17 +229,37 @@ export async function replaceSerpDataForClientAndLocations(
   locationCodes: number[],
   newRecords: SerpResult[]
 ): Promise<void> {
-  const all = await readSerpResultRecords();
+  if (USE_POSTGRES_SERP_RESULTS) {
+    // Delete existing records
+    await prisma.serpResult.deleteMany({
+      where: { clientCode, locationCode: { in: locationCodes } }
+    });
+    // Insert new records
+    for (const r of newRecords) {
+      await prisma.serpResult.create({
+        data: {
+          id: r.id,
+          clientCode: r.clientCode,
+          keyword: r.keyword,
+          locationCode: r.locationCode,
+          rank: r.rank,
+          domain: r.domain,
+          url: r.url,
+          title: r.title,
+          description: r.description,
+          serpData: r.serpData,
+          fetchedAt: r.fetchedAt,
+        }
+      });
+    }
+    return;
+  }
 
-  // Remove existing records for this client + locations
-  // filtering out strictly what matches BOTH client AND one of the locations
+  const all = await readSerpResultRecords();
   const filtered = all.filter(r =>
     !(r.clientCode === clientCode && locationCodes.includes(r.locationCode))
   );
-
-  // Append new records
   const updated = [...filtered, ...newRecords];
-
   await writeSerpResultRecords(updated);
 }
 

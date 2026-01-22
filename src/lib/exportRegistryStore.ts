@@ -1,7 +1,9 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
+import { prisma } from '@/lib/prisma';
 
+const USE_POSTGRES = process.env.USE_POSTGRES_EXPORT_REGISTRY === 'true';
 const DATA_DIR = path.join(process.cwd(), 'data');
 
 // Types
@@ -62,6 +64,23 @@ async function writeJsonFile<T>(filename: string, data: T[]): Promise<void> {
 
 // Page Registry Functions
 export async function getExportPages(): Promise<ExportPageEntry[]> {
+  if (USE_POSTGRES) {
+    const records = await prisma.exportPageRegistry.findMany();
+    return records.map(r => ({
+      id: r.id.toString(),
+      pageKey: r.pageId,
+      pageName: r.displayName,
+      route: '',
+      module: '',
+      clientFilterField: '',
+      dataSourceType: 'JSON_FILE' as const,
+      dataSourceRef: r.dataSourceRef ?? '',
+      description: r.description ?? '',
+      rowDescription: '',
+      status: r.isActive ? 'ACTIVE' as const : 'DEPRECATED' as const,
+      lastDiscoveredAt: r.updatedAt.toISOString(),
+    }));
+  }
   return readJsonFile<ExportPageEntry>(PAGE_REGISTRY_FILE);
 }
 
@@ -71,9 +90,24 @@ export async function getExportPage(pageKey: string): Promise<ExportPageEntry | 
 }
 
 export async function upsertExportPage(entry: Omit<ExportPageEntry, 'id'> & { id?: string }): Promise<ExportPageEntry> {
+  if (USE_POSTGRES) {
+    const existing = await prisma.exportPageRegistry.findUnique({ where: { pageId: entry.pageKey } });
+    if (existing) {
+      await prisma.exportPageRegistry.update({
+        where: { pageId: entry.pageKey },
+        data: { displayName: entry.pageName, dataSourceRef: entry.dataSourceRef, description: entry.description, isActive: entry.status === 'ACTIVE', updatedAt: new Date() }
+      });
+    } else {
+      await prisma.exportPageRegistry.create({
+        data: { pageId: entry.pageKey, displayName: entry.pageName, dataSourceRef: entry.dataSourceRef, description: entry.description, isActive: entry.status === 'ACTIVE' }
+      });
+    }
+    return { ...entry, id: entry.id || uuidv4(), lastDiscoveredAt: new Date().toISOString() };
+  }
+
   const pages = await getExportPages();
   const existingIndex = pages.findIndex(p => p.pageKey === entry.pageKey);
-  
+
   const finalEntry: ExportPageEntry = {
     ...entry,
     id: entry.id || (existingIndex >= 0 ? pages[existingIndex].id : uuidv4()),
@@ -97,21 +131,55 @@ export async function getActiveExportPages(): Promise<ExportPageEntry[]> {
 
 // Column Registry Functions
 export async function getAllColumns(): Promise<ExportColumnEntry[]> {
+  if (USE_POSTGRES) {
+    const records = await prisma.exportColumnRegistry.findMany();
+    return records.map(r => ({
+      id: r.id.toString(),
+      pageKey: r.pageId,
+      columnName: r.columnName,
+      displayName: r.displayName,
+      dataType: r.dataType ?? 'string',
+      sourceField: r.sourceField ?? '',
+      metricMatchKey: r.metricMatchKey,
+      notes: null,
+    }));
+  }
   return readJsonFile<ExportColumnEntry>(COLUMN_REGISTRY_FILE);
 }
 
 export async function getColumnsForPage(pageKey: string): Promise<ExportColumnEntry[]> {
+  if (USE_POSTGRES) {
+    const records = await prisma.exportColumnRegistry.findMany({ where: { pageId: pageKey } });
+    return records.map(r => ({
+      id: r.id.toString(),
+      pageKey: r.pageId,
+      columnName: r.columnName,
+      displayName: r.displayName,
+      dataType: r.dataType ?? 'string',
+      sourceField: r.sourceField ?? '',
+      metricMatchKey: r.metricMatchKey,
+      notes: null,
+    }));
+  }
   const columns = await getAllColumns();
   return columns.filter(c => c.pageKey === pageKey);
 }
 
 export async function upsertColumns(pageKey: string, columns: Omit<ExportColumnEntry, 'id' | 'pageKey'>[]): Promise<void> {
+  if (USE_POSTGRES) {
+    // Delete existing columns for this page
+    await prisma.exportColumnRegistry.deleteMany({ where: { pageId: pageKey } });
+    // Add new columns
+    for (const col of columns) {
+      await prisma.exportColumnRegistry.create({
+        data: { pageId: pageKey, columnName: col.columnName, displayName: col.displayName, dataType: col.dataType, sourceField: col.sourceField, metricMatchKey: col.metricMatchKey }
+      });
+    }
+    return;
+  }
+
   const allColumns = await getAllColumns();
-  
-  // Remove existing columns for this page
   const otherColumns = allColumns.filter(c => c.pageKey !== pageKey);
-  
-  // Add new columns with IDs
   const newColumns: ExportColumnEntry[] = columns.map(col => ({
     ...col,
     id: uuidv4(),
@@ -121,15 +189,14 @@ export async function upsertColumns(pageKey: string, columns: Omit<ExportColumnE
   await writeJsonFile(COLUMN_REGISTRY_FILE, [...otherColumns, ...newColumns]);
 }
 
-// Glossary Functions
+// Glossary Functions (stays as JSON - static data)
 export async function getGlossary(): Promise<GlossaryEntry[]> {
   return readJsonFile<GlossaryEntry>(GLOSSARY_FILE);
 }
 
 export async function matchGlossary(columnName: string): Promise<GlossaryEntry | null> {
   const glossary = await getGlossary();
-  
-  // Normalize column name: lowercase, trim, convert camelCase to snake_case
+
   const normalized = columnName
     .trim()
     .toLowerCase()
@@ -137,16 +204,13 @@ export async function matchGlossary(columnName: string): Promise<GlossaryEntry |
     .toLowerCase()
     .replace(/\s+/g, '_');
 
-  // Try exact match first
   let match = glossary.find(g => g.metricKey === normalized);
   if (match) return match;
 
-  // Try without underscores
   const noUnderscores = normalized.replace(/_/g, '');
   match = glossary.find(g => g.metricKey.replace(/_/g, '') === noUnderscores);
   if (match) return match;
 
-  // Common aliases
   const aliases: Record<string, string> = {
     'vol': 'search_volume',
     'volume': 'search_volume',
@@ -171,16 +235,15 @@ export async function matchGlossary(columnName: string): Promise<GlossaryEntry |
   return null;
 }
 
-// Batch match for multiple columns
 export async function matchGlossaryBatch(columnNames: string[]): Promise<Map<string, GlossaryEntry>> {
   const results = new Map<string, GlossaryEntry>();
-  
+
   for (const col of columnNames) {
     const match = await matchGlossary(col);
     if (match) {
       results.set(col, match);
     }
   }
-  
+
   return results;
 }
