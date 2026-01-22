@@ -1,11 +1,9 @@
 import OpenAI from 'openai';
-import { promises as fs } from 'fs';
-import path from 'path';
 import { DomainPageRecord } from '@/types';
 import { getActiveCredentialByService } from '@/lib/apiCredentialsStore';
+import { prisma } from '@/lib/prisma';
 
-const DATA_DIR = path.join(process.cwd(), 'data');
-const DOMAIN_PAGES_FILE = path.join(DATA_DIR, 'domain_pages.json');
+const USE_POSTGRES = process.env.USE_POSTGRES_DOMAIN_PAGES === 'true';
 
 export type UrlItem = {
   id: string;
@@ -111,31 +109,19 @@ ${itemsText}`;
 
 function repairJson(jsonStr: string): string {
   let fixed = jsonStr;
-
-  // Remove any trailing commas before ] or }
   fixed = fixed.replace(/,(\s*[}\]])/g, '$1');
-
-  // Fix unescaped newlines in strings
   fixed = fixed.replace(/(?<!\\)\\n/g, '\\n');
-
-  // Fix truncated JSON - try to close unclosed brackets
   const openBrackets = (fixed.match(/\[/g) || []).length;
   const closeBrackets = (fixed.match(/\]/g) || []).length;
   const openBraces = (fixed.match(/\{/g) || []).length;
   const closeBraces = (fixed.match(/\}/g) || []).length;
-
-  // Add missing closing brackets
   for (let i = 0; i < openBrackets - closeBrackets; i++) {
     fixed += ']';
   }
   for (let i = 0; i < openBraces - closeBraces; i++) {
     fixed += '}';
   }
-
-  // Remove incomplete last array element if JSON is truncated mid-object
-  // Match pattern: {...}, { incomplete... and remove the incomplete part
   fixed = fixed.replace(/,\s*\{[^}]*$/g, '');
-
   return fixed;
 }
 
@@ -155,9 +141,7 @@ export async function clusterUrlsWithLlm(
   }
 
   const openai = new OpenAI({ apiKey: openaiApiKey });
-
   const userPrompt = buildUserPrompt(items);
-
   let lastError: Error | null = null;
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -169,17 +153,13 @@ export async function clusterUrlsWithLlm(
           { role: 'user', content: userPrompt },
         ],
         temperature: 0.2,
-        max_tokens: 8000, // Increased to prevent truncation
-        response_format: { type: 'json_object' }, // Force JSON output
+        max_tokens: 8000,
+        response_format: { type: 'json_object' },
       });
 
       const content = response.choices[0]?.message?.content?.trim() || '';
+      if (!content) throw new Error('Empty response from LLM');
 
-      if (!content) {
-        throw new Error('Empty response from LLM');
-      }
-
-      // Try to extract JSON object
       let jsonStr = content;
       const jsonMatch = content.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
@@ -190,7 +170,6 @@ export async function clusterUrlsWithLlm(
       try {
         parsed = JSON.parse(jsonStr) as LlmClusterResult;
       } catch (parseError) {
-        // Try to repair the JSON
         console.log(`Attempting JSON repair for batch (attempt ${attempt + 1})...`);
         const repairedJson = repairJson(jsonStr);
         parsed = JSON.parse(repairedJson) as LlmClusterResult;
@@ -200,7 +179,6 @@ export async function clusterUrlsWithLlm(
         throw new Error('Invalid LLM response structure: missing clusters array');
       }
 
-      // Validate cluster structure
       for (const cluster of parsed.clusters) {
         if (!cluster.cluster_id || !cluster.cluster_label || !Array.isArray(cluster.member_ids)) {
           throw new Error('Invalid cluster structure in response');
@@ -211,20 +189,38 @@ export async function clusterUrlsWithLlm(
     } catch (error) {
       lastError = error instanceof Error ? error : new Error('Unknown error');
       console.error(`LLM clustering attempt ${attempt + 1} failed:`, lastError.message);
-
       if (attempt < maxRetries) {
-        // Wait before retry (exponential backoff)
         await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1)));
       }
     }
   }
 
-  console.error('LLM clustering error after all retries:', lastError);
   throw lastError;
 }
 
 async function readDomainPages(): Promise<DomainPageRecord[]> {
+  if (USE_POSTGRES) {
+    const records = await prisma.domainPage.findMany();
+    return records.map(r => ({
+      id: r.id,
+      clientCode: r.clientCode,
+      domain: r.domain,
+      pageURL: r.url,
+      locationCode: r.locationCode ?? '',
+      source: r.source ?? '',
+      fetchedAt: r.fetchedAt ?? '',
+      llmClusterId: (r.pageData as any)?.llmClusterId,
+      llmClusterLabel: (r.pageData as any)?.llmClusterLabel,
+      llmClusterDescription: (r.pageData as any)?.llmClusterDescription,
+      llmClusterBatchId: (r.pageData as any)?.llmClusterBatchId,
+      llmClusterRunId: (r.pageData as any)?.llmClusterRunId,
+    }));
+  }
   try {
+    const { promises: fs } = await import('fs');
+    const path = await import('path');
+    const DATA_DIR = path.join(process.cwd(), 'data');
+    const DOMAIN_PAGES_FILE = path.join(DATA_DIR, 'domain_pages.json');
     const data = await fs.readFile(DOMAIN_PAGES_FILE, 'utf-8');
     return JSON.parse(data) as DomainPageRecord[];
   } catch {
@@ -233,6 +229,30 @@ async function readDomainPages(): Promise<DomainPageRecord[]> {
 }
 
 async function writeDomainPages(records: DomainPageRecord[]): Promise<void> {
+  if (USE_POSTGRES) {
+    for (const r of records) {
+      if (r.llmClusterId) {
+        await prisma.domainPage.update({
+          where: { id: r.id },
+          data: {
+            pageData: {
+              llmClusterId: r.llmClusterId,
+              llmClusterLabel: r.llmClusterLabel,
+              llmClusterDescription: r.llmClusterDescription,
+              llmClusterBatchId: r.llmClusterBatchId,
+              llmClusterRunId: r.llmClusterRunId,
+            },
+            updatedAt: new Date(),
+          }
+        });
+      }
+    }
+    return;
+  }
+  const { promises: fs } = await import('fs');
+  const path = await import('path');
+  const DATA_DIR = path.join(process.cwd(), 'data');
+  const DOMAIN_PAGES_FILE = path.join(DATA_DIR, 'domain_pages.json');
   await fs.writeFile(DOMAIN_PAGES_FILE, JSON.stringify(records, null, 2), 'utf-8');
 }
 
@@ -344,7 +364,6 @@ export async function runLlmClusteringForDomainPages(
     await writeDomainPages(Array.from(recordMap.values()));
 
     result.sampleLabels = Array.from(allLabels).slice(0, 10);
-    // Consider it a success if we processed any URLs, even if some batches failed
     result.success = result.totalProcessed > 0;
 
     console.log(`LLM Clustering complete: ${result.totalProcessed} URLs, ${result.totalBatches} batches, ${result.clustersCreated} clusters${result.errors.length > 0 ? ` (${result.errors.length} batch errors)` : ''}`);
