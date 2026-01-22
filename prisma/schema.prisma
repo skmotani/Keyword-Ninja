@@ -392,6 +392,139 @@ model ManualKeyword {
   @@index([clientCode])
 }
 
+// --- CLIENT POSITIONS SERP (Phase 5) ---
+model ClientPositionSerp {
+  id             String   @id @default(cuid())
+  clientCode     String
+  keyword        String
+  selectedDomain String?
+  locationType   String?
+  rank           Int?
+  rankLabel      String?
+  rankDomain     String?
+  searchVolume   Int?
+  competition    String?
+  checkUrl       String?  @db.Text
+  lastPulledAt   DateTime?
+  source         String?
+  c1             Json?
+  c2             Json?
+  c3             Json?
+  c4             Json?
+  c5             Json?
+  c6             Json?
+  c7             Json?
+  c8             Json?
+  c9             Json?
+  c10            Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  
+  @@unique([clientCode, keyword, selectedDomain, locationType])
+  @@index([clientCode])
+  @@index([keyword])
+}
+
+// --- DOMAIN CREDIBILITY (Phase 5) ---
+model DomainCredibility {
+  id                  String   @id @default(cuid())
+  clientCode          String
+  domain              String
+  name                String?
+  type                String?
+  lastPulledAt        DateTime?
+  whoisJson           Json?
+  backlinksSummaryJson Json?
+  paidKeywords        Int?
+  adsKeywordsJson     Json?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  
+  @@unique([clientCode, domain])
+  @@index([clientCode])
+  @@index([domain])
+}
+
+// --- DOMAIN PROFILE (Phase 5) ---
+model DomainProfile {
+  id                    String   @id @default(cuid())
+  clientCode            String
+  domain                String
+  title                 String?  @db.Text
+  metaDescription       String?  @db.Text
+  inferredCategory      String?
+  topKeywords           Json?
+  organicTraffic        Float?
+  organicKeywordsCount  Int?
+  backlinksCount        Int?
+  referringDomainsCount Int?
+  domainRank            Float?
+  fetchStatus           String?
+  errorMessage          String?  @db.Text
+  lastFetchedAt         DateTime?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  
+  @@unique([clientCode, domain])
+  @@index([clientCode])
+}
+
+// --- PAGE INTENT SUMMARY (Phase 5) ---
+model PageIntentSummary {
+  id            String   @id @default(cuid())
+  clientCode    String
+  url           String   @db.Text
+  summaryJson   Json?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@index([clientCode])
+}
+
+// --- PAGE INTENT PAGE (Phase 5) ---
+model PageIntentPage {
+  id            String   @id @default(cuid())
+  clientCode    String
+  url           String   @db.Text
+  intentData    Json?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@index([clientCode])
+}
+
+// --- KEYWORD API DATA (Phase 5) ---
+model KeywordApiData {
+  id             String   @id @default(cuid())
+  clientCode     String
+  keyword        String
+  locationCode   Int?
+  languageCode   String?
+  searchVolume   Int?
+  competition    Float?
+  competitionLevel String?
+  cpc            Float?
+  monthlySearches Json?
+  keywordInfo    Json?
+  fetchedAt      DateTime?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  
+  @@unique([clientCode, keyword, locationCode])
+  @@index([clientCode])
+  @@index([keyword])
+}
+
+// --- PAGE CONFIG (Phase 5) ---
+model PageConfig {
+  id              String   @id @default(cuid())
+  path            String   @unique
+  userDescription String?  @db.Text
+  comments        Json?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
 // ============================================
 // CMS MODELS - Content Management System
 // ============================================
