@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-import { DomainProfile } from '@/types';
+import { DomainProfile, TopKeywordEntry } from '@/types';
 import { prisma } from '@/lib/prisma';
 
 const USE_POSTGRES = process.env.USE_POSTGRES_DOMAIN_PROFILES === 'true';
@@ -17,7 +17,7 @@ async function readData(): Promise<DomainProfile[]> {
       title: r.title,
       metaDescription: r.metaDescription,
       inferredCategory: r.inferredCategory,
-      topKeywords: (r.topKeywords as string[]) ?? [],
+      topKeywords: (r.topKeywords as TopKeywordEntry[]) ?? [],
       organicTraffic: r.organicTraffic,
       organicKeywordsCount: r.organicKeywordsCount,
       backlinksCount: r.backlinksCount,
@@ -59,7 +59,7 @@ export async function getDomainProfilesByClient(clientCode: string): Promise<Dom
       title: r.title,
       metaDescription: r.metaDescription,
       inferredCategory: r.inferredCategory,
-      topKeywords: (r.topKeywords as string[]) ?? [],
+      topKeywords: (r.topKeywords as TopKeywordEntry[]) ?? [],
       organicTraffic: r.organicTraffic,
       organicKeywordsCount: r.organicKeywordsCount,
       backlinksCount: r.backlinksCount,
@@ -90,7 +90,7 @@ export async function getDomainProfile(clientCode: string, domain: string): Prom
       title: record.title,
       metaDescription: record.metaDescription,
       inferredCategory: record.inferredCategory,
-      topKeywords: (record.topKeywords as string[]) ?? [],
+      topKeywords: (record.topKeywords as TopKeywordEntry[]) ?? [],
       organicTraffic: record.organicTraffic,
       organicKeywordsCount: record.organicKeywordsCount,
       backlinksCount: record.backlinksCount,
@@ -121,7 +121,7 @@ export async function getDomainProfileById(id: string): Promise<DomainProfile | 
       title: record.title,
       metaDescription: record.metaDescription,
       inferredCategory: record.inferredCategory,
-      topKeywords: (record.topKeywords as string[]) ?? [],
+      topKeywords: (record.topKeywords as TopKeywordEntry[]) ?? [],
       organicTraffic: record.organicTraffic,
       organicKeywordsCount: record.organicKeywordsCount,
       backlinksCount: record.backlinksCount,
@@ -184,7 +184,7 @@ export async function updateDomainProfile(id: string, updates: Partial<DomainPro
       title: record.title,
       metaDescription: record.metaDescription,
       inferredCategory: record.inferredCategory,
-      topKeywords: (record.topKeywords as string[]) ?? [],
+      topKeywords: (record.topKeywords as TopKeywordEntry[]) ?? [],
       organicTraffic: record.organicTraffic,
       organicKeywordsCount: record.organicKeywordsCount,
       backlinksCount: record.backlinksCount,
@@ -211,7 +211,7 @@ export async function upsertDomainProfile(clientCode: string, domain: string, up
     const existing = await prisma.domainProfile.findFirst({
       where: { clientCode, domain: { equals: normalizedDomain, mode: 'insensitive' } }
     });
-    
+
     if (existing) {
       const record = await prisma.domainProfile.update({
         where: { id: existing.id },
@@ -224,7 +224,7 @@ export async function upsertDomainProfile(clientCode: string, domain: string, up
         title: record.title,
         metaDescription: record.metaDescription,
         inferredCategory: record.inferredCategory,
-        topKeywords: (record.topKeywords as string[]) ?? [],
+        topKeywords: (record.topKeywords as TopKeywordEntry[]) ?? [],
         organicTraffic: record.organicTraffic,
         organicKeywordsCount: record.organicKeywordsCount,
         backlinksCount: record.backlinksCount,
@@ -264,7 +264,7 @@ export async function upsertDomainProfile(clientCode: string, domain: string, up
         title: record.title,
         metaDescription: record.metaDescription,
         inferredCategory: record.inferredCategory,
-        topKeywords: (record.topKeywords as string[]) ?? [],
+        topKeywords: (record.topKeywords as TopKeywordEntry[]) ?? [],
         organicTraffic: record.organicTraffic,
         organicKeywordsCount: record.organicKeywordsCount,
         backlinksCount: record.backlinksCount,
@@ -278,15 +278,15 @@ export async function upsertDomainProfile(clientCode: string, domain: string, up
       };
     }
   }
-  
+
   const profiles = await readData();
   const normalizedDomain = domain.toLowerCase().trim();
   const index = profiles.findIndex(
     p => p.clientCode === clientCode && p.domain.toLowerCase().trim() === normalizedDomain
   );
-  
+
   const now = new Date().toISOString();
-  
+
   if (index === -1) {
     const newProfile: DomainProfile = {
       id: crypto.randomUUID(),
