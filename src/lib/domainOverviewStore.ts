@@ -1,6 +1,20 @@
 import { promises as fs } from 'fs';
 import path from 'path';
+import { PrismaClient } from '@prisma/client';
 import { DomainOverviewRecord, DomainPageRecord, DomainKeywordRecord } from '@/types';
+
+// Feature flags for PostgreSQL usage
+const USE_POSTGRES_DOMAIN_KEYWORDS = process.env.USE_POSTGRES_DOMAIN_KEYWORDS === 'true';
+const USE_POSTGRES_DOMAIN_PAGES = process.env.USE_POSTGRES_DOMAIN_PAGES === 'true';
+
+// Prisma singleton
+let prisma: PrismaClient | null = null;
+function getPrisma(): PrismaClient {
+  if (!prisma) {
+    prisma = new PrismaClient();
+  }
+  return prisma;
+}
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 const DOMAIN_OVERVIEW_FILE = 'domain_overview.json';
@@ -32,6 +46,55 @@ async function writeDomainOverview(records: DomainOverviewRecord[]): Promise<voi
 }
 
 async function readDomainPages(): Promise<DomainPageRecord[]> {
+  // Use PostgreSQL when feature flag is enabled
+  if (USE_POSTGRES_DOMAIN_PAGES) {
+    try {
+      const db = getPrisma();
+      const pages = await db.domainPage.findMany();
+      return pages.map(p => ({
+        id: p.id,
+        clientCode: p.clientCode,
+        domain: p.domain,
+        label: p.label || p.domain,
+        locationCode: p.locationCode || 'IN',
+        languageCode: p.languageCode || 'en',
+        pageURL: p.pageURL,
+        estTrafficETV: p.estTrafficETV ?? null,
+        keywordsCount: p.keywordsCount ?? null,
+        fetchedAt: p.fetchedAt?.toISOString() || '',
+        snapshotDate: p.snapshotDate || '',
+        pageType: p.pageType || undefined,
+        pageIntent: p.pageIntent || undefined,
+        isSeoRelevant: p.isSeoRelevant ?? undefined,
+        classificationMethod: p.classificationMethod || undefined,
+        classificationConfidence: p.classificationConfidence || undefined,
+        needsAiReview: p.needsAiReview ?? undefined,
+        seoAction: p.seoAction || undefined,
+        classificationExplanation: p.classificationExplanation as any || undefined,
+        priorityScore: p.priorityScore ?? undefined,
+        priorityTier: p.priorityTier || undefined,
+        priorityScoreBreakdown: p.priorityScoreBreakdown as any || undefined,
+        priorityCalculatedAt: p.priorityCalculatedAt?.toISOString() || undefined,
+        matchedProduct: p.matchedProduct || undefined,
+        clusterName: p.clusterName || undefined,
+        productClassifiedAt: p.productClassifiedAt?.toISOString() || undefined,
+        cluster: p.cluster || undefined,
+        clusterSource: p.clusterSource as any || undefined,
+        clusterExplanation: p.clusterExplanation as any || undefined,
+        clusterTaggedAt: p.clusterTaggedAt?.toISOString() || undefined,
+        llmClusterId: p.llmClusterId || undefined,
+        llmClusterLabel: p.llmClusterLabel || undefined,
+        llmClusterDescription: p.llmClusterDescription || undefined,
+        llmClusterBatchId: p.llmClusterBatchId || undefined,
+        llmClusterRunId: p.llmClusterRunId || undefined
+      })) as unknown as DomainPageRecord[];
+    } catch (e) {
+      console.error('Failed to read domain pages from PostgreSQL:', e);
+      return [];
+    }
+  }
+
+  // Fallback to JSON file
   try {
     const filePath = path.join(DATA_DIR, DOMAIN_PAGES_FILE);
     const data = await fs.readFile(filePath, 'utf-8');
@@ -47,6 +110,35 @@ async function writeDomainPages(records: DomainPageRecord[]): Promise<void> {
 }
 
 async function readDomainKeywords(): Promise<DomainKeywordRecord[]> {
+  // Use PostgreSQL when feature flag is enabled
+  if (USE_POSTGRES_DOMAIN_KEYWORDS) {
+    try {
+      const db = getPrisma();
+      const keywords = await db.domainKeyword.findMany();
+      return keywords.map(k => ({
+        id: k.id,
+        clientCode: k.clientCode,
+        domain: k.domain,
+        label: k.label || k.domain,
+        locationCode: k.locationCode || 'IN',
+        languageCode: k.languageCode || 'en',
+        keyword: k.keyword,
+        position: k.position ?? null,
+        searchVolume: k.searchVolume ?? null,
+        cpc: k.cpc ?? null,
+        url: k.url ?? null,
+        fetchedAt: k.fetchedAt?.toISOString() || '',
+        snapshotDate: k.snapshotDate || '',
+        tagId: k.tagId || undefined,
+        tagData: k.tagData as any || undefined
+      })) as unknown as DomainKeywordRecord[];
+    } catch (e) {
+      console.error('Failed to read domain keywords from PostgreSQL:', e);
+      return [];
+    }
+  }
+
+  // Fallback to JSON file
   try {
     const filePath = path.join(DATA_DIR, DOMAIN_KEYWORDS_FILE);
     const data = await fs.readFile(filePath, 'utf-8');
