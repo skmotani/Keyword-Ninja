@@ -198,35 +198,40 @@ export async function GET(req: NextRequest) {
         const customPath = path.join(DATA_DIR, 'dashboard_query_customizations.json');
         if (fs.existsSync(customPath)) {
             console.log('Loading dashboard_query_customizations.json...');
-            const records = JSON.parse(fs.readFileSync(customPath, 'utf-8'));
-            console.log(`Found ${records.length} customizations to migrate`);
+            const data = JSON.parse(fs.readFileSync(customPath, 'utf-8'));
+            // File has nested structure: { queries: [...], categories: [...], queryOrder: {...} }
+            const queries = data.queries || data;
+            console.log(`Found ${Array.isArray(queries) ? queries.length : 0} customizations to migrate`);
 
-            for (const r of records) {
-                try {
-                    await prisma.dashboardQueryCustomization.upsert({
-                        where: {
-                            clientCode_queryId: {
-                                clientCode: r.clientCode,
-                                queryId: r.queryId
+            if (Array.isArray(queries)) {
+                for (const r of queries) {
+                    try {
+                        // Customizations file doesn't have clientCode, it's global
+                        await prisma.dashboardQueryCustomization.upsert({
+                            where: {
+                                clientCode_queryId: {
+                                    clientCode: 'GLOBAL',
+                                    queryId: r.queryId
+                                }
+                            },
+                            update: {
+                                customTitle: r.customTitle || undefined,
+                                customConfig: r.pageContent ? { pageTitle: r.pageTitle, pageContent: r.pageContent } : undefined,
+                                isHidden: r.isHidden ?? false,
+                                updatedAt: new Date()
+                            },
+                            create: {
+                                clientCode: 'GLOBAL',
+                                queryId: r.queryId,
+                                customTitle: r.customTitle || undefined,
+                                customConfig: r.pageContent ? { pageTitle: r.pageTitle, pageContent: r.pageContent } : undefined,
+                                isHidden: r.isHidden ?? false
                             }
-                        },
-                        update: {
-                            customTitle: r.customTitle || undefined,
-                            customConfig: r.customConfig || undefined,
-                            isHidden: r.isHidden ?? false,
-                            updatedAt: new Date()
-                        },
-                        create: {
-                            clientCode: r.clientCode,
-                            queryId: r.queryId,
-                            customTitle: r.customTitle || undefined,
-                            customConfig: r.customConfig || undefined,
-                            isHidden: r.isHidden ?? false
-                        }
-                    });
-                    results.dashboardQueryCustomizations.success++;
-                } catch (e: any) {
-                    results.dashboardQueryCustomizations.errors++;
+                        });
+                        results.dashboardQueryCustomizations.success++;
+                    } catch (e: any) {
+                        results.dashboardQueryCustomizations.errors++;
+                    }
                 }
             }
         }
@@ -240,23 +245,27 @@ export async function GET(req: NextRequest) {
 
             for (const r of records) {
                 try {
+                    // File uses pageKey not pageId
+                    const pageId = r.pageKey || r.pageId;
+                    if (!pageId) continue;
+
                     await prisma.exportPageRegistry.upsert({
-                        where: { pageId: r.pageId },
+                        where: { pageId: pageId },
                         update: {
-                            displayName: r.displayName,
+                            displayName: r.pageName || r.displayName,
                             dataSourceRef: r.dataSourceRef || undefined,
                             description: r.description || undefined,
                             columns: r.columns || undefined,
-                            isActive: r.isActive ?? true,
+                            isActive: r.status === 'ACTIVE',
                             updatedAt: new Date()
                         },
                         create: {
-                            pageId: r.pageId,
-                            displayName: r.displayName,
+                            pageId: pageId,
+                            displayName: r.pageName || r.displayName,
                             dataSourceRef: r.dataSourceRef || undefined,
                             description: r.description || undefined,
                             columns: r.columns || undefined,
-                            isActive: r.isActive ?? true
+                            isActive: r.status === 'ACTIVE'
                         }
                     });
                     results.exportPageRegistry.success++;
