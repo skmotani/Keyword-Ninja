@@ -42,7 +42,7 @@ async function ensureDataDir(): Promise<void> {
 async function readStore(): Promise<DomainCredibilityRecord[]> {
     if (USE_POSTGRES) {
         const records = await (prisma.domainCredibility as any).findMany();
-        return records.map(r => ({
+        return records.map((r: any) => ({
             id: r.id,
             clientCode: r.clientCode,
             domain: r.domain,
@@ -99,7 +99,7 @@ export async function getAllCredibilityRecords(): Promise<DomainCredibilityRecor
 export async function getCredibilityByClient(clientCode: string): Promise<DomainCredibilityRecord[]> {
     if (USE_POSTGRES) {
         const records = await (prisma.domainCredibility as any).findMany({ where: { clientCode } });
-        return records.map(r => ({
+        return records.map((r: any) => ({
             id: r.id,
             clientCode: r.clientCode,
             domain: r.domain,
@@ -133,7 +133,7 @@ export async function getCredibilityByClientAndLocation(
 ): Promise<DomainCredibilityRecord[]> {
     if (USE_POSTGRES) {
         const records = await (prisma.domainCredibility as any).findMany({ where: { clientCode, locationCode } });
-        return records.map(r => ({
+        return records.map((r: any) => ({
             id: r.id,
             clientCode: r.clientCode,
             domain: r.domain,
@@ -193,7 +193,7 @@ export async function getCredibilityByDomain(
             paidTraffic: record.paidTraffic,
             paidCost: record.paidCost,
             fetchedAt: record.fetchedAt,
-        };
+        } as unknown as DomainCredibilityRecord;
     }
     const records = await readStore();
     const normalizedDomain = domain.toLowerCase().trim();
@@ -477,4 +477,5 @@ export async function getLastFetchedAt(
 }
 
 export const CREDIBILITY_STORE_VERSION = '2.0.0';
+
 

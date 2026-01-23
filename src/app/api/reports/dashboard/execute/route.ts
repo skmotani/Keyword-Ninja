@@ -1598,8 +1598,8 @@ async function executeTop3SurfacesByCategoryQuery(): Promise<{
         .map(([category, items]) => ({
             category,
             categoryLabel: CATEGORY_LABELS[category] || category,
-            totalPoints: items.reduce((sum, s) => sum + s.basePoints, 0),
-            surfaces: items.map(s => ({
+            totalPoints: items.reduce((sum: number, s: any) => sum + s.basePoints, 0),
+            surfaces: items.map((s: any) => ({
                 label: s.label,
                 importance: IMPORTANCE_DISPLAY[s.importanceTier] || s.importanceTier,
                 points: s.basePoints,
@@ -1614,7 +1614,7 @@ async function executeTop3SurfacesByCategoryQuery(): Promise<{
         summary: {
             totalCategories: categories.length,
             totalSurfaces: categories.reduce((sum, c) => sum + c.surfaces.length, 0),
-            totalPoints: categories.reduce((sum, c) => sum + c.surfaces.reduce((s, surf) => s + surf.points, 0), 0),
+            totalPoints: categories.reduce((sum, c) => sum + c.surfaces.reduce((s: number, surf: any) => s + surf.points, 0), 0),
         },
     };
 }
@@ -2247,4 +2247,5 @@ export async function POST(request: Request) {
         );
     }
 }
+
 

@@ -1,0 +1,18 @@
+﻿src/app/api/report/dashboard/manual_004/route.ts(126,37): error TS7006: Parameter 's' implicitly has an 'any' type.
+src/app/api/report/dashboard/manual_004/route.ts(140,46): error TS7006: Parameter 's' implicitly has an 'any' type.
+src/app/api/report/dashboard/manual_004/route.ts(140,49): error TS7006: Parameter 'surf' implicitly has an 'any' type.
+src/app/api/reports/dashboard/execute/route.ts(1601,40): error TS7006: Parameter 'sum' implicitly has an 'any' type.
+src/app/api/reports/dashboard/execute/route.ts(1601,45): error TS7006: Parameter 's' implicitly has an 'any' type.
+src/app/api/reports/dashboard/execute/route.ts(1602,33): error TS7006: Parameter 's' implicitly has an 'any' type.
+src/app/api/reports/dashboard/execute/route.ts(1617,81): error TS7006: Parameter 's' implicitly has an 'any' type.
+src/app/api/reports/dashboard/execute/route.ts(1617,84): error TS7006: Parameter 'surf' implicitly has an 'any' type.
+src/lib/curatedStore.ts(20,28): error TS7006: Parameter 'r' implicitly has an 'any' type.
+src/lib/curatedStore.ts(49,28): error TS7006: Parameter 'r' implicitly has an 'any' type.
+src/lib/digital-footprint/surfaces.ts(56,37): error TS7006: Parameter 's' implicitly has an 'any' type.
+src/lib/serpStore.ts(102,67): error TS2339: Property 'fetchedAt' does not exist on type 'Omit<ClientPositionSerpRecord, "id" | "createdAt" | "updatedAt">'.
+src/lib/serpStore.ts(113,26): error TS2339: Property 'fetchedAt' does not exist on type 'Omit<ClientPositionSerpRecord, "id" | "createdAt" | "updatedAt">'.
+src/lib/serpStore.ts(250,23): error TS2339: Property 'serpData' does not exist on type 'SerpResult'.
+src/lib/storage/dashboardQueryStore.ts(19,28): error TS7006: Parameter 'r' implicitly has an 'any' type.
+src/lib/storage/dashboardQueryStore.ts(152,28): error TS7006: Parameter 'r' implicitly has an 'any' type.
+src/lib/storage/dashboardQueryStore.ts(190,28): error TS7006: Parameter 'r' implicitly has an 'any' type.
+src/lib/storage/dashboardQueryStore.ts(237,28): error TS7006: Parameter 'r' implicitly has an 'any' type.

@@ -172,7 +172,7 @@ export async function getPagesByDomain(clientCode: string, domain: string): Prom
             where: { clientCode }
         });
         return records
-            .filter(r => (r.intentData as any)?.domain === domain)
+            .filter((r: any) => (r.intentData as any)?.domain === domain)
             .map((r: any) => ({
                 id: r.id,
                 clientCode: r.clientCode,
@@ -256,7 +256,7 @@ export async function deletePagesByDomain(clientCode: string, domain: string): P
         const records = await (prisma.pageIntentPage as any).findMany({
             where: { clientCode }
         });
-        const toDelete = records.filter(r => (r.intentData as any)?.domain === domain);
+        const toDelete = records.filter((r: any) => (r.intentData as any)?.domain === domain);
         for (const r of toDelete) {
             await (prisma.pageIntentPage as any).delete({ where: { id: r.id } });
         }

@@ -99,7 +99,7 @@ export async function upsertClientPositionSerpRecords(
       if (existing) {
         await (prisma.clientPositionSerp as any).update({
           where: { id: existing.id },
-          data: { rank: r.rank, url: r.url, fetchedAt: r.fetchedAt, updatedAt: new Date() }
+          data: { rank: r.rank, url: (r as any).url, fetchedAt: (r as any).fetchedAt, updatedAt: new Date() }
         });
       } else {
         await (prisma.clientPositionSerp as any).create({
@@ -109,8 +109,8 @@ export async function upsertClientPositionSerpRecords(
             selectedDomain: r.selectedDomain,
             locationType: r.locationType,
             rank: r.rank,
-            url: r.url,
-            fetchedAt: r.fetchedAt,
+            url: (r as any).url,
+            fetchedAt: (r as any).fetchedAt,
           }
         });
       }
@@ -247,7 +247,7 @@ export async function replaceSerpDataForClientAndLocations(
           url: r.url,
           title: r.title,
           description: r.description,
-          serpData: r.serpData,
+          serpData: (r as any).serpData,
           fetchedAt: r.fetchedAt,
         }
       });

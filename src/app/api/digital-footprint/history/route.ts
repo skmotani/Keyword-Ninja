@@ -18,13 +18,13 @@ export async function GET() {
             },
         });
 
-        const result = scans.map(scan => ({
+        const result = scans.map((scan: any) => ({
             id: scan.id,
             createdAt: scan.createdAt,
             status: scan.status,
             totalDomains: scan.totalDomains,
             finishedDomains: scan.finishedDomains,
-            domains: scan.domainScans.map(ds => ({
+            domains: scan.domainScans.map((ds: any) => ({
                 domain: ds.domainNormalized,
                 brandName: ds.brandName,
                 score: ds.scoreMax > 0 ? Math.round((ds.scoreTotal / ds.scoreMax) * 100) : 0,

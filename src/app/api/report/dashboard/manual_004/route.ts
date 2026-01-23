@@ -123,7 +123,7 @@ export async function GET() {
             .map(([category, items]) => ({
                 category,
                 categoryLabel: CATEGORY_LABELS[category] || category,
-                surfaces: items.map(s => ({
+                surfaces: items.map((s: any) => ({
                     label: s.label,
                     importance: IMPORTANCE_DISPLAY[s.importanceTier] || s.importanceTier,
                     points: s.basePoints,
@@ -137,7 +137,7 @@ export async function GET() {
                 totalCategories: categories.length,
                 totalSurfaces: categories.reduce((sum, c) => sum + c.surfaces.length, 0),
                 totalPoints: categories.reduce((sum, c) =>
-                    sum + c.surfaces.reduce((s, surf) => s + surf.points, 0), 0),
+                    sum + c.surfaces.reduce((s: number, surf: any) => s + surf.points, 0), 0),
             },
         };
 

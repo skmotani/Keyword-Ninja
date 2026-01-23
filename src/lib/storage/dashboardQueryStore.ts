@@ -16,7 +16,7 @@ const SEED_FILE = 'dashboard_queries_seed.json';
 async function readQueryGroups(): Promise<QueryGroup[]> {
     if (USE_POSTGRES) {
         const records = await (prisma.dashboardQueryGroup as any).findMany({ orderBy: { displayOrder: 'asc' } });
-        return records.map(r => ({
+        return records.map((r: any) => ({
             id: r.id,
             name: r.name,
             description: r.description ?? undefined,
@@ -149,7 +149,7 @@ export async function deleteQueryGroup(id: string): Promise<boolean> {
 async function readQueries(): Promise<DashboardQueryDefinition[]> {
     if (USE_POSTGRES) {
         const records = await (prisma.dashboardQuery as any).findMany();
-        return records.map(r => ({
+        return records.map((r: any) => ({
             id: r.id,
             queryNumber: r.queryNumber ?? undefined,
             groupId: r.groupId ?? undefined,
@@ -187,7 +187,7 @@ export async function getQueries(): Promise<DashboardQueryDefinition[]> {
 export async function getActiveQueries(): Promise<DashboardQueryDefinition[]> {
     if (USE_POSTGRES) {
         const records = await (prisma.dashboardQuery as any).findMany({ where: { isActive: true } });
-        return records.map(r => ({
+        return records.map((r: any) => ({
             id: r.id,
             queryNumber: r.queryNumber ?? undefined,
             groupId: r.groupId ?? undefined,
@@ -234,7 +234,7 @@ export async function getQueryById(id: string): Promise<DashboardQueryDefinition
 export async function getQueriesByGroup(groupId: string): Promise<DashboardQueryDefinition[]> {
     if (USE_POSTGRES) {
         const records = await (prisma.dashboardQuery as any).findMany({ where: { groupId, isActive: true } });
-        return records.map(r => ({
+        return records.map((r: any) => ({
             id: r.id,
             queryNumber: r.queryNumber ?? undefined,
             groupId: r.groupId ?? undefined,
@@ -464,4 +464,5 @@ export async function initializeSeedData(): Promise<{ groupsCreated: number; que
 
     return { groupsCreated, queriesCreated };
 }
+
 

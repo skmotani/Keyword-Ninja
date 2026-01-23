@@ -17,7 +17,7 @@ const CLIENT_POSITIONS_FILE = 'client_positions.json';
 async function readCuratedKeywords(): Promise<CuratedKeyword[]> {
     if (USE_POSTGRES_CURATED_KEYWORDS) {
         const records = await (prisma.curatedKeyword as any).findMany();
-        return records.map(r => ({
+        return records.map((r: any) => ({
             id: r.id,
             clientCode: r.clientCode,
             keyword: r.keyword,
@@ -46,7 +46,7 @@ export async function getCuratedKeywords(clientCode?: string): Promise<CuratedKe
     if (USE_POSTGRES_CURATED_KEYWORDS) {
         const where = clientCode ? { clientCode } : {};
         const records = await (prisma.curatedKeyword as any).findMany({ where });
-        return records.map(r => ({
+        return records.map((r: any) => ({
             id: r.id,
             clientCode: r.clientCode,
             keyword: r.keyword,
@@ -58,7 +58,7 @@ export async function getCuratedKeywords(clientCode?: string): Promise<CuratedKe
     }
     const records = await readCuratedKeywords();
     if (clientCode) {
-        return records.filter(r => r.clientCode === clientCode);
+        return records.filter((r: any) => r.clientCode === clientCode);
     }
     return records;
 }
@@ -94,15 +94,15 @@ export async function addCuratedKeywords(newRecords: Omit<CuratedKeyword, 'id' |
     const allRecords = await readCuratedKeywords();
     const timestamp = new Date().toISOString();
 
-    const added: CuratedKeyword[] = newRecords.map(r => ({
+    const added: CuratedKeyword[] = newRecords.map((r: any) => ({
         id: uuidv4(),
         ...r,
         createdAt: timestamp,
         updatedAt: timestamp
     }));
 
-    const existingMap = new Set(allRecords.map(r => `${r.clientCode}|${r.keyword.toLowerCase()}`));
-    const uniqueToAdd = added.filter(r => !existingMap.has(`${r.clientCode}|${r.keyword.toLowerCase()}`));
+    const existingMap = new Set(allRecords.map((r: any) => `${r.clientCode}|${r.keyword.toLowerCase()}`));
+    const uniqueToAdd = added.filter((r: any) => !existingMap.has(`${r.clientCode}|${r.keyword.toLowerCase()}`));
 
     if (uniqueToAdd.length > 0) {
         await writeCuratedKeywords([...allRecords, ...uniqueToAdd]);
@@ -151,7 +151,7 @@ export async function deleteCuratedKeyword(id: string): Promise<void> {
         return;
     }
     const all = await readCuratedKeywords();
-    const filtered = all.filter(r => r.id !== id);
+    const filtered = all.filter((r: any) => r.id !== id);
     if (filtered.length !== all.length) {
         await writeCuratedKeywords(filtered);
     }
@@ -210,7 +210,7 @@ export async function getClientPositions(clientCode?: string): Promise<ClientPos
     }
     const records = await readClientPositions();
     if (clientCode) {
-        return records.filter(r => r.clientCode === clientCode);
+        return records.filter((r: any) => r.clientCode === clientCode);
     }
     return records;
 }
@@ -249,7 +249,7 @@ export async function addClientPositions(newRecords: Omit<ClientPosition, 'id' |
     const allRecords = await readClientPositions();
     const timestamp = new Date().toISOString();
 
-    const added: ClientPosition[] = newRecords.map(r => ({
+    const added: ClientPosition[] = newRecords.map((r: any) => ({
         id: uuidv4(),
         ...r,
         createdAt: timestamp,
@@ -310,11 +310,12 @@ export async function deleteClientPosition(id: string): Promise<void> {
         return;
     }
     const all = await readClientPositions();
-    const filtered = all.filter(r => r.id !== id);
+    const filtered = all.filter((r: any) => r.id !== id);
     if (filtered.length !== all.length) {
         await writeClientPositions(filtered);
     }
 }
+
 
 
 

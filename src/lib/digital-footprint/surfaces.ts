@@ -53,7 +53,7 @@ export async function getSurfacesFromRegistry(): Promise<SurfaceDefinition[]> {
             ],
         });
 
-        return registrySurfaces.map(s => ({
+        return registrySurfaces.map((s: any) => ({
             key: s.surfaceKey,
             label: s.label,
             category: s.category as SurfaceCategory,
@@ -219,4 +219,5 @@ export async function getTotalBasePointsFromRegistry(): Promise<number> {
     const surfaces = await getSurfacesFromRegistry();
     return surfaces.reduce((sum, s) => sum + s.basePoints, 0);
 }
+
 
