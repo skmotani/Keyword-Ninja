@@ -148,7 +148,7 @@ export async function createDomainProfile(profile: DomainProfile): Promise<Domai
         title: profile.title,
         metaDescription: profile.metaDescription,
         inferredCategory: profile.inferredCategory,
-        topKeywords: profile.topKeywords,
+        topKeywords: profile.topKeywords as any,
         organicTraffic: profile.organicTraffic,
         organicKeywordsCount: profile.organicKeywordsCount,
         backlinksCount: profile.backlinksCount,
@@ -173,7 +173,7 @@ export async function updateDomainProfile(id: string, updates: Partial<DomainPro
       where: { id },
       data: {
         ...updates,
-        topKeywords: updates.topKeywords,
+        topKeywords: updates.topKeywords as any,
         updatedAt: new Date(),
       }
     });
@@ -215,7 +215,7 @@ export async function upsertDomainProfile(clientCode: string, domain: string, up
     if (existing) {
       const record = await prisma.domainProfile.update({
         where: { id: existing.id },
-        data: { ...updates, topKeywords: updates.topKeywords, updatedAt: new Date() }
+        data: { ...updates, topKeywords: updates.topKeywords as any, updatedAt: new Date() }
       });
       return {
         id: record.id,
@@ -246,7 +246,7 @@ export async function upsertDomainProfile(clientCode: string, domain: string, up
           title: updates.title ?? null,
           metaDescription: updates.metaDescription ?? null,
           inferredCategory: updates.inferredCategory ?? null,
-          topKeywords: updates.topKeywords ?? [],
+          topKeywords: (updates.topKeywords ?? []) as any,
           organicTraffic: updates.organicTraffic ?? null,
           organicKeywordsCount: updates.organicKeywordsCount ?? null,
           backlinksCount: updates.backlinksCount ?? null,
