@@ -26,13 +26,13 @@ export async function POST() {
         for (const client of jsonClients) {
             try {
                 // Check if client already exists in Prisma
-                const existing = await prisma.client.findUnique({
+                const existing = await (prisma.client as any).findUnique({
                     where: { code: client.code },
                 });
 
                 if (existing) {
                     // Update existing client
-                    await prisma.client.update({
+                    await (prisma.client as any).update({
                         where: { code: client.code },
                         data: {
                             name: client.name,
@@ -49,7 +49,7 @@ export async function POST() {
                     results.updated++;
                 } else {
                     // Create new client in Prisma
-                    await prisma.client.create({
+                    await (prisma.client as any).create({
                         data: {
                             code: client.code,
                             name: client.name,
@@ -91,7 +91,7 @@ export async function POST() {
 export async function GET() {
     try {
         const jsonClients = await getClients();
-        const prismaClients = await prisma.client.findMany({
+        const prismaClients = await (prisma.client as any).findMany({
             select: { code: true, name: true },
         });
 
@@ -114,3 +114,4 @@ export async function GET() {
         );
     }
 }
+

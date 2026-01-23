@@ -99,7 +99,7 @@ export async function POST() {
         const results = [];
 
         for (const template of SYSTEM_TEMPLATES) {
-            const result = await prisma.cmsTemplate.upsert({
+            const result = await (prisma.cmsTemplate as any).upsert({
                 where: { slug: template.slug },
                 update: {
                     name: template.name,
@@ -133,3 +133,4 @@ export async function POST() {
         );
     }
 }
+

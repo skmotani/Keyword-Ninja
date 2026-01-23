@@ -65,7 +65,7 @@ async function writeJsonFile<T>(filename: string, data: T[]): Promise<void> {
 // Page Registry Functions
 export async function getExportPages(): Promise<ExportPageEntry[]> {
   if (USE_POSTGRES) {
-    const records = await prisma.exportPageRegistry.findMany();
+    const records = await (prisma.exportPageRegistry as any).findMany();
     return records.map(r => ({
       id: r.id.toString(),
       pageKey: r.pageId,
@@ -91,14 +91,14 @@ export async function getExportPage(pageKey: string): Promise<ExportPageEntry | 
 
 export async function upsertExportPage(entry: Omit<ExportPageEntry, 'id'> & { id?: string }): Promise<ExportPageEntry> {
   if (USE_POSTGRES) {
-    const existing = await prisma.exportPageRegistry.findUnique({ where: { pageId: entry.pageKey } });
+    const existing = await (prisma.exportPageRegistry as any).findUnique({ where: { pageId: entry.pageKey } });
     if (existing) {
-      await prisma.exportPageRegistry.update({
+      await (prisma.exportPageRegistry as any).update({
         where: { pageId: entry.pageKey },
         data: { displayName: entry.pageName, dataSourceRef: entry.dataSourceRef, description: entry.description, isActive: entry.status === 'ACTIVE', updatedAt: new Date() }
       });
     } else {
-      await prisma.exportPageRegistry.create({
+      await (prisma.exportPageRegistry as any).create({
         data: { pageId: entry.pageKey, displayName: entry.pageName, dataSourceRef: entry.dataSourceRef, description: entry.description, isActive: entry.status === 'ACTIVE' }
       });
     }
@@ -132,7 +132,7 @@ export async function getActiveExportPages(): Promise<ExportPageEntry[]> {
 // Column Registry Functions
 export async function getAllColumns(): Promise<ExportColumnEntry[]> {
   if (USE_POSTGRES) {
-    const records = await prisma.exportColumnRegistry.findMany();
+    const records = await (prisma.exportColumnRegistry as any).findMany();
     return records.map(r => ({
       id: r.id.toString(),
       pageKey: r.pageId,
@@ -149,7 +149,7 @@ export async function getAllColumns(): Promise<ExportColumnEntry[]> {
 
 export async function getColumnsForPage(pageKey: string): Promise<ExportColumnEntry[]> {
   if (USE_POSTGRES) {
-    const records = await prisma.exportColumnRegistry.findMany({ where: { pageId: pageKey } });
+    const records = await (prisma.exportColumnRegistry as any).findMany({ where: { pageId: pageKey } });
     return records.map(r => ({
       id: r.id.toString(),
       pageKey: r.pageId,
@@ -168,10 +168,10 @@ export async function getColumnsForPage(pageKey: string): Promise<ExportColumnEn
 export async function upsertColumns(pageKey: string, columns: Omit<ExportColumnEntry, 'id' | 'pageKey'>[]): Promise<void> {
   if (USE_POSTGRES) {
     // Delete existing columns for this page
-    await prisma.exportColumnRegistry.deleteMany({ where: { pageId: pageKey } });
+    await (prisma.exportColumnRegistry as any).deleteMany({ where: { pageId: pageKey } });
     // Add new columns
     for (const col of columns) {
-      await prisma.exportColumnRegistry.create({
+      await (prisma.exportColumnRegistry as any).create({
         data: { pageId: pageKey, columnName: col.columnName, displayName: col.displayName, dataType: col.dataType, sourceField: col.sourceField, metricMatchKey: col.metricMatchKey }
       });
     }
@@ -247,3 +247,4 @@ export async function matchGlossaryBatch(columnNames: string[]): Promise<Map<str
 
   return results;
 }
+

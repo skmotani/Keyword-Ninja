@@ -15,7 +15,7 @@ const SEED_FILE = 'dashboard_queries_seed.json';
 
 async function readQueryGroups(): Promise<QueryGroup[]> {
     if (USE_POSTGRES) {
-        const records = await prisma.dashboardQueryGroup.findMany({ orderBy: { displayOrder: 'asc' } });
+        const records = await (prisma.dashboardQueryGroup as any).findMany({ orderBy: { displayOrder: 'asc' } });
         return records.map(r => ({
             id: r.id,
             name: r.name,
@@ -46,7 +46,7 @@ export async function getQueryGroups(): Promise<QueryGroup[]> {
 
 export async function getQueryGroupById(id: string): Promise<QueryGroup | null> {
     if (USE_POSTGRES) {
-        const record = await prisma.dashboardQueryGroup.findUnique({ where: { id } });
+        const record = await (prisma.dashboardQueryGroup as any).findUnique({ where: { id } });
         if (!record) return null;
         return {
             id: record.id,
@@ -66,7 +66,7 @@ export async function createQueryGroup(
 ): Promise<QueryGroup> {
     if (USE_POSTGRES) {
         const id = `GRP-${Date.now()}`;
-        const record = await prisma.dashboardQueryGroup.create({
+        const record = await (prisma.dashboardQueryGroup as any).create({
             data: { id, name: group.name, description: group.description, displayOrder: group.order ?? 0 }
         });
         return {
@@ -97,7 +97,7 @@ export async function updateQueryGroup(
 ): Promise<QueryGroup | null> {
     if (USE_POSTGRES) {
         try {
-            const record = await prisma.dashboardQueryGroup.update({
+            const record = await (prisma.dashboardQueryGroup as any).update({
                 where: { id },
                 data: { name: updates.name, description: updates.description, displayOrder: updates.order, updatedAt: new Date() }
             });
@@ -129,7 +129,7 @@ export async function updateQueryGroup(
 export async function deleteQueryGroup(id: string): Promise<boolean> {
     if (USE_POSTGRES) {
         try {
-            await prisma.dashboardQueryGroup.delete({ where: { id } });
+            await (prisma.dashboardQueryGroup as any).delete({ where: { id } });
             return true;
         } catch {
             return false;
@@ -148,7 +148,7 @@ export async function deleteQueryGroup(id: string): Promise<boolean> {
 
 async function readQueries(): Promise<DashboardQueryDefinition[]> {
     if (USE_POSTGRES) {
-        const records = await prisma.dashboardQuery.findMany();
+        const records = await (prisma.dashboardQuery as any).findMany();
         return records.map(r => ({
             id: r.id,
             queryNumber: r.queryNumber ?? undefined,
@@ -186,7 +186,7 @@ export async function getQueries(): Promise<DashboardQueryDefinition[]> {
 
 export async function getActiveQueries(): Promise<DashboardQueryDefinition[]> {
     if (USE_POSTGRES) {
-        const records = await prisma.dashboardQuery.findMany({ where: { isActive: true } });
+        const records = await (prisma.dashboardQuery as any).findMany({ where: { isActive: true } });
         return records.map(r => ({
             id: r.id,
             queryNumber: r.queryNumber ?? undefined,
@@ -209,7 +209,7 @@ export async function getActiveQueries(): Promise<DashboardQueryDefinition[]> {
 
 export async function getQueryById(id: string): Promise<DashboardQueryDefinition | null> {
     if (USE_POSTGRES) {
-        const record = await prisma.dashboardQuery.findUnique({ where: { id } });
+        const record = await (prisma.dashboardQuery as any).findUnique({ where: { id } });
         if (!record) return null;
         return {
             id: record.id,
@@ -233,7 +233,7 @@ export async function getQueryById(id: string): Promise<DashboardQueryDefinition
 
 export async function getQueriesByGroup(groupId: string): Promise<DashboardQueryDefinition[]> {
     if (USE_POSTGRES) {
-        const records = await prisma.dashboardQuery.findMany({ where: { groupId, isActive: true } });
+        const records = await (prisma.dashboardQuery as any).findMany({ where: { groupId, isActive: true } });
         return records.map(r => ({
             id: r.id,
             queryNumber: r.queryNumber ?? undefined,
@@ -273,7 +273,7 @@ export async function createQuery(
     const id = await getNextQueryId();
 
     if (USE_POSTGRES) {
-        const record = await prisma.dashboardQuery.create({
+        const record = await (prisma.dashboardQuery as any).create({
             data: {
                 id,
                 queryNumber: query.queryNumber,
@@ -319,7 +319,7 @@ export async function updateQuery(
 ): Promise<DashboardQueryDefinition | null> {
     if (USE_POSTGRES) {
         try {
-            const record = await prisma.dashboardQuery.update({
+            const record = await (prisma.dashboardQuery as any).update({
                 where: { id },
                 data: { ...updates, updatedAt: new Date() }
             });
@@ -354,7 +354,7 @@ export async function updateQuery(
 export async function deleteQuery(id: string): Promise<boolean> {
     if (USE_POSTGRES) {
         try {
-            await prisma.dashboardQuery.delete({ where: { id } });
+            await (prisma.dashboardQuery as any).delete({ where: { id } });
             return true;
         } catch {
             return false;
@@ -397,7 +397,7 @@ export async function initializeSeedData(): Promise<{ groupsCreated: number; que
 
         if (USE_POSTGRES) {
             for (const g of seedGroups) {
-                await prisma.dashboardQueryGroup.upsert({
+                await (prisma.dashboardQueryGroup as any).upsert({
                     where: { id: g.id },
                     update: {},
                     create: { id: g.id, name: g.name, description: g.description, displayOrder: g.order ?? 0 }
@@ -421,7 +421,7 @@ export async function initializeSeedData(): Promise<{ groupsCreated: number; que
             if (!activeQ) {
                 if (USE_POSTGRES) {
                     try {
-                        await prisma.dashboardQuery.create({
+                        await (prisma.dashboardQuery as any).create({
                             data: {
                                 id: seedQ.id,
                                 queryNumber: seedQ.queryNumber,
@@ -464,3 +464,4 @@ export async function initializeSeedData(): Promise<{ groupsCreated: number; que
 
     return { groupsCreated, queriesCreated };
 }
+

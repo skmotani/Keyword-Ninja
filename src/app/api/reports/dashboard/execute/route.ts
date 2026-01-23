@@ -1581,7 +1581,7 @@ async function executeTop3SurfacesByCategoryQuery(): Promise<{
         'CRITICAL': 'Critical', 'HIGH': 'High', 'MEDIUM': 'Medium', 'LOW': 'Low',
     };
 
-    const surfaces = await prisma.footprintSurfaceRegistry.findMany({
+    const surfaces = await (prisma.footprintSurfaceRegistry as any).findMany({
         where: { enabled: true },
         orderBy: { basePoints: 'desc' },
         select: { surfaceKey: true, label: true, category: true, importanceTier: true, basePoints: true },
@@ -2247,3 +2247,4 @@ export async function POST(request: Request) {
         );
     }
 }
+

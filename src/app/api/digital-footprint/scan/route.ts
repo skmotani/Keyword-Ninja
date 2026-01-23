@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Create scan record
-        const scan = await prisma.footprintScan.create({
+        const scan = await (prisma.footprintScan as any).create({
             data: {
                 domainsRaw: body.domains,
                 hintsRaw: body.hints || null,
@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
                 });
 
                 // Create domain scan record
-                const domainScan = await prisma.domainScan.create({
+                const domainScan = await (prisma.domainScan as any).create({
                     data: {
                         scanId: scan.id,
                         domainRaw: domain,
@@ -87,7 +87,7 @@ export async function POST(request: NextRequest) {
                     const surface = SURFACES[ev.surfaceKey];
                     const surfaceScore = score.surfaces.find(s => s.surfaceKey === ev.surfaceKey);
 
-                    await prisma.surfaceResult.create({
+                    await (prisma.surfaceResult as any).create({
                         data: {
                             domainScanId: domainScan.id,
                             category: surface?.category || 'unknown',
@@ -113,7 +113,7 @@ export async function POST(request: NextRequest) {
                 }
 
                 // Update domain scan with scores
-                await prisma.domainScan.update({
+                await (prisma.domainScan as any).update({
                     where: { id: domainScan.id },
                     data: {
                         scoreTotal: score.totalAwarded,
@@ -129,7 +129,7 @@ export async function POST(request: NextRequest) {
                 });
 
                 // Update progress
-                await prisma.footprintScan.update({
+                await (prisma.footprintScan as any).update({
                     where: { id: scan.id },
                     data: { finishedDomains: { increment: 1 } },
                 });
@@ -145,7 +145,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Mark scan as complete
-        await prisma.footprintScan.update({
+        await (prisma.footprintScan as any).update({
             where: { id: scan.id },
             data: { status: 'completed' },
         });
@@ -163,3 +163,4 @@ export async function POST(request: NextRequest) {
         );
     }
 }
+

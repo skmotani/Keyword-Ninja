@@ -17,7 +17,7 @@ const SERP_RESULTS_FILE = 'serp_results.json';
 
 async function readSerpRecords(): Promise<ClientPositionSerpRecord[]> {
   if (USE_POSTGRES_CLIENT_POSITIONS_SERP) {
-    const records = await prisma.clientPositionSerp.findMany();
+    const records = await (prisma.clientPositionSerp as any).findMany();
     return records.map(r => ({
       id: r.id,
       clientCode: r.clientCode,
@@ -60,7 +60,7 @@ export async function getClientPositionSerpRecords(
     if (selectedDomain) where.selectedDomain = selectedDomain;
     if (locationType) where.locationType = locationType;
 
-    const records = await prisma.clientPositionSerp.findMany({ where });
+    const records = await (prisma.clientPositionSerp as any).findMany({ where });
     return records.map(r => ({
       id: r.id,
       clientCode: r.clientCode,
@@ -87,7 +87,7 @@ export async function upsertClientPositionSerpRecords(
 ): Promise<void> {
   if (USE_POSTGRES_CLIENT_POSITIONS_SERP) {
     for (const r of newRecords) {
-      const existing = await prisma.clientPositionSerp.findFirst({
+      const existing = await (prisma.clientPositionSerp as any).findFirst({
         where: {
           clientCode: r.clientCode,
           keyword: { equals: r.keyword, mode: 'insensitive' },
@@ -97,12 +97,12 @@ export async function upsertClientPositionSerpRecords(
       });
 
       if (existing) {
-        await prisma.clientPositionSerp.update({
+        await (prisma.clientPositionSerp as any).update({
           where: { id: existing.id },
           data: { rank: r.rank, url: r.url, fetchedAt: r.fetchedAt, updatedAt: new Date() }
         });
       } else {
-        await prisma.clientPositionSerp.create({
+        await (prisma.clientPositionSerp as any).create({
           data: {
             clientCode: r.clientCode,
             keyword: r.keyword,
@@ -161,7 +161,7 @@ export async function upsertClientPositionSerpRecords(
 
 async function readSerpResultRecords(): Promise<SerpResult[]> {
   if (USE_POSTGRES_SERP_RESULTS) {
-    const records = await prisma.serpResult.findMany();
+    const records = await (prisma.serpResult as any).findMany();
     return records.map(r => ({
       id: r.id,
       clientCode: r.clientCode,
@@ -198,7 +198,7 @@ export async function getSerpDataByClientAndLocations(
   locationCodes: number[]
 ): Promise<SerpResult[]> {
   if (USE_POSTGRES_SERP_RESULTS) {
-    const records = await prisma.serpResult.findMany({
+    const records = await (prisma.serpResult as any).findMany({
       where: { clientCode, locationCode: { in: locationCodes } }
     });
     return records.map(r => ({
@@ -231,12 +231,12 @@ export async function replaceSerpDataForClientAndLocations(
 ): Promise<void> {
   if (USE_POSTGRES_SERP_RESULTS) {
     // Delete existing records
-    await prisma.serpResult.deleteMany({
+    await (prisma.serpResult as any).deleteMany({
       where: { clientCode, locationCode: { in: locationCodes } }
     });
     // Insert new records
     for (const r of newRecords) {
-      await prisma.serpResult.create({
+      await (prisma.serpResult as any).create({
         data: {
           id: r.id,
           clientCode: r.clientCode,

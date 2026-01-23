@@ -16,7 +16,7 @@ const CLIENT_POSITIONS_FILE = 'client_positions.json';
 
 async function readCuratedKeywords(): Promise<CuratedKeyword[]> {
     if (USE_POSTGRES_CURATED_KEYWORDS) {
-        const records = await prisma.curatedKeyword.findMany();
+        const records = await (prisma.curatedKeyword as any).findMany();
         return records.map(r => ({
             id: r.id,
             clientCode: r.clientCode,
@@ -45,7 +45,7 @@ async function writeCuratedKeywords(records: CuratedKeyword[]): Promise<void> {
 export async function getCuratedKeywords(clientCode?: string): Promise<CuratedKeyword[]> {
     if (USE_POSTGRES_CURATED_KEYWORDS) {
         const where = clientCode ? { clientCode } : {};
-        const records = await prisma.curatedKeyword.findMany({ where });
+        const records = await (prisma.curatedKeyword as any).findMany({ where });
         return records.map(r => ({
             id: r.id,
             clientCode: r.clientCode,
@@ -68,7 +68,7 @@ export async function addCuratedKeywords(newRecords: Omit<CuratedKeyword, 'id' |
         const added: CuratedKeyword[] = [];
         for (const r of newRecords) {
             try {
-                const record = await prisma.curatedKeyword.create({
+                const record = await (prisma.curatedKeyword as any).create({
                     data: {
                         clientCode: r.clientCode,
                         keyword: r.keyword,
@@ -114,7 +114,7 @@ export async function addCuratedKeywords(newRecords: Omit<CuratedKeyword, 'id' |
 export async function updateCuratedKeyword(id: string, updates: Partial<CuratedKeyword>): Promise<CuratedKeyword | null> {
     if (USE_POSTGRES_CURATED_KEYWORDS) {
         try {
-            const record = await prisma.curatedKeyword.update({
+            const record = await (prisma.curatedKeyword as any).update({
                 where: { id },
                 data: { notes: updates.notes, updatedAt: new Date() }
             });
@@ -144,7 +144,7 @@ export async function updateCuratedKeyword(id: string, updates: Partial<CuratedK
 export async function deleteCuratedKeyword(id: string): Promise<void> {
     if (USE_POSTGRES_CURATED_KEYWORDS) {
         try {
-            await prisma.curatedKeyword.delete({ where: { id } });
+            await (prisma.curatedKeyword as any).delete({ where: { id } });
         } catch {
             // Already deleted or doesn't exist
         }
@@ -161,7 +161,7 @@ export async function deleteCuratedKeyword(id: string): Promise<void> {
 
 async function readClientPositions(): Promise<ClientPosition[]> {
     if (USE_POSTGRES_CLIENT_POSITIONS) {
-        const positions = await prisma.clientPosition.findMany();
+        const positions = await (prisma.clientPosition as any).findMany();
         return positions.map(p => ({
             id: p.id,
             clientCode: p.clientCode,
@@ -194,7 +194,7 @@ async function writeClientPositions(records: ClientPosition[]): Promise<void> {
 export async function getClientPositions(clientCode?: string): Promise<ClientPosition[]> {
     if (USE_POSTGRES_CLIENT_POSITIONS) {
         const where = clientCode ? { clientCode } : {};
-        const positions = await prisma.clientPosition.findMany({ where });
+        const positions = await (prisma.clientPosition as any).findMany({ where });
         return positions.map(p => ({
             id: p.id,
             clientCode: p.clientCode,
@@ -219,7 +219,7 @@ export async function addClientPositions(newRecords: Omit<ClientPosition, 'id' |
     if (USE_POSTGRES_CLIENT_POSITIONS) {
         const added: ClientPosition[] = [];
         for (const r of newRecords) {
-            const record = await prisma.clientPosition.create({
+            const record = await (prisma.clientPosition as any).create({
                 data: {
                     clientCode: r.clientCode,
                     keywordOrTheme: r.keywordOrTheme,
@@ -263,7 +263,7 @@ export async function addClientPositions(newRecords: Omit<ClientPosition, 'id' |
 export async function updateClientPosition(id: string, updates: Partial<ClientPosition>): Promise<ClientPosition | null> {
     if (USE_POSTGRES_CLIENT_POSITIONS) {
         try {
-            const record = await prisma.clientPosition.update({
+            const record = await (prisma.clientPosition as any).update({
                 where: { id },
                 data: {
                     currentPosition: updates.currentPosition,
@@ -303,7 +303,7 @@ export async function updateClientPosition(id: string, updates: Partial<ClientPo
 export async function deleteClientPosition(id: string): Promise<void> {
     if (USE_POSTGRES_CLIENT_POSITIONS) {
         try {
-            await prisma.clientPosition.delete({ where: { id } });
+            await (prisma.clientPosition as any).delete({ where: { id } });
         } catch {
             // Already deleted or doesn't exist
         }
@@ -315,3 +315,4 @@ export async function deleteClientPosition(id: string): Promise<void> {
         await writeClientPositions(filtered);
     }
 }
+

@@ -9,7 +9,7 @@ const FILENAME = 'domainProfiles.json';
 
 async function readData(): Promise<DomainProfile[]> {
   if (USE_POSTGRES) {
-    const records = await prisma.domainProfile.findMany();
+    const records = await (prisma.domainProfile as any).findMany();
     return records.map(r => ({
       id: r.id,
       clientCode: r.clientCode,
@@ -51,7 +51,7 @@ export async function getDomainProfiles(): Promise<DomainProfile[]> {
 
 export async function getDomainProfilesByClient(clientCode: string): Promise<DomainProfile[]> {
   if (USE_POSTGRES) {
-    const records = await prisma.domainProfile.findMany({ where: { clientCode } });
+    const records = await (prisma.domainProfile as any).findMany({ where: { clientCode } });
     return records.map(r => ({
       id: r.id,
       clientCode: r.clientCode,
@@ -79,7 +79,7 @@ export async function getDomainProfilesByClient(clientCode: string): Promise<Dom
 export async function getDomainProfile(clientCode: string, domain: string): Promise<DomainProfile | undefined> {
   if (USE_POSTGRES) {
     const normalizedDomain = domain.toLowerCase().trim();
-    const record = await prisma.domainProfile.findFirst({
+    const record = await (prisma.domainProfile as any).findFirst({
       where: { clientCode, domain: { equals: normalizedDomain, mode: 'insensitive' } }
     });
     if (!record) return undefined;
@@ -112,7 +112,7 @@ export async function getDomainProfile(clientCode: string, domain: string): Prom
 
 export async function getDomainProfileById(id: string): Promise<DomainProfile | undefined> {
   if (USE_POSTGRES) {
-    const record = await prisma.domainProfile.findUnique({ where: { id } });
+    const record = await (prisma.domainProfile as any).findUnique({ where: { id } });
     if (!record) return undefined;
     return {
       id: record.id,
@@ -140,7 +140,7 @@ export async function getDomainProfileById(id: string): Promise<DomainProfile | 
 
 export async function createDomainProfile(profile: DomainProfile): Promise<DomainProfile> {
   if (USE_POSTGRES) {
-    await prisma.domainProfile.create({
+    await (prisma.domainProfile as any).create({
       data: {
         id: profile.id,
         clientCode: profile.clientCode,
@@ -169,7 +169,7 @@ export async function createDomainProfile(profile: DomainProfile): Promise<Domai
 
 export async function updateDomainProfile(id: string, updates: Partial<DomainProfile>): Promise<DomainProfile | null> {
   if (USE_POSTGRES) {
-    const record = await prisma.domainProfile.update({
+    const record = await (prisma.domainProfile as any).update({
       where: { id },
       data: {
         ...updates,
@@ -208,12 +208,12 @@ export async function updateDomainProfile(id: string, updates: Partial<DomainPro
 export async function upsertDomainProfile(clientCode: string, domain: string, updates: Partial<DomainProfile>): Promise<DomainProfile> {
   if (USE_POSTGRES) {
     const normalizedDomain = domain.toLowerCase().trim();
-    const existing = await prisma.domainProfile.findFirst({
+    const existing = await (prisma.domainProfile as any).findFirst({
       where: { clientCode, domain: { equals: normalizedDomain, mode: 'insensitive' } }
     });
 
     if (existing) {
-      const record = await prisma.domainProfile.update({
+      const record = await (prisma.domainProfile as any).update({
         where: { id: existing.id },
         data: { ...updates, topKeywords: updates.topKeywords as any, updatedAt: new Date() }
       });
@@ -238,7 +238,7 @@ export async function upsertDomainProfile(clientCode: string, domain: string, up
       };
     } else {
       const newId = crypto.randomUUID();
-      const record = await prisma.domainProfile.create({
+      const record = await (prisma.domainProfile as any).create({
         data: {
           id: newId,
           clientCode,
@@ -321,7 +321,7 @@ export async function upsertDomainProfile(clientCode: string, domain: string, up
 export async function deleteDomainProfile(id: string): Promise<boolean> {
   if (USE_POSTGRES) {
     try {
-      await prisma.domainProfile.delete({ where: { id } });
+      await (prisma.domainProfile as any).delete({ where: { id } });
       return true;
     } catch {
       return false;
@@ -336,7 +336,7 @@ export async function deleteDomainProfile(id: string): Promise<boolean> {
 
 export async function deleteDomainProfilesByClient(clientCode: string): Promise<number> {
   if (USE_POSTGRES) {
-    const result = await prisma.domainProfile.deleteMany({ where: { clientCode } });
+    const result = await (prisma.domainProfile as any).deleteMany({ where: { clientCode } });
     return result.count;
   }
   const profiles = await readData();
@@ -345,3 +345,4 @@ export async function deleteDomainProfilesByClient(clientCode: string): Promise<
   await writeData(filtered);
   return deletedCount;
 }
+

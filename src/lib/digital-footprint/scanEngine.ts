@@ -713,7 +713,7 @@ export async function executeScan(config: ScanConfig): Promise<string> {
     console.log(`🚀 Starting scan for client: ${config.clientName}`);
 
     // 1. Create scan record
-    const scan = await prisma.digitalFootprintScan.create({
+    const scan = await (prisma.digitalFootprintScan as any).create({
         data: {
             clientId: config.clientId,
             clientName: config.clientName,
@@ -725,7 +725,7 @@ export async function executeScan(config: ScanConfig): Promise<string> {
     console.log(`📋 Created scan: ${scan.id}`);
 
     // 2. Load ALL enabled surfaces with active rules
-    const surfaces = await prisma.footprintSurface.findMany({
+    const surfaces = await (prisma.footprintSurface as any).findMany({
         where: { enabled: true },
         include: {
             rules: {
@@ -766,7 +766,7 @@ export async function executeScan(config: ScanConfig): Promise<string> {
         );
 
         // Create result row with placeholder status
-        const result = await prisma.digitalFootprintScanResult.create({
+        const result = await (prisma.digitalFootprintScanResult as any).create({
             data: {
                 scanId: scan.id,
                 surfaceKey: surface.surfaceKey,
@@ -873,7 +873,7 @@ export async function executeScan(config: ScanConfig): Promise<string> {
         counts[finalStatus] = (counts[finalStatus] || 0) + 1;
 
         // Update result row
-        await prisma.digitalFootprintScanResult.update({
+        await (prisma.digitalFootprintScanResult as any).update({
             where: { id: row.id },
             data: {
                 status: finalStatus,
@@ -904,7 +904,7 @@ export async function executeScan(config: ScanConfig): Promise<string> {
         score: Math.round(((counts['PRESENT_CONFIRMED'] || 0) + (counts['PRESENT_PARTIAL'] || 0) * 0.5) / surfaces.length * 100),
     };
 
-    await prisma.digitalFootprintScan.update({
+    await (prisma.digitalFootprintScan as any).update({
         where: { id: scan.id },
         data: {
             status: 'COMPLETED',
@@ -918,3 +918,4 @@ export async function executeScan(config: ScanConfig): Promise<string> {
 
     return scan.id;
 }
+

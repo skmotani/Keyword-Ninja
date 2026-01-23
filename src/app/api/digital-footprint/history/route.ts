@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma';
 
 export async function GET() {
     try {
-        const scans = await prisma.footprintScan.findMany({
+        const scans = await (prisma.footprintScan as any).findMany({
             orderBy: { createdAt: 'desc' },
             take: 50,
             include: {
@@ -41,3 +41,4 @@ export async function GET() {
         );
     }
 }
+

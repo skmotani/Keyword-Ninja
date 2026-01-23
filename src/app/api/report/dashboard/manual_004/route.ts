@@ -93,7 +93,7 @@ const IMPORTANCE_DISPLAY: Record<string, string> = {
 export async function GET() {
     try {
         // Fetch all enabled surfaces ordered by points
-        const surfaces = await prisma.footprintSurfaceRegistry.findMany({
+        const surfaces = await (prisma.footprintSurfaceRegistry as any).findMany({
             where: { enabled: true },
             orderBy: { basePoints: 'desc' },
             select: {
@@ -147,3 +147,4 @@ export async function GET() {
         return NextResponse.json({ error: 'Failed to fetch data' }, { status: 500 });
     }
 }
+

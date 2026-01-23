@@ -51,7 +51,7 @@ export const authOptions: NextAuthOptions = {
 
             try {
                 // Check if user exists
-                const existingUser = await prisma.user.findUnique({
+                const existingUser = await (prisma.user as any).findUnique({
                     where: { email: user.email },
                 });
 
@@ -59,7 +59,7 @@ export const authOptions: NextAuthOptions = {
                 if (user.email === SUPER_ADMIN_EMAIL) {
                     if (!existingUser) {
                         // Auto-create super admin
-                        await prisma.user.create({
+                        await (prisma.user as any).create({
                             data: {
                                 email: user.email,
                                 name: user.name || "Super Admin",
@@ -70,7 +70,7 @@ export const authOptions: NextAuthOptions = {
                         });
                     } else if (existingUser.role !== "superadmin") {
                         // Ensure super admin role
-                        await prisma.user.update({
+                        await (prisma.user as any).update({
                             where: { email: user.email },
                             data: { role: "superadmin", isActive: true },
                         });
@@ -88,7 +88,7 @@ export const authOptions: NextAuthOptions = {
                 }
 
                 // New user - allow by default (create as active user)
-                await prisma.user.create({
+                await (prisma.user as any).create({
                     data: {
                         email: user.email,
                         name: user.name,
@@ -105,7 +105,7 @@ export const authOptions: NextAuthOptions = {
         },
         async jwt({ token, user }) {
             if (user?.email) {
-                const dbUser = await prisma.user.findUnique({
+                const dbUser = await (prisma.user as any).findUnique({
                     where: { email: user.email },
                 });
                 if (dbUser) {
@@ -128,3 +128,4 @@ export const authOptions: NextAuthOptions = {
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
+

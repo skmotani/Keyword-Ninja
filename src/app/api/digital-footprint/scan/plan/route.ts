@@ -284,7 +284,7 @@ export async function POST(request: NextRequest) {
         console.log(`[PLAN] Client: ${client.name}, Domain: ${canonicalDomain || 'NONE'}`);
 
         // Load all surfaces with active rules
-        const surfaces = await prisma.footprintSurface.findMany({
+        const surfaces = await (prisma.footprintSurface as any).findMany({
             include: {
                 rules: {
                     where: { isActive: true },
@@ -443,3 +443,4 @@ export async function POST(request: NextRequest) {
         );
     }
 }
+

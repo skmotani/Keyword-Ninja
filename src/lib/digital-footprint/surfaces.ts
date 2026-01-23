@@ -45,7 +45,7 @@ function tierToRelevance(tier: string): Relevance {
 // Load surfaces from database registry (enabled only)
 export async function getSurfacesFromRegistry(): Promise<SurfaceDefinition[]> {
     try {
-        const registrySurfaces = await prisma.footprintSurfaceRegistry.findMany({
+        const registrySurfaces = await (prisma.footprintSurfaceRegistry as any).findMany({
             where: { enabled: true },
             orderBy: [
                 { importanceTier: 'asc' },
@@ -219,3 +219,4 @@ export async function getTotalBasePointsFromRegistry(): Promise<number> {
     const surfaces = await getSurfacesFromRegistry();
     return surfaces.reduce((sum, s) => sum + s.basePoints, 0);
 }
+

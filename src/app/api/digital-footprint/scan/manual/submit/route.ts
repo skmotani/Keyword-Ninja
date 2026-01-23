@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Find existing result
-        const result = await prisma.digitalFootprintScanResult.findUnique({
+        const result = await (prisma.digitalFootprintScanResult as any).findUnique({
             where: {
                 scanId_surfaceKey: {
                     scanId: body.scanId,
@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
         confidence = Math.min(100, confidence);
 
         // Update the result
-        const updated = await prisma.digitalFootprintScanResult.update({
+        const updated = await (prisma.digitalFootprintScanResult as any).update({
             where: { id: result.id },
             data: {
                 status: body.status,
@@ -123,7 +123,7 @@ export async function POST(request: NextRequest) {
  * Recalculate and update scan summary after manual submission
  */
 async function updateScanSummary(scanId: string) {
-    const results = await prisma.digitalFootprintScanResult.findMany({
+    const results = await (prisma.digitalFootprintScanResult as any).findMany({
         where: { scanId },
     });
 
@@ -154,10 +154,11 @@ async function updateScanSummary(scanId: string) {
         score: Math.round(((counts.PRESENT_CONFIRMED + counts.PRESENT_PARTIAL * 0.5) / results.length) * 100),
     };
 
-    await prisma.digitalFootprintScan.update({
+    await (prisma.digitalFootprintScan as any).update({
         where: { id: scanId },
         data: {
             summary: summary as unknown as Prisma.JsonObject,
         },
     });
 }
+

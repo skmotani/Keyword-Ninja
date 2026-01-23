@@ -41,7 +41,7 @@ async function ensureDataDir(): Promise<void> {
 
 async function readStore(): Promise<DomainCredibilityRecord[]> {
     if (USE_POSTGRES) {
-        const records = await prisma.domainCredibility.findMany();
+        const records = await (prisma.domainCredibility as any).findMany();
         return records.map(r => ({
             id: r.id,
             clientCode: r.clientCode,
@@ -98,7 +98,7 @@ export async function getAllCredibilityRecords(): Promise<DomainCredibilityRecor
 
 export async function getCredibilityByClient(clientCode: string): Promise<DomainCredibilityRecord[]> {
     if (USE_POSTGRES) {
-        const records = await prisma.domainCredibility.findMany({ where: { clientCode } });
+        const records = await (prisma.domainCredibility as any).findMany({ where: { clientCode } });
         return records.map(r => ({
             id: r.id,
             clientCode: r.clientCode,
@@ -132,7 +132,7 @@ export async function getCredibilityByClientAndLocation(
     locationCode: LocationCode
 ): Promise<DomainCredibilityRecord[]> {
     if (USE_POSTGRES) {
-        const records = await prisma.domainCredibility.findMany({ where: { clientCode, locationCode } });
+        const records = await (prisma.domainCredibility as any).findMany({ where: { clientCode, locationCode } });
         return records.map(r => ({
             id: r.id,
             clientCode: r.clientCode,
@@ -167,7 +167,7 @@ export async function getCredibilityByDomain(
     locationCode: LocationCode
 ): Promise<DomainCredibilityRecord | null> {
     if (USE_POSTGRES) {
-        const record = await prisma.domainCredibility.findFirst({
+        const record = await (prisma.domainCredibility as any).findFirst({
             where: { clientCode, domain: { equals: domain, mode: 'insensitive' }, locationCode }
         });
         if (!record) return null;
@@ -226,11 +226,11 @@ export async function saveCredibilityRecords(
     if (USE_POSTGRES) {
         let saved = 0, updated = 0;
         for (const record of newRecords) {
-            const existing = await prisma.domainCredibility.findFirst({
+            const existing = await (prisma.domainCredibility as any).findFirst({
                 where: { clientCode: record.clientCode, domain: { equals: record.domain, mode: 'insensitive' }, locationCode: record.locationCode }
             });
             if (existing) {
-                await prisma.domainCredibility.update({
+                await (prisma.domainCredibility as any).update({
                     where: { id: existing.id },
                     data: {
                         domainType: record.domainType,
@@ -255,7 +255,7 @@ export async function saveCredibilityRecords(
                 });
                 updated++;
             } else {
-                await prisma.domainCredibility.create({
+                await (prisma.domainCredibility as any).create({
                     data: {
                         id: record.id,
                         clientCode: record.clientCode,
@@ -322,9 +322,9 @@ export async function replaceClientLocationCredibility(
     newRecords: DomainCredibilityRecord[]
 ): Promise<void> {
     if (USE_POSTGRES) {
-        await prisma.domainCredibility.deleteMany({ where: { clientCode, locationCode } });
+        await (prisma.domainCredibility as any).deleteMany({ where: { clientCode, locationCode } });
         for (const record of newRecords) {
-            await prisma.domainCredibility.create({
+            await (prisma.domainCredibility as any).create({
                 data: {
                     id: record.id,
                     clientCode: record.clientCode,
@@ -364,11 +364,11 @@ export async function deleteCredibilityRecord(
     locationCode: LocationCode
 ): Promise<boolean> {
     if (USE_POSTGRES) {
-        const existing = await prisma.domainCredibility.findFirst({
+        const existing = await (prisma.domainCredibility as any).findFirst({
             where: { clientCode, domain: { equals: domain, mode: 'insensitive' }, locationCode }
         });
         if (!existing) return false;
-        await prisma.domainCredibility.delete({ where: { id: existing.id } });
+        await (prisma.domainCredibility as any).delete({ where: { id: existing.id } });
         return true;
     }
     const records = await readStore();
@@ -390,7 +390,7 @@ export async function deleteCredibilityRecord(
 
 export async function deleteClientCredibility(clientCode: string): Promise<number> {
     if (USE_POSTGRES) {
-        const result = await prisma.domainCredibility.deleteMany({ where: { clientCode } });
+        const result = await (prisma.domainCredibility as any).deleteMany({ where: { clientCode } });
         return result.count;
     }
     const records = await readStore();
@@ -477,3 +477,4 @@ export async function getLastFetchedAt(
 }
 
 export const CREDIBILITY_STORE_VERSION = '2.0.0';
+

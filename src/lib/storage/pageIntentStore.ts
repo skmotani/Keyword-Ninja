@@ -25,7 +25,7 @@ async function ensureFile(filePath: string): Promise<void> {
 
 export async function getSummaries(): Promise<PageIntentDomainSummary[]> {
     if (USE_POSTGRES) {
-        const records = await prisma.pageIntentSummary.findMany();
+        const records = await (prisma.pageIntentSummary as any).findMany();
         return records.map(r => ({
             id: r.id,
             clientCode: r.clientCode,
@@ -48,7 +48,7 @@ export async function getSummaries(): Promise<PageIntentDomainSummary[]> {
 
 export async function getSummariesByClient(clientCode: string): Promise<PageIntentDomainSummary[]> {
     if (USE_POSTGRES) {
-        const records = await prisma.pageIntentSummary.findMany({
+        const records = await (prisma.pageIntentSummary as any).findMany({
             where: { clientCode }
         });
         return records.map(r => ({
@@ -72,7 +72,7 @@ export async function getSummariesByClient(clientCode: string): Promise<PageInte
 
 export async function getSummaryByDomain(clientCode: string, domain: string): Promise<PageIntentDomainSummary | null> {
     if (USE_POSTGRES) {
-        const record = await prisma.pageIntentSummary.findFirst({
+        const record = await (prisma.pageIntentSummary as any).findFirst({
             where: { clientCode, url: domain }
         });
         if (!record) return null;
@@ -97,7 +97,7 @@ export async function getSummaryByDomain(clientCode: string, domain: string): Pr
 
 export async function upsertSummary(summary: PageIntentDomainSummary): Promise<void> {
     if (USE_POSTGRES) {
-        const existing = await prisma.pageIntentSummary.findFirst({
+        const existing = await (prisma.pageIntentSummary as any).findFirst({
             where: { clientCode: summary.clientCode, url: summary.domain }
         });
 
@@ -112,12 +112,12 @@ export async function upsertSummary(summary: PageIntentDomainSummary): Promise<v
         };
 
         if (existing) {
-            await prisma.pageIntentSummary.update({
+            await (prisma.pageIntentSummary as any).update({
                 where: { id: existing.id },
                 data: { summaryJson, updatedAt: new Date() }
             });
         } else {
-            await prisma.pageIntentSummary.create({
+            await (prisma.pageIntentSummary as any).create({
                 data: {
                     id: summary.id,
                     clientCode: summary.clientCode,
@@ -151,7 +151,7 @@ export async function upsertSummary(summary: PageIntentDomainSummary): Promise<v
 
 export async function getPages(): Promise<PageIntentDetail[]> {
     if (USE_POSTGRES) {
-        const records = await prisma.pageIntentPage.findMany();
+        const records = await (prisma.pageIntentPage as any).findMany();
         return records.map(r => ({
             id: r.id,
             clientCode: r.clientCode,
@@ -168,7 +168,7 @@ export async function getPages(): Promise<PageIntentDetail[]> {
 
 export async function getPagesByDomain(clientCode: string, domain: string): Promise<PageIntentDetail[]> {
     if (USE_POSTGRES) {
-        const records = await prisma.pageIntentPage.findMany({
+        const records = await (prisma.pageIntentPage as any).findMany({
             where: { clientCode }
         });
         return records
@@ -188,19 +188,19 @@ export async function getPagesByDomain(clientCode: string, domain: string): Prom
 
 export async function upsertPage(page: PageIntentDetail): Promise<void> {
     if (USE_POSTGRES) {
-        const existing = await prisma.pageIntentPage.findFirst({
+        const existing = await (prisma.pageIntentPage as any).findFirst({
             where: { clientCode: page.clientCode, url: page.url }
         });
 
         const intentData = { domain: page.domain, intent: page.intent };
 
         if (existing) {
-            await prisma.pageIntentPage.update({
+            await (prisma.pageIntentPage as any).update({
                 where: { id: existing.id },
                 data: { intentData, updatedAt: new Date() }
             });
         } else {
-            await prisma.pageIntentPage.create({
+            await (prisma.pageIntentPage as any).create({
                 data: {
                     id: page.id,
                     clientCode: page.clientCode,
@@ -253,12 +253,12 @@ export async function bulkUpsertPages(newPages: PageIntentDetail[]): Promise<voi
 
 export async function deletePagesByDomain(clientCode: string, domain: string): Promise<void> {
     if (USE_POSTGRES) {
-        const records = await prisma.pageIntentPage.findMany({
+        const records = await (prisma.pageIntentPage as any).findMany({
             where: { clientCode }
         });
         const toDelete = records.filter(r => (r.intentData as any)?.domain === domain);
         for (const r of toDelete) {
-            await prisma.pageIntentPage.delete({ where: { id: r.id } });
+            await (prisma.pageIntentPage as any).delete({ where: { id: r.id } });
         }
         return;
     }
@@ -267,3 +267,4 @@ export async function deletePagesByDomain(clientCode: string, domain: string): P
     const filtered = pages.filter(p => !(p.clientCode === clientCode && p.domain === domain));
     await fs.writeFile(PAGES_FILE, JSON.stringify(filtered, null, 2), 'utf-8');
 }
+

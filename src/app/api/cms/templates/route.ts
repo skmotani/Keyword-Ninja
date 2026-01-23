@@ -7,7 +7,7 @@ import { prisma } from '@/lib/prisma';
 // List all templates
 export async function GET() {
     try {
-        const templates = await prisma.cmsTemplate.findMany({
+        const templates = await (prisma.cmsTemplate as any).findMany({
             where: { isActive: true },
             include: {
                 _count: {
@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Check for duplicate slug
-        const existing = await prisma.cmsTemplate.findUnique({
+        const existing = await (prisma.cmsTemplate as any).findUnique({
             where: { slug },
         });
 
@@ -75,7 +75,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const template = await prisma.cmsTemplate.create({
+        const template = await (prisma.cmsTemplate as any).create({
             data: {
                 name,
                 slug,
@@ -105,3 +105,4 @@ export async function POST(request: NextRequest) {
         );
     }
 }
+
