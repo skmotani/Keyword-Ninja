@@ -31,7 +31,14 @@ import { readClientSerpData } from '@/lib/clientSerpStore';
 import { getKeywordApiDataByClientAndLocations } from '@/lib/keywordApiStore';
 import { readTags, normalizeKeyword } from '@/lib/keywordTagsStore';
 import { getCredibilityByClientAndLocation, getCredibilityByClient } from '@/lib/storage/domainCredibilityStore';
+import { prisma } from '@/lib/prisma';
 
+// PostgreSQL feature flags
+const USE_POSTGRES_DOMAIN_KEYWORDS = process.env.USE_POSTGRES_DOMAIN_KEYWORDS === 'true';
+const USE_POSTGRES_COMPETITORS = process.env.USE_POSTGRES_COMPETITORS === 'true';
+const USE_POSTGRES_PROFILES = process.env.USE_POSTGRES_PROFILES === 'true';
+const USE_POSTGRES_CLIENT_AI_PROFILES = process.env.USE_POSTGRES_CLIENT_AI_PROFILES === 'true';
+const USE_POSTGRES_KEYWORD_API_DATA = process.env.USE_POSTGRES_KEYWORD_API_DATA === 'true';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 
@@ -87,6 +94,16 @@ async function readClients(): Promise<Client[]> {
 // Helper: Read AI profiles
 async function readAiProfiles(): Promise<ClientAIProfile[]> {
     try {
+        if (USE_POSTGRES_CLIENT_AI_PROFILES) {
+            const records = await (prisma.clientAIProfile as any).findMany();
+            return records.map((r: any) => ({
+                clientCode: r.clientCode,
+                domain: r.domain,
+                profile: r.profile,
+                createdAt: r.createdAt,
+                updatedAt: r.updatedAt,
+            })) as ClientAIProfile[];
+        }
         const filePath = path.join(DATA_DIR, 'client_ai_profiles.json');
         const data = await fs.readFile(filePath, 'utf-8');
         return JSON.parse(data) as ClientAIProfile[];
@@ -98,6 +115,24 @@ async function readAiProfiles(): Promise<ClientAIProfile[]> {
 // Helper: Read keyword API data
 async function readKeywordApiData(): Promise<KeywordApiDataRecord[]> {
     try {
+        if (USE_POSTGRES_KEYWORD_API_DATA) {
+            const records = await (prisma.keywordApiData as any).findMany();
+            return records.map((r: any) => ({
+                id: r.id,
+                clientCode: r.clientCode,
+                keyword: r.keyword,
+                locationCode: r.locationCode,
+                cpc: r.cpc,
+                searchVolume: r.searchVolume,
+                competition: r.competition,
+                competitionLevel: r.competitionLevel,
+                lowTopOfPageBid: r.lowTopOfPageBid,
+                highTopOfPageBid: r.highTopOfPageBid,
+                monthlySearches: r.monthlySearches,
+                createdAt: r.createdAt,
+                updatedAt: r.updatedAt,
+            })) as KeywordApiDataRecord[];
+        }
         const filePath = path.join(DATA_DIR, 'keyword_api_data.json');
         const data = await fs.readFile(filePath, 'utf-8');
         return JSON.parse(data) as KeywordApiDataRecord[];
@@ -109,6 +144,27 @@ async function readKeywordApiData(): Promise<KeywordApiDataRecord[]> {
 // Helper: Read domain keywords
 async function readDomainKeywords(): Promise<DomainKeywordRecord[]> {
     try {
+        if (USE_POSTGRES_DOMAIN_KEYWORDS) {
+            const records = await (prisma.domainKeyword as any).findMany();
+            return records.map((r: any) => ({
+                id: r.id,
+                clientCode: r.clientCode,
+                domain: r.domain,
+                locationCode: r.locationCode,
+                keyword: r.keyword,
+                position: r.position,
+                etv: r.etv,
+                searchVolume: r.searchVolume,
+                tag1: r.tag1,
+                tag2: r.tag2,
+                cpc: r.cpc,
+                url: r.url,
+                impressionsEtv: r.impressionsEtv,
+                isLost: r.isLost,
+                createdAt: r.createdAt,
+                updatedAt: r.updatedAt,
+            })) as DomainKeywordRecord[];
+        }
         const filePath = path.join(DATA_DIR, 'domain_keywords.json');
         const data = await fs.readFile(filePath, 'utf-8');
         return JSON.parse(data) as DomainKeywordRecord[];
@@ -120,6 +176,18 @@ async function readDomainKeywords(): Promise<DomainKeywordRecord[]> {
 // Helper: Read competitors
 async function readCompetitors(): Promise<Competitor[]> {
     try {
+        if (USE_POSTGRES_COMPETITORS) {
+            const records = await (prisma.competitor as any).findMany();
+            return records.map((r: any) => ({
+                id: r.id,
+                clientCode: r.clientCode,
+                domain: r.domain,
+                locationCode: r.locationCode,
+                isClient: r.isClient,
+                createdAt: r.createdAt,
+                updatedAt: r.updatedAt,
+            })) as Competitor[];
+        }
         const filePath = path.join(DATA_DIR, 'competitors.json');
         const data = await fs.readFile(filePath, 'utf-8');
         return JSON.parse(data) as Competitor[];
