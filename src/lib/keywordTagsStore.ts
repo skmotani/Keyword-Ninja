@@ -25,11 +25,11 @@ async function ensureDataDir() {
 
 export async function readTags(clientCode: string): Promise<Record<string, KeywordTag>> {
     if (USE_POSTGRES) {
-        const records = await prisma.keywordTag.findMany({
+        const records = await (prisma.keywordTag as any).findMany({
             where: { clientCode }
         });
         const clientTags: Record<string, KeywordTag> = {};
-        for (const r of records) {
+        for (const r of records as any[]) {
             const tag = {
                 id: r.id,
                 clientCode: r.clientCode,
@@ -38,7 +38,7 @@ export async function readTags(clientCode: string): Promise<Record<string, Keywo
                 tag: r.tag,
                 bucket: r.bucket,
                 notes: r.notes ?? undefined,
-                updatedAt: r.updatedAt.toISOString(),
+                updatedAt: r.updatedAt?.toISOString?.() ?? r.updatedAt,
                 source: r.source ?? undefined,
             } as any as KeywordTag;
             clientTags[normalizeKeyword(r.keyword)] = tag;
@@ -67,7 +67,7 @@ export async function saveTags(newTags: KeywordTag[]): Promise<void> {
     if (USE_POSTGRES) {
         for (const tag of newTags) {
             const t = tag as any;
-            await prisma.keywordTag.upsert({
+            await (prisma.keywordTag as any).upsert({
                 where: { id: t.id },
                 update: {
                     tag: t.tag,
