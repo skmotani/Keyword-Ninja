@@ -64,13 +64,13 @@ export async function saveSerpResults(
         const normalizedKeyword = keyword.toLowerCase().trim();
 
         // Delete existing results for this keyword/location
-        await prisma.serpResult.deleteMany({
+        await (prisma.serpResult as any).deleteMany({
             where: { clientCode, keyword: normalizedKeyword, locationCode }
         });
 
         // Insert new results
         for (const item of results) {
-            await prisma.serpResult.create({
+            await (prisma.serpResult as any).create({
                 data: {
                     clientCode,
                     keyword: normalizedKeyword,
@@ -132,7 +132,7 @@ export async function getSerpResults(
         const locationCode = locationType === 'IN' ? 2356 : 2840;
         const normalizedKeyword = keyword.toLowerCase().trim();
 
-        const records = await prisma.serpResult.findMany({
+        const records = await (prisma.serpResult as any).findMany({
             where: { clientCode, keyword: normalizedKeyword, locationCode },
             orderBy: { rank: 'asc' }
         });
@@ -167,7 +167,7 @@ export async function getAllResultsForClient(
     clientCode: string
 ): Promise<Record<string, { IN?: KeywordSerpData; GL?: KeywordSerpData }>> {
     if (USE_POSTGRES) {
-        const records = await prisma.serpResult.findMany({
+        const records = await (prisma.serpResult as any).findMany({
             where: { clientCode },
             orderBy: [{ keyword: 'asc' }, { rank: 'asc' }]
         });

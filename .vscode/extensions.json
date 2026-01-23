@@ -1,5 +1,9 @@
 {
     "recommendations": [
-        "sst-dev.opencode"
+        "sst-dev.opencode",
+        "Prisma.prisma",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "bradlc.vscode-tailwindcss"
     ]
 }
