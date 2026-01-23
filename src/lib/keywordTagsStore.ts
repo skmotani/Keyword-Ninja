@@ -30,17 +30,17 @@ export async function readTags(clientCode: string): Promise<Record<string, Keywo
         });
         const clientTags: Record<string, KeywordTag> = {};
         for (const r of records) {
-            const tag: KeywordTag = {
+            const tag = {
                 id: r.id,
                 clientCode: r.clientCode,
                 keyword: r.keyword,
                 normalizedKeyword: r.normalizedKeyword,
-                tag: r.tag as any,
-                bucket: r.bucket as any,
+                tag: r.tag,
+                bucket: r.bucket,
                 notes: r.notes ?? undefined,
                 updatedAt: r.updatedAt.toISOString(),
                 source: r.source ?? undefined,
-            };
+            } as any as KeywordTag;
             clientTags[normalizeKeyword(r.keyword)] = tag;
         }
         return clientTags;
@@ -66,24 +66,25 @@ export async function readTags(clientCode: string): Promise<Record<string, Keywo
 export async function saveTags(newTags: KeywordTag[]): Promise<void> {
     if (USE_POSTGRES) {
         for (const tag of newTags) {
+            const t = tag as any;
             await prisma.keywordTag.upsert({
-                where: { id: tag.id },
+                where: { id: t.id },
                 update: {
-                    tag: tag.tag,
-                    bucket: tag.bucket,
-                    notes: tag.notes,
-                    source: tag.source,
+                    tag: t.tag,
+                    bucket: t.bucket,
+                    notes: t.notes,
+                    source: t.source,
                     updatedAt: new Date(),
                 },
                 create: {
-                    id: tag.id,
-                    clientCode: tag.clientCode,
-                    keyword: tag.keyword,
-                    normalizedKeyword: tag.normalizedKeyword,
-                    tag: tag.tag,
-                    bucket: tag.bucket,
-                    notes: tag.notes,
-                    source: tag.source,
+                    id: t.id,
+                    clientCode: t.clientCode,
+                    keyword: t.keyword,
+                    normalizedKeyword: t.normalizedKeyword,
+                    tag: t.tag,
+                    bucket: t.bucket,
+                    notes: t.notes,
+                    source: t.source,
                 }
             });
         }
