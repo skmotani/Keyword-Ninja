@@ -200,8 +200,8 @@ export async function clusterUrlsWithLlm(
 
 async function readDomainPages(): Promise<DomainPageRecord[]> {
   if (USE_POSTGRES) {
-    const records = await prisma.domainPage.findMany();
-    return records.map(r => ({
+    const records = await (prisma.domainPage as any).findMany();
+    return (records as any[]).map((r: any) => ({
       id: r.id,
       clientCode: r.clientCode,
       domain: r.domain,
@@ -209,12 +209,12 @@ async function readDomainPages(): Promise<DomainPageRecord[]> {
       locationCode: r.locationCode ?? '',
       source: r.source ?? '',
       fetchedAt: r.fetchedAt ?? '',
-      llmClusterId: (r.pageData as any)?.llmClusterId,
-      llmClusterLabel: (r.pageData as any)?.llmClusterLabel,
-      llmClusterDescription: (r.pageData as any)?.llmClusterDescription,
-      llmClusterBatchId: (r.pageData as any)?.llmClusterBatchId,
-      llmClusterRunId: (r.pageData as any)?.llmClusterRunId,
-    }));
+      llmClusterId: r.pageData?.llmClusterId,
+      llmClusterLabel: r.pageData?.llmClusterLabel,
+      llmClusterDescription: r.pageData?.llmClusterDescription,
+      llmClusterBatchId: r.pageData?.llmClusterBatchId,
+      llmClusterRunId: r.pageData?.llmClusterRunId,
+    })) as unknown as DomainPageRecord[];
   }
   try {
     const { promises: fs } = await import('fs');
@@ -232,7 +232,7 @@ async function writeDomainPages(records: DomainPageRecord[]): Promise<void> {
   if (USE_POSTGRES) {
     for (const r of records) {
       if (r.llmClusterId) {
-        await prisma.domainPage.update({
+        await (prisma.domainPage as any).update({
           where: { id: r.id },
           data: {
             pageData: {
