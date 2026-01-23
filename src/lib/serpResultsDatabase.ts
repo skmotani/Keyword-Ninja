@@ -144,7 +144,7 @@ export async function getSerpResults(
         return {
             lastFetched: records[0].fetchedAt,
             selectedDomain,
-            results: records.map(r => ({
+            results: records.map((r: any) => ({
                 rank_group: r.rank,
                 rank_absolute: (r.serpData as any)?.rank_absolute ?? r.rank,
                 domain: r.domain,
@@ -229,3 +229,4 @@ export async function getSerpResultsForKeyword(
         GL: keywordData?.GL
     };
 }
+

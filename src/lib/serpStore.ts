@@ -18,7 +18,7 @@ const SERP_RESULTS_FILE = 'serp_results.json';
 async function readSerpRecords(): Promise<ClientPositionSerpRecord[]> {
   if (USE_POSTGRES_CLIENT_POSITIONS_SERP) {
     const records = await (prisma.clientPositionSerp as any).findMany();
-    return records.map(r => ({
+    return records.map((r: any) => ({
       id: r.id,
       clientCode: r.clientCode,
       keyword: r.keyword,
@@ -61,7 +61,7 @@ export async function getClientPositionSerpRecords(
     if (locationType) where.locationType = locationType;
 
     const records = await (prisma.clientPositionSerp as any).findMany({ where });
-    return records.map(r => ({
+    return records.map((r: any) => ({
       id: r.id,
       clientCode: r.clientCode,
       keyword: r.keyword,
@@ -162,7 +162,7 @@ export async function upsertClientPositionSerpRecords(
 async function readSerpResultRecords(): Promise<SerpResult[]> {
   if (USE_POSTGRES_SERP_RESULTS) {
     const records = await (prisma.serpResult as any).findMany();
-    return records.map(r => ({
+    return records.map((r: any) => ({
       id: r.id,
       clientCode: r.clientCode,
       keyword: r.keyword,
@@ -201,7 +201,7 @@ export async function getSerpDataByClientAndLocations(
     const records = await (prisma.serpResult as any).findMany({
       where: { clientCode, locationCode: { in: locationCodes } }
     });
-    return records.map(r => ({
+    return records.map((r: any) => ({
       id: r.id,
       clientCode: r.clientCode,
       keyword: r.keyword,
@@ -283,3 +283,4 @@ export async function saveSerpApiLog(clientCode: string, locCodes: string[], raw
     return 'error_saving_log.json';
   }
 }
+

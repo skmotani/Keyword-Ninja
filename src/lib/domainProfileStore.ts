@@ -10,7 +10,7 @@ const FILENAME = 'domainProfiles.json';
 async function readData(): Promise<DomainProfile[]> {
   if (USE_POSTGRES) {
     const records = await (prisma.domainProfile as any).findMany();
-    return records.map(r => ({
+    return records.map((r: any) => ({
       id: r.id,
       clientCode: r.clientCode,
       domain: r.domain,
@@ -52,7 +52,7 @@ export async function getDomainProfiles(): Promise<DomainProfile[]> {
 export async function getDomainProfilesByClient(clientCode: string): Promise<DomainProfile[]> {
   if (USE_POSTGRES) {
     const records = await (prisma.domainProfile as any).findMany({ where: { clientCode } });
-    return records.map(r => ({
+    return records.map((r: any) => ({
       id: r.id,
       clientCode: r.clientCode,
       domain: r.domain,
@@ -345,4 +345,5 @@ export async function deleteDomainProfilesByClient(clientCode: string): Promise<
   await writeData(filtered);
   return deletedCount;
 }
+
 

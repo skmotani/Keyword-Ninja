@@ -21,7 +21,7 @@ export async function GET() {
         });
 
         return NextResponse.json({
-            templates: templates.map((template) => ({
+            templates: templates.map((template: any) => ({
                 id: template.id,
                 name: template.name,
                 slug: template.slug,
@@ -105,4 +105,6 @@ export async function POST(request: NextRequest) {
         );
     }
 }
+
+
 

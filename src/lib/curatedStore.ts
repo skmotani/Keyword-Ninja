@@ -162,7 +162,7 @@ export async function deleteCuratedKeyword(id: string): Promise<void> {
 async function readClientPositions(): Promise<ClientPosition[]> {
     if (USE_POSTGRES_CLIENT_POSITIONS) {
         const positions = await (prisma.clientPosition as any).findMany();
-        return positions.map(p => ({
+        return positions.map((p: any) => ({
             id: p.id,
             clientCode: p.clientCode,
             keywordOrTheme: p.keywordOrTheme,
@@ -195,7 +195,7 @@ export async function getClientPositions(clientCode?: string): Promise<ClientPos
     if (USE_POSTGRES_CLIENT_POSITIONS) {
         const where = clientCode ? { clientCode } : {};
         const positions = await (prisma.clientPosition as any).findMany({ where });
-        return positions.map(p => ({
+        return positions.map((p: any) => ({
             id: p.id,
             clientCode: p.clientCode,
             keywordOrTheme: p.keywordOrTheme,
@@ -315,4 +315,6 @@ export async function deleteClientPosition(id: string): Promise<void> {
         await writeClientPositions(filtered);
     }
 }
+
+
 

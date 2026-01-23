@@ -26,7 +26,7 @@ async function ensureFile(filePath: string): Promise<void> {
 export async function getSummaries(): Promise<PageIntentDomainSummary[]> {
     if (USE_POSTGRES) {
         const records = await (prisma.pageIntentSummary as any).findMany();
-        return records.map(r => ({
+        return records.map((r: any) => ({
             id: r.id,
             clientCode: r.clientCode,
             domain: r.url,
@@ -51,7 +51,7 @@ export async function getSummariesByClient(clientCode: string): Promise<PageInte
         const records = await (prisma.pageIntentSummary as any).findMany({
             where: { clientCode }
         });
-        return records.map(r => ({
+        return records.map((r: any) => ({
             id: r.id,
             clientCode: r.clientCode,
             domain: r.url,
@@ -152,7 +152,7 @@ export async function upsertSummary(summary: PageIntentDomainSummary): Promise<v
 export async function getPages(): Promise<PageIntentDetail[]> {
     if (USE_POSTGRES) {
         const records = await (prisma.pageIntentPage as any).findMany();
-        return records.map(r => ({
+        return records.map((r: any) => ({
             id: r.id,
             clientCode: r.clientCode,
             domain: (r.intentData as any)?.domain ?? '',
@@ -173,7 +173,7 @@ export async function getPagesByDomain(clientCode: string, domain: string): Prom
         });
         return records
             .filter(r => (r.intentData as any)?.domain === domain)
-            .map(r => ({
+            .map((r: any) => ({
                 id: r.id,
                 clientCode: r.clientCode,
                 domain: (r.intentData as any)?.domain ?? '',
@@ -267,4 +267,6 @@ export async function deletePagesByDomain(clientCode: string, domain: string): P
     const filtered = pages.filter(p => !(p.clientCode === clientCode && p.domain === domain));
     await fs.writeFile(PAGES_FILE, JSON.stringify(filtered, null, 2), 'utf-8');
 }
+
+
 

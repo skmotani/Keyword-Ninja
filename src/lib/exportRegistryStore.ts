@@ -66,7 +66,7 @@ async function writeJsonFile<T>(filename: string, data: T[]): Promise<void> {
 export async function getExportPages(): Promise<ExportPageEntry[]> {
   if (USE_POSTGRES) {
     const records = await (prisma.exportPageRegistry as any).findMany();
-    return records.map(r => ({
+    return records.map((r: any) => ({
       id: r.id.toString(),
       pageKey: r.pageId,
       pageName: r.displayName,
@@ -133,7 +133,7 @@ export async function getActiveExportPages(): Promise<ExportPageEntry[]> {
 export async function getAllColumns(): Promise<ExportColumnEntry[]> {
   if (USE_POSTGRES) {
     const records = await (prisma.exportColumnRegistry as any).findMany();
-    return records.map(r => ({
+    return records.map((r: any) => ({
       id: r.id.toString(),
       pageKey: r.pageId,
       columnName: r.columnName,
@@ -150,7 +150,7 @@ export async function getAllColumns(): Promise<ExportColumnEntry[]> {
 export async function getColumnsForPage(pageKey: string): Promise<ExportColumnEntry[]> {
   if (USE_POSTGRES) {
     const records = await (prisma.exportColumnRegistry as any).findMany({ where: { pageId: pageKey } });
-    return records.map(r => ({
+    return records.map((r: any) => ({
       id: r.id.toString(),
       pageKey: r.pageId,
       columnName: r.columnName,
@@ -247,4 +247,5 @@ export async function matchGlossaryBatch(columnNames: string[]): Promise<Map<str
 
   return results;
 }
+
 
