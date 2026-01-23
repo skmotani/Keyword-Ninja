@@ -1,0 +1,43 @@
+﻿Checking AI profile for client O2...
+
+Profile found!
+clientCode: O2
+domain: undefined
+createdAt: 2026-01-22T10:40:13.045Z
+
+--- Profile field type: undefined
+--- Profile field keys: null
+
+--- Checking for term dictionary...
+p.ai_kw_builder_term_dictionary: NOT FOUND
+p.termDictionary: NOT FOUND
+p.terms: NOT FOUND
+p.buckets: NOT FOUND
+
+--- Full profile structure (first 3000 chars):
+node : TypeError: 
+Cannot read 
+properties of 
+undefined (reading 
+'substring')
+At line:1 char:1
++ node scripts/dump-pr
+ofile.js 2>&1 | 
+Out-File -FilePath 
+scripts/profil ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (TypeError:   
+  Cann...ng 'subst    
+ring'):String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+    at main 
+(D:\Shakti Cursor\Keyw
+ord-Ninja\scripts\dump
+-profile.js:42:26)

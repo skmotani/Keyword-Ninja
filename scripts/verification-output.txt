@@ -1,0 +1,34 @@
+﻿============================================================
+PostgreSQL Migration Verification Report
+Railway URL: https://keyword-ninja-production.up.railway.app
+Timestamp: 2026-01-23T04:25:43.015Z
+============================================================
+
+## API Endpoint Tests
+------------------------------------------------------------
+Γ¥î clients: JSON parse error
+Γ¥î competitors: JSON parse error
+Γ¥î domainProfiles: JSON parse error
+Γ¥î dashboardQueries: JSON parse error
+Γ¥î domainKeywords: JSON parse error
+Γ¥î keywordApiData: JSON parse error
+Γ¥î footprintHistory: JSON parse error
+Γ¥î surfaces: JSON parse error
+Γ¥î pageIntent: JSON parse error
+
+## Dashboard Query Execution Tests
+------------------------------------------------------------
+Γ¥î MANUAL_001: HTTP 405
+Γ¥î MANUAL_002: HTTP 405
+Γ¥î MANUAL_003: HTTP 405
+Γ¥î MANUAL_004: HTTP 405
+Γ¥î MANUAL_005: HTTP 405
+
+============================================================
+## Summary
+------------------------------------------------------------
+API Endpoints: 0/9 passed
+Dashboard Queries: 0/5 passed
+
+ΓÜá∩╕Å Some tests failed - see details above
+============================================================

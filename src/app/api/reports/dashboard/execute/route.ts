@@ -32,6 +32,7 @@ import { getKeywordApiDataByClientAndLocations } from '@/lib/keywordApiStore';
 import { readTags, normalizeKeyword } from '@/lib/keywordTagsStore';
 import { getCredibilityByClientAndLocation, getCredibilityByClient } from '@/lib/storage/domainCredibilityStore';
 import { prisma } from '@/lib/prisma';
+import { getAllAiProfiles } from '@/lib/clientAiProfileStore';
 
 // PostgreSQL feature flags
 const USE_POSTGRES_DOMAIN_KEYWORDS = process.env.USE_POSTGRES_DOMAIN_KEYWORDS === 'true';
@@ -92,21 +93,12 @@ async function readClients(): Promise<Client[]> {
 }
 
 // Helper: Read AI profiles
+// Uses the store function which properly includes termDictionary relation for MANUAL_001/002
 async function readAiProfiles(): Promise<ClientAIProfile[]> {
     try {
-        if (USE_POSTGRES_CLIENT_AI_PROFILES) {
-            const records = await (prisma.clientAIProfile as any).findMany();
-            return records.map((r: any) => ({
-                clientCode: r.clientCode,
-                domain: r.domain,
-                profile: r.profile,
-                createdAt: r.createdAt,
-                updatedAt: r.updatedAt,
-            })) as ClientAIProfile[];
-        }
-        const filePath = path.join(DATA_DIR, 'client_ai_profiles.json');
-        const data = await fs.readFile(filePath, 'utf-8');
-        return JSON.parse(data) as ClientAIProfile[];
+        // getAllAiProfiles handles USE_POSTGRES_PROFILES flag internally
+        // and properly includes the termDictionary relation with ai_kw_builder_term_dictionary
+        return await getAllAiProfiles();
     } catch {
         return [];
     }

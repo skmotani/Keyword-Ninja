@@ -1,0 +1,22 @@
+﻿============================================================
+All AI Profiles in Database
+============================================================
+
+Total profiles: 3
+
+Client: 01 | Domain: undefined | Terms: 0
+Client: O2 | Domain: undefined | Terms: 0
+Client: 03 | Domain: undefined | Terms: 0
+
+============================================================
+All Clients in Database
+============================================================
+
+Total clients: 4
+
+Code: 01 | Name: Meera | Domain: www.meeraind.com
+Code: O2 | Name: Rahul Nandan | Domain: RahulNandan.com
+Code: 03 | Name: MEERA-CCP | Domain: https://www.cosmofilms.com
+Code: 04 | Name: Gushwork | Domain: https://www.gushwork.ai/
+
+============================================================
