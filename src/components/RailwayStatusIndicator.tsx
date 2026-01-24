@@ -206,7 +206,7 @@ export default function RailwayStatusIndicator() {
                             <span className={`text-sm font-semibold ${config.color}`}>
                                 {buildState === 'building' ? '🔨 Build in Progress...' : 
                                  buildState === 'synced' ? '✅ Up to Date' :
-                                 buildState === 'error' ? '❌ Connection Error' :
+                                 buildState === 'error' ? '⚠️ Waiting for Deployment' :
                                  buildState === 'local' ? '💻 Running Locally' :
                                  '⏳ Checking...'}
                             </span>
@@ -250,10 +250,28 @@ export default function RailwayStatusIndicator() {
                             </div>
                         )}
                         
-                        {/* Error State */}
+                        {/* Error/Waiting State */}
                         {buildState === 'error' && (
-                            <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-2 text-xs text-red-300">
-                                Cannot reach Railway. Server may be starting up.
+                            <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-2 text-xs text-amber-300">
+                                <div className="mb-1 font-medium">Railway not reachable</div>
+                                <div className="text-[10px] text-amber-400/70">
+                                    The deployment status endpoint may not be deployed yet. 
+                                    Once Railway finishes building, this will update automatically.
+                                </div>
+                            </div>
+                        )}
+                        
+                        {/* Show commit info section even when checking */}
+                        {buildState === 'checking' && (
+                            <div className="bg-slate-700/50 rounded-lg p-2 text-xs space-y-1">
+                                <div className="flex justify-between">
+                                    <span className="text-slate-500">Railway Commit:</span>
+                                    <code className="text-amber-400 font-mono">unknown</code>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-slate-500">Branch:</span>
+                                    <span className="text-slate-400">unknown</span>
+                                </div>
                             </div>
                         )}
                     </div>
@@ -266,7 +284,7 @@ export default function RailwayStatusIndicator() {
                     
                     <div className="p-2 border-t border-slate-700">
                         <a 
-                            href="https://railway.app/project" 
+                            href="https://railway.app/dashboard" 
                             target="_blank" 
                             rel="noopener noreferrer"
                             className="text-[10px] text-indigo-400 hover:underline flex items-center gap-1"
