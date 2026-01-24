@@ -1224,15 +1224,18 @@ async function executeTop20IncludeLearnQuery(
     // Get AI profile and term dictionary
     const profile = aiProfiles.find(p => p.clientCode === clientCode);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const termDictionary = (profile as any)?.ai_kw_builder_term_dictionary as { terms?: Record<string, { name?: string; term?: string; bucket?: string }> } | undefined;
-    const terms = termDictionary?.terms || {};
+    const termDictionary = (profile as any)?.ai_kw_builder_term_dictionary as { terms?: any } | undefined;
+    
+    // Handle both Array (from PostgreSQL/getAllAiProfiles) and Object (from JSON) formats
+    const termsRaw = termDictionary?.terms;
+    const termsArray: Array<{ term?: string; name?: string; bucket?: string }> = Array.isArray(termsRaw) 
+        ? termsRaw 
+        : Object.values(termsRaw || {});
 
-    // Filter for Include|Learn (review) bucket terms
+    // Filter for Include|Learn (bucket value is 'review' or 'Include | Learn')
     const includeLearnTerms: string[] = [];
-    const termsList = Array.isArray(terms) ? terms : Object.values(terms);
-
-    for (const term of termsList) {
-        if (term.bucket === 'review') {
+    for (const term of termsArray) {
+        if (term.bucket === 'review' || term.bucket === 'Include | Learn') {
             const termName = term.name || term.term;
             if (termName) includeLearnTerms.push(termName.toLowerCase());
         }
@@ -1361,13 +1364,18 @@ async function executeTop20IncludeBuyQuery(
     // Get AI profile and term dictionary
     const profile = aiProfiles.find(p => p.clientCode === clientCode);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const termDictionary = (profile as any)?.ai_kw_builder_term_dictionary as { terms?: Record<string, { name?: string; term?: string; bucket?: string }> } | undefined;
-    const terms = termDictionary?.terms || {};
+    const termDictionary = (profile as any)?.ai_kw_builder_term_dictionary as { terms?: any } | undefined;
+    
+    // Handle both Array (from PostgreSQL/getAllAiProfiles) and Object (from JSON) formats
+    const termsRaw = termDictionary?.terms;
+    const termsArray: Array<{ term?: string; name?: string; bucket?: string }> = Array.isArray(termsRaw) 
+        ? termsRaw 
+        : Object.values(termsRaw || {});
 
-    // Filter for Include|Buy bucket terms
+    // Filter for Include|Buy bucket terms (bucket value is 'include' or 'Include | Buy')
     const includeBuyTerms: string[] = [];
-    for (const [, term] of Object.entries(terms)) {
-        if (term.bucket === 'include') {
+    for (const term of termsArray) {
+        if (term.bucket === 'include' || term.bucket === 'Include | Buy') {
             const termName = term.name || term.term;
             if (termName) includeBuyTerms.push(termName.toLowerCase());
         }

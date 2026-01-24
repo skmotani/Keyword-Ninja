@@ -1,0 +1,92 @@
+﻿======================================================================
+DICTIONARY & TAGGING STORAGE ANALYSIS
+======================================================================
+
+## 1. TermDictionary Storage (Prisma - AI Keyword Builder)
+----------------------------------------------------------------------
+Total dictionaries: 3
+
+  Client: 01
+  Dictionary ID: cmkpbmkbn01a6gbvizho9lxiz
+  Version: 1
+  Total terms: 69
+  Buckets:
+    - Brand | Nav: 47
+    - Exclude | Noise: 22
+
+  Client: O2
+  Dictionary ID: cmkpbmkcp01c7gbvi0n7yr8xv
+  Version: 1
+  Total terms: 1055
+  Buckets:
+    - Brand | Nav: 35
+    - Exclude | Noise: 169
+    - Include | Buy: 382
+    - Include | Learn: 469
+
+  Client: 03
+  Dictionary ID: cmkpbmkjd025mgbvie95dmjiw
+  Version: 1
+  Total terms: 58
+  Buckets:
+    - Exclude | Noise: 42
+    - Include | Buy: 16
+
+## 2. DomainKeyword.tag2 Storage (Product Relevance Filter)
+----------------------------------------------------------------------
+node : PrismaClientKnownRe
+questError: 
+At line:1 char:1
++ node scripts/analyze-dic
+tionary-storage.js 2>&1 | 
+Out-File -FilePath  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (P  
+  rismaClientKnownReque   
+ stError: :String) [],    
+ RemoteException
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+Invalid 
+`prisma.$queryRaw()` 
+invocation:
+
+
+Raw query failed. Code: 
+`42703`. Message: `column 
+"tag2" does not exist`
+    at 
+$n.handleRequestError 
+(D:\Shakti Cursor\Keyword-
+Ninja\node_modules\@prisma
+\client\runtime\library.js
+:121:7315)
+    at $n.handleAndLogRequ
+estError (D:\Shakti Cursor
+\Keyword-Ninja\node_module
+s\@prisma\client\runtime\l
+ibrary.js:121:6623)
+    at $n.request 
+(D:\Shakti Cursor\Keyword-
+Ninja\node_modules\@prisma
+\client\runtime\library.js
+:121:6307)
+    at async l (D:\Shakti 
+Cursor\Keyword-Ninja\node_
+modules\@prisma\client\run
+time\library.js:130:9633)
+    at async 
+analyzeStorage (D:\Shakti 
+Cursor\Keyword-Ninja\scrip
+ts\analyze-dictionary-stor
+age.js:63:24) {
+  code: 'P2010',
+  clientVersion: '5.22.0',
+  meta: { code: '42703', 
+message: 'column "tag2" 
+does not exist' }
+}
