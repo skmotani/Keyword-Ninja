@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
-import { getActiveQueries } from '@/lib/storage/dashboardQueryStore';
+import { getActiveQueries, deleteQuery } from '@/lib/storage/dashboardQueryStore';
 
 const DATA_FILE = path.join(process.cwd(), 'data', 'dashboard_query_customizations.json');
 
@@ -161,6 +161,28 @@ export async function POST(request: NextRequest) {
         } else if (type === 'order' && queryOrder) {
             // Update query order
             data.queryOrder = queryOrder;
+        } else if (type === 'deleteCard' && queryId) {
+            // Delete a card completely - from PostgreSQL and customizations
+            // 1. Delete from PostgreSQL (the actual query definition)
+            const deleted = await deleteQuery(queryId);
+            if (!deleted) {
+                console.warn(`deleteCard: Query ${queryId} not found in database, may already be deleted`);
+            }
+            
+            // 2. Remove from queryOrder in all groups
+            for (const gid of Object.keys(data.queryOrder)) {
+                data.queryOrder[gid] = data.queryOrder[gid].filter(id => id !== queryId);
+            }
+            
+            // 3. Remove from customizations
+            data.queries = data.queries.filter(q => q.queryId !== queryId);
+        } else if (type === 'createCard' && body.card) {
+            // Create a new card - handled by separate endpoint, log for debugging
+            console.log('createCard received in customizations API, should use /api/reports/dashboard/queries instead');
+            return NextResponse.json(
+                { success: false, error: 'Use /api/reports/dashboard/queries endpoint for creating cards' },
+                { status: 400 }
+            );
         } else {
             return NextResponse.json(
                 { success: false, error: 'Invalid request: type must be query, category, or order' },
