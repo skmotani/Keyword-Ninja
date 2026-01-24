@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 interface DeploymentStatus {
+    appName?: string;
     commit: string;
     commitFull: string;
     branch: string;
@@ -48,56 +49,69 @@ export default function RailwayStatusIndicator() {
         }
     };
 
-    // Get local git commit
-    const getLocalCommit = async () => {
-        try {
-            const res = await fetch('/api/system/deployment-status');
-            if (res.ok) {
-                const data = await res.json();
-                if (data.success && data.deployment) {
-                    setLocalCommit(data.deployment.commit);
-                    return data.deployment.commit;
-                }
-            }
-            return null;
-        } catch (e) {
-            console.warn('Failed to get local commit:', e);
-            return null;
-        }
-    };
-
     // Compare commits and determine build state
     const checkStatus = async () => {
         setBuildState('checking');
         setCheckCount(c => c + 1);
         
-        const [railway, local] = await Promise.all([
-            checkRailwayStatus(),
-            getLocalCommit(),
-        ]);
+        // First get local status (always works)
+        const localRes = await getLocalStatus();
+        
+        // Try to get Railway status
+        const railway = await checkRailwayStatus();
         
         setLastChecked(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
         
-        if (!railway) {
-            setBuildState('error');
-            return;
-        }
-        
-        if (railway.environment === 'local') {
+        // If we got local status but it says 'local', we're running locally
+        if (localRes && localRes.environment === 'local') {
+            setRailwayStatus(localRes);
+            setLocalCommit(localRes.commit);
             setBuildState('local');
             return;
         }
         
-        if (!local) {
+        if (!railway) {
+            // Railway unreachable - if we have local info, show that
+            if (localRes) {
+                setRailwayStatus(localRes);
+                setLocalCommit(localRes.commit);
+                setBuildState('local');
+            } else {
+                setBuildState('error');
+            }
+            return;
+        }
+        
+        // We got Railway status - compare with local
+        if (!localRes) {
             setBuildState('error');
             return;
         }
         
+        setLocalCommit(localRes.commit);
+        
         // Compare commits
-        if (railway.commit === local) {
+        if (railway.commit === localRes.commit) {
             setBuildState('synced');
         } else {
             setBuildState('building');
+        }
+    };
+
+    // Get local deployment status
+    const getLocalStatus = async (): Promise<DeploymentStatus | null> => {
+        try {
+            const res = await fetch('/api/system/deployment-status');
+            if (res.ok) {
+                const data = await res.json();
+                if (data.success && data.deployment) {
+                    return data.deployment;
+                }
+            }
+            return null;
+        } catch (e) {
+            console.warn('Failed to get local status:', e);
+            return null;
         }
     };
 
@@ -215,11 +229,17 @@ export default function RailwayStatusIndicator() {
                         {/* Commit Info */}
                         {railwayStatus && buildState !== 'error' && (
                             <div className="bg-slate-700/50 rounded-lg p-2 text-xs space-y-1">
+                                {railwayStatus.appName && (
+                                    <div className="flex justify-between">
+                                        <span className="text-slate-500">App:</span>
+                                        <span className="text-indigo-400 font-semibold">{railwayStatus.appName}</span>
+                                    </div>
+                                )}
                                 <div className="flex justify-between">
-                                    <span className="text-slate-500">Railway Commit:</span>
+                                    <span className="text-slate-500">{buildState === 'local' ? 'Commit:' : 'Railway Commit:'}</span>
                                     <code className="text-green-400 font-mono">{railwayStatus.commit}</code>
                                 </div>
-                                {localCommit && localCommit !== railwayStatus.commit && (
+                                {localCommit && localCommit !== railwayStatus.commit && buildState !== 'local' && (
                                     <div className="flex justify-between">
                                         <span className="text-slate-500">Local Commit:</span>
                                         <code className="text-amber-400 font-mono">{localCommit}</code>
