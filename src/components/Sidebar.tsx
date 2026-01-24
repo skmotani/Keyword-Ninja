@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import { useDevMode } from '@/contexts/DevModeContext';
 import ApiStatusIndicator from '@/components/ApiStatusIndicator';
+import RailwayStatusIndicator from '@/components/RailwayStatusIndicator';
 
 // Menu item definitions
 const menuSections = [
@@ -375,6 +376,9 @@ export default function Sidebar() {
 
                 {/* API Status Indicator */}
                 {!collapsed && <ApiStatusIndicator />}
+
+                {/* Railway Deployment Status */}
+                {!collapsed && <RailwayStatusIndicator />}
 
                 {/* Settings */}
                 <Link
